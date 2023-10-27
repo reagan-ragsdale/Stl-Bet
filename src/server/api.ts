@@ -15,9 +15,14 @@ import { NhlPlayerGameStatsController } from "src/shared/Controllers/NhlPlayerGa
 import { NbaPlayerInfoDb } from "src/shared/dbTasks/NbaPlayerInfoDb"
 import { NbaController } from "src/shared/Controllers/NbaController"
 import { DbNbaGameStats } from "src/shared/dbTasks/DbNbaGameStats"
+import { createPostgresDataProvider } from "remult/postgres"
 
 export const api = remultExpress({
     entities: [Task, PlayerInfoMlb, DbMlbGameBookData, DbGameBookData, DbPlayerPropData, DbNhlPlayerInfo, DbNhlPlayerGameStats, NbaPlayerInfoDb, DbNbaGameStats,],
     controllers: [TaskController, MlbController, SportsBookController, PlayerPropController, NhlPlayerInfoController, NhlPlayerGameStatsController, NbaController,] ,
+    dataProvider: createPostgresDataProvider({
+        connectionString: process.env["DATABASE_URL"] 
+        //|| "your connection string"
+      })
    // getUser: req => req.session!["user"] 
 })
