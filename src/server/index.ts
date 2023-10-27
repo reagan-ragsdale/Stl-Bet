@@ -6,13 +6,20 @@ import { createKnexDataProvider } from "remult/remult-knex"
 import helmet from "helmet"
 import compression from "compression"
 import path from "path"
+import { JsonDataProvider } from "remult"
+import { JsonEntityFileStorage } from "remult/server"
+import { remultExpress } from "remult/remult-express"
 
 const app = express()
 
 app.use(
-    session({
+  remultExpress({
+  dataProvider: async () =>
+    new JsonDataProvider(new JsonEntityFileStorage("./db"))
+})
+    /* session({
       secret: process.env["SESSION_SECRET"] || "my secret"
-    })
+    }) */
   )
 //app.use(auth)
 app.use(helmet())
