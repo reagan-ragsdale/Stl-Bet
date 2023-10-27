@@ -1,0 +1,41 @@
+*{
+    z-index: 1;
+}
+.mat-tab-label1 { padding: 15px 0 15px 0; }
+.team-prop-display{
+    background-color:rgb(255, 56, 56);
+    display:flex;
+    justify-items: center;
+    padding-top: 1rem;
+}
+.team-prop-display button{
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+.card-header{
+    background-color: rgb(174, 174, 245);
+}
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+    gap: 3rem;
+  }
+  tr.example-detail-row {
+    height: 0;
+  }
+  mat-panel-description{
+    gap: 60rem;
+  }
+
+
+  .player-table {
+    width: 100%;
+  }
+  
+ 
+  
+  .mat-column-detailedStats {
+    width: 125px;
+    text-align: center;
+    font-weight: bold;
+  }

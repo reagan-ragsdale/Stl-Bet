@@ -1,0 +1,22 @@
+mat-card{
+    width: fit-content;
+    position: fixed;
+    right: 2px;
+    bottom: 2px;
+    border: 2px solid rgb(255, 56, 56);
+    border-radius: 10px;
+    z-index: 10;
+}
+*{
+    background-color:rgb(255, 56, 56);
+}
+.team-prop-display{
+    background-color:rgb(255, 56, 56);
+    display:flex;
+    justify-items: center;
+    padding-top: 1rem;
+    gap: 1rem;
+}
+.container-class{
+    gap: 1rem;
+}

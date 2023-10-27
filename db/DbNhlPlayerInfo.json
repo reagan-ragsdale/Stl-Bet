@@ -1,0 +1,5273 @@
+[
+  {
+    "playerId": 8477931,
+    "playerName": "Tomas Nosek",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.737Z"
+  },
+  {
+    "playerId": 8474090,
+    "playerName": "Brendan Smith",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.737Z"
+  },
+  {
+    "playerId": 8475287,
+    "playerName": "Erik Haula",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.738Z"
+  },
+  {
+    "playerId": 8475726,
+    "playerName": "Tyler Toffoli",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.739Z"
+  },
+  {
+    "playerId": 8476292,
+    "playerName": "Ondrej Palat",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.740Z"
+  },
+  {
+    "playerId": 8476462,
+    "playerName": "Dougie Hamilton",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.741Z"
+  },
+  {
+    "playerId": 8476525,
+    "playerName": "Colin Miller",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.741Z"
+  },
+  {
+    "playerId": 8476919,
+    "playerName": "Chris Tierney",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.742Z"
+  },
+  {
+    "playerId": 8477508,
+    "playerName": "Curtis Lazar",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.743Z"
+  },
+  {
+    "playerId": 8477970,
+    "playerName": "Vitek Vanecek",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.744Z"
+  },
+  {
+    "playerId": 8478399,
+    "playerName": "Jonas Siegenthaler",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.744Z"
+  },
+  {
+    "playerId": 8478414,
+    "playerName": "Timo Meier",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.745Z"
+  },
+  {
+    "playerId": 8478507,
+    "playerName": "John Marino",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.746Z"
+  },
+  {
+    "playerId": 8479407,
+    "playerName": "Jesper Bratt",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.746Z"
+  },
+  {
+    "playerId": 8479414,
+    "playerName": "Nathan Bastian",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.747Z"
+  },
+  {
+    "playerId": 8479415,
+    "playerName": "Michael McLeod",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.748Z"
+  },
+  {
+    "playerId": 8479984,
+    "playerName": "Cal Foote",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.748Z"
+  },
+  {
+    "playerId": 8480002,
+    "playerName": "Nico Hischier",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.749Z"
+  },
+  {
+    "playerId": 8480860,
+    "playerName": "Kevin Bahl",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.750Z"
+  },
+  {
+    "playerId": 8481033,
+    "playerName": "Akira Schmid",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.751Z"
+  },
+  {
+    "playerId": 8481559,
+    "playerName": "Jack Hughes",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.751Z"
+  },
+  {
+    "playerId": 8482110,
+    "playerName": "Dawson Mercer",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.752Z"
+  },
+  {
+    "playerId": 8482125,
+    "playerName": "Alexander Holtz",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.753Z"
+  },
+  {
+    "playerId": 8482684,
+    "playerName": "Luke Hughes",
+    "teamName": "NJD",
+    "teamId": 1,
+    "createdAt": "2023-10-26T13:57:18.754Z"
+  },
+  {
+    "playerId": 8473504,
+    "playerName": "Cal Clutterbuck",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.754Z"
+  },
+  {
+    "playerId": 8473575,
+    "playerName": "Semyon Varlamov",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.755Z"
+  },
+  {
+    "playerId": 8474709,
+    "playerName": "Matt Martin",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.756Z"
+  },
+  {
+    "playerId": 8475151,
+    "playerName": "Kyle Palmieri",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.757Z"
+  },
+  {
+    "playerId": 8475231,
+    "playerName": "Casey Cizikas",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.757Z"
+  },
+  {
+    "playerId": 8475314,
+    "playerName": "Anders Lee",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.758Z"
+  },
+  {
+    "playerId": 8475754,
+    "playerName": "Brock Nelson",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.759Z"
+  },
+  {
+    "playerId": 8476419,
+    "playerName": "Jean-Gabriel Pageau",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.760Z"
+  },
+  {
+    "playerId": 8476429,
+    "playerName": "Scott Mayfield",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.760Z"
+  },
+  {
+    "playerId": 8476917,
+    "playerName": "Adam Pelech",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.761Z"
+  },
+  {
+    "playerId": 8477392,
+    "playerName": "Hudson Fasching",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.762Z"
+  },
+  {
+    "playerId": 8477500,
+    "playerName": "Bo Horvat",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.763Z"
+  },
+  {
+    "playerId": 8477506,
+    "playerName": "Ryan Pulock",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.763Z"
+  },
+  {
+    "playerId": 8478009,
+    "playerName": "Ilya Sorokin",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.764Z"
+  },
+  {
+    "playerId": 8478115,
+    "playerName": "Pierre Engvall",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.765Z"
+  },
+  {
+    "playerId": 8478445,
+    "playerName": "Mathew Barzal",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.766Z"
+  },
+  {
+    "playerId": 8479328,
+    "playerName": "Julien Gauthier",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.767Z"
+  },
+  {
+    "playerId": 8480222,
+    "playerName": "Sebastian Aho",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.767Z"
+  },
+  {
+    "playerId": 8480789,
+    "playerName": "Oliver Wahlstrom",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.768Z"
+  },
+  {
+    "playerId": 8480865,
+    "playerName": "Noah Dobson",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.769Z"
+  },
+  {
+    "playerId": 8481014,
+    "playerName": "Alexander Romanov",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.770Z"
+  },
+  {
+    "playerId": 8481541,
+    "playerName": "Samuel Bolduc",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.771Z"
+  },
+  {
+    "playerId": 8481601,
+    "playerName": "Simon Holmstrom",
+    "teamName": "NYI",
+    "teamId": 2,
+    "createdAt": "2023-10-26T13:57:18.772Z"
+  },
+  {
+    "playerId": 8471218,
+    "playerName": "Blake Wheeler",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.772Z"
+  },
+  {
+    "playerId": 8471734,
+    "playerName": "Jonathan Quick",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.773Z"
+  },
+  {
+    "playerId": 8474009,
+    "playerName": "Nick Bonino",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.774Z"
+  },
+  {
+    "playerId": 8475184,
+    "playerName": "Chris Kreider",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.775Z"
+  },
+  {
+    "playerId": 8475752,
+    "playerName": "Tyler Pitlick",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.776Z"
+  },
+  {
+    "playerId": 8476389,
+    "playerName": "Vincent Trocheck",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.777Z"
+  },
+  {
+    "playerId": 8476459,
+    "playerName": "Mika Zibanejad",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.777Z"
+  },
+  {
+    "playerId": 8476624,
+    "playerName": "Barclay Goodrow",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.778Z"
+  },
+  {
+    "playerId": 8476885,
+    "playerName": "Jacob Trouba",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.779Z"
+  },
+  {
+    "playerId": 8476918,
+    "playerName": "Jimmy Vesey",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.780Z"
+  },
+  {
+    "playerId": 8476979,
+    "playerName": "Erik Gustafsson",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.781Z"
+  },
+  {
+    "playerId": 8478048,
+    "playerName": "Igor Shesterkin",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.781Z"
+  },
+  {
+    "playerId": 8478550,
+    "playerName": "Artemi Panarin",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.782Z"
+  },
+  {
+    "playerId": 8479323,
+    "playerName": "Adam Fox",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.783Z"
+  },
+  {
+    "playerId": 8479324,
+    "playerName": "Ryan Lindgren",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.784Z"
+  },
+  {
+    "playerId": 8480078,
+    "playerName": "Filip Chytil",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.785Z"
+  },
+  {
+    "playerId": 8480817,
+    "playerName": "K'Andre Miller",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.785Z"
+  },
+  {
+    "playerId": 8481554,
+    "playerName": "Kaapo Kakko",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.786Z"
+  },
+  {
+    "playerId": 8481708,
+    "playerName": "Zac Jones",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.787Z"
+  },
+  {
+    "playerId": 8482073,
+    "playerName": "Braden Schneider",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.788Z"
+  },
+  {
+    "playerId": 8482109,
+    "playerName": "Alexis Lafreniere",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.788Z"
+  },
+  {
+    "playerId": 8482157,
+    "playerName": "Will Cuylle",
+    "teamName": "NYR",
+    "teamId": 3,
+    "createdAt": "2023-10-26T13:57:18.789Z"
+  },
+  {
+    "playerId": 8471686,
+    "playerName": "Marc Staal",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.790Z"
+  },
+  {
+    "playerId": 8475176,
+    "playerName": "Ryan Ellis",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.791Z"
+  },
+  {
+    "playerId": 8477499,
+    "playerName": "Rasmus Ristolainen",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.792Z"
+  },
+  {
+    "playerId": 8474715,
+    "playerName": "Cam Atkinson",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.793Z"
+  },
+  {
+    "playerId": 8475235,
+    "playerName": "Nicolas Deslauriers",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.793Z"
+  },
+  {
+    "playerId": 8476372,
+    "playerName": "Nick Seeler",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.794Z"
+  },
+  {
+    "playerId": 8476461,
+    "playerName": "Sean Couturier",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.795Z"
+  },
+  {
+    "playerId": 8476872,
+    "playerName": "Scott Laughton",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.796Z"
+  },
+  {
+    "playerId": 8477903,
+    "playerName": "Garnet Hathaway",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.797Z"
+  },
+  {
+    "playerId": 8477948,
+    "playerName": "Travis Sanheim",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.798Z"
+  },
+  {
+    "playerId": 8478433,
+    "playerName": "Felix Sandstrom",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.799Z"
+  },
+  {
+    "playerId": 8478439,
+    "playerName": "Travis Konecny",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.799Z"
+  },
+  {
+    "playerId": 8479394,
+    "playerName": "Carter Hart",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.800Z"
+  },
+  {
+    "playerId": 8480015,
+    "playerName": "Owen Tippett",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.801Z"
+  },
+  {
+    "playerId": 8480028,
+    "playerName": "Morgan Frost",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.802Z"
+  },
+  {
+    "playerId": 8480068,
+    "playerName": "Ryan Poehling",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.803Z"
+  },
+  {
+    "playerId": 8480220,
+    "playerName": "Noah Cates",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.804Z"
+  },
+  {
+    "playerId": 8480336,
+    "playerName": "Sean Walker",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.805Z"
+  },
+  {
+    "playerId": 8480797,
+    "playerName": "Joel Farabee",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.806Z"
+  },
+  {
+    "playerId": 8481035,
+    "playerName": "Samuel Ersson",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.807Z"
+  },
+  {
+    "playerId": 8481178,
+    "playerName": "Egor Zamula",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.808Z"
+  },
+  {
+    "playerId": 8481546,
+    "playerName": "Cam York",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.808Z"
+  },
+  {
+    "playerId": 8481553,
+    "playerName": "Bobby Brink",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.809Z"
+  },
+  {
+    "playerId": 8482159,
+    "playerName": "Tyson Foerster",
+    "teamName": "PHI",
+    "teamId": 4,
+    "createdAt": "2023-10-26T13:57:18.810Z"
+  },
+  {
+    "playerId": 8477968,
+    "playerName": "Alex Nedeljkovic",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.811Z"
+  },
+  {
+    "playerId": 8476433,
+    "playerName": "Magnus Hellberg",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.812Z"
+  },
+  {
+    "playerId": 8476994,
+    "playerName": "Vinnie Hinostroza",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.813Z"
+  },
+  {
+    "playerId": 8482241,
+    "playerName": "Radim Zohorna",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.814Z"
+  },
+  {
+    "playerId": 8470604,
+    "playerName": "Jeff Carter",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.815Z"
+  },
+  {
+    "playerId": 8471215,
+    "playerName": "Evgeni Malkin",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.816Z"
+  },
+  {
+    "playerId": 8471675,
+    "playerName": "Sidney Crosby",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.817Z"
+  },
+  {
+    "playerId": 8471724,
+    "playerName": "Kris Letang",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.817Z"
+  },
+  {
+    "playerId": 8474189,
+    "playerName": "Lars Eller",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.818Z"
+  },
+  {
+    "playerId": 8474578,
+    "playerName": "Erik Karlsson",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.819Z"
+  },
+  {
+    "playerId": 8475191,
+    "playerName": "Reilly Smith",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.820Z"
+  },
+  {
+    "playerId": 8475810,
+    "playerName": "Bryan Rust",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.821Z"
+  },
+  {
+    "playerId": 8476442,
+    "playerName": "Matt Nieto",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.822Z"
+  },
+  {
+    "playerId": 8476483,
+    "playerName": "Rickard Rakell",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.822Z"
+  },
+  {
+    "playerId": 8477244,
+    "playerName": "Chad Ruhwedel",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.823Z"
+  },
+  {
+    "playerId": 8477404,
+    "playerName": "Jake Guentzel",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.824Z"
+  },
+  {
+    "playerId": 8477435,
+    "playerName": "Ryan Graves",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.825Z"
+  },
+  {
+    "playerId": 8477465,
+    "playerName": "Tristan Jarry",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.826Z"
+  },
+  {
+    "playerId": 8477969,
+    "playerName": "Marcus Pettersson",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.827Z"
+  },
+  {
+    "playerId": 8478569,
+    "playerName": "Noel Acciari",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.828Z"
+  },
+  {
+    "playerId": 8478854,
+    "playerName": "Ryan Shea",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.829Z"
+  },
+  {
+    "playerId": 8480058,
+    "playerName": "Pierre-Olivier Joseph",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.830Z"
+  },
+  {
+    "playerId": 8481206,
+    "playerName": "John Ludvig",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.831Z"
+  },
+  {
+    "playerId": 8482055,
+    "playerName": "Drew O'Connor",
+    "teamName": "PIT",
+    "teamId": 5,
+    "createdAt": "2023-10-26T13:57:18.832Z"
+  },
+  {
+    "playerId": 8473419,
+    "playerName": "Brad Marchand",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.833Z"
+  },
+  {
+    "playerId": 8473473,
+    "playerName": "Milan Lucic",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.834Z"
+  },
+  {
+    "playerId": 8474031,
+    "playerName": "Kevin Shattenkirk",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.835Z"
+  },
+  {
+    "playerId": 8474037,
+    "playerName": "James van Riemsdyk",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.836Z"
+  },
+  {
+    "playerId": 8475745,
+    "playerName": "Charlie Coyle",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.836Z"
+  },
+  {
+    "playerId": 8475762,
+    "playerName": "Derek Forbort",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.837Z"
+  },
+  {
+    "playerId": 8476854,
+    "playerName": "Hampus Lindholm",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.838Z"
+  },
+  {
+    "playerId": 8476891,
+    "playerName": "Matt Grzelcyk",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.839Z"
+  },
+  {
+    "playerId": 8476999,
+    "playerName": "Linus Ullmark",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.840Z"
+  },
+  {
+    "playerId": 8477956,
+    "playerName": "David Pastrnak",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.841Z"
+  },
+  {
+    "playerId": 8478401,
+    "playerName": "Pavel Zacha",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.842Z"
+  },
+  {
+    "playerId": 8478443,
+    "playerName": "Brandon Carlo",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.843Z"
+  },
+  {
+    "playerId": 8478498,
+    "playerName": "Jake DeBrusk",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.844Z"
+  },
+  {
+    "playerId": 8479325,
+    "playerName": "Charlie McAvoy",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.845Z"
+  },
+  {
+    "playerId": 8479365,
+    "playerName": "Trent Frederic",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.846Z"
+  },
+  {
+    "playerId": 8479987,
+    "playerName": "Morgan Geekie",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.847Z"
+  },
+  {
+    "playerId": 8480070,
+    "playerName": "Ian Mitchell",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.848Z"
+  },
+  {
+    "playerId": 8480280,
+    "playerName": "Jeremy Swayman",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.849Z"
+  },
+  {
+    "playerId": 8480880,
+    "playerName": "Jakub Lauko",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.850Z"
+  },
+  {
+    "playerId": 8481556,
+    "playerName": "John Beecher",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.851Z"
+  },
+  {
+    "playerId": 8483505,
+    "playerName": "Matthew Poitras",
+    "teamName": "BOS",
+    "teamId": 6,
+    "createdAt": "2023-10-26T13:57:18.853Z"
+  },
+  {
+    "playerId": 8473446,
+    "playerName": "Erik Johnson",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.854Z"
+  },
+  {
+    "playerId": 8473449,
+    "playerName": "Kyle Okposo",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.855Z"
+  },
+  {
+    "playerId": 8475784,
+    "playerName": "Jeff Skinner",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.856Z"
+  },
+  {
+    "playerId": 8476878,
+    "playerName": "Zemgus Girgensons",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.857Z"
+  },
+  {
+    "playerId": 8477365,
+    "playerName": "Connor Clifton",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.858Z"
+  },
+  {
+    "playerId": 8477480,
+    "playerName": "Eric Comrie",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.859Z"
+  },
+  {
+    "playerId": 8477949,
+    "playerName": "Alex Tuch",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.861Z"
+  },
+  {
+    "playerId": 8478109,
+    "playerName": "Victor Olofsson",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.862Z"
+  },
+  {
+    "playerId": 8478413,
+    "playerName": "Jordan Greenway",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.863Z"
+  },
+  {
+    "playerId": 8479370,
+    "playerName": "Tyson Jost",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.864Z"
+  },
+  {
+    "playerId": 8479420,
+    "playerName": "Tage Thompson",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.865Z"
+  },
+  {
+    "playerId": 8479999,
+    "playerName": "Casey Mittelstadt",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.866Z"
+  },
+  {
+    "playerId": 8480035,
+    "playerName": "Henri Jokiharju",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.867Z"
+  },
+  {
+    "playerId": 8480045,
+    "playerName": "Ukko-Pekka Luukkonen",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.869Z"
+  },
+  {
+    "playerId": 8480196,
+    "playerName": "Jacob Bryson",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.870Z"
+  },
+  {
+    "playerId": 8480807,
+    "playerName": "Mattias Samuelsson",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.871Z"
+  },
+  {
+    "playerId": 8480839,
+    "playerName": "Rasmus Dahlin",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.872Z"
+  },
+  {
+    "playerId": 8481522,
+    "playerName": "Peyton Krebs",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.873Z"
+  },
+  {
+    "playerId": 8481528,
+    "playerName": "Dylan Cozens",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.874Z"
+  },
+  {
+    "playerId": 8482175,
+    "playerName": "JJ Peterka",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.876Z"
+  },
+  {
+    "playerId": 8482221,
+    "playerName": "Devon Levi",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.877Z"
+  },
+  {
+    "playerId": 8482671,
+    "playerName": "Owen Power",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.878Z"
+  },
+  {
+    "playerId": 8484145,
+    "playerName": "Zach Benson",
+    "teamName": "BUF",
+    "teamId": 7,
+    "createdAt": "2023-10-26T13:57:18.879Z"
+  },
+  {
+    "playerId": 8475233,
+    "playerName": "David Savard",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.880Z"
+  },
+  {
+    "playerId": 8481523,
+    "playerName": "Kirby Dach",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.881Z"
+  },
+  {
+    "playerId": 8474596,
+    "playerName": "Jake Allen",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.883Z"
+  },
+  {
+    "playerId": 8475848,
+    "playerName": "Brendan Gallagher",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.884Z"
+  },
+  {
+    "playerId": 8476469,
+    "playerName": "Joel Armia",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.885Z"
+  },
+  {
+    "playerId": 8476871,
+    "playerName": "Tanner Pearson",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.886Z"
+  },
+  {
+    "playerId": 8476875,
+    "playerName": "Mike Matheson",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.887Z"
+  },
+  {
+    "playerId": 8476981,
+    "playerName": "Josh Anderson",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.888Z"
+  },
+  {
+    "playerId": 8477497,
+    "playerName": "Sean Monahan",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.890Z"
+  },
+  {
+    "playerId": 8478133,
+    "playerName": "Jake Evans",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.892Z"
+  },
+  {
+    "playerId": 8478470,
+    "playerName": "Sam Montembeault",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.893Z"
+  },
+  {
+    "playerId": 8479543,
+    "playerName": "Michael Pezzetta",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.895Z"
+  },
+  {
+    "playerId": 8480018,
+    "playerName": "Nick Suzuki",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.896Z"
+  },
+  {
+    "playerId": 8480051,
+    "playerName": "Cayden Primeau",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.897Z"
+  },
+  {
+    "playerId": 8480184,
+    "playerName": "Gustav Lindström",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.898Z"
+  },
+  {
+    "playerId": 8480192,
+    "playerName": "Johnathan Kovacevic",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.899Z"
+  },
+  {
+    "playerId": 8480887,
+    "playerName": "Jordan Harris",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.900Z"
+  },
+  {
+    "playerId": 8481058,
+    "playerName": "Jesse Ylönen",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.902Z"
+  },
+  {
+    "playerId": 8481093,
+    "playerName": "Rafael Harvey-Pinard",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.903Z"
+  },
+  {
+    "playerId": 8481540,
+    "playerName": "Cole Caufield",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.904Z"
+  },
+  {
+    "playerId": 8481618,
+    "playerName": "Alex Newhook",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.906Z"
+  },
+  {
+    "playerId": 8482087,
+    "playerName": "Kaiden Guhle",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.907Z"
+  },
+  {
+    "playerId": 8482111,
+    "playerName": "Justin Barron",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.908Z"
+  },
+  {
+    "playerId": 8482964,
+    "playerName": "Arber Xhekaj",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.909Z"
+  },
+  {
+    "playerId": 8483515,
+    "playerName": "Juraj Slafkovsky",
+    "teamName": "MTL",
+    "teamId": 8,
+    "createdAt": "2023-10-26T13:57:18.910Z"
+  },
+  {
+    "playerId": 8473512,
+    "playerName": "Claude Giroux",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.911Z"
+  },
+  {
+    "playerId": 8474612,
+    "playerName": "Travis Hamonic",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.912Z"
+  },
+  {
+    "playerId": 8475765,
+    "playerName": "Vladimir Tarasenko",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.913Z"
+  },
+  {
+    "playerId": 8476341,
+    "playerName": "Anton Forsberg",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.915Z"
+  },
+  {
+    "playerId": 8476914,
+    "playerName": "Joonas Korpisalo",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.916Z"
+  },
+  {
+    "playerId": 8477330,
+    "playerName": "Dominik Kubalik",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.917Z"
+  },
+  {
+    "playerId": 8478078,
+    "playerName": "Rourke Chartier",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.919Z"
+  },
+  {
+    "playerId": 8478469,
+    "playerName": "Thomas Chabot",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.920Z"
+  },
+  {
+    "playerId": 8478472,
+    "playerName": "Mathieu Joseph",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.921Z"
+  },
+  {
+    "playerId": 8479345,
+    "playerName": "Jakob Chychrun",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.922Z"
+  },
+  {
+    "playerId": 8480064,
+    "playerName": "Josh Norris",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.924Z"
+  },
+  {
+    "playerId": 8480073,
+    "playerName": "Erik Brannstrom",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.925Z"
+  },
+  {
+    "playerId": 8480208,
+    "playerName": "Drake Batherson",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.926Z"
+  },
+  {
+    "playerId": 8480355,
+    "playerName": "Mark Kastelic",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.928Z"
+  },
+  {
+    "playerId": 8480448,
+    "playerName": "Parker Kelly",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.929Z"
+  },
+  {
+    "playerId": 8480801,
+    "playerName": "Brady Tkachuk",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.930Z"
+  },
+  {
+    "playerId": 8480879,
+    "playerName": "Jacob Bernard-Docker",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.932Z"
+  },
+  {
+    "playerId": 8482092,
+    "playerName": "Ridly Greig",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.933Z"
+  },
+  {
+    "playerId": 8482105,
+    "playerName": "Jake Sanderson",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.934Z"
+  },
+  {
+    "playerId": 8482116,
+    "playerName": "Tim Stutzle",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.935Z"
+  },
+  {
+    "playerId": 8482245,
+    "playerName": "Artem Zub",
+    "teamName": "OTT",
+    "teamId": 9,
+    "createdAt": "2023-10-26T13:57:18.936Z"
+  },
+  {
+    "playerId": 8474162,
+    "playerName": "Jake Muzzin",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.937Z"
+  },
+  {
+    "playerId": 8479982,
+    "playerName": "Conor Timmins",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.938Z"
+  },
+  {
+    "playerId": 8470966,
+    "playerName": "Mark Giordano",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.939Z"
+  },
+  {
+    "playerId": 8471817,
+    "playerName": "Ryan Reaves",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.940Z"
+  },
+  {
+    "playerId": 8474673,
+    "playerName": "TJ Brodie",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.941Z"
+  },
+  {
+    "playerId": 8475166,
+    "playerName": "John Tavares",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.943Z"
+  },
+  {
+    "playerId": 8475714,
+    "playerName": "Calle Jarnkrok",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.944Z"
+  },
+  {
+    "playerId": 8475906,
+    "playerName": "John Klingberg",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.945Z"
+  },
+  {
+    "playerId": 8476853,
+    "playerName": "Morgan Rielly",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.946Z"
+  },
+  {
+    "playerId": 8476931,
+    "playerName": "Jake McCabe",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.947Z"
+  },
+  {
+    "playerId": 8477479,
+    "playerName": "Tyler Bertuzzi",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.948Z"
+  },
+  {
+    "playerId": 8477503,
+    "playerName": "Max Domi",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.949Z"
+  },
+  {
+    "playerId": 8477939,
+    "playerName": "William Nylander",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.951Z"
+  },
+  {
+    "playerId": 8478483,
+    "playerName": "Mitchell Marner",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.952Z"
+  },
+  {
+    "playerId": 8478492,
+    "playerName": "Ilya Samsonov",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.953Z"
+  },
+  {
+    "playerId": 8479318,
+    "playerName": "Auston Matthews",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.954Z"
+  },
+  {
+    "playerId": 8479361,
+    "playerName": "Joseph Woll",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.955Z"
+  },
+  {
+    "playerId": 8479393,
+    "playerName": "Noah Gregor",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.956Z"
+  },
+  {
+    "playerId": 8480043,
+    "playerName": "Timothy Liljegren",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.957Z"
+  },
+  {
+    "playerId": 8480144,
+    "playerName": "David Kampf",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.958Z"
+  },
+  {
+    "playerId": 8480995,
+    "playerName": "Pontus Holmberg",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.959Z"
+  },
+  {
+    "playerId": 8482720,
+    "playerName": "Matthew Knies",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.960Z"
+  },
+  {
+    "playerId": 8483489,
+    "playerName": "Fraser Minten",
+    "teamName": "TOR",
+    "teamId": 10,
+    "createdAt": "2023-10-26T13:57:18.961Z"
+  },
+  {
+    "playerId": 8480830,
+    "playerName": "Andrei Svechnikov",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.962Z"
+  },
+  {
+    "playerId": 8470613,
+    "playerName": "Brent Burns",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.964Z"
+  },
+  {
+    "playerId": 8473533,
+    "playerName": "Jordan Staal",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.965Z"
+  },
+  {
+    "playerId": 8475200,
+    "playerName": "Dmitry Orlov",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.966Z"
+  },
+  {
+    "playerId": 8475855,
+    "playerName": "Jesper Fast",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.967Z"
+  },
+  {
+    "playerId": 8475883,
+    "playerName": "Frederik Andersen",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.968Z"
+  },
+  {
+    "playerId": 8476474,
+    "playerName": "Stefan Noesen",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.970Z"
+  },
+  {
+    "playerId": 8476869,
+    "playerName": "Brady Skjei",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.971Z"
+  },
+  {
+    "playerId": 8476882,
+    "playerName": "Teuvo Teravainen",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.972Z"
+  },
+  {
+    "playerId": 8476921,
+    "playerName": "Jordan Martinook",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.973Z"
+  },
+  {
+    "playerId": 8476958,
+    "playerName": "Jaccob Slavin",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.974Z"
+  },
+  {
+    "playerId": 8477293,
+    "playerName": "Antti Raanta",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.975Z"
+  },
+  {
+    "playerId": 8477488,
+    "playerName": "Brett Pesce",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.976Z"
+  },
+  {
+    "playerId": 8477950,
+    "playerName": "Tony DeAngelo",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.977Z"
+  },
+  {
+    "playerId": 8477962,
+    "playerName": "Brendan Lemieux",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.979Z"
+  },
+  {
+    "playerId": 8478047,
+    "playerName": "Michael Bunting",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.980Z"
+  },
+  {
+    "playerId": 8478427,
+    "playerName": "Sebastian Aho",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.981Z"
+  },
+  {
+    "playerId": 8478970,
+    "playerName": "Jalen Chatfield",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.982Z"
+  },
+  {
+    "playerId": 8479639,
+    "playerName": "Dylan Coghlan",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.983Z"
+  },
+  {
+    "playerId": 8480039,
+    "playerName": "Martin Necas",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.984Z"
+  },
+  {
+    "playerId": 8480829,
+    "playerName": "Jesperi Kotkaniemi",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.985Z"
+  },
+  {
+    "playerId": 8480835,
+    "playerName": "Jack Drury",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.986Z"
+  },
+  {
+    "playerId": 8481611,
+    "playerName": "Pyotr Kochetkov",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.987Z"
+  },
+  {
+    "playerId": 8482093,
+    "playerName": "Seth Jarvis",
+    "teamName": "CAR",
+    "teamId": 12,
+    "createdAt": "2023-10-26T13:57:18.988Z"
+  },
+  {
+    "playerId": 8477935,
+    "playerName": "Sam Bennett",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.989Z"
+  },
+  {
+    "playerId": 8479981,
+    "playerName": "Jonah Gadjovich",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.991Z"
+  },
+  {
+    "playerId": 8475171,
+    "playerName": "Oliver Ekman-Larsson",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.992Z"
+  },
+  {
+    "playerId": 8475179,
+    "playerName": "Dmitry Kulikov",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.993Z"
+  },
+  {
+    "playerId": 8475683,
+    "playerName": "Sergei Bobrovsky",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.994Z"
+  },
+  {
+    "playerId": 8476393,
+    "playerName": "Nick Cousins",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.995Z"
+  },
+  {
+    "playerId": 8476422,
+    "playerName": "Mike Reilly",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.997Z"
+  },
+  {
+    "playerId": 8476932,
+    "playerName": "Anthony Stolarz",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.998Z"
+  },
+  {
+    "playerId": 8477409,
+    "playerName": "Carter Verhaeghe",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:18.999Z"
+  },
+  {
+    "playerId": 8477493,
+    "playerName": "Aleksander Barkov",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.000Z"
+  },
+  {
+    "playerId": 8477933,
+    "playerName": "Sam Reinhart",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.001Z"
+  },
+  {
+    "playerId": 8478055,
+    "playerName": "Gustav Forsling",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.002Z"
+  },
+  {
+    "playerId": 8478542,
+    "playerName": "Evan Rodrigues",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.003Z"
+  },
+  {
+    "playerId": 8478831,
+    "playerName": "Kevin Stenlund",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.005Z"
+  },
+  {
+    "playerId": 8478859,
+    "playerName": "Niko Mikkola",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.006Z"
+  },
+  {
+    "playerId": 8478904,
+    "playerName": "Steven Lorentz",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.007Z"
+  },
+  {
+    "playerId": 8479066,
+    "playerName": "Ryan Lomberg",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.008Z"
+  },
+  {
+    "playerId": 8479314,
+    "playerName": "Matthew Tkachuk",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.009Z"
+  },
+  {
+    "playerId": 8479367,
+    "playerName": "William Lockwood",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.010Z"
+  },
+  {
+    "playerId": 8479372,
+    "playerName": "Josh Mahura",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.012Z"
+  },
+  {
+    "playerId": 8480185,
+    "playerName": "Eetu Luostarinen",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.013Z"
+  },
+  {
+    "playerId": 8482113,
+    "playerName": "Anton Lundell",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.014Z"
+  },
+  {
+    "playerId": 8482713,
+    "playerName": "Mackie Samoskevich",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.015Z"
+  },
+  {
+    "playerId": 8484304,
+    "playerName": "Uvis Balinskis",
+    "teamName": "FLA",
+    "teamId": 13,
+    "createdAt": "2023-10-26T13:57:19.016Z"
+  },
+  {
+    "playerId": 8476883,
+    "playerName": "Andrei Vasilevskiy",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.017Z"
+  },
+  {
+    "playerId": 8477353,
+    "playerName": "Tyler Motte",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.019Z"
+  },
+  {
+    "playerId": 8474564,
+    "playerName": "Steven Stamkos",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.020Z"
+  },
+  {
+    "playerId": 8474567,
+    "playerName": "Zach Bogosian",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.021Z"
+  },
+  {
+    "playerId": 8475167,
+    "playerName": "Victor Hedman",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.022Z"
+  },
+  {
+    "playerId": 8475177,
+    "playerName": "Calvin de Haan",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.023Z"
+  },
+  {
+    "playerId": 8475766,
+    "playerName": "Austin Watson",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.025Z"
+  },
+  {
+    "playerId": 8476453,
+    "playerName": "Nikita Kucherov",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.026Z"
+  },
+  {
+    "playerId": 8476822,
+    "playerName": "Luke Glendening",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.027Z"
+  },
+  {
+    "playerId": 8477035,
+    "playerName": "Matt Tomkins",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.028Z"
+  },
+  {
+    "playerId": 8477426,
+    "playerName": "Nicholas Paul",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.029Z"
+  },
+  {
+    "playerId": 8477839,
+    "playerName": "Conor Sheary",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.031Z"
+  },
+  {
+    "playerId": 8477938,
+    "playerName": "Haydn Fleury",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.032Z"
+  },
+  {
+    "playerId": 8477992,
+    "playerName": "Jonas Johansson",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.034Z"
+  },
+  {
+    "playerId": 8478010,
+    "playerName": "Brayden Point",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.035Z"
+  },
+  {
+    "playerId": 8478178,
+    "playerName": "Darren Raddysh",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.036Z"
+  },
+  {
+    "playerId": 8478416,
+    "playerName": "Erik Cernak",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.037Z"
+  },
+  {
+    "playerId": 8478519,
+    "playerName": "Anthony Cirelli",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.038Z"
+  },
+  {
+    "playerId": 8479410,
+    "playerName": "Mikhail Sergachev",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.040Z"
+  },
+  {
+    "playerId": 8479542,
+    "playerName": "Brandon Hagel",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.041Z"
+  },
+  {
+    "playerId": 8479591,
+    "playerName": "Michael Eyssimont",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.042Z"
+  },
+  {
+    "playerId": 8479661,
+    "playerName": "Tanner Jeannot",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.043Z"
+  },
+  {
+    "playerId": 8479718,
+    "playerName": "Alex Barre-Boulet",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.047Z"
+  },
+  {
+    "playerId": 8480246,
+    "playerName": "Nick Perbix",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.048Z"
+  },
+  {
+    "playerId": 8484325,
+    "playerName": "Waltteri Merela",
+    "teamName": "TBL",
+    "teamId": 14,
+    "createdAt": "2023-10-26T13:57:19.050Z"
+  },
+  {
+    "playerId": 8474157,
+    "playerName": "Max Pacioretty",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.051Z"
+  },
+  {
+    "playerId": 8476441,
+    "playerName": "Joel Edmundson",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.052Z"
+  },
+  {
+    "playerId": 8479292,
+    "playerName": "Charlie Lindgren",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.054Z"
+  },
+  {
+    "playerId": 8471214,
+    "playerName": "Alex Ovechkin",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.055Z"
+  },
+  {
+    "playerId": 8471698,
+    "playerName": "T.J. Oshie",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.056Z"
+  },
+  {
+    "playerId": 8473563,
+    "playerName": "Nicklas Backstrom",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.057Z"
+  },
+  {
+    "playerId": 8474590,
+    "playerName": "John Carlson",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.059Z"
+  },
+  {
+    "playerId": 8475311,
+    "playerName": "Darcy Kuemper",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.060Z"
+  },
+  {
+    "playerId": 8475324,
+    "playerName": "Nick Jensen",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.061Z"
+  },
+  {
+    "playerId": 8475343,
+    "playerName": "Nic Dowd",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.062Z"
+  },
+  {
+    "playerId": 8475744,
+    "playerName": "Evgeny Kuznetsov",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.063Z"
+  },
+  {
+    "playerId": 8476880,
+    "playerName": "Tom Wilson",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.065Z"
+  },
+  {
+    "playerId": 8477511,
+    "playerName": "Anthony Mantha",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.066Z"
+  },
+  {
+    "playerId": 8477845,
+    "playerName": "Trevor van Riemsdyk",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.067Z"
+  },
+  {
+    "playerId": 8477947,
+    "playerName": "Sonny Milano",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.068Z"
+  },
+  {
+    "playerId": 8478440,
+    "playerName": "Dylan Strome",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.069Z"
+  },
+  {
+    "playerId": 8479321,
+    "playerName": "Lucas Johansen",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.071Z"
+  },
+  {
+    "playerId": 8479359,
+    "playerName": "Beck Malenstyn",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.072Z"
+  },
+  {
+    "playerId": 8479522,
+    "playerName": "Hardy Haman Aktell",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.073Z"
+  },
+  {
+    "playerId": 8479547,
+    "playerName": "Matthew Phillips",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.075Z"
+  },
+  {
+    "playerId": 8480796,
+    "playerName": "Martin Fehervary",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.076Z"
+  },
+  {
+    "playerId": 8480823,
+    "playerName": "Alexander Alexeyev",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.078Z"
+  },
+  {
+    "playerId": 8480873,
+    "playerName": "Rasmus Sandin",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.079Z"
+  },
+  {
+    "playerId": 8481580,
+    "playerName": "Connor McMichael",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.080Z"
+  },
+  {
+    "playerId": 8481656,
+    "playerName": "Aliaksei Protas",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.081Z"
+  },
+  {
+    "playerId": 8482411,
+    "playerName": "Hunter Shepard",
+    "teamName": "WSH",
+    "teamId": 15,
+    "createdAt": "2023-10-26T13:57:19.083Z"
+  },
+  {
+    "playerId": 8475791,
+    "playerName": "Taylor Hall",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.084Z"
+  },
+  {
+    "playerId": 8470621,
+    "playerName": "Corey Perry",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.085Z"
+  },
+  {
+    "playerId": 8473422,
+    "playerName": "Nick Foligno",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.086Z"
+  },
+  {
+    "playerId": 8474870,
+    "playerName": "Tyler Johnson",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.088Z"
+  },
+  {
+    "playerId": 8475797,
+    "playerName": "Jarred Tinordi",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.089Z"
+  },
+  {
+    "playerId": 8475852,
+    "playerName": "Petr Mrazek",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.090Z"
+  },
+  {
+    "playerId": 8476473,
+    "playerName": "Connor Murphy",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.092Z"
+  },
+  {
+    "playerId": 8476960,
+    "playerName": "Andreas Athanasiou",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.093Z"
+  },
+  {
+    "playerId": 8477450,
+    "playerName": "Jason Dickinson",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.094Z"
+  },
+  {
+    "playerId": 8477495,
+    "playerName": "Seth Jones",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.095Z"
+  },
+  {
+    "playerId": 8477987,
+    "playerName": "Ryan Donato",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.097Z"
+  },
+  {
+    "playerId": 8479383,
+    "playerName": "Boris Katchouk",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.098Z"
+  },
+  {
+    "playerId": 8479390,
+    "playerName": "Taylor Raddysh",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.099Z"
+  },
+  {
+    "playerId": 8479458,
+    "playerName": "Nikita Zaitsev",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.101Z"
+  },
+  {
+    "playerId": 8480025,
+    "playerName": "MacKenzie Entwistle",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.102Z"
+  },
+  {
+    "playerId": 8480798,
+    "playerName": "Philipp Kurashev",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.103Z"
+  },
+  {
+    "playerId": 8481147,
+    "playerName": "Reese Johnson",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.104Z"
+  },
+  {
+    "playerId": 8481568,
+    "playerName": "Alex Vlasic",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.105Z"
+  },
+  {
+    "playerId": 8482117,
+    "playerName": "Lukas Reichel",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.107Z"
+  },
+  {
+    "playerId": 8482176,
+    "playerName": "Wyatt Kaiser",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.108Z"
+  },
+  {
+    "playerId": 8482821,
+    "playerName": "Arvid Soderblom",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.109Z"
+  },
+  {
+    "playerId": 8483466,
+    "playerName": "Kevin Korchinski",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.111Z"
+  },
+  {
+    "playerId": 8484144,
+    "playerName": "Connor Bedard",
+    "teamName": "CHI",
+    "teamId": 16,
+    "createdAt": "2023-10-26T13:57:19.112Z"
+  },
+  {
+    "playerId": 8477952,
+    "playerName": "Robby Fabbri",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.114Z"
+  },
+  {
+    "playerId": 8473503,
+    "playerName": "James Reimer",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.115Z"
+  },
+  {
+    "playerId": 8473507,
+    "playerName": "Jeff Petry",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.116Z"
+  },
+  {
+    "playerId": 8474102,
+    "playerName": "David Perron",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.117Z"
+  },
+  {
+    "playerId": 8475279,
+    "playerName": "Ben Chiarot",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.119Z"
+  },
+  {
+    "playerId": 8475718,
+    "playerName": "Justin Holl",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.120Z"
+  },
+  {
+    "playerId": 8476874,
+    "playerName": "Olli Maatta",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.122Z"
+  },
+  {
+    "playerId": 8476906,
+    "playerName": "Shayne Gostisbehere",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.123Z"
+  },
+  {
+    "playerId": 8477429,
+    "playerName": "Andrew Copp",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.124Z"
+  },
+  {
+    "playerId": 8477456,
+    "playerName": "J.T. Compher",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.126Z"
+  },
+  {
+    "playerId": 8477946,
+    "playerName": "Dylan Larkin",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.127Z"
+  },
+  {
+    "playerId": 8478013,
+    "playerName": "Jake Walman",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.129Z"
+  },
+  {
+    "playerId": 8478024,
+    "playerName": "Ville Husso",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.130Z"
+  },
+  {
+    "playerId": 8478432,
+    "playerName": "Christian Fischer",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.132Z"
+  },
+  {
+    "playerId": 8478466,
+    "playerName": "Daniel Sprong",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.133Z"
+  },
+  {
+    "playerId": 8478512,
+    "playerName": "Austin Czarnik",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.134Z"
+  },
+  {
+    "playerId": 8479312,
+    "playerName": "Alex Lyon",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.135Z"
+  },
+  {
+    "playerId": 8479337,
+    "playerName": "Alex DeBrincat",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.137Z"
+  },
+  {
+    "playerId": 8479992,
+    "playerName": "Michael Rasmussen",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.138Z"
+  },
+  {
+    "playerId": 8480011,
+    "playerName": "Klim Kostin",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.139Z"
+  },
+  {
+    "playerId": 8480813,
+    "playerName": "Joe Veleno",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.141Z"
+  },
+  {
+    "playerId": 8481013,
+    "playerName": "Jonatan Berggren",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.142Z"
+  },
+  {
+    "playerId": 8481542,
+    "playerName": "Moritz Seider",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.143Z"
+  },
+  {
+    "playerId": 8482078,
+    "playerName": "Lucas Raymond",
+    "teamName": "DET",
+    "teamId": 17,
+    "createdAt": "2023-10-26T13:57:19.145Z"
+  },
+  {
+    "playerId": 8474568,
+    "playerName": "Luke Schenn",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.146Z"
+  },
+  {
+    "playerId": 8474151,
+    "playerName": "Ryan McDonagh",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.148Z"
+  },
+  {
+    "playerId": 8474600,
+    "playerName": "Roman Josi",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.150Z"
+  },
+  {
+    "playerId": 8474679,
+    "playerName": "Gustav Nyquist",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.151Z"
+  },
+  {
+    "playerId": 8475158,
+    "playerName": "Ryan O'Reilly",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.152Z"
+  },
+  {
+    "playerId": 8475197,
+    "playerName": "Tyson Barrie",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.154Z"
+  },
+  {
+    "playerId": 8476887,
+    "playerName": "Filip Forsberg",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.155Z"
+  },
+  {
+    "playerId": 8476925,
+    "playerName": "Colton Sissons",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.156Z"
+  },
+  {
+    "playerId": 8477424,
+    "playerName": "Juuse Saros",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.158Z"
+  },
+  {
+    "playerId": 8477446,
+    "playerName": "Michael McCarron",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.159Z"
+  },
+  {
+    "playerId": 8478438,
+    "playerName": "Tommy Novak",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.161Z"
+  },
+  {
+    "playerId": 8478468,
+    "playerName": "Jeremy Lauzon",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.162Z"
+  },
+  {
+    "playerId": 8478508,
+    "playerName": "Yakov Trenin",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.164Z"
+  },
+  {
+    "playerId": 8478851,
+    "playerName": "Alexandre Carrier",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.165Z"
+  },
+  {
+    "playerId": 8479371,
+    "playerName": "Dante Fabbro",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.166Z"
+  },
+  {
+    "playerId": 8479996,
+    "playerName": "Cody Glass",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.168Z"
+  },
+  {
+    "playerId": 8480748,
+    "playerName": "Kiefer Sherwood",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.169Z"
+  },
+  {
+    "playerId": 8480853,
+    "playerName": "Liam Foudy",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.171Z"
+  },
+  {
+    "playerId": 8480947,
+    "playerName": "Kevin Lankinen",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.172Z"
+  },
+  {
+    "playerId": 8481239,
+    "playerName": "Samuel Fagemo",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.173Z"
+  },
+  {
+    "playerId": 8481577,
+    "playerName": "Philip Tomasino",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.175Z"
+  },
+  {
+    "playerId": 8481704,
+    "playerName": "Juuso Parssinen",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.176Z"
+  },
+  {
+    "playerId": 8482062,
+    "playerName": "Cole Smith",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.177Z"
+  },
+  {
+    "playerId": 8482146,
+    "playerName": "Luke Evangelista",
+    "teamName": "NSH",
+    "teamId": 18,
+    "createdAt": "2023-10-26T13:57:19.179Z"
+  },
+  {
+    "playerId": 8474145,
+    "playerName": "Robert Bortuzzo",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.180Z"
+  },
+  {
+    "playerId": 8474618,
+    "playerName": "Marco Scandella",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.181Z"
+  },
+  {
+    "playerId": 8475170,
+    "playerName": "Brayden Schenn",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.183Z"
+  },
+  {
+    "playerId": 8475181,
+    "playerName": "Nick Leddy",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.184Z"
+  },
+  {
+    "playerId": 8475753,
+    "playerName": "Justin Faulk",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.186Z"
+  },
+  {
+    "playerId": 8475763,
+    "playerName": "Kevin Hayes",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.188Z"
+  },
+  {
+    "playerId": 8476412,
+    "playerName": "Jordan Binnington",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.189Z"
+  },
+  {
+    "playerId": 8476438,
+    "playerName": "Brandon Saad",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.190Z"
+  },
+  {
+    "playerId": 8476792,
+    "playerName": "Torey Krug",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.192Z"
+  },
+  {
+    "playerId": 8476892,
+    "playerName": "Colton Parayko",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.193Z"
+  },
+  {
+    "playerId": 8476897,
+    "playerName": "Oskar Sundqvist",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.195Z"
+  },
+  {
+    "playerId": 8477402,
+    "playerName": "Pavel Buchnevich",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.196Z"
+  },
+  {
+    "playerId": 8477944,
+    "playerName": "Jakub Vrana",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.197Z"
+  },
+  {
+    "playerId": 8477953,
+    "playerName": "Kasperi Kapanen",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.199Z"
+  },
+  {
+    "playerId": 8478104,
+    "playerName": "Sammy Blais",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.200Z"
+  },
+  {
+    "playerId": 8479385,
+    "playerName": "Jordan Kyrou",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.202Z"
+  },
+  {
+    "playerId": 8480023,
+    "playerName": "Robert Thomas",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.203Z"
+  },
+  {
+    "playerId": 8480281,
+    "playerName": "Alexey Toropchenko",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.204Z"
+  },
+  {
+    "playerId": 8480981,
+    "playerName": "Joel Hofer",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.206Z"
+  },
+  {
+    "playerId": 8481006,
+    "playerName": "Tyler Tucker",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.207Z"
+  },
+  {
+    "playerId": 8481059,
+    "playerName": "Scott Perunovich",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.209Z"
+  },
+  {
+    "playerId": 8481543,
+    "playerName": "Nikita Alexandrov",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.210Z"
+  },
+  {
+    "playerId": 8482089,
+    "playerName": "Jake Neighbours",
+    "teamName": "STL",
+    "teamId": 19,
+    "createdAt": "2023-10-26T13:57:19.212Z"
+  },
+  {
+    "playerId": 8481592,
+    "playerName": "Jakob Pelletier",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.213Z"
+  },
+  {
+    "playerId": 8478430,
+    "playerName": "Oliver Kylington",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.215Z"
+  },
+  {
+    "playerId": 8474150,
+    "playerName": "Mikael Backlund",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.216Z"
+  },
+  {
+    "playerId": 8474593,
+    "playerName": "Jacob Markstrom",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.218Z"
+  },
+  {
+    "playerId": 8475172,
+    "playerName": "Nazem Kadri",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.219Z"
+  },
+  {
+    "playerId": 8475690,
+    "playerName": "Chris Tanev",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.221Z"
+  },
+  {
+    "playerId": 8476399,
+    "playerName": "Blake Coleman",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.222Z"
+  },
+  {
+    "playerId": 8476456,
+    "playerName": "Jonathan Huberdeau",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.224Z"
+  },
+  {
+    "playerId": 8477346,
+    "playerName": "MacKenzie Weegar",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.226Z"
+  },
+  {
+    "playerId": 8477496,
+    "playerName": "Elias Lindholm",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.227Z"
+  },
+  {
+    "playerId": 8477507,
+    "playerName": "Nikita Zadorov",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.229Z"
+  },
+  {
+    "playerId": 8477851,
+    "playerName": "Jordan Oesterle",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.230Z"
+  },
+  {
+    "playerId": 8478211,
+    "playerName": "Dryden Hunt",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.232Z"
+  },
+  {
+    "playerId": 8478233,
+    "playerName": "Andrew Mangiapane",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.233Z"
+  },
+  {
+    "playerId": 8478396,
+    "playerName": "Noah Hanifin",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.235Z"
+  },
+  {
+    "playerId": 8478397,
+    "playerName": "Rasmus Andersson",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.236Z"
+  },
+  {
+    "playerId": 8478421,
+    "playerName": "A.J. Greer",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.238Z"
+  },
+  {
+    "playerId": 8478435,
+    "playerName": "Dan Vladar",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.239Z"
+  },
+  {
+    "playerId": 8478502,
+    "playerName": "Dennis Gilbert",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.241Z"
+  },
+  {
+    "playerId": 8479346,
+    "playerName": "Dillon Dube",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.242Z"
+  },
+  {
+    "playerId": 8480008,
+    "playerName": "Adam Ruzicka",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.244Z"
+  },
+  {
+    "playerId": 8481068,
+    "playerName": "Yegor Sharangovich",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.245Z"
+  },
+  {
+    "playerId": 8482652,
+    "playerName": "Walker Duehr",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.247Z"
+  },
+  {
+    "playerId": 8482679,
+    "playerName": "Matt Coronato",
+    "teamName": "CGY",
+    "teamId": 20,
+    "createdAt": "2023-10-26T13:57:19.249Z"
+  },
+  {
+    "playerId": 8471677,
+    "playerName": "Jack Johnson",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.250Z"
+  },
+  {
+    "playerId": 8471699,
+    "playerName": "Andrew Cogliano",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.252Z"
+  },
+  {
+    "playerId": 8475193,
+    "playerName": "Tomas Tatar",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.253Z"
+  },
+  {
+    "playerId": 8475793,
+    "playerName": "Ryan Johansen",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.255Z"
+  },
+  {
+    "playerId": 8476312,
+    "playerName": "Josh Manson",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.256Z"
+  },
+  {
+    "playerId": 8477073,
+    "playerName": "Kurtis MacDermid",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.258Z"
+  },
+  {
+    "playerId": 8477425,
+    "playerName": "Miles Wood",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.260Z"
+  },
+  {
+    "playerId": 8477476,
+    "playerName": "Artturi Lehkonen",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.261Z"
+  },
+  {
+    "playerId": 8477492,
+    "playerName": "Nathan MacKinnon",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.263Z"
+  },
+  {
+    "playerId": 8477494,
+    "playerName": "Jonathan Drouin",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.265Z"
+  },
+  {
+    "playerId": 8477501,
+    "playerName": "Valeri Nichushkin",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.266Z"
+  },
+  {
+    "playerId": 8478028,
+    "playerName": "Fredrik Olofsson",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.268Z"
+  },
+  {
+    "playerId": 8478038,
+    "playerName": "Devon Toews",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.269Z"
+  },
+  {
+    "playerId": 8478420,
+    "playerName": "Mikko Rantanen",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.271Z"
+  },
+  {
+    "playerId": 8479398,
+    "playerName": "Samuel Girard",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.273Z"
+  },
+  {
+    "playerId": 8479525,
+    "playerName": "Ross Colton",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.275Z"
+  },
+  {
+    "playerId": 8480069,
+    "playerName": "Cale Makar",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.276Z"
+  },
+  {
+    "playerId": 8480382,
+    "playerName": "Alexandar Georgiev",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.278Z"
+  },
+  {
+    "playerId": 8481031,
+    "playerName": "Ivan Prosvetov",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.280Z"
+  },
+  {
+    "playerId": 8481186,
+    "playerName": "Logan O'Connor",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.282Z"
+  },
+  {
+    "playerId": 8481461,
+    "playerName": "Corey Schueneman",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.283Z"
+  },
+  {
+    "playerId": 8481524,
+    "playerName": "Bowen Byram",
+    "teamName": "COL",
+    "teamId": 21,
+    "createdAt": "2023-10-26T13:57:19.285Z"
+  },
+  {
+    "playerId": 8475169,
+    "playerName": "Evander Kane",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.286Z"
+  },
+  {
+    "playerId": 8475218,
+    "playerName": "Mattias Ekholm",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.288Z"
+  },
+  {
+    "playerId": 8475786,
+    "playerName": "Zach Hyman",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.289Z"
+  },
+  {
+    "playerId": 8475789,
+    "playerName": "Jack Campbell",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.291Z"
+  },
+  {
+    "playerId": 8476454,
+    "playerName": "Ryan Nugent-Hopkins",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.292Z"
+  },
+  {
+    "playerId": 8476879,
+    "playerName": "Cody Ceci",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.294Z"
+  },
+  {
+    "playerId": 8476967,
+    "playerName": "Brett Kulak",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.295Z"
+  },
+  {
+    "playerId": 8477015,
+    "playerName": "Connor Brown",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.297Z"
+  },
+  {
+    "playerId": 8477406,
+    "playerName": "Mattias Janmark",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.299Z"
+  },
+  {
+    "playerId": 8477454,
+    "playerName": "Adam Erne",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.300Z"
+  },
+  {
+    "playerId": 8477498,
+    "playerName": "Darnell Nurse",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.302Z"
+  },
+  {
+    "playerId": 8477934,
+    "playerName": "Leon Draisaitl",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.303Z"
+  },
+  {
+    "playerId": 8477998,
+    "playerName": "Warren Foegele",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.305Z"
+  },
+  {
+    "playerId": 8478402,
+    "playerName": "Connor McDavid",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.306Z"
+  },
+  {
+    "playerId": 8478585,
+    "playerName": "Derek Ryan",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.308Z"
+  },
+  {
+    "playerId": 8479576,
+    "playerName": "Vincent Desharnais",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.310Z"
+  },
+  {
+    "playerId": 8479973,
+    "playerName": "Stuart Skinner",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.311Z"
+  },
+  {
+    "playerId": 8480802,
+    "playerName": "Ryan McLeod",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.313Z"
+  },
+  {
+    "playerId": 8480803,
+    "playerName": "Evan Bouchard",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.314Z"
+  },
+  {
+    "playerId": 8481598,
+    "playerName": "Philip Broberg",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.316Z"
+  },
+  {
+    "playerId": 8482077,
+    "playerName": "Dylan Holloway",
+    "teamName": "EDM",
+    "teamId": 22,
+    "createdAt": "2023-10-26T13:57:19.318Z"
+  },
+  {
+    "playerId": 8477359,
+    "playerName": "Tucker Poolman",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.320Z"
+  },
+  {
+    "playerId": 8478465,
+    "playerName": "Guillaume Brisebois",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.321Z"
+  },
+  {
+    "playerId": 8474013,
+    "playerName": "Ian Cole",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.323Z"
+  },
+  {
+    "playerId": 8474574,
+    "playerName": "Tyler Myers",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.324Z"
+  },
+  {
+    "playerId": 8476468,
+    "playerName": "J.T. Miller",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.326Z"
+  },
+  {
+    "playerId": 8476858,
+    "playerName": "Phillip Di Giuseppe",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.328Z"
+  },
+  {
+    "playerId": 8476927,
+    "playerName": "Teddy Blueger",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.329Z"
+  },
+  {
+    "playerId": 8477369,
+    "playerName": "Carson Soucy",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.331Z"
+  },
+  {
+    "playerId": 8477967,
+    "playerName": "Thatcher Demko",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.333Z"
+  },
+  {
+    "playerId": 8478017,
+    "playerName": "Mark Friedman",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.334Z"
+  },
+  {
+    "playerId": 8478043,
+    "playerName": "Sam Lafferty",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.336Z"
+  },
+  {
+    "playerId": 8478057,
+    "playerName": "Dakota Joshua",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.338Z"
+  },
+  {
+    "playerId": 8478444,
+    "playerName": "Brock Boeser",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.339Z"
+  },
+  {
+    "playerId": 8478454,
+    "playerName": "Noah Juulsen",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.341Z"
+  },
+  {
+    "playerId": 8478463,
+    "playerName": "Anthony Beauvillier",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.343Z"
+  },
+  {
+    "playerId": 8478856,
+    "playerName": "Conor Garland",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.344Z"
+  },
+  {
+    "playerId": 8479193,
+    "playerName": "Casey DeSmith",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.346Z"
+  },
+  {
+    "playerId": 8479425,
+    "playerName": "Filip Hronek",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.348Z"
+  },
+  {
+    "playerId": 8480012,
+    "playerName": "Elias Pettersson",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.349Z"
+  },
+  {
+    "playerId": 8480021,
+    "playerName": "Jack Studnicka",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.351Z"
+  },
+  {
+    "playerId": 8480459,
+    "playerName": "Pius Suter",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.353Z"
+  },
+  {
+    "playerId": 8480800,
+    "playerName": "Quinn Hughes",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.354Z"
+  },
+  {
+    "playerId": 8481535,
+    "playerName": "Nils Hoglander",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.356Z"
+  },
+  {
+    "playerId": 8481624,
+    "playerName": "Ilya Mikheyev",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.358Z"
+  },
+  {
+    "playerId": 8483808,
+    "playerName": "Andrei Kuzmenko",
+    "teamName": "VAN",
+    "teamId": 23,
+    "createdAt": "2023-10-26T13:57:19.359Z"
+  },
+  {
+    "playerId": 8473986,
+    "playerName": "Alex Killorn",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.361Z"
+  },
+  {
+    "playerId": 8476934,
+    "playerName": "Brock McGinn",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.363Z"
+  },
+  {
+    "playerId": 8482142,
+    "playerName": "Jamie Drysdale",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.365Z"
+  },
+  {
+    "playerId": 8474641,
+    "playerName": "Adam Henrique",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.367Z"
+  },
+  {
+    "playerId": 8475164,
+    "playerName": "Jakob Silfverberg",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.369Z"
+  },
+  {
+    "playerId": 8475462,
+    "playerName": "Radko Gudas",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.371Z"
+  },
+  {
+    "playerId": 8475764,
+    "playerName": "Cam Fowler",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.373Z"
+  },
+  {
+    "playerId": 8475842,
+    "playerName": "Sam Carrick",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.375Z"
+  },
+  {
+    "playerId": 8476434,
+    "playerName": "John Gibson",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.377Z"
+  },
+  {
+    "playerId": 8476458,
+    "playerName": "Ryan Strome",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.379Z"
+  },
+  {
+    "playerId": 8477462,
+    "playerName": "Robert Hagg",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.381Z"
+  },
+  {
+    "playerId": 8477527,
+    "playerName": "Ross Johnston",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.382Z"
+  },
+  {
+    "playerId": 8478366,
+    "playerName": "Frank Vatrano",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.384Z"
+  },
+  {
+    "playerId": 8478873,
+    "playerName": "Troy Terry",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.386Z"
+  },
+  {
+    "playerId": 8479368,
+    "playerName": "Max Jones",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.388Z"
+  },
+  {
+    "playerId": 8480001,
+    "playerName": "Urho Vaakanainen",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.389Z"
+  },
+  {
+    "playerId": 8480843,
+    "playerName": "Lukas Dostal",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.391Z"
+  },
+  {
+    "playerId": 8480870,
+    "playerName": "Bo Groulx",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.392Z"
+  },
+  {
+    "playerId": 8480950,
+    "playerName": "Ilya Lyubushkin",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.394Z"
+  },
+  {
+    "playerId": 8481517,
+    "playerName": "Brett Leason",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.396Z"
+  },
+  {
+    "playerId": 8481533,
+    "playerName": "Trevor Zegras",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.397Z"
+  },
+  {
+    "playerId": 8481605,
+    "playerName": "Jackson LaCombe",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.399Z"
+  },
+  {
+    "playerId": 8482745,
+    "playerName": "Mason McTavish",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.401Z"
+  },
+  {
+    "playerId": 8483482,
+    "playerName": "Tristan Luneau",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.403Z"
+  },
+  {
+    "playerId": 8483490,
+    "playerName": "Pavel Mintyukov",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.404Z"
+  },
+  {
+    "playerId": 8484153,
+    "playerName": "Leo Carlsson",
+    "teamName": "ANA",
+    "teamId": 24,
+    "createdAt": "2023-10-26T13:57:19.406Z"
+  },
+  {
+    "playerId": 8470600,
+    "playerName": "Ryan Suter",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.408Z"
+  },
+  {
+    "playerId": 8470794,
+    "playerName": "Joe Pavelski",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.409Z"
+  },
+  {
+    "playerId": 8473994,
+    "playerName": "Jamie Benn",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.411Z"
+  },
+  {
+    "playerId": 8474149,
+    "playerName": "Evgenii Dadonov",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.413Z"
+  },
+  {
+    "playerId": 8475168,
+    "playerName": "Matt Duchene",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.415Z"
+  },
+  {
+    "playerId": 8475225,
+    "playerName": "Craig Smith",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.417Z"
+  },
+  {
+    "playerId": 8475794,
+    "playerName": "Tyler Seguin",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.418Z"
+  },
+  {
+    "playerId": 8475809,
+    "playerName": "Scott Wedgewood",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.420Z"
+  },
+  {
+    "playerId": 8475825,
+    "playerName": "Jani Hakanpää",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.422Z"
+  },
+  {
+    "playerId": 8476889,
+    "playerName": "Radek Faksa",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.424Z"
+  },
+  {
+    "playerId": 8476902,
+    "playerName": "Esa Lindell",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.426Z"
+  },
+  {
+    "playerId": 8477810,
+    "playerName": "Joel Hanley",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.427Z"
+  },
+  {
+    "playerId": 8478449,
+    "playerName": "Roope Hintz",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.429Z"
+  },
+  {
+    "playerId": 8478975,
+    "playerName": "Mason Marchment",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.431Z"
+  },
+  {
+    "playerId": 8479351,
+    "playerName": "Sam Steel",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.433Z"
+  },
+  {
+    "playerId": 8479979,
+    "playerName": "Jake Oettinger",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.434Z"
+  },
+  {
+    "playerId": 8480027,
+    "playerName": "Jason Robertson",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.436Z"
+  },
+  {
+    "playerId": 8480036,
+    "playerName": "Miro Heiskanen",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.438Z"
+  },
+  {
+    "playerId": 8480848,
+    "playerName": "Ty Dellandrea",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.440Z"
+  },
+  {
+    "playerId": 8480878,
+    "playerName": "Nils Lundkvist",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.441Z"
+  },
+  {
+    "playerId": 8481581,
+    "playerName": "Thomas Harley",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.443Z"
+  },
+  {
+    "playerId": 8482740,
+    "playerName": "Wyatt Johnston",
+    "teamName": "DAL",
+    "teamId": 25,
+    "createdAt": "2023-10-26T13:57:19.445Z"
+  },
+  {
+    "playerId": 8478042,
+    "playerName": "Viktor Arvidsson",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.447Z"
+  },
+  {
+    "playerId": 8481732,
+    "playerName": "Andre Lee",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.448Z"
+  },
+  {
+    "playerId": 8471685,
+    "playerName": "Anze Kopitar",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.450Z"
+  },
+  {
+    "playerId": 8473453,
+    "playerName": "Trevor Lewis",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.452Z"
+  },
+  {
+    "playerId": 8474563,
+    "playerName": "Drew Doughty",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.455Z"
+  },
+  {
+    "playerId": 8475660,
+    "playerName": "Cam Talbot",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.457Z"
+  },
+  {
+    "playerId": 8476479,
+    "playerName": "Phillip Danault",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.458Z"
+  },
+  {
+    "playerId": 8477831,
+    "playerName": "Pheonix Copley",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.460Z"
+  },
+  {
+    "playerId": 8477942,
+    "playerName": "Kevin Fiala",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.462Z"
+  },
+  {
+    "playerId": 8477960,
+    "playerName": "Adrian Kempe",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.464Z"
+  },
+  {
+    "playerId": 8477971,
+    "playerName": "Andreas Englund",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.466Z"
+  },
+  {
+    "playerId": 8478882,
+    "playerName": "Vladislav Gavrikov",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.467Z"
+  },
+  {
+    "playerId": 8478911,
+    "playerName": "Matt Roy",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.469Z"
+  },
+  {
+    "playerId": 8479336,
+    "playerName": "Carl Grundstrom",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.471Z"
+  },
+  {
+    "playerId": 8479400,
+    "playerName": "Pierre-Luc Dubois",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.473Z"
+  },
+  {
+    "playerId": 8479675,
+    "playerName": "Trevor Moore",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.475Z"
+  },
+  {
+    "playerId": 8479998,
+    "playerName": "Mikey Anderson",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.477Z"
+  },
+  {
+    "playerId": 8481481,
+    "playerName": "Blake Lizotte",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.479Z"
+  },
+  {
+    "playerId": 8481560,
+    "playerName": "Arthur Kaliyev",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.480Z"
+  },
+  {
+    "playerId": 8481600,
+    "playerName": "Tobias Bjornfot",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.482Z"
+  },
+  {
+    "playerId": 8482124,
+    "playerName": "Quinton Byfield",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.484Z"
+  },
+  {
+    "playerId": 8482155,
+    "playerName": "Alex Laferriere",
+    "teamName": "LAK",
+    "teamId": 26,
+    "createdAt": "2023-10-26T13:57:19.486Z"
+  },
+  {
+    "playerId": 8475798,
+    "playerName": "Mikael Granlund",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.488Z"
+  },
+  {
+    "playerId": 8479439,
+    "playerName": "Jacob MacDonald",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.490Z"
+  },
+  {
+    "playerId": 8471709,
+    "playerName": "Marc-Edouard Vlasic",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.492Z"
+  },
+  {
+    "playerId": 8474884,
+    "playerName": "Mike Hoffman",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.493Z"
+  },
+  {
+    "playerId": 8476881,
+    "playerName": "Tomas Hertl",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.495Z"
+  },
+  {
+    "playerId": 8476988,
+    "playerName": "Matt Benning",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.497Z"
+  },
+  {
+    "playerId": 8477335,
+    "playerName": "Kyle Burroughs",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.500Z"
+  },
+  {
+    "playerId": 8477407,
+    "playerName": "Anthony Duclair",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.501Z"
+  },
+  {
+    "playerId": 8478039,
+    "playerName": "Kaapo Kahkonen",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.503Z"
+  },
+  {
+    "playerId": 8478099,
+    "playerName": "Kevin Labanc",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.505Z"
+  },
+  {
+    "playerId": 8478406,
+    "playerName": "Mackenzie Blackwood",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.507Z"
+  },
+  {
+    "playerId": 8479316,
+    "playerName": "Luke Kunin",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.509Z"
+  },
+  {
+    "playerId": 8479379,
+    "playerName": "Givani Smith",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.511Z"
+  },
+  {
+    "playerId": 8479983,
+    "playerName": "Mario Ferraro",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.513Z"
+  },
+  {
+    "playerId": 8480172,
+    "playerName": "Jan Rutta",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.515Z"
+  },
+  {
+    "playerId": 8480188,
+    "playerName": "Fabian Zetterlund",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.518Z"
+  },
+  {
+    "playerId": 8480216,
+    "playerName": "Jacob Peterson",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.519Z"
+  },
+  {
+    "playerId": 8480821,
+    "playerName": "Filip Zadina",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.521Z"
+  },
+  {
+    "playerId": 8480834,
+    "playerName": "Ty Emberson",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.523Z"
+  },
+  {
+    "playerId": 8481477,
+    "playerName": "Nico Sturm",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.525Z"
+  },
+  {
+    "playerId": 8481537,
+    "playerName": "Nikita Okhotiuk",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.527Z"
+  },
+  {
+    "playerId": 8481812,
+    "playerName": "Nikolai Knyzhov",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.529Z"
+  },
+  {
+    "playerId": 8482133,
+    "playerName": "Thomas Bordeleau",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.531Z"
+  },
+  {
+    "playerId": 8482222,
+    "playerName": "Alexander Barabanov",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.534Z"
+  },
+  {
+    "playerId": 8482667,
+    "playerName": "William Eklund",
+    "teamName": "SJS",
+    "teamId": 28,
+    "createdAt": "2023-10-26T13:57:19.537Z"
+  },
+  {
+    "playerId": 8479339,
+    "playerName": "Patrik Laine",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.539Z"
+  },
+  {
+    "playerId": 8475790,
+    "playerName": "Erik Gudbranson",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.541Z"
+  },
+  {
+    "playerId": 8476346,
+    "playerName": "Johnny Gaudreau",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.544Z"
+  },
+  {
+    "playerId": 8476374,
+    "playerName": "Sean Kuraly",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.546Z"
+  },
+  {
+    "playerId": 8476432,
+    "playerName": "Boone Jenner",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.548Z"
+  },
+  {
+    "playerId": 8476923,
+    "playerName": "Damon Severson",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.551Z"
+  },
+  {
+    "playerId": 8477484,
+    "playerName": "Spencer Martin",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.553Z"
+  },
+  {
+    "playerId": 8478007,
+    "playerName": "Elvis Merzlikins",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.557Z"
+  },
+  {
+    "playerId": 8478458,
+    "playerName": "Jack Roslovic",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.559Z"
+  },
+  {
+    "playerId": 8478460,
+    "playerName": "Zach Werenski",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.561Z"
+  },
+  {
+    "playerId": 8478500,
+    "playerName": "Ivan Provorov",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.563Z"
+  },
+  {
+    "playerId": 8479369,
+    "playerName": "Andrew Peeke",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.565Z"
+  },
+  {
+    "playerId": 8479402,
+    "playerName": "Jake Bean",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.567Z"
+  },
+  {
+    "playerId": 8479671,
+    "playerName": "Mathieu Olivier",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.570Z"
+  },
+  {
+    "playerId": 8479941,
+    "playerName": "Justin Danforth",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.574Z"
+  },
+  {
+    "playerId": 8480074,
+    "playerName": "Alexandre Texier",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.576Z"
+  },
+  {
+    "playerId": 8480205,
+    "playerName": "Emil Bemstrom",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.579Z"
+  },
+  {
+    "playerId": 8480871,
+    "playerName": "Adam Boqvist",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.581Z"
+  },
+  {
+    "playerId": 8480893,
+    "playerName": "Kirill Marchenko",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.583Z"
+  },
+  {
+    "playerId": 8481716,
+    "playerName": "Dmitri Voronkov",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.586Z"
+  },
+  {
+    "playerId": 8482660,
+    "playerName": "Kent Johnson",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.588Z"
+  },
+  {
+    "playerId": 8482705,
+    "playerName": "Cole Sillinger",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.590Z"
+  },
+  {
+    "playerId": 8483460,
+    "playerName": "David Jiricek",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.592Z"
+  },
+  {
+    "playerId": 8484166,
+    "playerName": "Adam Fantilli",
+    "teamName": "CBJ",
+    "teamId": 29,
+    "createdAt": "2023-10-26T13:57:19.595Z"
+  },
+  {
+    "playerId": 8471274,
+    "playerName": "Alex Goligoski",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.597Z"
+  },
+  {
+    "playerId": 8474716,
+    "playerName": "Jared Spurgeon",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.600Z"
+  },
+  {
+    "playerId": 8470594,
+    "playerName": "Marc-Andre Fleury",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.602Z"
+  },
+  {
+    "playerId": 8474034,
+    "playerName": "Pat Maroon",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.604Z"
+  },
+  {
+    "playerId": 8475149,
+    "playerName": "Marcus Johansson",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.607Z"
+  },
+  {
+    "playerId": 8475220,
+    "playerName": "Marcus Foligno",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.609Z"
+  },
+  {
+    "playerId": 8475692,
+    "playerName": "Mats Zuccarello",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.611Z"
+  },
+  {
+    "playerId": 8475750,
+    "playerName": "Jon Merrill",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.613Z"
+  },
+  {
+    "playerId": 8476463,
+    "playerName": "Jonas Brodin",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.615Z"
+  },
+  {
+    "playerId": 8477451,
+    "playerName": "Ryan Hartman",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.617Z"
+  },
+  {
+    "playerId": 8477541,
+    "playerName": "Dakota Mermis",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.619Z"
+  },
+  {
+    "playerId": 8477919,
+    "playerName": "Frederick Gaudreau",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.621Z"
+  },
+  {
+    "playerId": 8478136,
+    "playerName": "Jake Middleton",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.623Z"
+  },
+  {
+    "playerId": 8478493,
+    "playerName": "Joel Eriksson Ek",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.625Z"
+  },
+  {
+    "playerId": 8478864,
+    "playerName": "Kirill Kaprizov",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.627Z"
+  },
+  {
+    "playerId": 8479406,
+    "playerName": "Filip Gustavsson",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.629Z"
+  },
+  {
+    "playerId": 8479520,
+    "playerName": "Brandon Duhaime",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.631Z"
+  },
+  {
+    "playerId": 8479968,
+    "playerName": "Vinni Lettieri",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.633Z"
+  },
+  {
+    "playerId": 8480884,
+    "playerName": "Calen Addison",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.635Z"
+  },
+  {
+    "playerId": 8480980,
+    "playerName": "Connor Dewar",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.637Z"
+  },
+  {
+    "playerId": 8481557,
+    "playerName": "Matt Boldy",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.639Z"
+  },
+  {
+    "playerId": 8482079,
+    "playerName": "Marco Rossi",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.641Z"
+  },
+  {
+    "playerId": 8482094,
+    "playerName": "Daemon Hunt",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.643Z"
+  },
+  {
+    "playerId": 8482122,
+    "playerName": "Brock Faber",
+    "teamName": "MIN",
+    "teamId": 30,
+    "createdAt": "2023-10-26T13:57:19.645Z"
+  },
+  {
+    "playerId": 8480014,
+    "playerName": "Gabriel Vilardi",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.647Z"
+  },
+  {
+    "playerId": 8475455,
+    "playerName": "Brenden Dillon",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.649Z"
+  },
+  {
+    "playerId": 8475799,
+    "playerName": "Nino Niederreiter",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.651Z"
+  },
+  {
+    "playerId": 8476316,
+    "playerName": "Laurent Brossoit",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.654Z"
+  },
+  {
+    "playerId": 8476331,
+    "playerName": "Dylan DeMelo",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.656Z"
+  },
+  {
+    "playerId": 8476392,
+    "playerName": "Adam Lowry",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.658Z"
+  },
+  {
+    "playerId": 8476460,
+    "playerName": "Mark Scheifele",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.660Z"
+  },
+  {
+    "playerId": 8476480,
+    "playerName": "Vladislav Namestnikov",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.662Z"
+  },
+  {
+    "playerId": 8476945,
+    "playerName": "Connor Hellebuyck",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.664Z"
+  },
+  {
+    "playerId": 8476952,
+    "playerName": "Dominic Toninato",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.666Z"
+  },
+  {
+    "playerId": 8477220,
+    "playerName": "Nate Schmidt",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.668Z"
+  },
+  {
+    "playerId": 8477504,
+    "playerName": "Josh Morrissey",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.670Z"
+  },
+  {
+    "playerId": 8477940,
+    "playerName": "Nikolaj Ehlers",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.672Z"
+  },
+  {
+    "playerId": 8478398,
+    "playerName": "Kyle Connor",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.674Z"
+  },
+  {
+    "playerId": 8478891,
+    "playerName": "Mason Appleton",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.676Z"
+  },
+  {
+    "playerId": 8479378,
+    "playerName": "Logan Stanley",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.678Z"
+  },
+  {
+    "playerId": 8480049,
+    "playerName": "Dylan Samberg",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.680Z"
+  },
+  {
+    "playerId": 8480113,
+    "playerName": "Alex Iafallo",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.682Z"
+  },
+  {
+    "playerId": 8480145,
+    "playerName": "Neal Pionk",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.684Z"
+  },
+  {
+    "playerId": 8480289,
+    "playerName": "Morgan Barron",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.686Z"
+  },
+  {
+    "playerId": 8480845,
+    "playerName": "Rasmus Kupari",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.689Z"
+  },
+  {
+    "playerId": 8480990,
+    "playerName": "Declan Chisholm",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.690Z"
+  },
+  {
+    "playerId": 8481019,
+    "playerName": "David Gustafsson",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.693Z"
+  },
+  {
+    "playerId": 8482149,
+    "playerName": "Cole Perfetti",
+    "teamName": "WPG",
+    "teamId": 52,
+    "createdAt": "2023-10-26T13:57:19.695Z"
+  },
+  {
+    "playerId": 8475722,
+    "playerName": "Jason Zucker",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.697Z"
+  },
+  {
+    "playerId": 8477482,
+    "playerName": "Zach Sanford",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.699Z"
+  },
+  {
+    "playerId": 8480890,
+    "playerName": "Jan Jenik",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.701Z"
+  },
+  {
+    "playerId": 8475760,
+    "playerName": "Nick Bjugstad",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.703Z"
+  },
+  {
+    "playerId": 8476329,
+    "playerName": "Travis Boyd",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.705Z"
+  },
+  {
+    "playerId": 8476856,
+    "playerName": "Matt Dumba",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.707Z"
+  },
+  {
+    "playerId": 8477021,
+    "playerName": "Alex Kerfoot",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.709Z"
+  },
+  {
+    "playerId": 8477070,
+    "playerName": "Liam O'Brien",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.711Z"
+  },
+  {
+    "playerId": 8477384,
+    "playerName": "Josh Brown",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.713Z"
+  },
+  {
+    "playerId": 8477951,
+    "playerName": "Nick Schmaltz",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.715Z"
+  },
+  {
+    "playerId": 8478408,
+    "playerName": "Travis Dermott",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.717Z"
+  },
+  {
+    "playerId": 8478474,
+    "playerName": "Lawson Crouse",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.719Z"
+  },
+  {
+    "playerId": 8478872,
+    "playerName": "Karel Vejmelka",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.721Z"
+  },
+  {
+    "playerId": 8478971,
+    "playerName": "Connor Ingram",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.723Z"
+  },
+  {
+    "playerId": 8479343,
+    "playerName": "Clayton Keller",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.725Z"
+  },
+  {
+    "playerId": 8479442,
+    "playerName": "Troy Stecher",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.727Z"
+  },
+  {
+    "playerId": 8479619,
+    "playerName": "Michael Carcone",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.729Z"
+  },
+  {
+    "playerId": 8479976,
+    "playerName": "Juuso Valimaki",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.732Z"
+  },
+  {
+    "playerId": 8480434,
+    "playerName": "Sean Durzi",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.734Z"
+  },
+  {
+    "playerId": 8480849,
+    "playerName": "Barrett Hayton",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.736Z"
+  },
+  {
+    "playerId": 8480855,
+    "playerName": "Jack McBain",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.738Z"
+  },
+  {
+    "playerId": 8481711,
+    "playerName": "Matias Maccelli",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.740Z"
+  },
+  {
+    "playerId": 8482655,
+    "playerName": "J.J. Moser",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.742Z"
+  },
+  {
+    "playerId": 8483431,
+    "playerName": "Logan Cooley",
+    "teamName": "ARI",
+    "teamId": 53,
+    "createdAt": "2023-10-26T13:57:19.745Z"
+  },
+  {
+    "playerId": 8480727,
+    "playerName": "Zach Whitecloud",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.747Z"
+  },
+  {
+    "playerId": 8474166,
+    "playerName": "Alec Martinez",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.749Z"
+  },
+  {
+    "playerId": 8474565,
+    "playerName": "Alex Pietrangelo",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.752Z"
+  },
+  {
+    "playerId": 8475188,
+    "playerName": "Brayden McNabb",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.754Z"
+  },
+  {
+    "playerId": 8475913,
+    "playerName": "Mark Stone",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.756Z"
+  },
+  {
+    "playerId": 8476448,
+    "playerName": "William Karlsson",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.758Z"
+  },
+  {
+    "playerId": 8476539,
+    "playerName": "Jonathan Marchessault",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.760Z"
+  },
+  {
+    "playerId": 8476905,
+    "playerName": "Chandler Stephenson",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.762Z"
+  },
+  {
+    "playerId": 8477018,
+    "playerName": "Ben Hutton",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.764Z"
+  },
+  {
+    "playerId": 8477447,
+    "playerName": "Shea Theodore",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.766Z"
+  },
+  {
+    "playerId": 8477478,
+    "playerName": "William Carrier",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.768Z"
+  },
+  {
+    "playerId": 8477964,
+    "playerName": "Ivan Barbashev",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.770Z"
+  },
+  {
+    "playerId": 8478020,
+    "playerName": "Michael Amadio",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.773Z"
+  },
+  {
+    "playerId": 8478403,
+    "playerName": "Jack Eichel",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.775Z"
+  },
+  {
+    "playerId": 8478434,
+    "playerName": "Keegan Kolesar",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.779Z"
+  },
+  {
+    "playerId": 8478462,
+    "playerName": "Nicolas Roy",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.781Z"
+  },
+  {
+    "playerId": 8478499,
+    "playerName": "Adin Hill",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.783Z"
+  },
+  {
+    "playerId": 8479353,
+    "playerName": "Brett Howden",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.786Z"
+  },
+  {
+    "playerId": 8479980,
+    "playerName": "Nicolas Hague",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.788Z"
+  },
+  {
+    "playerId": 8480313,
+    "playerName": "Logan Thompson",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.790Z"
+  },
+  {
+    "playerId": 8481032,
+    "playerName": "Paul Cotter",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.793Z"
+  },
+  {
+    "playerId": 8481167,
+    "playerName": "Brayden Pachal",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.795Z"
+  },
+  {
+    "playerId": 8481527,
+    "playerName": "Kaedan Korczak",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.797Z"
+  },
+  {
+    "playerId": 8481604,
+    "playerName": "Pavel Dorofeyev",
+    "teamName": "VGK",
+    "teamId": 54,
+    "createdAt": "2023-10-26T13:57:19.799Z"
+  },
+  {
+    "playerId": 8479293,
+    "playerName": "Brandon Tanev",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.801Z"
+  },
+  {
+    "playerId": 8474586,
+    "playerName": "Jordan Eberle",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.803Z"
+  },
+  {
+    "playerId": 8474602,
+    "playerName": "Justin Schultz",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.806Z"
+  },
+  {
+    "playerId": 8475208,
+    "playerName": "Brian Dumoulin",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.808Z"
+  },
+  {
+    "playerId": 8475768,
+    "playerName": "Jaden Schwartz",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.810Z"
+  },
+  {
+    "playerId": 8475831,
+    "playerName": "Philipp Grubauer",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.812Z"
+  },
+  {
+    "playerId": 8476457,
+    "playerName": "Adam Larsson",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.814Z"
+  },
+  {
+    "playerId": 8476467,
+    "playerName": "Jamie Oleksiak",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.816Z"
+  },
+  {
+    "playerId": 8476826,
+    "playerName": "Yanni Gourde",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.818Z"
+  },
+  {
+    "playerId": 8476913,
+    "playerName": "Devin Shore",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.821Z"
+  },
+  {
+    "playerId": 8477034,
+    "playerName": "Jaycob Megna",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.823Z"
+  },
+  {
+    "playerId": 8477416,
+    "playerName": "Oliver Bjorkstrand",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.825Z"
+  },
+  {
+    "playerId": 8477444,
+    "playerName": "Andre Burakovsky",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.828Z"
+  },
+  {
+    "playerId": 8477505,
+    "playerName": "Alex Wennberg",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.830Z"
+  },
+  {
+    "playerId": 8477930,
+    "playerName": "Pierre-Edouard Bellemare",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.832Z"
+  },
+  {
+    "playerId": 8477955,
+    "playerName": "Jared McCann",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.834Z"
+  },
+  {
+    "playerId": 8478407,
+    "playerName": "Vince Dunn",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.837Z"
+  },
+  {
+    "playerId": 8478840,
+    "playerName": "Will Borgen",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.839Z"
+  },
+  {
+    "playerId": 8478916,
+    "playerName": "Joey Daccord",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.841Z"
+  },
+  {
+    "playerId": 8479977,
+    "playerName": "Kailer Yamamoto",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.843Z"
+  },
+  {
+    "playerId": 8480009,
+    "playerName": "Eeli Tolvanen",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.845Z"
+  },
+  {
+    "playerId": 8481789,
+    "playerName": "Tye Kartye",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.848Z"
+  },
+  {
+    "playerId": 8482665,
+    "playerName": "Matty Beniers",
+    "teamName": "SEA",
+    "teamId": 55,
+    "createdAt": "2023-10-26T13:57:19.850Z"
+  }
+]
