@@ -15,7 +15,7 @@ const app = express()
 app.use(
   remultExpress({
   dataProvider: async () =>
-    new JsonDataProvider(new JsonEntityFileStorage("./db"))
+    new JsonDataProvider(new JsonEntityFileStorage("../db"))
 })
     /* session({
       secret: process.env["SESSION_SECRET"] || "my secret"
