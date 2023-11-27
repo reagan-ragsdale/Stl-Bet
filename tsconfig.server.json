@@ -5,7 +5,7 @@
       "emitDecoratorMetadata": true,
       "esModuleInterop": true,
       "noEmit": false,
-      "outDir": "dist",
+      "outDir": "/docs",
       "skipLibCheck": true,
       "rootDir": "src"
     },
