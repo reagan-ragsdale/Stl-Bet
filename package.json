@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node /docs/server/",
-    "build": "ng build && tsc -p tsconfig.server.json",
+    "build": "ng build && tsc -p tsconfig.server.json && tsx watch src/server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev": "ng serve --proxy-config proxy.conf.json --open",
