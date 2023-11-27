@@ -25,11 +25,16 @@ import { DbNhlPlayerInfo } from 'src/shared/dbTasks/DbNhlPlayerInfo';
 import { NhlPlayerInfoController } from 'src/shared/Controllers/NhlPlayerInfoController';
 import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/DbNhlPlayerGameStats';
 import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGameStatsController';
-import { apiController } from '../ApiCalls/apiCalls';
+import { nbaApiController } from '../ApiCalls/nbaApiCalls';
 import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
 import { NbaController } from 'src/shared/Controllers/NbaController';
 import { SportsNameToId } from '../sports-name-to-id';
 import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
+import { nhlApiController } from '../ApiCalls/nhlApiCalls';
+import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
+import {Chart}  from 'chart.js/auto';
+
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-prop-screen',
@@ -42,7 +47,7 @@ import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
-  providers: [apiController],
+  providers: [nbaApiController, nhlApiController, draftKingsApiController],
 })
 
 
@@ -59,13 +64,11 @@ export class PropScreenComponent implements OnInit {
 
   expandedElement: PlayerProp[] | null | undefined;
 
-  public selectedIndexSport: number = 0;
-  public selectedIndexDate: number = 0;
-  public selectedIndexGame: number = 0;
+  
   public playerPropsClicked = false;
   public gamePropsClicked = false;
   arrayOfMLBTeams: SportsTitleToName = { Minnesota_Twins: "MIN", Detroit_Tigers: "DET", Cincinnati_Reds: "CIN", Chicago_Cubs: "CHC", Milwaukee_Brewers: "MIL", Philadelphia_Phillies: "PHI", Oakland_Athletics: "OAK", Los_Angeles_Angels: "LAA", Pittsburgh_Pirates: "PIT", Cleveland_Guardians: "CLE", Tampa_Bay_Rays: "TB", Boston_Red_Socks: "BOS", Seattle_Mariners: "SEA", Miami_Marlins: "MIA", Los_Angeles_Dodgers: "LAD", New_York_Yankees: "NYY", Washington_Nationals: "WAS", New_York_Mets: "NYM", San_Francisco_Giants: "SF", Kansas_City_Royals: "KC", Chicago_White_Sox: "CHW", Atlanta_Braves: "ATL", St_Louis_Cardinals: "STL", Arizona_Diamondbacks: "ARI", Baltimore_Orioles: "BAL", Colorado_Rockies: "COL", Houston_Astros: "HOU", San_Diego_Padres: "SD", Texas_Rangers: "TEX", Toronto_Blue_Jays: "TOR" };
-  arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nugget: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, LA_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
+  arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
   home_team: string = '';
   away_team: string = '';
 
@@ -82,10 +85,7 @@ export class PropScreenComponent implements OnInit {
   public selectedGameid: string = '';
   public exit: boolean = true;
 
-  pre_initial_player_prop = "https://api.the-odds-api.com/v4/sports/";
-  middle_initial_player_prop = "/events/";
-  middle_next_player_prop = "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=";
-  post_initial_player_prop = "&bookmakers=draftkings&oddsFormat=american";
+  
 
   date = new Date();
 
@@ -96,8 +96,6 @@ export class PropScreenComponent implements OnInit {
   pre_get_games = "https://api.the-odds-api.com/v4/sports/";
   post_get_games = "/scores?apiKey=5ab6923d5aa0ae822b05168709bb910c";
 
-  getSportsApi: string = "https://api.the-odds-api.com/v4/sports/?apiKey=5ab6923d5aa0ae822b05168709bb910c";
-
   displayedColumns: string[] = ['name', 'description', 'point', 'price', 'detailedStats'];
 
   readonly APIUrl = "http://localhost:5086/api/MlbPlayerInfo/";
@@ -106,7 +104,11 @@ export class PropScreenComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private apiController: apiController) {
+    private nbaApiController: nbaApiController,
+    private nhlApiController: nhlApiController,
+    private draftKingsApiController: draftKingsApiController,
+    private router: Router,
+    ) {
 
   }
   public notes: any = [];
@@ -142,6 +144,7 @@ export class PropScreenComponent implements OnInit {
 
   playerPropsArray: PlayerProp[] = [{
     name: '',
+    id: '',
     description: '',
     price: '',
     point: '',
@@ -191,7 +194,7 @@ export class PropScreenComponent implements OnInit {
     };
 
 
-  listOfSupportedSports: string[] = ["NBA", "NFL", "MLB", "NHL"];
+  listOfSupportedSports: string[] = ["NBA",  "NHL"];
   sportsToTitle: SportsTitleToName = {
     NBA: "basketball_nba",
     NFL: "americanfootball_nfl",
@@ -253,26 +256,24 @@ export class PropScreenComponent implements OnInit {
 
 
   async onSportClick(sport: any) {
-    this.selectedIndexDate = 0
-    this.selectedIndexGame = 0
+    console.log(sport)
     this.selectedDate = ''
     this.setSelectedSport(sport.tab.textLabel);
-    await this.checkSportPlayerInfoDb();
+    //await this.checkSportPlayerInfoDb();
     if (this.selectedSport != "NBA") {
       await this.checkPlayerInfoDb();
 
     }
     await this.checkSportsBookDb();
 
+    this.updateDates();
 
 
 
-    //await this.getDatesAndGames();
-    //await this.checkSportBookDb();
+    
   }
   onDateClick(date: any) {
     console.log(date)
-    this.selectedIndexGame = 0
 
     this.setSelectedDate(date.tab.textLabel);
     this.updateGames();
@@ -407,24 +408,35 @@ export class PropScreenComponent implements OnInit {
   }
   convertDate(fullDate: string) {
     var tempDate = fullDate?.split("T");
+    var time = tempDate[1].slice(0, 2)
+    var subtractDay = false
+    if(parseInt(time) - 6 <= 0){
+      subtractDay = true
+    }
+
     var indexOfFirstDash = tempDate[0].indexOf("-");
     var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
+    console.log(tempDate2)
     var finalDate = tempDate2.replace("-", "/");
+    if(subtractDay){
+      console.log(finalDate)
+      finalDate = finalDate.replace(finalDate.charAt(finalDate.length-1) , (parseInt(finalDate.charAt(finalDate.length-1))-1).toString())
+      console.log(finalDate)
+    }
+    
     return finalDate;
   }
 
 
   updateDates() {
     this.dates = [];
-    this.games = [];
     this.sportsBookDataFinal.forEach((x) => {
       if (!this.dates.includes(this.convertDate(x.commenceTime))) {
         this.dates.push(this.convertDate(x.commenceTime));
       }
     });
-    console.log(this.dates[0])
     this.setSelectedDate(this.dates[0])
-
+    this.updateGames();
   }
   updateGames() {
     this.games = [];
@@ -478,20 +490,17 @@ export class PropScreenComponent implements OnInit {
     try {
       dbEmpty = await this.SportsBookRepo.find({ where: { sportTitle: this.selectedSport } })
       if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
-        var results = await this.getDatesAndGames();
+        var results = await this.draftKingsApiController.getDatesAndGames(this.selectedSport);
 
         await SportsBookController.addBookData(results);
 
 
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
         console.log(this.sportsBookDataFinal)
-        this.updateDates();
       }
       else {
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-        this.updateDates();
-        console.log(this.sportsBookDataFinal)
-        console.log(this.sportsBookData)
+        
       }
     } catch (error: any) {
       alert(error.message)
@@ -501,14 +510,12 @@ export class PropScreenComponent implements OnInit {
   }
 
   async checkPlayerInfoDb() {
-    var dbEmpty
+    var dbEmpty = []
     if (this.selectedSport == "NHL") {
-
-
       try {
         dbEmpty = await this.nhlPlayerInfoRepo.find({ where: { playerId: { "!=": 0 } } })
         if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
-          var results = await this.getplayerInfo();
+          var results = await this.nhlApiController.getplayerInfo();
           await NhlPlayerInfoController.nhlAddPlayerINfoData(results);
         }
       } catch (error: any) {
@@ -520,18 +527,22 @@ export class PropScreenComponent implements OnInit {
       try {
         var gameArray = this.splitGameString(this.gameString)
         let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[0])]
-        dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
-        console.log(dbEmpty[0].createdAt?.getDay)
-        console.log(this.date.getDate())
-        if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate != this.date.getDate) {
-          var returnCall = await this.apiController.getNbaPlayerDataFromApi(this.gameString);
-
+        console.log(this.addUnderScoreToName(gameArray[0]))
+        let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
+        if (dbEmpty.length == 0) {
+          var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
           await NbaController.nbaAddPlayerInfoData(returnCall);
-
+        }
+        else if(dbEmpty.length > 0){
+          if(this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()){
+            var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
+            await NbaController.nbaAddPlayerInfoData(returnCall);
+          }
         }
       } catch (error: any) {
         alert(error.message)
       }
+      dbEmpty = []
 
 
     }
@@ -551,255 +562,22 @@ export class PropScreenComponent implements OnInit {
     return game;
   }
 
-  async getplayerInfo() {
-    var url = ""
-    if (this.selectedSport == "NHL") {
-      url = "https://statsapi.web.nhl.com/api/v1/teams?expand=team.roster";
-    }
-    const promise = await fetch(url);
-    const processedResponse = await promise.json();
-    this.playerInfo = processedResponse;
-    this.nhlPlayerInfo = this.convertInfoDataToInterface();
-    return this.nhlPlayerInfo;
-  }
-  convertInfoDataToInterface() {
-    var temp: DbNhlPlayerInfo[] = []
-
-    for (let i = 0; i < this.playerInfo.teams.length; i++) {
-      for (let j = 0; j < this.playerInfo.teams[i].roster.roster.length; j++) {
-        temp.push({
-          playerId: this.playerInfo.teams[i].roster.roster[j].person.id,
-          playerName: this.playerInfo.teams[i].roster.roster[j].person.fullName,
-          teamName: this.playerInfo.teams[i].abbreviation,
-          teamId: this.playerInfo.teams[i].id
-        })
-      }
-    }
-
-    return temp;
-  }
+ 
 
   //add checkplayerstat db for prevous and current season, if there is 0 data in 2022 then try the api call, if no data from api call for 2022 season then load one row for 2022 that has all defaults
   // then check 2023 season, if there is 0 data for the 2023 season or the insert date is not the current date then try the
-  async loadNhl2022PlayerStatData(id: number) {
-    const url = `https://statsapi.web.nhl.com/api/v1/people/${id}/stats?stats=gameLog&season=20222023`
-    const promise = await fetch(url);
-    const processedResponse = await promise.json();
-    this.playerStatData = processedResponse;
-    await this.convertNhlStatDataToInterface(id).then(items => this.nhlPlayerStatData = items);
-    return this.nhlPlayerStatData;
-  }
-  async loadNhl2023PlayerStatData(id: number) {
-    const url = `https://statsapi.web.nhl.com/api/v1/people/${id}/stats?stats=gameLog&season=20232024`
-    const promise = await fetch(url);
-    const processedResponse = await promise.json();
-    this.playerStatData = processedResponse;
-    this.nhlPlayerStatData = await this.convertNhlStatDataToInterface(id)
-    return this.nhlPlayerStatData;
-  }
+  
 
-  async convertNhlStatDataToInterface(id: number) {
-    var temp: DbNhlPlayerGameStats[] = []
-    var player = await NhlPlayerInfoController.nhlLoadPlayerInfoFromId(id)
-    for (let i = 0; i < this.playerStatData.stats[0].splits.length; i++) {
-      temp.push({
-        playerId: id,
-        playerName: player[0].playerName,
-        teamName: this.playerStatData.stats[0].splits[i].team.name,
-        teamId: this.playerStatData.stats[0].splits[i].team.id,
-        gameDate: this.playerStatData.stats[0].splits[i].date,
-        playerStarted: this.playerStatData.stats[0].splits[i].stat.shifts > 0 ? "Y" : "N",
-        assists: this.playerStatData.stats[0].splits[i].stat.assists,
-        goals: this.playerStatData.stats[0].splits[i].stat.goals,
-        pim: this.playerStatData.stats[0].splits[i].stat.pim,
-        shots: this.playerStatData.stats[0].splits[i].stat.shots,
-        shotPct: this.playerStatData.stats[0].splits[i].stat.shotPct,
-        games: this.playerStatData.stats[0].splits[i].stat.games,
-        hits: this.playerStatData.stats[0].splits[i].stat.hits,
-        powerPlayGoals: this.playerStatData.stats[0].splits[i].stat.powerPlayGoals,
-        powerPlayPoints: this.playerStatData.stats[0].splits[i].stat.powerPlayPoints,
-        plusMinus: this.playerStatData.stats[0].splits[i].stat.plusMinus,
-        points: this.playerStatData.stats[0].splits[i].stat.points,
-        gameId: this.playerStatData.stats[0].splits[i].game.gamePk,
-        teamAgainst: this.playerStatData.stats[0].splits[i].opponent.name,
-        teamAgainstId: this.playerStatData.stats[0].splits[i].opponent.id,
-        season: this.playerStatData.stats[0].splits[i].season,
-        winLossTie: this.playerStatData.stats[0].splits[i].isWin == true ? "Win" : (this.playerStatData.stats[0].splits[i].isOT == false ? "Loss" : "Tie")
+ 
 
-      })
-
-    }
-    return temp
-  }
-
-  async loadNba2022PlayerStatData(id: number) {
-    const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${id}&season=2022`;
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
-        'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
-      }
-    };
-    const promise = await fetch(url, options);
-    const processedResponse = await promise.json();
-    this.playerStatData = processedResponse.response;
-    await this.convertNbaStatDataToInterface(id).then(items => this.nbaPlayerStatData = items);
-    return this.nbaPlayerStatData;
-  }
-  async loadNba2023PlayerStatData(id: number) {
-    const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${id}&season=2023`;
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
-        'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
-      }
-    };
-    const promise = await fetch(url, options);
-    const processedResponse = await promise.json();
-    this.playerStatData = processedResponse.response;
-    this.nbaPlayerStatData = await this.convertNbaStatDataToInterface(id)
-    return this.nbaPlayerStatData;
-  }
-
-  async convertNbaStatDataToInterface(id: number) {
-    var temp: DbNbaGameStats[] = []
-    var player = await NbaController.nbaLoadPlayerInfoFromId(id)
-    for (let i = 0; i < this.playerStatData.length; i++) {
-      temp.push({
-        playerId: this.playerStatData[i].player.id,
-        playerName: this.playerStatData[i].player.firstname + " " + this.playerStatData[i].player.lastname,
-        teamName: this.playerStatData[i].team.name,
-        teamId: this.playerStatData[i].team.id,
-        season: 2022,
-        gameId: this.playerStatData[i].game.id,
-        playerStarted: this.playerStatData[i].min != "00:00" ? "Y" : "N",
-        assists: this.playerStatData[i].assists,
-        points: this.playerStatData[i].points,
-        fgm: this.playerStatData[i].fgm,
-        fga: this.playerStatData[i].fga,
-        fgp: this.playerStatData[i].fgp,
-        ftm: this.playerStatData[i].ftm,
-        fta: this.playerStatData[i].fta,
-        ftp: this.playerStatData[i].ftp,
-        tpm: this.playerStatData[i].tpm,
-        tpa: this.playerStatData[i].tpa,
-        tpp: this.playerStatData[i].tpp,
-        offReb: this.playerStatData[i].offReb,
-        defReb: this.playerStatData[i].defReb,
-        totReb: this.playerStatData[i].totReb,
-        pFouls: this.playerStatData[i].pFouls,
-        steals: this.playerStatData[i].steals,
-        turnover: this.playerStatData[i].turnover,
-        blocks: this.playerStatData[i].blocks,
-        doubleDouble: this.isDoubleDouble(this.playerStatData[i]) ? 1 : 0,
-        tripleDouble: this.isTripleDouble(this.playerStatData[i]) ? 1 : 0
-      })
-
-    }
-    return temp
-  }
-
-
-  isDoubleDouble(statData: any): boolean {
-    let count = 0;
-    if (statData.assists >= 10) {
-      count++
-    }
-    if (statData.points >= 10) {
-      count++
-    }
-    if (statData.blocks >= 10) {
-      count++
-    }
-    if (statData.steals >= 10) {
-      count++
-    }
-    if (statData.rebounds >= 10) {
-      count++
-    }
-    if (count >= 2) {
-      return true
-    } else { return false }
-  }
-
-  isTripleDouble(statData: any): boolean {
-    let count = 0;
-    if (statData.assists >= 10) {
-      count++
-    }
-    if (statData.points >= 10) {
-      count++
-    }
-    if (statData.blocks >= 10) {
-      count++
-    }
-    if (statData.steals >= 10) {
-      count++
-    }
-    if (statData.rebounds >= 10) {
-      count++
-    }
-    if (count >= 3) {
-      return true
-    } else { return false }
-  }
+ 
 
 
 
 
   //API calls
 
-  public async getSports() {
-    const promise = await fetch(this.getSportsApi);
-    const processedResponse = await promise.json();
-    this.selectedSportGames = processedResponse;
-    console.log(processedResponse)
-    return processedResponse;
-  }
-  //: Promise<DbNHLGameBookData[]>
-  public async getDatesAndGames() {
-    //this.checkSportsBookDb();
-    const sportNew = this.convertSport(this.selectedSport);
-    //const apiCall = this.pre_get_games + sportNew + this.post_get_games;
-    const apiCall = this.pre_initial_prop + sportNew + this.post_initial_prop;
-    const promise = await fetch(apiCall);
-    const processedResponse = await promise.json();
-    this.selectedSportsData = processedResponse;
-    this.sportsBookData = this.convertSportsDataToInterface()
-    //console.log("below is data")
-    console.log(this.selectedSportsData)
-    //this.updateDatesAndGames();
-    return this.sportsBookData;
-  }
-
-  convertSportsDataToInterface(): DbGameBookData[] {
-    var tempData: DbGameBookData[] = [];
-    for (let i = 0; i < this.selectedSportsData.length; i++) {
-      for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
-        for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
-          for (let m = 0; m < this.selectedSportsData[i].bookmakers[j].markets[k].outcomes.length; m++) {
-            tempData.push({
-              bookId: this.selectedSportsData[i].id,
-              sportKey: this.selectedSportsData[i].sport_key,
-              sportTitle: this.selectedSportsData[i].sport_title,
-              homeTeam: this.selectedSportsData[i].home_team,
-              awayTeam: this.selectedSportsData[i].away_team,
-              commenceTime: this.selectedSportsData[i].commence_time,
-              bookMaker: this.selectedSportsData[i].bookmakers[j].title,
-              marketKey: this.selectedSportsData[i].bookmakers[j].markets[k].key,
-              teamName: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name,
-              price: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
-              point: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0
-            });
-          }
-        }
-      }
-    }
-    console.log(tempData)
-    return tempData;
-  }
+  
 
   async loadPlayerProps() {
     if (this.playerPropsClicked == true) {
@@ -811,7 +589,7 @@ export class PropScreenComponent implements OnInit {
     try {
       var dbEmpty = await this.playerPropRepo.find({ where: { bookId: this.selectedGame } })
       if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
-        var results = await this.getPlayerProps();
+        var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
 
         await PlayerPropController.addPlayerPropData(results);
 
@@ -835,57 +613,7 @@ export class PropScreenComponent implements OnInit {
   }
 
 
-  async getPlayerProps() {
-    var urlNew = '';
-    var playerProps = '';
-    if (this.selectedSport === "MLB") {
-      playerProps = "batter_home_runs,batter_hits,batter_total_bases"
-
-    }
-    if (this.selectedSport === "NHL") {
-      playerProps = "player_points,player_assists,player_shots_on_goal"
-
-    }
-    if (this.selectedSport == "NBA") {
-      playerProps = "player_points,player_rebounds,player_assists,player_threes,player_double_double,player_blocks"
-    }
-    urlNew = this.pre_initial_player_prop + this.convertSport(this.selectedSport) + this.middle_initial_player_prop + this.selectedGame + this.middle_next_player_prop + playerProps + this.post_initial_player_prop;
-
-    const promise = await fetch(urlNew);
-    const processedResponse = await promise.json();
-    this.playerProps = processedResponse;
-    this.playerPropData = this.convertPropDataToInterface()
-    console.log(this.playerProps)
-    return this.playerPropData
-  }
-
-  convertPropDataToInterface() {
-    var tempData: DbPlayerPropData[] = [];
-    for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
-      for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
-        for (let m = 0; m < this.playerProps.bookmakers[j].markets[k].outcomes.length; m++) {
-          tempData.push({
-            bookId: this.playerProps.id,
-            sportKey: this.playerProps.sport_key,
-            sportTitle: this.playerProps.sport_title,
-            homeTeam: this.playerProps.home_team,
-            awayTeam: this.playerProps.away_team,
-            commenceTime: this.playerProps.commence_time,
-            bookMaker: this.playerProps.bookmakers[j].title,
-            marketKey: this.playerProps.bookmakers[j].markets[k].key,
-            description: this.playerProps.bookmakers[j].markets[k].outcomes[m].name,
-            playerName: this.playerProps.bookmakers[j].markets[k].outcomes[m].description,
-            price: this.playerProps.bookmakers[j].markets[k].outcomes[m].price,
-            point: this.playerProps.bookmakers[j].markets[k].outcomes[m].point != null ? this.playerProps.bookmakers[j].markets[k].outcomes[m].point : 0
-          });
-        }
-      }
-
-    }
-    console.log(tempData)
-    return tempData;
-  }
-
+  
 
 
 
@@ -931,9 +659,11 @@ export class PropScreenComponent implements OnInit {
       for (var u = 0; u < this.playerPropDataFinal.length; u++) {
 
         if (this.playerPropDataFinal[u].marketKey == differentPropTypes[j]) {
-
+          var playerName = this.playerPropDataFinal[u].playerName
+          playerName = playerName.replaceAll(".", "")
           this.playerPropsArray.push({
-            name: this.playerPropDataFinal[u].playerName,
+            name: playerName,
+            id: '',
             description: this.playerPropDataFinal[u].description,
             price: this.playerPropDataFinal[u].price.toString(),
             point: this.playerPropDataFinal[u].point.toString(),
@@ -987,6 +717,7 @@ export class PropScreenComponent implements OnInit {
   public teamAgainst: string = '';
   public gamesPlayed: any = 0
   public gamesPlayedVsTeam: any = 0
+  public playerId: any = 0
   public average2022: any = 0
   public average2022vsTeam: any = 0;
   public differential: any = 0;
@@ -1010,7 +741,7 @@ export class PropScreenComponent implements OnInit {
           let db2022 = await this.nhlPlayerGameStatRepo.find({ where: { season: "20222023", playerId: player[0].playerId } })
           let db2023 = await this.nhlPlayerGameStatRepo.find({ where: { season: "20232024", playerId: player[0].playerId } })
           if (db2022.length == 0) {
-            var results = await this.loadNhl2022PlayerStatData(player[0].playerId)
+            var results = await this.nhlApiController.loadNhl2022PlayerStatData(player[0].playerId)
             if (results.length == 0) {
               await NhlPlayerGameStatsController.nhlAddPlayerINfo2022BlankData(player[0].playerId, player[0].playerName);
             }
@@ -1027,7 +758,7 @@ export class PropScreenComponent implements OnInit {
           }
 
           if (db2023.length == 0 || db2023[0].createdAt?.getDate() != this.date.getDate()) {
-            var results = await this.loadNhl2023PlayerStatData(player[0].playerId)
+            var results = await this.nhlApiController.loadNhl2023PlayerStatData(player[0].playerId)
             await NhlPlayerGameStatsController.nhlAddPlayerINfo2023Data(results);
 
             await NhlPlayerGameStatsController.nhlLoadPlayerInfo2023FromId(player[0].playerId).then(item => this.nhlPlayerStatData2023Final = item)
@@ -1042,12 +773,14 @@ export class PropScreenComponent implements OnInit {
         }
       }
       if (this.selectedSport == "NBA") {
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < element.length; i++) {
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
+          console.log(element[i].name)
+          console.log(player)
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
           let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
           if (db2022.length == 0) {
-            let results = await this.loadNba2022PlayerStatData(player[0].playerId)
+            let results = await this.nbaApiController.loadNba2022PlayerStatData(player[0].playerId)
             if (results.length == 0) {
               await NbaController.nbaAddPlayerStat2022BlankData(player[0].playerId, player[0].playerName);
             }
@@ -1060,8 +793,8 @@ export class PropScreenComponent implements OnInit {
             await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => this.nbaPlayerStatData2022Final = item)
           }
 
-          if (db2023.length == 0 || db2023[0].createdAt?.getDate() != this.date.getDate()) {
-            let results = await this.loadNba2023PlayerStatData(player[0].playerId)
+          if (db2023.length == 0 || this.convertDate(db2023[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+            let results = await this.nbaApiController.loadNba2023PlayerStatData(player[0].playerId)
             await NbaController.nbaAddPlayerGameStats2023(results);
 
             await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
@@ -1080,14 +813,6 @@ export class PropScreenComponent implements OnInit {
     } catch (error: any) {
       console.log(error)
     }
-
-
-
-
-
-
-
-
   }
 
 
@@ -1113,6 +838,7 @@ export class PropScreenComponent implements OnInit {
     this.teamAgainst = '';
     this.differential = 0;
     this.gamesPlayedVsTeam = 0
+    this.playerId = 0
     this.average2022 = 0
     this.average2022vsTeam = 0
     var numberOfGamesStarted = 0;
@@ -1357,7 +1083,7 @@ export class PropScreenComponent implements OnInit {
       let teamId1 = this.arrayOfNBATeams[tempTeamName1]
       let teamId2 = this.arrayOfNBATeams[tempTeamName2]
       let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
-      this.teamAgainst = this.arrayOfNBATeams[this.addUnderScoreToName(element.team1)] == teamId1 ? element.team2 : element.team1
+      this.teamAgainst = this.arrayOfNBATeams[this.addUnderScoreToName(element.team1)] == this.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1
 
 
       var d = new Date();
@@ -1462,6 +1188,7 @@ export class PropScreenComponent implements OnInit {
         else { this.differential = element.point / this.playerAverageForSeason }
 
       }
+      this.playerId = this.nbaPlayerStatData2023Final[0].playerId
       this.gamesPlayed = this.nbaPlayerStatData2023Final.length
       this.gamesPlayedVsTeam = numberOfGamesStartedVsTeam
       if (this.average2022 > 0 && this.nbaPlayerStatData2022Final.length > 0) {
@@ -1472,14 +1199,7 @@ export class PropScreenComponent implements OnInit {
         this.average2022vsTeam = (this.average2022vsTeam / numberOfGamesStartedVsTeam2022).toFixed(3)
 
       } else { this.average2022vsTeam = -1 }
-
-
-
     }
-
-
-
-
     this.updatePlayerPropArray(element);
   }
 
@@ -1494,6 +1214,7 @@ export class PropScreenComponent implements OnInit {
     element.gamesPlayedVsTeam = this.gamesPlayedVsTeam;
     element.average2022 = this.average2022
     element.average2022vsTeam = this.average2022vsTeam
+    element.id = this.playerId
 
   }
 
@@ -1602,211 +1323,32 @@ export class PropScreenComponent implements OnInit {
     var fullDate = day + "/" + month + "/" + year;
     return fullDate
   }
-
-  getPlayersInfoMlb() {
-    this.http.get(this.APIUrl + 'GetPlayerInfo').pipe(
-      catchError(error => {
-        console.log(error.message);
-        return of(null);
-      }))
-      .subscribe(
-        data => {
-          this.notes = data;
-
-        }
-      );
-    console.log(this.notes)
-
+  getMonthAndDay(): string {
+    var d = new Date();
+    var year = d.getFullYear().toString();
+    var month = (d.getMonth() + 1).toString();
+    if (month.length == 1) {
+      month = "0" + month;
+    }
+    var day = d.getDate().toString();
+    //console.log(day)
+    if (day.length == 1) {
+      day = "0" + day;
+    }
+    var fullDate = month + "/" + day;
+    return fullDate
   }
 
-  updatePlayerInfoMlb() {
-    this.http.delete(this.APIUrl + 'DeletePlayerInfo').pipe(
-      catchError(error => {
-        console.log(error.message);
-        return of(null);
-      }))
-      .subscribe(
-        data => {
-          console.log("deleted players")
-
-        }
-      );
-
-
-    var errorMessage: string;
-    this.mlbPlayerId.forEach(player => {
-      if (player.Id == '' || player.Name == '' || player.teamId == '' || player.teamName == '') {
-        return;
-      }
-      var date = new Date();
-
-      var postString: any = {
-        playerId: player.Id,
-        playerName: player.Name,
-        teamName: player.teamName,
-        teamId: player.teamId,
-        insertTms: "12/12/34"
-      };
-
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      };
-
-      const headers = new HttpHeaders()
-        .append(
-          'Content-Type',
-          'application/json'
-        );
-
-      const params = new HttpParams()
-        .append('playerId', player.Id)
-        .append('playerName', player.Name)
-        .append('teamName', player.teamName)
-        .append('teamId', player.teamId)
-        .append('insertTms', this.getDate());
-
-      const body = JSON.stringify(postString);
-
-      this.http.post<MlbPlayerid>(this.APIUrl + 'AddPlayerInfo', body, {
-        headers: headers,
-        params: params,
-      }).subscribe((res) => console.log(res))
-    });
-
-  }
-
-
-  updatePlayerGameStatInfoMlb(playerGamesArray: any[], teamAgainst: string) {
-
-    //add if query for the current player id length != the current length coming from the array then delete and re update other wise return
-
-    this.http.delete(this.APIUrl + 'DeletePlayerGameStatInfo?id=' + playerGamesArray[0].playerID).pipe(
-      catchError(error => {
-        console.log(error.message);
-        return of(null);
-      }))
-      .subscribe(
-        data => {
-          console.log("deleted players game stat info")
-
-        }
-      );
-
-    playerGamesArray.forEach((element) => {
-      var playerElement = this.mlbPlayerId.find((e) => e.Id == element.playerID);
-      var teamAgainstElement = this.mlbPlayerId.find((e) => teamAgainst == e.teamName);
-
-      var errorMessage: string;
-
-      var date = new Date();
-
-
-
-
-      var postString: any = {
-        playerId: element.playerID,
-        playerName: playerElement?.Name,
-        teamName: playerElement?.teamName,
-        teamId: playerElement?.teamId,
-        playerPosition: element.allPositionsPlayed,
-        playerStarted: element.started == true ? 'Y' : 'N',
-        batterHomeRuns: element.Hitting.HR,
-        batterHits: element.Hitting.H,
-        batterTotalBases: element.Hitting.TB,
-        batterRbis: element.Hitting.RBI,
-        batterRunsScored: element.Hitting.R,
-        batterHitsRunsRbis: (element.Hitting.H + element.Hitting.R + element.Hitting.RBI),
-        batterSingles: '0',
-        batterDoubles: element.Hitting['2B'],
-        batterTriples: element.Hitting['3B'],
-        batterWalks: (element.Hitting.BB + element.Hitting.IBB),
-        batterStrikeouts: element.Hitting.SO,
-        batterStolenBases: element.BaseRunning.SB,
-        pitcherStrikeouts: '0',
-        pitcherRecordAWin: '0',
-        pitcherHitsAllowed: '0',
-        pitcherWalks: '0',
-        pitcherEarnedRuns: '0',
-        pitcherOuts: '0',
-        gameId: element.gameID,
-        teamAgainst: teamAgainstElement?.teamName,
-        teamAgainstId: teamAgainstElement?.teamId,
-        insertTms: this.getDate()
-      };
-
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      };
-
-      const headers = new HttpHeaders()
-        .append(
-          'Content-Type',
-          'application/json'
-        );
-
-      const params = new HttpParams()
-        .append('playerId', element.playerID)
-        .append('playerName', playerElement!.Name)
-        .append('teamName', playerElement!.teamName)
-        .append('teamId', playerElement!.teamId)
-        .append('player_position', element.allPositionsPlayed)
-        .append('player_started', element.started == true ? 'Y' : 'N')
-        .append('batter_home_runs', element.Hitting.HR)
-        .append('batter_hits', element.Hitting.H)
-        .append('batter_total_bases', element.Hitting.TB)
-        .append('batter_rbis', element.Hitting.RBI)
-        .append('batter_runs_scored', element.Hitting.R)
-        .append('batter_hits_runs_rbis', (element.Hitting.H + element.Hitting.R + element.Hitting.RBI))
-        .append('batter_singles', '0')
-        .append('batter_doubles', element.Hitting['2B'])
-        .append('batter_triples', element.Hitting['3B'])
-        .append('batter_walks', (element.Hitting.BB + element.Hitting.IBB))
-        .append('batter_strikeouts', element.Hitting.SO)
-        .append('batter_stolen_bases', element.BaseRunning.SB)
-        .append('pitcher_strikeouts', '0')
-        .append('pitcher_record_a_win', '0')
-        .append('pitcher_hits_allowed', '0')
-        .append('pitcher_walks', '0')
-        .append('pitcher_earned_runs', '0')
-        .append('pitcher_outs', '0')
-        .append('gameId', element.gameID)
-        .append('teamAgainst', teamAgainstElement!.teamName)
-        .append('teamAgainstId', teamAgainstElement!.teamId)
-        .append('insertTms', this.getDate());
-
-      const body = JSON.stringify(postString);
-
-      this.http.post(this.APIUrl + 'AddPlayerGameStatInfofMLB', body, {
-        headers: headers,
-        params: params,
-      }).subscribe((res) => console.log(res))
-    });
-
-  }
+ 
 
 
   async ngOnInit() {
-    /* this.sportPropArray = [];
-    this.datePrropArray = [];
-    this.gamePropArray = [];
-    this.propsArray = [];
-    this.playerPropsArray = []; */
+    this.trimSports(await this.draftKingsApiController.getSports());
+  }
 
-    this.trimSports(await this.getSports());
-    //await this.getDatesAndGames();
-
-    //this.getPlayersInfoMlb();
-
-    console.log("here")
-    console.log(this.notes)
-
+  detailedStatsClicked(element: any){
+    this.router.navigate(["/playerStats/" + this.selectedSport + "/" + element.id])
   }
 
 }
 
-
-//for each prop accordian tab. store the data in an array that way it doesn't get reloaded each time. Can even store each thing at each level ex: each player -> each accordian prop -> each game -> each date -> each sport

@@ -1,5 +1,6 @@
 export interface PlayerProp {
     name: string;
+    id: string;
     description: string;
     price: string;
     point: string;

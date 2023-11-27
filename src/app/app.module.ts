@@ -1,13 +1,11 @@
 import { NgModule, NgZone  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http"
 import { FormsModule } from "@angular/forms";
-import { TodoComponent } from './todo/todo.component'
 import { remult } from "remult";
-import { AuthComponent } from './auth/auth.component';
 import { PropScreenComponent } from './prop-screen/prop-screen.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
@@ -30,18 +28,30 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatChipsModule} from '@angular/material/chips';
 //import { PredictionScreenComponent } from './prediction-screen/prediction-screen.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { HomeScreenComponent } from './homescreen/homescreen.component';
+import { PlayerStatsComponent } from './player-stats/player-stats.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
-    AuthComponent,
     PropScreenComponent,
-    PropCheckoutComponent
+    PropCheckoutComponent,
+    HomeScreenComponent,
+    PlayerStatsComponent
     
   ],
   imports: [
     BrowserModule,
+    /* RouterModule.forRoot([
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {path: 'home', component: HomeScreenComponent},
+      {path: 'props', component: PropScreenComponent},
+    ]), */
     AppRoutingModule, 
     HttpClientModule, 
     FormsModule,
@@ -66,7 +76,12 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatSliderModule,
     MatChipsModule,
     ScrollingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

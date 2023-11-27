@@ -10,6 +10,7 @@ export class PropCheckoutComponent {
  @Input()
   prop: PlayerProp[] = [{
     name: '',
+    id: '',
     description: '',
     price: '',
     point: '',

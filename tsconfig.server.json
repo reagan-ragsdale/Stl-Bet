@@ -1,4 +1,4 @@
-{
+/* {
     "extends": "./tsconfig.json",
     "compilerOptions": {
       "module": "commonjs",
@@ -10,4 +10,4 @@
       "rootDir": "src"
     },
     "include": ["src/server/index.ts"]
-  }
+  } */

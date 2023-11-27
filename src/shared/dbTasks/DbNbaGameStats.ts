@@ -19,11 +19,23 @@ export class DbNbaGameStats {
   @Fields.integer()
   teamId = 0
 
+  @Fields.string()
+  teamAgainstName = ''
+
+  @Fields.integer()
+  teamAgainstId = 0
+
+  @Fields.string()
+  homeOrAway = ''
+
   @Fields.integer()
   season = 0
 
   @Fields.integer()
   gameId = 0
+
+  @Fields.string()
+  gameDate = ''
 
   @Fields.string()
   playerStarted = ""

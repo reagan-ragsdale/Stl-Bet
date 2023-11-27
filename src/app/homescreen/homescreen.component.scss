@@ -1,0 +1,28 @@
+
+mat-sidenav-container{
+    height:calc(205vh - 112vh);
+}
+mat-sidenav{
+    width:150px;
+    background-color: #eee;
+}
+mat-sidenav button{
+    display: flex;
+    flex-direction: column;
+    columns: 1;
+    width: inherit;
+    gap: 1rem;
+    margin-top: 1rem;
+} 
+.sports-tab{
+    border-top: 2px solid white;
+}
+.welcome{
+   text-align: center;
+}
+mat-chip-option{
+    height: 75%;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }

@@ -1,0 +1,42 @@
+<mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">Sports Betting App</h1>
+    <span class="example-spacer" ></span>
+    <mat-chip-listbox aria-label="Fish selection">
+      <mat-chip-option color="accent" selected>Draft Kings</mat-chip-option>
+      <mat-chip-option color="accent">Fan Duel</mat-chip-option>
+      <mat-chip-option color="accent">Barstool</mat-chip-option>
+    </mat-chip-listbox>
+  </mat-toolbar>
+  
+  
+  <mat-sidenav-container style="background-color: black;">
+  
+    <mat-sidenav [(opened)]="opened">
+      <button mat-raised-button color="primary" (click)="clicked = true" >Home</button>
+      <button mat-raised-button color="primary" (click)="clicked = true" >Sports Betting</button>
+      <button mat-raised-button color="primary" (click)="clicked = true" >Player Stats</button>
+    </mat-sidenav>
+  
+    <mat-sidenav-content >
+      <mat-card *ngIf="!clicked && !predictionClicked">
+        <mat-card-content class="welcome">
+          <p>Welcome, This application is currently a work in progress. It is designed
+            to offer you the best stats before placing a bet</p>
+          <button mat-raised-button color="primary" (click)="propClicked()" >Props</button>
+          <br>
+          <br>
+          <button mat-raised-button color="primary" (click)="predictionClicked = true" >Predictions</button>
+        </mat-card-content>
+      </mat-card>
+      <router-outlet></router-outlet>
+      <!-- <app-prediction-screen *ngIf="predictionClicked"></app-prediction-screen> -->
+  
+  
+  
+  
+    </mat-sidenav-content>
+  
+  
+  
+  </mat-sidenav-container>
