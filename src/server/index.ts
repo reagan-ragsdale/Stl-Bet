@@ -6,6 +6,9 @@ import { createKnexDataProvider } from "remult/remult-knex"
 import helmet from "helmet"
 import compression from "compression"
 import path from "path"
+import { JsonDataProvider } from "remult"
+import { JsonEntityFileStorage } from "remult/server"
+import { remultExpress } from "remult/remult-express"
 
 const app = express()
 app.use(
@@ -13,10 +16,17 @@ app.use(
     secret: process.env["SESSION_SECRET"] || "my secret"
   })
 )
+
 app.use(helmet())
 app.use(compression())
 app.use(api)
 app.use(express.static(path.join(__dirname, "../remult-angular-todo")))
+app.use(
+  remultExpress({
+    dataProvider: async () =>
+      new JsonDataProvider(new JsonEntityFileStorage("./db"))
+  })
+)
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../remult-angular-todo", "index.html"))
 })
