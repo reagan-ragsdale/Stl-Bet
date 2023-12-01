@@ -19,7 +19,9 @@ import { createPostgresDataProvider } from "remult/postgres"
 
 export const api = remultExpress({
     entities: [Task, PlayerInfoMlb, DbMlbGameBookData, DbGameBookData, DbPlayerPropData, DbNhlPlayerInfo, DbNhlPlayerGameStats, NbaPlayerInfoDb, DbNbaGameStats,],
-    controllers: [TaskController, MlbController, SportsBookController, PlayerPropController, NhlPlayerInfoController, NhlPlayerGameStatsController, NbaController,] ,
+    controllers: [TaskController, MlbController, SportsBookController, PlayerPropController, NhlPlayerInfoController, NhlPlayerGameStatsController, NbaController,] 
+
+   
     
    // getUser: req => req.session!["user"] 
 })
