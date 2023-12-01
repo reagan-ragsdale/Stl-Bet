@@ -315,19 +315,19 @@ class nbaApiController {
           points: _this4.playerStatData[i].points,
           fgm: _this4.playerStatData[i].fgm,
           fga: _this4.playerStatData[i].fga,
-          fgp: _this4.playerStatData[i].fgp,
+          fgp: parseInt(_this4.playerStatData[i].fgp),
           ftm: _this4.playerStatData[i].ftm,
           fta: _this4.playerStatData[i].fta,
-          ftp: _this4.playerStatData[i].ftp,
+          ftp: parseInt(_this4.playerStatData[i].ftp),
           tpm: _this4.playerStatData[i].tpm,
           tpa: _this4.playerStatData[i].tpa,
-          tpp: _this4.playerStatData[i].tpp,
+          tpp: parseInt(_this4.playerStatData[i].tpp),
           offReb: _this4.playerStatData[i].offReb,
           defReb: _this4.playerStatData[i].defReb,
           totReb: _this4.playerStatData[i].totReb,
           pFouls: _this4.playerStatData[i].pFouls,
           steals: _this4.playerStatData[i].steals,
-          turnover: _this4.playerStatData[i].turnover,
+          turnover: _this4.playerStatData[i].turnovers,
           blocks: _this4.playerStatData[i].blocks,
           doubleDouble: _this4.isDoubleDouble(_this4.playerStatData[i]) == true ? 1 : 0,
           tripleDouble: _this4.isTripleDouble(_this4.playerStatData[i]) == true ? 1 : 0
@@ -927,14 +927,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! chartjs-plugin-annotation */ 3225);
 /* harmony import */ var src_shared_Controllers_NhlPlayerInfoController__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/shared/Controllers/NhlPlayerInfoController */ 8994);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ 8849);
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/table */ 6798);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 1699);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 7947);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 6575);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ 895);
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/form-field */ 1333);
-/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/select */ 6355);
-/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/core */ 5309);
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/table */ 6798);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/button */ 895);
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/form-field */ 1333);
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/select */ 6355);
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/core */ 5309);
 /* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/grid-list */ 647);
 /* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/checkbox */ 6658);
 /* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/autocomplete */ 9892);
@@ -966,332 +966,352 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function PlayerStatsComponent_mat_option_11_Template(rf, ctx) {
   if (rf & 1) {
-    const _r30 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 40);
+    const _r31 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 42);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("onSelectionChange", function PlayerStatsComponent_mat_option_11_Template_mat_option_onSelectionChange_0_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r30);
-      const player_r28 = restoredCtx.$implicit;
-      const ctx_r29 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r29.loadNewPlayer(player_r28.playerId, player_r28.playerName));
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r31);
+      const player_r29 = restoredCtx.$implicit;
+      const ctx_r30 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r30.loadNewPlayer(player_r29.playerId, player_r29.playerName));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const player_r28 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", player_r28.playerName);
+    const player_r29 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("value", player_r29.playerName);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", player_r28.playerName, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", player_r29.playerName, " ");
   }
 }
 function PlayerStatsComponent_li_26_Template(rf, ctx) {
   if (rf & 1) {
-    const _r33 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "li")(1, "mat-checkbox", 41);
+    const _r34 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "li")(1, "mat-checkbox", 43);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("ngModelChange", function PlayerStatsComponent_li_26_Template_mat_checkbox_ngModelChange_1_listener($event) {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r33);
-      const box_r31 = restoredCtx.$implicit;
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](box_r31.showLine = $event);
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r34);
+      const box_r32 = restoredCtx.$implicit;
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](box_r32.showLine = $event);
     })("ngModelChange", function PlayerStatsComponent_li_26_Template_mat_checkbox_ngModelChange_1_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r33);
-      const ctx_r34 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r34.reDrawLineGraph());
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r34);
+      const ctx_r35 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r35.reDrawLineGraph());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const box_r31 = ctx.$implicit;
+    const box_r32 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngModel", box_r31.showLine)("color", box_r31.color);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngModel", box_r32.showLine)("color", box_r32.color);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", box_r31.label, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", box_r32.label, " ");
   }
 }
-function PlayerStatsComponent_th_33_Template(rf, ctx) {
+function PlayerStatsComponent_mat_option_29_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 42);
+    const _r38 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("onSelectionChange", function PlayerStatsComponent_mat_option_29_Template_mat_option_onSelectionChange_0_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r38);
+      const season_r36 = restoredCtx.$implicit;
+      const ctx_r37 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r37.updateSeasonsDisplayed(season_r36));
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const season_r36 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", season_r36, " ");
+  }
+}
+function PlayerStatsComponent_th_36_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Game ");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
 }
-function PlayerStatsComponent_td_34_Template(rf, ctx) {
+function PlayerStatsComponent_td_37_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 43);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const element_r35 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate2"](" ", element_r35.homeOrAway == "Away" ? "@" : "", "", element_r35.teamAgainstName, " ");
-  }
-}
-function PlayerStatsComponent_td_35_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Average ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-}
-function PlayerStatsComponent_th_37_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Date ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-}
-function PlayerStatsComponent_td_38_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 43);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const element_r36 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r36.gameDate, " ");
-  }
-}
-function PlayerStatsComponent_td_39_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "td", 44);
-  }
-}
-function PlayerStatsComponent_th_41_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Points ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-}
-function PlayerStatsComponent_td_42_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 43);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const element_r37 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r37.points, " ");
-  }
-}
-function PlayerStatsComponent_td_43_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r11.getTotalCost("points"), " ");
-  }
-}
-function PlayerStatsComponent_th_45_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Assists ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-}
-function PlayerStatsComponent_td_46_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 43);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const element_r38 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r38.assists, " ");
-  }
-}
-function PlayerStatsComponent_td_47_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const ctx_r14 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r14.getTotalCost("assists"), " ");
-  }
-}
-function PlayerStatsComponent_th_49_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Rebounds ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-  }
-}
-function PlayerStatsComponent_td_50_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
     const element_r39 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r39.totReb, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate2"](" ", element_r39.homeOrAway == "Away" ? "@" : "", "", element_r39.teamAgainstName, " ");
   }
 }
-function PlayerStatsComponent_td_51_Template(rf, ctx) {
+function PlayerStatsComponent_td_38_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Average ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function PlayerStatsComponent_th_40_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Date ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function PlayerStatsComponent_td_41_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    const element_r42 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r17.getTotalCost("totReb"), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r42.gameDate, " ");
   }
 }
-function PlayerStatsComponent_th_53_Template(rf, ctx) {
+function PlayerStatsComponent_td_42_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Blocks ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "td", 47);
+  }
+}
+function PlayerStatsComponent_th_44_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Points ");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function PlayerStatsComponent_td_45_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const element_r43 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r43.points, " ");
+  }
+}
+function PlayerStatsComponent_td_46_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r12.getTotalCost("points"), " ");
+  }
+}
+function PlayerStatsComponent_th_48_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Assists ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function PlayerStatsComponent_td_49_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const element_r44 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r44.assists, " ");
+  }
+}
+function PlayerStatsComponent_td_50_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r15.getTotalCost("assists"), " ");
+  }
+}
+function PlayerStatsComponent_th_52_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Rebounds ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function PlayerStatsComponent_td_53_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const element_r45 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r45.totReb, " ");
   }
 }
 function PlayerStatsComponent_td_54_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 47);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const element_r40 = ctx.$implicit;
+    const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r40.blocks, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r18.getTotalCost("totReb"), " ");
   }
 }
-function PlayerStatsComponent_td_55_Template(rf, ctx) {
+function PlayerStatsComponent_th_56_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Blocks ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function PlayerStatsComponent_td_57_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r20 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    const element_r46 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r20.getTotalCost("blocks"), " ");
-  }
-}
-function PlayerStatsComponent_th_57_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Threes ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r46.blocks, " ");
   }
 }
 function PlayerStatsComponent_td_58_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 47);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const element_r41 = ctx.$implicit;
+    const ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r41.tpm, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r21.getTotalCost("blocks"), " ");
   }
 }
-function PlayerStatsComponent_td_59_Template(rf, ctx) {
+function PlayerStatsComponent_th_60_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "th", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Threes ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+  }
+}
+function PlayerStatsComponent_td_61_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r23 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    const element_r47 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r23.getTotalCost("tpm"), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", element_r47.tpm, " ");
   }
 }
-function PlayerStatsComponent_tr_60_Template(rf, ctx) {
+function PlayerStatsComponent_td_62_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "tr", 45);
-  }
-}
-function PlayerStatsComponent_tr_61_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "tr", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "td", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const row_r42 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵclassProp"]("demo-row-is-clicked", row_r42.isHighlighted);
+    const ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate1"](" ", ctx_r24.getTotalCost("tpm"), " ");
   }
 }
-function PlayerStatsComponent_tr_62_Template(rf, ctx) {
+function PlayerStatsComponent_tr_63_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "tr", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "tr", 48);
   }
 }
-function PlayerStatsComponent_mat_form_field_69_mat_option_4_Template(rf, ctx) {
+function PlayerStatsComponent_tr_64_Template(rf, ctx) {
   if (rf & 1) {
-    const _r48 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("onSelectionChange", function PlayerStatsComponent_mat_form_field_69_mat_option_4_Template_mat_option_onSelectionChange_0_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r48);
-      const stat_r45 = restoredCtx.$implicit;
-      const forms_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]().$implicit;
-      const ctx_r46 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r46.updateForm(forms_r43, stat_r45));
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "tr", 49);
+  }
+  if (rf & 2) {
+    const row_r48 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵclassProp"]("demo-row-is-clicked", row_r48.isHighlighted);
+  }
+}
+function PlayerStatsComponent_tr_65_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "tr", 50);
+  }
+}
+function PlayerStatsComponent_mat_form_field_72_mat_option_4_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r54 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-option", 42);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("onSelectionChange", function PlayerStatsComponent_mat_form_field_72_mat_option_4_Template_mat_option_onSelectionChange_0_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r54);
+      const stat_r51 = restoredCtx.$implicit;
+      const forms_r49 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]().$implicit;
+      const ctx_r52 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r52.updateForm(forms_r49, stat_r51));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const stat_r45 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpropertyInterpolate"]("value", stat_r45.dataName);
+    const stat_r51 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpropertyInterpolate"]("value", stat_r51.dataName);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](stat_r45.label);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtextInterpolate"](stat_r51.label);
   }
 }
-function PlayerStatsComponent_mat_form_field_69_Template(rf, ctx) {
+function PlayerStatsComponent_mat_form_field_72_Template(rf, ctx) {
   if (rf & 1) {
-    const _r50 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-form-field", 48)(1, "mat-label");
+    const _r56 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-form-field", 51)(1, "mat-label");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Select");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "mat-select");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](4, PlayerStatsComponent_mat_form_field_69_mat_option_4_Template, 2, 2, "mat-option", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](4, PlayerStatsComponent_mat_form_field_72_mat_option_4_Template, 2, 2, "mat-option", 7);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "input", 49);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("ngModelChange", function PlayerStatsComponent_mat_form_field_69_Template_input_ngModelChange_5_listener($event) {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r50);
-      const forms_r43 = restoredCtx.$implicit;
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](forms_r43.number = $event);
-    })("click", function PlayerStatsComponent_mat_form_field_69_Template_input_click_5_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "input", 52);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("ngModelChange", function PlayerStatsComponent_mat_form_field_72_Template_input_ngModelChange_5_listener($event) {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r56);
+      const forms_r49 = restoredCtx.$implicit;
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](forms_r49.number = $event);
+    })("click", function PlayerStatsComponent_mat_form_field_72_Template_input_click_5_listener($event) {
       return $event.stopPropagation();
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](6, "button", 50);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_mat_form_field_69_Template_button_click_6_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r50);
-      const forms_r43 = restoredCtx.$implicit;
-      const ctx_r52 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r52.deleteformArray(forms_r43));
-    })("click", function PlayerStatsComponent_mat_form_field_69_Template_button_click_6_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](6, "button", 53);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_mat_form_field_72_Template_button_click_6_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r56);
+      const forms_r49 = restoredCtx.$implicit;
+      const ctx_r58 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r58.deleteformArray(forms_r49));
+    })("click", function PlayerStatsComponent_mat_form_field_72_Template_button_click_6_listener($event) {
       return $event.stopPropagation();
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](7, "Delete");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const forms_r43 = ctx.$implicit;
-    const ctx_r27 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+    const forms_r49 = ctx.$implicit;
+    const ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r27.fullDataset);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx_r28.fullDataset);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngModel", forms_r43.number);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngModel", forms_r49.number);
   }
 }
 class PlayerStatsComponent {
@@ -1359,12 +1379,17 @@ class PlayerStatsComponent {
     this.showLineThrees = false;
     this.showLineBlocks = false;
     this.isCombineStats = false;
+    this.seasonArray = [];
+    this.seasonArrayTable = [];
     //nba
     this.nbaPlayerInfo = [];
     this.nbaPlayerStatsInfo2022 = [];
     this.nbaPlayerStatsInfo2023 = [];
     this.nbaAllPlayerInfo = [];
     this.nbaPlayerStatsInfo2023Table = [];
+    this.nbaPlayerStatsInfo2022Table = [];
+    this.playerSeasons = [];
+    this.playerSeason = '2023';
     //nhl
     this.nhlPlayerInfo = [];
     this.nhlPlayerStatsInfo2022 = [];
@@ -1397,7 +1422,16 @@ class PlayerStatsComponent {
         _this2.nbaPlayerStatsInfo2023Table = structuredClone(_this2.nbaPlayerStatsInfo2023);
         _this2.nbaPlayerStatsInfo2023Table = _this2.nbaPlayerStatsInfo2023Table.reverse();
         _this2.nbaPlayerStatsInfo2023Table.forEach(e => e.isHighlighted = false);
+        _this2.nbaPlayerStatsInfo2022Table = structuredClone(_this2.nbaPlayerStatsInfo2023);
+        _this2.nbaPlayerStatsInfo2022Table = _this2.nbaPlayerStatsInfo2023Table.reverse();
+        _this2.nbaPlayerStatsInfo2022Table.forEach(e => e.isHighlighted = false);
         _this2.searchName = _this2.playerName;
+        _this2.playerSeasons.push("2023");
+        if (_this2.nbaPlayerStatsInfo2022.length > 1) {
+          _this2.playerSeasons.push("2022");
+        }
+        _this2.seasonArray = _this2.nbaPlayerStatsInfo2023;
+        _this2.seasonArrayTable = _this2.nbaPlayerStatsInfo2023Table;
       }
       if (_this2.selectedSport == "NHL") {
         _this2.nhlPlayerInfo = yield src_shared_Controllers_NhlPlayerInfoController__WEBPACK_IMPORTED_MODULE_6__.NhlPlayerInfoController.nhlLoadPlayerInfoFromId(_this2.playerId);
@@ -1426,10 +1460,10 @@ class PlayerStatsComponent {
     })();
   }
   calculateMeanAndStd() {
-    this.playerAverage = this.nbaPlayerStatsInfo2023.map(t => t.points).reduce((acc, value) => acc + value, 0) / this.nbaPlayerStatsInfo2023.length;
+    this.playerAverage = this.seasonArray.map(t => t.points).reduce((acc, value) => acc + value, 0) / this.seasonArray.length;
     let summedData = 0;
-    this.nbaPlayerStatsInfo2023.forEach(e => summedData += (e.points - this.playerAverage) ** 2);
-    summedData = summedData / this.nbaPlayerStatsInfo2023.length;
+    this.seasonArray.forEach(e => summedData += (e.points - this.playerAverage) ** 2);
+    summedData = summedData / this.seasonArray.length;
     summedData = Math.sqrt(summedData);
     this.playerStd = summedData;
     console.log(this.playerStd);
@@ -1438,20 +1472,20 @@ class PlayerStatsComponent {
     //for now we're going to make this just over and single stats
     console.log(this.formArray);
     // later we can add over or under and combined stats
-    for (let i = 0; i < this.nbaPlayerStatsInfo2023Table.length; i++) {
+    for (let i = 0; i < this.seasonArrayTable.length; i++) {
       for (let j = 0; j < this.formArray.length; j++) {
-        console.log(this.nbaPlayerStatsInfo2023Table[i][this.formArray[j].dataName] > this.formArray[j].number);
-        if (this.nbaPlayerStatsInfo2023Table[i][this.formArray[j].dataName] > this.formArray[j].number) {
-          this.nbaPlayerStatsInfo2023Table[i].isHighlighted = true;
+        console.log(this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number);
+        if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
+          this.seasonArrayTable[i].isHighlighted = true;
         } else {
-          this.nbaPlayerStatsInfo2023Table[i].isHighlighted = false;
+          this.seasonArrayTable[i].isHighlighted = false;
           break;
         }
       }
     }
   }
   clearSearch() {
-    this.nbaPlayerStatsInfo2023Table.forEach(e => {
+    this.seasonArrayTable.forEach(e => {
       e.isHighlighted = false;
     });
   }
@@ -1478,8 +1512,21 @@ class PlayerStatsComponent {
     this.formArray = this.formArray.filter(e => e != form);
   }
   getTotalCost(stat) {
-    var num = this.nbaPlayerStatsInfo2023Table.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
-    return (num / this.nbaPlayerStatsInfo2023Table.length).toFixed(2);
+    var num = this.seasonArrayTable.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
+    return (num / this.seasonArrayTable.length).toFixed(2);
+  }
+  updateSeasonsDisplayed(season) {
+    console.log("here");
+    this.playerSeason = season;
+    if (this.playerSeason == "2023") {
+      this.seasonArray = this.nbaPlayerStatsInfo2023;
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table;
+    } else if (this.playerSeason == "2022") {
+      this.seasonArray = this.nbaPlayerStatsInfo2022;
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2022Table;
+    }
+    this.table.renderRows();
+    this.reDrawLineGraph();
   }
   createChart() {
     var points = [];
@@ -1490,7 +1537,7 @@ class PlayerStatsComponent {
     var doubleDoubles = [];
     var dataPoint = [];
     var index = 1;
-    this.nbaPlayerStatsInfo2023.forEach(e => {
+    this.seasonArray.forEach(e => {
       points.push(e.points);
       assists.push(e.assists);
       rebounds.push(e.totReb);
@@ -1681,7 +1728,7 @@ class PlayerStatsComponent {
     for (let i = 0; i < 100; i++) {
       dataPoint.push(i);
     }
-    this.nbaPlayerStatsInfo2023.forEach(e => {
+    this.seasonArray.forEach(e => {
       points.push(e.points);
       assists.push(e.assists);
       rebounds.push(e.totReb);
@@ -1800,7 +1847,7 @@ class PlayerStatsComponent {
     for (let i = 0; i < 100; i++) {
       dataPoint.push(i);
     }
-    this.nbaPlayerStatsInfo2023.forEach(e => {
+    this.seasonArray.forEach(e => {
       points.push(e.points);
       assists.push(e.assists);
       rebounds.push(e.totReb);
@@ -1921,10 +1968,19 @@ class PlayerStatsComponent {
   static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineComponent"]({
     type: PlayerStatsComponent,
     selectors: [["app-player-stats"]],
+    viewQuery: function PlayerStatsComponent_Query(rf, ctx) {
+      if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵviewQuery"](_angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatTable, 5);
+      }
+      if (rf & 2) {
+        let _t;
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.table = _t.first);
+      }
+    },
     features: [_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵProvidersFeature"]([_ApiCalls_nbaApiCalls__WEBPACK_IMPORTED_MODULE_1__.nbaApiController, _ApiCalls_nhlApiCalls__WEBPACK_IMPORTED_MODULE_2__.nhlApiController, _ApiCalls_draftKingsApiCalls__WEBPACK_IMPORTED_MODULE_3__.draftKingsApiController])],
-    decls: 77,
-    vars: 16,
-    consts: [["cols", "4", "rowHeight", "50px"], ["colspan", "4", 2, "background-color", "darkgray"], [2, "font-size", "200%"], [1, "example-form"], [1, "example-full-width"], ["type", "text", "placeholder", "Search Player Name", "aria-label", "Number", "matInput", "", 3, "ngModel", "formControl", "matAutocomplete", "ngModelChange"], ["auto", "matAutocomplete"], [3, "value", "onSelectionChange", 4, "ngFor", "ngForOf"], ["rowspan", "8"], ["id", "lineChart"], ["id", "barChart"], ["id", "NormalDistChart"], [1, "example-list-section"], [3, "ngModel", "ngModelChange"], [4, "ngFor", "ngForOf"], ["rowspan", "1", "colspan", "4", 2, "background-color", "darkcyan"], ["colspan", "2", "rowspan", "8", 2, "overflow", "visible"], ["mat-table", "", 1, "mat-elevation-z8", 2, "height", "inherit", 3, "dataSource"], ["matColumnDef", "Game"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["mat-footer-cell", "", 4, "matFooterCellDef"], ["matColumnDef", "Date"], ["matColumnDef", "Points"], ["matColumnDef", "Assists"], ["matColumnDef", "Rebounds"], ["matColumnDef", "Blocks"], ["matColumnDef", "Threes"], ["mat-header-row", "", 4, "matHeaderRowDef", "matHeaderRowDefSticky"], ["mat-row", "", "style", "height:auto;", 3, "demo-row-is-clicked", 4, "matRowDef", "matRowDefColumns"], ["mat-footer-row", "", "style", "border-top: 2px solid black;", 4, "matFooterRowDef"], ["rowspan", "8", "colspan", "2"], [2, "height", "inherit", "width", "100%"], ["cols", "4", "rowHeight", "10px"], ["colspan", "4", "rowspan", "15", 2, "background-color", "gray", "display", "flex", "justify-content", "flex-start", "align-items", "flex-start"], [2, "height", "inherit", "width", "100%", "display", "flex", "justify-content", "flex-start", "align-items", "center"], [2, "display", "flex"], ["style", "padding-left: 1rem; padding-top: 1rem; ", 4, "ngFor", "ngForOf"], [2, "display", "flex", "flex-direction", "column", "padding-top", "2rem", "gap", "1rem"], ["mat-raised-button", "", 2, "height", "fit-content", "width", "fit-content", "border-radius", "10px", 3, "click"], [3, "value", "onSelectionChange"], [3, "ngModel", "color", "ngModelChange"], ["mat-header-cell", ""], ["mat-cell", ""], ["mat-footer-cell", ""], ["mat-header-row", ""], ["mat-row", "", 2, "height", "auto"], ["mat-footer-row", "", 2, "border-top", "2px solid black"], [2, "padding-left", "1rem", "padding-top", "1rem"], ["matInput", "", "type", "number", 3, "ngModel", "ngModelChange", "click"], ["mat-raised-button", "", 2, "margin-top", "1rem", 3, "click"]],
+    decls: 80,
+    vars: 18,
+    consts: [["cols", "4", "rowHeight", "50px"], ["colspan", "4", 2, "background-color", "darkgray"], [2, "font-size", "200%"], [1, "example-form"], [1, "example-full-width"], ["type", "text", "placeholder", "Search Player Name", "aria-label", "Number", "matInput", "", 3, "ngModel", "formControl", "matAutocomplete", "ngModelChange"], ["auto", "matAutocomplete"], [3, "value", "onSelectionChange", 4, "ngFor", "ngForOf"], ["rowspan", "8"], ["id", "lineChart"], ["id", "barChart"], ["id", "NormalDistChart"], [1, "example-list-section"], [3, "ngModel", "ngModelChange"], [4, "ngFor", "ngForOf"], [3, "placeholder"], ["value", "season", 3, "onSelectionChange", 4, "ngFor", "ngForOf"], ["rowspan", "1", "colspan", "4", 2, "background-color", "darkcyan"], ["colspan", "2", "rowspan", "8", 2, "overflow", "visible"], ["mat-table", "", 1, "mat-elevation-z8", 2, "height", "inherit", 3, "dataSource"], ["matColumnDef", "Game"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["mat-footer-cell", "", 4, "matFooterCellDef"], ["matColumnDef", "Date"], ["matColumnDef", "Points"], ["matColumnDef", "Assists"], ["matColumnDef", "Rebounds"], ["matColumnDef", "Blocks"], ["matColumnDef", "Threes"], ["mat-header-row", "", 4, "matHeaderRowDef", "matHeaderRowDefSticky"], ["mat-row", "", "style", "height:auto;", 3, "demo-row-is-clicked", 4, "matRowDef", "matRowDefColumns"], ["mat-footer-row", "", "style", "border-top: 2px solid black;", 4, "matFooterRowDef"], ["rowspan", "8", "colspan", "2"], [2, "height", "inherit", "width", "100%"], ["cols", "4", "rowHeight", "10px"], ["colspan", "4", "rowspan", "15", 2, "background-color", "gray", "display", "flex", "justify-content", "flex-start", "align-items", "flex-start"], [2, "height", "inherit", "width", "100%", "display", "flex", "justify-content", "flex-start", "align-items", "center"], [2, "display", "flex"], ["style", "padding-left: 1rem; padding-top: 1rem; ", 4, "ngFor", "ngForOf"], [2, "display", "flex", "flex-direction", "column", "padding-top", "2rem", "gap", "1rem"], ["mat-raised-button", "", 2, "height", "fit-content", "width", "fit-content", "border-radius", "10px", 3, "click"], [3, "value", "onSelectionChange"], [3, "ngModel", "color", "ngModelChange"], ["value", "season", 3, "onSelectionChange"], ["mat-header-cell", ""], ["mat-cell", ""], ["mat-footer-cell", ""], ["mat-header-row", ""], ["mat-row", "", 2, "height", "auto"], ["mat-footer-row", "", 2, "border-top", "2px solid black"], [2, "padding-left", "1rem", "padding-top", "1rem"], ["matInput", "", "type", "number", 3, "ngModel", "ngModelChange", "click"], ["mat-raised-button", "", 2, "margin-top", "1rem", 3, "click"]],
     template: function PlayerStatsComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "mat-grid-list", 0)(1, "mat-grid-tile", 1)(2, "h1", 2);
@@ -1962,69 +2018,72 @@ class PlayerStatsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](25, "ul");
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](26, PlayerStatsComponent_li_26_Template, 3, 3, "li", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](27, "mat-form-field")(28, "mat-select", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](29, PlayerStatsComponent_mat_option_29_Template, 2, 1, "mat-option", 16);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](27, "mat-grid-tile", 15)(28, "h1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](29, " Stats");
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](30, "mat-grid-tile", 17)(31, "h1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](32, " Stats");
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](30, "mat-grid-tile", 16)(31, "table", 17);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](32, 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](33, PlayerStatsComponent_th_33_Template, 2, 0, "th", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](34, PlayerStatsComponent_td_34_Template, 2, 2, "td", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](35, PlayerStatsComponent_td_35_Template, 2, 0, "td", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](33, "mat-grid-tile", 18)(34, "table", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](35, 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](36, PlayerStatsComponent_th_36_Template, 2, 0, "th", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](37, PlayerStatsComponent_td_37_Template, 2, 2, "td", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](38, PlayerStatsComponent_td_38_Template, 2, 0, "td", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](36, 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](37, PlayerStatsComponent_th_37_Template, 2, 0, "th", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](38, PlayerStatsComponent_td_38_Template, 2, 1, "td", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](39, PlayerStatsComponent_td_39_Template, 1, 0, "td", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](39, 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](40, PlayerStatsComponent_th_40_Template, 2, 0, "th", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](41, PlayerStatsComponent_td_41_Template, 2, 1, "td", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](42, PlayerStatsComponent_td_42_Template, 1, 0, "td", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](40, 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](41, PlayerStatsComponent_th_41_Template, 2, 0, "th", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](42, PlayerStatsComponent_td_42_Template, 2, 1, "td", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](43, PlayerStatsComponent_td_43_Template, 2, 1, "td", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](43, 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](44, PlayerStatsComponent_th_44_Template, 2, 0, "th", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](45, PlayerStatsComponent_td_45_Template, 2, 1, "td", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](46, PlayerStatsComponent_td_46_Template, 2, 1, "td", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](44, 24);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](45, PlayerStatsComponent_th_45_Template, 2, 0, "th", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](46, PlayerStatsComponent_td_46_Template, 2, 1, "td", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](47, PlayerStatsComponent_td_47_Template, 2, 1, "td", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](47, 26);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](48, PlayerStatsComponent_th_48_Template, 2, 0, "th", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](49, PlayerStatsComponent_td_49_Template, 2, 1, "td", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](50, PlayerStatsComponent_td_50_Template, 2, 1, "td", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](48, 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](49, PlayerStatsComponent_th_49_Template, 2, 0, "th", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](50, PlayerStatsComponent_td_50_Template, 2, 1, "td", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](51, PlayerStatsComponent_td_51_Template, 2, 1, "td", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](51, 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](52, PlayerStatsComponent_th_52_Template, 2, 0, "th", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](53, PlayerStatsComponent_td_53_Template, 2, 1, "td", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](54, PlayerStatsComponent_td_54_Template, 2, 1, "td", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](52, 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](53, PlayerStatsComponent_th_53_Template, 2, 0, "th", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](54, PlayerStatsComponent_td_54_Template, 2, 1, "td", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](55, PlayerStatsComponent_td_55_Template, 2, 1, "td", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](55, 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](56, PlayerStatsComponent_th_56_Template, 2, 0, "th", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](57, PlayerStatsComponent_td_57_Template, 2, 1, "td", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](58, PlayerStatsComponent_td_58_Template, 2, 1, "td", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](56, 27);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](57, PlayerStatsComponent_th_57_Template, 2, 0, "th", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](58, PlayerStatsComponent_td_58_Template, 2, 1, "td", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](59, PlayerStatsComponent_td_59_Template, 2, 1, "td", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerStart"](59, 29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](60, PlayerStatsComponent_th_60_Template, 2, 0, "th", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](61, PlayerStatsComponent_td_61_Template, 2, 1, "td", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](62, PlayerStatsComponent_td_62_Template, 2, 1, "td", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](60, PlayerStatsComponent_tr_60_Template, 1, 0, "tr", 28);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](61, PlayerStatsComponent_tr_61_Template, 1, 2, "tr", 29);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](62, PlayerStatsComponent_tr_62_Template, 1, 0, "tr", 30);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](63, PlayerStatsComponent_tr_63_Template, 1, 0, "tr", 30);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](64, PlayerStatsComponent_tr_64_Template, 1, 2, "tr", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](65, PlayerStatsComponent_tr_65_Template, 1, 0, "tr", 32);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](63, "mat-grid-tile", 31)(64, "div", 32)(65, "mat-grid-list", 33)(66, "mat-grid-tile", 34)(67, "div", 35)(68, "div", 36);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](69, PlayerStatsComponent_mat_form_field_69_Template, 8, 2, "mat-form-field", 37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](70, "div", 38)(71, "button", 39);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_Template_button_click_71_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](66, "mat-grid-tile", 33)(67, "div", 34)(68, "mat-grid-list", 35)(69, "mat-grid-tile", 36)(70, "div", 37)(71, "div", 38);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](72, PlayerStatsComponent_mat_form_field_72_Template, 8, 2, "mat-form-field", 39);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](73, "div", 40)(74, "button", 41);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_Template_button_click_74_listener() {
           return ctx.addStatForm();
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](72, "Add");
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](75, "Add");
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](73, "button", 39);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_Template_button_click_73_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](76, "button", 41);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_Template_button_click_76_listener() {
           return ctx.clearSearch();
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](74, "Clear");
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](77, "Clear");
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](75, "button", 39);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_Template_button_click_75_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](78, "button", 41);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function PlayerStatsComponent_Template_button_click_78_listener() {
           return ctx.searchNumberSubmit();
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](76, "Search");
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](79, "Search");
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()()()()()()()();
       }
       if (rf & 2) {
@@ -2045,8 +2104,12 @@ class PlayerStatsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngModel", ctx.isCombineStats);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.fullDataset);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpropertyInterpolate"]("placeholder", ctx.playerSeason);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.playerSeasons);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("dataSource", ctx.nbaPlayerStatsInfo2023Table);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("dataSource", ctx.seasonArrayTable);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](29);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("matHeaderRowDef", ctx.displayedColumns)("matHeaderRowDefSticky", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
@@ -2057,7 +2120,7 @@ class PlayerStatsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", ctx.formArray);
       }
     },
-    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_11__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NumberValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgModel, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgForm, _angular_material_button__WEBPACK_IMPORTED_MODULE_12__.MatButton, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatLabel, _angular_material_select__WEBPACK_IMPORTED_MODULE_14__.MatSelect, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__.MatOption, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatFooterCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatFooterRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatFooterCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_16__.MatFooterRow, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_17__.MatGridList, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_17__.MatGridTile, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__.MatCheckbox, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_19__.MatAutocomplete, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_19__.MatAutocompleteTrigger, _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_20__.MatSlideToggle, _angular_material_input__WEBPACK_IMPORTED_MODULE_21__.MatInput, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormControlDirective],
+    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_12__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NumberValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgModel, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgForm, _angular_material_button__WEBPACK_IMPORTED_MODULE_13__.MatButton, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_14__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_14__.MatLabel, _angular_material_select__WEBPACK_IMPORTED_MODULE_15__.MatSelect, _angular_material_core__WEBPACK_IMPORTED_MODULE_16__.MatOption, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatFooterCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatFooterRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatFooterCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_11__.MatFooterRow, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_17__.MatGridList, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_17__.MatGridTile, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__.MatCheckbox, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_19__.MatAutocomplete, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_19__.MatAutocompleteTrigger, _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_20__.MatSlideToggle, _angular_material_input__WEBPACK_IMPORTED_MODULE_21__.MatInput, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.FormControlDirective],
     styles: [".demo-row-is-clicked[_ngcontent-%COMP%] {\n  background-color: lightcoral;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcGxheWVyLXN0YXRzL3BsYXllci1zdGF0cy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDRCQUFBO0FBQ0oiLCJzb3VyY2VzQ29udGVudCI6WyIuZGVtby1yb3ctaXMtY2xpY2tlZCB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOmxpZ2h0Y29yYWw7XHJcbiAgfSJdLCJzb3VyY2VSb290IjoiIn0= */"]
   });
 }
@@ -2231,7 +2294,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/table */ 6798);
-/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/animations */ 2501);
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/animations */ 2501);
 /* harmony import */ var remult__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! remult */ 726);
 /* harmony import */ var src_shared_dbTasks_PlayerInfoMlb__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/shared/dbTasks/PlayerInfoMlb */ 9517);
 /* harmony import */ var src_shared_Controllers_MlbController__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/shared/Controllers/MlbController */ 3351);
@@ -2253,13 +2316,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/router */ 7947);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/common */ 6575);
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/button */ 895);
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/card */ 8497);
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/divider */ 9400);
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/tabs */ 989);
-/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/progress-bar */ 8173);
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/expansion */ 8060);
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/tabs */ 989);
+/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/grid-list */ 647);
+/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/progress-bar */ 8173);
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/expansion */ 8060);
 /* harmony import */ var _prop_checkout_prop_checkout_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./prop-checkout/prop-checkout.component */ 4269);
-
 
 
 
@@ -2295,175 +2356,219 @@ __webpack_require__.r(__webpack_exports__);
 
 function PropScreenComponent_mat_tab_2_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-tab", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-tab", 10);
   }
   if (rf & 2) {
-    const sport_r5 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpropertyInterpolate"]("label", sport_r5.title);
+    const sport_r7 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpropertyInterpolate"]("label", sport_r7.title);
   }
 }
 function PropScreenComponent_mat_tab_4_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-tab", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-tab", 10);
   }
   if (rf & 2) {
-    const date_r6 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpropertyInterpolate"]("label", date_r6);
+    const date_r8 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpropertyInterpolate"]("label", date_r8);
   }
 }
 function PropScreenComponent_mat_tab_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-tab", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-tab", 10);
   }
   if (rf & 2) {
-    const game_r7 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpropertyInterpolate"]("label", game_r7.game);
+    const game_r9 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpropertyInterpolate"]("label", game_r9.game);
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_button_7_Template(rf, ctx) {
+function PropScreenComponent_div_10_Template(rf, ctx) {
   if (rf & 1) {
-    const _r15 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "button", 18);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_button_7_Template_button_click_0_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div")(1, "mat-grid-list", 11)(2, "mat-grid-tile", 12)(3, "div", 13)(4, "mat-grid-list", 14)(5, "mat-grid-tile", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()()()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](7, "mat-grid-tile", 16)(8, "div", 13)(9, "mat-grid-list", 14)(10, "mat-grid-tile", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()()()()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](12, "div", 17)(13, "mat-grid-list", 18)(14, "mat-grid-tile", 19)(15, "button", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](16, "-110");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](17, "mat-grid-tile", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](18, " Money Line ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](19, "mat-grid-tile", 22)(20, "button", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](21, "+110");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](22, "mat-grid-tile", 22)(23, "button", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](24, "-4 -110");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](25, "mat-grid-tile", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](26, " Spread ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](27, "mat-grid-tile", 22)(28, "button", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](29, "+110");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](30, "mat-grid-tile", 22)(31, "button", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](32, "-110");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](33, "mat-grid-tile", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](34, " Total ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](35, "mat-grid-tile", 22)(36, "button", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](37, "+110");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()()()()();
+  }
+  if (rf & 2) {
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", ctx_r3.displayPropHtml1.name, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", ctx_r3.displayPropHtml2.name, " ");
+  }
+}
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_button_7_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r17 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "button", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_button_7_Template_button_click_0_listener($event) {
       return $event.stopPropagation();
-    })("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_button_7_Template_button_click_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r15);
-      const props_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]().$implicit;
-      const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r13.findBestBetsFromEvent(props_r9));
+    })("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_button_7_Template_button_click_0_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r17);
+      const props_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]().$implicit;
+      const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r15.findBestBetsFromEvent(props_r11));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1, "Best Bets");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_mat_progress_bar_0_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_mat_progress_bar_0_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-progress-bar", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-progress-bar", 33);
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_2_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_2_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1, " Player ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_3_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_3_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 47);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const element_r32 = ctx.$implicit;
+    const element_r34 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", element_r32.name, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", element_r34.name, " ");
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_5_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_5_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1, " Over/Under ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_6_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 47);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const element_r33 = ctx.$implicit;
+    const element_r35 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", element_r33.description, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", element_r35.description, " ");
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_8_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_8_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1, " Price ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template(rf, ctx) {
   if (rf & 1) {
-    const _r36 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 35)(1, "button", 36);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template_button_click_1_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r36);
-      const element_r34 = restoredCtx.$implicit;
-      const ctx_r35 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r35.addItemToCheckout(element_r34));
-    })("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template_button_click_1_listener($event) {
+    const _r38 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 47)(1, "button", 48);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template_button_click_1_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r38);
+      const element_r36 = restoredCtx.$implicit;
+      const ctx_r37 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r37.addItemToCheckout(element_r36));
+    })("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template_button_click_1_listener($event) {
       return $event.stopPropagation();
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const element_r34 = ctx.$implicit;
+    const element_r36 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("disabled", element_r34.isDisabled);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("disabled", element_r36.isDisabled);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](element_r34.price);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](element_r36.price);
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_11_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_11_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1, " Point ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_12_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_12_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 47);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const element_r38 = ctx.$implicit;
+    const element_r40 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", element_r38.point, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", element_r40.point, " ");
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_14_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_14_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "th", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](1, " Detailed Stats ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template(rf, ctx) {
   if (rf & 1) {
-    const _r42 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 35)(1, "button", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template_button_click_1_listener($event) {
+    const _r44 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 47)(1, "button", 49);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template_button_click_1_listener($event) {
       return $event.stopPropagation();
-    })("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template_button_click_1_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r42);
-      const element_r39 = restoredCtx.$implicit;
-      const ctx_r41 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r41.detailedStatsClicked(element_r39));
+    })("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template_button_click_1_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r44);
+      const element_r41 = restoredCtx.$implicit;
+      const ctx_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r43.detailedStatsClicked(element_r41));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](2, "Detailed Stats");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_17_mat_progress_bar_1_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_17_mat_progress_bar_1_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-progress-bar", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "mat-progress-bar", 33);
   }
   if (rf & 2) {
-    const element_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]().$implicit;
-    const ctx_r44 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("@detailExpand", element_r43 == ctx_r44.expandedElement ? "expanded" : "collapsed");
+    const element_r45 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]().$implicit;
+    const ctx_r46 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("@detailExpand", element_r45 == ctx_r46.expandedElement ? "expanded" : "collapsed");
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_17_div_2_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_17_div_2_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div", 38)(1, "div", 39)(2, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div", 51)(1, "div", 52)(2, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](4, "div");
@@ -2478,7 +2583,7 @@ function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](10, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](11);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](12, "div", 39)(13, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](12, "div", 52)(13, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](14);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](15, "div");
@@ -2492,69 +2597,69 @@ function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
-    const element_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]().$implicit;
-    const ctx_r45 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("@detailExpand", element_r43 == ctx_r45.expandedElement ? "expanded" : "collapsed");
+    const element_r45 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]().$implicit;
+    const ctx_r47 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("@detailExpand", element_r45 == ctx_r47.expandedElement ? "expanded" : "collapsed");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Chance of happenging overall: ", element_r43.percentTotal, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Chance of happenging overall: ", element_r45.percentTotal, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Chance of happening vs ", element_r43.teamAgainst, ": ", element_r43.percentTeam, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Chance of happening vs ", element_r45.teamAgainst, ": ", element_r45.percentTeam, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Average this season: ", element_r43.avgTotal, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Average this season: ", element_r45.avgTotal, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Average this season vs ", element_r43.teamAgainst, ": ", element_r43.avgTeam, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Average this season vs ", element_r45.teamAgainst, ": ", element_r45.avgTeam, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Average Differential: ", element_r43.averageDifferential, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Average Differential: ", element_r45.averageDifferential, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Games Played: ", element_r43.gamesPlayed, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Games Played: ", element_r45.gamesPlayed, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Games played vs: ", element_r43.teamAgainst, " : ", element_r43.gamesPlayedVsTeam, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Games played vs: ", element_r45.teamAgainst, " : ", element_r45.gamesPlayedVsTeam, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Average last season: ", element_r43.average2022, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Average last season: ", element_r45.average2022, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Average last season vs ", element_r43.teamAgainst, " : ", element_r43.average2022vsTeam, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate2"]("Average last season vs ", element_r45.teamAgainst, " : ", element_r45.average2022vsTeam, "");
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_17_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_17_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 35);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](1, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_17_mat_progress_bar_1_Template, 1, 1, "mat-progress-bar", 19);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](2, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_17_div_2_Template, 21, 14, "div", 37);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "td", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](1, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_17_mat_progress_bar_1_Template, 1, 1, "mat-progress-bar", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](2, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_17_div_2_Template, 21, 14, "div", 50);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵattribute"]("colspan", ctx_r28.displayedColumns.length);
+    const ctx_r30 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵattribute"]("colspan", ctx_r30.displayedColumns.length);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", ctx_r28.displayProgressBar);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", ctx_r30.displayProgressBar);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", !ctx_r28.displayProgressBar);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", !ctx_r30.displayProgressBar);
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_18_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_18_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "tr", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "tr", 53);
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template(rf, ctx) {
   if (rf & 1) {
-    const _r50 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "tr", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template_tr_click_0_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r50);
-      const element_r48 = restoredCtx.$implicit;
-      const ctx_r49 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r49.expandedElement = ctx_r49.expandedElement === element_r48 ? null : element_r48);
-    })("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template_tr_click_0_listener($event) {
+    const _r52 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "tr", 54);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template_tr_click_0_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r52);
+      const element_r50 = restoredCtx.$implicit;
+      const ctx_r51 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](5);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r51.expandedElement = ctx_r51.expandedElement === element_r50 ? null : element_r50);
+    })("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template_tr_click_0_listener($event) {
       return $event.stopPropagation();
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_20_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_20_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "tr", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_20_Template_tr_click_0_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "tr", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_20_Template_tr_click_0_listener($event) {
       return $event.stopPropagation();
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
@@ -2563,129 +2668,134 @@ function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_
 const _c0 = function () {
   return ["expandedDetail"];
 };
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "table", 22);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](1, 23);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](2, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_2_Template, 2, 0, "th", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](3, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_3_Template, 2, 1, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "table", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](1, 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](2, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_2_Template, 2, 0, "th", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](3, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_3_Template, 2, 1, "td", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](4, 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](5, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_5_Template, 2, 0, "th", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](6, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_6_Template, 2, 1, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](4, 38);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](5, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_5_Template, 2, 0, "th", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](6, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_6_Template, 2, 1, "td", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](7, 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](8, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_8_Template, 2, 0, "th", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](9, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template, 3, 2, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](7, 39);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](8, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_8_Template, 2, 0, "th", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](9, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_9_Template, 3, 2, "td", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](10, 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](11, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_11_Template, 2, 0, "th", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](12, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_12_Template, 2, 1, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](10, 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](11, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_11_Template, 2, 0, "th", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](12, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_12_Template, 2, 1, "td", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](13, 29);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](14, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_th_14_Template, 2, 0, "th", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](15, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template, 3, 0, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](13, 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](14, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_th_14_Template, 2, 0, "th", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](15, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_15_Template, 3, 0, "td", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](16, 30);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](17, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_td_17_Template, 3, 3, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerStart"](16, 42);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](17, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_td_17_Template, 3, 3, "td", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementContainerEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](18, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_18_Template, 1, 0, "tr", 31);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](19, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template, 1, 0, "tr", 32);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](20, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_tr_20_Template, 1, 0, "tr", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](18, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_18_Template, 1, 0, "tr", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](19, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_19_Template, 1, 0, "tr", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](20, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_tr_20_Template, 1, 0, "tr", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const props_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2).$implicit;
-    const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("dataSource", props_r9);
+    const props_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2).$implicit;
+    const ctx_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("dataSource", props_r11);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](18);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("matHeaderRowDef", ctx_r17.displayedColumns);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("matHeaderRowDef", ctx_r19.displayedColumns);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("matRowDefColumns", ctx_r17.displayedColumns);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("matRowDefColumns", ctx_r19.displayedColumns);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("matRowDefColumns", _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpureFunction0"](4, _c0));
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](0, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_mat_progress_bar_0_Template, 1, 0, "mat-progress-bar", 19);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](1, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_table_1_Template, 21, 5, "table", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](0, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_mat_progress_bar_0_Template, 1, 0, "mat-progress-bar", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](1, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_table_1_Template, 21, 5, "table", 32);
   }
   if (rf & 2) {
-    const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", ctx_r11.displayProgressBar);
+    const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", ctx_r13.displayProgressBar);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", !ctx_r11.displayProgressBar);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", !ctx_r13.displayProgressBar);
   }
 }
-function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_Template(rf, ctx) {
   if (rf & 1) {
-    const _r56 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "mat-expansion-panel", 14);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("opened", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_Template_mat_expansion_panel_opened_0_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r56);
-      const props_r9 = restoredCtx.$implicit;
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](props_r9[0].isOpened = true);
-    })("closed", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_Template_mat_expansion_panel_closed_0_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r56);
-      const props_r9 = restoredCtx.$implicit;
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](props_r9[0].isOpened = false);
-    })("afterExpand", function PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_Template_mat_expansion_panel_afterExpand_0_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r56);
-      const props_r9 = restoredCtx.$implicit;
-      const ctx_r58 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r58.computeStatsForAllPlayersInProp(props_r9));
+    const _r58 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "mat-expansion-panel", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("opened", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_Template_mat_expansion_panel_opened_0_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r58);
+      const props_r11 = restoredCtx.$implicit;
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](props_r11[0].isOpened = true);
+    })("closed", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_Template_mat_expansion_panel_closed_0_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r58);
+      const props_r11 = restoredCtx.$implicit;
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](props_r11[0].isOpened = false);
+    })("afterExpand", function PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_Template_mat_expansion_panel_afterExpand_0_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r58);
+      const props_r11 = restoredCtx.$implicit;
+      const ctx_r60 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r60.computeStatsForAllPlayersInProp(props_r11));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](1, "mat-expansion-panel-header", 15)(2, "mat-panel-title");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](1, "mat-expansion-panel-header", 27)(2, "mat-panel-title");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipe"](4, "titlecase");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](5, "mat-panel-description");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](6, " Over/Under ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](7, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_button_7_Template, 2, 0, "button", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](7, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_button_7_Template, 2, 0, "button", 28);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](8, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_ng_template_8_Template, 2, 2, "ng-template", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](8, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_ng_template_8_Template, 2, 2, "ng-template", 29);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const props_r9 = ctx.$implicit;
-    const ctx_r8 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
+    const props_r11 = ctx.$implicit;
+    const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipeBind1"](4, 2, props_r9[0].event), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipeBind1"](4, 2, props_r11[0].event), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", props_r9[0].isOpened && !ctx_r8.displayProgressBar);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", props_r11[0].isOpened && !ctx_r10.displayProgressBar);
   }
 }
-function PropScreenComponent_mat_accordion_48_Template(rf, ctx) {
+function PropScreenComponent_mat_accordion_12_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "mat-accordion");
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](1, PropScreenComponent_mat_accordion_48_mat_expansion_panel_1_Template, 9, 4, "mat-expansion-panel", 13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngForOf", ctx_r3.playerPropObjectArray);
-  }
-}
-function PropScreenComponent_app_prop_checkout_49_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r60 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "app-prop-checkout", 43);
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("exitSend", function PropScreenComponent_app_prop_checkout_49_Template_app_prop_checkout_exitSend_0_listener($event) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r60);
-      const ctx_r59 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r59.isExit($event));
-    })("length", function PropScreenComponent_app_prop_checkout_49_Template_app_prop_checkout_length_0_listener($event) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r60);
-      const ctx_r61 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r61.getArrayLength($event));
-    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](1, PropScreenComponent_mat_accordion_12_mat_expansion_panel_1_Template, 9, 4, "mat-expansion-panel", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
     const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("prop", ctx_r4.checkoutArray);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngForOf", ctx_r4.playerPropObjectArray);
+  }
+}
+function PropScreenComponent_div_13_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "div");
+  }
+}
+function PropScreenComponent_app_prop_checkout_14_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r62 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "app-prop-checkout", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("exitSend", function PropScreenComponent_app_prop_checkout_14_Template_app_prop_checkout_exitSend_0_listener($event) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r62);
+      const ctx_r61 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r61.isExit($event));
+    })("length", function PropScreenComponent_app_prop_checkout_14_Template_app_prop_checkout_length_0_listener($event) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r62);
+      const ctx_r63 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r63.getArrayLength($event));
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("prop", ctx_r6.checkoutArray);
   }
 }
 class PropScreenComponent {
@@ -2702,7 +2812,7 @@ class PropScreenComponent {
     this.nhlPlayerGameStatRepo = remult__WEBPACK_IMPORTED_MODULE_1__.remult.repo(src_shared_dbTasks_DbNhlPlayerGameStats__WEBPACK_IMPORTED_MODULE_10__.DbNhlPlayerGameStats);
     this.nbaPlayerInfoRepo = remult__WEBPACK_IMPORTED_MODULE_1__.remult.repo(src_shared_dbTasks_NbaPlayerInfoDb__WEBPACK_IMPORTED_MODULE_13__.NbaPlayerInfoDb);
     this.playerPropsClicked = false;
-    this.gamePropsClicked = false;
+    this.gamePropsClicked = true;
     this.arrayOfMLBTeams = {
       Minnesota_Twins: "MIN",
       Detroit_Tigers: "DET",
@@ -3050,7 +3160,7 @@ class PropScreenComponent {
   addBestBets(event) {
     var bets = [];
     for (var i = 0; i < event.length; i++) {
-      if (parseInt(event[i].percentTeam) >= .900 || parseInt(event[i].percentTotal) >= .900) {
+      if (parseInt(event[i].percentTeam) >= .900 || parseInt(event[i].percentTotal) >= .500) {
         bets.push(event[i]);
       }
     }
@@ -3072,12 +3182,9 @@ class PropScreenComponent {
     }
     var indexOfFirstDash = tempDate[0].indexOf("-");
     var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
-    console.log(tempDate2);
     var finalDate = tempDate2.replace("-", "/");
     if (subtractDay) {
-      console.log(finalDate);
       finalDate = finalDate.replace(finalDate.charAt(finalDate.length - 1), (parseInt(finalDate.charAt(finalDate.length - 1)) - 1).toString());
-      console.log(finalDate);
     }
     return finalDate;
   }
@@ -3226,34 +3333,46 @@ class PropScreenComponent {
     game = game.replaceAll(" ", "_");
     return game;
   }
+  onPropTypeClicked(event) {
+    var _this7 = this;
+    return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      if (event.tab.textLabel == "Player Props") {
+        _this7.gamePropsClicked = false;
+        yield _this7.loadPlayerProps();
+      } else if (event.tab.textLabel == "Game Props") {
+        _this7.playerPropsClicked = false;
+        _this7.gamePropsClicked = true;
+      }
+    })();
+  }
   //add checkplayerstat db for prevous and current season, if there is 0 data in 2022 then try the api call, if no data from api call for 2022 season then load one row for 2022 that has all defaults
   // then check 2023 season, if there is 0 data for the 2023 season or the insert date is not the current date then try the
   //API calls
   loadPlayerProps() {
-    var _this7 = this;
+    var _this8 = this;
     return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (_this7.playerPropsClicked == true) {
-        _this7.playerPropsClicked = false;
+      if (_this8.playerPropsClicked == true) {
+        _this8.playerPropsClicked = false;
         return;
       }
-      _this7.playerPropsClicked = true;
+      _this8.playerPropsClicked = true;
       try {
-        var dbEmpty = yield _this7.playerPropRepo.find({
+        var dbEmpty = yield _this8.playerPropRepo.find({
           where: {
-            bookId: _this7.selectedGame
+            bookId: _this8.selectedGame
           }
         });
-        if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != _this7.date.getDate()) {
-          var results = yield _this7.draftKingsApiController.getPlayerProps(_this7.selectedSport, _this7.selectedGame);
+        if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != _this8.date.getDate()) {
+          var results = yield _this8.draftKingsApiController.getPlayerProps(_this8.selectedSport, _this8.selectedGame);
           yield src_shared_Controllers_PlayerPropController__WEBPACK_IMPORTED_MODULE_7__.PlayerPropController.addPlayerPropData(results);
-          yield src_shared_Controllers_PlayerPropController__WEBPACK_IMPORTED_MODULE_7__.PlayerPropController.loadPlayerPropData(_this7.selectedSport).then(item => _this7.playerPropDataFinal = item);
-          console.log(_this7.sportsBookDataFinal);
-          _this7.addplayerPropToArray();
+          yield src_shared_Controllers_PlayerPropController__WEBPACK_IMPORTED_MODULE_7__.PlayerPropController.loadPlayerPropData(_this8.selectedSport).then(item => _this8.playerPropDataFinal = item);
+          console.log(_this8.sportsBookDataFinal);
+          _this8.addplayerPropToArray();
         } else {
-          yield src_shared_Controllers_PlayerPropController__WEBPACK_IMPORTED_MODULE_7__.PlayerPropController.loadPlayerPropData(_this7.selectedSport).then(item => _this7.playerPropDataFinal = item);
-          _this7.addplayerPropToArray();
-          console.log(_this7.sportsBookDataFinal);
-          console.log(_this7.sportsBookData);
+          yield src_shared_Controllers_PlayerPropController__WEBPACK_IMPORTED_MODULE_7__.PlayerPropController.loadPlayerPropData(_this8.selectedSport).then(item => _this8.playerPropDataFinal = item);
+          _this8.addplayerPropToArray();
+          console.log(_this8.sportsBookDataFinal);
+          console.log(_this8.sportsBookData);
         }
       } catch (error) {
         alert(error.message);
@@ -3280,7 +3399,6 @@ class PropScreenComponent {
   } */
   addplayerPropToArray() {
     // takes the stream from the database and converts it to the objects for display
-    //console.log(this.playerProps)
     var differentPropTypes = [];
     this.playerPropDataFinal.forEach(e => {
       if (!differentPropTypes.includes(e.marketKey)) {
@@ -3321,145 +3439,137 @@ class PropScreenComponent {
       this.playerPropObjectArray[j] = this.playerPropsArray;
     }
     this.playerProps = new _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatTableDataSource(this.playerPropObjectArray);
-    console.log(this.playerPropObjectArray);
   }
   removeUnderscoreFromPlayerProp(prop) {
     prop = prop.replaceAll("_", " ");
     return prop;
   }
   getPlayerStatsForSeason(element) {
-    var _this8 = this;
+    var _this9 = this;
     return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (element.percentTotal === "") {
-        yield _this8.getPlayerStatsForSeasonCall(element);
+        yield _this9.getPlayerStatsForSeasonCall(element);
       }
     })();
   }
   getPlayerStatsForSeasonCall(element) {
-    var _this9 = this;
+    var _this10 = this;
     return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
-        if (_this9.selectedSport == "NHL") {
+        if (_this10.selectedSport == "NHL") {
           for (let i = 0; i < element.length; i++) {
-            console.log(element[i]);
             let player = yield src_shared_Controllers_NhlPlayerInfoController__WEBPACK_IMPORTED_MODULE_9__.NhlPlayerInfoController.nhlLoadPlayerInfoFromName(element[i].name);
-            let db2022 = yield _this9.nhlPlayerGameStatRepo.find({
+            let db2022 = yield _this10.nhlPlayerGameStatRepo.find({
               where: {
                 season: "20222023",
                 playerId: player[0].playerId
               }
             });
-            let db2023 = yield _this9.nhlPlayerGameStatRepo.find({
+            let db2023 = yield _this10.nhlPlayerGameStatRepo.find({
               where: {
                 season: "20232024",
                 playerId: player[0].playerId
               }
             });
             if (db2022.length == 0) {
-              var results = yield _this9.nhlApiController.loadNhl2022PlayerStatData(player[0].playerId);
+              var results = yield _this10.nhlApiController.loadNhl2022PlayerStatData(player[0].playerId);
               if (results.length == 0) {
                 yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlAddPlayerINfo2022BlankData(player[0].playerId, player[0].playerName);
               } else {
                 yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlAddPlayerINfo2022Data(results);
               }
-              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2022FromId(player[0].playerId).then(item => _this9.nhlPlayerStatData2022Final = item);
+              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2022FromId(player[0].playerId).then(item => _this10.nhlPlayerStatData2022Final = item);
             } else {
-              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2022FromId(player[0].playerId).then(item => _this9.nhlPlayerStatData2022Final = item);
+              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2022FromId(player[0].playerId).then(item => _this10.nhlPlayerStatData2022Final = item);
             }
-            if (db2023.length == 0 || db2023[0].createdAt?.getDate() != _this9.date.getDate()) {
-              var results = yield _this9.nhlApiController.loadNhl2023PlayerStatData(player[0].playerId);
+            if (db2023.length == 0 || db2023[0].createdAt?.getDate() != _this10.date.getDate()) {
+              var results = yield _this10.nhlApiController.loadNhl2023PlayerStatData(player[0].playerId);
               yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlAddPlayerINfo2023Data(results);
-              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2023FromId(player[0].playerId).then(item => _this9.nhlPlayerStatData2023Final = item);
+              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2023FromId(player[0].playerId).then(item => _this10.nhlPlayerStatData2023Final = item);
             } else {
-              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2023FromId(player[0].playerId).then(item => _this9.nhlPlayerStatData2023Final = item);
-              console.log(_this9.nhlPlayerStatData2023Final);
+              yield src_shared_Controllers_NhlPlayerGameStatsController__WEBPACK_IMPORTED_MODULE_11__.NhlPlayerGameStatsController.nhlLoadPlayerInfo2023FromId(player[0].playerId).then(item => _this10.nhlPlayerStatData2023Final = item);
             }
-            yield _this9.computeStatForPlayer(element[i]);
+            yield _this10.computeStatForPlayer(element[i]);
           }
         }
-        if (_this9.selectedSport == "NBA") {
+        if (_this10.selectedSport == "NBA") {
           for (let i = 0; i < element.length; i++) {
             let player = yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerInfoFromName(element[i].name);
-            console.log(element[i].name);
-            console.log(player);
             let db2022 = yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022);
             let db2023 = yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023);
             if (db2022.length == 0) {
-              let results = yield _this9.nbaApiController.loadNba2022PlayerStatData(player[0].playerId);
+              let results = yield _this10.nbaApiController.loadNba2022PlayerStatData(player[0].playerId);
               if (results.length == 0) {
                 yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaAddPlayerStat2022BlankData(player[0].playerId, player[0].playerName);
               } else {
                 yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaAddPlayerGameStats2022(results);
               }
-              yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => _this9.nbaPlayerStatData2022Final = item);
+              yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => _this10.nbaPlayerStatData2022Final = item);
             } else {
-              yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => _this9.nbaPlayerStatData2022Final = item);
+              yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => _this10.nbaPlayerStatData2022Final = item);
             }
-            if (db2023.length == 0 || _this9.convertDate(db2023[0].createdAt?.toString()) != _this9.getMonthAndDay()) {
-              let results = yield _this9.nbaApiController.loadNba2023PlayerStatData(player[0].playerId);
+            if (db2023.length == 0) {
+              let results = yield _this10.nbaApiController.loadNba2023PlayerStatData(player[0].playerId);
               yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaAddPlayerGameStats2023(results);
-              yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => _this9.nbaPlayerStatData2023Final = item);
-            } else {
-              yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => _this9.nbaPlayerStatData2023Final = item);
-              console.log(_this9.nhlPlayerStatData2023Final);
+              yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => _this10.nbaPlayerStatData2023Final = item);
+            } else if (db2023.length != 0) {
+              if (_this10.convertDate(db2023[db2023.length - 1].createdAt?.toString()) != _this10.getMonthAndDay()) {
+                let results = yield _this10.nbaApiController.loadNba2023PlayerStatData(player[0].playerId);
+                yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaAddPlayerGameStats2023(results);
+                yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => _this10.nbaPlayerStatData2023Final = item);
+              } else {
+                yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => _this10.nbaPlayerStatData2023Final = item);
+                //here
+              }
             }
-            yield _this9.computeStatForPlayer(element[i]);
+
+            yield _this10.computeStatForPlayer(element[i]);
           }
         }
-        _this9.displayProgressBar = false;
+        _this10.displayProgressBar = false;
       } catch (error) {
         console.log(error);
       }
     })();
   }
   computeStatsForAllPlayersInProp(element) {
-    var _this10 = this;
+    var _this11 = this;
     return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (element[0].percentTeam == "") {
-        //element.forEach(async (e: any) => {
-        yield _this10.getPlayerStatsForSeasonCall(element);
-        // })
+        yield _this11.getPlayerStatsForSeasonCall(element);
       }
     })();
   }
-
   computeStatForPlayer(element) {
-    var _this11 = this;
+    var _this12 = this;
     return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       //add this function to get called when the original elements get added to the interface
       //don't make the call each time. Make the call once then add it to an array then once they click again check to see if it's already stored
-      _this11.playerAverageForSeason = 0;
-      _this11.playerPercentForSeason = 0;
-      _this11.playerAverageVsTeam = 0;
-      _this11.playerPercentVsTeam = 0;
-      _this11.teamAgainst = '';
-      _this11.differential = 0;
-      _this11.gamesPlayedVsTeam = 0;
-      _this11.playerId = 0;
-      _this11.average2022 = 0;
-      _this11.average2022vsTeam = 0;
+      _this12.playerAverageForSeason = 0;
+      _this12.playerPercentForSeason = 0;
+      _this12.playerAverageVsTeam = 0;
+      _this12.playerPercentVsTeam = 0;
+      _this12.teamAgainst = '';
+      _this12.differential = 0;
+      _this12.gamesPlayedVsTeam = 0;
+      _this12.playerId = 0;
+      _this12.average2022 = 0;
+      _this12.average2022vsTeam = 0;
       var numberOfGamesStarted = 0;
       var numberOfGamesStartedVsTeam = 0;
       var numberOfGamesStartedVsTeam2022 = 0;
-      if (_this11.selectedSport == "MLB") {
-        console.log(_this11.tempPlayerStatData);
-        var resultArray = Object.keys(_this11.tempPlayerStatData).map(personNamedIndex => {
-          let newStatData = _this11.tempPlayerStatData[personNamedIndex];
+      if (_this12.selectedSport == "MLB") {
+        var resultArray = Object.keys(_this12.tempPlayerStatData).map(personNamedIndex => {
+          let newStatData = _this12.tempPlayerStatData[personNamedIndex];
           return newStatData;
         });
-        console.log(resultArray);
         var numberOfGamesStarted = 0;
         var numberOfGamesStartedVsTeam = 0;
-        console.log(resultArray[0].team);
-        console.log(_this11.getTeamName(element.team1));
-        console.log(element.team1);
-        console.log(_this11.getTeamName(element.team2));
-        if (resultArray[0].team == _this11.getTeamName(element.team1)) {
-          _this11.teamAgainst = _this11.getTeamName(element.team2);
+        if (resultArray[0].team == _this12.getTeamName(element.team1)) {
+          _this12.teamAgainst = _this12.getTeamName(element.team2);
         } else {
-          _this11.teamAgainst = _this11.getTeamName(element.team1);
+          _this12.teamAgainst = _this12.getTeamName(element.team1);
         }
-        //this.updatePlayerGameStatInfoMlb(resultArray, this.teamAgainst);
         var d = new Date();
         var year = d.getFullYear().toString();
         var month = (d.getMonth() + 1).toString();
@@ -3472,7 +3582,6 @@ class PropScreenComponent {
           day = "0" + day;
         }
         var fullDate = year + month + day;
-        console.log(element);
         //add a check to get the prop variable to searc for, H, HR, TB etc
         var propCde = '';
         switch (element.event) {
@@ -3491,61 +3600,55 @@ class PropScreenComponent {
           if (resultArray[i].started == "True") {
             var gameDate = resultArray[i].gameID.slice(0, 8);
             if (gameDate == fullDate) {
-              console.log(resultArray[i].gameID);
               continue;
             }
             numberOfGamesStarted++;
-            _this11.playerAverageForSeason += parseInt(resultArray[i].Hitting[propCde]);
+            _this12.playerAverageForSeason += parseInt(resultArray[i].Hitting[propCde]);
             if (element.name == "Over") {
               if (parseInt(resultArray[i].Hitting[propCde]) > element.point) {
-                _this11.playerPercentForSeason++;
+                _this12.playerPercentForSeason++;
               }
             } else if (element.name == "Under") {
               if (parseInt(resultArray[i].Hitting[propCde]) < element.point) {
-                _this11.playerPercentForSeason++;
+                _this12.playerPercentForSeason++;
               }
             }
-            if (resultArray[i].gameID.includes(_this11.teamAgainst)) {
-              console.log(resultArray[i]);
+            if (resultArray[i].gameID.includes(_this12.teamAgainst)) {
               numberOfGamesStartedVsTeam++;
-              _this11.playerAverageVsTeam += parseInt(resultArray[i].Hitting[propCde]);
+              _this12.playerAverageVsTeam += parseInt(resultArray[i].Hitting[propCde]);
               if (element.name == "Over") {
                 if (parseInt(resultArray[i].Hitting[propCde]) > element.point) {
-                  _this11.playerPercentVsTeam++;
+                  _this12.playerPercentVsTeam++;
                 }
               } else if (element.name == "Under") {
                 if (parseInt(resultArray[i].Hitting[propCde]) < element.point) {
-                  _this11.playerPercentVsTeam++;
+                  _this12.playerPercentVsTeam++;
                 }
               }
             }
           }
         }
-        console.log(numberOfGamesStartedVsTeam);
-        console.log(_this11.teamAgainst);
-        console.log(_this11.playerAverageVsTeam);
         if (numberOfGamesStarted == 0) {
-          _this11.playerAverageForSeason = 0;
-          _this11.playerPercentForSeason = 0;
+          _this12.playerAverageForSeason = 0;
+          _this12.playerPercentForSeason = 0;
         } else {
-          _this11.playerAverageForSeason = (_this11.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
-          _this11.playerPercentForSeason = (_this11.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
+          _this12.playerAverageForSeason = (_this12.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
+          _this12.playerPercentForSeason = (_this12.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
         }
         if (numberOfGamesStartedVsTeam == 0) {
-          _this11.playerAverageVsTeam = 0;
-          _this11.playerPercentVsTeam = 0;
+          _this12.playerAverageVsTeam = 0;
+          _this12.playerPercentVsTeam = 0;
         } else {
-          _this11.playerAverageVsTeam = (_this11.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
-          //console.log(this.playerHittingAverageVsTeam)
-          _this11.playerPercentVsTeam = (_this11.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
+          _this12.playerAverageVsTeam = (_this12.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
+          _this12.playerPercentVsTeam = (_this12.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
         }
       }
-      if (_this11.selectedSport == "NHL") {
-        var teamName = _this11.nhlPlayerStatData2023Final[0].teamName;
+      if (_this12.selectedSport == "NHL") {
+        var teamName = _this12.nhlPlayerStatData2023Final[0].teamName;
         if (teamName.includes(".")) {
           teamName = teamName.replaceAll(".", "");
         }
-        _this11.teamAgainst = teamName == element.team1 ? element.team2 : element.team1;
+        _this12.teamAgainst = teamName == element.team1 ? element.team2 : element.team1;
         var d = new Date();
         var year = d.getFullYear().toString();
         var month = (d.getMonth() + 1).toString();
@@ -3553,7 +3656,6 @@ class PropScreenComponent {
           month = "0" + month;
         }
         var day = d.getDate().toString();
-        console.log(day);
         if (day.length == 1) {
           day = "0" + day;
         }
@@ -3571,95 +3673,87 @@ class PropScreenComponent {
             propCde = "shots";
             break;
         }
-        numberOfGamesStarted = _this11.nhlPlayerStatData2023Final.length;
-        _this11.nhlPlayerStatData2023Final.forEach(e => {
-          _this11.playerAverageForSeason += e[propCde];
+        numberOfGamesStarted = _this12.nhlPlayerStatData2023Final.length;
+        _this12.nhlPlayerStatData2023Final.forEach(e => {
+          _this12.playerAverageForSeason += e[propCde];
           if (element.description == "Over") {
-            console.log(parseInt(e[propCde]) > element.point);
             if (parseInt(e[propCde]) > element.point) {
-              _this11.playerPercentForSeason++;
+              _this12.playerPercentForSeason++;
             }
           } else if (element.description == "Under") {
             if (parseInt(e[propCde]) < element.point) {
-              _this11.playerPercentForSeason++;
+              _this12.playerPercentForSeason++;
             }
           }
-          if (e.teamAgainst == _this11.teamAgainst) {
+          if (e.teamAgainst == _this12.teamAgainst) {
             numberOfGamesStartedVsTeam++;
-            _this11.playerAverageVsTeam += e[propCde];
+            _this12.playerAverageVsTeam += e[propCde];
             if (element.name == "Over") {
               if (e[propCde] > element.point) {
-                _this11.playerPercentVsTeam++;
+                _this12.playerPercentVsTeam++;
               }
             } else if (element.name == "Under") {
               if (e[propCde] < element.point) {
-                _this11.playerPercentVsTeam++;
+                _this12.playerPercentVsTeam++;
               }
             }
           }
         });
-        _this11.nhlPlayerStatData2022Final.forEach(e => {
-          _this11.average2022 += e[propCde];
-          if (e.teamAgainst == _this11.teamAgainst) {
+        _this12.nhlPlayerStatData2022Final.forEach(e => {
+          _this12.average2022 += e[propCde];
+          if (e.teamAgainst == _this12.teamAgainst) {
             numberOfGamesStartedVsTeam2022++;
-            _this11.average2022vsTeam += e[propCde];
+            _this12.average2022vsTeam += e[propCde];
           }
         });
-        console.log(numberOfGamesStartedVsTeam);
-        console.log(_this11.teamAgainst);
-        console.log(_this11.playerAverageVsTeam);
         if (numberOfGamesStarted == 0) {
-          _this11.playerAverageForSeason = 0;
-          _this11.playerPercentForSeason = 0;
+          _this12.playerAverageForSeason = 0;
+          _this12.playerPercentForSeason = 0;
         } else {
-          _this11.playerAverageForSeason = (_this11.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
-          console.log(_this11.playerPercentForSeason);
-          console.log(numberOfGamesStarted);
-          _this11.playerPercentForSeason = (_this11.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
+          _this12.playerAverageForSeason = (_this12.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
+          _this12.playerPercentForSeason = (_this12.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
         }
         if (numberOfGamesStartedVsTeam == 0) {
-          _this11.playerAverageVsTeam = -1;
-          _this11.playerPercentVsTeam = -1;
+          _this12.playerAverageVsTeam = -1;
+          _this12.playerPercentVsTeam = -1;
         } else {
-          _this11.playerAverageVsTeam = (_this11.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
-          //console.log(this.playerHittingAverageVsTeam)
-          _this11.playerPercentVsTeam = (_this11.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
+          _this12.playerAverageVsTeam = (_this12.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
+          _this12.playerPercentVsTeam = (_this12.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
         }
         if (element.description == "Over") {
-          _this11.differential = _this11.playerAverageForSeason / element.point;
+          _this12.differential = _this12.playerAverageForSeason / element.point;
         } else if (element.description == "Under") {
-          if (_this11.playerAverageForSeason == 0) {
-            _this11.differential = 0;
+          if (_this12.playerAverageForSeason == 0) {
+            _this12.differential = 0;
           } else {
-            _this11.differential = element.point / _this11.playerAverageForSeason;
+            _this12.differential = element.point / _this12.playerAverageForSeason;
           }
         }
-        _this11.gamesPlayedVsTeam = numberOfGamesStartedVsTeam;
-        if (_this11.average2022 > 0 && _this11.nhlPlayerStatData2022Final.length > 0) {
-          _this11.average2022 = (_this11.average2022 / _this11.nhlPlayerStatData2022Final.length).toFixed(3);
+        _this12.gamesPlayedVsTeam = numberOfGamesStartedVsTeam;
+        if (_this12.average2022 > 0 && _this12.nhlPlayerStatData2022Final.length > 0) {
+          _this12.average2022 = (_this12.average2022 / _this12.nhlPlayerStatData2022Final.length).toFixed(3);
         } else {
-          _this11.average2022 = -1;
+          _this12.average2022 = -1;
         }
-        if (_this11.average2022vsTeam > 0 && _this11.nhlPlayerStatData2022Final.length > 0) {
-          _this11.average2022vsTeam = (_this11.average2022vsTeam / numberOfGamesStartedVsTeam2022).toFixed(3);
+        if (_this12.average2022vsTeam > 0 && _this12.nhlPlayerStatData2022Final.length > 0) {
+          _this12.average2022vsTeam = (_this12.average2022vsTeam / numberOfGamesStartedVsTeam2022).toFixed(3);
         } else {
-          _this11.average2022vsTeam = -1;
+          _this12.average2022vsTeam = -1;
         }
       }
-      if (_this11.selectedSport == "NBA") {
+      if (_this12.selectedSport == "NBA") {
         let tempTeamName1 = element.team1;
         let tempTeamName2 = element.team2;
-        console.log(element);
         if (tempTeamName1.includes(" ")) {
           tempTeamName1 = tempTeamName1.replaceAll(" ", "_");
         }
         if (tempTeamName2.includes(" ")) {
           tempTeamName2 = tempTeamName2.replaceAll(" ", "_");
         }
-        let teamId1 = _this11.arrayOfNBATeams[tempTeamName1];
-        let teamId2 = _this11.arrayOfNBATeams[tempTeamName2];
+        let teamId1 = _this12.arrayOfNBATeams[tempTeamName1];
+        let teamId2 = _this12.arrayOfNBATeams[tempTeamName2];
         let playerId = yield src_shared_Controllers_NbaController__WEBPACK_IMPORTED_MODULE_14__.NbaController.nbaLoadPlayerInfoFromName(element.name);
-        _this11.teamAgainst = _this11.arrayOfNBATeams[_this11.addUnderScoreToName(element.team1)] == _this11.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1;
+        _this12.teamAgainst = _this12.arrayOfNBATeams[_this12.addUnderScoreToName(element.team1)] == _this12.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1;
         var d = new Date();
         var year = d.getFullYear().toString();
         var month = (d.getMonth() + 1).toString();
@@ -3691,84 +3785,77 @@ class PropScreenComponent {
             propCde = "tpm";
             break;
         }
-        numberOfGamesStarted = _this11.nbaPlayerStatData2023Final.length;
-        _this11.nbaPlayerStatData2023Final.forEach(e => {
-          _this11.playerAverageForSeason += e[propCde];
+        numberOfGamesStarted = _this12.nbaPlayerStatData2023Final.length;
+        _this12.nbaPlayerStatData2023Final.forEach(e => {
+          _this12.playerAverageForSeason += e[propCde];
           if (element.description == "Over") {
-            console.log(parseInt(e[propCde]) > element.point);
             if (parseInt(e[propCde]) > element.point) {
-              _this11.playerPercentForSeason++;
+              _this12.playerPercentForSeason++;
             }
           } else if (element.description == "Under") {
             if (parseInt(e[propCde]) < element.point) {
-              _this11.playerPercentForSeason++;
+              _this12.playerPercentForSeason++;
             }
           }
-          if (e.teamAgainst == _this11.teamAgainst) {
+          if (e.teamAgainst == _this12.teamAgainst) {
             numberOfGamesStartedVsTeam++;
-            _this11.playerAverageVsTeam += e[propCde];
+            _this12.playerAverageVsTeam += e[propCde];
             if (element.name == "Over") {
               if (e[propCde] > element.point) {
-                _this11.playerPercentVsTeam++;
+                _this12.playerPercentVsTeam++;
               }
             } else if (element.name == "Under") {
               if (e[propCde] < element.point) {
-                _this11.playerPercentVsTeam++;
+                _this12.playerPercentVsTeam++;
               }
             }
           }
         });
-        _this11.nbaPlayerStatData2022Final.forEach(e => {
-          _this11.average2022 += e[propCde];
-          if (e.teamAgainst == _this11.teamAgainst) {
+        _this12.nbaPlayerStatData2022Final.forEach(e => {
+          _this12.average2022 += e[propCde];
+          if (e.teamAgainst == _this12.teamAgainst) {
             numberOfGamesStartedVsTeam2022++;
-            _this11.average2022vsTeam += e[propCde];
+            _this12.average2022vsTeam += e[propCde];
           }
         });
-        console.log(numberOfGamesStartedVsTeam);
-        console.log(_this11.teamAgainst);
-        console.log(_this11.playerAverageVsTeam);
         if (numberOfGamesStarted == 0) {
-          _this11.playerAverageForSeason = 0;
-          _this11.playerPercentForSeason = 0;
+          _this12.playerAverageForSeason = 0;
+          _this12.playerPercentForSeason = 0;
         } else {
-          _this11.playerAverageForSeason = (_this11.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
-          console.log(_this11.playerPercentForSeason);
-          console.log(numberOfGamesStarted);
-          _this11.playerPercentForSeason = (_this11.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
+          _this12.playerAverageForSeason = (_this12.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
+          _this12.playerPercentForSeason = (_this12.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
         }
         if (numberOfGamesStartedVsTeam == 0) {
-          _this11.playerAverageVsTeam = -1;
-          _this11.playerPercentVsTeam = -1;
+          _this12.playerAverageVsTeam = -1;
+          _this12.playerPercentVsTeam = -1;
         } else {
-          _this11.playerAverageVsTeam = (_this11.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
-          //console.log(this.playerHittingAverageVsTeam)
-          _this11.playerPercentVsTeam = (_this11.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
+          _this12.playerAverageVsTeam = (_this12.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
+          _this12.playerPercentVsTeam = (_this12.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
         }
         if (element.description == "Over") {
-          _this11.differential = _this11.playerAverageForSeason / element.point;
+          _this12.differential = _this12.playerAverageForSeason / element.point;
         } else if (element.description == "Under") {
-          if (_this11.playerAverageForSeason == 0) {
-            _this11.differential = 0;
+          if (_this12.playerAverageForSeason == 0) {
+            _this12.differential = 0;
           } else {
-            _this11.differential = element.point / _this11.playerAverageForSeason;
+            _this12.differential = element.point / _this12.playerAverageForSeason;
           }
         }
-        _this11.playerId = _this11.nbaPlayerStatData2023Final[0].playerId;
-        _this11.gamesPlayed = _this11.nbaPlayerStatData2023Final.length;
-        _this11.gamesPlayedVsTeam = numberOfGamesStartedVsTeam;
-        if (_this11.average2022 > 0 && _this11.nbaPlayerStatData2022Final.length > 0) {
-          _this11.average2022 = (_this11.average2022 / _this11.nbaPlayerStatData2022Final.length).toFixed(3);
+        _this12.playerId = _this12.nbaPlayerStatData2023Final[0].playerId;
+        _this12.gamesPlayed = _this12.nbaPlayerStatData2023Final.length;
+        _this12.gamesPlayedVsTeam = numberOfGamesStartedVsTeam;
+        if (_this12.average2022 > 0 && _this12.nbaPlayerStatData2022Final.length > 0) {
+          _this12.average2022 = (_this12.average2022 / _this12.nbaPlayerStatData2022Final.length).toFixed(3);
         } else {
-          _this11.average2022 = -1;
+          _this12.average2022 = -1;
         }
-        if (_this11.average2022vsTeam > 0 && _this11.nbaPlayerStatData2022Final.length > 0) {
-          _this11.average2022vsTeam = (_this11.average2022vsTeam / numberOfGamesStartedVsTeam2022).toFixed(3);
+        if (_this12.average2022vsTeam > 0 && _this12.nbaPlayerStatData2022Final.length > 0) {
+          _this12.average2022vsTeam = (_this12.average2022vsTeam / numberOfGamesStartedVsTeam2022).toFixed(3);
         } else {
-          _this11.average2022vsTeam = -1;
+          _this12.average2022vsTeam = -1;
         }
       }
-      _this11.updatePlayerPropArray(element);
+      _this12.updatePlayerPropArray(element);
     })();
   }
   updatePlayerPropArray(element) {
@@ -3811,7 +3898,7 @@ class PropScreenComponent {
     return newList;
   }
   getMlbPlayerIds() {
-    var _this12 = this;
+    var _this13 = this;
     return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBPlayerList';
       const options = {
@@ -3824,38 +3911,16 @@ class PropScreenComponent {
       const response = yield fetch(url, options);
       const result = yield response.json();
       let temp = result.body;
-      temp.forEach(e => _this12.playerInfoTemp.push({
+      temp.forEach(e => _this13.playerInfoTemp.push({
         playerId: e.playerID,
         playerName: e.longName,
         teamName: e.team,
         teamId: e.teamID
       }));
-      _this12.playerInfoTemp = _this12.playerNameSpanishConvert(_this12.playerInfoTemp);
-      /*  this.mlbPlayerId.push({
-         Name: name,
-         Id: result.body[i].playerID,
-         teamName: result.body[i].team,
-         teamId: result.body[i].teamID
-       })
-      }
-      var date = new Date();
-      //this.mlbPlayerId.pop();
-      this.notes.forEach((element: { playerName: any; playerId: any; teamName: any; teamId: any; }) => {
-       this.mlbPlayerId.push({
-         Name: element.playerName,
-         Id: element.playerId,
-         teamName: element.teamName,
-         teamId: element.teamId
-       })
-      }) */
-      //console.log(this.mlbPlayerId)
-      //this.updatePlayerInfoMlb();
+      _this13.playerInfoTemp = _this13.playerNameSpanishConvert(_this13.playerInfoTemp);
     })();
   }
-
   getMlbPlayerIdFromName(name) {
-    console.log(name);
-    console.log(this.mlbPlayerId);
     var player = this.mlbPlayerId.filter(x => x.Name == name);
     return player[0].Id;
   }
@@ -3880,7 +3945,6 @@ class PropScreenComponent {
       month = "0" + month;
     }
     var day = d.getDate().toString();
-    //console.log(day)
     if (day.length == 1) {
       day = "0" + day;
     }
@@ -3895,7 +3959,6 @@ class PropScreenComponent {
       month = "0" + month;
     }
     var day = d.getDate().toString();
-    //console.log(day)
     if (day.length == 1) {
       day = "0" + day;
     }
@@ -3903,9 +3966,9 @@ class PropScreenComponent {
     return fullDate;
   }
   ngOnInit() {
-    var _this13 = this;
+    var _this14 = this;
     return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this13.trimSports(yield _this13.draftKingsApiController.getSports());
+      _this14.trimSports(yield _this14.draftKingsApiController.getSports());
     })();
   }
   detailedStatsClicked(element) {
@@ -3918,9 +3981,9 @@ class PropScreenComponent {
     type: PropScreenComponent,
     selectors: [["app-prop-screen"]],
     features: [_angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵProvidersFeature"]([_ApiCalls_nbaApiCalls__WEBPACK_IMPORTED_MODULE_12__.nbaApiController, _ApiCalls_nhlApiCalls__WEBPACK_IMPORTED_MODULE_15__.nhlApiController, _ApiCalls_draftKingsApiCalls__WEBPACK_IMPORTED_MODULE_16__.draftKingsApiController])],
-    decls: 50,
-    vars: 20,
-    consts: [[2, "height", "100vh", "background-color", "#252324"], [1, "sports-tab", 3, "backgroundColor", "selectedTabChange"], [3, "label", 4, "ngFor", "ngForOf"], [1, "dates-tab", 3, "backgroundColor", "selectedTabChange"], [1, "games-tab", 3, "backgroundColor", "selectedTabChange"], [1, "card-header"], [1, "team-prop-display"], [2, "width", "400px"], ["mat-raised-button", "", "color", "primary", 3, "click"], ["align", "end", 2, "display", "flex", "gap", "1rem"], [4, "ngIf"], [3, "prop", "exitSend", "length", 4, "ngIf"], [3, "label"], [3, "opened", "closed", "afterExpand", 4, "ngFor", "ngForOf"], [3, "opened", "closed", "afterExpand"], [1, "header-panel"], ["mat-raised-button", "", "class", "panel-button", "color", "primary", 3, "click", 4, "ngIf"], ["matExpansionPanelContent", ""], ["mat-raised-button", "", "color", "primary", 1, "panel-button", 3, "click"], ["mode", "indeterminate", 4, "ngIf"], ["mat-table", "", "multiTemplateDataRows", "", "class", "mat-elevation-z8 player-table", 3, "dataSource", 4, "ngIf"], ["mode", "indeterminate"], ["mat-table", "", "multiTemplateDataRows", "", 1, "mat-elevation-z8", "player-table", 3, "dataSource"], ["matColumnDef", "name"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "description"], ["matColumnDef", "price"], ["matColumnDef", "point"], ["matColumnDef", "detailedStats"], ["matColumnDef", "expandedDetail"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 3, "click", 4, "matRowDef", "matRowDefColumns"], ["mat-row", "", "class", "example-detail-row", 3, "click", 4, "matRowDef", "matRowDefColumns"], ["mat-header-cell", ""], ["mat-cell", ""], ["mat-raised-button", "", "color", "primary", 3, "disabled", "click"], ["class", "example-element-detail", "style", "display: flex; flex-direction: column;", 4, "ngIf"], [1, "example-element-detail", 2, "display", "flex", "flex-direction", "column"], [2, "display", "flex", "gap", "3rem"], ["mat-header-row", ""], ["mat-row", "", 3, "click"], ["mat-row", "", 1, "example-detail-row", 3, "click"], [3, "prop", "exitSend", "length"]],
+    decls: 15,
+    vars: 12,
+    consts: [[2, "height", "100vh", "background-color", "#252324"], [1, "sports-tab", 3, "backgroundColor", "selectedTabChange"], [3, "label", 4, "ngFor", "ngForOf"], [1, "dates-tab", 3, "backgroundColor", "selectedTabChange"], [1, "games-tab", 3, "backgroundColor", "selectedTabChange"], [1, "props-tab", 3, "backgroundColor", "selectedIndex", "selectedTabChange"], ["label", "Game Props"], ["label", "Player Props"], [4, "ngIf"], [3, "prop", "exitSend", "length", 4, "ngIf"], [3, "label"], ["cols", "2", "rowHeight", "1.25:1"], [2, "background-color", "lightblue"], [2, "height", "inherit", "width", "100%"], ["cols", "4", "rowHeight", "100px"], ["colspan", "4", 2, "justify-content", "center", "align-content", "center", "font-size", "xx-large"], [2, "background-color", "lightcoral"], [2, "position", "absolute", "top", "20rem", "left", "0", "right", "0", "margin-left", "auto", "margin-right", "auto", "height", "400px", "width", "300px", "background-color", "lightslategray"], ["cols", "5", "rowHeight", "40px"], ["colspan", "2", 2, "margin-top", "2rem", "font-size", "x-large"], ["mat-raised-button", "", "color", "primary"], ["colspan", "1", 2, "margin-top", "2rem", "text-wrap", "balance", "text-align", "center"], ["colspan", "2", 2, "margin-top", "2rem"], ["mat-raised-button", "", "color", "primary", 2, "white-space", "initial"], ["colspan", "1", 2, "margin-top", "2rem"], [3, "opened", "closed", "afterExpand", 4, "ngFor", "ngForOf"], [3, "opened", "closed", "afterExpand"], [1, "header-panel"], ["mat-raised-button", "", "class", "panel-button", "color", "primary", 3, "click", 4, "ngIf"], ["matExpansionPanelContent", ""], ["mat-raised-button", "", "color", "primary", 1, "panel-button", 3, "click"], ["mode", "indeterminate", 4, "ngIf"], ["mat-table", "", "multiTemplateDataRows", "", "class", "mat-elevation-z8 player-table", 3, "dataSource", 4, "ngIf"], ["mode", "indeterminate"], ["mat-table", "", "multiTemplateDataRows", "", 1, "mat-elevation-z8", "player-table", 3, "dataSource"], ["matColumnDef", "name"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "description"], ["matColumnDef", "price"], ["matColumnDef", "point"], ["matColumnDef", "detailedStats"], ["matColumnDef", "expandedDetail"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 3, "click", 4, "matRowDef", "matRowDefColumns"], ["mat-row", "", "class", "example-detail-row", 3, "click", 4, "matRowDef", "matRowDefColumns"], ["mat-header-cell", ""], ["mat-cell", ""], ["mat-raised-button", "", "color", "primary", 3, "disabled", "click"], ["mat-raised-button", "", "color", "primary", 3, "click"], ["class", "example-element-detail", "style", "display: flex; flex-direction: column;", 4, "ngIf"], [1, "example-element-detail", 2, "display", "flex", "flex-direction", "column"], [2, "display", "flex", "gap", "3rem"], ["mat-header-row", ""], ["mat-row", "", 3, "click"], ["mat-row", "", 1, "example-detail-row", 3, "click"], [3, "prop", "exitSend", "length"]],
     template: function PropScreenComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div", 0)(1, "mat-tab-group", 1);
@@ -3941,79 +4004,17 @@ class PropScreenComponent {
         });
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](6, PropScreenComponent_mat_tab_6_Template, 1, 1, "mat-tab", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](7, "mat-card")(8, "mat-card-header", 5)(9, "mat-card-title");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](10, "Game Props");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](11, "mat-divider", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](12, "mat-card-content", 6)(13, "div", 7)(14, "h1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](16, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](17, "H2H:");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](18, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_Template_button_click_18_listener() {
-          return ctx.addPropToChechout(ctx.displayPropHtml1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](7, "mat-tab-group", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("selectedTabChange", function PropScreenComponent_Template_mat_tab_group_selectedTabChange_7_listener($event) {
+          return ctx.onPropTypeClicked($event);
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](8, "mat-tab", 6)(9, "mat-tab", 7);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](20, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](21);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](22, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_Template_button_click_22_listener() {
-          return ctx.addPropToChechout(ctx.displayPropHtml1);
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](24, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](26, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_Template_button_click_26_listener() {
-          return ctx.addPropToChechout(ctx.displayPropHtml1);
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](27);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](28, "mat-card-content", 6)(29, "div", 7)(30, "h1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](31);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](32, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](33, "H2H:");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](34, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_Template_button_click_34_listener() {
-          return ctx.addPropToChechout(ctx.displayPropHtml2);
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](35);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](36, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](38, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_Template_button_click_38_listener() {
-          return ctx.addPropToChechout(ctx.displayPropHtml2);
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](39);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](40, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](41);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](42, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_Template_button_click_42_listener() {
-          return ctx.addPropToChechout(ctx.displayPropHtml1);
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](43);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](44, "mat-card-actions", 9)(45, "button", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("click", function PropScreenComponent_Template_button_click_45_listener() {
-          return ctx.loadPlayerProps();
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtext"](46, "Player Props");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](47, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](48, PropScreenComponent_mat_accordion_48_Template, 2, 1, "mat-accordion", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](49, PropScreenComponent_app_prop_checkout_49_Template, 1, 1, "app-prop-checkout", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](10, PropScreenComponent_div_10_Template, 38, 2, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](11, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](12, PropScreenComponent_mat_accordion_12_Template, 2, 1, "mat-accordion", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](13, PropScreenComponent_div_13_Template, 1, 0, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](14, PropScreenComponent_app_prop_checkout_14_Template, 1, 1, "app-prop-checkout", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
       }
       if (rf & 2) {
@@ -4029,45 +4030,27 @@ class PropScreenComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("backgroundColor", "warn");
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngForOf", ctx.games);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml1.name + " :");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml1.h2h);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("backgroundColor", "primary")("selectedIndex", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", ctx.gamePropsClicked);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Spread: ", ctx.displayPropHtml1.spreadPoint, "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml1.spreadPrice);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Over: ", ctx.displayPropHtml1.totalPoint, "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml1.totalPrice);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml2.name + " :");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml2.h2h);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Spread: ", ctx.displayPropHtml2.spreadPoint, "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml2.spreadPrice);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate1"]("Under: ", ctx.displayPropHtml1.totalPoint, "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtextInterpolate"](ctx.displayPropHtml2.totalPrice);
-        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", ctx.playerPropsClicked);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", !ctx.playerPropsClicked);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", ctx.checkoutArray.length > 0 && ctx.exit);
       }
     },
-    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_22__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_22__.NgIf, _angular_material_button__WEBPACK_IMPORTED_MODULE_23__.MatButton, _angular_material_card__WEBPACK_IMPORTED_MODULE_24__.MatCard, _angular_material_card__WEBPACK_IMPORTED_MODULE_24__.MatCardActions, _angular_material_card__WEBPACK_IMPORTED_MODULE_24__.MatCardContent, _angular_material_card__WEBPACK_IMPORTED_MODULE_24__.MatCardHeader, _angular_material_card__WEBPACK_IMPORTED_MODULE_24__.MatCardTitle, _angular_material_divider__WEBPACK_IMPORTED_MODULE_25__.MatDivider, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_26__.MatTab, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_26__.MatTabGroup, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatRow, _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_27__.MatProgressBar, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_28__.MatAccordion, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_28__.MatExpansionPanel, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_28__.MatExpansionPanelHeader, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_28__.MatExpansionPanelTitle, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_28__.MatExpansionPanelDescription, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_28__.MatExpansionPanelContent, _prop_checkout_prop_checkout_component__WEBPACK_IMPORTED_MODULE_17__.PropCheckoutComponent, _angular_common__WEBPACK_IMPORTED_MODULE_22__.TitleCasePipe],
+    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_22__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_22__.NgIf, _angular_material_button__WEBPACK_IMPORTED_MODULE_23__.MatButton, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_24__.MatTab, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_24__.MatTabGroup, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatTable, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatColumnDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatCellDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatRowDef, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatCell, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatHeaderRow, _angular_material_table__WEBPACK_IMPORTED_MODULE_19__.MatRow, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_25__.MatGridList, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_25__.MatGridTile, _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_26__.MatProgressBar, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__.MatAccordion, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__.MatExpansionPanel, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__.MatExpansionPanelHeader, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__.MatExpansionPanelTitle, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__.MatExpansionPanelDescription, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__.MatExpansionPanelContent, _prop_checkout_prop_checkout_component__WEBPACK_IMPORTED_MODULE_17__.PropCheckoutComponent, _angular_common__WEBPACK_IMPORTED_MODULE_22__.TitleCasePipe],
     styles: ["*[_ngcontent-%COMP%] {\n  z-index: 1;\n}\n\n.mat-tab-label1[_ngcontent-%COMP%] {\n  padding: 15px 0 15px 0;\n}\n\n.team-prop-display[_ngcontent-%COMP%] {\n  background-color: rgb(255, 56, 56);\n  display: flex;\n  justify-items: center;\n  padding-top: 1rem;\n}\n\n.team-prop-display[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  margin-right: 1rem;\n  margin-left: 1rem;\n}\n\n.card-header[_ngcontent-%COMP%] {\n  background-color: rgb(174, 174, 245);\n}\n\n.example-element-detail[_ngcontent-%COMP%] {\n  overflow: hidden;\n  display: flex;\n  gap: 3rem;\n}\n\ntr.example-detail-row[_ngcontent-%COMP%] {\n  height: 0;\n}\n\nmat-panel-description[_ngcontent-%COMP%] {\n  gap: 60rem;\n}\n\n.player-table[_ngcontent-%COMP%] {\n  width: 100%;\n}\n\n.mat-column-detailedStats[_ngcontent-%COMP%] {\n  width: 125px;\n  text-align: center;\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcHJvcC1zY3JlZW4vcHJvcC1zY3JlZW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxVQUFBO0FBQ0o7O0FBQ0E7RUFBa0Isc0JBQUE7QUFHbEI7O0FBRkE7RUFDSSxrQ0FBQTtFQUNBLGFBQUE7RUFDQSxxQkFBQTtFQUNBLGlCQUFBO0FBS0o7O0FBSEE7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0FBTUo7O0FBSkE7RUFDSSxvQ0FBQTtBQU9KOztBQUxBO0VBQ0ksZ0JBQUE7RUFDQSxhQUFBO0VBQ0EsU0FBQTtBQVFKOztBQU5FO0VBQ0UsU0FBQTtBQVNKOztBQVBFO0VBQ0UsVUFBQTtBQVVKOztBQU5FO0VBQ0UsV0FBQTtBQVNKOztBQUpFO0VBQ0UsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7QUFPSiIsInNvdXJjZXNDb250ZW50IjpbIip7XHJcbiAgICB6LWluZGV4OiAxO1xyXG59XHJcbi5tYXQtdGFiLWxhYmVsMSB7IHBhZGRpbmc6IDE1cHggMCAxNXB4IDA7IH1cclxuLnRlYW0tcHJvcC1kaXNwbGF5e1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LCA1NiwgNTYpO1xyXG4gICAgZGlzcGxheTpmbGV4O1xyXG4gICAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gICAgcGFkZGluZy10b3A6IDFyZW07XHJcbn1cclxuLnRlYW0tcHJvcC1kaXNwbGF5IGJ1dHRvbntcclxuICAgIG1hcmdpbi1yaWdodDogMXJlbTtcclxuICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG59XHJcbi5jYXJkLWhlYWRlcntcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYigxNzQsIDE3NCwgMjQ1KTtcclxufVxyXG4uZXhhbXBsZS1lbGVtZW50LWRldGFpbCB7XHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGdhcDogM3JlbTtcclxuICB9XHJcbiAgdHIuZXhhbXBsZS1kZXRhaWwtcm93IHtcclxuICAgIGhlaWdodDogMDtcclxuICB9XHJcbiAgbWF0LXBhbmVsLWRlc2NyaXB0aW9ue1xyXG4gICAgZ2FwOiA2MHJlbTtcclxuICB9XHJcblxyXG5cclxuICAucGxheWVyLXRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gIH1cclxuICBcclxuIFxyXG4gIFxyXG4gIC5tYXQtY29sdW1uLWRldGFpbGVkU3RhdHMge1xyXG4gICAgd2lkdGg6IDEyNXB4O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgfSJdLCJzb3VyY2VSb290IjoiIn0= */"],
     data: {
-      animation: [(0,_angular_animations__WEBPACK_IMPORTED_MODULE_29__.trigger)('detailExpand', [(0,_angular_animations__WEBPACK_IMPORTED_MODULE_29__.state)('collapsed', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_29__.style)({
+      animation: [(0,_angular_animations__WEBPACK_IMPORTED_MODULE_28__.trigger)('detailExpand', [(0,_angular_animations__WEBPACK_IMPORTED_MODULE_28__.state)('collapsed', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_28__.style)({
         height: '0px',
         minHeight: '0'
-      })), (0,_angular_animations__WEBPACK_IMPORTED_MODULE_29__.state)('expanded', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_29__.style)({
+      })), (0,_angular_animations__WEBPACK_IMPORTED_MODULE_28__.state)('expanded', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_28__.style)({
         height: '*'
-      })), (0,_angular_animations__WEBPACK_IMPORTED_MODULE_29__.transition)('expanded <=> collapsed', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_29__.animate)('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))])]
+      })), (0,_angular_animations__WEBPACK_IMPORTED_MODULE_28__.transition)('expanded <=> collapsed', (0,_angular_animations__WEBPACK_IMPORTED_MODULE_28__.animate)('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))])]
     }
   });
 }
@@ -4325,24 +4308,68 @@ class NbaController {
           season: 2022
         }
       });
-      if (dbToDelete.length > 0) {
-        for (const d of dbToDelete) {
-          yield taskRepo2.delete(d);
+      if (dbToDelete.length < 1) {
+        playerData.forEach(e => {
+          if (e.playerName.includes("ü")) {
+            e.playerName = e.playerName.replaceAll("ü", "u");
+          }
+          if (e.playerName.includes("é")) {
+            e.playerName = e.playerName.replaceAll("é", "e");
+          }
+          if (e.playerName.includes("è")) {
+            e.playerName = e.playerName.replaceAll("è", "e");
+          }
+        });
+        for (const data of playerData) {
+          yield taskRepo2.insert({
+            playerId: data.playerId,
+            playerName: data.playerName,
+            teamName: data.teamName,
+            teamId: data.teamId,
+            teamAgainstName: data.teamAgainstName,
+            teamAgainstId: data.teamAgainstId,
+            homeOrAway: data.homeOrAway,
+            season: data.season,
+            gameId: data.gameId,
+            gameDate: data.gameDate,
+            playerStarted: data.playerStarted,
+            assists: data.assists,
+            points: data.points,
+            fgm: data.fgm,
+            fga: data.fga,
+            fgp: data.fgp,
+            ftm: data.ftm,
+            fta: data.fta,
+            ftp: data.ftp,
+            tpm: data.tpm,
+            tpa: data.tpa,
+            tpp: data.tpp,
+            offReb: data.offReb,
+            defReb: data.defReb,
+            totReb: data.totReb,
+            pFouls: data.pFouls,
+            steals: data.steals,
+            turnover: data.turnover,
+            blocks: data.blocks
+          });
         }
       }
-      playerData.forEach(e => {
-        if (e.playerName.includes("ü")) {
-          e.playerName = e.playerName.replaceAll("ü", "u");
-        }
-        if (e.playerName.includes("é")) {
-          e.playerName = e.playerName.replaceAll("é", "e");
-        }
-        if (e.playerName.includes("è")) {
-          e.playerName = e.playerName.replaceAll("è", "e");
+    })();
+  }
+  static nbaAddPlayerGameStats2023(playerData) {
+    return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const taskRepo2 = remult__WEBPACK_IMPORTED_MODULE_1__.remult.repo(_dbTasks_DbNbaGameStats__WEBPACK_IMPORTED_MODULE_3__.DbNbaGameStats);
+      console.log("Here in addPlayerGameStats2023");
+      var db2023 = yield taskRepo2.find({
+        where: {
+          playerId: playerData[0].playerId,
+          season: 2023
         }
       });
-      for (const data of playerData) {
-        yield taskRepo2.insert({
+      var newGamesToAdd = playerData;
+      var db2023WithoutIdOrCreatedDate = [];
+      if (db2023.length > 0) {
+        db2023.forEach(data => db2023WithoutIdOrCreatedDate.push({
           playerId: data.playerId,
           playerName: data.playerName,
           teamName: data.teamName,
@@ -4371,29 +4398,21 @@ class NbaController {
           pFouls: data.pFouls,
           steals: data.steals,
           turnover: data.turnover,
-          blocks: data.blocks
-        });
+          blocks: data.blocks,
+          doubleDouble: data.doubleDouble,
+          tripleDouble: data.tripleDouble
+        }));
+        newGamesToAdd = [];
+        //if there is already data in for the player then we need to find the difference between the already stored data and the data coming in and then insert just the difference 
+        //instead of deleting everything and reinserting 
+        newGamesToAdd = playerData.filter(({
+          gameId: game1
+        }) => !db2023WithoutIdOrCreatedDate.some(({
+          gameId: game2
+        }) => game1 === game2));
+        console.log(newGamesToAdd.length);
       }
-    })();
-  }
-  static nbaAddPlayerGameStats2023(playerData) {
-    return (0,C_GIT_remult_angular_todo_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const taskRepo2 = remult__WEBPACK_IMPORTED_MODULE_1__.remult.repo(_dbTasks_DbNbaGameStats__WEBPACK_IMPORTED_MODULE_3__.DbNbaGameStats);
-      //var d = new Date;
-      console.log("Here in addPlayerGameStats2023");
-      var dbToDelete = yield taskRepo2.find({
-        where: {
-          playerId: playerData[0].playerId,
-          season: 2023
-        }
-      });
-      if (dbToDelete.length > 0) {
-        for (const d of dbToDelete) {
-          yield taskRepo2.delete(d);
-        }
-      }
-      console.log("Here in addPlayerGameStats2023 after delete");
-      playerData.forEach(e => {
+      newGamesToAdd.forEach(e => {
         if (e.playerName.includes("ü")) {
           e.playerName = e.playerName.replaceAll("ü", "u");
         }
@@ -4404,7 +4423,7 @@ class NbaController {
           e.playerName = e.playerName.replaceAll("è", "e");
         }
       });
-      for (const data of playerData) {
+      for (const data of newGamesToAdd) {
         yield taskRepo2.insert({
           playerId: data.playerId,
           playerName: data.playerName,
@@ -5033,13 +5052,13 @@ let DbNbaGameStats = class DbNbaGameStats {
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "points", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "fgm", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "fga", void 0);
-(0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.number()], DbNbaGameStats.prototype, "fgp", void 0);
+(0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "fgp", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "ftm", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "fta", void 0);
-(0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.number()], DbNbaGameStats.prototype, "ftp", void 0);
+(0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "ftp", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "tpm", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "tpa", void 0);
-(0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.number()], DbNbaGameStats.prototype, "tpp", void 0);
+(0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "tpp", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "offReb", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "defReb", void 0);
 (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([remult__WEBPACK_IMPORTED_MODULE_0__.Fields.integer()], DbNbaGameStats.prototype, "totReb", void 0);
