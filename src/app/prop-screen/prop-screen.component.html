@@ -12,9 +12,73 @@
   <mat-tab-group class="games-tab" [backgroundColor]="'warn'" (selectedTabChange)="onGameClick($event)"  >
     <mat-tab *ngFor="let game of games" label="{{game.game}}"></mat-tab>
   </mat-tab-group>
+
+  <mat-tab-group class="props-tab" [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)"  [selectedIndex]="0">
+    <mat-tab  label="Game Props" ></mat-tab>
+    <mat-tab  label="Player Props"></mat-tab>
+  </mat-tab-group>
+
+  <div *ngIf="gamePropsClicked">
+    <mat-grid-list cols="2" rowHeight="1.25:1">
+      <mat-grid-tile style="background-color: lightblue;">
+        <div style="height: inherit; width: 100%; ">
+          <mat-grid-list cols="4" rowHeight="100px">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;">
+              {{displayPropHtml1.name}}
+            </mat-grid-tile>
+            
+          </mat-grid-list>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile style="background-color: lightcoral;">
+        <div style="height: inherit; width: 100%; ">
+          <mat-grid-list cols="4" rowHeight="100px">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; ">
+              {{displayPropHtml2.name}}
+            </mat-grid-tile>
+            
+          </mat-grid-list>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div style="position: absolute; top: 20rem; left: 0; right: 0; margin-left: auto; margin-right: auto;  height: 400px; width: 300px; background-color: lightslategray;">
+      <mat-grid-list cols="5" rowHeight="40px">
+        <mat-grid-tile colspan="2" style="margin-top: 2rem; font-size: x-large;">
+          <button mat-raised-button color="primary" style="">-110</button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" style="margin-top: 2rem; text-wrap:balance; text-align: center;">
+          Money Line
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
+          <button mat-raised-button color="primary" style="">+110</button>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
+          <button mat-raised-button color="primary" style="white-space:initial;">-4  -110</button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" style="margin-top: 2rem; ">
+          Spread
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
+          <button mat-raised-button color="primary" style="">+110</button>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
+          <button mat-raised-button color="primary" style="">-110</button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" style="margin-top: 2rem; ">
+          Total
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
+          <button mat-raised-button color="primary" style="">+110</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
   
   
-  <mat-card>
+  
+ <!--  <mat-card>
     <mat-card-header class="card-header">
       <mat-card-title>Game Props</mat-card-title>
     </mat-card-header>
@@ -50,9 +114,9 @@
     </mat-card-content>
     <mat-card-actions align="end" style="display: flex; gap: 1rem;">
       <button mat-raised-button color="primary" (click)="loadPlayerProps()">Player Props</button>
-      <!-- <button mat-raised-button color="primary" (click)="loadPlayerProps()">Game Props</button> -->
+       <button mat-raised-button color="primary" (click)="loadPlayerProps()">Game Props</button> 
     </mat-card-actions>
-  </mat-card>
+  </mat-card> -->
   <br>
 <!--  -->
   <mat-accordion *ngIf="playerPropsClicked">
@@ -139,65 +203,9 @@
   </mat-accordion>
   
   
-  <!-- add when ready to add game props <mat-accordion *ngIf="gamePropsClicked">
-    <mat-expansion-panel *ngFor="let props of playerPropObjectArray; let i = index" (opened)="props[0].isOpened = true" (closed)="props[0].isOpened = false" (opened)="computeStatsForAllPlayersInProp(props)">
-      <mat-expansion-panel-header class="header-panel">
-        <mat-panel-title>
-          {{props[0].event | titlecase}}
-        </mat-panel-title>
-        <mat-panel-description>
-          Over/Under
-          <button mat-raised-button class="panel-button" color="primary" *ngIf="props[0].isOpened" (click)="$event.stopPropagation()" (click)="findBestBetsFromEvent(props)">Best Bets</button>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-  
-      <table mat-table [dataSource]="props"  multiTemplateDataRows>
-  
-  
-  
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Over/Under </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-  
-  
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef> Player </th>
-          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef> Price </th>
-          <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary"
-              (click)="addItemToCheckout(element)" (click)="$event.stopPropagation()" [disabled]="element.isDisabled">{{element.price}}</button></td>
-        </ng-container>
-  
-        <ng-container matColumnDef="point">
-          <th mat-header-cell *matHeaderCellDef> Point </th>
-          <td mat-cell *matCellDef="let element"> {{element.point}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="expandedDetail">
-          
-          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-            <mat-progress-bar mode="indeterminate" *ngIf="displayProgressBar" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"></mat-progress-bar>
-            <div class="example-element-detail" *ngIf="!displayProgressBar" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-              <div>Chance of happenging overall: {{element.percentTotal}} </div>
-              <div>Chance of happening vs {{element.teamAgainst}}: {{element.percentTeam}}</div>
-              <div>Average this season: {{element.avgTotal}}</div>
-              <div>Average this season vs {{element.teamAgainst}}: {{element.avgTeam}}</div>
-            </div>
-          </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-          (click)="expandedElement = expandedElement === element ? null : element" (click)="$event.stopPropagation()"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="$event.stopPropagation()" class="example-detail-row"></tr>
-      </table>
-   (click)="getPlayerStatsForSeason(element)" 
-    </mat-expansion-panel>
-  </mat-accordion> -->
+  <div *ngIf="!playerPropsClicked">
+
+  </div>
   
   <app-prop-checkout [prop]="checkoutArray" (exitSend)="isExit($any($event))" (length)="getArrayLength($event)"
     *ngIf="checkoutArray.length > 0 && exit"></app-prop-checkout>

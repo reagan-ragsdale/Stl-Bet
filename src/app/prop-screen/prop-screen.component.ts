@@ -32,7 +32,7 @@ import { SportsNameToId } from '../sports-name-to-id';
 import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
-import {Chart}  from 'chart.js/auto';
+import { Chart } from 'chart.js/auto';
 
 import { Route, Router } from '@angular/router';
 
@@ -64,9 +64,9 @@ export class PropScreenComponent implements OnInit {
 
   expandedElement: PlayerProp[] | null | undefined;
 
-  
+
   public playerPropsClicked = false;
-  public gamePropsClicked = false;
+  public gamePropsClicked = true;
   arrayOfMLBTeams: SportsTitleToName = { Minnesota_Twins: "MIN", Detroit_Tigers: "DET", Cincinnati_Reds: "CIN", Chicago_Cubs: "CHC", Milwaukee_Brewers: "MIL", Philadelphia_Phillies: "PHI", Oakland_Athletics: "OAK", Los_Angeles_Angels: "LAA", Pittsburgh_Pirates: "PIT", Cleveland_Guardians: "CLE", Tampa_Bay_Rays: "TB", Boston_Red_Socks: "BOS", Seattle_Mariners: "SEA", Miami_Marlins: "MIA", Los_Angeles_Dodgers: "LAD", New_York_Yankees: "NYY", Washington_Nationals: "WAS", New_York_Mets: "NYM", San_Francisco_Giants: "SF", Kansas_City_Royals: "KC", Chicago_White_Sox: "CHW", Atlanta_Braves: "ATL", St_Louis_Cardinals: "STL", Arizona_Diamondbacks: "ARI", Baltimore_Orioles: "BAL", Colorado_Rockies: "COL", Houston_Astros: "HOU", San_Diego_Padres: "SD", Texas_Rangers: "TEX", Toronto_Blue_Jays: "TOR" };
   arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
   home_team: string = '';
@@ -85,7 +85,7 @@ export class PropScreenComponent implements OnInit {
   public selectedGameid: string = '';
   public exit: boolean = true;
 
-  
+
 
   date = new Date();
 
@@ -108,7 +108,7 @@ export class PropScreenComponent implements OnInit {
     private nhlApiController: nhlApiController,
     private draftKingsApiController: draftKingsApiController,
     private router: Router,
-    ) {
+  ) {
 
   }
   public notes: any = [];
@@ -194,7 +194,7 @@ export class PropScreenComponent implements OnInit {
     };
 
 
-  listOfSupportedSports: string[] = ["NBA",  "NHL"];
+  listOfSupportedSports: string[] = ["NBA", "NHL"];
   sportsToTitle: SportsTitleToName = {
     NBA: "basketball_nba",
     NFL: "americanfootball_nfl",
@@ -270,7 +270,7 @@ export class PropScreenComponent implements OnInit {
 
 
 
-    
+
   }
   onDateClick(date: any) {
     console.log(date)
@@ -390,7 +390,7 @@ export class PropScreenComponent implements OnInit {
   addBestBets(event: any): any[] {
     var bets: any[] = [];
     for (var i = 0; i < event.length; i++) {
-      if ((parseInt(event[i].percentTeam) >= .900) || (parseInt(event[i].percentTotal) >= .900)) {
+      if ((parseInt(event[i].percentTeam) >= .900) || (parseInt(event[i].percentTotal) >= .500)) {
         bets.push(event[i]);
       }
     }
@@ -410,20 +410,17 @@ export class PropScreenComponent implements OnInit {
     var tempDate = fullDate?.split("T");
     var time = tempDate[1].slice(0, 2)
     var subtractDay = false
-    if(parseInt(time) - 6 <= 0){
+    if (parseInt(time) - 6 <= 0) {
       subtractDay = true
     }
 
     var indexOfFirstDash = tempDate[0].indexOf("-");
     var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
-    console.log(tempDate2)
     var finalDate = tempDate2.replace("-", "/");
-    if(subtractDay){
-      console.log(finalDate)
-      finalDate = finalDate.replace(finalDate.charAt(finalDate.length-1) , (parseInt(finalDate.charAt(finalDate.length-1))-1).toString())
-      console.log(finalDate)
+    if (subtractDay) {
+      finalDate = finalDate.replace(finalDate.charAt(finalDate.length - 1), (parseInt(finalDate.charAt(finalDate.length - 1)) - 1).toString())
     }
-    
+
     return finalDate;
   }
 
@@ -500,7 +497,7 @@ export class PropScreenComponent implements OnInit {
       }
       else {
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-        
+
       }
     } catch (error: any) {
       alert(error.message)
@@ -533,8 +530,8 @@ export class PropScreenComponent implements OnInit {
           var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
           await NbaController.nbaAddPlayerInfoData(returnCall);
         }
-        else if(dbEmpty.length > 0){
-          if(this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()){
+        else if (dbEmpty.length > 0) {
+          if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
             var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
             await NbaController.nbaAddPlayerInfoData(returnCall);
           }
@@ -562,22 +559,35 @@ export class PropScreenComponent implements OnInit {
     return game;
   }
 
- 
+
+  async onPropTypeClicked(event: any) {
+    if (event.tab.textLabel == "Player Props") {
+      this.gamePropsClicked = false
+      await this.loadPlayerProps()
+    }
+    else if (event.tab.textLabel == "Game Props") {
+      this.playerPropsClicked = false
+      this.gamePropsClicked = true
+
+    }
+  }
+
+
 
   //add checkplayerstat db for prevous and current season, if there is 0 data in 2022 then try the api call, if no data from api call for 2022 season then load one row for 2022 that has all defaults
   // then check 2023 season, if there is 0 data for the 2023 season or the insert date is not the current date then try the
-  
 
- 
 
- 
+
+
+
 
 
 
 
   //API calls
 
-  
+
 
   async loadPlayerProps() {
     if (this.playerPropsClicked == true) {
@@ -613,7 +623,7 @@ export class PropScreenComponent implements OnInit {
   }
 
 
-  
+
 
 
 
@@ -642,7 +652,6 @@ export class PropScreenComponent implements OnInit {
   addplayerPropToArray() {
 
     // takes the stream from the database and converts it to the objects for display
-    //console.log(this.playerProps)
 
     var differentPropTypes: any[] = []
     this.playerPropDataFinal.forEach((e) => {
@@ -650,9 +659,6 @@ export class PropScreenComponent implements OnInit {
         differentPropTypes.push(e.marketKey)
       }
     })
-
-
-
     this.playerPropObjectArray = [];
     for (let j = 0; j < differentPropTypes.length; j++) {
       this.playerPropsArray = [];
@@ -691,7 +697,6 @@ export class PropScreenComponent implements OnInit {
       this.playerPropObjectArray[j] = this.playerPropsArray;
     }
     this.playerProps = new MatTableDataSource(this.playerPropObjectArray);
-    console.log(this.playerPropObjectArray)
 
   }
 
@@ -736,7 +741,6 @@ export class PropScreenComponent implements OnInit {
     try {
       if (this.selectedSport == "NHL") {
         for (let i = 0; i < element.length; i++) {
-          console.log(element[i])
           let player = await NhlPlayerInfoController.nhlLoadPlayerInfoFromName(element[i].name)
           let db2022 = await this.nhlPlayerGameStatRepo.find({ where: { season: "20222023", playerId: player[0].playerId } })
           let db2023 = await this.nhlPlayerGameStatRepo.find({ where: { season: "20232024", playerId: player[0].playerId } })
@@ -766,7 +770,6 @@ export class PropScreenComponent implements OnInit {
           }
           else {
             await NhlPlayerGameStatsController.nhlLoadPlayerInfo2023FromId(player[0].playerId).then(item => this.nhlPlayerStatData2023Final = item)
-            console.log(this.nhlPlayerStatData2023Final)
 
           }
           await this.computeStatForPlayer(element[i]);
@@ -775,8 +778,6 @@ export class PropScreenComponent implements OnInit {
       if (this.selectedSport == "NBA") {
         for (let i = 0; i < element.length; i++) {
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
-          console.log(element[i].name)
-          console.log(player)
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
           let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
           if (db2022.length == 0) {
@@ -792,22 +793,30 @@ export class PropScreenComponent implements OnInit {
           else {
             await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => this.nbaPlayerStatData2022Final = item)
           }
-
-          if (db2023.length == 0 || this.convertDate(db2023[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+          
+          if (db2023.length == 0) {
             let results = await this.nbaApiController.loadNba2023PlayerStatData(player[0].playerId)
             await NbaController.nbaAddPlayerGameStats2023(results);
 
             await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
 
           }
-          else {
-            await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
-            console.log(this.nhlPlayerStatData2023Final)
+          else if (db2023.length != 0) {
+            if (this.convertDate(db2023[db2023.length - 1].createdAt?.toString()!) != this.getMonthAndDay()) {
+              let results = await this.nbaApiController.loadNba2023PlayerStatData(player[0].playerId)
+              await NbaController.nbaAddPlayerGameStats2023(results);
 
+              await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
+            }
+            else {
+              await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
+              //here
+            }
           }
+
           await this.computeStatForPlayer(element[i]);
         }
-        
+
       }
       this.displayProgressBar = false
     } catch (error: any) {
@@ -819,10 +828,7 @@ export class PropScreenComponent implements OnInit {
 
   async computeStatsForAllPlayersInProp(element: any) {
     if (element[0].percentTeam == "") {
-      //element.forEach(async (e: any) => {
       await this.getPlayerStatsForSeasonCall(element)
-      // })
-
     }
 
 
@@ -848,24 +854,15 @@ export class PropScreenComponent implements OnInit {
 
     if (this.selectedSport == "MLB") {
 
-      console.log(this.tempPlayerStatData)
-
       var resultArray = Object.keys(this.tempPlayerStatData).map((personNamedIndex: any) => {
         let newStatData = this.tempPlayerStatData[personNamedIndex];
         return newStatData;
       })
-      console.log(resultArray)
-
       var numberOfGamesStarted = 0;
       var numberOfGamesStartedVsTeam = 0;
-      console.log(resultArray[0].team)
-      console.log(this.getTeamName(element.team1))
-      console.log(element.team1)
-      console.log(this.getTeamName(element.team2))
       if (resultArray[0].team == this.getTeamName(element.team1)) {
         this.teamAgainst = this.getTeamName(element.team2)
       } else { this.teamAgainst = this.getTeamName(element.team1) }
-      //this.updatePlayerGameStatInfoMlb(resultArray, this.teamAgainst);
       var d = new Date();
       var year = d.getFullYear().toString();
       var month = (d.getMonth() + 1).toString();
@@ -878,7 +875,6 @@ export class PropScreenComponent implements OnInit {
         day = "0" + day;
       }
       var fullDate = year + month + day;
-      console.log(element)
       //add a check to get the prop variable to searc for, H, HR, TB etc
       var propCde = '';
       switch (element.event) {
@@ -898,7 +894,6 @@ export class PropScreenComponent implements OnInit {
 
           var gameDate = resultArray[i].gameID.slice(0, 8);
           if (gameDate == fullDate) {
-            console.log(resultArray[i].gameID)
             continue;
           }
           numberOfGamesStarted++;
@@ -915,7 +910,6 @@ export class PropScreenComponent implements OnInit {
           }
 
           if (resultArray[i].gameID.includes(this.teamAgainst)) {
-            console.log(resultArray[i])
             numberOfGamesStartedVsTeam++;
             this.playerAverageVsTeam += parseInt(resultArray[i].Hitting[propCde]);
             if (element.name == "Over") {
@@ -932,9 +926,6 @@ export class PropScreenComponent implements OnInit {
 
         }
       }
-      console.log(numberOfGamesStartedVsTeam)
-      console.log(this.teamAgainst)
-      console.log(this.playerAverageVsTeam)
       if (numberOfGamesStarted == 0) {
         this.playerAverageForSeason = 0;
         this.playerPercentForSeason = 0;
@@ -949,7 +940,6 @@ export class PropScreenComponent implements OnInit {
       }
       else {
         this.playerAverageVsTeam = (this.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
-        //console.log(this.playerHittingAverageVsTeam)
         this.playerPercentVsTeam = (this.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
       }
     }
@@ -968,7 +958,6 @@ export class PropScreenComponent implements OnInit {
         month = "0" + month;
       }
       var day = d.getDate().toString();
-      console.log(day)
       if (day.length == 1) {
         day = "0" + day;
       }
@@ -990,7 +979,6 @@ export class PropScreenComponent implements OnInit {
       this.nhlPlayerStatData2023Final.forEach((e: any) => {
         this.playerAverageForSeason += e[propCde]
         if (element.description == "Over") {
-          console.log(parseInt(e[propCde]) > element.point)
           if (parseInt(e[propCde]) > element.point) {
             this.playerPercentForSeason++;
           }
@@ -1024,18 +1012,12 @@ export class PropScreenComponent implements OnInit {
         }
       })
 
-
-      console.log(numberOfGamesStartedVsTeam)
-      console.log(this.teamAgainst)
-      console.log(this.playerAverageVsTeam)
       if (numberOfGamesStarted == 0) {
         this.playerAverageForSeason = 0;
         this.playerPercentForSeason = 0;
       }
       else {
         this.playerAverageForSeason = (this.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
-        console.log(this.playerPercentForSeason)
-        console.log(numberOfGamesStarted)
         this.playerPercentForSeason = (this.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
       }
       if (numberOfGamesStartedVsTeam == 0) {
@@ -1044,7 +1026,6 @@ export class PropScreenComponent implements OnInit {
       }
       else {
         this.playerAverageVsTeam = (this.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
-        //console.log(this.playerHittingAverageVsTeam)
         this.playerPercentVsTeam = (this.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
       }
       if (element.description == "Over") {
@@ -1068,18 +1049,16 @@ export class PropScreenComponent implements OnInit {
       } else { this.average2022vsTeam = -1 }
 
 
-
     }
     if (this.selectedSport == "NBA") {
       let tempTeamName1 = element.team1
       let tempTeamName2 = element.team2
-      console.log(element)
       if (tempTeamName1.includes(" ")) {
         tempTeamName1 = tempTeamName1.replaceAll(" ", "_")
-      } 
+      }
       if (tempTeamName2.includes(" ")) {
         tempTeamName2 = tempTeamName2.replaceAll(" ", "_")
-      } 
+      }
       let teamId1 = this.arrayOfNBATeams[tempTeamName1]
       let teamId2 = this.arrayOfNBATeams[tempTeamName2]
       let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
@@ -1121,7 +1100,6 @@ export class PropScreenComponent implements OnInit {
       this.nbaPlayerStatData2023Final.forEach((e: any) => {
         this.playerAverageForSeason += e[propCde]
         if (element.description == "Over") {
-          console.log(parseInt(e[propCde]) > element.point)
           if (parseInt(e[propCde]) > element.point) {
             this.playerPercentForSeason++;
           }
@@ -1155,18 +1133,12 @@ export class PropScreenComponent implements OnInit {
         }
       })
 
-
-      console.log(numberOfGamesStartedVsTeam)
-      console.log(this.teamAgainst)
-      console.log(this.playerAverageVsTeam)
       if (numberOfGamesStarted == 0) {
         this.playerAverageForSeason = 0;
         this.playerPercentForSeason = 0;
       }
       else {
         this.playerAverageForSeason = (this.playerAverageForSeason / numberOfGamesStarted).toFixed(3);
-        console.log(this.playerPercentForSeason)
-        console.log(numberOfGamesStarted)
         this.playerPercentForSeason = (this.playerPercentForSeason / numberOfGamesStarted).toFixed(3);
       }
       if (numberOfGamesStartedVsTeam == 0) {
@@ -1175,7 +1147,6 @@ export class PropScreenComponent implements OnInit {
       }
       else {
         this.playerAverageVsTeam = (this.playerAverageVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
-        //console.log(this.playerHittingAverageVsTeam)
         this.playerPercentVsTeam = (this.playerPercentVsTeam / numberOfGamesStartedVsTeam).toFixed(3);
       }
       if (element.description == "Over") {
@@ -1265,32 +1236,9 @@ export class PropScreenComponent implements OnInit {
     }))
     this.playerInfoTemp = this.playerNameSpanishConvert(this.playerInfoTemp);
 
-
-
-    /*  this.mlbPlayerId.push({
-       Name: name,
-       Id: result.body[i].playerID,
-       teamName: result.body[i].team,
-       teamId: result.body[i].teamID
-     })
-   }
-   var date = new Date();
-   //this.mlbPlayerId.pop();
-   this.notes.forEach((element: { playerName: any; playerId: any; teamName: any; teamId: any; }) => {
-     this.mlbPlayerId.push({
-       Name: element.playerName,
-       Id: element.playerId,
-       teamName: element.teamName,
-       teamId: element.teamId
-     })
-   }) */
-    //console.log(this.mlbPlayerId)
-    //this.updatePlayerInfoMlb();
   }
 
   getMlbPlayerIdFromName(name: string): any {
-    console.log(name)
-    console.log(this.mlbPlayerId)
     var player = this.mlbPlayerId.filter(x => x.Name == name);
     return player[0].Id;
   }
@@ -1316,7 +1264,6 @@ export class PropScreenComponent implements OnInit {
       month = "0" + month;
     }
     var day = d.getDate().toString();
-    //console.log(day)
     if (day.length == 1) {
       day = "0" + day;
     }
@@ -1331,7 +1278,6 @@ export class PropScreenComponent implements OnInit {
       month = "0" + month;
     }
     var day = d.getDate().toString();
-    //console.log(day)
     if (day.length == 1) {
       day = "0" + day;
     }
@@ -1339,14 +1285,14 @@ export class PropScreenComponent implements OnInit {
     return fullDate
   }
 
- 
+
 
 
   async ngOnInit() {
     this.trimSports(await this.draftKingsApiController.getSports());
   }
 
-  detailedStatsClicked(element: any){
+  detailedStatsClicked(element: any) {
     this.router.navigate(["/playerStats/" + this.selectedSport + "/" + element.id])
   }
 

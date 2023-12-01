@@ -52,7 +52,7 @@ export class DbNbaGameStats {
   @Fields.integer()
   fga = 0
 
-  @Fields.number()
+  @Fields.integer()
   fgp = 0
 
   @Fields.integer()
@@ -61,7 +61,7 @@ export class DbNbaGameStats {
   @Fields.integer()
   fta = 0
 
-  @Fields.number()
+  @Fields.integer()
   ftp = 0
 
   @Fields.integer()
@@ -70,7 +70,7 @@ export class DbNbaGameStats {
   @Fields.integer()
   tpa = 0
 
-  @Fields.number()
+  @Fields.integer()
   tpp = 0
 
   @Fields.integer()

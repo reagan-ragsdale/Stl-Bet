@@ -60,3 +60,113 @@ objB => [name: reagan]
 objB is not a new object that has the same values as objA. They both point to the reference of what the object is. So unlike the strings where there are two, in the objects there are only one
 
 To overcome this I used a new function called structuredClone() which creates a copy of the supplied object and sets the new object to that copy
+
+
+
+
+Time test for new database loads
+
+Time before chagne : 2:31
+Time after change: 
+
+
+
+{
+  playerId: 242,
+  playerName: 'Jrue Holiday',
+  teamName: 'Boston Celtics',
+  teamId: 2,
+  teamAgainstName: 'Chicago Bulls',
+  teamAgainstId: 6,
+  homeOrAway: 'Home',
+  season: 2023,
+  gameId: 12798,
+  gameDate: '11/28',
+  playerStarted: 'Y',
+  assists: 9,
+  points: 14,
+  fgm: 5,
+  fga: 8,
+  fgp: 62,
+  ftm: 0,
+  fta: 0,
+  ftp: 0,
+  tpm: 4,
+  tpa: 5,
+  tpp: 80,
+  offReb: 1,
+  defReb: 6,
+  totReb: 7,
+  pFouls: 3,
+  steals: 1,
+  turnover: 3,
+  blocks: 0,
+  doubleDouble: 0,
+  tripleDouble: 0
+}
+{
+  playerId: 242,
+  playerName: 'Jrue Holiday',
+  teamName: 'Boston Celtics',
+  teamId: 2,
+  teamAgainstName: 'Chicago Bulls',
+  teamAgainstId: 6,
+  homeOrAway: 'Home',
+  season: 2023,
+  gameId: 2210,
+  gameDate: '11/28',
+  playerStarted: 'Y',
+  assists: 9,
+  points: 14,
+  fgm: 5,
+  fga: 8,
+  fgp: 62,
+  ftm: 0,
+  fta: 0,
+  ftp: 0,
+  tpm: 4,
+  tpa: 5,
+  tpp: 80,
+  offReb: 1,
+  defReb: 6,
+  totReb: 7,
+  pFouls: 3,
+  steals: 1,
+  turnover: 3,
+  blocks: 0,
+  doubleDouble: 0,
+  tripleDouble: 0
+}
+{
+  playerId: 242,
+  playerName: 'Jrue Holiday',
+  teamName: 'Boston Celtics',
+  teamId: 2,
+  teamAgainstName: 'Chicago Bulls',
+  teamAgainstId: 6,
+  homeOrAway: 'Home',
+  season: 2023,
+  gameId: 12798,
+  gameDate: '11/28',
+  playerStarted: 'Y',
+  assists: 9,
+  points: 14,
+  fgm: 5,
+  fga: 8,
+  fgp: 62,
+  ftm: 0,
+  fta: 0,
+  ftp: 0,
+  tpm: 4,
+  tpa: 5,
+  tpp: 80,
+  offReb: 1,
+  defReb: 6,
+  totReb: 7,
+  pFouls: 3,
+  steals: 1,
+  turnover: 3,
+  blocks: 0,
+  doubleDouble: 0,
+  tripleDouble: 0
+}

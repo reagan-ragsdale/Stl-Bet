@@ -50,9 +50,17 @@
         </li>
       </ul>
     </span>
+    <mat-form-field >
+      <mat-select placeholder="{{playerSeason}}">
+        <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
+          value="season">
+          {{season}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-grid-tile>
 
- 
+
 
 
 
@@ -65,7 +73,7 @@
 
 
   <mat-grid-tile colspan="2" rowspan="8" style="overflow:visible;">
-    <table mat-table [dataSource]="nbaPlayerStatsInfo2023Table" class="mat-elevation-z8" style="height: inherit;">
+    <table mat-table [dataSource]="seasonArrayTable"  class="mat-elevation-z8" style="height: inherit;">
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -73,17 +81,18 @@
       <!-- Position Column -->
       <ng-container matColumnDef="Game">
         <th mat-header-cell *matHeaderCellDef> Game </th>
-        <td mat-cell *matCellDef="let element"> {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
+        <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
+          {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
         </td>
         <td mat-footer-cell *matFooterCellDef> Average </td>
       </ng-container>
 
-       <ng-container matColumnDef="Date">
+      <ng-container matColumnDef="Date">
         <th mat-header-cell *matHeaderCellDef> Date </th>
         <td mat-cell *matCellDef="let element"> {{element.gameDate}}
         </td>
-        <td mat-footer-cell *matFooterCellDef>  </td>
-      </ng-container> 
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="Points">
@@ -121,7 +130,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: displayedColumns; "
         style="height:auto;"></tr>
-        <tr mat-footer-row *matFooterRowDef="displayedColumns" style="border-top: 2px solid black;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns" style="border-top: 2px solid black;"></tr>
     </table>
   </mat-grid-tile>
 
@@ -132,23 +141,28 @@
           style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start;">
           <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
             <div style="display: flex; ">
-              <mat-form-field *ngFor="let forms of formArray" style="padding-left: 1rem; padding-top: 1rem; " >
+              <mat-form-field *ngFor="let forms of formArray" style="padding-left: 1rem; padding-top: 1rem; ">
                 <mat-label>Select</mat-label>
-                <mat-select >
-                  <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)" value={{stat.dataName}}>{{stat.label}}</mat-option>
+                <mat-select>
+                  <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
+                    value={{stat.dataName}}>{{stat.label}}</mat-option>
                 </mat-select>
                 <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
-                <button mat-raised-button  style="margin-top: 1rem;;"(click)="deleteformArray(forms)" (click)="$event.stopPropagation()">Delete</button>
-                
+                <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
+                  (click)="$event.stopPropagation()">Delete</button>
+
               </mat-form-field>
               <div style="display: flex; flex-direction: column; padding-top: 2rem; gap: 1rem;">
-                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button (click)="addStatForm()">Add</button>
-                <button style="height: fit-content; width: fit-content; border-radius: 10px;"mat-raised-button (click)="clearSearch()">Clear</button>
-                <button style="height: fit-content; width: fit-content; border-radius: 10px;"mat-raised-button (click)="searchNumberSubmit()">Search</button>
+                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                  (click)="addStatForm()">Add</button>
+                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                  (click)="clearSearch()">Clear</button>
+                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                  (click)="searchNumberSubmit()">Search</button>
               </div>
-              
+
             </div>
-            
+
           </div>
 
 

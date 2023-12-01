@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewChild} from '@angular/core';
+import { MatTable } from '@angular/material/table';
 
 
 interface statSearch {
@@ -47,6 +49,7 @@ export class PlayerStatsComponent {
   myControl = new FormControl('');
   public displayedColumns = ["Game", "Date",  "Points", "Assists", "Rebounds", "Blocks", "Threes"]
 //
+  
   public playerName: string = ''
   public playerId: any = 0
   public selectedSport: any = ''
@@ -128,7 +131,8 @@ export class PlayerStatsComponent {
 
   isCombineStats: boolean = false
 
-
+  public seasonArray: any[] = []
+  public seasonArrayTable: any[] = []
 
   //nba
   public nbaPlayerInfo: NbaPlayerInfoDb[] = []
@@ -136,6 +140,12 @@ export class PlayerStatsComponent {
   public nbaPlayerStatsInfo2023: DbNbaGameStats[] = []
   public nbaAllPlayerInfo: NbaPlayerInfoDb[] = []
   public nbaPlayerStatsInfo2023Table: any[] = []
+  public nbaPlayerStatsInfo2022Table: any[] = []
+  public playerSeasons: string[] = []
+  public playerSeason: string = '2023'
+
+  @ViewChild(MatTable)
+  table!: MatTable<any>;
 
   //nhl
   public nhlPlayerInfo: DbNhlPlayerInfo[] = []
@@ -159,6 +169,7 @@ export class PlayerStatsComponent {
   }
 
   async getPlayerInfo() {
+    
     if (this.selectedSport == "NBA") {
       this.selectedStatSearchNumber = 0
       this.nbaPlayerInfo = await NbaController.nbaLoadPlayerInfoFromId(this.playerId)
@@ -168,7 +179,19 @@ export class PlayerStatsComponent {
       this.nbaPlayerStatsInfo2023Table = structuredClone(this.nbaPlayerStatsInfo2023)
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023Table.reverse()
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
+      this.nbaPlayerStatsInfo2022Table = structuredClone(this.nbaPlayerStatsInfo2023)
+      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2023Table.reverse()
+      this.nbaPlayerStatsInfo2022Table.forEach((e) => e.isHighlighted = false)
       this.searchName = this.playerName
+      this.playerSeasons.push("2023")
+      if(this.nbaPlayerStatsInfo2022.length > 1){
+        this.playerSeasons.push("2022")
+      }
+      this.seasonArray = this.nbaPlayerStatsInfo2023
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+      
+      
+      
 
     }
     if (this.selectedSport == "NHL") {
@@ -195,10 +218,10 @@ export class PlayerStatsComponent {
   }
 
   calculateMeanAndStd() {
-    this.playerAverage = (this.nbaPlayerStatsInfo2023.map(t => t.points).reduce((acc, value) => acc + value, 0)) / this.nbaPlayerStatsInfo2023.length
+    this.playerAverage = (this.seasonArray.map(t => t.points).reduce((acc, value) => acc + value, 0)) / this.seasonArray.length
     let summedData: number = 0
-    this.nbaPlayerStatsInfo2023.forEach(e => summedData += (e.points - this.playerAverage) ** 2)
-    summedData = summedData / this.nbaPlayerStatsInfo2023.length
+    this.seasonArray.forEach(e => summedData += (e.points - this.playerAverage) ** 2)
+    summedData = summedData / this.seasonArray.length
     summedData = Math.sqrt(summedData)
     this.playerStd = summedData
     console.log(this.playerStd)
@@ -209,15 +232,15 @@ export class PlayerStatsComponent {
 
     console.log(this.formArray)
     // later we can add over or under and combined stats
-    for (let i = 0; i < this.nbaPlayerStatsInfo2023Table.length; i++) {
+    for (let i = 0; i < this.seasonArrayTable.length; i++) {
       for (let j = 0; j < this.formArray.length; j++) {
-        console.log(this.nbaPlayerStatsInfo2023Table[i][this.formArray[j].dataName] > this.formArray[j].number)
+        console.log(this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number)
 
-        if (this.nbaPlayerStatsInfo2023Table[i][this.formArray[j].dataName] > this.formArray[j].number) {
-          this.nbaPlayerStatsInfo2023Table[i].isHighlighted = true
+        if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
+          this.seasonArrayTable[i].isHighlighted = true
         }
         else {
-          this.nbaPlayerStatsInfo2023Table[i].isHighlighted = false
+          this.seasonArrayTable[i].isHighlighted = false
           break
         }
       }
@@ -226,7 +249,7 @@ export class PlayerStatsComponent {
   }
 
   clearSearch() {
-    this.nbaPlayerStatsInfo2023Table.forEach((e) => {
+    this.seasonArrayTable.forEach((e) => {
       e.isHighlighted = false
     })
   }
@@ -258,9 +281,25 @@ export class PlayerStatsComponent {
   }
 
   getTotalCost(stat: string) {
-    var num = this.nbaPlayerStatsInfo2023Table.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
-    return (num / this.nbaPlayerStatsInfo2023Table.length).toFixed(2)
+    var num = this.seasonArrayTable.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
+    return (num / this.seasonArrayTable.length).toFixed(2)
   }
+  updateSeasonsDisplayed(season: string){
+    console.log("here")
+    this.playerSeason = season
+    if(this.playerSeason == "2023"){
+      this.seasonArray = this.nbaPlayerStatsInfo2023
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+    }
+    else if(this.playerSeason == "2022"){
+      this.seasonArray = this.nbaPlayerStatsInfo2022
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2022Table
+    }
+    this.table.renderRows()
+    this.reDrawLineGraph()
+  }
+  
+
   createChart() {
     var points: number[] = []
     var assists: number[] = []
@@ -271,7 +310,7 @@ export class PlayerStatsComponent {
 
     var dataPoint: string[] = []
     var index = 1
-    this.nbaPlayerStatsInfo2023.forEach((e) => {
+    this.seasonArray.forEach((e) => {
       points.push(e.points)
       assists.push(e.assists)
       rebounds.push(e.totReb)
@@ -493,7 +532,7 @@ else{
     for (let i = 0; i < 100; i++) {
       dataPoint.push(i)
     }
-    this.nbaPlayerStatsInfo2023.forEach((e) => {
+    this.seasonArray.forEach((e) => {
       points.push(e.points)
       assists.push(e.assists)
       rebounds.push(e.totReb)
@@ -627,7 +666,7 @@ else{
     for (let i = 0; i < 100; i++) {
       dataPoint.push(i)
     }
-    this.nbaPlayerStatsInfo2023.forEach((e) => {
+    this.seasonArray.forEach((e) => {
       points.push(e.points)
       assists.push(e.assists)
       rebounds.push(e.totReb)
