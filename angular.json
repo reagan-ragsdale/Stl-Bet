@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "/docs",
+            "outputPath": "dist/remult-angular-todo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,7 +60,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
