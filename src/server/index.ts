@@ -22,7 +22,7 @@ app.use(compression())
 app.use(
   remultExpress({
     dataProvider: async () =>
-      new JsonDataProvider(new JsonEntityFileStorage("./db"))
+      new JsonDataProvider(new JsonEntityFileStorage("../db"))
   })
 )
 app.use(express.static(path.join(__dirname, '../remult-angular-todo/browser')));
