@@ -13,7 +13,7 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        //'script-src-attr': ["'unsafe-inline'"],
+        'script-src-attr': ["'unsafe-inline'"],
         defaultSrc: ["'self'"],
         connectSrc: ["'self'", 'https://api.the-odds-api.com/v4/sports/'],
       },
