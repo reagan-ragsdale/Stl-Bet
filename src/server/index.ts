@@ -2,12 +2,19 @@ import express from 'express';
 import { remultExpress } from 'remult/remult-express';
 import { JsonDataProvider } from 'remult';
 import { JsonEntityFileStorage } from 'remult/server';
+import session from "cookie-session"
 import helmet from 'helmet';
 import compression from 'compression';
 import path from 'path';
 import { api } from './api';
 
 const app = express();
+
+app.use(
+  session({
+    secret: process.env["SESSION_SECRET"] || "my secret"
+  })
+)
 
 app.use(
   helmet({
