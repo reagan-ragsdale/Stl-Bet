@@ -15,7 +15,7 @@ app.use(
       directives: {
         'script-src-attr': ["'unsafe-inline'"],
         defaultSrc: ["'self'"],
-        connectSrc: ["'self'", 'https://api.the-odds-api.com/v4/sports/'],
+        //connectSrc: ["'self'", 'https://api.the-odds-api.com/v4/sports/'],
       },
     },
   })
