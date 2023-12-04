@@ -40,7 +40,7 @@ export const api = remultExpress({
     NbaController,
   ],
   dataProvider: createPostgresDataProvider({
-    connectionString: process.env["postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC@viaduct.proxy.rlwy.net:47427/railway"] || "your connection string"
+    connectionString: process.env["postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC@postgres.railway.internal:5432/railway"] || "your connection string"
   })
   // getUser: req => req.session!["user"]
 });
