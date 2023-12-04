@@ -8,7 +8,7 @@ import compression from 'compression';
 import path from 'path';
 import { api } from './api';
 import { createPostgresDataProvider } from 'remult/postgres';
-
+const connectionString = "postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC@postgres.railway.internal:5432/railway"
 const app = express();
 
 app.use(
@@ -38,7 +38,7 @@ app.use(
   remultExpress({
     dataProvider:
       createPostgresDataProvider({
-        //connectionString // default: process.env["DATABASE_URL"]
+        connectionString
       })
   })
 )
