@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import path from 'path';
 import { api } from './api';
+import { createPostgresDataProvider } from 'remult/postgres';
 
 const app = express();
 
@@ -32,6 +33,15 @@ app.use(compression());
 // imported the `api` from `./api.ts` and used for all the routes.
 // the `JsonDataProvider` is used to store the data in a JSON file by default, so there is no need to set it
 app.use(api);
+
+app.use(
+  remultExpress({
+    dataProvider:
+      createPostgresDataProvider({
+        //connectionString // default: process.env["DATABASE_URL"]
+      })
+  })
+)
 
 // In angular 16, the `index.html` file is in the `remult-angular-todo` folder, and not in the `remult-angular-todo/browser` folder
 app.use(express.static(path.join(__dirname, '../remult-angular-todo')));
