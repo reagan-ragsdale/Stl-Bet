@@ -11,13 +11,14 @@ const app = express();
 
 app.use(
   helmet({
-    contentSecurityPolicy: {
+    contentSecurityPolicy: false/* {
       directives: {
         'script-src-attr': ["'unsafe-inline'"],
-        defaultSrc: ["'self'"],
+        //defaultSrc: ["'self'"],
+        contentSecurityPolicy: false,
         //connectSrc: ["'self'", 'https://api.the-odds-api.com/v4/sports/'],
       },
-    },
+    }, */
   })
 );
 app.use(compression());
