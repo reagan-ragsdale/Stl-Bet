@@ -32,7 +32,7 @@ app.use(
 app.use(compression());
 // imported the `api` from `./api.ts` and used for all the routes.
 // the `JsonDataProvider` is used to store the data in a JSON file by default, so there is no need to set it
-app.use(api);
+//app.use(api);
 
 app.use(
   remultExpress({
