@@ -139,6 +139,7 @@ export class PlayerStatsComponent {
   public nbaPlayerStatsInfo2022: DbNbaGameStats[] = []
   public nbaPlayerStatsInfo2023: DbNbaGameStats[] = []
   public nbaAllPlayerInfo: NbaPlayerInfoDb[] = []
+  public nbaPlayerStatsInfo2023TableTemp: any[] = []
   public nbaPlayerStatsInfo2023Table: any[] = []
   public nbaPlayerStatsInfo2022Table: any[] = []
   public playerSeasons: string[] = []
@@ -177,13 +178,13 @@ export class PlayerStatsComponent {
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
       console.log(this.nbaPlayerStatsInfo2023)
-      this.nbaPlayerStatsInfo2023Table = structuredClone(this.nbaPlayerStatsInfo2023)
+      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.nbaPlayerStatsInfo2023)
       console.log(this.nbaPlayerStatsInfo2023Table)
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023Table.reverse()
+      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
       console.log(this.nbaPlayerStatsInfo2023Table)
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.nbaPlayerStatsInfo2022Table = structuredClone(this.nbaPlayerStatsInfo2023)
-      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2023Table.reverse()
+      this.nbaPlayerStatsInfo2022Table = structuredClone(this.nbaPlayerStatsInfo2022)
+      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2022Table.reverse()
       this.nbaPlayerStatsInfo2022Table.forEach((e) => e.isHighlighted = false)
       this.searchName = this.playerName
       this.playerSeasons.push("2023")
