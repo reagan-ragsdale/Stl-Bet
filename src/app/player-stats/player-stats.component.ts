@@ -176,6 +176,7 @@ export class PlayerStatsComponent {
       this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
+      console.log(this.nbaPlayerStatsInfo2023)
       this.nbaPlayerStatsInfo2023Table = structuredClone(this.nbaPlayerStatsInfo2023)
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023Table.reverse()
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
