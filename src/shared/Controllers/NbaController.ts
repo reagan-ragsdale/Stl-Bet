@@ -64,8 +64,8 @@ export class NbaController {
   }
 
   @BackendMethod({ allowed: true })
-  static async nbaLoadAllPlayerInfoFrom(): Promise<NbaPlayerInfoDb[]> {
-    console.log("here in nbaLoadAllPlayerInfoFrom")
+  static async nbaLoadAllPlayerInfo(): Promise<NbaPlayerInfoDb[]> {
+    console.log("here in nbaLoadAllPlayerInfo")
     const taskRepo = remult.repo(NbaPlayerInfoDb)
     return await taskRepo.find({ where: { playerId: { "!=": 0 } } })
   }
@@ -153,10 +153,6 @@ export class NbaController {
 
       
       newGamesToAdd = playerData.filter(({gameId: game1}) => !db2023WithoutIdOrCreatedDate.some(({gameId: game2}) => game1 === game2))
-      
-      
-      
-      console.log(newGamesToAdd.length)
     }
 
     newGamesToAdd.forEach((e) => {
@@ -172,9 +168,10 @@ export class NbaController {
 
     })
 
-    for (const data of newGamesToAdd) {
+    /* for (const data of newGamesToAdd) {
       await taskRepo2.insert({ playerId: data.playerId, playerName: data.playerName, teamName: data.teamName, teamId: data.teamId, teamAgainstName: data.teamAgainstName, teamAgainstId: data.teamAgainstId, homeOrAway: data.homeOrAway, season: data.season, gameId: data.gameId, gameDate: data.gameDate, playerStarted: data.playerStarted, assists: data.assists, points: data.points, fgm: data.fgm, fga: data.fga, fgp: data.fgp, ftm: data.ftm, fta: data.fta, ftp: data.ftp, tpm: data.tpm, tpa: data.tpa, tpp: data.tpp, offReb: data.offReb, defReb: data.defReb, totReb: data.totReb, pFouls: data.pFouls, steals: data.steals, turnover: data.turnover, blocks: data.blocks })
-    }
+    } */
+    await taskRepo2.insert(newGamesToAdd)
 
   }
 

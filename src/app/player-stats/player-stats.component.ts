@@ -141,6 +141,7 @@ export class PlayerStatsComponent {
   public nbaAllPlayerInfo: NbaPlayerInfoDb[] = []
   public nbaPlayerStatsInfo2023TableTemp: any[] = []
   public nbaPlayerStatsInfo2023Table: any[] = []
+  public nbaPlayerStatsInfo2022TableTemp: any[] = []
   public nbaPlayerStatsInfo2022Table: any[] = []
   public playerSeasons: string[] = []
   public playerSeason: string = '2023'
@@ -177,14 +178,11 @@ export class PlayerStatsComponent {
       this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
-      console.log(this.nbaPlayerStatsInfo2023)
       this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.nbaPlayerStatsInfo2023)
-      console.log(this.nbaPlayerStatsInfo2023Table)
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
-      console.log(this.nbaPlayerStatsInfo2023Table)
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.nbaPlayerStatsInfo2022Table = structuredClone(this.nbaPlayerStatsInfo2022)
-      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2022Table.reverse()
+      this.nbaPlayerStatsInfo2022TableTemp = structuredClone(this.nbaPlayerStatsInfo2022)
+      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2022TableTemp.reverse()
       this.nbaPlayerStatsInfo2022Table.forEach((e) => e.isHighlighted = false)
       this.searchName = this.playerName
       this.playerSeasons.push("2023")
@@ -208,7 +206,7 @@ export class PlayerStatsComponent {
 
   async getAllPlayerInfo() {
     if (this.selectedSport == "NBA") {
-      this.nbaAllPlayerInfo = await NbaController.nbaLoadAllPlayerInfoFrom()
+      this.nbaAllPlayerInfo = await NbaController.nbaLoadAllPlayerInfo()
       this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName == this.searchName)
 
     }
