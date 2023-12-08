@@ -13,9 +13,11 @@ export class nbaApiController {
   playerStatData: any[] = []
 
   async getNbaPlayerDataFromApi(games: string): Promise<NbaPlayerInfoDb[]> {
+    
     var gameArray = this.splitGameString(games)
     var temp: NbaPlayerInfoDb[] = []
     for (let i = 0; i < gameArray.length; i++) {
+      console.time("get nba player data from api")
       let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[i])]
       const url = `https://api-nba-v1.p.rapidapi.com/players?team=${teamId}&season=2023`;
       const options = {
@@ -53,8 +55,6 @@ export class nbaApiController {
             e.firstname = e.firstname.trim()
             e.lastname += " IV"
           }
-          console.log(e.firstname)
-          console.log(e.lastname)
           if(e.lastname.toLowerCase() == "claxton" && e.firstname.toLowerCase() == "nic"){
             e.firstname = "Nicolas"
           }
@@ -74,15 +74,18 @@ export class nbaApiController {
       } catch (error) {
         console.error(error);
       }
+      console.timeEnd("get nba player data from api")
     }
+    
     return temp;
-
+    
 
   }
 
 
 
   async loadNba2022PlayerStatData(id: number) {
+    console.time("load nba 2022 player stat data")
     const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${id}&season=2022`;
     const options = {
       method: 'GET',
@@ -95,9 +98,12 @@ export class nbaApiController {
     const processedResponse = await promise.json();
     this.playerStatData = processedResponse.response;
     await this.convertNbaStatDataToInterface(id, 2022).then(items => this.nbaPlayerStatData = items);
+    console.timeEnd("load nba 2022 player stat data")
     return this.nbaPlayerStatData;
+    
   }
   async loadNba2023PlayerStatData(id: number) {
+    console.time("load nba 2023 player stat data")
     const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${id}&season=2023`;
     const options = {
       method: 'GET',
@@ -110,14 +116,25 @@ export class nbaApiController {
     const processedResponse = await promise.json();
     this.playerStatData = processedResponse.response;
     this.nbaPlayerStatData = await this.convertNbaStatDataToInterface(id, 2023)
+    console.timeEnd("load nba 2023 player stat data")
     return this.nbaPlayerStatData;
+
   }
 
   async convertNbaStatDataToInterface(id: number, season: number) {
+    console.time("convertNbaStatDataToInterface")
     var temp: DbNbaGameStats[] = []
     var player = await NbaController.nbaLoadPlayerInfoFromId(id)
+    var games = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(id, season)
+    var oldGames = games.map((x) => {
+     return x.gameId
+    })
     for (let i = 0; i < this.playerStatData.length; i++) {
       if (this.playerStatData[i].game.id >= 12478 && this.playerStatData[i].game.id <= 12548) {
+        continue
+      }
+      console.log(oldGames.includes(this.playerStatData[i].game.id))
+      if(oldGames.includes(this.playerStatData[i].game.id)){
         continue
       }
       var game = await this.loadGameFromId(this.playerStatData[i].game.id)
@@ -156,10 +173,12 @@ export class nbaApiController {
       })
 
     }
+    console.timeEnd("convertNbaStatDataToInterface")
     return temp
   }
 
   async loadGameFromId(id: number) {
+    console.time("loadGameFromId")
     const url = `https://api-nba-v1.p.rapidapi.com/games?id=${id}`;
     const options = {
       method: 'GET',
@@ -170,6 +189,7 @@ export class nbaApiController {
     };
     const response = await fetch(url, options);
     const result = await response.json();
+    console.timeEnd("loadGameFromId")
     return result.response[0]
 
   }

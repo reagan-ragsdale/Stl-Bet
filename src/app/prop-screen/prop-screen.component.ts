@@ -256,13 +256,10 @@ export class PropScreenComponent implements OnInit {
 
   }
   onDateClick(date: any) {
-    console.log(date)
-
     this.setSelectedDate(date.tab.textLabel);
     this.updateGames();
   }
   async onGameClick(game: any) {
-    console.log(game)
     this.gameString = game.tab.textLabel
     this.setSelectedGame(game.tab.textLabel);
     if (this.selectedSport == "NBA") {
@@ -449,10 +446,8 @@ export class PropScreenComponent implements OnInit {
   }
 
   displayProp() {
-
-
+    console.time("Display Prop")
     const tempProp = this.sportsBookDataFinal.filter((x) => x.bookId == this.selectedGame);
-
     var name1 = '';
     var h2h = '';
     var spreadPoint = '';
@@ -477,26 +472,24 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
+    console.timeEnd("Display Prop")
   }
 
 
   async checkSportsBookDb() {
     var dbEmpty
     try {
+      console.time("Check sports book db")
       dbEmpty = await this.SportsBookRepo.find({ where: { sportTitle: this.selectedSport } })
       if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
         var results = await this.draftKingsApiController.getDatesAndGames(this.selectedSport);
-
         await SportsBookController.addBookData(results);
-
-
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-        console.log(this.sportsBookDataFinal)
       }
       else {
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-
       }
+      console.timeEnd("Check sports book db")
     } catch (error: any) {
       alert(error.message)
     }
@@ -505,6 +498,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   async checkPlayerInfoDb() {
+    console.time("Check player info db")
     var dbEmpty = []
     if (this.selectedSport == "NHL") {
       try {
@@ -520,9 +514,9 @@ export class PropScreenComponent implements OnInit {
 
     if (this.selectedSport == "NBA") {
       try {
+        
         var gameArray = this.splitGameString(this.gameString)
         let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[0])]
-        console.log(this.addUnderScoreToName(gameArray[0]))
         let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
         if (dbEmpty.length == 0) {
           var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
@@ -534,11 +528,12 @@ export class PropScreenComponent implements OnInit {
             await NbaController.nbaAddPlayerInfoData(returnCall);
           }
         }
+        
       } catch (error: any) {
         alert(error.message)
       }
       dbEmpty = []
-
+      console.timeEnd("Check player info db")
 
     }
   }
@@ -595,6 +590,7 @@ export class PropScreenComponent implements OnInit {
     this.playerPropsClicked = true;
 
     try {
+      console.time("load player props")
       var dbEmpty = await this.playerPropRepo.find({ where: { bookId: this.selectedGame } })
       if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
         var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
@@ -603,15 +599,13 @@ export class PropScreenComponent implements OnInit {
 
 
         await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
-        console.log(this.sportsBookDataFinal)
         this.addplayerPropToArray();
       }
       else {
         await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
         this.addplayerPropToArray();
-        console.log(this.sportsBookDataFinal)
-        console.log(this.sportsBookData)
       }
+      console.timeEnd("load player props")
     } catch (error: any) {
       alert(error.message)
     }
@@ -650,7 +644,7 @@ export class PropScreenComponent implements OnInit {
   addplayerPropToArray() {
 
     // takes the stream from the database and converts it to the objects for display
-
+    console.time("add player prop to array")
     var differentPropTypes: any[] = []
     this.playerPropDataFinal.forEach((e) => {
       if (!differentPropTypes.includes(e.marketKey)) {
@@ -695,6 +689,8 @@ export class PropScreenComponent implements OnInit {
       this.playerPropObjectArray[j] = this.playerPropsArray;
     }
     this.playerProps = new MatTableDataSource(this.playerPropObjectArray);
+
+    console.timeEnd("add player prop to array")
 
   }
 
@@ -774,6 +770,7 @@ export class PropScreenComponent implements OnInit {
         }
       }
       if (this.selectedSport == "NBA") {
+        console.time("get player stats for season call")
         var previousName = ''
         for (let i = 0; i < element.length; i++) {
           let playerName = element[i].name
@@ -821,7 +818,7 @@ export class PropScreenComponent implements OnInit {
           await this.computeStatForPlayer(element[i]);
           previousName = element[i].name
         }
-
+        console.timeEnd("get player stats for season call")
       }
       this.displayProgressBar = false
     } catch (error: any) {
@@ -832,14 +829,17 @@ export class PropScreenComponent implements OnInit {
 
 
   async computeStatsForAllPlayersInProp(element: any) {
-    if (element[0].percentTeam == "") {
+    console.time("compute stats for all players in prop")
+      if (element[0].percentTeam == "") {
       await this.getPlayerStatsForSeasonCall(element)
-    }
+    } 
+    console.timeEnd("compute stats for all players in prop")
 
 
 
   }
   async computeStatForPlayer(element: any) {
+    console.time("compute stat for player")
     //add this function to get called when the original elements get added to the interface
     //don't make the call each time. Make the call once then add it to an array then once they click again check to see if it's already stored
     this.playerAverageForSeason = 0;
@@ -1176,10 +1176,12 @@ export class PropScreenComponent implements OnInit {
 
       } else { this.average2022vsTeam = -1 }
     }
+    console.timeEnd("compute stat for player")
     this.updatePlayerPropArray(element);
   }
 
   updatePlayerPropArray(element: any) {
+    console.time("update player prop array")
     element.avgTotal = this.playerAverageForSeason;
     element.percentTotal = this.playerPercentForSeason;
     element.percentTeam = this.playerPercentVsTeam;
@@ -1191,7 +1193,7 @@ export class PropScreenComponent implements OnInit {
     element.average2022 = this.average2022
     element.average2022vsTeam = this.average2022vsTeam
     element.id = this.playerId
-
+    console.timeEnd("update player prop array")
   }
 
   playerNameSpanishConvert(list: PlayerInfoMlb[]): PlayerInfoMlb[] {
