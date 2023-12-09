@@ -184,7 +184,7 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerStatsInfoFromNameAndSeason(name: string, season: number): Promise<DbNbaGameStats[]> {
     const taskRepo = remult.repo(DbNbaGameStats)
-    return await taskRepo.find({ where: { playerName: name, season: season } })
+    return await taskRepo.find({ where: { playerName: name, season: season }, orderBy: { gameId: "asc" } })
   }
 
 

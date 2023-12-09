@@ -25,10 +25,12 @@ export class PlayerPropController {
 
   }
 
+
+  //possibly look into just pulling back ceratin game or players? instead of all by sport
   @BackendMethod({ allowed: true })
   static async loadPlayerPropData(sport: string): Promise<DbPlayerPropData[]> {
     const taskRepo = remult.repo(DbPlayerPropData)
-    return await taskRepo.find({where: {sportTitle: sport}})
+    return await taskRepo.find({where: {sportTitle: sport}, orderBy: { playerName: "asc" }})
   }
 
 }

@@ -129,6 +129,8 @@ export class nbaApiController {
     var oldGames = games.map((x) => {
      return x.gameId
     })
+    console.log(player[0].playerName)
+    console.log(oldGames)
     for (let i = 0; i < this.playerStatData.length; i++) {
       if (this.playerStatData[i].game.id >= 12478 && this.playerStatData[i].game.id <= 12548) {
         continue
@@ -266,6 +268,9 @@ export class nbaApiController {
     if(subtractDay){
       var newDate = finalDate.split("/")
       newDate[1] = (parseInt(newDate[1]) - 1).toString()
+      if(parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0){
+        newDate[1] = '0' + newDate[1] 
+      }
       if(parseInt(newDate[1]) == 0){
         if(parseInt(newDate[0]) == 1){
           newDate[0] == '12'
