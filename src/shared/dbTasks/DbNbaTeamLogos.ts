@@ -14,6 +14,9 @@ export class DbNbaTeamLogos {
     teamId = 0
 
     @Fields.string()
-    logo = ''
+    primaryColor = ''
+
+    @Fields.string()
+    alternateColor = ''
 
 }

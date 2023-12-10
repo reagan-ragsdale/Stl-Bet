@@ -20,20 +20,20 @@
 
   <div *ngIf="gamePropsClicked">
     <mat-grid-list cols="2" rowHeight="1.25:1">
-      <mat-grid-tile style="background-image: url({{displayPropHtml1.logo}}); background-repeat: no-repeat; background-size: cover;">
+      <mat-grid-tile style="background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}';">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; color:'{{displayPropHtml1.teamInfo[0].alternateColor}}';">
               {{displayPropHtml1.name}}
             </mat-grid-tile>
             
           </mat-grid-list>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile style="background-color: lightcoral;">
+      <mat-grid-tile style="background-color: '{{displayPropHtml2.teamInfo[0].primaryColor}}'; ">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; ">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; color:'{{displayPropHtml2.teamInfo[0].alternateColor}}'; ">
               {{displayPropHtml2.name}}
             </mat-grid-tile>
             

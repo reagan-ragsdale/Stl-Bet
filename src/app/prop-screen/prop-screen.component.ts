@@ -37,6 +37,7 @@ import { ArrayOfDates } from '../array-of-dates';
 
 
 import { Route, Router } from '@angular/router';
+import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 
 @Component({
   selector: 'app-prop-screen',
@@ -167,7 +168,7 @@ export class PropScreenComponent implements OnInit {
       spreadPrice: '',
       totalPoint: '',
       totalPrice: '',
-      logo: ''
+      teamInfo: []
     };
   public displayPropHtml2: PropData =
     {
@@ -177,7 +178,7 @@ export class PropScreenComponent implements OnInit {
       spreadPrice: '',
       totalPoint: '',
       totalPrice: '',
-      logo: ''
+      teamInfo: []
     };
 
 
@@ -470,11 +471,8 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team1[0].teamName)
-    console.log(teamInfo)
-    if(teamInfo.length > 0){
-      logo = teamInfo[0].logo
-    }
-    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, logo: logo });
+    
+    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, teamInfo: teamInfo });
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price.toString();
     spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point.toString();
@@ -482,10 +480,8 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team2[0].teamName)
-    if(teamInfo.length > 0){
-      logo = teamInfo[0].logo
-    }
-    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, logo: logo });
+    
+    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, teamInfo: teamInfo });
     console.timeEnd("Display Prop")
   }
 
