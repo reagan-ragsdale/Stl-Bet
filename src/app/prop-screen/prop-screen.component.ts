@@ -359,18 +359,16 @@ export class PropScreenComponent implements OnInit {
   }
 
   findBestBetsFromEvent(event: any) {
-    console.log(event)
     var bestBets: any = this.addBestBets(event);
     bestBets.forEach((element: any) => {
       this.checkoutArray.push(element);
     });
-    console.log()
   }
 
   addBestBets(event: any): any[] {
     var bets: any[] = [];
     for (var i = 0; i < event.length; i++) {
-      if ((parseInt(event[i].percentTeam) >= .900) || (parseInt(event[i].percentTotal) >= .500)) {
+      if ((parseFloat(event[i].percentTeam) >= .900) || (parseFloat(event[i].percentTotal) >= .950)) {
         bets.push(event[i]);
       }
     }
@@ -594,12 +592,15 @@ export class PropScreenComponent implements OnInit {
       var dbEmpty = await this.playerPropRepo.find({ where: { bookId: this.selectedGame } })
       if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
         var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
-
-        await PlayerPropController.addPlayerPropData(results);
-
-
-        await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
-        this.addplayerPropToArray();
+        if(results.length == 0){
+          alert("Player Props have not been added by Draft Kings yet")
+        }
+        else{
+          await PlayerPropController.addPlayerPropData(results);
+          await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
+          this.addplayerPropToArray();
+        }
+        
       }
       else {
         await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)

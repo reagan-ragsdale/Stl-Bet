@@ -44,6 +44,6 @@ export const api = remultExpress({
   //small change
     dataProvider: createPostgresDataProvider({
     connectionString: "postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC@postgres.railway.internal:5432/railway" 
-  })  
+  })   
   
 });

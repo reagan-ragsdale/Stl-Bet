@@ -14,11 +14,12 @@ export class PlayerPropController {
    var d = new Date;
    
     var dbToDelete = await taskRepo.find({where: { sportTitle: playerData[0].sportTitle }})
+    console.log(dbToDelete)
     if(dbToDelete.length > 0){
       for( const d of dbToDelete){
       await taskRepo.delete(d)
     } }
-    
+    console.log(playerData)
     for (const data of playerData) {
       await taskRepo.insert({bookId: data.bookId, sportKey: data.sportKey, sportTitle: data.sportTitle, homeTeam: data.homeTeam, awayTeam: data.awayTeam, commenceTime: data.commenceTime, bookMaker: data.bookMaker, marketKey: data.marketKey, description: data.description, playerName: data.playerName, price: data.price, point: data.point})
     }
