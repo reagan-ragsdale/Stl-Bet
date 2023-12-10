@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "teamName": "Charlotte Hornets",
+        "teamId": 2,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    },
+    {
+        "id": "2",
+        "teamName": "Miami Heat",
+        "teamId": 3,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    }
+]

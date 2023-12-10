@@ -20,11 +20,11 @@
   <!-- background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}'; -->
   <div *ngIf="gamePropsClicked">
     <mat-grid-list cols="2" rowHeight="1.25:1">
-      <mat-grid-tile style="background-color: '{{displayPropHtml1.primaryColor}}';">
+      <mat-grid-tile  [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
             <!-- color:'{{displayPropHtml1.teamInfo[0].alternateColor}}'; -->
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; color:'{{displayPropHtml1.alternateColor}}';">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;" [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               {{displayPropHtml1.name}}
             </mat-grid-tile>
             
@@ -32,11 +32,11 @@
         </div>
       </mat-grid-tile>
       <!-- background-color: '{{displayPropHtml2.teamInfo[0].primaryColor}}'; -->
-      <mat-grid-tile style="background-color: '{{displayPropHtml2.primaryColor}}'; ">
+      <mat-grid-tile  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
             <!-- color:'{{displayPropHtml2.teamInfo[0].alternateColor}}'; -->
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;  color:'{{displayPropHtml2.alternateColor}}';">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
               {{displayPropHtml2.name}}
             </mat-grid-tile>
             
