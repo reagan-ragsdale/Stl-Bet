@@ -5,4 +5,5 @@ export interface PropData {
     spreadPrice: string;
     totalPoint: string;
     totalPrice: string;
+    logo: string;
 }

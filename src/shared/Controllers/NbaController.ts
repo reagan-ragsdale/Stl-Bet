@@ -1,6 +1,7 @@
 import { Allow, BackendMethod, remult } from "remult"
 import { NbaPlayerInfoDb } from "../dbTasks/NbaPlayerInfoDb"
 import { DbNbaGameStats } from "../dbTasks/DbNbaGameStats"
+import { DbNbaTeamLogos } from "../dbTasks/DbNbaTeamLogos"
 
 export class NbaController {
 
@@ -95,9 +96,9 @@ export class NbaController {
 
       })
 
-      
-        await taskRepo2.insert(playerData)
-      
+
+      await taskRepo2.insert(playerData)
+
     }
 
 
@@ -206,6 +207,18 @@ export class NbaController {
 
   // nba team logos
 
+
+  @BackendMethod({ allowed: true })
+  static async nbaGetLogoFromTeamId(id: number): Promise<DbNbaTeamLogos[]> {
+    const taskRepo = remult.repo(DbNbaTeamLogos)
+    return await taskRepo.find({ where: { teamId: id} })
+  }
+
+  @BackendMethod({ allowed: true })
+  static async nbaGetLogoFromTeamName(name: string): Promise<DbNbaTeamLogos[]> {
+    const taskRepo = remult.repo(DbNbaTeamLogos)
+    return await taskRepo.find({ where: { teamName: name} })
+  }
 
 
 

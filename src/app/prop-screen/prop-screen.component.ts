@@ -35,6 +35,7 @@ import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import { Chart } from 'chart.js/auto';
 import { ArrayOfDates } from '../array-of-dates';
 
+
 import { Route, Router } from '@angular/router';
 
 @Component({
@@ -165,7 +166,8 @@ export class PropScreenComponent implements OnInit {
       spreadPoint: '',
       spreadPrice: '',
       totalPoint: '',
-      totalPrice: ''
+      totalPrice: '',
+      logo: ''
     };
   public displayPropHtml2: PropData =
     {
@@ -174,7 +176,8 @@ export class PropScreenComponent implements OnInit {
       spreadPoint: '',
       spreadPrice: '',
       totalPoint: '',
-      totalPrice: ''
+      totalPrice: '',
+      logo: ''
     };
 
 
@@ -443,7 +446,7 @@ export class PropScreenComponent implements OnInit {
     });
   }
 
-  displayProp() {
+  async displayProp() {
     console.time("Display Prop")
     const tempProp = this.sportsBookDataFinal.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
@@ -452,9 +455,13 @@ export class PropScreenComponent implements OnInit {
     var spreadPrice = '';
     var totalPoint = '';
     var totalPrice = ''
+    var teamInfo = []
+    var logo = ''
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
+
+    
 
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
@@ -462,14 +469,22 @@ export class PropScreenComponent implements OnInit {
     spreadPrice = team1.filter((e) => e.marketKey == "spreads")[0].price.toString();
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
-    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
+    teamInfo = await NbaController.nbaGetLogoFromTeamName(team1[0].teamName)
+    if(teamInfo.length > 0){
+      logo = teamInfo[0].logo
+    }
+    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, logo: logo });
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price.toString();
     spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point.toString();
     spreadPrice = team2.filter((e) => e.marketKey == "spreads")[0].price.toString();
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
-    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
+    teamInfo = await NbaController.nbaGetLogoFromTeamName(team2[0].teamName)
+    if(teamInfo.length > 0){
+      logo = teamInfo[0].logo
+    }
+    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, logo: logo });
     console.timeEnd("Display Prop")
   }
 
