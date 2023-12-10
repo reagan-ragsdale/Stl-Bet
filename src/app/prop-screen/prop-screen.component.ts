@@ -471,6 +471,7 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team1[0].teamName)
+    console.log(teamInfo[0].primaryColor)
     
     this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, teamInfo: teamInfo });
     name1 = team2[0].teamName;
