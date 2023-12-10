@@ -17,6 +17,8 @@ import { NbaPlayerInfoDb } from '../shared/dbTasks/NbaPlayerInfoDb';
 import { NbaController } from '../shared/Controllers/NbaController';
 import { DbNbaGameStats } from '../shared/dbTasks/DbNbaGameStats';
 import { createPostgresDataProvider } from 'remult/postgres';
+import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
+import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 
 export const api = remultExpress({
   entities: [
@@ -29,6 +31,8 @@ export const api = remultExpress({
     DbNhlPlayerGameStats,
     NbaPlayerInfoDb,
     DbNbaGameStats,
+    DbNbaTeamGameStats,
+    DbNbaTeamLogos
   ],
   controllers: [
     TaskController,

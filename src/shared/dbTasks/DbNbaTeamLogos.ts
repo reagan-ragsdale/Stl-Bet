@@ -3,7 +3,7 @@ import { Allow, Entity, Fields, Validators } from "remult"
 @Entity("DbNbaTeamLogos", {
     allowApiCrud: true
 })
-export class DbNbaTeamGameStats {
+export class DbNbaTeamLogos {
     @Fields.cuid()
     id? = ''
 
