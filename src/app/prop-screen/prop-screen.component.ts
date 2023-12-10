@@ -168,14 +168,8 @@ export class PropScreenComponent implements OnInit {
       spreadPrice: '',
       totalPoint: '',
       totalPrice: '',
-      teamInfo: {
-        id: '',
-        teamName: '',
-        teamId: 0,
-        primaryColor: '',
-        alternateColor: ''
-
-      }
+      primaryColor: '',
+      alternateColor: ''
     };
   public displayPropHtml2: PropData =
     {
@@ -185,14 +179,8 @@ export class PropScreenComponent implements OnInit {
       spreadPrice: '',
       totalPoint: '',
       totalPrice: '',
-      teamInfo:  {
-        id: '',
-        teamName: '',
-        teamId: 0,
-        primaryColor: '',
-        alternateColor: ''
-
-      }
+      primaryColor: '',
+      alternateColor: ''
     };
 
 
@@ -485,8 +473,8 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team1[0].teamName)
-    
-    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, teamInfo: teamInfo[0] });
+    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
+
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price.toString();
     spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point.toString();
@@ -495,7 +483,7 @@ export class PropScreenComponent implements OnInit {
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team2[0].teamName)
     
-    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, teamInfo: teamInfo[0] });
+    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
   }
 
