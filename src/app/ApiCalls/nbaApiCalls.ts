@@ -124,13 +124,10 @@ export class nbaApiController {
   async convertNbaStatDataToInterface(id: number, season: number) {
     console.time("convertNbaStatDataToInterface")
     var temp: DbNbaGameStats[] = []
-    var player = await NbaController.nbaLoadPlayerInfoFromId(id)
     var games = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(id, season)
     var oldGames = games.map((x) => {
      return x.gameId
     })
-    console.log(player[0].playerName)
-    console.log(oldGames)
     for (let i = 0; i < this.playerStatData.length; i++) {
       if (this.playerStatData[i].game.id >= 12478 && this.playerStatData[i].game.id <= 12548) {
         continue

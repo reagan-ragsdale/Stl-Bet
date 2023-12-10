@@ -109,7 +109,7 @@ export class NbaController {
     const taskRepo2 = remult.repo(DbNbaGameStats)
     console.log("Here in addPlayerGameStats2023")
 
-    var db2023: DbNbaGameStats[] = await taskRepo2.find({ where: { playerId: playerData[0].playerId, season: 2023 } })
+    /* var db2023: DbNbaGameStats[] = await taskRepo2.find({ where: { playerId: playerData[0].playerId, season: 2023 } })
     var newGamesToAdd: DbNbaGameStats[] = playerData
 
     var db2023WithoutIdOrCreatedDate: DbNbaGameStats[] = []
@@ -153,9 +153,9 @@ export class NbaController {
 
       
       newGamesToAdd = playerData.filter(({gameId: game1}) => !db2023WithoutIdOrCreatedDate.some(({gameId: game2}) => game1 === game2))
-    }
+    } */
 
-    newGamesToAdd.forEach((e) => {
+    playerData.forEach((e) => {
       if (e.playerName.includes("ü")) {
         e.playerName = e.playerName.replaceAll("ü", "u")
       }
@@ -171,7 +171,7 @@ export class NbaController {
     /* for (const data of newGamesToAdd) {
       await taskRepo2.insert({ playerId: data.playerId, playerName: data.playerName, teamName: data.teamName, teamId: data.teamId, teamAgainstName: data.teamAgainstName, teamAgainstId: data.teamAgainstId, homeOrAway: data.homeOrAway, season: data.season, gameId: data.gameId, gameDate: data.gameDate, playerStarted: data.playerStarted, assists: data.assists, points: data.points, fgm: data.fgm, fga: data.fga, fgp: data.fgp, ftm: data.ftm, fta: data.fta, ftp: data.ftp, tpm: data.tpm, tpa: data.tpa, tpp: data.tpp, offReb: data.offReb, defReb: data.defReb, totReb: data.totReb, pFouls: data.pFouls, steals: data.steals, turnover: data.turnover, blocks: data.blocks })
     } */
-    await taskRepo2.insert(newGamesToAdd)
+    await taskRepo2.insert(playerData)
 
   }
 
