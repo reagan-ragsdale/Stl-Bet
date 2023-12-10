@@ -7,5 +7,5 @@ export interface PropData {
     spreadPrice: string;
     totalPoint: string;
     totalPrice: string;
-    teamInfo: DbNbaTeamLogos[];
+    teamInfo: DbNbaTeamLogos;
 }
