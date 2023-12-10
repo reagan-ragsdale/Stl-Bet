@@ -589,8 +589,7 @@ export class PropScreenComponent implements OnInit {
 
     try {
       console.time("load player props")
-      var dbEmpty = await this.playerPropRepo.find({ where: { bookId: this.selectedGame } })
-      if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
+      
         var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
         if(results.length == 0){
           alert("Player Props have not been added by Draft Kings yet")
@@ -601,11 +600,7 @@ export class PropScreenComponent implements OnInit {
           this.addplayerPropToArray();
         }
         
-      }
-      else {
-        await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
-        this.addplayerPropToArray();
-      }
+     
       console.timeEnd("load player props")
     } catch (error: any) {
       alert(error.message)
