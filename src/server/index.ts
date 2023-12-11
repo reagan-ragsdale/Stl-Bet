@@ -34,14 +34,16 @@ app.use(compression());
 // the `JsonDataProvider` is used to store the data in a JSON file by default, so there is no need to set it
 app.use(api);
 
-app.use(
+
+//comment out below only for local
+        app.use(
   remultExpress({
     dataProvider:
       createPostgresDataProvider({
         connectionString
       })
   })
-)
+)     
 
 // In angular 16, the `index.html` file is in the `remult-angular-todo` folder, and not in the `remult-angular-todo/browser` folder
 app.use(express.static(path.join(__dirname, '../remult-angular-todo')));

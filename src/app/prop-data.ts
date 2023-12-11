@@ -1,3 +1,5 @@
+import { DbNbaTeamLogos } from "src/shared/dbTasks/DbNbaTeamLogos";
+
 export interface PropData {
     name: string;
     h2h: string;
@@ -5,4 +7,6 @@ export interface PropData {
     spreadPrice: string;
     totalPoint: string;
     totalPrice: string;
+    primaryColor: string;
+    alternateColor: string;
 }

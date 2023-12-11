@@ -17,6 +17,8 @@ import { NbaPlayerInfoDb } from '../shared/dbTasks/NbaPlayerInfoDb';
 import { NbaController } from '../shared/Controllers/NbaController';
 import { DbNbaGameStats } from '../shared/dbTasks/DbNbaGameStats';
 import { createPostgresDataProvider } from 'remult/postgres';
+import { DbNbaTeamGameStats } from '../shared/dbTasks/DbNbaTeamGameStats';
+import { DbNbaTeamLogos } from '../shared/dbTasks/DbNbaTeamLogos';
 
 export const api = remultExpress({
   entities: [
@@ -29,6 +31,8 @@ export const api = remultExpress({
     DbNhlPlayerGameStats,
     NbaPlayerInfoDb,
     DbNbaGameStats,
+    DbNbaTeamGameStats,
+    DbNbaTeamLogos
   ],
   controllers: [
     TaskController,
@@ -39,8 +43,11 @@ export const api = remultExpress({
     NhlPlayerGameStatsController,
     NbaController,
   ],
-  dataProvider: createPostgresDataProvider({
+
+  //comment out below when local
+  //small change
+        dataProvider: createPostgresDataProvider({
     connectionString: "postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC@postgres.railway.internal:5432/railway" 
-  })
-  // getUser: req => req.session!["user"]
+  })      
+  
 });

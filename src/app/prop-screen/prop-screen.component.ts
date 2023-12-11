@@ -33,8 +33,11 @@ import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import { Chart } from 'chart.js/auto';
+import { ArrayOfDates } from '../array-of-dates';
+
 
 import { Route, Router } from '@angular/router';
+import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 
 @Component({
   selector: 'app-prop-screen',
@@ -69,6 +72,7 @@ export class PropScreenComponent implements OnInit {
   public gamePropsClicked = true;
   arrayOfMLBTeams: SportsTitleToName = { Minnesota_Twins: "MIN", Detroit_Tigers: "DET", Cincinnati_Reds: "CIN", Chicago_Cubs: "CHC", Milwaukee_Brewers: "MIL", Philadelphia_Phillies: "PHI", Oakland_Athletics: "OAK", Los_Angeles_Angels: "LAA", Pittsburgh_Pirates: "PIT", Cleveland_Guardians: "CLE", Tampa_Bay_Rays: "TB", Boston_Red_Socks: "BOS", Seattle_Mariners: "SEA", Miami_Marlins: "MIA", Los_Angeles_Dodgers: "LAD", New_York_Yankees: "NYY", Washington_Nationals: "WAS", New_York_Mets: "NYM", San_Francisco_Giants: "SF", Kansas_City_Royals: "KC", Chicago_White_Sox: "CHW", Atlanta_Braves: "ATL", St_Louis_Cardinals: "STL", Arizona_Diamondbacks: "ARI", Baltimore_Orioles: "BAL", Colorado_Rockies: "COL", Houston_Astros: "HOU", San_Diego_Padres: "SD", Texas_Rangers: "TEX", Toronto_Blue_Jays: "TOR" };
   arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
+  arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
   home_team: string = '';
   away_team: string = '';
 
@@ -98,7 +102,7 @@ export class PropScreenComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description', 'point', 'price', 'detailedStats'];
 
-  readonly APIUrl = "http://localhost:5086/api/MlbPlayerInfo/";
+  
 
 
 
@@ -122,25 +126,7 @@ export class PropScreenComponent implements OnInit {
   sports: any[] = [];
   playerProps: any;
 
-  sportPropArray: SportPropArray[] = [{
-    sportName: '',
-    dateArray: []
-  }]
-
-  datePrropArray: DateArray[] = [{
-    date: '',
-    gameProp: []
-  }]
-
-  gamePropArray: GamePropArray[] = [{
-    gameId: '',
-    gameProps: []
-  }]
-
-  propsArray: PropArray[] = [{
-    propName: '',
-    playerProps: []
-  }]
+  
 
   playerPropsArray: PlayerProp[] = [{
     name: '',
@@ -181,7 +167,9 @@ export class PropScreenComponent implements OnInit {
       spreadPoint: '',
       spreadPrice: '',
       totalPoint: '',
-      totalPrice: ''
+      totalPrice: '',
+      primaryColor: '',
+      alternateColor: ''
     };
   public displayPropHtml2: PropData =
     {
@@ -190,11 +178,13 @@ export class PropScreenComponent implements OnInit {
       spreadPoint: '',
       spreadPrice: '',
       totalPoint: '',
-      totalPrice: ''
+      totalPrice: '',
+      primaryColor: '',
+      alternateColor: ''
     };
 
 
-  listOfSupportedSports: string[] = ["NBA", "NHL"];
+  listOfSupportedSports: string[] = ["NBA"];
   sportsToTitle: SportsTitleToName = {
     NBA: "basketball_nba",
     NFL: "americanfootball_nfl",
@@ -256,7 +246,6 @@ export class PropScreenComponent implements OnInit {
 
 
   async onSportClick(sport: any) {
-    console.log(sport)
     this.selectedDate = ''
     this.setSelectedSport(sport.tab.textLabel);
     //await this.checkSportPlayerInfoDb();
@@ -273,13 +262,10 @@ export class PropScreenComponent implements OnInit {
 
   }
   onDateClick(date: any) {
-    console.log(date)
-
     this.setSelectedDate(date.tab.textLabel);
     this.updateGames();
   }
   async onGameClick(game: any) {
-    console.log(game)
     this.gameString = game.tab.textLabel
     this.setSelectedGame(game.tab.textLabel);
     if (this.selectedSport == "NBA") {
@@ -355,10 +341,8 @@ export class PropScreenComponent implements OnInit {
 
   //adding items to checkout
   addPropToChechout(event: any) {
-    console.log(event)
   }
   addItemToCheckout(event: any) {
-    console.log(event)
     event.isDisabled = true;
     //var bestBets = this.findBestBetsFromEvent(event);
     //bestBets.forEach(element => {
@@ -379,28 +363,24 @@ export class PropScreenComponent implements OnInit {
   }
 
   findBestBetsFromEvent(event: any) {
-    console.log(event)
     var bestBets: any = this.addBestBets(event);
     bestBets.forEach((element: any) => {
       this.checkoutArray.push(element);
     });
-    console.log()
   }
 
   addBestBets(event: any): any[] {
     var bets: any[] = [];
     for (var i = 0; i < event.length; i++) {
-      if ((parseInt(event[i].percentTeam) >= .900) || (parseInt(event[i].percentTotal) >= .500)) {
+      if ((parseFloat(event[i].percentTeam) >= .900) || (parseFloat(event[i].percentTotal) >= .950)) {
         bets.push(event[i]);
       }
     }
-    console.log(bets)
     return bets;
   }
 
 
   testFunc(event: any) {
-    console.log(event)
   }
 
   convertSport(sport: any) {
@@ -410,17 +390,34 @@ export class PropScreenComponent implements OnInit {
     var tempDate = fullDate?.split("T");
     var time = tempDate[1].slice(0, 2)
     var subtractDay = false
-    if (parseInt(time) - 6 <= 0) {
+    if(parseInt(time) - 6 <= 0){
       subtractDay = true
     }
 
     var indexOfFirstDash = tempDate[0].indexOf("-");
     var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
     var finalDate = tempDate2.replace("-", "/");
-    if (subtractDay) {
-      finalDate = finalDate.replace(finalDate.charAt(finalDate.length - 1), (parseInt(finalDate.charAt(finalDate.length - 1)) - 1).toString())
-    }
+    if(subtractDay){
+      var newDate = finalDate.split("/")
+      newDate[1] = (parseInt(newDate[1]) - 1).toString()
+      if(parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0){
+        newDate[1] = '0' + newDate[1] 
+      }
+      if(parseInt(newDate[1]) == 0){
+        if(parseInt(newDate[0]) == 1){
+          newDate[0] == '12'
+          newDate[1] == '31'
+        }
+        if(parseInt(newDate[0]) != 1){
+          newDate[0] = (parseInt(newDate[0]) - 1).toString()
+          newDate[1] = this.arrayOfDates[parseInt(newDate[0])].toString()
+        }
 
+      }
+      finalDate = newDate[0] + "/" + newDate[1]
+
+    }
+    
     return finalDate;
   }
 
@@ -448,20 +445,22 @@ export class PropScreenComponent implements OnInit {
     });
   }
 
-  displayProp() {
-
-
+  async displayProp() {
+    console.time("Display Prop")
     const tempProp = this.sportsBookDataFinal.filter((x) => x.bookId == this.selectedGame);
-
     var name1 = '';
     var h2h = '';
     var spreadPoint = '';
     var spreadPrice = '';
     var totalPoint = '';
     var totalPrice = ''
+    var teamInfo = []
+    var logo = ''
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
+
+    
 
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
@@ -469,36 +468,36 @@ export class PropScreenComponent implements OnInit {
     spreadPrice = team1.filter((e) => e.marketKey == "spreads")[0].price.toString();
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
-    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
+    teamInfo = await NbaController.nbaGetLogoFromTeamName(team1[0].teamName)
+    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
+
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price.toString();
     spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point.toString();
     spreadPrice = team2.filter((e) => e.marketKey == "spreads")[0].price.toString();
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
-    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
-    //console.log(this.displayPropHtml)
+    teamInfo = await NbaController.nbaGetLogoFromTeamName(team2[0].teamName)
+    
+    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
+    console.timeEnd("Display Prop")
   }
 
 
   async checkSportsBookDb() {
     var dbEmpty
-    console.log("Here in sports book db")
     try {
+      console.time("Check sports book db")
       dbEmpty = await this.SportsBookRepo.find({ where: { sportTitle: this.selectedSport } })
       if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
         var results = await this.draftKingsApiController.getDatesAndGames(this.selectedSport);
-
         await SportsBookController.addBookData(results);
-
-
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-        console.log(this.sportsBookDataFinal)
       }
       else {
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-
       }
+      console.timeEnd("Check sports book db")
     } catch (error: any) {
       alert(error.message)
     }
@@ -507,6 +506,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   async checkPlayerInfoDb() {
+    console.time("Check player info db")
     var dbEmpty = []
     if (this.selectedSport == "NHL") {
       try {
@@ -522,9 +522,9 @@ export class PropScreenComponent implements OnInit {
 
     if (this.selectedSport == "NBA") {
       try {
+        
         var gameArray = this.splitGameString(this.gameString)
         let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[0])]
-        console.log(this.addUnderScoreToName(gameArray[0]))
         let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
         if (dbEmpty.length == 0) {
           var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
@@ -536,11 +536,12 @@ export class PropScreenComponent implements OnInit {
             await NbaController.nbaAddPlayerInfoData(returnCall);
           }
         }
+        
       } catch (error: any) {
         alert(error.message)
       }
       dbEmpty = []
-
+      console.timeEnd("Check player info db")
 
     }
   }
@@ -597,23 +598,20 @@ export class PropScreenComponent implements OnInit {
     this.playerPropsClicked = true;
 
     try {
-      var dbEmpty = await this.playerPropRepo.find({ where: { bookId: this.selectedGame } })
-      if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
+      console.time("load player props")
+      
         var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
-
-        await PlayerPropController.addPlayerPropData(results);
-
-
-        await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
-        console.log(this.sportsBookDataFinal)
-        this.addplayerPropToArray();
-      }
-      else {
-        await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
-        this.addplayerPropToArray();
-        console.log(this.sportsBookDataFinal)
-        console.log(this.sportsBookData)
-      }
+        if(results.length == 0){
+          alert("Player Props have not been added by Draft Kings yet")
+        }
+        else{
+          await PlayerPropController.addPlayerPropData(results);
+          await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame).then(item => this.playerPropDataFinal = item)
+          this.addplayerPropToArray();
+        }
+        
+     
+      console.timeEnd("load player props")
     } catch (error: any) {
       alert(error.message)
     }
@@ -652,7 +650,7 @@ export class PropScreenComponent implements OnInit {
   addplayerPropToArray() {
 
     // takes the stream from the database and converts it to the objects for display
-
+    console.time("add player prop to array")
     var differentPropTypes: any[] = []
     this.playerPropDataFinal.forEach((e) => {
       if (!differentPropTypes.includes(e.marketKey)) {
@@ -698,6 +696,8 @@ export class PropScreenComponent implements OnInit {
     }
     this.playerProps = new MatTableDataSource(this.playerPropObjectArray);
 
+    console.timeEnd("add player prop to array")
+
   }
 
   removeUnderscoreFromPlayerProp(prop: string): string {
@@ -737,7 +737,6 @@ export class PropScreenComponent implements OnInit {
   public displayProgressBar = true;
   async getPlayerStatsForSeasonCall(element: any) {
 
-
     try {
       if (this.selectedSport == "NHL") {
         for (let i = 0; i < element.length; i++) {
@@ -776,8 +775,18 @@ export class PropScreenComponent implements OnInit {
         }
       }
       if (this.selectedSport == "NBA") {
+        console.time("get player stats for season call")
+        var previousName = ''
         for (let i = 0; i < element.length; i++) {
+          let playerName = element[i].name
+          if(playerName == previousName){
+            await this.computeStatForPlayer(element[i])
+            continue
+          }
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
+          if(player.length == 0){
+            alert(element[i].name)
+          }
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
           let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
           if (db2022.length == 0) {
@@ -815,26 +824,29 @@ export class PropScreenComponent implements OnInit {
           }
 
           await this.computeStatForPlayer(element[i]);
+          previousName = element[i].name
         }
-
+        console.timeEnd("get player stats for season call")
       }
       this.displayProgressBar = false
     } catch (error: any) {
-      console.log(error)
     }
   }
 
 
 
   async computeStatsForAllPlayersInProp(element: any) {
-    if (element[0].percentTeam == "") {
+    console.time("compute stats for all players in prop")
+      if (element[0].percentTeam == "") {
       await this.getPlayerStatsForSeasonCall(element)
-    }
+    } 
+    console.timeEnd("compute stats for all players in prop")
 
 
 
   }
   async computeStatForPlayer(element: any) {
+    console.time("compute stat for player")
     //add this function to get called when the original elements get added to the interface
     //don't make the call each time. Make the call once then add it to an array then once they click again check to see if it's already stored
     this.playerAverageForSeason = 0;
@@ -870,7 +882,6 @@ export class PropScreenComponent implements OnInit {
         month = "0" + month;
       }
       var day = d.getDate().toString();
-      console.log(day)
       if (day.length == 1) {
         day = "0" + day;
       }
@@ -888,7 +899,6 @@ export class PropScreenComponent implements OnInit {
           propCde = "TB";
           break;
       }
-      console.log(propCde)
       for (let i = 0; i < resultArray.length; i++) {
         if (resultArray[i].started == "True") {
 
@@ -1059,9 +1069,9 @@ export class PropScreenComponent implements OnInit {
       if (tempTeamName2.includes(" ")) {
         tempTeamName2 = tempTeamName2.replaceAll(" ", "_")
       }
-      let teamId1 = this.arrayOfNBATeams[tempTeamName1]
-      let teamId2 = this.arrayOfNBATeams[tempTeamName2]
-      let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
+      //let teamId1 = this.arrayOfNBATeams[tempTeamName1]
+      //let teamId2 = this.arrayOfNBATeams[tempTeamName2]
+      //let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
       this.teamAgainst = this.arrayOfNBATeams[this.addUnderScoreToName(element.team1)] == this.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1
 
 
@@ -1072,7 +1082,6 @@ export class PropScreenComponent implements OnInit {
         month = "0" + month;
       }
       var day = d.getDate().toString();
-      console.log(day)
       if (day.length == 1) {
         day = "0" + day;
       }
@@ -1171,10 +1180,12 @@ export class PropScreenComponent implements OnInit {
 
       } else { this.average2022vsTeam = -1 }
     }
+    console.timeEnd("compute stat for player")
     this.updatePlayerPropArray(element);
   }
 
   updatePlayerPropArray(element: any) {
+    console.time("update player prop array")
     element.avgTotal = this.playerAverageForSeason;
     element.percentTotal = this.playerPercentForSeason;
     element.percentTeam = this.playerPercentVsTeam;
@@ -1186,7 +1197,7 @@ export class PropScreenComponent implements OnInit {
     element.average2022 = this.average2022
     element.average2022vsTeam = this.average2022vsTeam
     element.id = this.playerId
-
+    console.timeEnd("update player prop array")
   }
 
   playerNameSpanishConvert(list: PlayerInfoMlb[]): PlayerInfoMlb[] {
@@ -1249,10 +1260,8 @@ export class PropScreenComponent implements OnInit {
   insertUnderscore(team: string): string {
     team = team.replaceAll(' ', '_');
     if (team.includes(".")) {
-      console.log("Here")
       team = team.replaceAll('.', '');
     }
-    console.log(team)
     return team;
   }
 

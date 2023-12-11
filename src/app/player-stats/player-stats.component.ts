@@ -139,7 +139,9 @@ export class PlayerStatsComponent {
   public nbaPlayerStatsInfo2022: DbNbaGameStats[] = []
   public nbaPlayerStatsInfo2023: DbNbaGameStats[] = []
   public nbaAllPlayerInfo: NbaPlayerInfoDb[] = []
+  public nbaPlayerStatsInfo2023TableTemp: any[] = []
   public nbaPlayerStatsInfo2023Table: any[] = []
+  public nbaPlayerStatsInfo2022TableTemp: any[] = []
   public nbaPlayerStatsInfo2022Table: any[] = []
   public playerSeasons: string[] = []
   public playerSeason: string = '2023'
@@ -176,11 +178,11 @@ export class PlayerStatsComponent {
       this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
-      this.nbaPlayerStatsInfo2023Table = structuredClone(this.nbaPlayerStatsInfo2023)
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023Table.reverse()
+      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.nbaPlayerStatsInfo2023)
+      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.nbaPlayerStatsInfo2022Table = structuredClone(this.nbaPlayerStatsInfo2023)
-      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2023Table.reverse()
+      this.nbaPlayerStatsInfo2022TableTemp = structuredClone(this.nbaPlayerStatsInfo2022)
+      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2022TableTemp.reverse()
       this.nbaPlayerStatsInfo2022Table.forEach((e) => e.isHighlighted = false)
       this.searchName = this.playerName
       this.playerSeasons.push("2023")
@@ -204,7 +206,7 @@ export class PlayerStatsComponent {
 
   async getAllPlayerInfo() {
     if (this.selectedSport == "NBA") {
-      this.nbaAllPlayerInfo = await NbaController.nbaLoadAllPlayerInfoFrom()
+      this.nbaAllPlayerInfo = await NbaController.nbaLoadAllPlayerInfo()
       this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName == this.searchName)
 
     }
@@ -224,17 +226,14 @@ export class PlayerStatsComponent {
     summedData = summedData / this.seasonArray.length
     summedData = Math.sqrt(summedData)
     this.playerStd = summedData
-    console.log(this.playerStd)
   }
 
   searchNumberSubmit() {
     //for now we're going to make this just over and single stats
 
-    console.log(this.formArray)
     // later we can add over or under and combined stats
     for (let i = 0; i < this.seasonArrayTable.length; i++) {
       for (let j = 0; j < this.formArray.length; j++) {
-        console.log(this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number)
 
         if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
           this.seasonArrayTable[i].isHighlighted = true
@@ -285,7 +284,6 @@ export class PlayerStatsComponent {
     return (num / this.seasonArrayTable.length).toFixed(2)
   }
   updateSeasonsDisplayed(season: string){
-    console.log("here")
     this.playerSeason = season
     if(this.playerSeason == "2023"){
       this.seasonArray = this.nbaPlayerStatsInfo2023
@@ -339,7 +337,6 @@ export class PlayerStatsComponent {
     filteredDataSet.forEach((e) => {
       finalDataSet = finalDataSet.concat(e.data)
     })
-    console.log(filteredDataSet)
 
 
     for (let i = 0; i < (finalDataSet.length / filteredDataSet.length); i++) {
@@ -359,7 +356,6 @@ export class PlayerStatsComponent {
     }
 
 
-    console.log(finalDataSetResult)
     var fullDisplayDataSet: any[] = []
     var stringOfPoints: string = ''
     var count = 0
@@ -372,7 +368,6 @@ export class PlayerStatsComponent {
       else { stringOfPoints += " + " + e.label }
 
     })
-    console.log(stringOfPoints)
 
     fullDisplayDataSet = [{
       label: stringOfPoints,
@@ -384,7 +379,6 @@ export class PlayerStatsComponent {
       fullDisplayDataSet = filteredDataSet
     }
     var annotationVal = 0
-    console.log(filteredDataSet)
     finalDataSetResult.forEach(e => {
       annotationVal += e
     });
@@ -565,7 +559,6 @@ else{
     for (let i = 0; i < arrayOFpoints.length; i++) {
       this.fullDataset[i].data = arrayOFpoints[i]
       this.fullDataset[i].unfilteredData = arrayOFunfiltered[i]
-      console.log(this.fullDataset[i].unfilteredData)
     }
 
     var filteredDataSet: any[] = []
@@ -575,7 +568,6 @@ else{
         combinedArrays.push(e.unfilteredData)
       }
     })
-    console.log(combinedArrays)
     var combinedArrayFinal: any[] = []
 
     for (let i = 0; i < combinedArrays[0].length; i++) {
@@ -602,7 +594,6 @@ else{
       else { stringOfPoints += " + " + e.label }
 
     })
-    console.log(combinedArrayFinal)
     if (this.isCombineStats) {
       filteredDataSet = [{
         label: stringOfPoints,
@@ -699,7 +690,6 @@ else{
     for (let i = 0; i < arrayOFpoints.length; i++) {
       this.fullDataset[i].data = arrayOFpoints[i]
       this.fullDataset[i].unfilteredData = arrayOFunfiltered[i]
-      console.log(this.fullDataset[i].unfilteredData)
     }
 
     var filteredDataSet: any[] = []
@@ -709,7 +699,6 @@ else{
         combinedArrays.push(e.unfilteredData)
       }
     })
-    console.log(combinedArrays)
     var combinedArrayFinal: any[] = []
 
     for (let i = 0; i < combinedArrays[0].length; i++) {
@@ -738,7 +727,6 @@ else{
       else { stringOfPoints += " + " + e.label }
 
     })
-    console.log(combinedArrayFinal)
     if (this.isCombineStats) {
       filteredDataSet = [{
         label: stringOfPoints,

@@ -8,6 +8,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeScreenComponent},
   { path: 'props', component: PropScreenComponent},
+  { path: 'props/:sport/:date/:game/:prop', component: PropScreenComponent},
+  { path: 'props/:sport/:date/:game/:prop/:propType', component: PropScreenComponent},
   { path: 'playerStats', component: PlayerStatsComponent},
   { path: 'playerStats/:sport/:id', component: PlayerStatsComponent},
 ];

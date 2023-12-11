@@ -64,7 +64,8 @@ To overcome this I used a new function called structuredClone() which creates a 
 
 Things to do moving forward:
 Create develop branch --
-Set up postgress database
-Imporove what is currently there
+Set up postgress database -- 
+Imporove speed of api calls and getting and putting in database
+
 
 

@@ -17,23 +17,26 @@
     <mat-tab  label="Game Props" ></mat-tab>
     <mat-tab  label="Player Props"></mat-tab>
   </mat-tab-group>
-
+  <!-- background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}'; -->
   <div *ngIf="gamePropsClicked">
     <mat-grid-list cols="2" rowHeight="1.25:1">
-      <mat-grid-tile style="background-color: lightblue;">
+      <mat-grid-tile  [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;">
+            <!-- color:'{{displayPropHtml1.teamInfo[0].alternateColor}}'; -->
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;" [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               {{displayPropHtml1.name}}
             </mat-grid-tile>
             
           </mat-grid-list>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile style="background-color: lightcoral;">
+      <!-- background-color: '{{displayPropHtml2.teamInfo[0].primaryColor}}'; -->
+      <mat-grid-tile  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; ">
+            <!-- color:'{{displayPropHtml2.teamInfo[0].alternateColor}}'; -->
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
               {{displayPropHtml2.name}}
             </mat-grid-tile>
             
@@ -44,13 +47,13 @@
     <div style="position: absolute; top: 20rem; left: 0; right: 0; margin-left: auto; margin-right: auto;  height: 400px; width: 300px; background-color: lightslategray;">
       <mat-grid-list cols="5" rowHeight="40px">
         <mat-grid-tile colspan="2" style="margin-top: 2rem; font-size: x-large;">
-          <button mat-raised-button color="primary" style="">-110</button>
+          <button mat-raised-button color="primary" >-110</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; text-wrap:balance; text-align: center;">
           Money Line
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" style="">+110</button>
+          <button mat-raised-button color="primary">+110</button>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
@@ -60,17 +63,17 @@
           Spread
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" style="">+110</button>
+          <button mat-raised-button color="primary" >+110</button>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" style="">-110</button>
+          <button mat-raised-button color="primary">-110</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; ">
           Total
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" style="">+110</button>
+          <button mat-raised-button color="primary" >+110</button>
         </mat-grid-tile>
       </mat-grid-list>
     </div>
