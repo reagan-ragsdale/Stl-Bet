@@ -341,10 +341,8 @@ export class PropScreenComponent implements OnInit {
 
   //adding items to checkout
   addPropToChechout(event: any) {
-    console.log(event)
   }
   addItemToCheckout(event: any) {
-    console.log(event)
     event.isDisabled = true;
     //var bestBets = this.findBestBetsFromEvent(event);
     //bestBets.forEach(element => {
@@ -378,13 +376,11 @@ export class PropScreenComponent implements OnInit {
         bets.push(event[i]);
       }
     }
-    console.log(bets)
     return bets;
   }
 
 
   testFunc(event: any) {
-    console.log(event)
   }
 
   convertSport(sport: any) {
@@ -473,7 +469,6 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team1[0].teamName)
-    console.log(teamInfo[0].primaryColor)
     this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
 
     name1 = team2[0].teamName;
@@ -611,7 +606,7 @@ export class PropScreenComponent implements OnInit {
         }
         else{
           await PlayerPropController.addPlayerPropData(results);
-          await PlayerPropController.loadPlayerPropData(this.selectedSport).then(item => this.playerPropDataFinal = item)
+          await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame).then(item => this.playerPropDataFinal = item)
           this.addplayerPropToArray();
         }
         
@@ -742,7 +737,6 @@ export class PropScreenComponent implements OnInit {
   public displayProgressBar = true;
   async getPlayerStatsForSeasonCall(element: any) {
 
-
     try {
       if (this.selectedSport == "NHL") {
         for (let i = 0; i < element.length; i++) {
@@ -790,6 +784,9 @@ export class PropScreenComponent implements OnInit {
             continue
           }
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
+          if(player.length == 0){
+            alert(element[i].name)
+          }
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
           let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
           if (db2022.length == 0) {
@@ -833,7 +830,6 @@ export class PropScreenComponent implements OnInit {
       }
       this.displayProgressBar = false
     } catch (error: any) {
-      console.log(error)
     }
   }
 
@@ -886,7 +882,6 @@ export class PropScreenComponent implements OnInit {
         month = "0" + month;
       }
       var day = d.getDate().toString();
-      console.log(day)
       if (day.length == 1) {
         day = "0" + day;
       }
@@ -904,7 +899,6 @@ export class PropScreenComponent implements OnInit {
           propCde = "TB";
           break;
       }
-      console.log(propCde)
       for (let i = 0; i < resultArray.length; i++) {
         if (resultArray[i].started == "True") {
 
@@ -1075,9 +1069,9 @@ export class PropScreenComponent implements OnInit {
       if (tempTeamName2.includes(" ")) {
         tempTeamName2 = tempTeamName2.replaceAll(" ", "_")
       }
-      let teamId1 = this.arrayOfNBATeams[tempTeamName1]
-      let teamId2 = this.arrayOfNBATeams[tempTeamName2]
-      let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
+      //let teamId1 = this.arrayOfNBATeams[tempTeamName1]
+      //let teamId2 = this.arrayOfNBATeams[tempTeamName2]
+      //let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
       this.teamAgainst = this.arrayOfNBATeams[this.addUnderScoreToName(element.team1)] == this.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1
 
 
@@ -1088,7 +1082,6 @@ export class PropScreenComponent implements OnInit {
         month = "0" + month;
       }
       var day = d.getDate().toString();
-      console.log(day)
       if (day.length == 1) {
         day = "0" + day;
       }
@@ -1267,10 +1260,8 @@ export class PropScreenComponent implements OnInit {
   insertUnderscore(team: string): string {
     team = team.replaceAll(' ', '_');
     if (team.includes(".")) {
-      console.log("Here")
       team = team.replaceAll('.', '');
     }
-    console.log(team)
     return team;
   }
 
