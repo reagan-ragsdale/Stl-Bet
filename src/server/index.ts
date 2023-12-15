@@ -8,7 +8,7 @@ import compression from 'compression';
 import path from 'path';
 import { api } from './api';
 import { createPostgresDataProvider } from 'remult/postgres';
-import { cronTestFile } from 'src/app/cronTest';
+import { cronTestFile } from '../app/cronTest';
 const connectionString = "postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC@postgres.railway.internal:5432/railway"
 const app = express();
 
@@ -57,6 +57,4 @@ app.get('/*', (req, res) => {
 // Added this line to active express server on the port provided in the environment variable `PORT` or `3002`
 app.listen(process.env['PORT'] || 3002, () => console.log('Server started'));
 
-cron.schedule('* * * * *',  () => {
-  cronTestFile
-})
+cron.schedule('* * * * *',  cronTestFile)
