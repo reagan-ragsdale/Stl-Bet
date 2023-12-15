@@ -1298,7 +1298,6 @@ export class PropScreenComponent implements OnInit {
 
 
 
-
   async ngOnInit() {
     this.trimSports(await this.draftKingsApiController.getSports());
   }
