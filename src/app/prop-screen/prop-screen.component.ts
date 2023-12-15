@@ -272,6 +272,7 @@ export class PropScreenComponent implements OnInit {
       await this.checkPlayerInfoDb();
     }
     this.playerPropsClicked = false;
+    this.gamePropsClicked = true;
     this.displayProp();
   }
 
@@ -836,6 +837,7 @@ export class PropScreenComponent implements OnInit {
 
 
   async computeStatsForAllPlayersInProp(element: any) {
+    this.displayProgressBar = true
     console.time("compute stats for all players in prop")
       if (element[0].percentTeam == "") {
       await this.getPlayerStatsForSeasonCall(element)
