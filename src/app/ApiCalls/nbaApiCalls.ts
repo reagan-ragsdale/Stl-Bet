@@ -9,6 +9,7 @@ import { ArrayOfDates } from '../array-of-dates';
 export class nbaApiController {
   arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
   arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
+  arrayOfNbaTeamIds: number[] = [ 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 38, 40, 41 ]
   nbaPlayerStatData: DbNbaGameStats[] = []
   playerStatData: any[] = []
 
@@ -75,6 +76,72 @@ export class nbaApiController {
         console.error(error);
       }
       console.timeEnd("get nba player data from api")
+    }
+    
+    return temp;
+    
+
+  }
+
+  async getAllNbaPlayerInfoFromApi(): Promise<NbaPlayerInfoDb[]> {
+    
+    var temp: NbaPlayerInfoDb[] = []
+    for (let i = 0; i < this.arrayOfNbaTeamIds.length; i++) {
+      const url = `https://api-nba-v1.p.rapidapi.com/players?team=${this.arrayOfNbaTeamIds[i]}&season=2023`;
+      const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
+          'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
+        }
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const processedResult = result.response
+
+        processedResult.forEach((e: any) => {
+          if (e.firstname.includes("Jr.")) {
+            e.firstname = e.firstname.replace("Jr.", "")
+            e.firstname = e.firstname.trim()
+            e.lastname += " Jr"
+          }
+
+          if (e.firstname.includes("II")) {
+            e.firstname = e.firstname.replace("II", "")
+            e.firstname = e.firstname.trim()
+            e.lastname += " II"
+          }
+          if (e.firstname.includes("III")) {
+            e.firstname = e.firstname.replace("III", "")
+            e.firstname = e.firstname.trim()
+            e.lastname += " III"
+          }
+          if (e.firstname.includes("IV")) {
+            e.firstname = e.firstname.replace("IV", "")
+            e.firstname = e.firstname.trim()
+            e.lastname += " IV"
+          }
+          if(e.lastname.toLowerCase() == "claxton" && e.firstname.toLowerCase() == "nic"){
+            e.firstname = "Nicolas"
+          }
+          var playerName = e.firstname + " " + e.lastname
+          if (playerName.includes(".")) {
+            playerName = playerName.replaceAll(".", "")
+          }
+          
+
+          temp.push({
+            playerId: e.id,
+            playerName: playerName,
+            teamId: this.arrayOfNbaTeamIds[i]
+          })
+        })
+
+      } catch (error) {
+        console.error(error);
+      }
     }
     
     return temp;

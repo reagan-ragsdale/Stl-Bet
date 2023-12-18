@@ -13,6 +13,8 @@ const connectionString = "postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC
 const app = express();
 
 import cron from 'node-cron'
+import { draftKingsApiController } from 'src/app/ApiCalls/draftKingsApiCalls';
+import { nbaApiController } from 'src/app/ApiCalls/nbaApiCalls';
 
 app.use(
   session({
@@ -57,4 +59,4 @@ app.get('/*', (req, res) => {
 // Added this line to active express server on the port provided in the environment variable `PORT` or `3002`
 app.listen(process.env['PORT'] || 3002, () => console.log('Server started'));
 
-//cron.schedule('* * * * *',  cronTestFile)
+cron.schedule('* * * * *',  cronTestFile)

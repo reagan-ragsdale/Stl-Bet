@@ -38,9 +38,8 @@ export class NbaController {
 
     })
 
-    for (const data of playerData) {
-      await taskRepo.insert({ playerId: data.playerId, playerName: data.playerName, teamId: data.teamId })
-    }
+    await taskRepo.insert(playerData)
+
 
   }
 
@@ -63,6 +62,8 @@ export class NbaController {
     const taskRepo = remult.repo(NbaPlayerInfoDb)
     return await taskRepo.find({ where: { teamId: id } })
   }
+
+  
 
   @BackendMethod({ allowed: true })
   static async nbaLoadAllPlayerInfo(): Promise<NbaPlayerInfoDb[]> {
@@ -211,13 +212,13 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaGetLogoFromTeamId(id: number): Promise<DbNbaTeamLogos[]> {
     const taskRepo = remult.repo(DbNbaTeamLogos)
-    return await taskRepo.find({ where: { teamId: id} })
+    return await taskRepo.find({ where: { teamId: id } })
   }
 
   @BackendMethod({ allowed: true })
   static async nbaGetLogoFromTeamName(name: string): Promise<DbNbaTeamLogos[]> {
     const taskRepo = remult.repo(DbNbaTeamLogos)
-    return await taskRepo.find({ where: { teamName: name} })
+    return await taskRepo.find({ where: { teamName: name } })
   }
 
 
