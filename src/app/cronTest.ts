@@ -1,6 +1,6 @@
 
- import {draftKingsApiController} from "./ApiCalls/draftKingsApiCalls"
-import { nbaApiController } from "./ApiCalls/nbaApiCalls"
+ import {draftKingsApiController} from "src/app/ApiCalls/draftKingsApiCalls"
+import { nbaApiController } from "src/app//ApiCalls/nbaApiCalls"
 import { NbaController } from "src/shared/Controllers/NbaController"
 import { SportsBookController } from "src/shared/Controllers/SportsBookController"
 import { ArrayOfDates } from "./array-of-dates"
