@@ -15,7 +15,7 @@ const newDKController = new draftKingsApiController
 const newNbaApiController = new nbaApiController
 
 
- export async function cronTestFile() {
+ export const cronTestFile = async () => {
 
     console.log("Running cron from different file")
 
