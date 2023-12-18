@@ -10,7 +10,7 @@
     "dev": "ng serve --proxy-config proxy.conf.json --open",
     "dev-node": "tsx watch src/server"
   },
-  "type":"module",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
@@ -32,6 +32,7 @@
     "helmet": "^7.0.0",
     "knex": "^2.5.1",
     "node-cron": "^3.0.3",
+    "node-fetch": "^3.3.2",
     "pg": "^8.11.3",
     "remult": "^0.22.8",
     "rxjs": "~7.8.0",
