@@ -1,12 +1,12 @@
 
- import {draftKingsApiController} from "src/app/ApiCalls/draftKingsApiCalls.ts"
-import { nbaApiController } from "src/app//ApiCalls/nbaApiCalls.ts"
-import { NbaController } from "src/shared/Controllers/NbaController.ts"
-import { SportsBookController } from "src/shared/Controllers/SportsBookController.ts"
-import { ArrayOfDates } from "./array-of-dates.ts"
-import { DbGameBookData } from "src/shared/dbTasks/DbGameBookData.ts"
-import { NbaPlayerInfoDb } from "src/shared/dbTasks/NbaPlayerInfoDb.ts"
-import { SportsNameToId } from "./sports-name-to-id.ts"
+ import {draftKingsApiController} from "src/app/ApiCalls/draftKingsApiCalls.js"
+import { nbaApiController } from "src/app//ApiCalls/nbaApiCalls.js"
+import { NbaController } from "src/shared/Controllers/NbaController.js"
+import { SportsBookController } from "src/shared/Controllers/SportsBookController.js"
+import { ArrayOfDates } from "./array-of-dates.js"
+import { DbGameBookData } from "src/shared/dbTasks/DbGameBookData.js"
+import { NbaPlayerInfoDb } from "src/shared/dbTasks/NbaPlayerInfoDb.js"
+import { SportsNameToId } from "./sports-name-to-id.js"
 import { Injectable } from "@angular/core"
 
 
