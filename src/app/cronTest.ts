@@ -14,7 +14,7 @@ const arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, B
 
 
 
-exports.cronTestFile = async function cronTestFile(draftKingsApiController: draftKingsApiController, nbaApiController: nbaApiController) {
+ async function cronTestFile(draftKingsApiController: draftKingsApiController, nbaApiController: nbaApiController) {
 
     console.log("Running cron from different file")
 
@@ -132,6 +132,7 @@ var addUnderScoreToName = (game: string): string => {
     
  */
 }
+module.exports = cronTestFile
 
 
 
