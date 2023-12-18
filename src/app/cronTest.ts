@@ -1,4 +1,4 @@
-import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls"
+/* import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls"
 import { nbaApiController } from "./ApiCalls/nbaApiCalls"
 import { NbaController } from "src/shared/Controllers/NbaController"
 import { SportsBookController } from "src/shared/Controllers/SportsBookController"
@@ -13,7 +13,7 @@ const arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, B
 
 const newDKController = new draftKingsApiController
 const newNbaApiController = new nbaApiController
-
+ */
 
  export const cronTestFile = async () => {
 
