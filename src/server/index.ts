@@ -13,8 +13,6 @@ const connectionString = "postgresql://postgres:eg*gE31aCf66e5A*A5G35*3d3g1fgCcC
 const app = express();
 
 import cron from 'node-cron'
-import { draftKingsApiController } from 'src/app/ApiCalls/draftKingsApiCalls';
-import { nbaApiController } from 'src/app/ApiCalls/nbaApiCalls';
 
 app.use(
   session({
