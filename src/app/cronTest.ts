@@ -6,6 +6,7 @@ import { ArrayOfDates } from "./array-of-dates"
 import { DbGameBookData } from "src/shared/dbTasks/DbGameBookData"
 import { NbaPlayerInfoDb } from "src/shared/dbTasks/NbaPlayerInfoDb"
 import { SportsNameToId } from "./sports-name-to-id"
+import { Injectable } from "@angular/core"
 
 
 const arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
@@ -15,7 +16,7 @@ const newDKController = new draftKingsApiController
 const newNbaApiController = new nbaApiController
  
 
- export const cronTestFile = async () => {
+ export async function cronTestFile() {
 
     console.log("Running cron from different file")
 
