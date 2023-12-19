@@ -282,7 +282,8 @@ export class nbaApiController {
 
   }
 
-  async convertNbaGameDataToInterface(id: number, season: number) {
+  async convertNbaGameDataToInterface(id: number, season: number) { 
+    //sdgf
     console.log(this.nbaTeamGameStats)
     var temp: DbNbaTeamGameStats[] = []
     var games = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(id, season)
