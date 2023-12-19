@@ -283,6 +283,7 @@ export class nbaApiController {
   }
 
   async convertNbaGameDataToInterface(id: number, season: number) {
+    console.log(this.nbaTeamGameStats)
     var temp: DbNbaTeamGameStats[] = []
     var games = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(id, season)
     var oldGames = games.map((x) => {
