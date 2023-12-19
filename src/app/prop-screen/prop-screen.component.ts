@@ -280,10 +280,10 @@ export class PropScreenComponent implements OnInit {
       await this.checkPlayerInfoDb();
     }
     this.playerPropsClicked = false;
-    this.gamePropsClicked =
-    }
-     true;
+    this.gamePropsClicked = true;
     this.displayProp();
+    }
+    
   }
 
   async checkSportBookDb() {
