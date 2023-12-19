@@ -491,6 +491,7 @@ export class PropScreenComponent implements OnInit {
     else if(team1GameStats2023.length > 0){
       team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
     }
+    
     var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
     if(team2GameStats2023.length == 0){
       let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)

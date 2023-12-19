@@ -28,6 +28,9 @@
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;" [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               {{displayPropHtml1.name}}
             </mat-grid-tile>
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+              Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+            </mat-grid-tile>
             
           </mat-grid-list>
         </div>
@@ -41,7 +44,7 @@
               {{displayPropHtml2.name}}
             </mat-grid-tile>
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
-              Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+              Record: {{team2GameStatsDto.gamesWon}} - {{team2GameStatsDto.gamesLost}}
             </mat-grid-tile>
             
           </mat-grid-list>
