@@ -264,7 +264,7 @@ export class nbaApiController {
   }
 
   async loadTeamGameStats(id: number, season: number) {
-    const url = 'https://api-nba-v1.p.rapidapi.com/games?season=2021&team=1';
+    const url = `https://api-nba-v1.p.rapidapi.com/games?season=${season}&team=${id}`;
     const options = {
       method: 'GET',
       headers: {
