@@ -273,13 +273,16 @@ export class PropScreenComponent implements OnInit {
     this.updateGames();
   }
   async onGameClick(game: any) {
-    this.gameString = game.tab.textLabel
+    if(this.gameString != game.tab.textLabel){
+      this.gameString = game.tab.textLabel
     this.setSelectedGame(game.tab.textLabel);
     if (this.selectedSport == "NBA") {
       await this.checkPlayerInfoDb();
     }
     this.playerPropsClicked = false;
-    this.gamePropsClicked = true;
+    this.gamePropsClicked =
+    }
+     true;
     this.displayProp();
   }
 
