@@ -19,7 +19,8 @@
   </mat-tab-group>
   <!-- background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}'; -->
   <div *ngIf="gamePropsClicked">
-    <mat-grid-list cols="2" rowHeight="1.25:1">
+    <mat-progress-bar mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
+    <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1.25:1">
       <mat-grid-tile  [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
@@ -39,12 +40,15 @@
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
               {{displayPropHtml2.name}}
             </mat-grid-tile>
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+              Record: {{team1GameStatsDto.gamesWon - team1GameStatsDto.gamesLost}}
+            </mat-grid-tile>
             
           </mat-grid-list>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
-    <div style="position: absolute; top: 20rem; left: 0; right: 0; margin-left: auto; margin-right: auto;  height: 400px; width: 300px; background-color: lightslategray;">
+    <div *ngIf="!teamPropIsLoading" style="position: absolute; top: 20rem; left: 0; right: 0; margin-left: auto; margin-right: auto;  height: 400px; width: 300px; background-color: lightslategray;">
       <mat-grid-list cols="5" rowHeight="40px">
         <mat-grid-tile colspan="2" style="margin-top: 2rem; font-size: x-large;">
           <button mat-raised-button color="primary" >{{displayPropHtml1.h2h}}</button>
@@ -80,48 +84,7 @@
   </div>
   
   
-  
- <!--  <mat-card>
-    <mat-card-header class="card-header">
-      <mat-card-title>Game Props</mat-card-title>
-    </mat-card-header>
-    <mat-divider class="card-header"></mat-divider>
-    <mat-card-content class="team-prop-display">
-      <div style="width: 400px;">
-        <h1>{{displayPropHtml1.name + " :"}}</h1>
-      </div>
-      
-      <h2>H2H:</h2>
-      <button mat-raised-button color="primary"
-        (click)="addPropToChechout(displayPropHtml1)">{{displayPropHtml1.h2h}}</button>
-      <h2>Spread: {{displayPropHtml1.spreadPoint}}</h2>
-      <button mat-raised-button color="primary"
-        (click)="addPropToChechout(displayPropHtml1)">{{displayPropHtml1.spreadPrice}}</button>
-        <h2>Over: {{displayPropHtml1.totalPoint}}</h2>
-      <button mat-raised-button color="primary"
-        (click)="addPropToChechout(displayPropHtml1)">{{displayPropHtml1.totalPrice}}</button>
-    </mat-card-content>
-    <mat-card-content class="team-prop-display">
-      <div style="width: 400px;">
-        <h1>{{displayPropHtml2.name + " :"}}</h1>
-      </div>
-      <h2>H2H:</h2>
-      <button mat-raised-button color="primary"
-        (click)="addPropToChechout(displayPropHtml2)">{{displayPropHtml2.h2h}}</button>
-      <h2>Spread: {{displayPropHtml2.spreadPoint}}</h2>
-      <button mat-raised-button color="primary"
-        (click)="addPropToChechout(displayPropHtml2)">{{displayPropHtml2.spreadPrice}}</button>
-        <h2>Under: {{displayPropHtml1.totalPoint}}</h2>
-      <button mat-raised-button color="primary"
-        (click)="addPropToChechout(displayPropHtml1)">{{displayPropHtml2.totalPrice}}</button>
-    </mat-card-content>
-    <mat-card-actions align="end" style="display: flex; gap: 1rem;">
-      <button mat-raised-button color="primary" (click)="loadPlayerProps()">Player Props</button>
-       <button mat-raised-button color="primary" (click)="loadPlayerProps()">Game Props</button> 
-    </mat-card-actions>
-  </mat-card> -->
   <br>
-<!--  -->
   <mat-accordion *ngIf="playerPropsClicked">
     <mat-expansion-panel *ngFor="let props of playerPropObjectArray" (opened)="props[0].isOpened = true" (closed)="props[0].isOpened = false" (afterExpand)="computeStatsForAllPlayersInProp(props)">
       <mat-expansion-panel-header class="header-panel">

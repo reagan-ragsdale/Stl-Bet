@@ -38,6 +38,7 @@ import { ArrayOfDates } from '../array-of-dates';
 
 import { Route, Router } from '@angular/router';
 import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
+import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
 
 @Component({
   selector: 'app-prop-screen',
@@ -126,6 +127,11 @@ export class PropScreenComponent implements OnInit {
 
   sports: any[] = [];
   playerProps: any;
+
+  team1GameStatsDto = {
+    gamesWon: 0,
+    gamesLost: 0
+  }
 
   
 
@@ -449,6 +455,10 @@ export class PropScreenComponent implements OnInit {
 
   async displayProp() {
     this.teamPropIsLoading = true
+
+    
+
+
     console.time("Display Prop")
     const tempProp = this.sportsBookDataFinal.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
@@ -460,8 +470,31 @@ export class PropScreenComponent implements OnInit {
     var teamInfo = []
     var logo = ''
 
+    var team1GameStats: DbNbaTeamGameStats[] = []
+    var team2GameStats: DbNbaTeamGameStats[] = []
+
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
+    var team1GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    if(team1GameStats2023.length == 0){
+      let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+      await NbaController.nbaAddTeamGameStats(result)
+      team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    }
+    else if(team1GameStats2023.length > 0){
+      team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    }
+    var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    if(team2GameStats2023.length == 0){
+      let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+      await NbaController.nbaAddTeamGameStats(result)
+      team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    }
+    else if(team2GameStats2023.length > 0){
+      team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    }
+
+    this.computeTeamsGameStats(team1GameStats, team2GameStats)
 
     
 
@@ -485,6 +518,13 @@ export class PropScreenComponent implements OnInit {
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
     this.teamPropIsLoading = false
+  }
+
+  computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]){
+    
+    team1.forEach(e => {
+      e.result == "Win" ? this.team1GameStatsDto.gamesWon++: this.team1GameStatsDto.gamesLost++
+    })
   }
 
 
