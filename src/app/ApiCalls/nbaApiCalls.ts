@@ -375,7 +375,10 @@ export class nbaApiController {
   }
 
   convertDate(fullDate: string) {
+    console.log(fullDate)
+    //mew
     var tempDate = fullDate?.split("T");
+    console.log(tempDate)
     var time = tempDate[1].slice(0, 2)
     var subtractDay = false
     if (parseInt(time) - 6 <= 0) {
