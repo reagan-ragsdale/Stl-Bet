@@ -304,9 +304,9 @@ export class nbaApiController {
         season: season,
         gameId: this.nbaTeamGameStats[i].id,
         gameDate: this.convertDate(this.nbaTeamGameStats[i].date.start),
-        result: this.nbaTeamGameStats[i].teams.visitors.id == id ? (this.nbaTeamGameStats[i].score.visitors.series.win == 1 ? "Win" : "Loss") : (this.nbaTeamGameStats[i].score.home.series.win == 1 ? "Win" : "Loss"),
-        pointsScored: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].score.visitors.series.points : this.nbaTeamGameStats[i].score.home.series.points ,
-        pointsAllowed: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].score.home.series.points : this.nbaTeamGameStats[i].score.visitors.series.points
+        result: this.nbaTeamGameStats[i].teams.visitors.id == id ? (this.nbaTeamGameStats[i].scores.visitors.series.win == 1 ? "Win" : "Loss") : (this.nbaTeamGameStats[i].scores.home.series.win == 1 ? "Win" : "Loss"),
+        pointsScored: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.series.points : this.nbaTeamGameStats[i].scores.home.series.points ,
+        pointsAllowed: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.series.points : this.nbaTeamGameStats[i].scores.visitors.series.points
       })
 
     }
