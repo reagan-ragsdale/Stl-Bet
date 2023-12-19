@@ -47,33 +47,33 @@
     <div style="position: absolute; top: 20rem; left: 0; right: 0; margin-left: auto; margin-right: auto;  height: 400px; width: 300px; background-color: lightslategray;">
       <mat-grid-list cols="5" rowHeight="40px">
         <mat-grid-tile colspan="2" style="margin-top: 2rem; font-size: x-large;">
-          <button mat-raised-button color="primary" >-110</button>
+          <button mat-raised-button color="primary" >{{displayPropHtml1.h2h}}</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; text-wrap:balance; text-align: center;">
           Money Line
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary">+110</button>
+          <button mat-raised-button color="primary">{{displayPropHtml2.h2h}}</button>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" style="white-space:initial;">-4  -110</button>
+          <button mat-raised-button color="primary" style="white-space:initial;">{{displayPropHtml1.spreadPoint}}  {{displayPropHtml1.spreadPrice}}</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; ">
           Spread
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" >+110</button>
+          <button mat-raised-button color="primary" >{{displayPropHtml2.spreadPoint}}  {{displayPropHtml2.spreadPrice}}</button>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary">-110</button>
+          <button mat-raised-button color="primary">U {{displayPropHtml2.totalPoint}} {{displayPropHtml2.totalPrice}}</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; ">
           Total
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" >+110</button>
+          <button mat-raised-button color="primary" >O {{displayPropHtml1.totalPoint}} {{displayPropHtml1.totalPrice}}</button>
         </mat-grid-tile>
       </mat-grid-list>
     </div>

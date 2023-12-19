@@ -44,4 +44,7 @@ export class DbNbaTeamGameStats {
 
   @Fields.createdAt()
   createdAt?: Date
+
+  @Fields.integer()
+  uniquegameid? = 0
 }

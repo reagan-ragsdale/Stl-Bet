@@ -2,6 +2,7 @@ import { Allow, BackendMethod, remult } from "remult"
 import { NbaPlayerInfoDb } from "../dbTasks/NbaPlayerInfoDb"
 import { DbNbaGameStats } from "../dbTasks/DbNbaGameStats"
 import { DbNbaTeamLogos } from "../dbTasks/DbNbaTeamLogos"
+import { DbNbaTeamGameStats } from "../dbTasks/DbNbaTeamGameStats"
 
 export class NbaController {
 
@@ -202,6 +203,23 @@ export class NbaController {
 
   // nba team stats
 
+  @BackendMethod({ allowed: true })
+  static async nbaAddTeamGameStats(teamData: DbNbaTeamGameStats[]) {
+    const taskRepo2 = remult.repo(DbNbaTeamGameStats)
+   
+
+    await taskRepo2.insert(teamData)
+
+  }
+
+  @BackendMethod({ allowed: true })
+  static async nbaLoadTeamGameStatsByTeamIdAndSeason(id: number, season: number): Promise<DbNbaTeamGameStats[]> {
+    const taskRepo2 = remult.repo(DbNbaTeamGameStats)
+   
+
+    return await taskRepo2.find({ where: { teamId: id, season: season }, orderBy: { uniquegameid: "desc" } })
+
+  }
 
 
 

@@ -88,6 +88,7 @@ export class PropScreenComponent implements OnInit {
   public selectedGame: string = '';
   public selectedGameid: string = '';
   public exit: boolean = true;
+  public teamPropIsLoading: boolean = true;
 
 
 
@@ -447,6 +448,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   async displayProp() {
+    this.teamPropIsLoading = true
     console.time("Display Prop")
     const tempProp = this.sportsBookDataFinal.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
@@ -482,6 +484,7 @@ export class PropScreenComponent implements OnInit {
     
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
+    this.teamPropIsLoading = false
   }
 
 
