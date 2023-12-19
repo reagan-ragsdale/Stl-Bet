@@ -132,6 +132,10 @@ export class PropScreenComponent implements OnInit {
     gamesWon: 0,
     gamesLost: 0
   }
+  team2GameStatsDto = {
+    gamesWon: 0,
+    gamesLost: 0
+  }
 
   
 
@@ -524,9 +528,11 @@ export class PropScreenComponent implements OnInit {
   }
 
   computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]){
-    console.log(team1)
     team1.forEach(e => {
       e.result == "Win" ? this.team1GameStatsDto.gamesWon+=1 : this.team1GameStatsDto.gamesLost+=1
+    })
+    team2.forEach(e => {
+      e.result == "Win" ? this.team2GameStatsDto.gamesWon+=1 : this.team2GameStatsDto.gamesLost+=1
     })
   }
 
