@@ -289,15 +289,16 @@ export class nbaApiController {
       return x.gameId
     })
     for (let i = 0; i < this.nbaTeamGameStats.length; i++) {
-      if (this.nbaTeamGameStats[i].id >= 12478 && this.nbaTeamGameStats[i].id <= 12548) {
+      if (this.nbaTeamGameStats[i].id <= 12548) {
         continue
       }
       if (oldGames.includes(this.nbaTeamGameStats[i].id)) {
         continue
       }
-      console.log(this.nbaTeamGameStats[i].teams.visitors.id == id)
-      console.log(this.nbaTeamGameStats[i].scores.visitors.series.win == 1)
-        console.log(this.nbaTeamGameStats[i].scores.home.series.win == 1)
+      if(this.nbaTeamGameStats[i].status.long == "Scheduled"){
+        continue
+      }
+      
       temp.push({
         teamName: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].teams.visitors.name : this.nbaTeamGameStats[i].teams.home.name,
         teamId: id,
@@ -307,7 +308,7 @@ export class nbaApiController {
         season: season,
         gameId: this.nbaTeamGameStats[i].id,
         gameDate: this.convertDate(this.nbaTeamGameStats[i].date.start),
-        result: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.series.win == 1 ? "Win" : "Loss" : this.nbaTeamGameStats[i].scores.home.series.win == 1 ? "Win" : "Loss",
+        result: this.nbaTeamGameStats[i].teams.visitors.id == id ? (this.nbaTeamGameStats[i].scores.visitors.points > this.nbaTeamGameStats[i].scores.home.points) ? "Win" : "Loss" : (this.nbaTeamGameStats[i].scores.home.points > this.nbaTeamGameStats[i].scores.visitors.points ? "Win" : "Loss"),
         pointsScored: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.series.points : this.nbaTeamGameStats[i].scores.home.series.points ,
         pointsAllowed: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.series.points : this.nbaTeamGameStats[i].scores.visitors.series.points
       })
