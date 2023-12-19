@@ -412,9 +412,9 @@ export class PropScreenComponent implements OnInit {
         newDate[1] = '0' + newDate[1] 
       }
       if(parseInt(newDate[1]) == 0){
-        if(parseInt(newDate[0]) == 1){
-          newDate[0] == '12'
-          newDate[1] == '31'
+        if(newDate[0] == '01'){
+          newDate[0] = '12'
+          newDate[1] = '31'
         }
         if(parseInt(newDate[0]) != 1){
           newDate[0] = (parseInt(newDate[0]) - 1).toString()
@@ -523,7 +523,7 @@ export class PropScreenComponent implements OnInit {
   computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]){
     
     team1.forEach(e => {
-      e.result == "Win" ? this.team1GameStatsDto.gamesWon++: this.team1GameStatsDto.gamesLost++
+      e.result == "Win" ? this.team1GameStatsDto.gamesWon+=1 : this.team1GameStatsDto.gamesLost+=1
     })
   }
 

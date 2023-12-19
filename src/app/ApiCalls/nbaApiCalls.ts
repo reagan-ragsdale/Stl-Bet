@@ -395,9 +395,9 @@ export class nbaApiController {
         newDate[1] = '0' + newDate[1]
       }
       if (parseInt(newDate[1]) == 0) {
-        if (parseInt(newDate[0]) == 1) {
-          newDate[0] == '12'
-          newDate[1] == '31'
+        if (newDate[0] == '01') {
+          newDate[0] = '12'
+          newDate[1] = '31'
         }
         if (parseInt(newDate[0]) != 1) {
           newDate[0] = (parseInt(newDate[0]) - 1).toString()
