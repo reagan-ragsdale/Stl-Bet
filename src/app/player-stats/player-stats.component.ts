@@ -191,6 +191,7 @@ export class PlayerStatsComponent {
       }
       this.seasonArray = this.nbaPlayerStatsInfo2023
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+      console.log(this.nbaPlayerStatsInfo2023)
       
       
       

@@ -72,5 +72,8 @@ Automate loading stats into database daily
 Set up team stats
 Make mobile view and responsive layouts
 
+Database chagnges:
+Need to add another integer primary key to dbnbagamestats to order the games since 
+
 
 

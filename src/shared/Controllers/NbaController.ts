@@ -180,13 +180,13 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerStatsInfoFromIdAndSeason(id: number, season: number): Promise<DbNbaGameStats[]> {
     const taskRepo = remult.repo(DbNbaGameStats)
-    return await taskRepo.find({ where: { playerId: id, season: season }, orderBy: { gameId: "asc" } })
+    return await taskRepo.find({ where: { playerId: id, season: season }, orderBy: { uniquegameid: "asc" } })
   }
 
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerStatsInfoFromNameAndSeason(name: string, season: number): Promise<DbNbaGameStats[]> {
     const taskRepo = remult.repo(DbNbaGameStats)
-    return await taskRepo.find({ where: { playerName: name, season: season }, orderBy: { gameId: "asc" } })
+    return await taskRepo.find({ where: { playerName: name, season: season }, orderBy: { gameId: "desc" } })
   }
 
 
