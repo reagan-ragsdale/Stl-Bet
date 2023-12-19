@@ -1,23 +1,28 @@
 <mat-grid-list cols="4" rowHeight="50px">
 
-  <mat-grid-tile colspan="4" style=" background-color: darkgray; ">
-    <h1 style="font-size: 200%;">{{playerName}}: </h1>
-    <h2>Search Player</h2>
+  <mat-grid-tile colspan="4" style=" display: flex; gap: 2rem;" [ngStyle]="{ backgroundColor: teamInfo[0].primaryColor}">
 
-
-
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
-          (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
-            (onSelectionChange)="loadNewPlayer(player.playerId, player.playerName)">
-            {{player.playerName}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
+    <div style="display: flex; gap: 1rem;">
+      <h1 style="font-size: 200%;">{{playerName}}: </h1>
+      <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}">{{teamInfo[0].teamName}}</h1>
+    </div>
+    
+    <div>
+      <h2>Search Player</h2>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
+            (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
+              (onSelectionChange)="loadNewPlayer(player.playerId, player.playerName)">
+              {{player.playerName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+    
   </mat-grid-tile>
 
 
@@ -67,8 +72,8 @@
 
 
 
-  <mat-grid-tile rowspan="1" colspan="4" style="background-color: darkcyan;">
-    <h1> Stats</h1>
+  <mat-grid-tile rowspan="1" colspan="4" [ngStyle]="{ backgroundColor: teamInfo[0].primaryColor}">
+    <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}"> Stats</h1>
   </mat-grid-tile>
 
 
