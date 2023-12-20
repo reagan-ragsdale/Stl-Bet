@@ -31,6 +31,9 @@
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
             </mat-grid-tile>
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+              Record Vs {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} - {{team1GameStatsDto.gamesLostVsOpponent}}
+            </mat-grid-tile>
             
           </mat-grid-list>
         </div>
@@ -45,6 +48,9 @@
             </mat-grid-tile>
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
               Record: {{team2GameStatsDto.gamesWon}} - {{team2GameStatsDto.gamesLost}}
+            </mat-grid-tile>
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+              Record Vs {{displayPropHtml1.name}}: {{team2GameStatsDto.gamesWonVsOpponent}} - {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
             
           </mat-grid-list>

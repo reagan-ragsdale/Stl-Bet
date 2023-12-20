@@ -76,4 +76,15 @@ Database chagnges:
 Need to add another integer primary key to dbnbagamestats to order the games since 
 
 
+Arduino ideas:
+Self driving car
+- code
+- engineering a car
+- possibly machine learning but not sure if arduino can do that
+engineering: how to manufacture a car and body that holds the arduino and other sensors
+code: how to detect an object and navigate around it
+
+
+
+
 

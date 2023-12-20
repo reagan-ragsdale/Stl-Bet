@@ -130,11 +130,15 @@ export class PropScreenComponent implements OnInit {
 
   team1GameStatsDto = {
     gamesWon: 0,
-    gamesLost: 0
+    gamesLost: 0,
+    gamesWonVsOpponent: 0,
+    gamesLostVsOpponent: 0
   }
   team2GameStatsDto = {
     gamesWon: 0,
-    gamesLost: 0
+    gamesLost: 0,
+    gamesWonVsOpponent: 0,
+    gamesLostVsOpponent: 0
   }
 
   
@@ -531,17 +535,24 @@ export class PropScreenComponent implements OnInit {
   computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]){
   this.team1GameStatsDto = {
     gamesWon: 0,
-    gamesLost:0
+    gamesLost:0,
+    gamesWonVsOpponent: 0,
+    gamesLostVsOpponent: 0
   }
   this.team2GameStatsDto = {
     gamesWon: 0,
-    gamesLost:0
+    gamesLost:0,
+    gamesWonVsOpponent: 0,
+    gamesLostVsOpponent: 0
   }
+  var i
     team1.forEach(e => {
       e.result == "Win" ? this.team1GameStatsDto.gamesWon+=1 : this.team1GameStatsDto.gamesLost+=1
+      e.teamAgainstId == team2[0].teamId ? (e.result =="Win" ? this.team1GameStatsDto.gamesWonVsOpponent +=1 : this.team1GameStatsDto.gamesLostVsOpponent +=1) :  i = 0 ;
     })
     team2.forEach(e => {
       e.result == "Win" ? this.team2GameStatsDto.gamesWon+=1 : this.team2GameStatsDto.gamesLost+=1
+      e.teamAgainstId == team1[0].teamId ? (e.result =="Win" ? this.team2GameStatsDto.gamesWonVsOpponent +=1 : this.team2GameStatsDto.gamesLostVsOpponent +=1) :   i = 0 ;
     })
   }
 
