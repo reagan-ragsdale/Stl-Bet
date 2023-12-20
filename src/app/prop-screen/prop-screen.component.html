@@ -1,67 +1,99 @@
 <div style="height: 100vh; background-color: #252324;">
 
 
-  <mat-tab-group class="sports-tab" [backgroundColor]="'warn'" (selectedTabChange)="onSportClick($event)" >
+  <mat-tab-group class="sports-tab" [backgroundColor]="'warn'" (selectedTabChange)="onSportClick($event)">
     <mat-tab *ngFor="let sport of sportsNew" label="{{sport.title}}"></mat-tab>
   </mat-tab-group>
 
-  <mat-tab-group class="dates-tab" [backgroundColor]="'primary'" (selectedTabChange)="onDateClick($event)"  >
-    <mat-tab *ngFor="let date of dates" label="{{date}}" ></mat-tab>
+  <mat-tab-group class="dates-tab" [backgroundColor]="'primary'" (selectedTabChange)="onDateClick($event)">
+    <mat-tab *ngFor="let date of dates" label="{{date}}"></mat-tab>
   </mat-tab-group>
-  
-  <mat-tab-group class="games-tab" [backgroundColor]="'warn'" (selectedTabChange)="onGameClick($event)"  >
+
+  <mat-tab-group class="games-tab" [backgroundColor]="'warn'" (selectedTabChange)="onGameClick($event)">
     <mat-tab *ngFor="let game of games" label="{{game.game}}"></mat-tab>
   </mat-tab-group>
 
-  <mat-tab-group class="props-tab" [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)"  [selectedIndex]="0">
-    <mat-tab  label="Game Props" ></mat-tab>
-    <mat-tab  label="Player Props"></mat-tab>
+  <mat-tab-group class="props-tab" [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)"
+    [selectedIndex]="0">
+    <mat-tab label="Game Props"></mat-tab>
+    <mat-tab label="Player Props"></mat-tab>
   </mat-tab-group>
   <!-- background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}'; -->
   <div *ngIf="gamePropsClicked">
     <mat-progress-bar mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
     <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1.25:1">
-      <mat-grid-tile  [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
+      <mat-grid-tile [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
             <!-- color:'{{displayPropHtml1.teamInfo[0].alternateColor}}'; -->
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;" [ngStyle]="{ color: displayPropHtml1.alternateColor}">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large;"
+              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               {{displayPropHtml1.name}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml1.alternateColor}">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
+              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
-              Record Vs {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} - {{team1GameStatsDto.gamesLostVsOpponent}}
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
+              [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+              Record Vs {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} -
+              {{team1GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
-            
+
           </mat-grid-list>
         </div>
       </mat-grid-tile>
       <!-- background-color: '{{displayPropHtml2.teamInfo[0].primaryColor}}'; -->
-      <mat-grid-tile  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
+      <mat-grid-tile [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="4" rowHeight="100px">
             <!-- color:'{{displayPropHtml2.teamInfo[0].alternateColor}}'; -->
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
+              [ngStyle]="{ color: displayPropHtml2.alternateColor}">
               {{displayPropHtml2.name}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
+              [ngStyle]="{ color: displayPropHtml2.alternateColor}">
               Record: {{team2GameStatsDto.gamesWon}} - {{team2GameStatsDto.gamesLost}}
-              <i class="material-icons info"></i>
             </mat-grid-tile>
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; " [ngStyle]="{ color: displayPropHtml2.alternateColor}">
-              Record Vs {{displayPropHtml1.name}}: {{team2GameStatsDto.gamesWonVsOpponent}} - {{team2GameStatsDto.gamesLostVsOpponent}}
+            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
+              [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+              Record Vs {{displayPropHtml1.name}}: {{team2GameStatsDto.gamesWonVsOpponent}} -
+              {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
-            
+
+            <table mat-table [dataSource]="team1GameStats" multiTemplateDataRows class="mat-elevation-z8 player-table">
+
+              <ng-container matColumnDef="game">
+                <th mat-header-cell *matHeaderCellDef> Game </th>
+                <td mat-cell *matCellDef="let element"> {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.gameDate}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="result">
+                <th mat-header-cell *matHeaderCellDef> Result </th>
+                <td mat-cell *matCellDef="let element">{{element.result == "Win" ? "W" : "L"}} {{element.pointsScored}} - {{element.pointsAllowed}}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
+              <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"></tr>
+            </table>
+
+
           </mat-grid-list>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
-    <div *ngIf="!teamPropIsLoading" style="position: absolute; top: 20rem; left: 0; right: 0; margin-left: auto; margin-right: auto;  height: 400px; width: 300px; background-color: lightslategray;">
+    <div *ngIf="!teamPropIsLoading"
+      style="position: absolute; top: 20rem; left: 0; right: 0; margin-left: auto; margin-right: auto;  height: 400px; width: 300px; background-color: lightslategray;">
       <mat-grid-list cols="5" rowHeight="40px">
         <mat-grid-tile colspan="2" style="margin-top: 2rem; font-size: x-large;">
-          <button mat-raised-button color="primary" >{{displayPropHtml1.h2h}}</button>
+          <button mat-raised-button color="primary">{{displayPropHtml1.h2h}}</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; text-wrap:balance; text-align: center;">
           Money Line
@@ -71,65 +103,74 @@
         </mat-grid-tile>
 
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" style="white-space:initial;">{{displayPropHtml1.spreadPoint}}  {{displayPropHtml1.spreadPrice}}</button>
+          <button mat-raised-button color="primary" style="white-space:initial;">{{displayPropHtml1.spreadPoint}}
+            {{displayPropHtml1.spreadPrice}}</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; ">
           Spread
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" >{{displayPropHtml2.spreadPoint}}  {{displayPropHtml2.spreadPrice}}</button>
+          <button mat-raised-button color="primary">{{displayPropHtml2.spreadPoint}}
+            {{displayPropHtml2.spreadPrice}}</button>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary">U {{displayPropHtml2.totalPoint}} {{displayPropHtml2.totalPrice}}</button>
+          <button mat-raised-button color="primary">U {{displayPropHtml2.totalPoint}}
+            {{displayPropHtml2.totalPrice}}</button>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" style="margin-top: 2rem; ">
           Total
         </mat-grid-tile>
         <mat-grid-tile colspan="2" style="margin-top: 2rem; ">
-          <button mat-raised-button color="primary" >O {{displayPropHtml1.totalPoint}} {{displayPropHtml1.totalPrice}}</button>
+          <button mat-raised-button color="primary">O {{displayPropHtml1.totalPoint}}
+            {{displayPropHtml1.totalPrice}}</button>
         </mat-grid-tile>
       </mat-grid-list>
     </div>
   </div>
-  
-  
+
+
   <br>
   <mat-accordion *ngIf="playerPropsClicked">
-    <mat-expansion-panel *ngFor="let props of playerPropObjectArray" (opened)="props[0].isOpened = true" (closed)="props[0].isOpened = false" (afterExpand)="computeStatsForAllPlayersInProp(props)">
+    <mat-expansion-panel *ngFor="let props of playerPropObjectArray" (opened)="props[0].isOpened = true"
+      (closed)="props[0].isOpened = false" (afterExpand)="computeStatsForAllPlayersInProp(props)">
       <mat-expansion-panel-header class="header-panel">
         <mat-panel-title>
           {{props[0].event | titlecase}}
         </mat-panel-title>
         <mat-panel-description>
           Over/Under
-          <button mat-raised-button class="panel-button" color="primary" *ngIf="props[0].isOpened && !displayProgressBar" (click)="$event.stopPropagation()" (click)="findBestBetsFromEvent(props)">Best Bets</button>
+          <button mat-raised-button class="panel-button" color="primary"
+            *ngIf="props[0].isOpened && !displayProgressBar" (click)="$event.stopPropagation()"
+            (click)="findBestBetsFromEvent(props)">Best Bets</button>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <ng-template  matExpansionPanelContent>
+      <ng-template matExpansionPanelContent>
         <mat-progress-bar mode="indeterminate" *ngIf="displayProgressBar"></mat-progress-bar>
-        <table mat-table [dataSource]="props"  *ngIf="!displayProgressBar" multiTemplateDataRows class="mat-elevation-z8 player-table">
-  
-  
-  
+        <table mat-table [dataSource]="props" *ngIf="!displayProgressBar" multiTemplateDataRows
+          class="mat-elevation-z8 player-table">
+
+
+
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Player </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
-    
-    
+
+
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef> Over/Under </th>
             <td mat-cell *matCellDef="let element"> {{element.description}} </td>
           </ng-container>
-    
+
           <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef> Price </th>
             <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary"
-                (click)="addItemToCheckout(element)" (click)="$event.stopPropagation()" [disabled]="element.isDisabled">{{element.price}}</button></td>
+                (click)="addItemToCheckout(element)" (click)="$event.stopPropagation()"
+                [disabled]="element.isDisabled">{{element.price}}</button></td>
           </ng-container>
-    
+
           <ng-container matColumnDef="point">
             <th mat-header-cell *matHeaderCellDef> Point </th>
             <td mat-cell *matCellDef="let element"> {{element.point}} </td>
@@ -138,15 +179,18 @@
           <ng-container matColumnDef="detailedStats">
             <th mat-header-cell *matHeaderCellDef> Detailed Stats </th>
             <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary"
-               (click)="$event.stopPropagation()" (click)="detailedStatsClicked(element)" >Detailed Stats</button></td>
+                (click)="$event.stopPropagation()" (click)="detailedStatsClicked(element)">Detailed Stats</button></td>
           </ng-container>
-    
+
           <ng-container matColumnDef="expandedDetail">
-            
+
             <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-              <mat-progress-bar mode="indeterminate" *ngIf="displayProgressBar" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"></mat-progress-bar>
-              <div class="example-element-detail" *ngIf="!displayProgressBar" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'" style="display: flex; flex-direction: column;">
-                
+              <mat-progress-bar mode="indeterminate" *ngIf="displayProgressBar"
+                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"></mat-progress-bar>
+              <div class="example-element-detail" *ngIf="!displayProgressBar"
+                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+                style="display: flex; flex-direction: column;">
+
                 <div style="display:flex; gap: 3rem; ">
                   <div>Chance of happenging overall: {{element.percentTotal}} </div>
                   <div>Chance of happening vs {{element.teamAgainst}}: {{element.percentTeam}}</div>
@@ -160,30 +204,31 @@
                   <div>Average last season: {{element.average2022}}</div>
                   <div>Average last season vs {{element.teamAgainst}} : {{element.average2022vsTeam}}</div>
                 </div>
-                
+
               </div>
             </td>
           </ng-container>
-    <!-- (click)="computeStatsForAllPlayersInProp(element)" -->
+          <!-- (click)="computeStatsForAllPlayersInProp(element)" -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-            (click)="expandedElement = expandedElement === element ? null : element" (click)="$event.stopPropagation()" ></tr>
-          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="$event.stopPropagation()" class="example-detail-row"></tr>
+            (click)="expandedElement = expandedElement === element ? null : element" (click)="$event.stopPropagation()">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="$event.stopPropagation()"
+            class="example-detail-row"></tr>
         </table>
       </ng-template>
 
-    
-      
-  <!-- (click)="getPlayerStatsForSeason(element)" -->
+
+
+      <!-- (click)="getPlayerStatsForSeason(element)" -->
     </mat-expansion-panel>
   </mat-accordion>
-  
-  
+
+
   <div *ngIf="!playerPropsClicked">
 
   </div>
-  
+
   <app-prop-checkout [prop]="checkoutArray" (exitSend)="isExit($any($event))" (length)="getArrayLength($event)"
     *ngIf="checkoutArray.length > 0 && exit"></app-prop-checkout>
-  </div>
-  
+</div>

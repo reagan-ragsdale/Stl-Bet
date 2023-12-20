@@ -103,8 +103,9 @@ export class PropScreenComponent implements OnInit {
   post_get_games = "/scores?apiKey=5ab6923d5aa0ae822b05168709bb910c";
 
   displayedColumns: string[] = ['name', 'description', 'point', 'price', 'detailedStats'];
+  displayedColumnsTeamGames: string[] = ['game', 'date', 'result'];
 
-  
+
 
 
 
@@ -140,8 +141,10 @@ export class PropScreenComponent implements OnInit {
     gamesWonVsOpponent: 0,
     gamesLostVsOpponent: 0
   }
+  team1GameStats: DbNbaTeamGameStats[] = []
+  team2GameStats: DbNbaTeamGameStats[] = []
 
-  
+
 
   playerPropsArray: PlayerProp[] = [{
     name: '',
@@ -281,17 +284,17 @@ export class PropScreenComponent implements OnInit {
     this.updateGames();
   }
   async onGameClick(game: any) {
-    if(this.gameString != game.tab.textLabel){
+    if (this.gameString != game.tab.textLabel) {
       this.gameString = game.tab.textLabel
-    this.setSelectedGame(game.tab.textLabel);
-    if (this.selectedSport == "NBA") {
-      await this.checkPlayerInfoDb();
+      this.setSelectedGame(game.tab.textLabel);
+      if (this.selectedSport == "NBA") {
+        await this.checkPlayerInfoDb();
+      }
+      this.playerPropsClicked = false;
+      this.gamePropsClicked = true;
+      this.displayProp();
     }
-    this.playerPropsClicked = false;
-    this.gamePropsClicked = true;
-    this.displayProp();
-    }
-    
+
   }
 
   async checkSportBookDb() {
@@ -409,25 +412,25 @@ export class PropScreenComponent implements OnInit {
     var tempDate = fullDate?.split("T");
     var time = tempDate[1].slice(0, 2)
     var subtractDay = false
-    if(parseInt(time) - 6 <= 0){
+    if (parseInt(time) - 6 <= 0) {
       subtractDay = true
     }
 
     var indexOfFirstDash = tempDate[0].indexOf("-");
     var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
     var finalDate = tempDate2.replace("-", "/");
-    if(subtractDay){
+    if (subtractDay) {
       var newDate = finalDate.split("/")
       newDate[1] = (parseInt(newDate[1]) - 1).toString()
-      if(parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0){
-        newDate[1] = '0' + newDate[1] 
+      if (parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0) {
+        newDate[1] = '0' + newDate[1]
       }
-      if(parseInt(newDate[1]) == 0){
-        if(newDate[0] == '01'){
+      if (parseInt(newDate[1]) == 0) {
+        if (newDate[0] == '01') {
           newDate[0] = '12'
           newDate[1] = '31'
         }
-        if(parseInt(newDate[0]) != 1){
+        if (parseInt(newDate[0]) != 1) {
           newDate[0] = (parseInt(newDate[0]) - 1).toString()
           newDate[1] = this.arrayOfDates[parseInt(newDate[0])].toString()
         }
@@ -436,7 +439,7 @@ export class PropScreenComponent implements OnInit {
       finalDate = newDate[0] + "/" + newDate[1]
 
     }
-    
+
     return finalDate;
   }
 
@@ -467,7 +470,7 @@ export class PropScreenComponent implements OnInit {
   async displayProp() {
     this.teamPropIsLoading = true
 
-    
+
 
 
     console.time("Display Prop")
@@ -480,35 +483,35 @@ export class PropScreenComponent implements OnInit {
     var totalPrice = ''
     var teamInfo = []
     var logo = ''
+    this.team1GameStats = []
+    this.team2GameStats = []
 
-    var team1GameStats: DbNbaTeamGameStats[] = []
-    var team2GameStats: DbNbaTeamGameStats[] = []
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
     var team1GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-    if(team1GameStats2023.length == 0){
+    if (team1GameStats2023.length == 0) {
       let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
       await NbaController.nbaAddTeamGameStats(result)
-      team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+      this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
     }
-    else if(team1GameStats2023.length > 0){
-      team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    else if (team1GameStats2023.length > 0) {
+      this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
     }
 
     var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-    if(team2GameStats2023.length == 0){
+    if (team2GameStats2023.length == 0) {
       let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
       await NbaController.nbaAddTeamGameStats(result)
-      team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+      this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
     }
-    else if(team2GameStats2023.length > 0){
-      team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    else if (team2GameStats2023.length > 0) {
+      this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
     }
 
-    this.computeTeamsGameStats(team1GameStats, team2GameStats)
+    this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
 
-    
+
 
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
@@ -526,33 +529,33 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team2[0].teamName)
-    
+
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
     this.teamPropIsLoading = false
   }
 
-  computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]){
-  this.team1GameStatsDto = {
-    gamesWon: 0,
-    gamesLost:0,
-    gamesWonVsOpponent: 0,
-    gamesLostVsOpponent: 0
-  }
-  this.team2GameStatsDto = {
-    gamesWon: 0,
-    gamesLost:0,
-    gamesWonVsOpponent: 0,
-    gamesLostVsOpponent: 0
-  }
-  var i
+  computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]) {
+    this.team1GameStatsDto = {
+      gamesWon: 0,
+      gamesLost: 0,
+      gamesWonVsOpponent: 0,
+      gamesLostVsOpponent: 0
+    }
+    this.team2GameStatsDto = {
+      gamesWon: 0,
+      gamesLost: 0,
+      gamesWonVsOpponent: 0,
+      gamesLostVsOpponent: 0
+    }
+    var i
     team1.forEach(e => {
-      e.result == "Win" ? this.team1GameStatsDto.gamesWon+=1 : this.team1GameStatsDto.gamesLost+=1
-      e.teamAgainstId == team2[0].teamId ? (e.result =="Win" ? this.team1GameStatsDto.gamesWonVsOpponent +=1 : this.team1GameStatsDto.gamesLostVsOpponent +=1) :  i = 0 ;
+      e.result == "Win" ? this.team1GameStatsDto.gamesWon += 1 : this.team1GameStatsDto.gamesLost += 1
+      e.teamAgainstId == team2[0].teamId ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonVsOpponent += 1 : this.team1GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
     })
     team2.forEach(e => {
-      e.result == "Win" ? this.team2GameStatsDto.gamesWon+=1 : this.team2GameStatsDto.gamesLost+=1
-      e.teamAgainstId == team1[0].teamId ? (e.result =="Win" ? this.team2GameStatsDto.gamesWonVsOpponent +=1 : this.team2GameStatsDto.gamesLostVsOpponent +=1) :   i = 0 ;
+      e.result == "Win" ? this.team2GameStatsDto.gamesWon += 1 : this.team2GameStatsDto.gamesLost += 1
+      e.teamAgainstId == team1[0].teamId ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonVsOpponent += 1 : this.team2GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
     })
   }
 
@@ -595,7 +598,7 @@ export class PropScreenComponent implements OnInit {
 
     if (this.selectedSport == "NBA") {
       try {
-        
+
         var gameArray = this.splitGameString(this.gameString)
         let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[0])]
         let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
@@ -609,7 +612,7 @@ export class PropScreenComponent implements OnInit {
             await NbaController.nbaAddPlayerInfoData(returnCall);
           }
         }
-        
+
       } catch (error: any) {
         alert(error.message)
       }
@@ -672,18 +675,18 @@ export class PropScreenComponent implements OnInit {
 
     try {
       console.time("load player props")
-      
-        var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
-        if(results.length == 0){
-          alert("Player Props have not been added by Draft Kings yet")
-        }
-        else{
-          await PlayerPropController.addPlayerPropData(results);
-          await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame).then(item => this.playerPropDataFinal = item)
-          this.addplayerPropToArray();
-        }
-        
-     
+
+      var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
+      if (results.length == 0) {
+        alert("Player Props have not been added by Draft Kings yet")
+      }
+      else {
+        await PlayerPropController.addPlayerPropData(results);
+        await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame).then(item => this.playerPropDataFinal = item)
+        this.addplayerPropToArray();
+      }
+
+
       console.timeEnd("load player props")
     } catch (error: any) {
       alert(error.message)
@@ -852,12 +855,12 @@ export class PropScreenComponent implements OnInit {
         var previousName = ''
         for (let i = 0; i < element.length; i++) {
           let playerName = element[i].name
-          if(playerName == previousName){
+          if (playerName == previousName) {
             await this.computeStatForPlayer(element[i])
             continue
           }
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
-          if(player.length == 0){
+          if (player.length == 0) {
             alert(element[i].name)
           }
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
@@ -875,7 +878,7 @@ export class PropScreenComponent implements OnInit {
           else {
             await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => this.nbaPlayerStatData2022Final = item)
           }
-          
+
           if (db2023.length == 0) {
             let results = await this.nbaApiController.loadNba2023PlayerStatData(player[0].playerId)
             await NbaController.nbaAddPlayerGameStats2023(results);
@@ -911,9 +914,9 @@ export class PropScreenComponent implements OnInit {
   async computeStatsForAllPlayersInProp(element: any) {
     this.displayProgressBar = true
     console.time("compute stats for all players in prop")
-      if (element[0].percentTeam == "") {
+    if (element[0].percentTeam == "") {
       await this.getPlayerStatsForSeasonCall(element)
-    } 
+    }
     console.timeEnd("compute stats for all players in prop")
 
 
