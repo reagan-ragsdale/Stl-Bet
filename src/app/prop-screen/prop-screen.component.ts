@@ -491,7 +491,7 @@ export class PropScreenComponent implements OnInit {
     else if(team1GameStats2023.length > 0){
       team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
     }
-    
+
     var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
     if(team2GameStats2023.length == 0){
       let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
@@ -529,6 +529,14 @@ export class PropScreenComponent implements OnInit {
   }
 
   computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]){
+  this.team1GameStatsDto = {
+    gamesWon: 0,
+    gamesLost:0
+  }
+  this.team2GameStatsDto = {
+    gamesWon: 0,
+    gamesLost:0
+  }
     team1.forEach(e => {
       e.result == "Win" ? this.team1GameStatsDto.gamesWon+=1 : this.team1GameStatsDto.gamesLost+=1
     })
