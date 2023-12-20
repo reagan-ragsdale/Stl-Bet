@@ -309,8 +309,8 @@ export class nbaApiController {
         gameId: this.nbaTeamGameStats[i].id,
         gameDate: this.convertDate(this.nbaTeamGameStats[i].date.start),
         result: this.nbaTeamGameStats[i].teams.visitors.id == id ? (this.nbaTeamGameStats[i].scores.visitors.points > this.nbaTeamGameStats[i].scores.home.points) ? "Win" : "Loss" : (this.nbaTeamGameStats[i].scores.home.points > this.nbaTeamGameStats[i].scores.visitors.points ? "Win" : "Loss"),
-        pointsScored: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.series.points : this.nbaTeamGameStats[i].scores.home.series.points ,
-        pointsAllowed: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.series.points : this.nbaTeamGameStats[i].scores.visitors.series.points
+        pointsScored: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.points : this.nbaTeamGameStats[i].scores.home.points,
+        pointsAllowed: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.points : this.nbaTeamGameStats[i].scores.visitors.points
       })
 
     }

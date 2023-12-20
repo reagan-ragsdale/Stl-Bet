@@ -62,7 +62,8 @@
               {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
 
-            <table mat-table [dataSource]="team1GameStats" multiTemplateDataRows class="mat-elevation-z8 player-table">
+            <mat-grid-tile colspan="4"  rowspan="{{(team1GameStats.length/2) + 1}}">
+            <table mat-table [dataSource]="team1GameStats" class="mat-elevation-z8 player-table">
 
               <ng-container matColumnDef="game">
                 <th mat-header-cell *matHeaderCellDef> Game </th>
@@ -83,6 +84,7 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
               <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"></tr>
             </table>
+          </mat-grid-tile>
 
 
           </mat-grid-list>
