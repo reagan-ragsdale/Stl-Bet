@@ -62,29 +62,47 @@
               {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4"  rowspan="{{(team1GameStats.length/2) + 1}}">
-            <table mat-table [dataSource]="team1GameStats" class="mat-elevation-z8 player-table">
+            <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}">
+              <div style="height: inherit; width: 100%; ">
+                <mat-grid-list cols="4" rowHeight="10px">
+                  <mat-grid-tile colspan="1" rowspan="{{(team2GameStats.length/2) + 1}}"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
 
-              <ng-container matColumnDef="game">
-                <th mat-header-cell *matHeaderCellDef> Game </th>
-                <td mat-cell *matCellDef="let element"> {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}} </td>
-              </ng-container>
+                  </mat-grid-tile>
+                  <mat-grid-tile colspan="2" rowspan="{{(team2GameStats.length/2) + 1}}"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}"
+                    style=" display:flex; justify-content: flex-start; align-items: flex-start;">
+                    <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table">
+
+                      <ng-container matColumnDef="game">
+                        <th mat-header-cell *matHeaderCellDef> Game </th>
+                        <td mat-cell *matCellDef="let element"> {{element.homeOrAway == "Away"? "@":
+                          ""}}{{element.teamAgainstName}} </td>
+                      </ng-container>
 
 
-              <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef> Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.gameDate}} </td>
-              </ng-container>
+                      <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.gameDate}} </td>
+                      </ng-container>
 
-              <ng-container matColumnDef="result">
-                <th mat-header-cell *matHeaderCellDef> Result </th>
-                <td mat-cell *matCellDef="let element">{{element.result == "Win" ? "W" : "L"}} {{element.pointsScored}} - {{element.pointsAllowed}}</td>
-              </ng-container>
+                      <ng-container matColumnDef="result">
+                        <th mat-header-cell *matHeaderCellDef> Result </th>
+                        <td mat-cell *matCellDef="let element">{{element.result == "Win" ? "W" : "L"}}
+                          {{element.pointsScored}} - {{element.pointsAllowed}}</td>
+                      </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
-              <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"></tr>
-            </table>
-          </mat-grid-tile>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
+                      <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"></tr>
+                    </table>
+                  </mat-grid-tile>
+                  <mat-grid-tile colspan="1" rowspan="{{(team2GameStats.length/2) + 1}}"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
+
+                  </mat-grid-tile>
+                </mat-grid-list>
+              </div>
+            </mat-grid-tile>
 
 
           </mat-grid-list>
@@ -181,7 +199,8 @@
           <ng-container matColumnDef="detailedStats">
             <th mat-header-cell *matHeaderCellDef> Detailed Stats </th>
             <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary"
-                (click)="$event.stopPropagation()" (click)="detailedStatsClicked(element)">Detailed Stats</button></td>
+                (click)="$event.stopPropagation()" (click)="detailedStatsClicked(element)">Detailed Stats</button>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="expandedDetail">
