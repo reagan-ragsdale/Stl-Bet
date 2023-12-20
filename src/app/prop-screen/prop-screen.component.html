@@ -62,7 +62,7 @@
               {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}">
+            <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}" >
               <div style="height: inherit; width: 100%; ">
                 <mat-grid-list cols="4" rowHeight="50px">
                   <mat-grid-tile colspan="1" rowspan="{{(team2GameStats.length/2) + 1}}"
@@ -71,7 +71,7 @@
                   </mat-grid-tile>
                   <mat-grid-tile colspan="2" rowspan="{{(team2GameStats.length/2) + 1}}"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}"
-                    style=" display:flex; justify-content: flex-start; align-items: flex-start;">
+                    style=" display:flex; justify-content: flex-start; align-items: flex-start; overflow:visible;">
                     <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table">
 
                       <ng-container matColumnDef="game">
