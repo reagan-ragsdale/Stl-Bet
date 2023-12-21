@@ -86,9 +86,9 @@
                         <td mat-cell *matCellDef="let element"> {{element.gameDate}} </td>
                       </ng-container>
 
-                      <ng-container matColumnDef="result"  [ngStyle]="{ padding: 0, margin: 0}">
+                      <ng-container matColumnDef="result"  >
                         <th mat-header-cell *matHeaderCellDef> Result </th>
-                        <td mat-cell *matCellDef="let element">{{element.result == "Win" ? "W" : "L"}}
+                        <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">{{element.result == "Win" ? "W" : "L"}}
                           {{element.pointsScored}} - {{element.pointsAllowed}}</td>
                       </ng-container>
 
