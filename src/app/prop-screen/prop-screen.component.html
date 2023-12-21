@@ -86,13 +86,13 @@
                         <td mat-cell *matCellDef="let element"> {{element.gameDate}} </td>
                       </ng-container>
 
-                      <ng-container matColumnDef="result">
+                      <ng-container matColumnDef="result"  [ngStyle]="{ padding: 0, margin: 0}">
                         <th mat-header-cell *matHeaderCellDef> Result </th>
                         <td mat-cell *matCellDef="let element">{{element.result == "Win" ? "W" : "L"}}
                           {{element.pointsScored}} - {{element.pointsAllowed}}</td>
                       </ng-container>
 
-                      <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames" [ngStyle]="{ padding: 0, margin: 0}"></tr>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
                       <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;" [ngStyle]="{ padding: 0, margin: 0}"></tr>
                     </table>
                   </mat-grid-tile>
