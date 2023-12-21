@@ -72,7 +72,7 @@
                   <mat-grid-tile colspan="2" rowspan="{{(team2GameStats.length/2) + 1}}"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}"
                     style=" display:flex; justify-content: flex-start; align-items: flex-start; overflow:visible;">
-                    <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table" [ngStyle]="{ padding: 0, margin: 0}">
+                    <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table" >
 
                       <ng-container matColumnDef="game">
                         <th mat-header-cell *matHeaderCellDef> Game </th>
@@ -92,8 +92,8 @@
                           {{element.pointsScored}} - {{element.pointsAllowed}}</td>
                       </ng-container>
 
-                      <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
-                      <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"></tr>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames" [ngStyle]="{ padding: 0, margin: 0}"></tr>
+                      <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;" [ngStyle]="{ padding: 0, margin: 0}"></tr>
                     </table>
                   </mat-grid-tile>
                   <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
