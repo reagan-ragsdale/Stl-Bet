@@ -35,7 +35,7 @@
               Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
             </mat-grid-tile>
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
-              [ngStyle]="{ color: displayPropHtml2.alternateColor}">
+              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               Record Vs {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} -
               {{team1GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
@@ -72,7 +72,7 @@
                   <mat-grid-tile colspan="2" rowspan="{{(team2GameStats.length/2) + 1}}"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}"
                     style=" display:flex; justify-content: flex-start; align-items: flex-start; overflow:visible;">
-                    <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table">
+                    <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table" [ngStyle]="{ padding: 0, margin: 0}">
 
                       <ng-container matColumnDef="game">
                         <th mat-header-cell *matHeaderCellDef> Game </th>
