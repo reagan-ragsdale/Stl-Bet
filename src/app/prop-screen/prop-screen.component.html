@@ -64,8 +64,8 @@
 
             <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}" >
               <div style="height: inherit; width: 100%; ">
-                <mat-grid-list cols="4" rowHeight="50px">
-                  <mat-grid-tile colspan="1" rowspan="{{(team2GameStats.length/2) + 1}}"
+                <mat-grid-list cols="8" rowHeight="50px">
+                  <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
 
                   </mat-grid-tile>
@@ -96,7 +96,7 @@
                       <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"></tr>
                     </table>
                   </mat-grid-tile>
-                  <mat-grid-tile colspan="1" rowspan="{{(team2GameStats.length/2) + 1}}"
+                  <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
 
                   </mat-grid-tile>
