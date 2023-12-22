@@ -33,12 +33,19 @@
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
               [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
-            </mat-grid-tile>
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
-              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               Record Vs {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} -
               {{team1GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
+
+            <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
+              (selectedTabChange)="onPropTypeClicked($event)" [selectedIndex]="0">
+              <mat-tab label="Game Props">
+
+              </mat-tab>
+              <mat-tab label="Game Log">
+
+              </mat-tab>
+            </mat-tab-group>
 
           </mat-grid-list>
         </div>
@@ -62,48 +69,60 @@
               {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}" >
-              <div style="height: inherit; width: 100%; ">
-                <mat-grid-list cols="8" rowHeight="50px">
-                  <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
-                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
+            <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
+              (selectedTabChange)="onPropTypeClicked($event)" [selectedIndex]="0">
+              <mat-tab label="Game Props">
 
-                  </mat-grid-tile>
-                  <mat-grid-tile colspan="2" rowspan="{{(team2GameStats.length/2) + 1}}"
-                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}"
-                    style=" display:flex; justify-content: flex-start; align-items: flex-start; overflow:visible;">
-                    <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table" >
+              </mat-tab>
+              <mat-tab label="Game Log">
 
-                      <ng-container matColumnDef="game">
-                        <th mat-header-cell *matHeaderCellDef> Game </th>
-                        <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}"> {{element.homeOrAway == "Away"? "@":
-                          ""}}{{element.teamAgainstName}} </td>
-                      </ng-container>
+                <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}">
+                  <div style="height: inherit; width: 100%; ">
+                    <mat-grid-list cols="8" rowHeight="50px">
+                      <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
+                        [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
+
+                      </mat-grid-tile>
+                      <mat-grid-tile colspan="2" rowspan="{{(team2GameStats.length/2) + 1}}"
+                        [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}"
+                        style=" display:flex; justify-content: flex-start; align-items: flex-start; overflow:visible;">
+                        <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table">
+
+                          <ng-container matColumnDef="game">
+                            <th mat-header-cell *matHeaderCellDef> Game </th>
+                            <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">
+                              {{element.homeOrAway == "Away"? "@":
+                              ""}}{{element.teamAgainstName}} </td>
+                          </ng-container>
 
 
-                      <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef> Date </th>
-                        <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}"> {{element.gameDate}} </td>
-                      </ng-container>
+                          <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef> Date </th>
+                            <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">
+                              {{element.gameDate}} </td>
+                          </ng-container>
 
-                      <ng-container matColumnDef="result"  >
-                        <th mat-header-cell *matHeaderCellDef> Result </th>
-                        <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">{{element.result == "Win" ? "W" : "L"}}
-                          {{element.pointsScored}} - {{element.pointsAllowed}}</td>
-                      </ng-container>
+                          <ng-container matColumnDef="result">
+                            <th mat-header-cell *matHeaderCellDef> Result </th>
+                            <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">{{element.result
+                              == "Win" ? "W" : "L"}}
+                              {{element.pointsScored}} - {{element.pointsAllowed}}</td>
+                          </ng-container>
 
-                      <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
-                      <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;" [ngStyle]="{ padding: 0}"></tr>
-                    </table>
-                  </mat-grid-tile>
-                  <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
-                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
+                          <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
+                          <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"
+                            [ngStyle]="{ padding: 0}"></tr>
+                        </table>
+                      </mat-grid-tile>
+                      <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
+                        [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
 
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </div>
-            </mat-grid-tile>
-
+                      </mat-grid-tile>
+                    </mat-grid-list>
+                  </div>
+                </mat-grid-tile>
+              </mat-tab>
+            </mat-tab-group>
 
           </mat-grid-list>
         </div>
