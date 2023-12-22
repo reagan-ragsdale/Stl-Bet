@@ -31,12 +31,25 @@
               [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               {{displayPropHtml1.name}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; "
-              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
+
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large; border-right: solid 'displayPropHtml1.alternateColor' 3px;"
+              [ngStyle]="{ color: displayPropHtml1.alternateColor }">
               Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-right: solid 'displayPropHtml1.alternateColor' 3px;"
+              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
               Record Vs {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} -
               {{team1GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-right: solid 'displayPropHtml1.alternateColor' 3px;"
+              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
+              Record at Home: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:xx-large; "
+              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
+              Record Away: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+            </mat-grid-tile>
+
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:xx-large; ">
               <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
                 (selectedTabChange)="onPropTypeClicked($event)" [selectedIndex]="0">
