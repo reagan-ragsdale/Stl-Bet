@@ -37,7 +37,7 @@
               {{team1GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
 
-            <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
+           <!--  <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
               (selectedTabChange)="onPropTypeClicked($event)" [selectedIndex]="0">
               <mat-tab label="Game Props">
 
@@ -45,7 +45,7 @@
               <mat-tab label="Game Log">
 
               </mat-tab>
-            </mat-tab-group>
+            </mat-tab-group> -->
 
           </mat-grid-list>
         </div>
@@ -69,12 +69,12 @@
               {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
 
-            <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
+            <!-- <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
               (selectedTabChange)="onPropTypeClicked($event)" [selectedIndex]="0">
               <mat-tab label="Game Props">
 
               </mat-tab>
-              <mat-tab label="Game Log">
+              <mat-tab label="Game Log"> -->
 
                 <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}">
                   <div style="height: inherit; width: 100%; ">
@@ -121,8 +121,8 @@
                     </mat-grid-list>
                   </div>
                 </mat-grid-tile>
-              </mat-tab>
-            </mat-tab-group>
+              <!-- </mat-tab>
+            </mat-tab-group> -->
 
           </mat-grid-list>
         </div>
