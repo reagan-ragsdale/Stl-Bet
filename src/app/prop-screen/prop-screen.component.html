@@ -32,22 +32,22 @@
               {{displayPropHtml1.name}}
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large; border-right: 3px solid 'displayPropHtml1.alternateColor' ;"
-              [ngStyle]="{ color: displayPropHtml1.alternateColor }">
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-radius: 10px;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor }">
               Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-right: solid 'displayPropHtml1.alternateColor' 3px;"
-              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
-              Record Vs {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} -
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-radius: 10px;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              Vs: {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} -
               {{team1GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-right: solid 'displayPropHtml1.alternateColor' 3px;"
-              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
-              Record at Home: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;   border-radius: 10px;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              Home: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large; "
-              [ngStyle]="{ color: displayPropHtml1.alternateColor}">
-              Record Away: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+            <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-radius: 10px;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              Away: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
             </mat-grid-tile>
 
             <mat-grid-tile colspan="4" style="justify-content: center; align-content: center; font-size:large; ">

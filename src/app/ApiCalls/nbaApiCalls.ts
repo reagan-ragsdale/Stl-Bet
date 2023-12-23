@@ -111,16 +111,17 @@ export class nbaApiController {
             e.lastname += " Jr"
           }
 
-          if (e.firstname.includes("II")) {
-            e.firstname = e.firstname.replace("II", "")
-            e.firstname = e.firstname.trim()
-            e.lastname += " II"
-          }
           if (e.firstname.includes("III")) {
             e.firstname = e.firstname.replace("III", "")
             e.firstname = e.firstname.trim()
             e.lastname += " III"
           }
+          if (e.firstname.includes("II")) {
+            e.firstname = e.firstname.replace("II", "")
+            e.firstname = e.firstname.trim()
+            e.lastname += " II"
+          }
+          
           if (e.firstname.includes("IV")) {
             e.firstname = e.firstname.replace("IV", "")
             e.firstname = e.firstname.trim()
