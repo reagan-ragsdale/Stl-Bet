@@ -2,13 +2,13 @@
 
   <mat-grid-tile colspan="4" style=" display: flex; gap: 2rem;" [ngStyle]="{ backgroundColor: teamInfo[0].primaryColor}">
 
-    <div style="display: flex; gap: 1rem;">
+    <div style="display: flex; gap: 1rem; align-items: flex-start;">
       <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}" style="font-size: 200%;">{{playerName}}: </h1>
       <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}">{{teamInfo[0].teamName}}</h1>
     </div>
     
     <div style="display: flex; gap: 1rem;">
-      <h2 [ngStyle]="{ color: teamInfo[0].alternateColor}" style="align-items: center;">Search Player</h2>
+      <h2 [ngStyle]="{ color: teamInfo[0].alternateColor}" style="align-items: center; justify-content: center;">Search Player</h2>
       <form style="align-items: center;" class="example-form">
         <mat-form-field class="example-full-width">
           <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
