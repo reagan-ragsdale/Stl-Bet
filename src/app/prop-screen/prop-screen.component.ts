@@ -861,7 +861,7 @@ export class PropScreenComponent implements OnInit {
           }
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
           if (player.length == 0) {
-            alert(element[i].name)
+            alert(element[i].name + " is not in the player database")
           }
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
           let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
