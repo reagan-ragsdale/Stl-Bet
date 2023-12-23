@@ -34,22 +34,28 @@
 
             <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor }">
-              Record: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+              Record: 
+              <br>
+              {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
             </mat-grid-tile>
             <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large; font-family: Arial, Helvetica, sans-serif;  border-radius: 10px;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
-              {{displayPropHtml2.name}}: {{team1GameStatsDto.gamesWonVsOpponent}} -
+              {{displayPropHtml2.name}}: 
+              <br>
+              {{team1GameStatsDto.gamesWonVsOpponent}} -
               {{team1GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
             <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;   border-radius: 10px;  font-family: Arial, Helvetica, sans-serif;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
-              Home: {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+              Home: 
+              <br>
+              {{team1GameStatsDto.gamesWonHome}} - {{team1GameStatsDto.gamesLostHome}}
             </mat-grid-tile>
             <mat-grid-tile colspan="1" style="justify-content: center; align-content: center; font-size:large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               Away: 
               <br>
-              {{team1GameStatsDto.gamesWon}} - {{team1GameStatsDto.gamesLost}}
+              {{team1GameStatsDto.gamesWonAway}} - {{team1GameStatsDto.gamesLostAway}}
 
             </mat-grid-tile>
 

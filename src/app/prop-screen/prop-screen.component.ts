@@ -133,13 +133,21 @@ export class PropScreenComponent implements OnInit {
     gamesWon: 0,
     gamesLost: 0,
     gamesWonVsOpponent: 0,
-    gamesLostVsOpponent: 0
+    gamesLostVsOpponent: 0,
+    gamesWonHome: 0,
+    gamesLostHome: 0,
+    gamesWonAway: 0,
+    gamesLostAway: 0
   }
   team2GameStatsDto = {
     gamesWon: 0,
     gamesLost: 0,
     gamesWonVsOpponent: 0,
-    gamesLostVsOpponent: 0
+    gamesLostVsOpponent: 0,
+    gamesWonHome: 0,
+    gamesLostHome: 0,
+    gamesWonAway: 0,
+    gamesLostAway: 0
   }
   team1GameStats: DbNbaTeamGameStats[] = []
   team2GameStats: DbNbaTeamGameStats[] = []
@@ -540,22 +548,32 @@ export class PropScreenComponent implements OnInit {
       gamesWon: 0,
       gamesLost: 0,
       gamesWonVsOpponent: 0,
-      gamesLostVsOpponent: 0
+      gamesLostVsOpponent: 0,
+      gamesWonHome: 0,
+      gamesLostHome: 0,
+      gamesWonAway: 0,
+      gamesLostAway: 0
     }
     this.team2GameStatsDto = {
       gamesWon: 0,
       gamesLost: 0,
       gamesWonVsOpponent: 0,
-      gamesLostVsOpponent: 0
+      gamesLostVsOpponent: 0,
+      gamesWonHome: 0,
+      gamesLostHome: 0,
+      gamesWonAway: 0,
+      gamesLostAway: 0
     }
     var i
     team1.forEach(e => {
       e.result == "Win" ? this.team1GameStatsDto.gamesWon += 1 : this.team1GameStatsDto.gamesLost += 1
       e.teamAgainstId == team2[0].teamId ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonVsOpponent += 1 : this.team1GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
+      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonHome += 1 : this.team1GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team1GameStatsDto.gamesWonAway += 1 : this.team1GameStatsDto.gamesLostAway += 1)
     })
     team2.forEach(e => {
       e.result == "Win" ? this.team2GameStatsDto.gamesWon += 1 : this.team2GameStatsDto.gamesLost += 1
       e.teamAgainstId == team1[0].teamId ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonVsOpponent += 1 : this.team2GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
+      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonHome += 1 : this.team2GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team2GameStatsDto.gamesWonAway += 1 : this.team2GameStatsDto.gamesLostAway += 1)
     })
   }
 
