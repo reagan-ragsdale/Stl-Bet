@@ -103,6 +103,6 @@ export class DbNbaGameStats {
   @Fields.createdAt()
   createdAt?: Date
 
-  @Fields.integer()
-  uniquegameid? = 0
+  @Fields.autoIncrement()
+  uniquegameid?:number
 }
