@@ -129,6 +129,10 @@ export class nbaApiController {
           if (e.lastname.toLowerCase() == "claxton" && e.firstname.toLowerCase() == "nic") {
             e.firstname = "Nicolas"
           }
+
+          if (e.lastname.toLowerCase() == "thomas" && e.firstname.toLowerCase() == "cam") {
+            e.firstname = "Cameron"
+          }
           var playerName = e.firstname + " " + e.lastname
           if (playerName.includes(".")) {
             playerName = playerName.replaceAll(".", "")
