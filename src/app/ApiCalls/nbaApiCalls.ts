@@ -303,6 +303,9 @@ export class nbaApiController {
       if(this.nbaTeamGameStats[i].status.long == "Scheduled"){
         continue
       }
+      if(this.nbaTeamGameStats[i].status.long == "In Play"){
+        continue
+      }
       
       temp.push({
         teamName: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].teams.visitors.name : this.nbaTeamGameStats[i].teams.home.name,
