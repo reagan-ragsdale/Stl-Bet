@@ -21,7 +21,7 @@
   <!-- background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}'; -->
   <div *ngIf="gamePropsClicked">
     <mat-progress-bar mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
-    <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1.25:1">
+    <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1:1">
       <mat-grid-tile rowspan="{{(team1GameStats.length/2) + 8}}"
         [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
         <div style="height: inherit; width: 100%; ">
