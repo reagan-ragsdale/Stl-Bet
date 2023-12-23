@@ -21,7 +21,7 @@
   <!-- background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}'; -->
   <div *ngIf="gamePropsClicked">
     <mat-progress-bar mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
-    <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="5px">
+    <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1.25:1">
       <mat-grid-tile rowspan="{{(team1GameStats.length/2) + 8}}"
         [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
         <div style="height: inherit; width: 100%; ">
@@ -59,17 +59,17 @@
 
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4" rowspan="10" >
+            <mat-grid-tile colspan="4" rowspan="2" >
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4" rowspan="10" [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor}">
+            <mat-grid-tile colspan="4" rowspan="2" [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor}">
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4" rowspan="10" style="justify-content: center; align-content: center; font-size:large;">
+            <mat-grid-tile colspan="4" rowspan="2" style="justify-content: center; align-content: center; font-size:large;">
               <h2>Stats</h2>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4" rowspan="10" [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor}">
+            <mat-grid-tile colspan="4" rowspan="2" [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor}">
             </mat-grid-tile>
 
 
