@@ -73,10 +73,10 @@
               <div>
                 Moneyline:
               </div>
-              <div>
-                <button mat-raised-button>Game</button>
-                <button mat-raised-button>Half</button>
-                <button mat-raised-button>Quarter</button>
+              <div style="width:80px; padding-top: 1rem; padding-bottom: 1rem; padding-right: 1rem; display: flex; flex-direction: column; gap: 5px;">
+                <button mat-raised-button style="width: 100%;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
+                <button mat-raised-button style="width: 100%;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
+                <button mat-raised-button style="width: 100%;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
               </div>
               
               
