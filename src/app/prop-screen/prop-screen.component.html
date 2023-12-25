@@ -88,6 +88,85 @@
               
             </mat-grid-tile>
 
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex; flex-direction: column;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                Overall
+              </div>
+              <div *ngIf="moneylineGameClicked" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}" style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;">
+                <div style="width:90%;">Avg: .867</div>
+                <div style="width: 10%;"> H: 8</div>
+
+              </div>
+              <div *ngIf="moneylineHalfClicked">
+
+              </div>
+              <div *ngIf="moneylineQuarterClicked">
+
+              </div>
+              
+              
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                {{displayPropHtml2.name}}
+              </div>
+              <div *ngIf="moneylineGameClicked">
+
+              </div>
+              <div *ngIf="moneylineHalfClicked">
+
+              </div>
+              <div *ngIf="moneylineQuarterClicked">
+
+              </div>
+              
+              
+              
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                Home
+              </div>
+              <div *ngIf="moneylineGameClicked">
+
+              </div>
+              <div *ngIf="moneylineHalfClicked">
+
+              </div>
+              <div *ngIf="moneylineQuarterClicked">
+
+              </div>
+              
+              
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex; flex-direction: column;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                Away
+              </div>
+              <div *ngIf="moneylineGameClicked">
+
+              </div>
+              <div *ngIf="moneylineHalfClicked">
+
+              </div>
+              <div *ngIf="moneylineQuarterClicked">
+
+              </div>
+              
+              
+            </mat-grid-tile>
+
             <mat-grid-tile colspan="16" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor }">
             </mat-grid-tile>
 
@@ -110,12 +189,16 @@
               style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="justify-content: start;">
-                Spread:
+                Overall
               </div>
-              <div style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 5px;">
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
+              <div *ngIf="spreadGameClicked">
+
+              </div>
+              <div *ngIf="spreadHalfClicked">
+
+              </div>
+              <div *ngIf="spreadQuarterClicked">
+
               </div>
               
               
@@ -125,13 +208,18 @@
               style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="justify-content: start;">
-                Spread:
+                {{displayPropHtml2.name}}
               </div>
-              <div style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 5px;">
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
+              <div *ngIf="spreadGameClicked">
+
               </div>
+              <div *ngIf="spreadHalfClicked">
+
+              </div>
+              <div *ngIf="spreadQuarterClicked">
+
+              </div>
+              
               
               
             </mat-grid-tile>
@@ -140,27 +228,35 @@
               style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="justify-content: start;">
-                Spread:
+                Home
               </div>
-              <div style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 5px;">
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
+              <div *ngIf="spreadGameClicked">
+
+              </div>
+              <div *ngIf="spreadHalfClicked">
+
+              </div>
+              <div *ngIf="spreadQuarterClicked">
+
               </div>
               
               
             </mat-grid-tile>
 
             <mat-grid-tile colspan="3" rowspan="17"
-              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex; flex-direction: column;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="justify-content: start;">
-                Spread:
+                Away
               </div>
-              <div style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 5px;">
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
-                <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
+              <div *ngIf="spreadGameClicked">
+
+              </div>
+              <div *ngIf="spreadHalfClicked">
+
+              </div>
+              <div *ngIf="spreadQuarterClicked">
+
               </div>
               
               
@@ -179,6 +275,84 @@
                 <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
                 <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
                 <button mat-raised-button style="width: 100%; height: 20px;" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
+              </div>
+              
+              
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                Overall
+              </div>
+              <div *ngIf="totalGameClicked">
+
+              </div>
+              <div *ngIf="totalHalfClicked">
+
+              </div>
+              <div *ngIf="totalQuarterClicked">
+
+              </div>
+              
+              
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                {{displayPropHtml2.name}}
+              </div>
+              <div *ngIf="totalGameClicked">
+
+              </div>
+              <div *ngIf="totalHalfClicked">
+
+              </div>
+              <div *ngIf="totalQuarterClicked">
+
+              </div>
+              
+              
+              
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                Home
+              </div>
+              <div *ngIf="totalGameClicked">
+
+              </div>
+              <div *ngIf="totalHalfClicked">
+
+              </div>
+              <div *ngIf="totalQuarterClicked">
+
+              </div>
+              
+              
+              
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex; flex-direction: column;"
+              [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
+              <div style="justify-content: start;">
+                Away
+              </div>
+              <div *ngIf="totalGameClicked">
+
+              </div>
+              <div *ngIf="totalHalfClicked">
+
+              </div>
+              <div *ngIf="totalQuarterClicked">
+
               </div>
               
               

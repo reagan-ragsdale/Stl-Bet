@@ -90,6 +90,15 @@ export class PropScreenComponent implements OnInit {
   public selectedGameid: string = '';
   public exit: boolean = true;
   public teamPropIsLoading: boolean = true;
+  public spreadGameClicked: boolean = true;
+  public spreadHalfClicked: boolean = false;
+  public spreadQuarterClicked: boolean = false;
+  public totalGameClicked: boolean = true;
+  public totalHalfClicked: boolean = false;
+  public totalQuarterClicked: boolean = false;
+  public moneylineGameClicked: boolean = true;
+  public moneylineHalfClicked: boolean = false;
+  public moneylineQuarterClicked: boolean = false;
 
 
 
