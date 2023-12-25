@@ -97,15 +97,15 @@
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column;">
                 <ng-container>
-                  <div>
+                  <div style="text-align: center;">
                     Overall
                   </div>
                 </ng-container>
-                <!-- style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;" -->
-                <ng-container *ngIf="moneylineGameClicked">
+                <!--  -->
+                <ng-container *ngIf="moneylineGameClicked" style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;">
                   <div
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
-                    Avg: .867</div>
+                    {{team1GameStatsDto.gamesWon / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)}}</div>
   
                 </ng-container>
                 <ng-container *ngIf="moneylineHalfClicked">
