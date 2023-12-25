@@ -105,7 +105,7 @@
                 <ng-container *ngIf="moneylineGameClicked" style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;">
                   <div
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
-                    {{team1GameStatsDto.gamesWon / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)}}</div>
+                    {{(team1GameStatsDto.gamesWon / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)) | number: '1.0-3'}}</div>
   
                 </ng-container>
                 <ng-container *ngIf="moneylineHalfClicked">
