@@ -89,14 +89,13 @@
             </mat-grid-tile>
 
             <mat-grid-tile colspan="3" rowspan="17"
-              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex; flex-direction: column;"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex; flex-direction: column; columns: 1;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="justify-content: start;">
                 Overall
               </div>
               <div *ngIf="moneylineGameClicked" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}" style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;">
-                <div style="width:90%;">Avg: .867</div>
-                <div style="width: 10%;"> H: 8</div>
+                <div style="width:80%;">Avg: .867</div>
 
               </div>
               <div *ngIf="moneylineHalfClicked">
@@ -186,12 +185,14 @@
             </mat-grid-tile>
 
             <mat-grid-tile colspan="3" rowspan="17"
-              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex;"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center; display: flex; columns: 1;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="justify-content: start;">
                 Overall
               </div>
-              <div *ngIf="spreadGameClicked">
+              <div *ngIf="spreadGameClicked" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}" style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;">
+                <div style="width:80%;">Avg: .867</div>
+                <div style="width: 20%;"> H: 8</div>
 
               </div>
               <div *ngIf="spreadHalfClicked">
