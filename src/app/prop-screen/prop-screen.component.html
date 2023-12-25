@@ -95,10 +95,10 @@
                 Overall
               </div>
               <!-- style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;" -->
-              <div *ngIf="moneylineGameClicked" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}" >
+              <ng-container *ngIf="moneylineGameClicked" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}" >
                 <div style="width:80%;">Avg: .867</div>
 
-              </div>
+              </ng-container>
               <div *ngIf="moneylineHalfClicked">
 
               </div>
