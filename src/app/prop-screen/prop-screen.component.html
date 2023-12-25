@@ -91,10 +91,11 @@
             <mat-grid-tile colspan="3" rowspan="17"
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; display: flex; flex-direction: column; columns: 1;"
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
-              <div >
+              <div>
                 Overall
               </div>
-              <div *ngIf="moneylineGameClicked" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}" style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;">
+              <!-- style="width: 90%; align-content: center; justify-content: center; border-radius: 10px; display: flex;" -->
+              <div *ngIf="moneylineGameClicked" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}" >
                 <div style="width:80%;">Avg: .867</div>
 
               </div>
