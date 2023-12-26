@@ -159,6 +159,42 @@ export class PropScreenComponent implements OnInit {
     quarterThreeLost: 0,
     quarterFourWon: 0,
     quarterFourLost: 0,
+    halfOneWonVsOpponent: 0,
+    halfOneLostVsOpponent: 0,
+    halfTwoWonVsOpponent: 0,
+    halfTwoLostVsOpponent: 0,
+    quarterOneWonVsOpponent: 0,
+    quarterOneLostVsOpponent: 0,
+    quarterTwoWonVsOpponent: 0,
+    quarterTwoLostVsOpponent: 0,
+    quarterThreeWonVsOpponent: 0,
+    quarterThreeLostVsOpponent: 0,
+    quarterFourWonVsOpponent: 0,
+    quarterFourLostVsOpponent: 0,
+    halfOneWonHome: 0,
+    halfOneLostHome: 0,
+    halfOneWonAway: 0,
+    halfOneLostAway: 0,
+    halfTwoWonHome: 0,
+    halfTwoLostHome: 0,
+    halfTwoWonAway: 0,
+    halfTwoLostAway: 0,
+    quarterOneWonHome: 0,
+    quarterOneLostHome: 0,
+    quarterOneWonAway: 0,
+    quarterOneLostAway: 0,
+    quarterTwoWonHome: 0,
+    quarterTwoLostHome: 0,
+    quarterTwoWonAway: 0,
+    quarterTwoLostAway: 0,
+    quarterThreeWonHome: 0,
+    quarterThreeLostHome: 0,
+    quarterThreeWonAway: 0,
+    quarterThreeLostAway: 0,
+    quarterFourWonHome: 0,
+    quarterFourLostHome: 0,
+    quarterFourWonAway: 0,
+    quarterFourLostAway: 0,
   }
   team2GameStatsDto = {
     gamesWon: 0,
@@ -181,6 +217,42 @@ export class PropScreenComponent implements OnInit {
     quarterThreeLost: 0,
     quarterFourWon: 0,
     quarterFourLost: 0,
+    halfOneWonVsOpponent: 0,
+    halfOneLostVsOpponent: 0,
+    halfTwoWonVsOpponent: 0,
+    halfTwoLostVsOpponent: 0,
+    quarterOneWonVsOpponent: 0,
+    quarterOneLostVsOpponent: 0,
+    quarterTwoWonVsOpponent: 0,
+    quarterTwoLostVsOpponent: 0,
+    quarterThreeWonVsOpponent: 0,
+    quarterThreeLostVsOpponent: 0,
+    quarterFourWonVsOpponent: 0,
+    quarterFourLostVsOpponent: 0,
+    halfOneWonHome: 0,
+    halfOneLostHome: 0,
+    halfOneWonAway: 0,
+    halfOneLostAway: 0,
+    halfTwoWonHome: 0,
+    halfTwoLostHome: 0,
+    halfTwoWonAway: 0,
+    halfTwoLostAway: 0,
+    quarterOneWonHome: 0,
+    quarterOneLostHome: 0,
+    quarterOneWonAway: 0,
+    quarterOneLostAway: 0,
+    quarterTwoWonHome: 0,
+    quarterTwoLostHome: 0,
+    quarterTwoWonAway: 0,
+    quarterTwoLostAway: 0,
+    quarterThreeWonHome: 0,
+    quarterThreeLostHome: 0,
+    quarterThreeWonAway: 0,
+    quarterThreeLostAway: 0,
+    quarterFourWonHome: 0,
+    quarterFourLostHome: 0,
+    quarterFourWonAway: 0,
+    quarterFourLostAway: 0,
   }
   team1GameStats: DbNbaTeamGameStats[] = []
   team2GameStats: DbNbaTeamGameStats[] = []
@@ -613,6 +685,42 @@ export class PropScreenComponent implements OnInit {
       quarterThreeLost: 0,
       quarterFourWon: 0,
       quarterFourLost: 0,
+      halfOneWonVsOpponent: 0,
+      halfOneLostVsOpponent: 0,
+      halfTwoWonVsOpponent: 0,
+      halfTwoLostVsOpponent: 0,
+      quarterOneWonVsOpponent: 0,
+      quarterOneLostVsOpponent: 0,
+      quarterTwoWonVsOpponent: 0,
+      quarterTwoLostVsOpponent: 0,
+      quarterThreeWonVsOpponent: 0,
+      quarterThreeLostVsOpponent: 0,
+      quarterFourWonVsOpponent: 0,
+      quarterFourLostVsOpponent: 0,
+      halfOneWonHome: 0,
+      halfOneLostHome: 0,
+      halfOneWonAway: 0,
+      halfOneLostAway: 0,
+      halfTwoWonHome: 0,
+      halfTwoLostHome: 0,
+      halfTwoWonAway: 0,
+      halfTwoLostAway: 0,
+      quarterOneWonHome: 0,
+      quarterOneLostHome: 0,
+      quarterOneWonAway: 0,
+      quarterOneLostAway: 0,
+      quarterTwoWonHome: 0,
+      quarterTwoLostHome: 0,
+      quarterTwoWonAway: 0,
+      quarterTwoLostAway: 0,
+      quarterThreeWonHome: 0,
+      quarterThreeLostHome: 0,
+      quarterThreeWonAway: 0,
+      quarterThreeLostAway: 0,
+      quarterFourWonHome: 0,
+      quarterFourLostHome: 0,
+      quarterFourWonAway: 0,
+      quarterFourLostAway: 0,
 
     }
     this.team2GameStatsDto = {
@@ -636,6 +744,42 @@ export class PropScreenComponent implements OnInit {
       quarterThreeLost: 0,
       quarterFourWon: 0,
       quarterFourLost: 0,
+      halfOneWonVsOpponent: 0,
+      halfOneLostVsOpponent: 0,
+      halfTwoWonVsOpponent: 0,
+      halfTwoLostVsOpponent: 0,
+      quarterOneWonVsOpponent: 0,
+      quarterOneLostVsOpponent: 0,
+      quarterTwoWonVsOpponent: 0,
+      quarterTwoLostVsOpponent: 0,
+      quarterThreeWonVsOpponent: 0,
+      quarterThreeLostVsOpponent: 0,
+      quarterFourWonVsOpponent: 0,
+      quarterFourLostVsOpponent: 0,
+      halfOneWonHome: 0,
+      halfOneLostHome: 0,
+      halfOneWonAway: 0,
+      halfOneLostAway: 0,
+      halfTwoWonHome: 0,
+      halfTwoLostHome: 0,
+      halfTwoWonAway: 0,
+      halfTwoLostAway: 0,
+      quarterOneWonHome: 0,
+      quarterOneLostHome: 0,
+      quarterOneWonAway: 0,
+      quarterOneLostAway: 0,
+      quarterTwoWonHome: 0,
+      quarterTwoLostHome: 0,
+      quarterTwoWonAway: 0,
+      quarterTwoLostAway: 0,
+      quarterThreeWonHome: 0,
+      quarterThreeLostHome: 0,
+      quarterThreeWonAway: 0,
+      quarterThreeLostAway: 0,
+      quarterFourWonHome: 0,
+      quarterFourLostHome: 0,
+      quarterFourWonAway: 0,
+      quarterFourLostAway: 0,
     }
     var i
     team1.forEach(e => {
@@ -648,6 +792,31 @@ export class PropScreenComponent implements OnInit {
       e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWon += 1 : this.team1GameStatsDto.quarterFourLost += 1;
       (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWon += 1 : this.team1GameStatsDto.halfOneLost += 1;
       (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWon += 1 : this.team1GameStatsDto.halfTwoLost += 1;
+
+      if (e.teamAgainstId == team2[0].teamId) {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonVsOpponent += 1 : this.team1GameStatsDto.quarterOneLostVsOpponent += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDto.quarterTwoLostVsOpponent += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonVsOpponent += 1 : this.team1GameStatsDto.quarterThreeLostVsOpponent += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWonVsOpponent += 1 : this.team1GameStatsDto.quarterFourLostVsOpponent += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonVsOpponent += 1 : this.team1GameStatsDto.halfOneLostVsOpponent += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonVsOpponent += 1 : this.team1GameStatsDto.halfTwoLostVsOpponent += 1;
+      }
+      if(e.homeOrAway == "Home"){
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonHome += 1 : this.team1GameStatsDto.quarterOneLostHome += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonHome += 1 : this.team1GameStatsDto.quarterTwoLostHome += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonHome += 1 : this.team1GameStatsDto.quarterThreeLostHome += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWonHome += 1 : this.team1GameStatsDto.quarterFourLostHome += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonHome += 1 : this.team1GameStatsDto.halfOneLostHome += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonHome += 1 : this.team1GameStatsDto.halfTwoLostHome += 1;
+      }
+      else if(e.homeOrAway == "Away"){
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonAway += 1 : this.team1GameStatsDto.quarterOneLostAway += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonAway += 1 : this.team1GameStatsDto.quarterTwoLostAway += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonAway += 1 : this.team1GameStatsDto.quarterThreeLostAway += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWonAway += 1 : this.team1GameStatsDto.quarterFourLostAway += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonAway += 1 : this.team1GameStatsDto.halfOneLostAway += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonAway += 1 : this.team1GameStatsDto.halfTwoLostAway += 1;
+      }
     })
     team2.forEach(e => {
       e.result == "Win" ? this.team2GameStatsDto.gamesWon += 1 : this.team2GameStatsDto.gamesLost += 1
@@ -659,6 +828,30 @@ export class PropScreenComponent implements OnInit {
       e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWon += 1 : this.team2GameStatsDto.quarterFourLost += 1;
       (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWon += 1 : this.team2GameStatsDto.halfOneLost += 1;
       (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWon += 1 : this.team2GameStatsDto.halfTwoLost += 1;
+      if (e.teamAgainstId == team1[0].teamId) {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonVsOpponent += 1 : this.team2GameStatsDto.quarterOneLostVsOpponent += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team2GameStatsDto.quarterTwoLostVsOpponent += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonVsOpponent += 1 : this.team2GameStatsDto.quarterThreeLostVsOpponent += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonVsOpponent += 1 : this.team2GameStatsDto.quarterFourLostVsOpponent += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonVsOpponent += 1 : this.team2GameStatsDto.halfOneLostVsOpponent += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonVsOpponent += 1 : this.team2GameStatsDto.halfTwoLostVsOpponent += 1;
+      }
+      if(e.homeOrAway == "Home"){
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonHome += 1 : this.team2GameStatsDto.quarterOneLostHome += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonHome += 1 : this.team2GameStatsDto.quarterTwoLostHome += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonHome += 1 : this.team2GameStatsDto.quarterThreeLostHome += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonHome += 1 : this.team2GameStatsDto.quarterFourLostHome += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonHome += 1 : this.team2GameStatsDto.halfOneLostHome += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonHome += 1 : this.team2GameStatsDto.halfTwoLostHome += 1;
+      }
+      else if(e.homeOrAway == "Away"){
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonAway += 1 : this.team2GameStatsDto.quarterOneLostAway += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonAway += 1 : this.team2GameStatsDto.quarterTwoLostAway += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonAway += 1 : this.team2GameStatsDto.quarterThreeLostAway += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonAway += 1 : this.team2GameStatsDto.quarterFourLostAway += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonAway += 1 : this.team2GameStatsDto.halfOneLostAway += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonAway += 1 : this.team2GameStatsDto.halfTwoLostAway += 1;
+      }
     })
     console.log(team1)
     console.log(this.team1GameStatsDto)
