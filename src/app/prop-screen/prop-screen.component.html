@@ -80,12 +80,15 @@
                 Moneyline:
               </div>
               <div
-                style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 5px;">
-                <button mat-raised-button style="width: 100%; height: 20px;"
+                style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 10px;">
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="moneylineGameToggled()"
+                  (click)="$event.stopPropagation()"
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
-                <button mat-raised-button style="width: 100%; height: 20px;"
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="moneylineHalfToggled()"
+                  (click)="$event.stopPropagation()"
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
-                <button mat-raised-button style="width: 100%; height: 20px;"
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="moneylineQuarterToggled()"
+                  (click)="$event.stopPropagation()"
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
               </div>
 
@@ -95,28 +98,80 @@
             <mat-grid-tile colspan="3" rowspan="17"
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
-              <div style="width:100%; display: flex; flex-direction: column; gap: 2rem;">
-                <ng-container>
-                  <div style="text-align: center;">
-                    Overall
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div style="text-align: center; height: 45%; ">
+                  <h2 style="font-size:x-large; font-family: Arial, Helvetica, sans-serif; margin-top: 10px;">Overall
+                  </h2>
+                </div>
+                <div *ngIf="moneylineGameClicked"
+                  style="width: 90%; height: 40%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{(team1GameStatsDto.gamesWon / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)) |
+                    number: '1.0-3'}}
                   </div>
-                </ng-container>
-                <!--  -->
-                <ng-container *ngIf="moneylineGameClicked" style="width: 100px; align-content: center; justify-content: center; border-radius: 10px; display: flex;">
-                  <div
+                </div>
+
+                <div *ngIf="moneylineHalfClicked"
+                  style="width: 90%; height: 40%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div style="width:50%; height:100%; border-radius: 10px; text-align: center; "
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
-                    {{(team1GameStatsDto.gamesWon / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)) | number: '1.0-3'}}</div>
-  
-                </ng-container>
-                <ng-container *ngIf="moneylineHalfClicked">
-  
-                </ng-container>
-                <ng-container *ngIf="moneylineQuarterClicked">
-  
-                </ng-container>
-  
+                    <h2 style="margin: auto; font-size:x-large; font-family: Arial, Helvetica, sans-serif;">
+                      {{team1GameStatsDto.halfOneWon / (team1GameStatsDto.halfOneLost + team1GameStatsDto.halfOneWon) |
+                      number: '1.0-3'}}
+                    </h2>
+
+                  </div>
+                  <div style="width:50%; height: 100%; border-radius: 10px; text-align: center;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
+                    <h2 style="margin: auto; font-size:x-large; font-family: Arial, Helvetica, sans-serif;">
+                      {{team1GameStatsDto.halfTwoWon / (team1GameStatsDto.halfTwoLost + team1GameStatsDto.halfTwoWon)|
+                      number: '1.0-3'}}
+                    </h2>
+                  </div>
+
+                </div>
+                <div *ngIf="moneylineQuarterClicked"
+                  style="width: 90%; height: 55%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; padding-bottom: 3px;">
+                  <div style="width: 100%; height: 48%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div style="width:48%; height:100%; border-radius: 10px; text-align: center; "
+                      [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
+                      <h2 style="margin: auto; font-size:large; font-family: Arial, Helvetica, sans-serif;">
+                        {{team1GameStatsDto.quarterOneWon / (team1GameStatsDto.quarterOneLost + team1GameStatsDto.quarterOneWon)|
+                        number: '1.0-3'}}
+                      </h2>
+
+                    </div>
+                    <div style="width:48%; height: 100%; border-radius: 10px; text-align: center;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
+                      <h2 style="margin: auto; font-size:large; font-family: Arial, Helvetica, sans-serif;">
+                        {{team1GameStatsDto.quarterTwoWon / (team1GameStatsDto.quarterTwoLost + team1GameStatsDto.quarterTwoWon)|
+                        number: '1.0-3'}}
+                      </h2>
+                    </div>
+                  </div>
+                  <div style="width: 100%; height: 48%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div style="width:48%; height:100%; border-radius: 10px; text-align: center; "
+                      [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
+                      <h2 style="margin: auto; font-size:large; font-family: Arial, Helvetica, sans-serif;">
+                        {{team1GameStatsDto.quarterThreeWon / (team1GameStatsDto.quarterThreeLost + team1GameStatsDto.quarterThreeWon) |
+                        number: '1.0-3'}}
+                      </h2>
+
+                    </div>
+                    <div style="width:48%; height: 100%; border-radius: 10px; text-align: center;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
+                      <h2 style="margin: auto; font-size:large; font-family: Arial, Helvetica, sans-serif;">
+                        {{team1GameStatsDto.quarterFourWon / (team1GameStatsDto.quarterFourLost + team1GameStatsDto.quarterFourWon) |
+                        number: '1.0-3'}}
+                      </h2>
+                    </div>
+                  </div>
+
+                </div>
+
               </div>
-              
+
 
             </mat-grid-tile>
 

@@ -35,10 +35,34 @@ export class DbNbaTeamGameStats {
   result = ''
 
   @Fields.integer()
-  pointsScored = 0
+  pointsScoredOverall = 0
 
   @Fields.integer()
-  pointsAllowed = 0
+  pointsScoredFirstQuarter = 0
+
+  @Fields.integer()
+  pointsScoredSecondQuarter = 0
+
+  @Fields.integer()
+  pointsScoredThirdQuarter = 0
+
+  @Fields.integer()
+  pointsScoredFourthQuarter = 0
+
+  @Fields.integer()
+  pointsAllowedOverall = 0
+
+  @Fields.integer()
+  pointsAllowedFirstQuarter = 0
+
+  @Fields.integer()
+  pointsAllowedSecondQuarter = 0
+
+  @Fields.integer()
+  pointsAllowedThirdQuarter = 0
+
+  @Fields.integer()
+  pointsAllowedFourthQuarter = 0
 
   
 
@@ -46,5 +70,5 @@ export class DbNbaTeamGameStats {
   createdAt?: Date
 
   @Fields.integer()
-  uniquegameid? = 0
+  uniquegameid?:number
 }

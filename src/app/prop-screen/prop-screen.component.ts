@@ -146,7 +146,19 @@ export class PropScreenComponent implements OnInit {
     gamesWonHome: 0,
     gamesLostHome: 0,
     gamesWonAway: 0,
-    gamesLostAway: 0
+    gamesLostAway: 0,
+    halfOneWon: 0,
+    halfOneLost: 0,
+    halfTwoWon: 0,
+    halfTwoLost: 0,
+    quarterOneWon: 0,
+    quarterOneLost: 0,
+    quarterTwoWon: 0,
+    quarterTwoLost: 0,
+    quarterThreeWon: 0,
+    quarterThreeLost: 0,
+    quarterFourWon: 0,
+    quarterFourLost: 0,
   }
   team2GameStatsDto = {
     gamesWon: 0,
@@ -156,7 +168,19 @@ export class PropScreenComponent implements OnInit {
     gamesWonHome: 0,
     gamesLostHome: 0,
     gamesWonAway: 0,
-    gamesLostAway: 0
+    gamesLostAway: 0,
+    halfOneWon: 0,
+    halfOneLost: 0,
+    halfTwoWon: 0,
+    halfTwoLost: 0,
+    quarterOneWon: 0,
+    quarterOneLost: 0,
+    quarterTwoWon: 0,
+    quarterTwoLost: 0,
+    quarterThreeWon: 0,
+    quarterThreeLost: 0,
+    quarterFourWon: 0,
+    quarterFourLost: 0,
   }
   team1GameStats: DbNbaTeamGameStats[] = []
   team2GameStats: DbNbaTeamGameStats[] = []
@@ -576,7 +600,20 @@ export class PropScreenComponent implements OnInit {
       gamesWonHome: 0,
       gamesLostHome: 0,
       gamesWonAway: 0,
-      gamesLostAway: 0
+      gamesLostAway: 0,
+      halfOneWon: 0,
+      halfOneLost: 0,
+      halfTwoWon: 0,
+      halfTwoLost: 0,
+      quarterOneWon: 0,
+      quarterOneLost: 0,
+      quarterTwoWon: 0,
+      quarterTwoLost: 0,
+      quarterThreeWon: 0,
+      quarterThreeLost: 0,
+      quarterFourWon: 0,
+      quarterFourLost: 0,
+
     }
     this.team2GameStatsDto = {
       gamesWon: 0,
@@ -586,19 +623,62 @@ export class PropScreenComponent implements OnInit {
       gamesWonHome: 0,
       gamesLostHome: 0,
       gamesWonAway: 0,
-      gamesLostAway: 0
+      gamesLostAway: 0,
+      halfOneWon: 0,
+      halfOneLost: 0,
+      halfTwoWon: 0,
+      halfTwoLost: 0,
+      quarterOneWon: 0,
+      quarterOneLost: 0,
+      quarterTwoWon: 0,
+      quarterTwoLost: 0,
+      quarterThreeWon: 0,
+      quarterThreeLost: 0,
+      quarterFourWon: 0,
+      quarterFourLost: 0,
     }
     var i
     team1.forEach(e => {
       e.result == "Win" ? this.team1GameStatsDto.gamesWon += 1 : this.team1GameStatsDto.gamesLost += 1
       e.teamAgainstId == team2[0].teamId ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonVsOpponent += 1 : this.team1GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
-      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonHome += 1 : this.team1GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team1GameStatsDto.gamesWonAway += 1 : this.team1GameStatsDto.gamesLostAway += 1)
+      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonHome += 1 : this.team1GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team1GameStatsDto.gamesWonAway += 1 : this.team1GameStatsDto.gamesLostAway += 1);
+      e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWon += 1 : this.team1GameStatsDto.quarterOneLost += 1;
+      e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWon += 1 : this.team1GameStatsDto.quarterTwoLost += 1;
+      e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWon += 1 : this.team1GameStatsDto.quarterThreeLost += 1;
+      e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWon += 1 : this.team1GameStatsDto.quarterFourLost += 1;
+      (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWon += 1 : this.team1GameStatsDto.halfOneLost += 1;
+      (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWon += 1 : this.team1GameStatsDto.halfTwoLost += 1;
     })
     team2.forEach(e => {
       e.result == "Win" ? this.team2GameStatsDto.gamesWon += 1 : this.team2GameStatsDto.gamesLost += 1
       e.teamAgainstId == team1[0].teamId ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonVsOpponent += 1 : this.team2GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
-      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonHome += 1 : this.team2GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team2GameStatsDto.gamesWonAway += 1 : this.team2GameStatsDto.gamesLostAway += 1)
+      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonHome += 1 : this.team2GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team2GameStatsDto.gamesWonAway += 1 : this.team2GameStatsDto.gamesLostAway += 1);
+      e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWon += 1 : this.team2GameStatsDto.quarterOneLost += 1;
+      e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWon += 1 : this.team2GameStatsDto.quarterTwoLost += 1;
+      e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWon += 1 : this.team2GameStatsDto.quarterThreeLost += 1;
+      e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWon += 1 : this.team2GameStatsDto.quarterFourLost += 1;
+      (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWon += 1 : this.team2GameStatsDto.halfOneLost += 1;
+      (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWon += 1 : this.team2GameStatsDto.halfTwoLost += 1;
     })
+    console.log(team1)
+    console.log(this.team1GameStatsDto)
+  }
+
+  moneylineGameToggled() {
+    this.moneylineGameClicked = true;
+    this.moneylineHalfClicked = false;
+    this.moneylineQuarterClicked = false;
+
+  }
+  moneylineHalfToggled() {
+    this.moneylineGameClicked = false;
+    this.moneylineHalfClicked = true;
+    this.moneylineQuarterClicked = false;
+  }
+  moneylineQuarterToggled() {
+    this.moneylineGameClicked = false;
+    this.moneylineHalfClicked = false;
+    this.moneylineQuarterClicked = true;
   }
 
 

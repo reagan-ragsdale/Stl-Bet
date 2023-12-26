@@ -317,8 +317,16 @@ export class nbaApiController {
         gameId: this.nbaTeamGameStats[i].id,
         gameDate: this.convertDate(this.nbaTeamGameStats[i].date.start),
         result: this.nbaTeamGameStats[i].teams.visitors.id == id ? (this.nbaTeamGameStats[i].scores.visitors.points > this.nbaTeamGameStats[i].scores.home.points) ? "Win" : "Loss" : (this.nbaTeamGameStats[i].scores.home.points > this.nbaTeamGameStats[i].scores.visitors.points ? "Win" : "Loss"),
-        pointsScored: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.points : this.nbaTeamGameStats[i].scores.home.points,
-        pointsAllowed: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.points : this.nbaTeamGameStats[i].scores.visitors.points
+        pointsScoredOverall: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.points : this.nbaTeamGameStats[i].scores.home.points,
+        pointsScoredFirstQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[0] : this.nbaTeamGameStats[i].scores.home.linescore[0],
+        pointsScoredSecondQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[1] : this.nbaTeamGameStats[i].scores.home.linescore[1],
+        pointsScoredThirdQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[2] : this.nbaTeamGameStats[i].scores.home.linescore[2],
+        pointsScoredFourthQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[3] : this.nbaTeamGameStats[i].scores.home.linescore[3],
+        pointsAllowedOverall: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.points : this.nbaTeamGameStats[i].scores.visitors.points,
+        pointsAllowedFirstQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[0] : this.nbaTeamGameStats[i].scores.visitors.linescore[0],
+        pointsAllowedSecondQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[1] : this.nbaTeamGameStats[i].scores.visitors.linescore[1],
+        pointsAllowedThirdQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[2] : this.nbaTeamGameStats[i].scores.visitors.linescore[2],
+        pointsAllowedFourthQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[3] : this.nbaTeamGameStats[i].scores.visitors.linescore[3]
       })
 
     }
