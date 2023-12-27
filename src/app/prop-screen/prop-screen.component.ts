@@ -430,10 +430,8 @@ export class PropScreenComponent implements OnInit {
     this.selectedDate = ''
     this.setSelectedSport(sport.tab.textLabel);
     //await this.checkSportPlayerInfoDb();
-    if (this.selectedSport != "NBA") {
       await this.checkPlayerInfoDb();
 
-    }
     await this.checkSportsBookDb();
 
     this.updateDates();
@@ -450,9 +448,9 @@ export class PropScreenComponent implements OnInit {
     if (this.gameString != game.tab.textLabel) {
       this.gameString = game.tab.textLabel
       this.setSelectedGame(game.tab.textLabel);
-      if (this.selectedSport == "NBA") {
+      /* if (this.selectedSport == "NBA") {
         await this.checkPlayerInfoDb();
-      }
+      } */
       this.playerPropsClicked = false;
       this.gamePropsClicked = true;
       this.displayProp();
@@ -1038,16 +1036,16 @@ export class PropScreenComponent implements OnInit {
         var gameArray = this.splitGameString(this.gameString)
         let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[0])]
         let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
-        if (dbEmpty.length == 0) {
-          var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
+        if (dbEmpty.length == 0 || this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+          var returnCall = await this.nbaApiController.getAllNbaPlayerInfoFromApi();
           await NbaController.nbaAddPlayerInfoData(returnCall);
         }
-        else if (dbEmpty.length > 0) {
-          if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
-            var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
-            await NbaController.nbaAddPlayerInfoData(returnCall);
-          }
-        }
+        //else if (dbEmpty.length > 0) {
+         // if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+         //   var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
+         //   await NbaController.nbaAddPlayerInfoData(returnCall);
+        //  }
+       // }
 
       } catch (error: any) {
         alert(error.message)
