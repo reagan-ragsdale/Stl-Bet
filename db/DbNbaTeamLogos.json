@@ -49,4 +49,12 @@
         "primaryColor": "#1D1160",
         "alternateColor": "#00788C"
     }
+    ,
+    {
+        "id": "8",
+        "teamName": "Brooklyn Nets",
+        "teamId": 4,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    }
 ]

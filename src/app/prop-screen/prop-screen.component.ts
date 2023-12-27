@@ -195,6 +195,31 @@ export class PropScreenComponent implements OnInit {
     quarterFourLostHome: 0,
     quarterFourWonAway: 0,
     quarterFourLostAway: 0,
+    spreadGame: 0,
+    spreadFirstHalf: 0,
+    spreadSecondHalf: 0,
+    spreadFirstQuarter: 0,
+    spreadSecondQuarter: 0,
+    spreadThirdQuarter: 0,
+    spreadFourthQuarter: 0,
+    spreadVsOpponent: 0,
+    spreadFirstHalfVsOpponent: 0,
+    spreadSecondHalfVsOpponent: 0,
+    spreadFirstQuarterVsOpponent: 0,
+    spreadSecondQuarterVsOpponet: 0,
+    spreadThirdQuarterVsOpponent: 0,
+    spreadFourthQuarterVsOpponent: 0,
+    spreadHome: 0,
+    spreadHomeFirstHalf: 0,
+    spreadHomeSecondHalf: 0,
+    spreadHomeFirstQuarter: 0,
+    spreadHomeSecondQuarter: 0,
+    spreadHomeThirdQuarter: 0,
+    spreadHomeFourthQuarter: 0,
+    spreadAwayFirstQuarter: 0,
+    spreadAwaySecondQuarter: 0,
+    spreadAwayThirdQuarter: 0,
+    spreadAwayFourthQuarter: 0,
   }
   team2GameStatsDto = {
     gamesWon: 0,
@@ -253,6 +278,31 @@ export class PropScreenComponent implements OnInit {
     quarterFourLostHome: 0,
     quarterFourWonAway: 0,
     quarterFourLostAway: 0,
+    spreadGame: 0,
+    spreadFirstHalf: 0,
+    spreadSecondHalf: 0,
+    spreadFirstQuarter: 0,
+    spreadSecondQuarter: 0,
+    spreadThirdQuarter: 0,
+    spreadFourthQuarter: 0,
+    spreadVsOpponent: 0,
+    spreadFirstHalfVsOpponent: 0,
+    spreadSecondHalfVsOpponent: 0,
+    spreadFirstQuarterVsOpponent: 0,
+    spreadSecondQuarterVsOpponet: 0,
+    spreadThirdQuarterVsOpponent: 0,
+    spreadFourthQuarterVsOpponent: 0,
+    spreadHome: 0,
+    spreadHomeFirstHalf: 0,
+    spreadHomeSecondHalf: 0,
+    spreadHomeFirstQuarter: 0,
+    spreadHomeSecondQuarter: 0,
+    spreadHomeThirdQuarter: 0,
+    spreadHomeFourthQuarter: 0,
+    spreadAwayFirstQuarter: 0,
+    spreadAwaySecondQuarter: 0,
+    spreadAwayThirdQuarter: 0,
+    spreadAwayFourthQuarter: 0,
   }
   team1GameStats: DbNbaTeamGameStats[] = []
   team2GameStats: DbNbaTeamGameStats[] = []
@@ -721,7 +771,31 @@ export class PropScreenComponent implements OnInit {
       quarterFourLostHome: 0,
       quarterFourWonAway: 0,
       quarterFourLostAway: 0,
-
+      spreadGame: 0,
+      spreadFirstHalf: 0,
+      spreadSecondHalf: 0,
+      spreadFirstQuarter: 0,
+      spreadSecondQuarter: 0,
+      spreadThirdQuarter: 0,
+      spreadFourthQuarter: 0,
+      spreadVsOpponent: 0,
+      spreadFirstHalfVsOpponent: 0,
+      spreadSecondHalfVsOpponent: 0,
+      spreadFirstQuarterVsOpponent: 0,
+      spreadSecondQuarterVsOpponet: 0,
+      spreadThirdQuarterVsOpponent: 0,
+      spreadFourthQuarterVsOpponent: 0,
+      spreadHome: 0,
+      spreadHomeFirstHalf: 0,
+      spreadHomeSecondHalf: 0,
+      spreadHomeFirstQuarter: 0,
+      spreadHomeSecondQuarter: 0,
+      spreadHomeThirdQuarter: 0,
+      spreadHomeFourthQuarter: 0,
+      spreadAwayFirstQuarter: 0,
+      spreadAwaySecondQuarter: 0,
+      spreadAwayThirdQuarter: 0,
+      spreadAwayFourthQuarter: 0,
     }
     this.team2GameStatsDto = {
       gamesWon: 0,
@@ -780,6 +854,31 @@ export class PropScreenComponent implements OnInit {
       quarterFourLostHome: 0,
       quarterFourWonAway: 0,
       quarterFourLostAway: 0,
+      spreadGame: 0,
+      spreadFirstHalf: 0,
+      spreadSecondHalf: 0,
+      spreadFirstQuarter: 0,
+      spreadSecondQuarter: 0,
+      spreadThirdQuarter: 0,
+      spreadFourthQuarter: 0,
+      spreadVsOpponent: 0,
+      spreadFirstHalfVsOpponent: 0,
+      spreadSecondHalfVsOpponent: 0,
+      spreadFirstQuarterVsOpponent: 0,
+      spreadSecondQuarterVsOpponet: 0,
+      spreadThirdQuarterVsOpponent: 0,
+      spreadFourthQuarterVsOpponent: 0,
+      spreadHome: 0,
+      spreadHomeFirstHalf: 0,
+      spreadHomeSecondHalf: 0,
+      spreadHomeFirstQuarter: 0,
+      spreadHomeSecondQuarter: 0,
+      spreadHomeThirdQuarter: 0,
+      spreadHomeFourthQuarter: 0,
+      spreadAwayFirstQuarter: 0,
+      spreadAwaySecondQuarter: 0,
+      spreadAwayThirdQuarter: 0,
+      spreadAwayFourthQuarter: 0,
     }
     var i
     team1.forEach(e => {
@@ -792,7 +891,13 @@ export class PropScreenComponent implements OnInit {
       e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWon += 1 : this.team1GameStatsDto.quarterFourLost += 1;
       (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWon += 1 : this.team1GameStatsDto.halfOneLost += 1;
       (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWon += 1 : this.team1GameStatsDto.halfTwoLost += 1;
-
+      this.team1GameStatsDto.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall );
+      this.team1GameStatsDto.spreadFirstHalf = (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+      this.team1GameStatsDto.spreadSecondHalf = (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+      this.team1GameStatsDto.spreadFirstQuarter = e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+      this.team1GameStatsDto.spreadSecondQuarter = e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+      this.team1GameStatsDto.spreadThirdQuarter = e.pointsAllowedThirdQuarter  -  e.pointsScoredThirdQuarter;
+      this.team1GameStatsDto.spreadFourthQuarter = e.pointsAllowedFourthQuarter  - e.pointsScoredFourthQuarter;
       if (e.teamAgainstId == team2[0].teamId) {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonVsOpponent += 1 : this.team1GameStatsDto.quarterOneLostVsOpponent += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDto.quarterTwoLostVsOpponent += 1;
@@ -801,7 +906,7 @@ export class PropScreenComponent implements OnInit {
         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonVsOpponent += 1 : this.team1GameStatsDto.halfOneLostVsOpponent += 1;
         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonVsOpponent += 1 : this.team1GameStatsDto.halfTwoLostVsOpponent += 1;
       }
-      if(e.homeOrAway == "Home"){
+      if (e.homeOrAway == "Home") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonHome += 1 : this.team1GameStatsDto.quarterOneLostHome += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonHome += 1 : this.team1GameStatsDto.quarterTwoLostHome += 1;
         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonHome += 1 : this.team1GameStatsDto.quarterThreeLostHome += 1;
@@ -809,7 +914,7 @@ export class PropScreenComponent implements OnInit {
         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonHome += 1 : this.team1GameStatsDto.halfOneLostHome += 1;
         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonHome += 1 : this.team1GameStatsDto.halfTwoLostHome += 1;
       }
-      else if(e.homeOrAway == "Away"){
+      else if (e.homeOrAway == "Away") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonAway += 1 : this.team1GameStatsDto.quarterOneLostAway += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonAway += 1 : this.team1GameStatsDto.quarterTwoLostAway += 1;
         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonAway += 1 : this.team1GameStatsDto.quarterThreeLostAway += 1;
@@ -836,7 +941,7 @@ export class PropScreenComponent implements OnInit {
         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonVsOpponent += 1 : this.team2GameStatsDto.halfOneLostVsOpponent += 1;
         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonVsOpponent += 1 : this.team2GameStatsDto.halfTwoLostVsOpponent += 1;
       }
-      if(e.homeOrAway == "Home"){
+      if (e.homeOrAway == "Home") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonHome += 1 : this.team2GameStatsDto.quarterOneLostHome += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonHome += 1 : this.team2GameStatsDto.quarterTwoLostHome += 1;
         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonHome += 1 : this.team2GameStatsDto.quarterThreeLostHome += 1;
@@ -844,7 +949,7 @@ export class PropScreenComponent implements OnInit {
         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonHome += 1 : this.team2GameStatsDto.halfOneLostHome += 1;
         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonHome += 1 : this.team2GameStatsDto.halfTwoLostHome += 1;
       }
-      else if(e.homeOrAway == "Away"){
+      else if (e.homeOrAway == "Away") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonAway += 1 : this.team2GameStatsDto.quarterOneLostAway += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonAway += 1 : this.team2GameStatsDto.quarterTwoLostAway += 1;
         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonAway += 1 : this.team2GameStatsDto.quarterThreeLostAway += 1;
@@ -872,6 +977,22 @@ export class PropScreenComponent implements OnInit {
     this.moneylineGameClicked = false;
     this.moneylineHalfClicked = false;
     this.moneylineQuarterClicked = true;
+  }
+  spreadGameToggled() {
+    this.spreadGameClicked = true;
+    this.spreadHalfClicked = false;
+    this.spreadQuarterClicked = false;
+
+  }
+  spreadHalfToggled() {
+    this.spreadGameClicked = false;
+    this.spreadHalfClicked = true;
+    this.spreadQuarterClicked = false;
+  }
+  spreadQuarterToggled() {
+    this.spreadGameClicked = false;
+    this.spreadHalfClicked = false;
+    this.spreadQuarterClicked = true;
   }
 
 

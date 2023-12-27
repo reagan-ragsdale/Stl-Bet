@@ -1,236 +1,260 @@
 [
   {
-    "playerId": 931,
-    "playerName": "Marvin Bagley III",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.226Z"
+    "playerId": 779,
+    "playerName": "Markelle Fultz",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.278Z"
   },
   {
-    "playerId": 987,
-    "playerName": "Kevin Knox II",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.227Z"
+    "playerId": 801,
+    "playerName": "Jonathan Isaac",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.279Z"
   },
   {
-    "playerId": 2557,
-    "playerName": "Jontay Porter",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.227Z"
+    "playerId": 899,
+    "playerName": "DJ Wilson",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.280Z"
   },
   {
-    "playerId": 2666,
-    "playerName": "James Wiseman",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.228Z"
+    "playerId": 950,
+    "playerName": "Wendell Carter Jr",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.281Z"
   },
   {
-    "playerId": 2599,
-    "playerName": "Killian Hayes",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.229Z"
+    "playerId": 1037,
+    "playerName": "Moritz Wagner",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.282Z"
   },
   {
-    "playerId": 2648,
-    "playerName": "Isaiah Stewart",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.230Z"
+    "playerId": 1848,
+    "playerName": "Goga Bitadze",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.282Z"
   },
   {
-    "playerId": 2678,
-    "playerName": "Zavier Simpson",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.230Z"
+    "playerId": 1883,
+    "playerName": "Chuma Okeke",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.283Z"
   },
   {
-    "playerId": 2829,
-    "playerName": "Isaiah Livers",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.231Z"
+    "playerId": 1892,
+    "playerName": "Admiral Schofield",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.284Z"
   },
   {
-    "playerId": 2801,
-    "playerName": "Cade Cunningham",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.232Z"
+    "playerId": 2563,
+    "playerName": "Cole Anthony",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.285Z"
   },
   {
-    "playerId": 3790,
-    "playerName": "Stanley Umude",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.233Z"
+    "playerId": 2671,
+    "playerName": "Trevelin Queen",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.286Z"
   },
   {
-    "playerId": 3451,
-    "playerName": "Jaden Ivey",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.234Z"
+    "playerId": 3398,
+    "playerName": "Brandon Williams",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.287Z"
   },
   {
-    "playerId": 3433,
-    "playerName": "Jalen Duren",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.234Z"
+    "playerId": 2858,
+    "playerName": "Franz Wagner",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.288Z"
   },
   {
-    "playerId": 3481,
-    "playerName": "Jared Rhoden",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.235Z"
+    "playerId": 2852,
+    "playerName": "Jalen Suggs",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.288Z"
   },
   {
-    "playerId": 3417,
-    "playerName": "Buddy Boeheim",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.236Z"
+    "playerId": 2833,
+    "playerName": "Mac McClung",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.289Z"
   },
   {
-    "playerId": 3968,
-    "playerName": "Malcolm Cazalon",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.237Z"
+    "playerId": 3414,
+    "playerName": "Paolo Banchero",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.290Z"
   },
   {
-    "playerId": 3969,
-    "playerName": "Tosan Evbuomwan",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.237Z"
+    "playerId": 3449,
+    "playerName": "Caleb Houstan",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.291Z"
   },
   {
-    "playerId": 3970,
-    "playerName": "Marcus Sasser",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.238Z"
+    "playerId": 3478,
+    "playerName": "Daeqwon Plowden",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.292Z"
   },
   {
-    "playerId": 3971,
-    "playerName": "Ausar Thompson",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.239Z"
+    "playerId": 4010,
+    "playerName": "Anthony Black",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.293Z"
   },
   {
-    "playerId": 84,
-    "playerName": "Alec Burks",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.240Z"
+    "playerId": 4011,
+    "playerName": "Jett Howard",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.294Z"
   },
   {
-    "playerId": 60,
-    "playerName": "Bojan Bogdanovic",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.241Z"
+    "playerId": 220,
+    "playerName": "Gary Harris",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.295Z"
   },
   {
-    "playerId": 221,
-    "playerName": "Joe Harris",
-    "teamId": 10,
-    "createdAt": "2023-12-26T19:03:26.242Z"
+    "playerId": 258,
+    "playerName": "Joe Ingles",
+    "teamId": 26,
+    "createdAt": "2023-12-27T19:50:06.296Z"
   },
   {
-    "playerId": 851,
-    "playerName": "Royce O'Neale",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.243Z"
+    "playerId": 407,
+    "playerName": "Kelly Oubre Jr",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.296Z"
   },
   {
-    "playerId": 481,
-    "playerName": "Ben Simmons",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.244Z"
+    "playerId": 818,
+    "playerName": "Furkan Korkmaz",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.297Z"
   },
   {
-    "playerId": 175,
-    "playerName": "Dorian Finney-Smith",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.245Z"
+    "playerId": 249,
+    "playerName": "Danuel House Jr",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.298Z"
   },
   {
-    "playerId": 876,
-    "playerName": "Dennis Smith Jr",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.245Z"
+    "playerId": 932,
+    "playerName": "Mo Bamba",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.299Z"
   },
   {
-    "playerId": 940,
-    "playerName": "Mikal Bridges",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.246Z"
+    "playerId": 998,
+    "playerName": "De'Anthony Melton",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.300Z"
   },
   {
-    "playerId": 1038,
-    "playerName": "Lonnie Walker IV",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.247Z"
+    "playerId": 2619,
+    "playerName": "Tyrese Maxey",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.301Z"
   },
   {
-    "playerId": 1847,
-    "playerName": "Darius Bazley",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.248Z"
+    "playerId": 2638,
+    "playerName": "Paul Reed",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.302Z"
   },
   {
-    "playerId": 1854,
-    "playerName": "Nicolas Claxton",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.249Z"
+    "playerId": 2839,
+    "playerName": "Filip Petrusev",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.303Z"
   },
   {
-    "playerId": 1871,
-    "playerName": "Cameron Johnson",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.250Z"
+    "playerId": 2617,
+    "playerName": "Kenyon Martin Jr",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.304Z"
   },
   {
-    "playerId": 2325,
-    "playerName": "Armoni Brooks",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.251Z"
+    "playerId": 2851,
+    "playerName": "Jaden Springer",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.305Z"
   },
   {
-    "playerId": 2848,
-    "playerName": "Day'Ron Sharpe",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.251Z"
+    "playerId": 2804,
+    "playerName": "David Duke Jr",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.306Z"
   },
   {
-    "playerId": 2855,
-    "playerName": "Cam Thomas",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.252Z"
+    "playerId": 2917,
+    "playerName": "Javonte Smart",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.307Z"
   },
   {
-    "playerId": 2861,
-    "playerName": "Trendon Watford",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.253Z"
+    "playerId": 4012,
+    "playerName": "Terquavion Smith",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.308Z"
   },
   {
-    "playerId": 3944,
-    "playerName": "Noah Clowney",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.254Z"
+    "playerId": 4049,
+    "playerName": "Ricky Council IV",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.308Z"
   },
   {
-    "playerId": 3945,
-    "playerName": "Dariq Whitehead",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.255Z"
+    "playerId": 520,
+    "playerName": "PJ Tucker",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.309Z"
   },
   {
-    "playerId": 3946,
-    "playerName": "Jalen Wilson",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.256Z"
+    "playerId": 40,
+    "playerName": "Nicolas Batum",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.310Z"
   },
   {
-    "playerId": 4041,
-    "playerName": "Harry I Giles II",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.256Z"
+    "playerId": 53,
+    "playerName": "Patrick Beverley",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.311Z"
   },
   {
-    "playerId": 142,
-    "playerName": "Spencer Dinwiddie",
-    "teamId": 4,
-    "createdAt": "2023-12-26T19:03:26.257Z"
+    "playerId": 203,
+    "playerName": "Danny Green",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.312Z"
+  },
+  {
+    "playerId": 373,
+    "playerName": "Marcus Morris Sr",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.313Z"
+  },
+  {
+    "playerId": 222,
+    "playerName": "Tobias Harris",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.314Z"
+  },
+  {
+    "playerId": 118,
+    "playerName": "Robert Covington",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.314Z"
+  },
+  {
+    "playerId": 159,
+    "playerName": "Joel Embiid",
+    "teamId": 27,
+    "createdAt": "2023-12-27T19:50:06.315Z"
   }
 ]
