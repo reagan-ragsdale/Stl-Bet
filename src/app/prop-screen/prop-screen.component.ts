@@ -1038,7 +1038,6 @@ export class PropScreenComponent implements OnInit {
         let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
         if (dbEmpty.length == 0 || this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
           var returnCall = await this.nbaApiController.getAllNbaPlayerInfoFromApi();
-          console.log(returnCall)
           await NbaController.nbaAddPlayerInfoData(returnCall);
         }
         //else if (dbEmpty.length > 0) {

@@ -38,7 +38,6 @@ export class NbaController {
       }
 
     })
-console.log(playerData)
     await taskRepo.insert(playerData)
 
 

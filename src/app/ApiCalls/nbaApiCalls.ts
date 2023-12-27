@@ -36,6 +36,7 @@ export class nbaApiController {
         const response = await fetch(url, options);
         const result = await response.json();
         const processedResult = result.response
+        
 
         processedResult.forEach((e: any) => {
           if (e.firstname.includes("Jr.")) {
@@ -68,6 +69,43 @@ export class nbaApiController {
           var playerName = e.firstname + " " + e.lastname
           if (playerName.includes(".")) {
             playerName = playerName.replaceAll(".", "")
+          }
+
+          if(playerName == "Taj Gibson" && teamId == 41){
+            return
+          }
+          if(playerName == "Jeremiah Robinson-Earl" && teamId == 25){
+            return
+          }
+          if(playerName == "Nicolas Batum" && teamId == 16){
+            return
+          }
+          if(playerName == "Daniel Theis" && teamId == 15){
+            return
+          }
+          if(playerName == "Kenyon Martin Jr" && teamId == 16){
+            return
+          }
+          if(playerName == "Filip Petrusev" && (teamId == 16 || teamId == 27)){
+            return
+          }
+          if(playerName == "Robert Covington" && teamId == 16){
+            return
+          }
+          if(playerName == "Jaylen Nowell" && teamId == 30){
+            return
+          }
+          if(playerName == "Kevin Knox II" && teamId == 29){
+            return
+          }
+          if(playerName == "Matt Ryan" && teamId == 22){
+            return
+          }
+          if(playerName == "Drew Peterson" && teamId == 20){
+            return
+          }
+          if(playerName == "PJ Tucker" && teamId == 27){
+            return
           }
 
 
@@ -140,6 +178,43 @@ export class nbaApiController {
           var playerName = e.firstname + " " + e.lastname
           if (playerName.includes(".")) {
             playerName = playerName.replaceAll(".", "")
+          }
+
+          if(playerName == "Taj Gibson" && this.arrayOfNbaTeamIds[i] == 41){
+            return
+          }
+          if(playerName == "Jeremiah Robinson-Earl" && this.arrayOfNbaTeamIds[i] == 25){
+            return
+          }
+          if(playerName == "Nicolas Batum" && this.arrayOfNbaTeamIds[i] == 16){
+            return
+          }
+          if(playerName == "Daniel Theis" && this.arrayOfNbaTeamIds[i] == 15){
+            return
+          }
+          if(playerName == "Kenyon Martin Jr" && this.arrayOfNbaTeamIds[i] == 16){
+            return
+          }
+          if(playerName == "Filip Petrusev" && (this.arrayOfNbaTeamIds[i] == 16 || this.arrayOfNbaTeamIds[i] == 27)){
+            return
+          }
+          if(playerName == "Robert Covington" && this.arrayOfNbaTeamIds[i] == 16){
+            return
+          }
+          if(playerName == "Jaylen Nowell" && this.arrayOfNbaTeamIds[i] == 30){
+            return
+          }
+          if(playerName == "Kevin Knox II" && this.arrayOfNbaTeamIds[i] == 29){
+            return
+          }
+          if(playerName == "Matt Ryan" && this.arrayOfNbaTeamIds[i] == 22){
+            return
+          }
+          if(playerName == "Drew Peterson" && this.arrayOfNbaTeamIds[i] == 20){
+            return
+          }
+          if(playerName == "PJ Tucker" && this.arrayOfNbaTeamIds[i] == 27){
+            return
           }
 
 
