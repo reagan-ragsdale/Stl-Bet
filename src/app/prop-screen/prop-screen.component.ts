@@ -688,7 +688,7 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
 
 
-
+console.log(team1)
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
     spreadPoint = team1.filter((e) => e.marketKey == "spreads")[0].point.toString();
@@ -999,14 +999,15 @@ export class PropScreenComponent implements OnInit {
     try {
       console.time("Check sports book db")
       dbEmpty = await this.SportsBookRepo.find({ where: { sportTitle: this.selectedSport } })
-      if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
+      
+      //if (dbEmpty.length == 0 || this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
         var results = await this.draftKingsApiController.getDatesAndGames(this.selectedSport);
         await SportsBookController.addBookData(results);
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-      }
-      else {
-        await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-      }
+      //}
+      //else {
+      //  await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
+     // }
       console.timeEnd("Check sports book db")
     } catch (error: any) {
       alert(error.message)
@@ -1040,12 +1041,12 @@ export class PropScreenComponent implements OnInit {
           var returnCall = await this.nbaApiController.getAllNbaPlayerInfoFromApi();
           await NbaController.nbaAddPlayerInfoData(returnCall);
         }
-        //else if (dbEmpty.length > 0) {
-         // if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
-         //   var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
-         //   await NbaController.nbaAddPlayerInfoData(returnCall);
-        //  }
-       // }
+       /*  else if (dbEmpty.length > 0) {
+          if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+            var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
+            await NbaController.nbaAddPlayerInfoData(returnCall);
+          }
+        } */
 
       } catch (error: any) {
         alert(error.message)
@@ -1293,6 +1294,7 @@ export class PropScreenComponent implements OnInit {
             await this.computeStatForPlayer(element[i])
             continue
           }
+          console.log(element)
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
           if (player.length == 0) {
             alert(element[i].name + " is not in the player database")

@@ -63,6 +63,13 @@ export class NbaController {
     return await taskRepo.find({ where: { teamId: id } })
   }
 
+  @BackendMethod({ allowed: true })
+  static async nbaLoadPlayerInfoFromPlayerNameAndTeamId(teamId: number, playerName: string): Promise<NbaPlayerInfoDb[]> {
+    console.log("here in nbaLoadPlayerInfoFromTeamId")
+    const taskRepo = remult.repo(NbaPlayerInfoDb)
+    return await taskRepo.find({ where: { teamId: teamId, playerName: playerName } })
+  }
+
   
 
   @BackendMethod({ allowed: true })
