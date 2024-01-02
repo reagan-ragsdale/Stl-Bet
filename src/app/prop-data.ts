@@ -1,4 +1,4 @@
-import { DbNbaTeamLogos } from "shared/dbTasks/DbNbaTeamLogos";
+import { DbNbaTeamLogos } from "shared/dbTasks/dbNbaTeamLogos";
 
 export interface PropData {
     name: string;

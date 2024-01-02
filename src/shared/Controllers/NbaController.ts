@@ -1,8 +1,9 @@
 import { Allow, BackendMethod, remult } from "remult"
-import { NbaPlayerInfoDb } from "../dbTasks/NbaPlayerInfoDb"
-import { DbNbaGameStats } from "../dbTasks/DbNbaGameStats"
-import { DbNbaTeamLogos } from "../dbTasks/DbNbaTeamLogos"
-import { DbNbaTeamGameStats } from "../dbTasks/DbNbaTeamGameStats"
+import { NbaPlayerInfoDb } from "../dbTasks/nbaPlayerInfoDb"
+import { DbNbaGameStats } from "../dbTasks/dbNbaGameStats"
+import { DbNbaTeamLogos } from "../dbTasks/dbNbaTeamLogos"
+import { DbNbaTeamGameStats } from "../dbTasks/dbNbaTeamGameStats"
+//import { DbNbaTeamGameStats } from "../dbTasks/dbNbaTeamGameStats"
 
 export class NbaController {
 

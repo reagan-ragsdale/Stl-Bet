@@ -2,11 +2,11 @@
  
  import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls.js"
 import { nbaApiController } from "./ApiCalls/nbaApiCalls.js"
-import { NbaController } from "../shared/Controllers/NbaController.js"
-import { SportsBookController } from "../shared/Controllers/SportsBookController.js"
+import { NbaController } from "../shared/Controllers/nbaController.js"
+import { SportsBookController } from "../shared/Controllers/sportsBookController.js"
 import { ArrayOfDates } from "./array-of-dates.js"
-import { DbGameBookData } from "../shared/dbTasks/DbGameBookData.js"
-import { NbaPlayerInfoDb } from "../shared/dbTasks/NbaPlayerInfoDb.js"
+import { DbGameBookData } from "../shared/dbTasks/dbGameBookData.js"
+import { NbaPlayerInfoDb } from "../shared/dbTasks/nbaPlayerInfoDb.js"
 import { SportsNameToId } from "./sports-name-to-id.js"
 import { Injectable } from "@angular/core"
 

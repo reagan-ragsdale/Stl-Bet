@@ -3,25 +3,25 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { nbaApiController } from '../ApiCalls/nbaApiCalls';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
-import { NbaController } from 'shared/Controllers/NbaController';
-import { NbaPlayerInfoDb } from 'shared/dbTasks/NbaPlayerInfoDb';
-import { DbNbaGameStats } from 'shared/dbTasks/DbNbaGameStats';
+import { NbaController } from 'shared/Controllers/nbaController';
+import { NbaPlayerInfoDb } from 'shared/dbTasks/nbaPlayerInfoDb';
+import { DbNbaGameStats } from 'shared/dbTasks/dbNbaGameStats';
 import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
 import { filterHelper } from 'remult/src/filter/filter-interfaces';
 import { Observable } from 'rxjs';
-import { DbNhlPlayerInfo } from 'shared/dbTasks/DbNhlPlayerInfo';
-import { DbNhlPlayerGameStats } from 'shared/dbTasks/DbNhlPlayerGameStats';
-import { NhlPlayerGameStatsController } from 'shared/Controllers/NhlPlayerGameStatsController';
-import { NhlPlayerInfoController } from 'shared/Controllers/NhlPlayerInfoController';
+import { DbNhlPlayerInfo } from 'shared/dbTasks/dbNhlPlayerInfo';
+import { DbNhlPlayerGameStats } from 'shared/dbTasks/dbNhlPlayerGameStats';
+import { NhlPlayerGameStatsController } from 'shared/Controllers/nhlPlayerGameStatsController';
+import { NhlPlayerInfoController } from 'shared/Controllers/nhlPlayerInfoController';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewChild} from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { DbNbaTeamLogos } from 'shared/dbTasks/DbNbaTeamLogos';
+import { DbNbaTeamLogos } from 'shared/dbTasks/dbNbaTeamLogos';
 
 
 interface statSearch {

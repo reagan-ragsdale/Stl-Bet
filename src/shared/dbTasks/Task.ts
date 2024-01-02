@@ -5,7 +5,7 @@ import { Allow, Entity, Fields, Validators } from "remult"
   allowApiInsert: "admin",
   allowApiDelete: "admin"
 })
-export class Task {
+export class task {
   @Fields.cuid()
   id = ""
 
