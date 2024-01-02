@@ -1,5 +1,5 @@
 import { Allow, BackendMethod, remult } from "remult"
-import { PlayerInfoMlb } from "../dbTasks/PlayerInfoMlb.js"
+import { PlayerInfoMlb } from "../dbTasks/PlayerInfoMlb"
 
 export class MlbController {
 
