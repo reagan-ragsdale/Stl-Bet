@@ -16,13 +16,12 @@ const arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, B
 const newDKController = new draftKingsApiController
 const newNbaApiController = new nbaApiController
  
-@Injectable()
- export class cronTestFile {
 
+ export const cronTestFile = async () => {
 
-    async loadNbaData() {
-        console.log("Running cron from different file")
-    }
+    
+
+    await loadNbaData()
     
 
     // this is going to run daily in the morning. I think it should call whichever games are slated for today in the sportsbookdb and for each of those teams, 
@@ -141,6 +140,10 @@ var addUnderScoreToName = (game: string): string => {
     
  */
 } 
+
+ var loadNbaData = async () => {
+    console.log("Running cron from different file")
+}
 
 
 
