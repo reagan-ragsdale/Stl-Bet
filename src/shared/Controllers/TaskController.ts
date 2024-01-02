@@ -1,5 +1,5 @@
 import { Allow, BackendMethod, remult } from "remult"
-import { Task } from "../dbTasks/Task.js"
+import { Task } from "../dbTasks/Task"
 
 export class TaskController {
   @BackendMethod({ allowed: Allow.authenticated })

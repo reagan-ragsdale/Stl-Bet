@@ -1,5 +1,5 @@
 import { Allow, BackendMethod, remult } from "remult"
-import { DbNhlPlayerInfo } from "../dbTasks/DbNhlPlayerInfo.js";
+import { DbNhlPlayerInfo } from "../dbTasks/DbNhlPlayerInfo";
 
 
 export class NhlPlayerInfoController {

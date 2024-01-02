@@ -1,6 +1,6 @@
 import { Allow, BackendMethod, remult } from "remult"
 
-import { DbPlayerPropData } from "../dbTasks/DbPlayerPropData.js";
+import { DbPlayerPropData } from "../dbTasks/DbPlayerPropData";
 
 export class PlayerPropController {
 

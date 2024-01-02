@@ -1,6 +1,6 @@
 import { Allow, BackendMethod, remult } from "remult"
 
-import { DbGameBookData } from "../dbTasks/DbGameBookData.js";
+import { DbGameBookData } from "../dbTasks/DbGameBookData";
 
 export class SportsBookController {
 
