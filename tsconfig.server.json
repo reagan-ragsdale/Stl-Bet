@@ -1,7 +1,7 @@
  {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-      "module": "ESNext",
+      "module": "CommonJS",
       "emitDecoratorMetadata": true,
       "esModuleInterop": true,
       "noEmit": false,
