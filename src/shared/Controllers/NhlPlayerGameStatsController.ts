@@ -1,5 +1,5 @@
 import { Allow, BackendMethod, remult } from "remult"
-import { DbNhlPlayerGameStats } from "../dbTasks/DbNhlPlayerGameStats";
+import { DbNhlPlayerGameStats } from "../dbTasks/DbNhlPlayerGameStats.js";
 
 
 export class NhlPlayerGameStatsController {
