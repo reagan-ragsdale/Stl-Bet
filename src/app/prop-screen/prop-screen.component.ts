@@ -642,7 +642,7 @@ export class PropScreenComponent implements OnInit {
     var spreadPrice = '';
     var totalPoint = '';
     var totalPrice = ''
-    var teamInfo = []
+    var teamInfo: DbNbaTeamLogos[] = []
     var logo = ''
     this.team1GameStats = []
     this.team2GameStats = []
@@ -707,7 +707,7 @@ console.log(team1)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team2[0].teamName)
-    console.log(teamInfo)
+    
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
     this.teamPropIsLoading = false
