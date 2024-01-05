@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 
 import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/dbNhlPlayerGameStats';
-import { NhlPlayerInfoController } from 'src/shared/Controllers/nhlPlayerInfoController';
+import { NhlPlayerInfoController } from 'src/shared/Controllers/nhlPlayerInfoController.js';
 import { DbNhlPlayerInfo } from 'src/shared/dbTasks/dbNhlPlayerInfo';
 
 @Injectable()
