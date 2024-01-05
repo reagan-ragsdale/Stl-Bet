@@ -2,9 +2,9 @@
 
 import { Injectable } from '@angular/core';
 
-import { DbNhlPlayerGameStats } from 'shared/dbTasks/dbNhlPlayerGameStats';
-import { NhlPlayerInfoController } from 'shared/Controllers/nhlPlayerInfoController';
-import { DbNhlPlayerInfo } from 'shared/dbTasks/dbNhlPlayerInfo';
+import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/dbNhlPlayerGameStats';
+import { NhlPlayerInfoController } from 'src/shared/Controllers/nhlPlayerInfoController';
+import { DbNhlPlayerInfo } from 'src/shared/dbTasks/dbNhlPlayerInfo';
 
 @Injectable()
 export class nhlApiController {

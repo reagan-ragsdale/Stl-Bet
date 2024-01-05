@@ -14,22 +14,22 @@ import { GamePropArray } from '../game-prop-array';
 import { DateArray } from '../date-array';
 import { SportPropArray } from '../sport-prop-array';
 import { remult } from 'remult';
-import { PlayerInfoMlb } from 'shared/dbTasks/playerInfoMlb';
-import { MlbController } from 'shared/Controllers/mlbController';
+import { PlayerInfoMlb } from 'src/shared/dbTasks/playerInfoMlb';
+import { MlbController } from 'src/shared/Controllers/mlbController';
 import { ISportsBook } from '../isports-book';
-import { DbGameBookData } from 'shared/dbTasks/dbGameBookData';
-import { SportsBookController } from 'shared/Controllers/sportsBookController';
-import { DbPlayerPropData } from 'shared/dbTasks/dbPlayerPropData';
-import { PlayerPropController } from 'shared/Controllers/playerPropController';
-import { DbNhlPlayerInfo } from 'shared/dbTasks/dbNhlPlayerInfo';
-import { NhlPlayerInfoController } from 'shared/Controllers/nhlPlayerInfoController';
-import { DbNhlPlayerGameStats } from 'shared/dbTasks/dbNhlPlayerGameStats';
-import { NhlPlayerGameStatsController } from 'shared/Controllers/nhlPlayerGameStatsController';
+import { DbGameBookData } from 'src/shared/dbTasks/dbGameBookData';
+import { SportsBookController } from 'src/shared/Controllers/sportsBookController';
+import { DbPlayerPropData } from 'src/shared/dbTasks/dbPlayerPropData';
+import { PlayerPropController } from 'src/shared/Controllers/playerPropController';
+import { DbNhlPlayerInfo } from 'src/shared/dbTasks/dbNhlPlayerInfo';
+import { NhlPlayerInfoController } from 'src/shared/Controllers/nhlPlayerInfoController';
+import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/dbNhlPlayerGameStats';
+import { NhlPlayerGameStatsController } from 'src/shared/Controllers/nhlPlayerGameStatsController';
 import { nbaApiController } from '../ApiCalls/nbaApiCalls';
-import { NbaPlayerInfoDb } from 'shared/dbTasks/nbaPlayerInfoDb';
-import { NbaController } from 'shared/Controllers/nbaController';
+import { NbaPlayerInfoDb } from 'src/shared/dbTasks/nbaPlayerInfoDb';
+import { NbaController } from 'src/shared/Controllers/nbaController';
 import { SportsNameToId } from '../sports-name-to-id';
-import { DbNbaGameStats } from 'shared/dbTasks/dbNbaGameStats';
+import { DbNbaGameStats } from 'src/shared/dbTasks/dbNbaGameStats';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import { Chart } from 'chart.js/auto';
@@ -37,8 +37,8 @@ import { ArrayOfDates } from '../array-of-dates';
 
 
 import { Route, Router } from '@angular/router';
-import { DbNbaTeamLogos } from 'shared/dbTasks/dbNbaTeamLogos';
-import { DbNbaTeamGameStats } from 'shared/dbTasks/dbNbaTeamGameStats';
+import { DbNbaTeamLogos } from 'src/shared/dbTasks/dbNbaTeamLogos';
+import { DbNbaTeamGameStats } from 'src/shared/dbTasks/dbNbaTeamGameStats';
 
 @Component({
   selector: 'app-prop-screen',

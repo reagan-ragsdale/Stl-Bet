@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import { PlayerProp } from 'app/player-prop';
+import { PlayerProp } from 'src/app/player-prop';
 
 @Component({
   selector: 'app-prop-checkout',
