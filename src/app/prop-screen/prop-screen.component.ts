@@ -38,6 +38,7 @@ import { ArrayOfDates } from '../array-of-dates';
 
 import { Route, Router } from '@angular/router';
 import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
+import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
 
 @Component({
   selector: 'app-prop-screen',
@@ -88,6 +89,16 @@ export class PropScreenComponent implements OnInit {
   public selectedGame: string = '';
   public selectedGameid: string = '';
   public exit: boolean = true;
+  public teamPropIsLoading: boolean = true;
+  public spreadGameClicked: boolean = true;
+  public spreadHalfClicked: boolean = false;
+  public spreadQuarterClicked: boolean = false;
+  public totalGameClicked: boolean = true;
+  public totalHalfClicked: boolean = false;
+  public totalQuarterClicked: boolean = false;
+  public moneylineGameClicked: boolean = true;
+  public moneylineHalfClicked: boolean = false;
+  public moneylineQuarterClicked: boolean = false;
 
 
 
@@ -101,8 +112,9 @@ export class PropScreenComponent implements OnInit {
   post_get_games = "/scores?apiKey=5ab6923d5aa0ae822b05168709bb910c";
 
   displayedColumns: string[] = ['name', 'description', 'point', 'price', 'detailedStats'];
+  displayedColumnsTeamGames: string[] = ['game', 'date', 'result'];
 
-  
+
 
 
 
@@ -126,7 +138,176 @@ export class PropScreenComponent implements OnInit {
   sports: any[] = [];
   playerProps: any;
 
-  
+  team1GameStatsDto = {
+    gamesWon: 0,
+    gamesLost: 0,
+    gamesWonVsOpponent: 0,
+    gamesLostVsOpponent: 0,
+    gamesWonHome: 0,
+    gamesLostHome: 0,
+    gamesWonAway: 0,
+    gamesLostAway: 0,
+    halfOneWon: 0,
+    halfOneLost: 0,
+    halfTwoWon: 0,
+    halfTwoLost: 0,
+    quarterOneWon: 0,
+    quarterOneLost: 0,
+    quarterTwoWon: 0,
+    quarterTwoLost: 0,
+    quarterThreeWon: 0,
+    quarterThreeLost: 0,
+    quarterFourWon: 0,
+    quarterFourLost: 0,
+    halfOneWonVsOpponent: 0,
+    halfOneLostVsOpponent: 0,
+    halfTwoWonVsOpponent: 0,
+    halfTwoLostVsOpponent: 0,
+    quarterOneWonVsOpponent: 0,
+    quarterOneLostVsOpponent: 0,
+    quarterTwoWonVsOpponent: 0,
+    quarterTwoLostVsOpponent: 0,
+    quarterThreeWonVsOpponent: 0,
+    quarterThreeLostVsOpponent: 0,
+    quarterFourWonVsOpponent: 0,
+    quarterFourLostVsOpponent: 0,
+    halfOneWonHome: 0,
+    halfOneLostHome: 0,
+    halfOneWonAway: 0,
+    halfOneLostAway: 0,
+    halfTwoWonHome: 0,
+    halfTwoLostHome: 0,
+    halfTwoWonAway: 0,
+    halfTwoLostAway: 0,
+    quarterOneWonHome: 0,
+    quarterOneLostHome: 0,
+    quarterOneWonAway: 0,
+    quarterOneLostAway: 0,
+    quarterTwoWonHome: 0,
+    quarterTwoLostHome: 0,
+    quarterTwoWonAway: 0,
+    quarterTwoLostAway: 0,
+    quarterThreeWonHome: 0,
+    quarterThreeLostHome: 0,
+    quarterThreeWonAway: 0,
+    quarterThreeLostAway: 0,
+    quarterFourWonHome: 0,
+    quarterFourLostHome: 0,
+    quarterFourWonAway: 0,
+    quarterFourLostAway: 0,
+    spreadGame: 0,
+    spreadFirstHalf: 0,
+    spreadSecondHalf: 0,
+    spreadFirstQuarter: 0,
+    spreadSecondQuarter: 0,
+    spreadThirdQuarter: 0,
+    spreadFourthQuarter: 0,
+    spreadVsOpponent: 0,
+    spreadFirstHalfVsOpponent: 0,
+    spreadSecondHalfVsOpponent: 0,
+    spreadFirstQuarterVsOpponent: 0,
+    spreadSecondQuarterVsOpponet: 0,
+    spreadThirdQuarterVsOpponent: 0,
+    spreadFourthQuarterVsOpponent: 0,
+    spreadHome: 0,
+    spreadHomeFirstHalf: 0,
+    spreadHomeSecondHalf: 0,
+    spreadHomeFirstQuarter: 0,
+    spreadHomeSecondQuarter: 0,
+    spreadHomeThirdQuarter: 0,
+    spreadHomeFourthQuarter: 0,
+    spreadAwayFirstQuarter: 0,
+    spreadAwaySecondQuarter: 0,
+    spreadAwayThirdQuarter: 0,
+    spreadAwayFourthQuarter: 0,
+  }
+  team2GameStatsDto = {
+    gamesWon: 0,
+    gamesLost: 0,
+    gamesWonVsOpponent: 0,
+    gamesLostVsOpponent: 0,
+    gamesWonHome: 0,
+    gamesLostHome: 0,
+    gamesWonAway: 0,
+    gamesLostAway: 0,
+    halfOneWon: 0,
+    halfOneLost: 0,
+    halfTwoWon: 0,
+    halfTwoLost: 0,
+    quarterOneWon: 0,
+    quarterOneLost: 0,
+    quarterTwoWon: 0,
+    quarterTwoLost: 0,
+    quarterThreeWon: 0,
+    quarterThreeLost: 0,
+    quarterFourWon: 0,
+    quarterFourLost: 0,
+    halfOneWonVsOpponent: 0,
+    halfOneLostVsOpponent: 0,
+    halfTwoWonVsOpponent: 0,
+    halfTwoLostVsOpponent: 0,
+    quarterOneWonVsOpponent: 0,
+    quarterOneLostVsOpponent: 0,
+    quarterTwoWonVsOpponent: 0,
+    quarterTwoLostVsOpponent: 0,
+    quarterThreeWonVsOpponent: 0,
+    quarterThreeLostVsOpponent: 0,
+    quarterFourWonVsOpponent: 0,
+    quarterFourLostVsOpponent: 0,
+    halfOneWonHome: 0,
+    halfOneLostHome: 0,
+    halfOneWonAway: 0,
+    halfOneLostAway: 0,
+    halfTwoWonHome: 0,
+    halfTwoLostHome: 0,
+    halfTwoWonAway: 0,
+    halfTwoLostAway: 0,
+    quarterOneWonHome: 0,
+    quarterOneLostHome: 0,
+    quarterOneWonAway: 0,
+    quarterOneLostAway: 0,
+    quarterTwoWonHome: 0,
+    quarterTwoLostHome: 0,
+    quarterTwoWonAway: 0,
+    quarterTwoLostAway: 0,
+    quarterThreeWonHome: 0,
+    quarterThreeLostHome: 0,
+    quarterThreeWonAway: 0,
+    quarterThreeLostAway: 0,
+    quarterFourWonHome: 0,
+    quarterFourLostHome: 0,
+    quarterFourWonAway: 0,
+    quarterFourLostAway: 0,
+    spreadGame: 0,
+    spreadFirstHalf: 0,
+    spreadSecondHalf: 0,
+    spreadFirstQuarter: 0,
+    spreadSecondQuarter: 0,
+    spreadThirdQuarter: 0,
+    spreadFourthQuarter: 0,
+    spreadVsOpponent: 0,
+    spreadFirstHalfVsOpponent: 0,
+    spreadSecondHalfVsOpponent: 0,
+    spreadFirstQuarterVsOpponent: 0,
+    spreadSecondQuarterVsOpponet: 0,
+    spreadThirdQuarterVsOpponent: 0,
+    spreadFourthQuarterVsOpponent: 0,
+    spreadHome: 0,
+    spreadHomeFirstHalf: 0,
+    spreadHomeSecondHalf: 0,
+    spreadHomeFirstQuarter: 0,
+    spreadHomeSecondQuarter: 0,
+    spreadHomeThirdQuarter: 0,
+    spreadHomeFourthQuarter: 0,
+    spreadAwayFirstQuarter: 0,
+    spreadAwaySecondQuarter: 0,
+    spreadAwayThirdQuarter: 0,
+    spreadAwayFourthQuarter: 0,
+  }
+  team1GameStats: DbNbaTeamGameStats[] = []
+  team2GameStats: DbNbaTeamGameStats[] = []
+
+
 
   playerPropsArray: PlayerProp[] = [{
     name: '',
@@ -249,10 +430,8 @@ export class PropScreenComponent implements OnInit {
     this.selectedDate = ''
     this.setSelectedSport(sport.tab.textLabel);
     //await this.checkSportPlayerInfoDb();
-    if (this.selectedSport != "NBA") {
       await this.checkPlayerInfoDb();
 
-    }
     await this.checkSportsBookDb();
 
     this.updateDates();
@@ -266,13 +445,17 @@ export class PropScreenComponent implements OnInit {
     this.updateGames();
   }
   async onGameClick(game: any) {
-    this.gameString = game.tab.textLabel
-    this.setSelectedGame(game.tab.textLabel);
-    if (this.selectedSport == "NBA") {
-      await this.checkPlayerInfoDb();
+    if (this.gameString != game.tab.textLabel) {
+      this.gameString = game.tab.textLabel
+      this.setSelectedGame(game.tab.textLabel);
+      /* if (this.selectedSport == "NBA") {
+        await this.checkPlayerInfoDb();
+      } */
+      this.playerPropsClicked = false;
+      this.gamePropsClicked = true;
+      this.displayProp();
     }
-    this.playerPropsClicked = false;
-    this.displayProp();
+
   }
 
   async checkSportBookDb() {
@@ -390,25 +573,25 @@ export class PropScreenComponent implements OnInit {
     var tempDate = fullDate?.split("T");
     var time = tempDate[1].slice(0, 2)
     var subtractDay = false
-    if(parseInt(time) - 6 <= 0){
+    if (parseInt(time) - 6 <= 0) {
       subtractDay = true
     }
 
     var indexOfFirstDash = tempDate[0].indexOf("-");
     var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
     var finalDate = tempDate2.replace("-", "/");
-    if(subtractDay){
+    if (subtractDay) {
       var newDate = finalDate.split("/")
       newDate[1] = (parseInt(newDate[1]) - 1).toString()
-      if(parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0){
-        newDate[1] = '0' + newDate[1] 
+      if (parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0) {
+        newDate[1] = '0' + newDate[1]
       }
-      if(parseInt(newDate[1]) == 0){
-        if(parseInt(newDate[0]) == 1){
-          newDate[0] == '12'
-          newDate[1] == '31'
+      if (parseInt(newDate[1]) == 0) {
+        if (newDate[0] == '01') {
+          newDate[0] = '12'
+          newDate[1] = '31'
         }
-        if(parseInt(newDate[0]) != 1){
+        if (parseInt(newDate[0]) != 1) {
           newDate[0] = (parseInt(newDate[0]) - 1).toString()
           newDate[1] = this.arrayOfDates[parseInt(newDate[0])].toString()
         }
@@ -417,7 +600,7 @@ export class PropScreenComponent implements OnInit {
       finalDate = newDate[0] + "/" + newDate[1]
 
     }
-    
+
     return finalDate;
   }
 
@@ -446,6 +629,11 @@ export class PropScreenComponent implements OnInit {
   }
 
   async displayProp() {
+    this.teamPropIsLoading = true
+
+
+
+
     console.time("Display Prop")
     const tempProp = this.sportsBookDataFinal.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
@@ -456,11 +644,49 @@ export class PropScreenComponent implements OnInit {
     var totalPrice = ''
     var teamInfo = []
     var logo = ''
+    this.team1GameStats = []
+    this.team2GameStats = []
+
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
+    var team1GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    if (team1GameStats2023.length == 0) {
+      let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+      await NbaController.nbaAddTeamGameStats(result)
+      this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    }
+    else if (team1GameStats2023.length > 0) {
+      if (this.convertDate(team1GameStats2023[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+        let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+        await NbaController.nbaAddTeamGameStats(result)
+        this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+      }
+      else {
+        this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+      }
 
-    
+    }
+
+    var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    if (team2GameStats2023.length == 0) {
+      let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+      await NbaController.nbaAddTeamGameStats(result)
+      this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    }
+    else if (team2GameStats2023.length > 0) {
+      if (this.convertDate(team2GameStats2023[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+        let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+        await NbaController.nbaAddTeamGameStats(result)
+        this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+      }
+      else {
+        this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+      }
+    }
+
+    this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
+
 
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
@@ -468,7 +694,9 @@ export class PropScreenComponent implements OnInit {
     spreadPrice = team1.filter((e) => e.marketKey == "spreads")[0].price.toString();
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
+    
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team1[0].teamName)
+    console.log(teamInfo)
     this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
 
     name1 = team2[0].teamName;
@@ -478,9 +706,292 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(team2[0].teamName)
-    
+    console.log(teamInfo)
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
+    this.teamPropIsLoading = false
+  }
+
+  computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]) {
+    this.team1GameStatsDto = {
+      gamesWon: 0,
+      gamesLost: 0,
+      gamesWonVsOpponent: 0,
+      gamesLostVsOpponent: 0,
+      gamesWonHome: 0,
+      gamesLostHome: 0,
+      gamesWonAway: 0,
+      gamesLostAway: 0,
+      halfOneWon: 0,
+      halfOneLost: 0,
+      halfTwoWon: 0,
+      halfTwoLost: 0,
+      quarterOneWon: 0,
+      quarterOneLost: 0,
+      quarterTwoWon: 0,
+      quarterTwoLost: 0,
+      quarterThreeWon: 0,
+      quarterThreeLost: 0,
+      quarterFourWon: 0,
+      quarterFourLost: 0,
+      halfOneWonVsOpponent: 0,
+      halfOneLostVsOpponent: 0,
+      halfTwoWonVsOpponent: 0,
+      halfTwoLostVsOpponent: 0,
+      quarterOneWonVsOpponent: 0,
+      quarterOneLostVsOpponent: 0,
+      quarterTwoWonVsOpponent: 0,
+      quarterTwoLostVsOpponent: 0,
+      quarterThreeWonVsOpponent: 0,
+      quarterThreeLostVsOpponent: 0,
+      quarterFourWonVsOpponent: 0,
+      quarterFourLostVsOpponent: 0,
+      halfOneWonHome: 0,
+      halfOneLostHome: 0,
+      halfOneWonAway: 0,
+      halfOneLostAway: 0,
+      halfTwoWonHome: 0,
+      halfTwoLostHome: 0,
+      halfTwoWonAway: 0,
+      halfTwoLostAway: 0,
+      quarterOneWonHome: 0,
+      quarterOneLostHome: 0,
+      quarterOneWonAway: 0,
+      quarterOneLostAway: 0,
+      quarterTwoWonHome: 0,
+      quarterTwoLostHome: 0,
+      quarterTwoWonAway: 0,
+      quarterTwoLostAway: 0,
+      quarterThreeWonHome: 0,
+      quarterThreeLostHome: 0,
+      quarterThreeWonAway: 0,
+      quarterThreeLostAway: 0,
+      quarterFourWonHome: 0,
+      quarterFourLostHome: 0,
+      quarterFourWonAway: 0,
+      quarterFourLostAway: 0,
+      spreadGame: 0,
+      spreadFirstHalf: 0,
+      spreadSecondHalf: 0,
+      spreadFirstQuarter: 0,
+      spreadSecondQuarter: 0,
+      spreadThirdQuarter: 0,
+      spreadFourthQuarter: 0,
+      spreadVsOpponent: 0,
+      spreadFirstHalfVsOpponent: 0,
+      spreadSecondHalfVsOpponent: 0,
+      spreadFirstQuarterVsOpponent: 0,
+      spreadSecondQuarterVsOpponet: 0,
+      spreadThirdQuarterVsOpponent: 0,
+      spreadFourthQuarterVsOpponent: 0,
+      spreadHome: 0,
+      spreadHomeFirstHalf: 0,
+      spreadHomeSecondHalf: 0,
+      spreadHomeFirstQuarter: 0,
+      spreadHomeSecondQuarter: 0,
+      spreadHomeThirdQuarter: 0,
+      spreadHomeFourthQuarter: 0,
+      spreadAwayFirstQuarter: 0,
+      spreadAwaySecondQuarter: 0,
+      spreadAwayThirdQuarter: 0,
+      spreadAwayFourthQuarter: 0,
+    }
+    this.team2GameStatsDto = {
+      gamesWon: 0,
+      gamesLost: 0,
+      gamesWonVsOpponent: 0,
+      gamesLostVsOpponent: 0,
+      gamesWonHome: 0,
+      gamesLostHome: 0,
+      gamesWonAway: 0,
+      gamesLostAway: 0,
+      halfOneWon: 0,
+      halfOneLost: 0,
+      halfTwoWon: 0,
+      halfTwoLost: 0,
+      quarterOneWon: 0,
+      quarterOneLost: 0,
+      quarterTwoWon: 0,
+      quarterTwoLost: 0,
+      quarterThreeWon: 0,
+      quarterThreeLost: 0,
+      quarterFourWon: 0,
+      quarterFourLost: 0,
+      halfOneWonVsOpponent: 0,
+      halfOneLostVsOpponent: 0,
+      halfTwoWonVsOpponent: 0,
+      halfTwoLostVsOpponent: 0,
+      quarterOneWonVsOpponent: 0,
+      quarterOneLostVsOpponent: 0,
+      quarterTwoWonVsOpponent: 0,
+      quarterTwoLostVsOpponent: 0,
+      quarterThreeWonVsOpponent: 0,
+      quarterThreeLostVsOpponent: 0,
+      quarterFourWonVsOpponent: 0,
+      quarterFourLostVsOpponent: 0,
+      halfOneWonHome: 0,
+      halfOneLostHome: 0,
+      halfOneWonAway: 0,
+      halfOneLostAway: 0,
+      halfTwoWonHome: 0,
+      halfTwoLostHome: 0,
+      halfTwoWonAway: 0,
+      halfTwoLostAway: 0,
+      quarterOneWonHome: 0,
+      quarterOneLostHome: 0,
+      quarterOneWonAway: 0,
+      quarterOneLostAway: 0,
+      quarterTwoWonHome: 0,
+      quarterTwoLostHome: 0,
+      quarterTwoWonAway: 0,
+      quarterTwoLostAway: 0,
+      quarterThreeWonHome: 0,
+      quarterThreeLostHome: 0,
+      quarterThreeWonAway: 0,
+      quarterThreeLostAway: 0,
+      quarterFourWonHome: 0,
+      quarterFourLostHome: 0,
+      quarterFourWonAway: 0,
+      quarterFourLostAway: 0,
+      spreadGame: 0,
+      spreadFirstHalf: 0,
+      spreadSecondHalf: 0,
+      spreadFirstQuarter: 0,
+      spreadSecondQuarter: 0,
+      spreadThirdQuarter: 0,
+      spreadFourthQuarter: 0,
+      spreadVsOpponent: 0,
+      spreadFirstHalfVsOpponent: 0,
+      spreadSecondHalfVsOpponent: 0,
+      spreadFirstQuarterVsOpponent: 0,
+      spreadSecondQuarterVsOpponet: 0,
+      spreadThirdQuarterVsOpponent: 0,
+      spreadFourthQuarterVsOpponent: 0,
+      spreadHome: 0,
+      spreadHomeFirstHalf: 0,
+      spreadHomeSecondHalf: 0,
+      spreadHomeFirstQuarter: 0,
+      spreadHomeSecondQuarter: 0,
+      spreadHomeThirdQuarter: 0,
+      spreadHomeFourthQuarter: 0,
+      spreadAwayFirstQuarter: 0,
+      spreadAwaySecondQuarter: 0,
+      spreadAwayThirdQuarter: 0,
+      spreadAwayFourthQuarter: 0,
+    }
+    var i
+    team1.forEach(e => {
+      e.result == "Win" ? this.team1GameStatsDto.gamesWon += 1 : this.team1GameStatsDto.gamesLost += 1
+      e.teamAgainstId == team2[0].teamId ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonVsOpponent += 1 : this.team1GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
+      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team1GameStatsDto.gamesWonHome += 1 : this.team1GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team1GameStatsDto.gamesWonAway += 1 : this.team1GameStatsDto.gamesLostAway += 1);
+      e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWon += 1 : this.team1GameStatsDto.quarterOneLost += 1;
+      e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWon += 1 : this.team1GameStatsDto.quarterTwoLost += 1;
+      e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWon += 1 : this.team1GameStatsDto.quarterThreeLost += 1;
+      e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWon += 1 : this.team1GameStatsDto.quarterFourLost += 1;
+      (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWon += 1 : this.team1GameStatsDto.halfOneLost += 1;
+      (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWon += 1 : this.team1GameStatsDto.halfTwoLost += 1;
+      this.team1GameStatsDto.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall );
+      this.team1GameStatsDto.spreadFirstHalf = (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+      this.team1GameStatsDto.spreadSecondHalf = (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+      this.team1GameStatsDto.spreadFirstQuarter = e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+      this.team1GameStatsDto.spreadSecondQuarter = e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+      this.team1GameStatsDto.spreadThirdQuarter = e.pointsAllowedThirdQuarter  -  e.pointsScoredThirdQuarter;
+      this.team1GameStatsDto.spreadFourthQuarter = e.pointsAllowedFourthQuarter  - e.pointsScoredFourthQuarter;
+      if (e.teamAgainstId == team2[0].teamId) {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonVsOpponent += 1 : this.team1GameStatsDto.quarterOneLostVsOpponent += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDto.quarterTwoLostVsOpponent += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonVsOpponent += 1 : this.team1GameStatsDto.quarterThreeLostVsOpponent += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWonVsOpponent += 1 : this.team1GameStatsDto.quarterFourLostVsOpponent += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonVsOpponent += 1 : this.team1GameStatsDto.halfOneLostVsOpponent += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonVsOpponent += 1 : this.team1GameStatsDto.halfTwoLostVsOpponent += 1;
+      }
+      if (e.homeOrAway == "Home") {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonHome += 1 : this.team1GameStatsDto.quarterOneLostHome += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonHome += 1 : this.team1GameStatsDto.quarterTwoLostHome += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonHome += 1 : this.team1GameStatsDto.quarterThreeLostHome += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWonHome += 1 : this.team1GameStatsDto.quarterFourLostHome += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonHome += 1 : this.team1GameStatsDto.halfOneLostHome += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonHome += 1 : this.team1GameStatsDto.halfTwoLostHome += 1;
+      }
+      else if (e.homeOrAway == "Away") {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonAway += 1 : this.team1GameStatsDto.quarterOneLostAway += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonAway += 1 : this.team1GameStatsDto.quarterTwoLostAway += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonAway += 1 : this.team1GameStatsDto.quarterThreeLostAway += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDto.quarterFourWonAway += 1 : this.team1GameStatsDto.quarterFourLostAway += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWonAway += 1 : this.team1GameStatsDto.halfOneLostAway += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWonAway += 1 : this.team1GameStatsDto.halfTwoLostAway += 1;
+      }
+    })
+    team2.forEach(e => {
+      e.result == "Win" ? this.team2GameStatsDto.gamesWon += 1 : this.team2GameStatsDto.gamesLost += 1
+      e.teamAgainstId == team1[0].teamId ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonVsOpponent += 1 : this.team2GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
+      e.homeOrAway == "Home" ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonHome += 1 : this.team2GameStatsDto.gamesLostHome += 1) : (e.result == "Win" ? this.team2GameStatsDto.gamesWonAway += 1 : this.team2GameStatsDto.gamesLostAway += 1);
+      e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWon += 1 : this.team2GameStatsDto.quarterOneLost += 1;
+      e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWon += 1 : this.team2GameStatsDto.quarterTwoLost += 1;
+      e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWon += 1 : this.team2GameStatsDto.quarterThreeLost += 1;
+      e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWon += 1 : this.team2GameStatsDto.quarterFourLost += 1;
+      (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWon += 1 : this.team2GameStatsDto.halfOneLost += 1;
+      (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWon += 1 : this.team2GameStatsDto.halfTwoLost += 1;
+      if (e.teamAgainstId == team1[0].teamId) {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonVsOpponent += 1 : this.team2GameStatsDto.quarterOneLostVsOpponent += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team2GameStatsDto.quarterTwoLostVsOpponent += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonVsOpponent += 1 : this.team2GameStatsDto.quarterThreeLostVsOpponent += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonVsOpponent += 1 : this.team2GameStatsDto.quarterFourLostVsOpponent += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonVsOpponent += 1 : this.team2GameStatsDto.halfOneLostVsOpponent += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonVsOpponent += 1 : this.team2GameStatsDto.halfTwoLostVsOpponent += 1;
+      }
+      if (e.homeOrAway == "Home") {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonHome += 1 : this.team2GameStatsDto.quarterOneLostHome += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonHome += 1 : this.team2GameStatsDto.quarterTwoLostHome += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonHome += 1 : this.team2GameStatsDto.quarterThreeLostHome += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonHome += 1 : this.team2GameStatsDto.quarterFourLostHome += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonHome += 1 : this.team2GameStatsDto.halfOneLostHome += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonHome += 1 : this.team2GameStatsDto.halfTwoLostHome += 1;
+      }
+      else if (e.homeOrAway == "Away") {
+        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonAway += 1 : this.team2GameStatsDto.quarterOneLostAway += 1;
+        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonAway += 1 : this.team2GameStatsDto.quarterTwoLostAway += 1;
+        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDto.quarterThreeWonAway += 1 : this.team2GameStatsDto.quarterThreeLostAway += 1;
+        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonAway += 1 : this.team2GameStatsDto.quarterFourLostAway += 1;
+        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonAway += 1 : this.team2GameStatsDto.halfOneLostAway += 1;
+        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonAway += 1 : this.team2GameStatsDto.halfTwoLostAway += 1;
+      }
+    })
+    console.log(team1)
+    console.log(this.team1GameStatsDto)
+  }
+
+  moneylineGameToggled() {
+    this.moneylineGameClicked = true;
+    this.moneylineHalfClicked = false;
+    this.moneylineQuarterClicked = false;
+
+  }
+  moneylineHalfToggled() {
+    this.moneylineGameClicked = false;
+    this.moneylineHalfClicked = true;
+    this.moneylineQuarterClicked = false;
+  }
+  moneylineQuarterToggled() {
+    this.moneylineGameClicked = false;
+    this.moneylineHalfClicked = false;
+    this.moneylineQuarterClicked = true;
+  }
+  spreadGameToggled() {
+    this.spreadGameClicked = true;
+    this.spreadHalfClicked = false;
+    this.spreadQuarterClicked = false;
+
+  }
+  spreadHalfToggled() {
+    this.spreadGameClicked = false;
+    this.spreadHalfClicked = true;
+    this.spreadQuarterClicked = false;
+  }
+  spreadQuarterToggled() {
+    this.spreadGameClicked = false;
+    this.spreadHalfClicked = false;
+    this.spreadQuarterClicked = true;
   }
 
 
@@ -489,14 +1000,15 @@ export class PropScreenComponent implements OnInit {
     try {
       console.time("Check sports book db")
       dbEmpty = await this.SportsBookRepo.find({ where: { sportTitle: this.selectedSport } })
-      if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
+      
+      //if (dbEmpty.length == 0 || this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
         var results = await this.draftKingsApiController.getDatesAndGames(this.selectedSport);
         await SportsBookController.addBookData(results);
         await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-      }
-      else {
-        await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-      }
+      //}
+      //else {
+      //  await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
+     // }
       console.timeEnd("Check sports book db")
     } catch (error: any) {
       alert(error.message)
@@ -522,21 +1034,21 @@ export class PropScreenComponent implements OnInit {
 
     if (this.selectedSport == "NBA") {
       try {
-        
+
         var gameArray = this.splitGameString(this.gameString)
         let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[0])]
         let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
-        if (dbEmpty.length == 0) {
-          var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
+        if (dbEmpty.length == 0 || this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
+          var returnCall = await this.nbaApiController.getAllNbaPlayerInfoFromApi();
           await NbaController.nbaAddPlayerInfoData(returnCall);
         }
-        else if (dbEmpty.length > 0) {
+       /*  else if (dbEmpty.length > 0) {
           if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
             var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
             await NbaController.nbaAddPlayerInfoData(returnCall);
           }
-        }
-        
+        } */
+
       } catch (error: any) {
         alert(error.message)
       }
@@ -599,18 +1111,18 @@ export class PropScreenComponent implements OnInit {
 
     try {
       console.time("load player props")
-      
-        var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
-        if(results.length == 0){
-          alert("Player Props have not been added by Draft Kings yet")
-        }
-        else{
-          await PlayerPropController.addPlayerPropData(results);
-          await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame).then(item => this.playerPropDataFinal = item)
-          this.addplayerPropToArray();
-        }
-        
-     
+
+      var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
+      if (results.length == 0) {
+        alert("Player Props have not been added by Draft Kings yet")
+      }
+      else {
+        await PlayerPropController.addPlayerPropData(results);
+        await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame).then(item => this.playerPropDataFinal = item)
+        this.addplayerPropToArray();
+      }
+
+
       console.timeEnd("load player props")
     } catch (error: any) {
       alert(error.message)
@@ -779,13 +1291,14 @@ export class PropScreenComponent implements OnInit {
         var previousName = ''
         for (let i = 0; i < element.length; i++) {
           let playerName = element[i].name
-          if(playerName == previousName){
+          if (playerName == previousName) {
             await this.computeStatForPlayer(element[i])
             continue
           }
+          console.log(element)
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
-          if(player.length == 0){
-            alert(element[i].name)
+          if (player.length == 0) {
+            alert(element[i].name + " is not in the player database")
           }
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
           let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
@@ -802,7 +1315,7 @@ export class PropScreenComponent implements OnInit {
           else {
             await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => this.nbaPlayerStatData2022Final = item)
           }
-          
+
           if (db2023.length == 0) {
             let results = await this.nbaApiController.loadNba2023PlayerStatData(player[0].playerId)
             await NbaController.nbaAddPlayerGameStats2023(results);
@@ -836,10 +1349,11 @@ export class PropScreenComponent implements OnInit {
 
 
   async computeStatsForAllPlayersInProp(element: any) {
+    this.displayProgressBar = true
     console.time("compute stats for all players in prop")
-      if (element[0].percentTeam == "") {
+    if (element[0].percentTeam == "") {
       await this.getPlayerStatsForSeasonCall(element)
-    } 
+    }
     console.timeEnd("compute stats for all players in prop")
 
 
@@ -1293,7 +1807,6 @@ export class PropScreenComponent implements OnInit {
     var fullDate = month + "/" + day;
     return fullDate
   }
-
 
 
 

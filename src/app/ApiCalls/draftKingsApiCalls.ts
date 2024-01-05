@@ -120,4 +120,7 @@ export class draftKingsApiController {
     }
     return tempData;
   }
+
+
+  
 }

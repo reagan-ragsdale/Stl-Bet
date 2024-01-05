@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewChild} from '@angular/core';
 import { MatTable } from '@angular/material/table';
+import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 
 
 interface statSearch {
@@ -145,6 +146,7 @@ export class PlayerStatsComponent {
   public nbaPlayerStatsInfo2022Table: any[] = []
   public playerSeasons: string[] = []
   public playerSeason: string = '2023'
+  public teamInfo: DbNbaTeamLogos[] = []
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
@@ -171,7 +173,7 @@ export class PlayerStatsComponent {
   }
 
   async getPlayerInfo() {
-    
+    this.playerSeasons = []
     if (this.selectedSport == "NBA") {
       this.selectedStatSearchNumber = 0
       this.nbaPlayerInfo = await NbaController.nbaLoadPlayerInfoFromId(this.playerId)
@@ -191,6 +193,8 @@ export class PlayerStatsComponent {
       }
       this.seasonArray = this.nbaPlayerStatsInfo2023
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+      this.teamInfo = await NbaController.nbaGetLogoFromTeamId(this.nbaPlayerInfo[0].teamId)
+
       
       
       

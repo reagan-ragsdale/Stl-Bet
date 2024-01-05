@@ -2,6 +2,7 @@ import { Allow, BackendMethod, remult } from "remult"
 import { NbaPlayerInfoDb } from "../dbTasks/NbaPlayerInfoDb"
 import { DbNbaGameStats } from "../dbTasks/DbNbaGameStats"
 import { DbNbaTeamLogos } from "../dbTasks/DbNbaTeamLogos"
+import { DbNbaTeamGameStats } from "../dbTasks/DbNbaTeamGameStats"
 
 export class NbaController {
 
@@ -37,10 +38,8 @@ export class NbaController {
       }
 
     })
+    await taskRepo.insert(playerData)
 
-    for (const data of playerData) {
-      await taskRepo.insert({ playerId: data.playerId, playerName: data.playerName, teamId: data.teamId })
-    }
 
   }
 
@@ -63,6 +62,15 @@ export class NbaController {
     const taskRepo = remult.repo(NbaPlayerInfoDb)
     return await taskRepo.find({ where: { teamId: id } })
   }
+
+  @BackendMethod({ allowed: true })
+  static async nbaLoadPlayerInfoFromPlayerNameAndTeamId(teamId: number, playerName: string): Promise<NbaPlayerInfoDb[]> {
+    console.log("here in nbaLoadPlayerInfoFromTeamId")
+    const taskRepo = remult.repo(NbaPlayerInfoDb)
+    return await taskRepo.find({ where: { teamId: teamId, playerName: playerName } })
+  }
+
+  
 
   @BackendMethod({ allowed: true })
   static async nbaLoadAllPlayerInfo(): Promise<NbaPlayerInfoDb[]> {
@@ -179,13 +187,13 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerStatsInfoFromIdAndSeason(id: number, season: number): Promise<DbNbaGameStats[]> {
     const taskRepo = remult.repo(DbNbaGameStats)
-    return await taskRepo.find({ where: { playerId: id, season: season }, orderBy: { gameId: "asc" } })
+    return await taskRepo.find({ where: { playerId: id, season: season }, orderBy: { uniquegameid: "asc" } })
   }
 
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerStatsInfoFromNameAndSeason(name: string, season: number): Promise<DbNbaGameStats[]> {
     const taskRepo = remult.repo(DbNbaGameStats)
-    return await taskRepo.find({ where: { playerName: name, season: season }, orderBy: { gameId: "asc" } })
+    return await taskRepo.find({ where: { playerName: name, season: season }, orderBy: { gameId: "desc" } })
   }
 
 
@@ -201,6 +209,23 @@ export class NbaController {
 
   // nba team stats
 
+  @BackendMethod({ allowed: true })
+  static async nbaAddTeamGameStats(teamData: DbNbaTeamGameStats[]) {
+    const taskRepo2 = remult.repo(DbNbaTeamGameStats)
+   
+
+    await taskRepo2.insert(teamData)
+
+  }
+
+  @BackendMethod({ allowed: true })
+  static async nbaLoadTeamGameStatsByTeamIdAndSeason(id: number, season: number): Promise<DbNbaTeamGameStats[]> {
+    const taskRepo2 = remult.repo(DbNbaTeamGameStats)
+   
+
+    return await taskRepo2.find({ where: { teamId: id, season: season }, orderBy: { uniquegameid: "desc" } })
+
+  }
 
 
 
@@ -211,13 +236,13 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaGetLogoFromTeamId(id: number): Promise<DbNbaTeamLogos[]> {
     const taskRepo = remult.repo(DbNbaTeamLogos)
-    return await taskRepo.find({ where: { teamId: id} })
+    return await taskRepo.find({ where: { teamId: id } })
   }
 
   @BackendMethod({ allowed: true })
   static async nbaGetLogoFromTeamName(name: string): Promise<DbNbaTeamLogos[]> {
     const taskRepo = remult.repo(DbNbaTeamLogos)
-    return await taskRepo.find({ where: { teamName: name} })
+    return await taskRepo.find({ where: { teamName: name } })
   }
 
 

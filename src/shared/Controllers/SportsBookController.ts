@@ -20,7 +20,7 @@ export class SportsBookController {
     } }
     
     for (const data of bookData) {
-      await taskRepo.insert({bookId: data.bookId, sportKey: data.sportKey, sportTitle: data.sportTitle, homeTeam: data.homeTeam, awayTeam: data.awayTeam, commenceTime: data.commenceTime, bookMaker: data.bookMaker, marketKey: data.marketKey, teamName: data.teamName, price: data.price, point: data.point})
+      await taskRepo.insert(data)
     }
 
   }

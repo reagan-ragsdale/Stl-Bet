@@ -65,7 +65,26 @@ To overcome this I used a new function called structuredClone() which creates a 
 Things to do moving forward:
 Create develop branch --
 Set up postgress database -- 
-Imporove speed of api calls and getting and putting in database
+Imporove speed of api calls and getting and putting in database --
+
+Things to accomplish over break:
+Automate loading stats into database daily
+Set up team stats
+Make mobile view and responsive layouts
+
+Database chagnges:
+Need to add another integer primary key to dbnbagamestats to order the games since 
+
+
+Arduino ideas:
+Self driving car
+- code
+- engineering a car
+- possibly machine learning but not sure if arduino can do that
+engineering: how to manufacture a car and body that holds the arduino and other sensors
+code: how to detect an object and navigate around it
+
+
 
 
 
