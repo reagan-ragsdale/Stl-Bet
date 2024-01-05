@@ -243,6 +243,8 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaGetLogoFromTeamName(name: string): Promise<DbNbaTeamLogos[]> {
     const taskRepo = remult.repo(DbNbaTeamLogos)
+    console.log("Below is nbacontroller")
+    console.log(name)
     return await taskRepo.find({ where: { teamName: name } })
   }
 
