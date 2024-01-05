@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NbaPlayerInfoDb } from 'src/shared/dbTasks/nbaPlayerInfoDb';
 import { SportsNameToId } from '../sports-name-to-id';
 import { DbNbaGameStats } from 'src/shared/dbTasks/dbNbaGameStats';
-import { NbaController } from 'src/shared/Controllers/nbaController.js';
+import { NbaController } from 'src/shared/Controllers/nbaController';
 import { ArrayOfDates } from '../array-of-dates';
 import { DbNbaTeamGameStats } from 'src/shared/dbTasks/dbNbaTeamGameStats';
 
