@@ -706,7 +706,8 @@ console.log(team1)
     spreadPrice = team2.filter((e) => e.marketKey == "spreads")[0].price.toString();
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
-    teamInfo = await NbaController.nbaGetLogoFromTeamName(name1)
+    //teamInfo = await NbaController.nbaGetLogoFromTeamName(name1)
+    teamInfo = await NbaController.nbaGetLogoFromTeamId(15)
     
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
