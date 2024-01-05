@@ -32,7 +32,7 @@ import { SportsNameToId } from '../sports-name-to-id';
 import { DbNbaGameStats } from 'src/shared/dbTasks/dbNbaGameStats';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
-import { Chart } from 'chart.js/auto';
+
 import { ArrayOfDates } from '../array-of-dates';
 
 
