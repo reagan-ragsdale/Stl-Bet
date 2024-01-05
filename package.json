@@ -10,7 +10,7 @@
     "dev": "ng serve --proxy-config proxy.conf.json --open",
     "dev-node": "tsx watch src/server"
   },
-  "type": "module",
+  "type": "commonjs",
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
