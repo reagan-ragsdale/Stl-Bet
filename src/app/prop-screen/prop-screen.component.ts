@@ -688,6 +688,7 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
 
 
+console.log(team1)
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
     spreadPoint = team1.filter((e) => e.marketKey == "spreads")[0].point.toString();
