@@ -2,8 +2,8 @@
 
 import { Injectable } from '@angular/core';
 import { SportsTitleToName } from '../sports-titel-to-name';
-import { DbPlayerPropData } from '../../shared/dbTasks/dbPlayerPropData';
-import { DbGameBookData } from '../../shared/dbTasks/dbGameBookData';
+import { DbPlayerPropData } from '../../shared/dbTasks/DbPlayerPropData';
+import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
 
 
 

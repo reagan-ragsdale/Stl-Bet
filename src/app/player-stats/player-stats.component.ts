@@ -3,25 +3,25 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { nbaApiController } from '../ApiCalls/nbaApiCalls';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
-import { NbaController } from 'src/shared/Controllers/nbaController';
-import { NbaPlayerInfoDb } from 'src/shared/dbTasks/nbaPlayerInfoDb';
-import { DbNbaGameStats } from 'src/shared/dbTasks/dbNbaGameStats';
+import { NbaController } from 'src/shared/Controllers/NbaController';
+import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
+import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
 import { filterHelper } from 'remult/src/filter/filter-interfaces';
 import { Observable } from 'rxjs';
-import { DbNhlPlayerInfo } from 'src/shared/dbTasks/dbNhlPlayerInfo';
-import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/dbNhlPlayerGameStats';
-import { NhlPlayerGameStatsController } from 'src/shared/Controllers/nhlPlayerGameStatsController';
-import { NhlPlayerInfoController } from 'src/shared/Controllers/nhlPlayerInfoController';
+import { DbNhlPlayerInfo } from 'src/shared/dbTasks/DbNhlPlayerInfo';
+import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/DbNhlPlayerGameStats';
+import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGameStatsController';
+import { NhlPlayerInfoController } from 'src/shared/Controllers/NhlPlayerInfoController';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewChild} from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { DbNbaTeamLogos } from 'src/shared/dbTasks/dbNbaTeamLogos';
+import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 
 
 interface statSearch {

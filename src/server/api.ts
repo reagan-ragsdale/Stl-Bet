@@ -2,23 +2,23 @@ import { remultExpress } from 'remult/remult-express';
 //import { Task } from '../shared/dbTasks/Task';
 //import { TaskController } from '../shared/Controllers/TaskController';
 // Changed path from `src/shared/dbTasks/PlayerInfoMlb` to `../shared/dbTasks/PlayerInfoMlb` relative path works better
-import { PlayerInfoMlb } from '../shared/dbTasks/playerInfoMlb';
-import { MlbController } from '../shared/Controllers/mlbController';
-import { DbMlbGameBookData } from '../shared/dbTasks/dbMlbGameBookData';
-import { DbGameBookData } from '../shared/dbTasks/dbGameBookData';
-import { SportsBookController } from '../shared/Controllers/sportsBookController';
-import { DbPlayerPropData } from '../shared/dbTasks/dbPlayerPropData';
-import { PlayerPropController } from '../shared/Controllers/playerPropController';
-import { DbNhlPlayerInfo } from '../shared/dbTasks/dbNhlPlayerInfo';
-import { NhlPlayerInfoController } from '../shared/Controllers/nhlPlayerInfoController';
-import { DbNhlPlayerGameStats } from '../shared/dbTasks/dbNhlPlayerGameStats';
-import { NhlPlayerGameStatsController } from '../shared/Controllers/nhlPlayerGameStatsController';
-import { NbaPlayerInfoDb } from '../shared/dbTasks/nbaPlayerInfoDb';
-import { NbaController } from '../shared/Controllers/nbaController';
-import { DbNbaGameStats } from '../shared/dbTasks/dbNbaGameStats';
+import { PlayerInfoMlb } from '../shared/dbTasks/PlayerInfoMlb';
+import { MlbController } from '../shared/Controllers/MlbController';
+import { DbMlbGameBookData } from '../shared/dbTasks/DbMlbGameBookData';
+import { DbGameBookData } from '../shared/dbTasks/DbGameBookData';
+import { SportsBookController } from '../shared/Controllers/SportsBookController';
+import { DbPlayerPropData } from '../shared/dbTasks/DbPlayerPropData';
+import { PlayerPropController } from '../shared/Controllers/PlayerPropController';
+import { DbNhlPlayerInfo } from '../shared/dbTasks/DbNhlPlayerInfo';
+import { NhlPlayerInfoController } from '../shared/Controllers/NhlPlayerInfoController';
+import { DbNhlPlayerGameStats } from '../shared/dbTasks/DbNhlPlayerGameStats';
+import { NhlPlayerGameStatsController } from '../shared/Controllers/NhlPlayerGameStatsController';
+import { NbaPlayerInfoDb } from '../shared/dbTasks/NbaPlayerInfoDb';
+import { NbaController } from '../shared/Controllers/NbaController';
+import { DbNbaGameStats } from '../shared/dbTasks/DbNbaGameStats';
 import { createPostgresDataProvider } from 'remult/postgres';
-import { DbNbaTeamGameStats } from '../shared/dbTasks/dbNbaTeamGameStats';
-import { DbNbaTeamLogos } from '../shared/dbTasks/dbNbaTeamLogos';
+import { DbNbaTeamGameStats } from '../shared/dbTasks/DbNbaTeamGameStats';
+import { DbNbaTeamLogos } from '../shared/dbTasks/DbNbaTeamLogos';
 
 export const api = remultExpress({
   entities: [
