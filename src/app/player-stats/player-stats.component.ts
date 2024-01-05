@@ -61,6 +61,8 @@ export class PlayerStatsComponent {
   playerStd: number = 0
 
   public chart: any;
+
+  
   public chart2: any;
   public chart3: any
 
