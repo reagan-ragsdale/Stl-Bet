@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { NbaPlayerInfoDb } from '../../shared/dbTasks/NbaPlayerInfoDb';
+import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
 import { SportsNameToId } from '../sports-name-to-id';
-import { DbNbaGameStats } from '../../shared/dbTasks/DbNbaGameStats';
-import { NbaController } from '../../shared/Controllers/NbaController.js';
+import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
+import { NbaController } from 'src/shared/Controllers/NbaController.js';
 import { ArrayOfDates } from '../array-of-dates';
-import { DbNbaTeamGameStats } from '../../shared/dbTasks/DbNbaTeamGameStats';
+import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
 
 @Injectable()
 export class nbaApiController {
