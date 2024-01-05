@@ -698,7 +698,7 @@ console.log(team1)
     console.log(team1[0].teamName)
     teamInfo = await NbaController.nbaGetLogoFromTeamName(name1)
     console.log(teamInfo)
-    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
+    /* this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
 
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price.toString();
@@ -709,7 +709,7 @@ console.log(team1)
     teamInfo = await NbaController.nbaGetLogoFromTeamName(name1)
     
     this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
-    console.timeEnd("Display Prop")
+    console.timeEnd("Display Prop") */
     this.teamPropIsLoading = false
   }
 
