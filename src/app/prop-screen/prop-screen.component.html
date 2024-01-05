@@ -846,7 +846,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.spreadFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstHalf / (team1GameStatsDto.halfOneLost + team1GameStatsDto.halfOneWon)
+                        {{team1GameStatsDto.spreadFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -864,7 +864,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.spreadSecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondHalf / (team1GameStatsDto.halfTwoLost + team1GameStatsDto.halfTwoWon)
+                        {{team1GameStatsDto.spreadSecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -899,8 +899,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstQuarter / (team1GameStatsDto.quarterOneLost +
-                          team1GameStatsDto.quarterOneWon)
+                          {{team1GameStatsDto.spreadFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -922,8 +921,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadSecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondQuarter / (team1GameStatsDto.quarterTwoLost +
-                          team1GameStatsDto.quarterTwoWon)
+                          {{team1GameStatsDto.spreadSecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -948,8 +946,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadThirdQuarter / (team1GameStatsDto.quarterThreeLost +
-                          team1GameStatsDto.quarterThreeWon)
+                          {{team1GameStatsDto.spreadThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -971,8 +968,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadFourthQuarter / (team1GameStatsDto.quarterFourLost +
-                          team1GameStatsDto.quarterFourWon)
+                          {{team1GameStatsDto.spreadFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1014,7 +1010,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.spreadFirstHalfVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstHalfVsOpponent / (team1GameStatsDto.halfOneLostVsOpponent + team1GameStatsDto.halfOneWonVsOpponent)
+                        {{team1GameStatsDto.spreadFirstHalfVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstHalfVsOpponent / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1032,7 +1028,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.spreadSecondHalfVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondHalfVsOpponent / (team1GameStatsDto.halfTwoLostVsOpponent + team1GameStatsDto.halfTwoWonVsOpponent)
+                        {{team1GameStatsDto.spreadSecondHalfVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondHalfVsOpponent / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1067,8 +1063,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadFirstQuarterVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstQuarterVsOpponent / (team1GameStatsDto.quarterOneLostVsOpponent +
-                          team1GameStatsDto.quarterOneWonVsOpponent)
+                          {{team1GameStatsDto.spreadFirstQuarterVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadFirstQuarterVsOpponent / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1090,8 +1085,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadSecondQuarterVsOpponet > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondQuarterVsOpponet / (team1GameStatsDto.quarterTwoLostVsOpponent +
-                          team1GameStatsDto.quarterTwoWonVsOpponent)
+                          {{team1GameStatsDto.spreadSecondQuarterVsOpponet > 0 ? "+": ""}}{{team1GameStatsDto.spreadSecondQuarterVsOpponet / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1116,8 +1110,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadThirdQuarterVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadThirdQuarterVsOpponent / (team1GameStatsDto.quarterThreeLostVsOpponent +
-                          team1GameStatsDto.quarterThreeWonVsOpponent)
+                          {{team1GameStatsDto.spreadThirdQuarterVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadThirdQuarterVsOpponent / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1139,8 +1132,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadFourthQuarterVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadFourthQuarterVsOpponent / (team1GameStatsDto.quarterFourLostVsOpponent +
-                          team1GameStatsDto.quarterFourWonVsOpponent)
+                          {{team1GameStatsDto.spreadFourthQuarterVsOpponent > 0 ? "+": ""}}{{team1GameStatsDto.spreadFourthQuarterVsOpponent / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1167,7 +1159,7 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.spreadHome > 0 ? "+": ""}}{{team1GameStatsDto.spreadHome / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome) |
+                    {{team1GameStatsDto.spreadHome > 0 ? "+": ""}}{{team1GameStatsDto.spreadHome / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -1182,7 +1174,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.spreadHomeFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstHalf / (team1GameStatsDto.halfOneLostHome + team1GameStatsDto.halfOneWonHome)
+                        {{team1GameStatsDto.spreadHomeFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1200,7 +1192,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.spreadHomeSecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondHalf / (team1GameStatsDto.halfTwoLostHome + team1GameStatsDto.halfTwoWonHome)
+                        {{team1GameStatsDto.spreadHomeSecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1235,8 +1227,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstQuarter / (team1GameStatsDto.quarterOneLostHome +
-                          team1GameStatsDto.quarterOneWonHome)
+                          {{team1GameStatsDto.spreadHomeFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1258,8 +1249,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeSecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondQuarter / (team1GameStatsDto.quarterTwoLostHome +
-                          team1GameStatsDto.quarterTwoWonHome)
+                          {{team1GameStatsDto.spreadHomeSecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1284,8 +1274,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeThirdQuarter / (team1GameStatsDto.quarterThreeLostHome +
-                          team1GameStatsDto.quarterThreeWonHome)
+                          {{team1GameStatsDto.spreadHomeThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1307,8 +1296,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFourthQuarter / (team1GameStatsDto.quarterFourLostHome +
-                          team1GameStatsDto.quarterFourWonHome)
+                          {{team1GameStatsDto.spreadHomeFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1335,7 +1323,7 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.spreadAway > 0 ? "+": ""}}{{team1GameStatsDto.spreadAway / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway) |
+                    {{team1GameStatsDto.spreadAway > 0 ? "+": ""}}{{team1GameStatsDto.spreadAway / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -1350,7 +1338,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.spreadAwayFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstHalf / (team1GameStatsDto.halfOneLostAway + team1GameStatsDto.halfOneWonAway)
+                        {{team1GameStatsDto.spreadAwayFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1368,7 +1356,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.spreadAwaySecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondHalf / (team1GameStatsDto.halfTwoLostAway + team1GameStatsDto.halfTwoWonAway)
+                        {{team1GameStatsDto.spreadAwaySecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1403,8 +1391,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwayFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstQuarter / (team1GameStatsDto.quarterOneLostAway +
-                          team1GameStatsDto.quarterOneWonAway)
+                          {{team1GameStatsDto.spreadAwayFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1426,8 +1413,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwaySecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondQuarter / (team1GameStatsDto.quarterTwoLostAway +
-                          team1GameStatsDto.quarterTwoWonAway)
+                          {{team1GameStatsDto.spreadAwaySecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1452,8 +1438,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwayThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayThirdQuarter / (team1GameStatsDto.quarterThreeLostAway +
-                          team1GameStatsDto.quarterThreeWonAway)
+                          {{team1GameStatsDto.spreadAwayThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1475,8 +1460,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwayFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFourthQuarter / (team1GameStatsDto.quarterFourLostAway +
-                          team1GameStatsDto.quarterFourWonAway)
+                          {{team1GameStatsDto.spreadAwayFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
