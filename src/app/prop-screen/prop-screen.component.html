@@ -149,7 +149,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.halfOneWon / (team1GameStatsDto.halfOneLost + team1GameStatsDto.halfOneWon)
+                        {{team1GameStatsDto.halfOneWon / (team1GameStatsDto.gamesLost +
+                          team1GameStatsDto.gamesWon)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -167,7 +168,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.halfTwoWon / (team1GameStatsDto.halfTwoLost + team1GameStatsDto.halfTwoWon)
+                        {{team1GameStatsDto.halfTwoWon / (team1GameStatsDto.gamesLost +
+                          team1GameStatsDto.gamesWon)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -202,8 +204,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterOneWon / (team1GameStatsDto.quarterOneLost +
-                          team1GameStatsDto.quarterOneWon)
+                          {{team1GameStatsDto.quarterOneWon / (team1GameStatsDto.gamesLost +
+                            team1GameStatsDto.gamesWon)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -225,8 +227,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterTwoWon / (team1GameStatsDto.quarterTwoLost +
-                          team1GameStatsDto.quarterTwoWon)
+                          {{team1GameStatsDto.quarterTwoWon / (team1GameStatsDto.gamesLost +
+                            team1GameStatsDto.gamesWon)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -251,8 +253,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterThreeWon / (team1GameStatsDto.quarterThreeLost +
-                          team1GameStatsDto.quarterThreeWon)
+                          {{team1GameStatsDto.quarterThreeWon / (team1GameStatsDto.gamesLost +
+                            team1GameStatsDto.gamesWon)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -274,8 +276,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterFourWon / (team1GameStatsDto.quarterFourLost +
-                          team1GameStatsDto.quarterFourWon)
+                          {{team1GameStatsDto.quarterFourWon / (team1GameStatsDto.gamesLost +
+                          team1GameStatsDto.gamesWon)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -317,7 +319,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.halfOneWonVsOpponent / (team1GameStatsDto.halfOneLostVsOpponent + team1GameStatsDto.halfOneWonVsOpponent)
+                        {{team1GameStatsDto.halfOneWonVsOpponent / (team1GameStatsDto.gamesLostVsOpponent +
+                          team1GameStatsDto.gamesWonVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -335,7 +338,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.halfTwoWonVsOpponent / (team1GameStatsDto.halfTwoLostVsOpponent + team1GameStatsDto.halfTwoWonVsOpponent)
+                        {{team1GameStatsDto.halfTwoWonVsOpponent / (team1GameStatsDto.gamesLostVsOpponent +
+                          team1GameStatsDto.gamesWonVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -370,8 +374,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterOneWonVsOpponent / (team1GameStatsDto.quarterOneLostVsOpponent +
-                          team1GameStatsDto.quarterOneWonVsOpponent)
+                          {{team1GameStatsDto.quarterOneWonVsOpponent / (team1GameStatsDto.gamesLostVsOpponent +
+                            team1GameStatsDto.gamesWonVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -393,8 +397,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterTwoWonVsOpponent / (team1GameStatsDto.quarterTwoLostVsOpponent +
-                          team1GameStatsDto.quarterTwoWonVsOpponent)
+                          {{team1GameStatsDto.quarterTwoWonVsOpponent / (team1GameStatsDto.gamesLostVsOpponent +
+                            team1GameStatsDto.gamesWonVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -419,8 +423,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterThreeWonVsOpponent / (team1GameStatsDto.quarterThreeLostVsOpponent +
-                          team1GameStatsDto.quarterThreeWonVsOpponent)
+                          {{team1GameStatsDto.quarterThreeWonVsOpponent / (team1GameStatsDto.gamesLostVsOpponent +
+                            team1GameStatsDto.gamesWonVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -442,8 +446,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterFourWonVsOpponent / (team1GameStatsDto.quarterFourLostVsOpponent +
-                          team1GameStatsDto.quarterFourWonVsOpponent)
+                          {{team1GameStatsDto.quarterFourWonVsOpponent / (team1GameStatsDto.gamesLostVsOpponent +
+                            team1GameStatsDto.gamesWonVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -470,7 +474,8 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{(team1GameStatsDto.gamesWonHome / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)) |
+                    {{(team1GameStatsDto.gamesWonHome / (team1GameStatsDto.gamesLostHome +
+                      team1GameStatsDto.gamesWonHome)) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -485,7 +490,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.halfOneWonHome / (team1GameStatsDto.halfOneLostHome + team1GameStatsDto.halfOneWonHome)
+                        {{team1GameStatsDto.halfOneWonHome / (team1GameStatsDto.gamesLostHome +
+                          team1GameStatsDto.gamesWonHome)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -503,7 +509,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.halfTwoWonHome / (team1GameStatsDto.halfTwoLostHome + team1GameStatsDto.halfTwoWonHome)
+                        {{team1GameStatsDto.halfTwoWonHome / (team1GameStatsDto.gamesLostHome +
+                          team1GameStatsDto.gamesWonHome)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -538,8 +545,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterOneWonHome / (team1GameStatsDto.quarterOneLostHome +
-                          team1GameStatsDto.quarterOneWonHome)
+                          {{team1GameStatsDto.quarterOneWonHome / (team1GameStatsDto.gamesLostHome +
+                            team1GameStatsDto.gamesWonHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -561,8 +568,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterTwoWonHome / (team1GameStatsDto.quarterTwoLostHome +
-                          team1GameStatsDto.quarterTwoWonHome)
+                          {{team1GameStatsDto.quarterTwoWonHome / (team1GameStatsDto.gamesLostHome +
+                            team1GameStatsDto.gamesWonHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -587,8 +594,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterThreeWonHome / (team1GameStatsDto.quarterThreeLostHome +
-                          team1GameStatsDto.quarterThreeWonHome)
+                          {{team1GameStatsDto.quarterThreeWonHome / (team1GameStatsDto.gamesLostHome +
+                            team1GameStatsDto.gamesWonHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -610,8 +617,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterFourWonHome / (team1GameStatsDto.quarterFourLostHome +
-                          team1GameStatsDto.quarterFourWonHome)
+                          {{team1GameStatsDto.quarterFourWonHome / (team1GameStatsDto.gamesLostHome +
+                            team1GameStatsDto.gamesWonHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -638,7 +645,8 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{(team1GameStatsDto.gamesWonAway / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)) |
+                    {{(team1GameStatsDto.gamesWonAway / (team1GameStatsDto.gamesLostAway +
+                      team1GameStatsDto.gamesWonAway)) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -653,7 +661,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.halfOneWonAway / (team1GameStatsDto.halfOneLostAway + team1GameStatsDto.halfOneWonAway)
+                        {{team1GameStatsDto.halfOneWonAway / (team1GameStatsDto.gamesLostAway +
+                          team1GameStatsDto.gamesWonAway)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -671,7 +680,8 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.halfTwoWonAway / (team1GameStatsDto.halfTwoLostAway + team1GameStatsDto.halfTwoWonAway)
+                        {{team1GameStatsDto.halfTwoWonAway / (team1GameStatsDto.gamesLostAway +
+                          team1GameStatsDto.gamesWonAway)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -706,8 +716,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterOneWonAway / (team1GameStatsDto.quarterOneLostAway +
-                          team1GameStatsDto.quarterOneWonAway)
+                          {{team1GameStatsDto.quarterOneWonAway / (team1GameStatsDto.gamesLostAway +
+                            team1GameStatsDto.gamesWonAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -729,8 +739,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterTwoWonAway / (team1GameStatsDto.quarterTwoLostAway +
-                          team1GameStatsDto.quarterTwoWonAway)
+                          {{team1GameStatsDto.quarterTwoWonAway / (team1GameStatsDto.gamesLostAway +
+                            team1GameStatsDto.gamesWonAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -755,8 +765,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterThreeWonAway / (team1GameStatsDto.quarterThreeLostAway +
-                          team1GameStatsDto.quarterThreeWonAway)
+                          {{team1GameStatsDto.quarterThreeWonAway / (team1GameStatsDto.gamesLostAway +
+                            team1GameStatsDto.gamesWonAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -778,8 +788,8 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.quarterFourWonAway / (team1GameStatsDto.quarterFourLostAway +
-                          team1GameStatsDto.quarterFourWonAway)
+                          {{team1GameStatsDto.quarterFourWonAway / (team1GameStatsDto.gamesLostAway +
+                          team1GameStatsDto.gamesWonAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1159,7 +1169,7 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.spreadHome > 0 ? "+": ""}}{{team1GameStatsDto.spreadHome / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost) |
+                    {{team1GameStatsDto.spreadHome > 0 ? "+": ""}}{{team1GameStatsDto.spreadHome / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -1174,7 +1184,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.spreadHomeFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.spreadHomeFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1192,7 +1202,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.spreadHomeSecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.spreadHomeSecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1227,7 +1237,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadHomeFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFirstQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1249,7 +1259,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeSecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadHomeSecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeSecondQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1274,7 +1284,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadHomeThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeThirdQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1296,7 +1306,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadHomeFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadHomeFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadHomeFourthQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1323,7 +1333,7 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.spreadAway > 0 ? "+": ""}}{{team1GameStatsDto.spreadAway / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost) |
+                    {{team1GameStatsDto.spreadAway > 0 ? "+": ""}}{{team1GameStatsDto.spreadAway / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -1338,7 +1348,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.spreadAwayFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.spreadAwayFirstHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1356,7 +1366,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.spreadAwaySecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.spreadAwaySecondHalf > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1391,7 +1401,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwayFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadAwayFirstQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFirstQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1413,7 +1423,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwaySecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadAwaySecondQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwaySecondQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1438,7 +1448,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwayThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadAwayThirdQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayThirdQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1460,7 +1470,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.spreadAwayFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.spreadAwayFourthQuarter > 0 ? "+": ""}}{{team1GameStatsDto.spreadAwayFourthQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1837,7 +1847,7 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalHome / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost) |
+                    {{team1GameStatsDto.totalHome / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -1852,7 +1862,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.totalHomeFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.totalHomeFirstHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1870,7 +1880,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.totalHomeSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.totalHomeSecondHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -1905,7 +1915,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalHomeFirstQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1927,7 +1937,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalHomeSecondQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1952,7 +1962,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalHomeThirdQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -1974,7 +1984,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalHomeFourthQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2001,7 +2011,7 @@
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalAway / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost) |
+                    {{team1GameStatsDto.totalAway / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway) |
                     number: '1.0-3'}}
                   </div>
                 </div>
@@ -2016,7 +2026,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h1>
-                        {{team1GameStatsDto.totalAwayFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.totalAwayFirstHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -2034,7 +2044,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h1>
-                        {{team1GameStatsDto.totalAwaySecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.totalAwaySecondHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h1>
@@ -2069,7 +2079,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalAwayFirstQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2091,7 +2101,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwaySecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalAwaySecondQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2116,7 +2126,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalAwayThirdQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2138,7 +2148,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.totalAwayFourthQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
