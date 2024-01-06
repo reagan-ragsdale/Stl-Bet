@@ -2219,60 +2219,2113 @@
 
             </mat-grid-tile>
 
-            <!-- <mat-tab-group class="props-tab" [backgroundColor]="'primary'"
-              (selectedTabChange)="onPropTypeClicked($event)" [selectedIndex]="0">
-              <mat-tab label="Game Props">
+            <mat-grid-tile colspan="16" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor }">
+            </mat-grid-tile>
 
-              </mat-tab>
-              <mat-tab label="Game Log"> -->
+            <mat-grid-tile colspan="4" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor }">
+            </mat-grid-tile>
 
-            <!-- <mat-grid-tile colspan="4" rowspan="{{(team2GameStats.length/2) + 1}}">
-              <div style="height: inherit; width: 100%; ">
-                <mat-grid-list cols="8" rowHeight="50px">
-                  <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
-                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
-
-                  </mat-grid-tile>
-                  <mat-grid-tile colspan="2" rowspan="{{(team2GameStats.length/2) + 1}}"
-                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}"
-                    style=" display:flex; justify-content: flex-start; align-items: flex-start; overflow:visible;">
-                    <table mat-table [dataSource]="team2GameStats" class="mat-elevation-z8 player-table">
-
-                      <ng-container matColumnDef="game">
-                        <th mat-header-cell *matHeaderCellDef> Game </th>
-                        <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">
-                          {{element.homeOrAway == "Away"? "@":
-                          ""}}{{element.teamAgainstName}} </td>
-                      </ng-container>
-
-
-                      <ng-container matColumnDef="date">
-                        <th mat-header-cell *matHeaderCellDef> Date </th>
-                        <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">
-                          {{element.gameDate}} </td>
-                      </ng-container>
-
-                      <ng-container matColumnDef="result">
-                        <th mat-header-cell *matHeaderCellDef> Result </th>
-                        <td mat-cell *matCellDef="let element" [ngStyle]="{ padding: 0, margin: 0}">{{element.result
-                          == "Win" ? "W" : "L"}}
-                          {{element.pointsScored}} - {{element.pointsAllowed}}</td>
-                      </ng-container>
-
-                      <tr mat-header-row *matHeaderRowDef="displayedColumnsTeamGames"></tr>
-                      <tr mat-row *matRowDef="let element; columns: displayedColumnsTeamGames;"
-                        [ngStyle]="{ padding: 0}"></tr>
-                    </table>
-                  </mat-grid-tile>
-                  <mat-grid-tile colspan="3" rowspan="{{(team2GameStats.length/2) + 1}}"
-                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
-
-                  </mat-grid-tile>
-                </mat-grid-list>
+            <mat-grid-tile colspan="3" rowspan="5"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor }">
+              <div style="height: 100%; ">
+                <h2 style=" font-size:x-large; font-family: Arial, Helvetica, sans-serif;">Overall</h2>
               </div>
-            </mat-grid-tile> -->
-            <!-- </mat-tab>
-            </mat-tab-group> -->
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="5"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor }">
+              <div style="height: 100%; text-align: center;">
+                <h2 style=" font-size:x-large; font-family: Arial, Helvetica, sans-serif;">{{displayPropHtml1.name}}
+                </h2>
+              </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="5"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor }">
+              <div style="height: 100%; ">
+                <h2 style=" font-size:x-large; font-family: Arial, Helvetica, sans-serif;">Home</h2>
+              </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="5"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor }">
+              <div style="height: 100%; ">
+                <h2 style=" font-size:x-large; font-family: Arial, Helvetica, sans-serif;">Away</h2>
+              </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="16" rowspan="3"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.primaryColor }">
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif;  display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="justify-content: flex-start;">
+                Moneyline:
+              </div>
+              <div
+                style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 10px;">
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="moneyline2GameToggled()"
+                  (click)="$event.stopPropagation()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Game</button>
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="moneyline2HalfToggled()"
+                  (click)="$event.stopPropagation()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Half</button>
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="moneyline2QuarterToggled()"
+                  (click)="$event.stopPropagation()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Quarter</button>
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="moneyline2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{(team2GameStatsDto.gamesWon / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="moneyline2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.halfOneWon / (team2GameStatsDto.gamesLost +
+                          team2GameStatsDto.gamesWon)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.halfTwoWon / (team2GameStatsDto.gamesLost +
+                          team2GameStatsDto.gamesWon)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="moneyline2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterOneWon / (team2GameStatsDto.gamesLost +
+                            team2GameStatsDto.gamesWon)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterTwoWon / (team2GameStatsDto.gamesLost +
+                            team2GameStatsDto.gamesWon)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterThreeWon / (team2GameStatsDto.gamesLost +
+                            team2GameStatsDto.gamesWon)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterFourWon / (team2GameStatsDto.gamesLost +
+                          team2GameStatsDto.gamesWon)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="moneyline2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{(team2GameStatsDto.gamesWonVsOpponent / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="moneyline2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.halfOneWonVsOpponent / (team2GameStatsDto.gamesLostVsOpponent +
+                          team2GameStatsDto.gamesWonVsOpponent)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.halfTwoWonVsOpponent / (team2GameStatsDto.gamesLostVsOpponent +
+                          team2GameStatsDto.gamesWonVsOpponent)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="moneyline2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterOneWonVsOpponent / (team2GameStatsDto.gamesLostVsOpponent +
+                            team2GameStatsDto.gamesWonVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterTwoWonVsOpponent / (team2GameStatsDto.gamesLostVsOpponent +
+                            team2GameStatsDto.gamesWonVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterThreeWonVsOpponent / (team2GameStatsDto.gamesLostVsOpponent +
+                            team2GameStatsDto.gamesWonVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterFourWonVsOpponent / (team2GameStatsDto.gamesLostVsOpponent +
+                            team2GameStatsDto.gamesWonVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="moneyline2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{(team2GameStatsDto.gamesWonHome / (team2GameStatsDto.gamesLostHome +
+                      team2GameStatsDto.gamesWonHome)) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="moneyline2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.halfOneWonHome / (team2GameStatsDto.gamesLostHome +
+                          team2GameStatsDto.gamesWonHome)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.halfTwoWonHome / (team2GameStatsDto.gamesLostHome +
+                          team2GameStatsDto.gamesWonHome)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="moneyline2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterOneWonHome / (team2GameStatsDto.gamesLostHome +
+                            team2GameStatsDto.gamesWonHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterTwoWonHome / (team2GameStatsDto.gamesLostHome +
+                            team2GameStatsDto.gamesWonHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterThreeWonHome / (team2GameStatsDto.gamesLostHome +
+                            team2GameStatsDto.gamesWonHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterFourWonHome / (team2GameStatsDto.gamesLostHome +
+                            team2GameStatsDto.gamesWonHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="moneyline2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{(team2GameStatsDto.gamesWonAway / (team2GameStatsDto.gamesLostAway +
+                      team2GameStatsDto.gamesWonAway)) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="moneyline2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.halfOneWonAway / (team2GameStatsDto.gamesLostAway +
+                          team2GameStatsDto.gamesWonAway)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.halfTwoWonAway / (team2GameStatsDto.gamesLostAway +
+                          team2GameStatsDto.gamesWonAway)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="moneyline2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterOneWonAway / (team2GameStatsDto.gamesLostAway +
+                            team2GameStatsDto.gamesWonAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterTwoWonAway / (team2GameStatsDto.gamesLostAway +
+                            team2GameStatsDto.gamesWonAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterThreeWonAway / (team2GameStatsDto.gamesLostAway +
+                            team2GameStatsDto.gamesWonAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.quarterFourWonAway / (team2GameStatsDto.gamesLostAway +
+                          team2GameStatsDto.gamesWonAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="16" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor }">
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif;  display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="justify-content: flex-start;">
+                Spread:
+              </div>
+              <div
+                style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 10px;">
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="spread2GameToggled()"
+                  (click)="$event.stopPropagation()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Game</button>
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="spread2HalfToggled()"
+                  (click)="$event.stopPropagation()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Half</button>
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="spread2QuarterToggled()"
+                  (click)="$event.stopPropagation()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Quarter</button>
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="spread2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{team2GameStatsDto.spreadGame > 0 ? "+": ""}}{{(team2GameStatsDto.spreadGame / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="spread2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.spreadFirstHalf > 0 ? "+": ""}}{{team2GameStatsDto.spreadFirstHalf / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.spreadSecondHalf > 0 ? "+": ""}}{{team2GameStatsDto.spreadSecondHalf / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="spread2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadFirstQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadFirstQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadSecondQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadSecondQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadThirdQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadThirdQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadFourthQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadFourthQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="spread2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{team2GameStatsDto.spreadVsOpponent > 0 ? "+": ""}}{{team2GameStatsDto.spreadVsOpponent / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="spread2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.spreadFirstHalfVsOpponent > 0 ? "+": ""}}{{team2GameStatsDto.spreadFirstHalfVsOpponent / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.spreadSecondHalfVsOpponent > 0 ? "+": ""}}{{team2GameStatsDto.spreadSecondHalfVsOpponent / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="spread2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadFirstQuarterVsOpponent > 0 ? "+": ""}}{{team2GameStatsDto.spreadFirstQuarterVsOpponent / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadSecondQuarterVsOpponet > 0 ? "+": ""}}{{team2GameStatsDto.spreadSecondQuarterVsOpponet / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadThirdQuarterVsOpponent > 0 ? "+": ""}}{{team2GameStatsDto.spreadThirdQuarterVsOpponent / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadFourthQuarterVsOpponent > 0 ? "+": ""}}{{team2GameStatsDto.spreadFourthQuarterVsOpponent / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="spread2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{team2GameStatsDto.spreadHome > 0 ? "+": ""}}{{team2GameStatsDto.spreadHome / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="spread2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.spreadHomeFirstHalf > 0 ? "+": ""}}{{team2GameStatsDto.spreadHomeFirstHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.spreadHomeSecondHalf > 0 ? "+": ""}}{{team2GameStatsDto.spreadHomeSecondHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="spread2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadHomeFirstQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadHomeFirstQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadHomeSecondQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadHomeSecondQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadHomeThirdQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadHomeThirdQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadHomeFourthQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadHomeFourthQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="spread2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{team2GameStatsDto.spreadAway > 0 ? "+": ""}}{{team2GameStatsDto.spreadAway / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="spread2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.spreadAwayFirstHalf > 0 ? "+": ""}}{{team2GameStatsDto.spreadAwayFirstHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.spreadAwaySecondHalf > 0 ? "+": ""}}{{team2GameStatsDto.spreadAwaySecondHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="spread2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadAwayFirstQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadAwayFirstQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadAwaySecondQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadAwaySecondQuarter / (team2GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadAwayThirdQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadAwayThirdQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.spreadAwayFourthQuarter > 0 ? "+": ""}}{{team2GameStatsDto.spreadAwayFourthQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="16" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor }">
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4" rowspan="17"
+              style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif;  display: flex;"
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="justify-content: flex-start;">
+                Total:
+              </div>
+              <div
+                style="width:80px; align-content: center; justify-content: center; margin-left: 1rem; display: flex; flex-direction: column; gap: 5px;">
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="total2GameToggled()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Game</button>
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="total2HalfToggled()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Half</button>
+                <button mat-raised-button style="width: 100%; height: 20px;" (click)="total2QuarterToggled()"
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Quarter</button>
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="total2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{(team2GameStatsDto.totalOverall / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="total2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.totalOverallFirstHalf / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.totalOverallSecondHalf / (team2GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="total2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalOverallFirstQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalOverallSecondQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalOverallThirdQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalOverallFourthQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="total2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{team2GameStatsDto.totalVsTeam / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="total2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.totalVsTeamFirstHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                       {{team2GameStatsDto.totalVsTeamSecondHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="total2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalVsTeamFirstQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalVsTeamSecondQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalVsTeamThirdQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalVsTeamFourthQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="total2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{team2GameStatsDto.totalHome / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="total2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.totalHomeFirstHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.totalHomeSecondHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="total2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalHomeFirstQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalHomeSecondQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalHomeThirdQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalHomeFourthQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="3" rowspan="17"
+              style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
+              [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
+              <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
+                <div *ngIf="total2GameClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
+                  [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                  <div style="width:70%; text-align: center;">
+                    {{team2GameStatsDto.totalAway / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway) |
+                    number: '1.0-3'}}
+                  </div>
+                </div>
+
+                <div *ngIf="total2HalfClicked"
+                  style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px">
+                      1
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
+                      <h1>
+                        {{team2GameStatsDto.totalAwayFirstHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+                  <div
+                    style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
+                    [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+                    <div style="height: 20%;  justify-self: flex-start; margin-top: 2px;">
+                      2
+                    </div>
+                    <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                      <h1>
+                        {{team2GameStatsDto.totalAwaySecondHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        |
+                        number: '1.0-3'}}
+                      </h1>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div *ngIf="total2QuarterClicked"
+                  style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
+
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          1
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalAwayFirstQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          2
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalAwaySecondQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                  <div
+                    style="width: 100%; height: 50%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          3
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalAwayThirdQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                    <div
+                      style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column; gap:3px;"
+                      [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
+
+                      <div style="height: 20%;  justify-self: flex-start; margin-top: 1px;">
+                        <h4>
+                          4
+                        </h4>
+                      </div>
+
+                      <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
+                        <h3 style="padding-top: 1rem;">
+                          {{team2GameStatsDto.totalAwayFourthQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          |
+                          number: '1.0-3'}}
+                        </h3>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="16" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor }">
+            </mat-grid-tile>
+
+           
 
           </mat-grid-list>
         </div>

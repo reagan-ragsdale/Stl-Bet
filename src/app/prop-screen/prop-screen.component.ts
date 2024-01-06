@@ -99,6 +99,15 @@ export class PropScreenComponent implements OnInit {
   public moneylineGameClicked: boolean = true;
   public moneylineHalfClicked: boolean = false;
   public moneylineQuarterClicked: boolean = false;
+  public moneyline2GameClicked: boolean = false;
+  public moneyline2HalfClicked: boolean = false;
+  public moneyline2QuarterClicked: boolean = false;
+  public spread2GameClicked: boolean = false;
+  public spread2HalfClicked: boolean = false;
+  public spread2QuarterClicked: boolean = false;
+  public total2GameClicked: boolean = false;
+  public total2HalfClicked: boolean = false;
+  public total2QuarterClicked: boolean = false;
 
 
 
@@ -1104,6 +1113,20 @@ console.log(team1)
       e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWon += 1 : this.team2GameStatsDto.quarterFourLost += 1;
       (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWon += 1 : this.team2GameStatsDto.halfOneLost += 1;
       (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWon += 1 : this.team2GameStatsDto.halfTwoLost += 1;
+      this.team2GameStatsDto.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall );
+      this.team2GameStatsDto.spreadFirstHalf = (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+      this.team2GameStatsDto.spreadSecondHalf = (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+      this.team2GameStatsDto.spreadFirstQuarter = e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+      this.team2GameStatsDto.spreadSecondQuarter = e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+      this.team2GameStatsDto.spreadThirdQuarter = e.pointsAllowedThirdQuarter  -  e.pointsScoredThirdQuarter;
+      this.team2GameStatsDto.spreadFourthQuarter = e.pointsAllowedFourthQuarter  - e.pointsScoredFourthQuarter;
+      this.team2GameStatsDto.totalOverall += e.pointsScoredOverall + e.pointsAllowedOverall;
+      this.team2GameStatsDto.totalOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+      this.team2GameStatsDto.totalOverallFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+      this.team2GameStatsDto.totalOverallSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalOverallThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+      this.team2GameStatsDto.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
       if (e.teamAgainstId == team1[0].teamId) {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonVsOpponent += 1 : this.team2GameStatsDto.quarterOneLostVsOpponent += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team2GameStatsDto.quarterTwoLostVsOpponent += 1;
@@ -1111,6 +1134,20 @@ console.log(team1)
         e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonVsOpponent += 1 : this.team2GameStatsDto.quarterFourLostVsOpponent += 1;
         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonVsOpponent += 1 : this.team2GameStatsDto.halfOneLostVsOpponent += 1;
         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonVsOpponent += 1 : this.team2GameStatsDto.halfTwoLostVsOpponent += 1;
+        this.team2GameStatsDto.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall);
+        this.team2GameStatsDto.spreadFirstHalfVsOpponent += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+        this.team2GameStatsDto.spreadSecondHalfVsOpponent += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+        this.team2GameStatsDto.spreadFirstQuarterVsOpponent += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+        this.team2GameStatsDto.spreadSecondQuarterVsOpponet += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+        this.team2GameStatsDto.spreadThirdQuarterVsOpponent += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+        this.team2GameStatsDto.spreadFourthQuarterVsOpponent += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+        this.team2GameStatsDto.totalVsTeam += e.pointsScoredOverall + e.pointsAllowedOverall;
+      this.team2GameStatsDto.totalVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+      this.team2GameStatsDto.totalVsTeamFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+      this.team2GameStatsDto.totalVsTeamSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+      this.team2GameStatsDto.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
       }
       if (e.homeOrAway == "Home") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonHome += 1 : this.team2GameStatsDto.quarterOneLostHome += 1;
@@ -1119,6 +1156,20 @@ console.log(team1)
         e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonHome += 1 : this.team2GameStatsDto.quarterFourLostHome += 1;
         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonHome += 1 : this.team2GameStatsDto.halfOneLostHome += 1;
         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonHome += 1 : this.team2GameStatsDto.halfTwoLostHome += 1;
+        this.team2GameStatsDto.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall);
+        this.team2GameStatsDto.spreadHomeFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+        this.team2GameStatsDto.spreadHomeSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+        this.team2GameStatsDto.spreadHomeFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+        this.team2GameStatsDto.spreadHomeSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+        this.team2GameStatsDto.spreadHomeThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+        this.team2GameStatsDto.spreadHomeFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+        this.team2GameStatsDto.totalHome += e.pointsScoredOverall + e.pointsAllowedOverall;
+      this.team2GameStatsDto.totalHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+      this.team2GameStatsDto.totalHomeFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+      this.team2GameStatsDto.totalHomeSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalHomeThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+      this.team2GameStatsDto.totalHomeFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
       }
       else if (e.homeOrAway == "Away") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonAway += 1 : this.team2GameStatsDto.quarterOneLostAway += 1;
@@ -1127,6 +1178,20 @@ console.log(team1)
         e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDto.quarterFourWonAway += 1 : this.team2GameStatsDto.quarterFourLostAway += 1;
         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWonAway += 1 : this.team2GameStatsDto.halfOneLostAway += 1;
         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWonAway += 1 : this.team2GameStatsDto.halfTwoLostAway += 1;
+        this.team2GameStatsDto.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall);
+        this.team2GameStatsDto.spreadAwayFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+        this.team2GameStatsDto.spreadAwaySecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+        this.team2GameStatsDto.spreadAwayFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+        this.team2GameStatsDto.spreadAwaySecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+        this.team2GameStatsDto.spreadAwayThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+        this.team2GameStatsDto.spreadAwayFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+        this.team2GameStatsDto.totalAway += e.pointsScoredOverall + e.pointsAllowedOverall;
+      this.team2GameStatsDto.totalAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+      this.team2GameStatsDto.totalAwayFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+      this.team2GameStatsDto.totalAwaySecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+      this.team2GameStatsDto.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+      this.team2GameStatsDto.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
       }
     })
   }
@@ -1179,6 +1244,57 @@ console.log(team1)
     this.totalGameClicked = false;
     this.totalHalfClicked = false;
     this.totalQuarterClicked = true;
+  }
+  moneyline2GameToggled() {
+    this.moneyline2GameClicked = true;
+    this.moneyline2HalfClicked = false;
+    this.moneyline2QuarterClicked = false;
+    
+
+  }
+  moneyline2HalfToggled() {
+    this.moneyline2GameClicked = false;
+    this.moneyline2HalfClicked = true;
+    this.moneyline2QuarterClicked = false;
+  }
+  moneyline2QuarterToggled() {
+    this.moneyline2GameClicked = false;
+    this.moneyline2HalfClicked = false;
+    this.moneyline2QuarterClicked = true;
+  }
+  spread2GameToggled() {
+    this.spread2GameClicked = true;
+    this.spread2HalfClicked = false;
+    this.spread2QuarterClicked = false;
+    
+
+  }
+  spread2HalfToggled() {
+    this.spread2GameClicked = false;
+    this.spread2HalfClicked = true;
+    this.spread2QuarterClicked = false;
+  }
+  spread2QuarterToggled() {
+    this.spread2GameClicked = false;
+    this.spread2HalfClicked = false;
+    this.spread2QuarterClicked = true;
+  }
+
+  total2GameToggled() {
+    this.total2GameClicked = true;
+    this.total2HalfClicked = false;
+    this.total2QuarterClicked = false;
+
+  }
+  total2HalfToggled() {
+    this.total2GameClicked = false;
+    this.total2HalfClicked = true;
+    this.total2QuarterClicked = false;
+  }
+  total2QuarterToggled() {
+    this.total2GameClicked = false;
+    this.total2HalfClicked = false;
+    this.total2QuarterClicked = true;
   }
 
 
