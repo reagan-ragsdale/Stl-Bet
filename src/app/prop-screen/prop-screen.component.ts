@@ -99,13 +99,13 @@ export class PropScreenComponent implements OnInit {
   public moneylineGameClicked: boolean = true;
   public moneylineHalfClicked: boolean = false;
   public moneylineQuarterClicked: boolean = false;
-  public moneyline2GameClicked: boolean = false;
+  public moneyline2GameClicked: boolean = true;
   public moneyline2HalfClicked: boolean = false;
   public moneyline2QuarterClicked: boolean = false;
-  public spread2GameClicked: boolean = false;
+  public spread2GameClicked: boolean = true;
   public spread2HalfClicked: boolean = false;
   public spread2QuarterClicked: boolean = false;
-  public total2GameClicked: boolean = false;
+  public total2GameClicked: boolean = true;
   public total2HalfClicked: boolean = false;
   public total2QuarterClicked: boolean = false;
 
