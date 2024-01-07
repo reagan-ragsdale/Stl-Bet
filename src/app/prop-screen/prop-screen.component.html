@@ -2183,18 +2183,18 @@
         [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="16" rowHeight="5px">
-            <mat-grid-tile colspan="16" rowspan=17; style="justify-content: center; align-content: center; font-size:xx-large; "
+            <mat-grid-tile colspan="16" rowspan="17" style="justify-content: center; align-content: center; font-size:xx-large; "
               [ngStyle]="{ color: displayPropHtml2.alternateColor}">
               A {{displayPropHtml2.name}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4"
+            <mat-grid-tile colspan="4" rowspan="17"
               style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center;"
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor }">
               Record:
               <br>
               {{team2GameStatsDto.gamesWon}} - {{team2GameStatsDto.gamesLost}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4"
+            <mat-grid-tile colspan="4" rowspan="17"
               style="justify-content: center; align-content: center; font-size:x-large; font-family: Arial, Helvetica, sans-serif;  border-radius: 10px; text-align: center;"
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               {{displayPropHtml1.name}}:
@@ -2202,14 +2202,14 @@
               {{team2GameStatsDto.gamesWonVsOpponent}} -
               {{team2GameStatsDto.gamesLostVsOpponent}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4"
+            <mat-grid-tile colspan="4" rowspan="17"
               style="justify-content: center; align-content: center; font-size:x-large;   border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center;"
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               Home:
               <br>
               {{team2GameStatsDto.gamesWonHome}} - {{team2GameStatsDto.gamesLostHome}}
             </mat-grid-tile>
-            <mat-grid-tile colspan="4"
+            <mat-grid-tile colspan="4" rowspan="17"
               style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; text-align: center;"
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               Away:
@@ -2257,7 +2257,7 @@
             <mat-grid-tile colspan="16" rowspan="3"
               [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.primaryColor }">
             </mat-grid-tile>
-<!-- 
+
             <mat-grid-tile colspan="4" rowspan="17"
               style="justify-content: center; align-content: center; font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif;  display: flex;"
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
@@ -4322,7 +4322,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile colspan="16" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor }">
-            </mat-grid-tile> -->
+            </mat-grid-tile> 
 
            
 
