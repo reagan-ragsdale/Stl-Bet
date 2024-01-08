@@ -1107,7 +1107,11 @@ console.log(team1)
       this.team1GameStatsDto.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
       this.team1GameStatsDto.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
       }
+
+      
     })
+    console.log("Below is the table")
+    console.log(this.team1GameVsOpponentData)
     team2.forEach(e => {
       e.result == "Win" ? this.team2GameStatsDto.gamesWon += 1 : this.team2GameStatsDto.gamesLost += 1
       e.teamAgainstId == team1[0].teamId ? (e.result == "Win" ? this.team2GameStatsDto.gamesWonVsOpponent += 1 : this.team2GameStatsDto.gamesLostVsOpponent += 1) : i = 0;
