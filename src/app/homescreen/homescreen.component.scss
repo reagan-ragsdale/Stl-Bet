@@ -26,3 +26,9 @@ mat-chip-option{
 .example-spacer {
     flex: 1 1 auto;
   }
+
+  @media screen and (max-width: 500px) {
+    mat-sidenav-container{
+      background-color: orange;
+    }
+  }
