@@ -39,9 +39,38 @@
     text-align: center;
     font-weight: bold;
   }
+  .games-tab .games-tabs{
+    //width:  !important;
+    //text-wrap: wrap !important;
+  }
 
-  @media screen and (max-width: 500px) {
+  @media screen {
     body{
       background-color: orange;
     }
+
+    ::ng-deep .games-tab  .mdc-tab {
+      font-size: var(--mdc-typography-button-font-size, 12px) !important;
+      padding-left: var(--mdc-typography-button-padding, 2px) !important;
+      padding-right: var(--mdc-typography-button-padding, 2px) !important;
+      width:50px !important;
+      text-wrap: wrap !important;
+    }
   }
+
+  @media screen and (max-width: 600px){
+    body{
+      background-color: orange;
+    }
+
+    ::ng-deep .games-tab  .mdc-tab {
+      font-size: var(--mdc-typography-button-font-size, 8px) !important;
+      padding-left: var(--mdc-typography-button-padding, 0px) !important;
+      padding-right: var(--mdc-typography-button-padding, 0px) !important;
+      min-width:40px !important;
+      text-wrap: wrap !important;
+    }
+  }
+
+  
+   
