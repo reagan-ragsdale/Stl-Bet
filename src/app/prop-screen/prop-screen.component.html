@@ -9,7 +9,7 @@
     <mat-tab *ngFor="let date of dates" label="{{date}}"></mat-tab>
   </mat-tab-group>
 
-  <mat-tab-group mat-stretch-tabs="true" class="games-tab" [backgroundColor]="'warn'" (selectedTabChange)="onGameClick($event)">
+  <mat-tab-group mat-stretch-tabs="false" class="games-tab" [backgroundColor]="'warn'" (selectedTabChange)="onGameClick($event)">
     <mat-tab *ngFor="let game of games" label="{{game.game}}"></mat-tab>
   </mat-tab-group>
 
