@@ -1,7 +1,6 @@
 
 mat-sidenav-container{
     height:calc(205vh - 112vh);
-    background-color: black;
 }
 mat-sidenav{
     width:150px;
@@ -30,6 +29,5 @@ mat-chip-option{
 
   @media screen and (max-width: 750px) {
     mat-sidenav-container{
-      background-color: orange;
     }
   }
