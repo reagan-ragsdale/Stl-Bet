@@ -109,6 +109,9 @@ export class PropScreenComponent implements OnInit {
   public total2HalfClicked: boolean = false;
   public total2QuarterClicked: boolean = false;
 
+  public team1GameVsOpponentData: any[] = []
+  
+
 
 
   date = new Date();
@@ -122,6 +125,7 @@ export class PropScreenComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description', 'point', 'price', 'detailedStats'];
   displayedColumnsTeamGames: string[] = ['game', 'date', 'result'];
+  displayedTeamAgainstColums: string[] = ["date", "result", "q1Points", "q2Points", "q3Points", "q4Points"];
 
 
 
@@ -1037,6 +1041,7 @@ console.log(team1)
       this.team1GameStatsDto.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
 
         if (e.teamAgainstId == team2[0].teamId) {
+          this.team1GameVsOpponentData.push(e)
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonVsOpponent += 1 : this.team1GameStatsDto.quarterOneLostVsOpponent += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDto.quarterTwoLostVsOpponent += 1;
         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonVsOpponent += 1 : this.team1GameStatsDto.quarterThreeLostVsOpponent += 1;
