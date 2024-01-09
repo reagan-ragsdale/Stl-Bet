@@ -1,13 +1,13 @@
 
 
-import { Injectable } from '@angular/core';
+
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 
 
 
-@Injectable()
+
 export class draftKingsApiController {
 
   playerProps: any

@@ -37,15 +37,17 @@ app.use(compression());
 app.use(api);
 
 
+
+
 //comment out below only for local
-         app.use(
-  remultExpress({
-    dataProvider:
-      createPostgresDataProvider({
-        connectionString
-      })
-  })
-)      
+//          app.use(
+//   remultExpress({
+//     dataProvider: process.env['NODE_ENV']==="production"?
+//       createPostgresDataProvider({
+//         connectionString
+//       }):undefined!
+//   })
+// )      
 
 // In angular 16, the `index.html` file is in the `remult-angular-todo` folder, and not in the `remult-angular-todo/browser` folder
 app.use(express.static(path.join(__dirname, '../remult-angular-todo')));
