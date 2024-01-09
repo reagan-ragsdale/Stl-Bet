@@ -1,12 +1,12 @@
 
  
-/*  import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls.js"
+  import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls.js"
 import { nbaApiController } from "./ApiCalls/nbaApiCalls.js"
-import { NbaController } from "../shared/Controllers/nbaController.js"
-import { SportsBookController } from "../shared/Controllers/sportsBookController.js"
+import { NbaController } from "../shared/Controllers/NbaController"
+import { SportsBookController } from "../shared/Controllers/SportsBookController"
 import { ArrayOfDates } from "./array-of-dates.js"
-import { DbGameBookData } from "../shared/dbTasks/dbGameBookData.js"
-import { NbaPlayerInfoDb } from "../shared/dbTasks/nbaPlayerInfoDb.js"
+import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
+import { NbaPlayerInfoDb } from "../shared/dbTasks/NbaPlayerInfoDb"
 import { SportsNameToId } from "./sports-name-to-id.js"
 import { Injectable } from "@angular/core"
 
@@ -22,8 +22,8 @@ const newNbaApiController = new nbaApiController
 
     
 
-    await loadNbaData()
-     */
+    
+     await loadNbaData()
 
     // this is going to run daily in the morning. I think it should call whichever games are slated for today in the sportsbookdb and for each of those teams, 
     //pull the stats for each player and update it into the db
@@ -140,12 +140,12 @@ var addUnderScoreToName = (game: string): string => {
     return game;
     
  */
-/* } 
+ } 
 
  var loadNbaData = async () => {
     console.log("Running cron from different file")
 }
- */
+ 
 
 
 
