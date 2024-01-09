@@ -1,14 +1,13 @@
 
  
-  import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls.js"
-import { nbaApiController } from "./ApiCalls/nbaApiCalls.js"
+import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls"
+import { nbaApiController } from "./ApiCalls/nbaApiCalls"
 import { NbaController } from "../shared/Controllers/NbaController"
 import { SportsBookController } from "../shared/Controllers/SportsBookController"
-import { ArrayOfDates } from "./array-of-dates.js"
+import { ArrayOfDates } from "./array-of-dates"
 import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
 import { NbaPlayerInfoDb } from "../shared/dbTasks/NbaPlayerInfoDb"
-import { SportsNameToId } from "./sports-name-to-id.js"
-import { Injectable } from "@angular/core"
+import { SportsNameToId } from "./sports-name-to-id"
 
 
 const arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
