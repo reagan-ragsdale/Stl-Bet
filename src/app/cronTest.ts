@@ -53,13 +53,13 @@ export const cronTestFile = async () => {
 
     //retreive all the players for the teams playing this day
     var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBook("NBA")
-    
-    listOfGamesToday = listOfGamesToday.filter(e => {
-        console.log(convertDate(e.commenceTime) == getMonthAndDay())
-        convertDate(e.commenceTime) == getMonthAndDay()
+    var listOfFilteredGame
+    listOfFilteredGame = listOfGamesToday.filter(e => {
+        console.log(convertDate(e.commenceTime.toString()) == getMonthAndDay())
+        convertDate(e.commenceTime.toString()) == getMonthAndDay()
     })
-    console.log(listOfGamesToday)
-    const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfGamesToday.map(game => [game['bookId'], game])).values()]
+    console.log(listOfFilteredGame)
+    const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfFilteredGame.map(game => [game['bookId'], game])).values()]
     console.log(uniqueListOfGamesToday)
     var listOfAllPlayersInGames: NbaPlayerInfoDb[] = []
     uniqueListOfGamesToday.forEach(async e => {
