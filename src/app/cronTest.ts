@@ -33,23 +33,32 @@ export const cronTestFile = async () => {
     //nba loads
 
     //get and load draft kings game props
+    try{
+
+    
 
     const gamesFromDraftKings = await newDKController.getDatesAndGames("NBA");
 
     await SportsBookController.addBookData(gamesFromDraftKings);
 
 
+    console.log("Finished sports book load")
+
     // get and load all nba player info
     
     const allPlayerInfo = await newNbaApiController.getAllNbaPlayerInfoFromApi()
     NbaController.nbaAddPlayerInfoData(allPlayerInfo)
+
+    console.log("Finished player info load")
 
     //retreive all the players for the teams playing this day
     var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBook("NBA")
     listOfGamesToday = listOfGamesToday.filter(e => {
         convertDate(e.commenceTime) == getMonthAndDay()
     })
+    console.log("Line 59")
     const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfGamesToday.map(game => [game['bookId'], game])).values()]
+    console.log("Line 61")
     var listOfAllPlayersInGames: NbaPlayerInfoDb[] = []
     uniqueListOfGamesToday.forEach(async e => {
         var result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.homeTeam)])
@@ -57,7 +66,7 @@ export const cronTestFile = async () => {
         result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.awayTeam)])
         listOfAllPlayersInGames.concat(result)
     })
-
+    console.log("Line 69")
     //call each players stats api and update in database
     listOfAllPlayersInGames.forEach(async e => {
         const result = await newNbaApiController.loadNba2023PlayerStatData(e.playerId)
@@ -75,6 +84,10 @@ export const cronTestFile = async () => {
             }
         }
     })
+}catch(error: any){
+    console.log(error)
+}
+console.log("line 90")   
 
 
 
