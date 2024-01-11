@@ -53,6 +53,7 @@ export const cronTestFile = async () => {
 
     //retreive all the players for the teams playing this day
     var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBook("NBA")
+    console.log(listOfGamesToday)
     listOfGamesToday = listOfGamesToday.filter(e => {
         convertDate(e.commenceTime) == getMonthAndDay()
     })
