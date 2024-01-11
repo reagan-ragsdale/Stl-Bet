@@ -34,9 +34,9 @@ export const cronTestFile = async () => {
 
     //get and load draft kings game props
 
-    //const gamesFromDraftKings = await newDKController.getDatesAndGames("NBA");
+    const gamesFromDraftKings = await newDKController.getDatesAndGames("NBA");
 
-    //await SportsBookController.addBookData(gamesFromDraftKings);
+    await SportsBookController.addBookData(gamesFromDraftKings);
 
 
     // get and load all nba player info
