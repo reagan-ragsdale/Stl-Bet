@@ -56,9 +56,9 @@ export const cronTestFile = async () => {
     listOfGamesToday = listOfGamesToday.filter(e => {
         convertDate(e.commenceTime) == getMonthAndDay()
     })
-    console.log("Line 59")
+    console.log(listOfGamesToday)
     const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfGamesToday.map(game => [game['bookId'], game])).values()]
-    console.log("Line 61")
+    console.log(uniqueListOfGamesToday)
     var listOfAllPlayersInGames: NbaPlayerInfoDb[] = []
     uniqueListOfGamesToday.forEach(async e => {
         var result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.homeTeam)])
@@ -66,6 +66,7 @@ export const cronTestFile = async () => {
         result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.awayTeam)])
         listOfAllPlayersInGames.concat(result)
     })
+    console.log(listOfAllPlayersInGames)
     console.log("Line 69")
     //call each players stats api and update in database
     listOfAllPlayersInGames.forEach(async e => {
