@@ -97,7 +97,7 @@ console.log("line 90")
 }
 
 var convertDate = (fullDate: string) => {
-    var tempDate = fullDate?.split("T");
+    var tempDate = fullDate.split("T");
     var time = tempDate[1].slice(0, 2)
     var subtractDay = false
     if (parseInt(time) - 6 <= 0) {
