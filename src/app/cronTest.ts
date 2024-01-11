@@ -55,7 +55,7 @@ export const cronTestFile = async () => {
     var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBook("NBA")
     var listOfFilteredGame
     listOfFilteredGame = listOfGamesToday.filter(e => {
-        console.log(typeof(e.commenceTime))
+        console.log(typeof e.commenceTime)
         //console.log(convertDate(e.commenceTime.toString()) == getMonthAndDay())
         convertDate(e.commenceTime.toString()) == getMonthAndDay()
     })
