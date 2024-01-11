@@ -59,4 +59,4 @@ app.get('/*', (req, res) => {
 app.listen(process.env['PORT'] || 3002, () => console.log('Server started'));
 
 
-cron.schedule('0 12 * * *',  cronTestFile)
+//cron.schedule('0 12 * * *',  cronTestFile)

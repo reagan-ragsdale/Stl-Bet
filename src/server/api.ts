@@ -20,6 +20,8 @@ import { createPostgresDataProvider } from 'remult/postgres';
 import { DbNbaTeamGameStats } from '../shared/dbTasks/DbNbaTeamGameStats';
 import { DbNbaTeamLogos } from '../shared/dbTasks/DbNbaTeamLogos';
 import {config} from 'dotenv'
+import { cronTestFile } from '../app/cronTest';
+import cron from 'node-cron'
 config()
 
 export const api = remultExpress({
@@ -51,5 +53,9 @@ export const api = remultExpress({
       createPostgresDataProvider({
         connectionString: process.env['DATABASE_URL']
       }) : undefined
-
+,initApi: async ()=>{
+  cron.schedule('0 16 * * *',()=>  cronTestFile())
+}
 });
+
+
