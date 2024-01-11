@@ -100,7 +100,7 @@ console.log("line 90")
 }
 
 var convertDate = (fullDate: string): string => {
-    let newFulDate = fullDate + ''
+    let newFulDate = fullDate.toString()
     console.log(newFulDate)
     var tempDate = newFulDate.split("T");
     var time = tempDate[1].slice(0, 2)
