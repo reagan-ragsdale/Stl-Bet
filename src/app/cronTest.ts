@@ -40,7 +40,7 @@ export const cronTestFile = async () => {
 
 
     // get and load all nba player info
-    /*
+    
     const allPlayerInfo = await newNbaApiController.getAllNbaPlayerInfoFromApi()
     NbaController.nbaAddPlayerInfoData(allPlayerInfo)
 
@@ -138,7 +138,7 @@ var addUnderScoreToName = (game: string): string => {
     return game;
 
 
-*/
+
 
 }
 
