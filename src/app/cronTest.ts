@@ -55,7 +55,7 @@ export const cronTestFile = async () => {
     var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBook("NBA")
     var listOfFilteredGame: DbGameBookData[] = []
     listOfGamesToday.forEach(e => {
-        let d = new Date(e.commenceTime)
+        let d = new Date(e.commenceTime.toString())
         let g = d.toISOString();
         console.log(g)
         if(convertDate(g) == getMonthAndDay()){
