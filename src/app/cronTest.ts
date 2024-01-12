@@ -72,7 +72,6 @@ export const cronTestFile = async () => {
         
         result.forEach(e => {
             listOfAllPlayersInGames.push(e)
-            console.log(e)
         })
         
         
