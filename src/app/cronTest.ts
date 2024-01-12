@@ -68,19 +68,16 @@ export const cronTestFile = async () => {
     //console.log(uniqueListOfGamesToday)
     var listOfAllPlayersInGames: NbaPlayerInfoDb[] = []
     listOfGamesToday.forEach(async e => {
-        var result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
-        result.forEach(e => 
-            listOfAllPlayersInGames.push({
-                playerId: e.playerId,
-                playerName: e.playerName,
-                teamId: e.teamId,
-                createdAt: e.createdAt
-            })
+        var result: NbaPlayerInfoDb[] = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
+        result.forEach(d => {
+            listOfAllPlayersInGames.push(d);
+        }
+            
         )
         
         
     })
-    console.log(listOfAllPlayersInGames[0])
+    console.log(listOfAllPlayersInGames)
     console.log("Line 69")
     //call each players stats api and update in database
     listOfAllPlayersInGames.forEach(async e => {
