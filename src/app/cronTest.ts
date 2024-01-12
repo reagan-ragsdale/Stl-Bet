@@ -68,7 +68,12 @@ export const cronTestFile = async () => {
     //console.log(uniqueListOfGamesToday)
     var listOfAllPlayersInGames: any[] = []
     var count = 1
-    listOfGamesToday.forEach(async e => {
+    for(const game of listOfGamesToday){
+        let result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(game.teamName)]);
+        listOfAllPlayersInGames.push(result);
+    }
+
+    /* listOfGamesToday.forEach(async e => {
         let result: NbaPlayerInfoDb[] = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
         if(count == 1){
             console.log(result[0])
@@ -80,7 +85,7 @@ export const cronTestFile = async () => {
     
         
         
-    });
+    }); */
     console.log(listOfAllPlayersInGames)
     console.log("Line 69")
     //call each players stats api and update in database
