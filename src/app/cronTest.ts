@@ -69,9 +69,14 @@ export const cronTestFile = async () => {
     var listOfAllPlayersInGames: NbaPlayerInfoDb[] = []
     uniqueListOfGamesToday.forEach(async e => {
         var result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.homeTeam)])
-        listOfAllPlayersInGames.concat(result)
+        result.forEach(e => {
+            listOfAllPlayersInGames.push(e)
+        })
+        
         result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.awayTeam)])
-        listOfAllPlayersInGames.concat(result)
+        result.forEach(e => {
+            listOfAllPlayersInGames.push(e)
+        })
     })
     console.log(listOfAllPlayersInGames)
     console.log("Line 69")
