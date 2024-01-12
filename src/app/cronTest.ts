@@ -67,9 +67,14 @@ export const cronTestFile = async () => {
     //const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfFilteredGame.map(game => [game['bookId'], game])).values()]
     //console.log(uniqueListOfGamesToday)
     var listOfAllPlayersInGames: any[] = []
+    var count = 1
     listOfGamesToday.forEach(async e => {
-        var result: NbaPlayerInfoDb[] = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
+        let result: NbaPlayerInfoDb[] = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
+        if(count == 1){
             console.log(result[0])
+            count++
+        }
+            
             listOfAllPlayersInGames.push(result);
     
         
