@@ -54,7 +54,7 @@ export const api = remultExpress({
         connectionString: process.env['DATABASE_URL']
       }) : undefined
 ,initApi: async ()=>{
-  cron.schedule('45 21 * * *',()=>  cronTestFile())
+  cron.schedule('15 16 * * *',()=>  cronTestFile())
 }
 });
 
