@@ -69,7 +69,7 @@ export const cronTestFile = async () => {
     var listOfAllPlayersInGames: any[] = []
     listOfGamesToday.forEach(async e => {
         var result: NbaPlayerInfoDb[] = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
-        
+            console.log(result[0])
             listOfAllPlayersInGames.push(result);
     
         
