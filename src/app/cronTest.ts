@@ -72,14 +72,15 @@ export const cronTestFile = async () => {
         let result: NbaPlayerInfoDb[] = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
         if(count == 1){
             console.log(result[0])
+            listOfAllPlayersInGames.push(result);
             count++
         }
             
-            listOfAllPlayersInGames.push(result);
+            //listOfAllPlayersInGames.push(result);
     
         
         
-    })
+    });
     console.log(listOfAllPlayersInGames)
     console.log("Line 69")
     //call each players stats api and update in database
