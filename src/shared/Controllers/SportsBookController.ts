@@ -34,4 +34,14 @@ export class SportsBookController {
     return await taskRepo.find({where: {sportTitle: sport, commenceTime:{ ">": date}  }, orderBy: {commenceTime: "asc"}})
   }
 
+
+  @BackendMethod({ allowed: true })
+  static async loadSportBookByH2H(sport: string): Promise<DbGameBookData[]> {
+    const taskRepo = remult.repo(DbGameBookData)
+    let temp = new Date()
+    let date = temp.toISOString()
+
+    return await taskRepo.find({where: {sportTitle: sport, commenceTime:{ ">": date}, marketKey: "h2h"}, orderBy: {commenceTime: "asc"}})
+  }
+
 }

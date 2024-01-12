@@ -52,8 +52,8 @@ export const cronTestFile = async () => {
     console.log("Finished player info load")
 
     //retreive all the players for the teams playing this day
-    var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBook("NBA")
-    var listOfFilteredGame: DbGameBookData[] = []
+    var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBookByH2H("NBA")
+   /*  var listOfFilteredGame: DbGameBookData[] = []
     listOfGamesToday.forEach(e => {
         let d = new Date(e.commenceTime.toString())
         let g = d.toISOString();
@@ -62,21 +62,18 @@ export const cronTestFile = async () => {
             listOfFilteredGame.push(e)
         }
         
-    })
-    console.log(listOfFilteredGame)
-    const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfFilteredGame.map(game => [game['bookId'], game])).values()]
-    console.log(uniqueListOfGamesToday)
+    }) */
+    //console.log(listOfFilteredGame)
+    //const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfFilteredGame.map(game => [game['bookId'], game])).values()]
+    //console.log(uniqueListOfGamesToday)
     var listOfAllPlayersInGames: NbaPlayerInfoDb[] = []
-    uniqueListOfGamesToday.forEach(async e => {
-        var result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.homeTeam)])
+    listOfGamesToday.forEach(async e => {
+        var result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
         result.forEach(e => {
             listOfAllPlayersInGames.push(e)
         })
         
-        result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.awayTeam)])
-        result.forEach(e => {
-            listOfAllPlayersInGames.push(e)
-        })
+        
     })
     console.log(listOfAllPlayersInGames)
     console.log("Line 69")
