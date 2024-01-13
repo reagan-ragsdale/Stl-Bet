@@ -86,7 +86,7 @@ export const cronTestFile = async () => {
         
         
     }); */
-    console.log(listOfAllPlayersInGames)
+    //console.log(listOfAllPlayersInGames)
     console.log("Line 69")
     //call each players stats api and update in database
     listOfAllPlayersInGames.forEach(async e => {
