@@ -90,8 +90,8 @@ export const cronTestFile = async () => {
     console.log("Line 69")
     //call each players stats api and update in database
     for(const player of listOfAllPlayersInGames){
+        console.log(player)
         var result = await newNbaApiController.loadNba2023PlayerStatData(player.playerId)
-        console.log(result[0])
         await NbaController.nbaAddPlayerGameStats2023(result)
 
         var db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player.playerId, 2022)
