@@ -37,7 +37,7 @@ export class nbaApiController {
         const response = await fetch(url, options);
         const result = await response.json();
         const processedResult = result.response
-        
+
 
         processedResult.forEach((e: any) => {
           if (e.firstname.includes("Jr.")) {
@@ -72,40 +72,40 @@ export class nbaApiController {
             playerName = playerName.replaceAll(".", "")
           }
 
-          if(playerName == "Taj Gibson" && teamId == 41){
+          if (playerName == "Taj Gibson" && teamId == 41) {
             return
           }
-          if(playerName == "Jeremiah Robinson-Earl" && teamId == 25){
+          if (playerName == "Jeremiah Robinson-Earl" && teamId == 25) {
             return
           }
-          if(playerName == "Nicolas Batum" && teamId == 16){
+          if (playerName == "Nicolas Batum" && teamId == 16) {
             return
           }
-          if(playerName == "Daniel Theis" && teamId == 15){
+          if (playerName == "Daniel Theis" && teamId == 15) {
             return
           }
-          if(playerName == "Kenyon Martin Jr" && teamId == 16){
+          if (playerName == "Kenyon Martin Jr" && teamId == 16) {
             return
           }
-          if(playerName == "Filip Petrusev" && (teamId == 16 || teamId == 27)){
+          if (playerName == "Filip Petrusev" && (teamId == 16 || teamId == 27)) {
             return
           }
-          if(playerName == "Robert Covington" && teamId == 16){
+          if (playerName == "Robert Covington" && teamId == 16) {
             return
           }
-          if(playerName == "Jaylen Nowell" && teamId == 30){
+          if (playerName == "Jaylen Nowell" && teamId == 30) {
             return
           }
-          if(playerName == "Kevin Knox II" && teamId == 29){
+          if (playerName == "Kevin Knox II" && teamId == 29) {
             return
           }
-          if(playerName == "Matt Ryan" && teamId == 22){
+          if (playerName == "Matt Ryan" && teamId == 22) {
             return
           }
-          if(playerName == "Drew Peterson" && teamId == 20){
+          if (playerName == "Drew Peterson" && teamId == 20) {
             return
           }
-          if(playerName == "PJ Tucker" && teamId == 27){
+          if (playerName == "PJ Tucker" && teamId == 27) {
             return
           }
 
@@ -163,7 +163,7 @@ export class nbaApiController {
             e.firstname = e.firstname.trim()
             e.lastname += " II"
           }
-          
+
           if (e.firstname.includes("IV")) {
             e.firstname = e.firstname.replace("IV", "")
             e.firstname = e.firstname.trim()
@@ -181,40 +181,40 @@ export class nbaApiController {
             playerName = playerName.replaceAll(".", "")
           }
 
-          if(playerName == "Taj Gibson" && this.arrayOfNbaTeamIds[i] == 41){
+          if (playerName == "Taj Gibson" && this.arrayOfNbaTeamIds[i] == 41) {
             return
           }
-          if(playerName == "Jeremiah Robinson-Earl" && this.arrayOfNbaTeamIds[i] == 25){
+          if (playerName == "Jeremiah Robinson-Earl" && this.arrayOfNbaTeamIds[i] == 25) {
             return
           }
-          if(playerName == "Nicolas Batum" && this.arrayOfNbaTeamIds[i] == 16){
+          if (playerName == "Nicolas Batum" && this.arrayOfNbaTeamIds[i] == 16) {
             return
           }
-          if(playerName == "Daniel Theis" && this.arrayOfNbaTeamIds[i] == 15){
+          if (playerName == "Daniel Theis" && this.arrayOfNbaTeamIds[i] == 15) {
             return
           }
-          if(playerName == "Kenyon Martin Jr" && this.arrayOfNbaTeamIds[i] == 16){
+          if (playerName == "Kenyon Martin Jr" && this.arrayOfNbaTeamIds[i] == 16) {
             return
           }
-          if(playerName == "Filip Petrusev" && (this.arrayOfNbaTeamIds[i] == 16 || this.arrayOfNbaTeamIds[i] == 27)){
+          if (playerName == "Filip Petrusev" && (this.arrayOfNbaTeamIds[i] == 16 || this.arrayOfNbaTeamIds[i] == 27)) {
             return
           }
-          if(playerName == "Robert Covington" && this.arrayOfNbaTeamIds[i] == 16){
+          if (playerName == "Robert Covington" && this.arrayOfNbaTeamIds[i] == 16) {
             return
           }
-          if(playerName == "Jaylen Nowell" && this.arrayOfNbaTeamIds[i] == 30){
+          if (playerName == "Jaylen Nowell" && this.arrayOfNbaTeamIds[i] == 30) {
             return
           }
-          if(playerName == "Kevin Knox II" && this.arrayOfNbaTeamIds[i] == 29){
+          if (playerName == "Kevin Knox II" && this.arrayOfNbaTeamIds[i] == 29) {
             return
           }
-          if(playerName == "Matt Ryan" && this.arrayOfNbaTeamIds[i] == 22){
+          if (playerName == "Matt Ryan" && this.arrayOfNbaTeamIds[i] == 22) {
             return
           }
-          if(playerName == "Drew Peterson" && this.arrayOfNbaTeamIds[i] == 20){
+          if (playerName == "Drew Peterson" && this.arrayOfNbaTeamIds[i] == 20) {
             return
           }
-          if(playerName == "PJ Tucker" && this.arrayOfNbaTeamIds[i] == 27){
+          if (playerName == "PJ Tucker" && this.arrayOfNbaTeamIds[i] == 27) {
             return
           }
 
@@ -257,8 +257,10 @@ export class nbaApiController {
 
   }
   async loadNba2023PlayerStatData(id: number) {
+
     //console.time("load nba 2023 player stat data")
     const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${id}&season=2023`;
+
     const options = {
       method: 'GET',
       headers: {
@@ -266,9 +268,11 @@ export class nbaApiController {
         'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
       }
     };
+
     const promise = await fetch(url, options);
     const processedResponse = await promise.json();
     this.playerStatData = processedResponse.response;
+    console.log("In api call")
     this.nbaPlayerStatData = await this.convertNbaStatDataToInterface(id, 2023)
     //console.timeEnd("load nba 2023 player stat data")
     return this.nbaPlayerStatData;
@@ -366,7 +370,7 @@ export class nbaApiController {
 
   }
 
-  async convertNbaGameDataToInterface(id: number, season: number) { 
+  async convertNbaGameDataToInterface(id: number, season: number) {
     var temp: DbNbaTeamGameStats[] = []
     var games = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(id, season)
     var oldGames = games.map((x) => {
@@ -379,13 +383,13 @@ export class nbaApiController {
       if (oldGames.includes(this.nbaTeamGameStats[i].id)) {
         continue
       }
-      if(this.nbaTeamGameStats[i].status.long == "Scheduled"){
+      if (this.nbaTeamGameStats[i].status.long == "Scheduled") {
         continue
       }
-      if(this.nbaTeamGameStats[i].status.long == "In Play"){
+      if (this.nbaTeamGameStats[i].status.long == "In Play") {
         continue
       }
-      
+
       temp.push({
         teamName: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].teams.visitors.name : this.nbaTeamGameStats[i].teams.home.name,
         teamId: id,

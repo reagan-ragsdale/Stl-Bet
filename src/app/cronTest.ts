@@ -67,10 +67,10 @@ export const cronTestFile = async () => {
     //const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfFilteredGame.map(game => [game['bookId'], game])).values()]
     //console.log(uniqueListOfGamesToday)
     var listOfAllPlayersInGames: any[] = []
-    var count = 1
     for(const game of listOfGamesToday){
         let result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(game.teamName)]);
         listOfAllPlayersInGames.push(result);
+        
     }
 
     /* listOfGamesToday.forEach(async e => {
@@ -88,13 +88,21 @@ export const cronTestFile = async () => {
     }); */
     //console.log(listOfAllPlayersInGames)
     console.log("Line 69")
+    var individualPlayers: NbaPlayerInfoDb[] = []
+    for(const team of listOfAllPlayersInGames){
+        for(const players of team){
+            individualPlayers.push(players)
+        }
+    }
+    console.log(individualPlayers.length)
     //call each players stats api and update in database
-    for(const player of listOfAllPlayersInGames){
-        console.log(player)
+    for(const player of individualPlayers){
+        console.log(player.playerId)
         var result = await newNbaApiController.loadNba2023PlayerStatData(player.playerId)
         console.log(result[0])
+        //console.log(result)
         await NbaController.nbaAddPlayerGameStats2023(result)
-
+        /*
         var db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player.playerId, 2022)
         if (db2022.length < 1) {
             var data2022 = await newNbaApiController.loadNba2022PlayerStatData(player.playerId)
@@ -105,7 +113,7 @@ export const cronTestFile = async () => {
                 await NbaController.nbaAddPlayerStat2022BlankData(player.playerId, player.playerName)
 
             }
-        }
+        }*/
     }
 /* 
     listOfAllPlayersInGames.forEach(async e => {
