@@ -725,8 +725,8 @@ export class PropScreenComponent implements OnInit {
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
-    var team1GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-    if (team1GameStats2023.length == 0) {
+    //var team1GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    /* if (team1GameStats2023.length == 0) {
       let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
       await NbaController.nbaAddTeamGameStats(result)
       this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
@@ -737,14 +737,14 @@ export class PropScreenComponent implements OnInit {
         await NbaController.nbaAddTeamGameStats(result)
         this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
       }
-      else {
+      else { */
         this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-      }
+      //}
 
-    }
+    //}
 
-    var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-    if (team2GameStats2023.length == 0) {
+    //var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    /* if (team2GameStats2023.length == 0) {
       let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
       await NbaController.nbaAddTeamGameStats(result)
       this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
@@ -755,10 +755,10 @@ export class PropScreenComponent implements OnInit {
         await NbaController.nbaAddTeamGameStats(result)
         this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
       }
-      else {
+      else { */
         this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-      }
-    }
+      //}
+    //}
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
 
@@ -1345,6 +1345,7 @@ console.log(team1)
     }
 
     if (this.selectedSport == "NBA") {
+      /*
       try {
 
         var gameArray = this.splitGameString(this.gameString)
@@ -1354,17 +1355,19 @@ console.log(team1)
           var returnCall = await this.nbaApiController.getAllNbaPlayerInfoFromApi();
           await NbaController.nbaAddPlayerInfoData(returnCall);
         }
-       /*  else if (dbEmpty.length > 0) {
+         else if (dbEmpty.length > 0) {
           if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
             var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
             await NbaController.nbaAddPlayerInfoData(returnCall);
           }
-        } */
+        } 
 
       } catch (error: any) {
         alert(error.message)
       }
+      
       dbEmpty = []
+      */
       console.timeEnd("Check player info db")
 
     }
@@ -1612,6 +1615,9 @@ console.log(team1)
           if (player.length == 0) {
             alert(element[i].name + " is not in the player database")
           }
+
+
+          /*
           let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
           let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
           if (db2022.length == 0) {
@@ -1647,7 +1653,8 @@ console.log(team1)
               //here
             }
           }
-
+          */
+          await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
           await this.computeStatForPlayer(element[i]);
           previousName = element[i].name
         }

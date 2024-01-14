@@ -33,7 +33,7 @@ export const cronTestFile = async () => {
     //nba loads
 
     //get and load draft kings game props
-    try{
+    
 
     
 
@@ -53,19 +53,7 @@ export const cronTestFile = async () => {
 
     //retreive all the players for the teams playing this day
     var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBookByH2H("NBA")
-   /*  var listOfFilteredGame: DbGameBookData[] = []
-    listOfGamesToday.forEach(e => {
-        let d = new Date(e.commenceTime.toString())
-        let g = d.toISOString();
-        console.log(g)
-        if(convertDate(g) == getMonthAndDay()){
-            listOfFilteredGame.push(e)
-        }
-        
-    }) */
-    //console.log(listOfFilteredGame)
-    //const uniqueListOfGamesToday: DbGameBookData[] = [...new Map(listOfFilteredGame.map(game => [game['bookId'], game])).values()]
-    //console.log(uniqueListOfGamesToday)
+   
     var listOfAllPlayersInGames: any[] = []
     for(const game of listOfGamesToday){
         let result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(game.teamName)]);
@@ -73,20 +61,7 @@ export const cronTestFile = async () => {
         
     }
 
-    /* listOfGamesToday.forEach(async e => {
-        let result: NbaPlayerInfoDb[] = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(e.teamName)])
-        if(count == 1){
-            console.log(result[0])
-            listOfAllPlayersInGames.push(result);
-            count++
-        }
-            
-            //listOfAllPlayersInGames.push(result);
-    
-        
-        
-    }); */
-    //console.log(listOfAllPlayersInGames)
+
     console.log("Line 69")
     var individualPlayers: NbaPlayerInfoDb[] = []
     for(const team of listOfAllPlayersInGames){
@@ -97,10 +72,7 @@ export const cronTestFile = async () => {
     console.log(individualPlayers.length)
     //call each players stats api and update in database
     for(const player of individualPlayers){
-        console.log(player.playerId)
         var result = await newNbaApiController.loadNba2023PlayerStatData(player.playerId)
-        console.log(result[0])
-        //console.log(result)
         await NbaController.nbaAddPlayerGameStats2023(result)
         /*
         var db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player.playerId, 2022)
@@ -115,27 +87,10 @@ export const cronTestFile = async () => {
             }
         }*/
     }
-/* 
-    listOfAllPlayersInGames.forEach(async e => {
-        const result = await newNbaApiController.loadNba2023PlayerStatData(e.playerId)
-        await NbaController.nbaAddPlayerGameStats2023(result)
 
-        var db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(e.playerId, 2022)
-        if (db2022.length < 1) {
-            const data2022 = await newNbaApiController.loadNba2022PlayerStatData(e.playerId)
-            if (data2022.length > 0) {
-                await NbaController.nbaAddPlayerGameStats2022(data2022)
-            }
-            else if (data2022.length == 0) {
-                await NbaController.nbaAddPlayerStat2022BlankData(e.playerId, e.playerName)
+    //load team stats
 
-            }
-        }
-    })
-     */
-}catch(error: any){
-    console.log(error)
-}
+
 console.log("line 90")   
 
 
