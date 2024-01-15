@@ -2179,12 +2179,9 @@
               </div>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="4" rowspan="25" [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor }">
+            <mat-grid-tile colspan="12" rowspan="25" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor }">
             </mat-grid-tile>
-            <mat-grid-tile colspan="4" rowspan="25" [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor }">
-            </mat-grid-tile>
-            <mat-grid-tile colspan="4" rowspan="25" [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor }">
-            </mat-grid-tile>
+            
             <mat-grid-tile colspan="4" rowspan="25">
               <div style="height: 100%;">
                 <table mat-table [dataSource]="team1GameVsOpponentData">
@@ -2203,7 +2200,7 @@
                     <th mat-header-cell *matHeaderCellDef> Q1 Result</th>
                     <td mat-cell *matCellDef="let element">{{element.pointsScoredFirstQuarter}} - {{element.pointsAllowedFirstQuarter}}</td>
                   </ng-container>
-        
+        <!-- 
                    <ng-container matColumnDef="q2Points">
                     <th mat-header-cell *matHeaderCellDef> Q2 Result </th>
                     <td mat-cell *matCellDef="let element"> {{element.pointsScoredSecondQuarter}} - {{element.pointsAllowedSecondQuarter}} </td>
@@ -2218,7 +2215,7 @@
                     <th mat-header-cell *matHeaderCellDef> Q4 Result </th>
                     <td mat-cell *matCellDef="let element"> {{element.pointsScoredFourthQuarter}} - {{element.pointsAllowedFourthQuarter}} </td>
                   </ng-container>
-          
+           -->
                   
                   <tr mat-header-row *matHeaderRowDef="displayedTeamAgainstColums" style="height: 20px;"></tr>
                   <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums;" style="height: 10px; "></tr>

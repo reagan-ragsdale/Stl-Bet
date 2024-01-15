@@ -125,7 +125,8 @@ export class PropScreenComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description', 'point', 'price', 'detailedStats'];
   displayedColumnsTeamGames: string[] = ['game', 'date', 'result'];
-  displayedTeamAgainstColums: string[] = ["date", "result", "q1Points", "q2Points", "q3Points", "q4Points"];
+  displayedTeamAgainstColums: string[] = ["date", "result", "q1Points"];
+  displayedTeamAgainstColums2: string[] = [ "q2Points", "q3Points", "q4Points"];
 
 
 
