@@ -96,6 +96,12 @@ export class PropScreenComponent implements OnInit {
   public totalGameClicked: boolean = true;
   public totalHalfClicked: boolean = false;
   public totalQuarterClicked: boolean = false;
+  public pointsScoredGameClicked: boolean = true;
+  public pointsScoredHalfClicked: boolean = false;
+  public pointsScoredQuarterClicked: boolean = false;
+  public pointsAllowedGameClicked: boolean = true;
+  public pointsAllowedHalfClicked: boolean = false;
+  public pointsAllowedQuarterClicked: boolean = false;
   public moneylineGameClicked: boolean = true;
   public moneylineHalfClicked: boolean = false;
   public moneylineQuarterClicked: boolean = false;
@@ -108,6 +114,12 @@ export class PropScreenComponent implements OnInit {
   public total2GameClicked: boolean = true;
   public total2HalfClicked: boolean = false;
   public total2QuarterClicked: boolean = false;
+  public pointsScored2GameClicked: boolean = true;
+  public pointsScored2HalfClicked: boolean = false;
+  public pointsScored2QuarterClicked: boolean = false;
+  public pointsAllowed2GameClicked: boolean = true;
+  public pointsAllowed2HalfClicked: boolean = false;
+  public pointsAllowed2QuarterClicked: boolean = false;
 
   public team1GameVsOpponentData: any[] = []
   
@@ -787,6 +799,7 @@ console.log(team1)
   }
 
   computeTeamsGameStats(team1: DbNbaTeamGameStats[], team2: DbNbaTeamGameStats[]) {
+    this.team1GameVsOpponentData = []
     this.team1GameStatsDto = {
       gamesWon: 0,
       gamesLost: 0,
@@ -1255,6 +1268,43 @@ console.log(team1)
     this.totalHalfClicked = false;
     this.totalQuarterClicked = true;
   }
+
+pointsScoredGameToggled(){
+  this.pointsScoredGameClicked = true;
+  this.pointsScoredHalfClicked = false;
+  this.pointsScoredQuarterClicked = false;
+  
+}
+
+pointsScoredHalfToggled(){
+  this.pointsScoredGameClicked = false;
+  this.pointsScoredHalfClicked = true;
+  this.pointsScoredQuarterClicked = false;
+}
+
+pointsScoredQuarterToggled(){
+  this.pointsScoredGameClicked = false;
+  this.pointsScoredHalfClicked = false;
+  this.pointsScoredQuarterClicked = true;
+}
+
+pointsAllowedGameToggled(){
+  this.pointsAllowedGameClicked = true;
+  this.pointsAllowedHalfClicked = false;
+  this.pointsAllowedQuarterClicked= false;
+}
+pointsAllowedHalfToggled(){
+  this.pointsAllowedGameClicked = false;
+  this.pointsAllowedHalfClicked = true;
+  this.pointsAllowedQuarterClicked= false;
+}
+pointsAllowedQuarterToggled(){
+  this.pointsAllowedGameClicked = false;
+  this.pointsAllowedHalfClicked = false;
+  this.pointsAllowedQuarterClicked= true;
+}
+
+
   moneyline2GameToggled() {
     this.moneyline2GameClicked = true;
     this.moneyline2HalfClicked = false;
@@ -1306,6 +1356,41 @@ console.log(team1)
     this.total2HalfClicked = false;
     this.total2QuarterClicked = true;
   }
+  pointsScored2GameToggled(){
+    this.pointsScored2GameClicked = true;
+    this.pointsScored2HalfClicked = false;
+    this.pointsScored2QuarterClicked = false;
+    
+  }
+  
+  pointsScored2HalfToggled(){
+    this.pointsScored2GameClicked = false;
+    this.pointsScored2HalfClicked = true;
+    this.pointsScored2QuarterClicked = false;
+  }
+  
+  pointsScored2QuarterToggled(){
+    this.pointsScored2GameClicked = false;
+    this.pointsScored2HalfClicked = false;
+    this.pointsScored2QuarterClicked = true;
+  }
+  
+  pointsAllowed2GameToggled(){
+    this.pointsAllowed2GameClicked = true;
+    this.pointsAllowed2HalfClicked = false;
+    this.pointsAllowed2QuarterClicked= false;
+  }
+  pointsAllowed2HalfToggled(){
+    this.pointsAllowed2GameClicked = false;
+    this.pointsAllowed2HalfClicked = true;
+    this.pointsAllowed2QuarterClicked= false;
+  }
+  pointsAllowed2QuarterToggled(){
+    this.pointsAllowed2GameClicked = false;
+    this.pointsAllowed2HalfClicked = false;
+    this.pointsAllowed2QuarterClicked= true;
+  }
+
 
 
   async checkSportsBookDb() {
