@@ -2204,7 +2204,7 @@
                     <td mat-cell *matCellDef="let element">{{element.pointsScoredFirstQuarter}} - {{element.pointsAllowedFirstQuarter}}</td>
                   </ng-container>
         
-                  <!-- <ng-container matColumnDef="q2Points">
+                   <ng-container matColumnDef="q2Points">
                     <th mat-header-cell *matHeaderCellDef> Q2 Result </th>
                     <td mat-cell *matCellDef="let element"> {{element.pointsScoredSecondQuarter}} - {{element.pointsAllowedSecondQuarter}} </td>
                   </ng-container>
@@ -2218,7 +2218,7 @@
                     <th mat-header-cell *matHeaderCellDef> Q4 Result </th>
                     <td mat-cell *matCellDef="let element"> {{element.pointsScoredFourthQuarter}} - {{element.pointsAllowedFourthQuarter}} </td>
                   </ng-container>
-          -->
+          
                   
                   <tr mat-header-row *matHeaderRowDef="displayedTeamAgainstColums" style="height: 20px;"></tr>
                   <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums;" style="height: 10px; "></tr>
