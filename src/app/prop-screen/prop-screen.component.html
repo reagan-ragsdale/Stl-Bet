@@ -3581,7 +3581,7 @@
            -->
                   
                   <tr mat-header-row *matHeaderRowDef="displayedTeamAgainstColums" style="height: 20px;"></tr>
-                  <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums;" style="height: 10px; "></tr>
+                  <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums;" style="height: 10px; padding-right: 1px; padding-left: 1px;  "></tr>
                   
                 </table>
               </div>
@@ -7153,12 +7153,12 @@
            
                   
                   <tr mat-header-row *matHeaderRowDef="displayedTeamAgainstColums2" style="height: 20px;"></tr>
-                  <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums2;" style="height: 10px; "></tr>
+                  <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums2;" style="height: 10px; padding-right: 1px; padding-left: 1px; "></tr>
                   
                 </table>
               </div>
             </mat-grid-tile>
-            
+
             <mat-grid-tile colspan="12" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor }">
             </mat-grid-tile>
 
