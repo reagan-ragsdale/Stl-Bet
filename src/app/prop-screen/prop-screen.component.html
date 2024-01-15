@@ -3545,7 +3545,7 @@
             <mat-grid-tile colspan="12" rowspan="5" [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor }">
             </mat-grid-tile>
             
-            <mat-grid-tile colspan="4" rowspan="25">
+            <mat-grid-tile colspan="4" rowspan="('team1GameVsOpponentData.length' * 5) + 5">
               <div style="height: 100%; display:flex; justify-items: flex-end;">
                 <table mat-table [dataSource]="team1GameVsOpponentData" style="justify-self: flex-end;">
                   <ng-container matColumnDef="date" >
@@ -3581,7 +3581,7 @@
            -->
                   
                   <tr mat-header-row *matHeaderRowDef="displayedTeamAgainstColums" style="height: 20px;"></tr>
-                  <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums;" style="height: 10px; padding-right: 1px; padding-left: 1px;  "></tr>
+                  <tr mat-row *matRowDef="let element; columns: displayedTeamAgainstColums;" style="height: 10px; margin-right: 1px; margin-left: 1px;  "></tr>
                   
                 </table>
               </div>
@@ -7117,7 +7117,7 @@
 
             
             
-            <mat-grid-tile colspan="4" rowspan="25">
+            <mat-grid-tile colspan="4" rowspan="('team1GameVsOpponentData.length' * 5) + 5">
               <div style="height: 100%; display:flex; justify-items: flex-end;">
                 <table mat-table [dataSource]="team1GameVsOpponentData" style="justify-self: flex-end;">
                  <!--  <ng-container matColumnDef="date" >
