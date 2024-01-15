@@ -72,7 +72,7 @@ export const cronTestFile = async () => {
     console.log(individualPlayers.length)
     //call each players stats api and update in database
     for(const player of individualPlayers){
-        var result = await newNbaApiController.loadNba2023PlayerStatData(player.playerId)
+        let result = await newNbaApiController.loadNba2023PlayerStatData(player.playerId)
         await NbaController.nbaAddPlayerGameStats2023(result)
         /*
         var db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player.playerId, 2022)
@@ -89,6 +89,11 @@ export const cronTestFile = async () => {
     }
 
     //load team stats
+    for(const team of listOfGamesToday){
+        let result = await newNbaApiController.loadTeamGameStats(arrayOfNBATeams[addUnderScoreToName(team.teamName)], 2023)
+        await NbaController.nbaAddTeamGameStats(result)
+    }
+
 
 
 console.log("line 90")   

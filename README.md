@@ -88,3 +88,50 @@ code: how to detect an object and navigate around it
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Main areas I'd like to learn more about:
+What am I missing from this being a full production app(security, database, architecture, etc)
+
+
+
+
