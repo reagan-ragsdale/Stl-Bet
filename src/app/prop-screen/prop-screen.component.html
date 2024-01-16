@@ -2182,11 +2182,11 @@
                 </div>
                 <div
                   style="align-content: center; justify-items: flex-end; display: flex; flex-direction: column; gap: 5px;">
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalGameToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsScoredGameToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalHalfToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsScoredHalfToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalQuarterToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsScoredQuarterToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
                 </div>
               </div>
@@ -2199,16 +2199,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScoredGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{(team1GameStatsDto.totalOverall / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)) |
+                    {{(team1GameStatsDto.pointsScoredOverallGame / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScoredHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -2218,7 +2218,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalOverallFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.pointsScoredOverallFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2236,7 +2236,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team1GameStatsDto.totalOverallSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.pointsScoredOverallSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2253,7 +2253,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScoredQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -2271,7 +2271,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsScoredOverallFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2293,7 +2293,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsScoredOverallSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2318,7 +2318,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsScoredOverallThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2340,7 +2340,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsScoredOverallFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2363,16 +2363,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScoredGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalVsTeam / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent) |
+                    {{team1GameStatsDto.pointsScoredVsTeamGame / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScoredHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -2382,7 +2382,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalVsTeamFirstHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                        {{team1GameStatsDto.pointsScoredVsTeamFirstHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2400,7 +2400,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                       {{team1GameStatsDto.totalVsTeamSecondHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                       {{team1GameStatsDto.pointsScoredVsTeamSecondHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2417,7 +2417,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScoredQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -2435,7 +2435,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamFirstQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsScoredVsTeamFirstQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2457,7 +2457,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamSecondQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsScoredVsTeamSecondQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2482,7 +2482,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamThirdQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsScoredVsTeamThirdQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2504,7 +2504,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamFourthQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsScoredVsTeamFourthQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2527,16 +2527,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScoredGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalHome / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome) |
+                    {{team1GameStatsDto.pointsScoredHomeGame / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScoredHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -2546,7 +2546,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalHomeFirstHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                        {{team1GameStatsDto.pointsScoredHomeFirstHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2564,7 +2564,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team1GameStatsDto.totalHomeSecondHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                        {{team1GameStatsDto.pointsScoredHomeSecondHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2581,7 +2581,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScoredQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -2599,7 +2599,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeFirstQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsScoredHomeFirstQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2621,7 +2621,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeSecondQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsScoredHomeSecondQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2646,7 +2646,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeThirdQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsScoredHomeThirdQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2668,7 +2668,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeFourthQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsScoredHomeFourthQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2691,16 +2691,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScoredGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalAway / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway) |
+                    {{team1GameStatsDto.pointsScoredAwayGame / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScoredHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -2710,7 +2710,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalAwayFirstHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                        {{team1GameStatsDto.pointsScoredAwayFirstHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2728,7 +2728,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team1GameStatsDto.totalAwaySecondHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                        {{team1GameStatsDto.pointsScoredAwaySecondHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2745,7 +2745,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScoredQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -2763,7 +2763,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayFirstQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsScoredAwayFirstQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2785,7 +2785,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwaySecondQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsScoredAwaySecondQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2810,7 +2810,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayThirdQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsScoredAwayThirdQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2832,7 +2832,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayFourthQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsScoredAwayFourthQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2864,11 +2864,11 @@
                 </div>
                 <div
                   style="align-content: center; justify-items: flex-end; display: flex; flex-direction: column; gap: 5px;">
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalGameToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsAllowedGameToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Game</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalHalfToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsAllowedHalfToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Half</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalQuarterToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsAllowedQuarterToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">Quarter</button>
                 </div>
               </div>
@@ -2881,16 +2881,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowedGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{(team1GameStatsDto.totalOverall / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)) |
+                    {{(team1GameStatsDto.pointsAllowedOverallGame / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowedHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -2900,7 +2900,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalOverallFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.pointsAllowedOverallFirstHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2918,7 +2918,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team1GameStatsDto.totalOverallSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team1GameStatsDto.pointsAllowedOverallSecondHalf / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -2935,7 +2935,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowedQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -2953,7 +2953,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsAllowedOverallFirstQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -2975,7 +2975,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsAllowedOverallSecondQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3000,7 +3000,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsAllowedOverallThirdQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3022,7 +3022,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalOverallFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                          {{team1GameStatsDto.pointsAllowedOverallFourthQuarter / (team1GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3045,16 +3045,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowedGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalVsTeam / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent) |
+                    {{team1GameStatsDto.pointsAllowedVsTeamGame / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowedHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -3064,7 +3064,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalVsTeamFirstHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                        {{team1GameStatsDto.pointsAllowedVsTeamFirstHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -3082,7 +3082,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                       {{team1GameStatsDto.totalVsTeamSecondHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                       {{team1GameStatsDto.pointsAllowedVsTeamSecondHalf / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -3099,7 +3099,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowedQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -3117,7 +3117,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamFirstQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsAllowedVsTeamFirstQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3139,7 +3139,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamSecondQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsAllowedVsTeamSecondQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3164,7 +3164,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamThirdQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsAllowedVsTeamThirdQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3186,7 +3186,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalVsTeamFourthQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
+                          {{team1GameStatsDto.pointsAllowedVsTeamFourthQuarter / (team1GameStatsDto.gamesWonVsOpponent + team1GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3209,16 +3209,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowedGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalHome / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome) |
+                    {{team1GameStatsDto.pointsAllowedHomeGame / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowedHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -3228,7 +3228,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalHomeFirstHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                        {{team1GameStatsDto.pointsAllowedHomeFirstHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -3246,7 +3246,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team1GameStatsDto.totalHomeSecondHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                        {{team1GameStatsDto.pointsAllowedHomeSecondHalf / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -3263,7 +3263,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowedQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -3281,7 +3281,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeFirstQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsAllowedHomeFirstQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3303,7 +3303,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeSecondQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsAllowedHomeSecondQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3328,7 +3328,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeThirdQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsAllowedHomeThirdQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3350,7 +3350,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalHomeFourthQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
+                          {{team1GameStatsDto.pointsAllowedHomeFourthQuarter / (team1GameStatsDto.gamesWonHome + team1GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3373,16 +3373,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml1.alternateColor, color: displayPropHtml1.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowedGameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor, color: displayPropHtml1.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team1GameStatsDto.totalAway / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway) |
+                    {{team1GameStatsDto.pointsAllowedAwayGame / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowedHalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -3392,7 +3392,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team1GameStatsDto.totalAwayFirstHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                        {{team1GameStatsDto.pointsAllowedAwayFirstHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -3410,7 +3410,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team1GameStatsDto.totalAwaySecondHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                        {{team1GameStatsDto.pointsAllowedAwaySecondHalf / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -3427,7 +3427,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowedQuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -3445,7 +3445,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayFirstQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsAllowedAwayFirstQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3467,7 +3467,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwaySecondQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsAllowedAwaySecondQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3492,7 +3492,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayThirdQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsAllowedAwayThirdQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -3514,7 +3514,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team1GameStatsDto.totalAwayFourthQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
+                          {{team1GameStatsDto.pointsAllowedAwayFourthQuarter / (team1GameStatsDto.gamesWonAway + team1GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -5755,11 +5755,11 @@
                 </div>
                 <div
                   style="align-content: center; justify-items: flex-end; display: flex; flex-direction: column; gap: 5px;">
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalGameToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsScored2GameToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Game</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalHalfToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsScored2HalfToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Half</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalQuarterToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsScored2QuarterToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Quarter</button>
                 </div>
               </div>
@@ -5772,16 +5772,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScored2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{(team2GameStatsDto.totalOverall / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)) |
+                    {{(team2GameStatsDto.pointsScoredOverallGame / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScored2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -5791,7 +5791,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalOverallFirstHalf / (team2GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team2GameStatsDto.pointsScoredOverallFirstHalf / (team2GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -5809,7 +5809,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team2GameStatsDto.totalOverallSecondHalf / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                        {{team2GameStatsDto.pointsScoredOverallSecondHalf / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -5826,7 +5826,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScored2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -5844,7 +5844,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallFirstQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsScoredOverallFirstQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -5866,7 +5866,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallSecondQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsScoredOverallSecondQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -5891,7 +5891,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallThirdQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsScoredOverallThirdQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -5913,7 +5913,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallFourthQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsScoredOverallFourthQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -5936,16 +5936,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScored2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team2GameStatsDto.totalVsTeam / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent) |
+                    {{team2GameStatsDto.pointsScoredVsTeamGame / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScored2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -5955,7 +5955,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalVsTeamFirstHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                        {{team2GameStatsDto.pointsScoredVsTeamFirstHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -5973,7 +5973,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                       {{team2GameStatsDto.totalVsTeamSecondHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                       {{team2GameStatsDto.pointsScoredVsTeamSecondHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -5990,7 +5990,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScored2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -6008,7 +6008,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamFirstQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsScoredVsTeamFirstQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6030,7 +6030,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamSecondQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsScoredVsTeamSecondQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6055,7 +6055,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamThirdQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsScoredVsTeamThirdQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6077,7 +6077,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamFourthQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsScoredVsTeamFourthQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6100,16 +6100,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScored2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team2GameStatsDto.totalHome / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome) |
+                    {{team2GameStatsDto.pointsScoredHomeGame / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScored2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -6119,7 +6119,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalHomeFirstHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        {{team2GameStatsDto.pointsScoredHomeFirstHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6137,7 +6137,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team2GameStatsDto.totalHomeSecondHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        {{team2GameStatsDto.pointsScoredHomeSecondHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6154,7 +6154,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScored2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -6172,7 +6172,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeFirstQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsScoredHomeFirstQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6194,7 +6194,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeSecondQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsScoredHomeSecondQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6219,7 +6219,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeThirdQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsScoredHomeThirdQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6241,7 +6241,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeFourthQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsScoredHomeFourthQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6264,16 +6264,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsScored2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team2GameStatsDto.totalAway / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway) |
+                    {{team2GameStatsDto.pointsScoredAwayGame / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsScored2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -6283,7 +6283,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalAwayFirstHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        {{team2GameStatsDto.pointsScoredAwayFirstHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6301,7 +6301,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team2GameStatsDto.totalAwaySecondHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        {{team2GameStatsDto.pointsScoredAwaySecondHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6318,7 +6318,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsScored2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -6336,7 +6336,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwayFirstQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsScoredAwayFirstQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6358,7 +6358,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwaySecondQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsScoredAwaySecondQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6383,7 +6383,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwayThirdQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsScoredAwayThirdQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6405,7 +6405,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwayFourthQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsScoredAwayFourthQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6437,11 +6437,11 @@
                 </div>
                 <div
                   style="align-content: center; justify-items: flex-end; display: flex; flex-direction: column; gap: 5px;">
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalGameToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsAllowed2GameToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Game</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalHalfToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsAllowed2HalfToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Half</button>
-                  <button mat-raised-button style="width:80px; height: 20px;" (click)="totalQuarterToggled()"
+                  <button mat-raised-button style="width:80px; height: 20px;" (click)="pointsAllowed2QuarterToggled()"
                     [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">Quarter</button>
                 </div>
               </div>
@@ -6454,16 +6454,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowed2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{(team2GameStatsDto.totalOverall / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)) |
+                    {{(team2GameStatsDto.pointsAllowedOverallGame / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowed2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -6473,7 +6473,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalOverallFirstHalf / (team2GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
+                        {{team2GameStatsDto.pointsAllowedOverallFirstHalf / (team2GameStatsDto.gamesWon + team1GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6491,7 +6491,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team2GameStatsDto.totalOverallSecondHalf / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                        {{team2GameStatsDto.pointsAllowedOverallSecondHalf / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6508,7 +6508,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowed2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -6526,7 +6526,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallFirstQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsAllowedOverallFirstQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6548,7 +6548,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallSecondQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsAllowedOverallSecondQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6573,7 +6573,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallThirdQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsAllowedOverallThirdQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6595,7 +6595,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalOverallFourthQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
+                          {{team2GameStatsDto.pointsAllowedOverallFourthQuarter / (team2GameStatsDto.gamesWon + team2GameStatsDto.gamesLost)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6618,16 +6618,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowed2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team2GameStatsDto.totalVsTeam / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent) |
+                    {{team2GameStatsDto.pointsAllowedVsTeamGame / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowed2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -6637,7 +6637,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalVsTeamFirstHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                        {{team2GameStatsDto.pointsAllowedVsTeamFirstHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6655,7 +6655,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                       {{team2GameStatsDto.totalVsTeamSecondHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                       {{team2GameStatsDto.pointsAllowedVsTeamSecondHalf / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6672,7 +6672,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowed2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -6690,7 +6690,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamFirstQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsAllowedVsTeamFirstQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6712,7 +6712,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamSecondQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsAllowedVsTeamSecondQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6737,7 +6737,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamThirdQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsAllowedVsTeamThirdQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6759,7 +6759,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalVsTeamFourthQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
+                          {{team2GameStatsDto.pointsAllowedVsTeamFourthQuarter / (team2GameStatsDto.gamesWonVsOpponent + team2GameStatsDto.gamesLostVsOpponent)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6782,16 +6782,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowed2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team2GameStatsDto.totalHome / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome) |
+                    {{team2GameStatsDto.pointsAllowedHomeGame / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowed2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -6801,7 +6801,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalHomeFirstHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        {{team2GameStatsDto.pointsAllowedHomeFirstHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6819,7 +6819,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team2GameStatsDto.totalHomeSecondHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                        {{team2GameStatsDto.pointsAllowedHomeSecondHalf / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6836,7 +6836,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowed2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -6854,7 +6854,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeFirstQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsAllowedHomeFirstQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6876,7 +6876,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeSecondQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsAllowedHomeSecondQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6901,7 +6901,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeThirdQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsAllowedHomeThirdQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6923,7 +6923,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalHomeFourthQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
+                          {{team2GameStatsDto.pointsAllowedHomeFourthQuarter / (team2GameStatsDto.gamesWonHome + team2GameStatsDto.gamesLostHome)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -6946,16 +6946,16 @@
               style="font-size:x-large;  border-radius: 10px;  font-family: Arial, Helvetica, sans-serif; "
               [ngStyle]="{ backgroundColor: displayPropHtml2.alternateColor, color: displayPropHtml2.primaryColor}">
               <div style="width:100%; display: flex; flex-direction: column; height: inherit;">
-                <div *ngIf="totalGameClicked"
+                <div *ngIf="pointsAllowed2GameClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; "
                   [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor, color: displayPropHtml2.alternateColor}">
                   <div style="width:70%; text-align: center;">
-                    {{team2GameStatsDto.totalAway / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway) |
+                    {{team2GameStatsDto.pointsAllowedAwayGame / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway) |
                     number: '1.0-3'}}
                   </div>
                 </div>
 
-                <div *ngIf="totalHalfClicked"
+                <div *ngIf="pointsAllowed2HalfClicked"
                   style="width: 90%; height: 85%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; gap: 3px;">
                   <div
                     style="width:50%; height:100%; border-radius: 10px; text-align: center; align-content: center; justify-content: center; display:flex; flex-direction: column;"
@@ -6965,7 +6965,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center;">
                       <h2>
-                        {{team2GameStatsDto.totalAwayFirstHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        {{team2GameStatsDto.pointsAllowedAwayFirstHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -6983,7 +6983,7 @@
                     </div>
                     <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                       <h2>
-                        {{team2GameStatsDto.totalAwaySecondHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                        {{team2GameStatsDto.pointsAllowedAwaySecondHalf / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                         |
                         number: '1.0-3'}}
                       </h2>
@@ -7000,7 +7000,7 @@
 
 
 
-                <div *ngIf="totalQuarterClicked"
+                <div *ngIf="pointsAllowed2QuarterClicked"
                   style="width: 90%; height: 90%; margin: auto; align-items: center; justify-content: center; border-radius: 10px; display: flex; flex-direction: column; gap: 3px; ">
 
                   <div
@@ -7018,7 +7018,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwayFirstQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsAllowedAwayFirstQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -7040,7 +7040,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwaySecondQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsAllowedAwaySecondQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -7065,7 +7065,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwayThirdQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsAllowedAwayThirdQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
@@ -7087,7 +7087,7 @@
 
                       <div style="height: 80%; display: flex; justify-content: center; align-items: center; ">
                         <h3 style="padding-top: 1rem;">
-                          {{team2GameStatsDto.totalAwayFourthQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
+                          {{team2GameStatsDto.pointsAllowedAwayFourthQuarter / (team2GameStatsDto.gamesWonAway + team2GameStatsDto.gamesLostAway)
                           |
                           number: '1.0-3'}}
                         </h3>
