@@ -1264,12 +1264,12 @@ export class PropScreenComponent implements OnInit {
       (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDto.halfOneWon += 1 : this.team1GameStatsDto.halfOneLost += 1;
       (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDto.halfTwoWon += 1 : this.team1GameStatsDto.halfTwoLost += 1;
       this.team1GameStatsDto.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall);
-      this.team1GameStatsDto.spreadFirstHalf = (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-      this.team1GameStatsDto.spreadSecondHalf = (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-      this.team1GameStatsDto.spreadFirstQuarter = e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-      this.team1GameStatsDto.spreadSecondQuarter = e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-      this.team1GameStatsDto.spreadThirdQuarter = e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-      this.team1GameStatsDto.spreadFourthQuarter = e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+      this.team1GameStatsDto.spreadFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+      this.team1GameStatsDto.spreadSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+      this.team1GameStatsDto.spreadFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+      this.team1GameStatsDto.spreadSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+      this.team1GameStatsDto.spreadThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+      this.team1GameStatsDto.spreadFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
       this.team1GameStatsDto.totalOverall += e.pointsScoredOverall + e.pointsAllowedOverall;
       this.team1GameStatsDto.totalOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
       this.team1GameStatsDto.totalOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
@@ -1277,20 +1277,20 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStatsDto.totalOverallSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
       this.team1GameStatsDto.totalOverallThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
       this.team1GameStatsDto.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-      this.team1GameStatsDto.pointsScoredOverallGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsScoredOverallFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-      this.team1GameStatsDto.pointsScoredOverallSecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsScoredOverallFirstQuarter = e.pointsScoredFirstQuarter
-      this.team1GameStatsDto.pointsScoredOverallSecondQuarter = e.pointsScoredSecondQuarter
-      this.team1GameStatsDto.pointsScoredOverallThirdQuarter = e.pointsScoredThirdQuarter
-      this.team1GameStatsDto.pointsScoredOverallFourthQuarter = e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsAllowedOverallGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team1GameStatsDto.pointsAllowedOverallFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-      this.team1GameStatsDto.pointsAllowedOverallSecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team1GameStatsDto.pointsAllowedOverallFirstQuarter = e.pointsAllowedFirstQuarter
-      this.team1GameStatsDto.pointsAllowedOverallSecondQuarter = e.pointsAllowedSecondQuarter
-      this.team1GameStatsDto.pointsAllowedOverallThirdQuarter = e.pointsAllowedThirdQuarter
-      this.team1GameStatsDto.pointsAllowedOverallFourthQuarter = e.pointsAllowedFourthQuarter
+      this.team1GameStatsDto.pointsScoredOverallGame += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+      this.team1GameStatsDto.pointsScoredOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+      this.team1GameStatsDto.pointsScoredOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+      this.team1GameStatsDto.pointsScoredOverallFirstQuarter += e.pointsScoredFirstQuarter
+      this.team1GameStatsDto.pointsScoredOverallSecondQuarter += e.pointsScoredSecondQuarter
+      this.team1GameStatsDto.pointsScoredOverallThirdQuarter += e.pointsScoredThirdQuarter
+      this.team1GameStatsDto.pointsScoredOverallFourthQuarter += e.pointsScoredFourthQuarter
+      this.team1GameStatsDto.pointsAllowedOverallGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team1GameStatsDto.pointsAllowedOverallFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+      this.team1GameStatsDto.pointsAllowedOverallSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team1GameStatsDto.pointsAllowedOverallFirstQuarter += e.pointsAllowedFirstQuarter
+      this.team1GameStatsDto.pointsAllowedOverallSecondQuarter += e.pointsAllowedSecondQuarter
+      this.team1GameStatsDto.pointsAllowedOverallThirdQuarter += e.pointsAllowedThirdQuarter
+      this.team1GameStatsDto.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
 
       if (e.teamAgainstId == team2[0].teamId) {
         this.team1GameVsOpponentData.push(e)
@@ -1314,20 +1314,20 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStatsDto.totalVsTeamSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
         this.team1GameStatsDto.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team1GameStatsDto.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team1GameStatsDto.pointsScoredVsTeamGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamSecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamFirstQuarter = e.pointsScoredFirstQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamSecondQuarter = e.pointsScoredSecondQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamThirdQuarter = e.pointsScoredThirdQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamFourthQuarter = e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamSecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamFirstQuarter = e.pointsAllowedFirstQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamSecondQuarter = e.pointsAllowedSecondQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamThirdQuarter = e.pointsAllowedThirdQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamFourthQuarter = e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsScoredVsTeamGame += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+      this.team1GameStatsDto.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+      this.team1GameStatsDto.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+      this.team1GameStatsDto.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
+      this.team1GameStatsDto.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
+      this.team1GameStatsDto.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
+      this.team1GameStatsDto.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
+      this.team1GameStatsDto.pointsAllowedVsTeamGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team1GameStatsDto.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+      this.team1GameStatsDto.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team1GameStatsDto.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
+      this.team1GameStatsDto.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
+      this.team1GameStatsDto.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
+      this.team1GameStatsDto.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
       }
       if (e.homeOrAway == "Home") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonHome += 1 : this.team1GameStatsDto.quarterOneLostHome += 1;
@@ -1350,20 +1350,20 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStatsDto.totalHomeSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
         this.team1GameStatsDto.totalHomeThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team1GameStatsDto.totalHomeFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team1GameStatsDto.pointsScoredHomeGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team1GameStatsDto.pointsScoredHomeFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-        this.team1GameStatsDto.pointsScoredHomeSecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team1GameStatsDto.pointsScoredHomeFirstQuarter = e.pointsScoredFirstQuarter
-        this.team1GameStatsDto.pointsScoredHomeSecondQuarter = e.pointsScoredSecondQuarter
-        this.team1GameStatsDto.pointsScoredHomeThirdQuarter = e.pointsScoredThirdQuarter
-        this.team1GameStatsDto.pointsScoredHomeFourthQuarter = e.pointsScoredFourthQuarter
-        this.team1GameStatsDto.pointsAllowedHomeGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team1GameStatsDto.pointsAllowedHomeFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-        this.team1GameStatsDto.pointsAllowedHomeSecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team1GameStatsDto.pointsAllowedHomeFirstQuarter = e.pointsAllowedFirstQuarter
-        this.team1GameStatsDto.pointsAllowedHomeSecondQuarter = e.pointsAllowedSecondQuarter
-        this.team1GameStatsDto.pointsAllowedHomeThirdQuarter = e.pointsAllowedThirdQuarter
-        this.team1GameStatsDto.pointsAllowedHomeFourthQuarter = e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsScoredHomeGame += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsScoredHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+        this.team1GameStatsDto.pointsScoredHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsScoredHomeFirstQuarter += e.pointsScoredFirstQuarter
+        this.team1GameStatsDto.pointsScoredHomeSecondQuarter += e.pointsScoredSecondQuarter
+        this.team1GameStatsDto.pointsScoredHomeThirdQuarter += e.pointsScoredThirdQuarter
+        this.team1GameStatsDto.pointsScoredHomeFourthQuarter += e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsAllowedHomeGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsAllowedHomeFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+        this.team1GameStatsDto.pointsAllowedHomeSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsAllowedHomeFirstQuarter += e.pointsAllowedFirstQuarter
+        this.team1GameStatsDto.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
+        this.team1GameStatsDto.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
+        this.team1GameStatsDto.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
         
       }
       else if (e.homeOrAway == "Away") {
@@ -1387,20 +1387,20 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStatsDto.totalAwaySecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
         this.team1GameStatsDto.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team1GameStatsDto.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team1GameStatsDto.pointsScoredAwayGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team1GameStatsDto.pointsScoredAwayFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-        this.team1GameStatsDto.pointsScoredAwaySecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team1GameStatsDto.pointsScoredAwayFirstQuarter = e.pointsScoredFirstQuarter
-        this.team1GameStatsDto.pointsScoredAwaySecondQuarter = e.pointsScoredSecondQuarter
-        this.team1GameStatsDto.pointsScoredAwayThirdQuarter = e.pointsScoredThirdQuarter
-        this.team1GameStatsDto.pointsScoredAwayFourthQuarter = e.pointsScoredFourthQuarter
-        this.team1GameStatsDto.pointsAllowedAwayGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team1GameStatsDto.pointsAllowedAwayFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-        this.team1GameStatsDto.pointsAllowedAwaySecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team1GameStatsDto.pointsAllowedAwayFirstQuarter = e.pointsAllowedFirstQuarter
-        this.team1GameStatsDto.pointsAllowedAwaySecondQuarter = e.pointsAllowedSecondQuarter
-        this.team1GameStatsDto.pointsAllowedAwayThirdQuarter = e.pointsAllowedThirdQuarter
-        this.team1GameStatsDto.pointsAllowedAwayFourthQuarter = e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsScoredAwayGame += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsScoredAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+        this.team1GameStatsDto.pointsScoredAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsScoredAwayFirstQuarter += e.pointsScoredFirstQuarter
+        this.team1GameStatsDto.pointsScoredAwaySecondQuarter += e.pointsScoredSecondQuarter
+        this.team1GameStatsDto.pointsScoredAwayThirdQuarter += e.pointsScoredThirdQuarter
+        this.team1GameStatsDto.pointsScoredAwayFourthQuarter += e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsAllowedAwayGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsAllowedAwayFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+        this.team1GameStatsDto.pointsAllowedAwaySecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsAllowedAwayFirstQuarter += e.pointsAllowedFirstQuarter
+        this.team1GameStatsDto.pointsAllowedAwaySecondQuarter += e.pointsAllowedSecondQuarter
+        this.team1GameStatsDto.pointsAllowedAwayThirdQuarter += e.pointsAllowedThirdQuarter
+        this.team1GameStatsDto.pointsAllowedAwayFourthQuarter += e.pointsAllowedFourthQuarter
       }
 
 
@@ -1417,12 +1417,12 @@ export class PropScreenComponent implements OnInit {
       (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDto.halfOneWon += 1 : this.team2GameStatsDto.halfOneLost += 1;
       (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDto.halfTwoWon += 1 : this.team2GameStatsDto.halfTwoLost += 1;
       this.team2GameStatsDto.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall);
-      this.team2GameStatsDto.spreadFirstHalf = (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-      this.team2GameStatsDto.spreadSecondHalf = (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-      this.team2GameStatsDto.spreadFirstQuarter = e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-      this.team2GameStatsDto.spreadSecondQuarter = e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-      this.team2GameStatsDto.spreadThirdQuarter = e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-      this.team2GameStatsDto.spreadFourthQuarter = e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+      this.team2GameStatsDto.spreadFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+      this.team2GameStatsDto.spreadSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+      this.team2GameStatsDto.spreadFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+      this.team2GameStatsDto.spreadSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+      this.team2GameStatsDto.spreadThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+      this.team2GameStatsDto.spreadFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
       this.team2GameStatsDto.totalOverall += e.pointsScoredOverall + e.pointsAllowedOverall;
       this.team2GameStatsDto.totalOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
       this.team2GameStatsDto.totalOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
@@ -1430,20 +1430,20 @@ export class PropScreenComponent implements OnInit {
       this.team2GameStatsDto.totalOverallSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
       this.team2GameStatsDto.totalOverallThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
       this.team2GameStatsDto.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-      this.team2GameStatsDto.pointsScoredOverallGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsScoredOverallFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-      this.team2GameStatsDto.pointsScoredOverallSecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsScoredOverallFirstQuarter = e.pointsScoredFirstQuarter
-      this.team2GameStatsDto.pointsScoredOverallSecondQuarter = e.pointsScoredSecondQuarter
-      this.team2GameStatsDto.pointsScoredOverallThirdQuarter = e.pointsScoredThirdQuarter
-      this.team2GameStatsDto.pointsScoredOverallFourthQuarter = e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsAllowedOverallGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team2GameStatsDto.pointsAllowedOverallFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-      this.team2GameStatsDto.pointsAllowedOverallSecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team2GameStatsDto.pointsAllowedOverallFirstQuarter = e.pointsAllowedFirstQuarter
-      this.team2GameStatsDto.pointsAllowedOverallSecondQuarter = e.pointsAllowedSecondQuarter
-      this.team2GameStatsDto.pointsAllowedOverallThirdQuarter = e.pointsAllowedThirdQuarter
-      this.team2GameStatsDto.pointsAllowedOverallFourthQuarter = e.pointsAllowedFourthQuarter
+      this.team2GameStatsDto.pointsScoredOverallGame += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+      this.team2GameStatsDto.pointsScoredOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+      this.team2GameStatsDto.pointsScoredOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+      this.team2GameStatsDto.pointsScoredOverallFirstQuarter += e.pointsScoredFirstQuarter
+      this.team2GameStatsDto.pointsScoredOverallSecondQuarter += e.pointsScoredSecondQuarter
+      this.team2GameStatsDto.pointsScoredOverallThirdQuarter += e.pointsScoredThirdQuarter
+      this.team2GameStatsDto.pointsScoredOverallFourthQuarter += e.pointsScoredFourthQuarter
+      this.team2GameStatsDto.pointsAllowedOverallGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team2GameStatsDto.pointsAllowedOverallFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+      this.team2GameStatsDto.pointsAllowedOverallSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team2GameStatsDto.pointsAllowedOverallFirstQuarter += e.pointsAllowedFirstQuarter
+      this.team2GameStatsDto.pointsAllowedOverallSecondQuarter += e.pointsAllowedSecondQuarter
+      this.team2GameStatsDto.pointsAllowedOverallThirdQuarter += e.pointsAllowedThirdQuarter
+      this.team2GameStatsDto.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
       if (e.teamAgainstId == team1[0].teamId) {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonVsOpponent += 1 : this.team2GameStatsDto.quarterOneLostVsOpponent += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team2GameStatsDto.quarterTwoLostVsOpponent += 1;
@@ -1466,19 +1466,19 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDto.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team2GameStatsDto.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
         this.team2GameStatsDto.pointsScoredVsTeamGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamSecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamFirstQuarter = e.pointsScoredFirstQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamSecondQuarter = e.pointsScoredSecondQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamThirdQuarter = e.pointsScoredThirdQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamFourthQuarter = e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamSecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamFirstQuarter = e.pointsAllowedFirstQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamSecondQuarter = e.pointsAllowedSecondQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamThirdQuarter = e.pointsAllowedThirdQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamFourthQuarter = e.pointsAllowedFourthQuarter
+      this.team2GameStatsDto.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+      this.team2GameStatsDto.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+      this.team2GameStatsDto.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
+      this.team2GameStatsDto.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
+      this.team2GameStatsDto.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
+      this.team2GameStatsDto.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
+      this.team2GameStatsDto.pointsAllowedVsTeamGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team2GameStatsDto.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+      this.team2GameStatsDto.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+      this.team2GameStatsDto.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
+      this.team2GameStatsDto.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
+      this.team2GameStatsDto.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
+      this.team2GameStatsDto.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
       }
       if (e.homeOrAway == "Home") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonHome += 1 : this.team2GameStatsDto.quarterOneLostHome += 1;
@@ -1501,20 +1501,20 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDto.totalHomeSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
         this.team2GameStatsDto.totalHomeThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team2GameStatsDto.totalHomeFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team2GameStatsDto.pointsScoredHomeGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team2GameStatsDto.pointsScoredHomeFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-        this.team2GameStatsDto.pointsScoredHomeSecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team2GameStatsDto.pointsScoredHomeFirstQuarter = e.pointsScoredFirstQuarter
-        this.team2GameStatsDto.pointsScoredHomeSecondQuarter = e.pointsScoredSecondQuarter
-        this.team2GameStatsDto.pointsScoredHomeThirdQuarter = e.pointsScoredThirdQuarter
-        this.team2GameStatsDto.pointsScoredHomeFourthQuarter = e.pointsScoredFourthQuarter
-        this.team2GameStatsDto.pointsAllowedHomeGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team2GameStatsDto.pointsAllowedHomeFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-        this.team2GameStatsDto.pointsAllowedHomeSecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team2GameStatsDto.pointsAllowedHomeFirstQuarter = e.pointsAllowedFirstQuarter
-        this.team2GameStatsDto.pointsAllowedHomeSecondQuarter = e.pointsAllowedSecondQuarter
-        this.team2GameStatsDto.pointsAllowedHomeThirdQuarter = e.pointsAllowedThirdQuarter
-        this.team2GameStatsDto.pointsAllowedHomeFourthQuarter = e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsScoredHomeGame += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsScoredHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+        this.team2GameStatsDto.pointsScoredHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsScoredHomeFirstQuarter += e.pointsScoredFirstQuarter
+        this.team2GameStatsDto.pointsScoredHomeSecondQuarter += e.pointsScoredSecondQuarter
+        this.team2GameStatsDto.pointsScoredHomeThirdQuarter += e.pointsScoredThirdQuarter
+        this.team2GameStatsDto.pointsScoredHomeFourthQuarter += e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsAllowedHomeGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsAllowedHomeFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+        this.team2GameStatsDto.pointsAllowedHomeSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsAllowedHomeFirstQuarter += e.pointsAllowedFirstQuarter
+        this.team2GameStatsDto.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
+        this.team2GameStatsDto.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
+        this.team2GameStatsDto.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
         
       }
       else if (e.homeOrAway == "Away") {
@@ -1538,20 +1538,20 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDto.totalAwaySecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
         this.team2GameStatsDto.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team2GameStatsDto.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team2GameStatsDto.pointsScoredAwayGame = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team2GameStatsDto.pointsScoredAwayFirstHalf = e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-        this.team2GameStatsDto.pointsScoredAwaySecondHalf = e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team2GameStatsDto.pointsScoredAwayFirstQuarter = e.pointsScoredFirstQuarter
-        this.team2GameStatsDto.pointsScoredAwaySecondQuarter = e.pointsScoredSecondQuarter
-        this.team2GameStatsDto.pointsScoredAwayThirdQuarter = e.pointsScoredThirdQuarter
-        this.team2GameStatsDto.pointsScoredAwayFourthQuarter = e.pointsScoredFourthQuarter
-        this.team2GameStatsDto.pointsAllowedAwayGame = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team2GameStatsDto.pointsAllowedAwayFirstHalf = e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-        this.team2GameStatsDto.pointsAllowedAwaySecondHalf = e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team2GameStatsDto.pointsAllowedAwayFirstQuarter = e.pointsAllowedFirstQuarter
-        this.team2GameStatsDto.pointsAllowedAwaySecondQuarter = e.pointsAllowedSecondQuarter
-        this.team2GameStatsDto.pointsAllowedAwayThirdQuarter = e.pointsAllowedThirdQuarter
-        this.team2GameStatsDto.pointsAllowedAwayFourthQuarter = e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsScoredAwayGame += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsScoredAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+        this.team2GameStatsDto.pointsScoredAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsScoredAwayFirstQuarter += e.pointsScoredFirstQuarter
+        this.team2GameStatsDto.pointsScoredAwaySecondQuarter += e.pointsScoredSecondQuarter
+        this.team2GameStatsDto.pointsScoredAwayThirdQuarter += e.pointsScoredThirdQuarter
+        this.team2GameStatsDto.pointsScoredAwayFourthQuarter += e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsAllowedAwayGame += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsAllowedAwayFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+        this.team2GameStatsDto.pointsAllowedAwaySecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsAllowedAwayFirstQuarter += e.pointsAllowedFirstQuarter
+        this.team2GameStatsDto.pointsAllowedAwaySecondQuarter += e.pointsAllowedSecondQuarter
+        this.team2GameStatsDto.pointsAllowedAwayThirdQuarter += e.pointsAllowedThirdQuarter
+        this.team2GameStatsDto.pointsAllowedAwayFourthQuarter += e.pointsAllowedFourthQuarter
       }
     })
   }
