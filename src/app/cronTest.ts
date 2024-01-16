@@ -89,10 +89,10 @@ export const cronTestFile = async () => {
     }
 
     //load team stats
-    /* for(const team of listOfGamesToday){
+     for(const team of listOfGamesToday){
         let result = await newNbaApiController.loadTeamGameStats(arrayOfNBATeams[addUnderScoreToName(team.teamName)], 2023)
         await NbaController.nbaAddTeamGameStats(result)
-    } */
+    } 
 
 
 
