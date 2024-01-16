@@ -1464,7 +1464,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDto.totalVsTeamSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
         this.team2GameStatsDto.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team2GameStatsDto.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team2GameStatsDto.pointsScoredVsTeamGame = e.pointsScoredOverall
+        this.team2GameStatsDto.pointsScoredVsTeamGame += e.pointsScoredOverall
       this.team2GameStatsDto.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
       this.team2GameStatsDto.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
       this.team2GameStatsDto.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
