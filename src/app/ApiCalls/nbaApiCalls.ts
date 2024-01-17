@@ -181,6 +181,10 @@ export class nbaApiController {
             playerName = playerName.replaceAll(".", "")
           }
 
+          if(playerName == "Kevin Knox II"){
+            playerName = "Kevin Knox";
+          }
+
           if (playerName == "Taj Gibson" && this.arrayOfNbaTeamIds[i] == 41) {
             return
           }

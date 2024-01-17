@@ -1,4 +1,4 @@
-<div style="height: 100vh; background-color: #252324;">
+<div style="height: 100vh; width: 100%; background-color: #252324;">
 
 
   <mat-tab-group class="sports-tab" [backgroundColor]="'warn'" (selectedTabChange)="onSportClick($event)">
@@ -18,8 +18,8 @@
     <mat-tab label="Game Props"></mat-tab>
     <mat-tab label="Player Props"></mat-tab>
   </mat-tab-group>
-  <!-- background-color: '{{displayPropHtml1.teamInfo[0].primaryColor}}'; -->
-  <div *ngIf="gamePropsClicked">
+
+  <div *ngIf="gamePropsClicked" style="">
     <mat-progress-bar mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
     <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1:1">
       <mat-grid-tile rowspan="{{(team1GameStats.length/2) + 8}}"
