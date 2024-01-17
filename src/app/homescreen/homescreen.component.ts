@@ -21,6 +21,10 @@ export class HomeScreenComponent {
     this.router.navigate(["/props"])
   }
 
+  playerStatsClicked(){
+    this.router.navigate(["/playerStats/NBA/279"])
+  }
+
 
 
   public buttonClick(event: string){

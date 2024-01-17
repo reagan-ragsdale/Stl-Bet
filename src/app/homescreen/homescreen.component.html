@@ -1,48 +1,19 @@
-<div>
+<div style=" height: 100%; width: 100%; background-color:#31304d;">
 
-  <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">Sports Betting App</h1>
-   <!--  <span class="example-spacer" ></span>
-    <mat-chip-listbox aria-label="Fish selection">
-      <mat-chip-option color="accent" selected>Draft Kings</mat-chip-option>
-      <mat-chip-option color="accent">Fan Duel</mat-chip-option>
-      <mat-chip-option color="accent">Barstool</mat-chip-option>
-    </mat-chip-listbox> -->
-  </mat-toolbar>
-  
-  
-  <mat-sidenav-container >
-  
-    <mat-sidenav [(opened)]="opened">
-      <button mat-raised-button color="primary" (click)="clicked = true" >Home</button>
-      <button mat-raised-button color="primary" (click)="clicked = true" >Sports Betting</button>
-      <button mat-raised-button color="primary" (click)="clicked = true" >Player Stats</button>
-    </mat-sidenav>
-  
-    <mat-sidenav-content >
-      <mat-card *ngIf="!clicked && !predictionClicked">
-        <mat-card-content class="welcome">
-          <p>Welcome, This application is currently a work in progress. It is designed
-            to offer you the best stats before placing a bet</p>
-          <button mat-raised-button color="primary" (click)="propClicked()" >Props</button>
-          <br>
-          <br>
-          <button mat-raised-button color="primary" (click)="predictionClicked = true" [disabled]="true">Predictions</button>
-        </mat-card-content>
-      </mat-card>
-      <router-outlet></router-outlet>
-      <!-- <app-prediction-screen *ngIf="predictionClicked"></app-prediction-screen> -->
-  
-  
-  
-  
-    </mat-sidenav-content>
-  
-  
-  
-  </mat-sidenav-container>
+  <div style=" width: 100%; height: 100px; display: flex; ">
+    <div style="width: 33%; height: inherit;  display:block;">
+      <h1 style=" text-align: center; color: #F0ECE5; font-size: xx-large; transform: translateY(50%)">
+        Sports Betting App
+      </h1>
+    </div>
+    <div style="width: 67%; height: 100%;  display: flex;">
+      <div class="top-button" style="transform: translateY(20%); text-align: center; gap: 1rem; display:flex; margin-left: 50%; ">
+        <button mat-button style="background-color: #31304d; color: #F0ECE5" (click)="propClicked()" >Props</button>
+        <button mat-button style="background-color: #31304d; color: #F0ECE5" (click)="playerStatsClicked()" >Player Stats</button>
+      </div>      
+    </div>
+
+    <!-- <button mat-raised-button style="background-color: #B6BBC4; color: #F0ECE5" (click)="propClicked()" >Props</button> -->
+  </div>
 
 </div>
-
-  
