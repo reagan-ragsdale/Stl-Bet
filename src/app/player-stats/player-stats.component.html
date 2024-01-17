@@ -1,182 +1,184 @@
 <div style="height: 100vh;">
 
 
-<mat-grid-list cols="4" rowHeight="50px">
+  <mat-grid-list cols="4" rowHeight="50px">
 
-  <mat-grid-tile colspan="4" style=" display: flex; gap: 2rem;" [ngStyle]="{ backgroundColor: teamInfo[0].primaryColor}">
+    <mat-grid-tile colspan="4" style=" display: flex; gap: 2rem;"
+      [ngStyle]="{ backgroundColor: teamInfo[0].primaryColor}">
 
-    <div style="display: flex; gap: 1rem; align-items: flex-start;">
-      <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}" style="font-size: 200%;">{{playerName}}: </h1>
-      <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}">{{teamInfo[0].teamName}}</h1>
-    </div>
-    
-    <div style="display: flex; gap: 1rem;">
-      <h2 [ngStyle]="{ color: teamInfo[0].alternateColor}" style="align-items: center; justify-content: center; ">Search Player</h2>
-      <form style="align-items: center;" class="example-form">
-        <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
-            (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
-              (onSelectionChange)="loadNewPlayer(player.playerId, player.playerName)">
-              {{player.playerName}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </form>
-    </div>
-    
-  </mat-grid-tile>
+      <div style="display: flex; gap: 1rem; align-items: flex-start;">
+        <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}" style="font-size: 200%;">{{playerName}}: </h1>
+        <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}">{{teamInfo[0].teamName}}</h1>
+      </div>
 
+      <div style="display: flex; gap: 1rem;">
+        <h2 [ngStyle]="{ color: teamInfo[0].alternateColor}" style="align-items: center; justify-content: center; ">
+          Search Player</h2>
+        <form style="align-items: center;" class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
+              (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
+                (onSelectionChange)="loadNewPlayer(player.playerId, player.playerName)">
+                {{player.playerName}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
 
-
-
-
-  <mat-grid-tile rowspan="8" style="min-width: 300px;">
-    <canvas id="lineChart">{{ chart }}</canvas>
-
-  </mat-grid-tile>
-
-
-  <mat-grid-tile rowspan="8" style="min-width: 300px;">
-    <canvas id="barChart">{{ chart2 }}</canvas>
-  </mat-grid-tile>
-
-  <mat-grid-tile rowspan="8" style="min-width: 300px;">
-    <canvas id="NormalDistChart">{{ chart3 }}</canvas>
-
-  </mat-grid-tile>
-
-  <mat-grid-tile rowspan="8" style="min-width: 300px;">
-
-    <span class="example-list-section">
-      <mat-slide-toggle [(ngModel)]="isCombineStats" (ngModelChange)="reDrawLineGraph()">Combine
-        Stats</mat-slide-toggle>
-      <ul>
-        <li *ngFor="let box of fullDataset">
-          <mat-checkbox [(ngModel)]="box.showLine" [color]="box.color" (ngModelChange)="reDrawLineGraph()">
-            {{box.label}}
-          </mat-checkbox>
-        </li>
-      </ul>
-    </span>
-    <mat-form-field>
-      <mat-select placeholder="{{playerSeason}}">
-        <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
-          value="season">
-          {{season}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-grid-tile>
+    </mat-grid-tile>
 
 
 
 
 
+    <mat-grid-tile rowspan="8" style="min-width: 300px;">
+      <canvas id="lineChart">{{ chart }}</canvas>
 
-  <mat-grid-tile rowspan="1" colspan="4" [ngStyle]="{ backgroundColor: teamInfo[0].primaryColor}">
-    <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}"> Stats</h1>
-  </mat-grid-tile>
-
-
+    </mat-grid-tile>
 
 
-  <mat-grid-tile colspan="2" rowspan="{{(seasonArrayTable.length/2) + 1}}" style="overflow:visible;">
-    <table mat-table [dataSource]="seasonArrayTable" class="mat-elevation-z8" style="height: inherit;">
+    <mat-grid-tile rowspan="8" style="min-width: 300px;">
+      <canvas id="barChart">{{ chart2 }}</canvas>
+    </mat-grid-tile>
 
-      <ng-container matColumnDef="Game">
-        <th mat-header-cell *matHeaderCellDef> Game </th>
-        <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
-          {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
-        </td>
-        <td mat-footer-cell *matFooterCellDef> Average </td>
-      </ng-container>
+    <mat-grid-tile rowspan="8" style="min-width: 300px;">
+      <canvas id="NormalDistChart">{{ chart3 }}</canvas>
 
-      <ng-container matColumnDef="Date">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.gameDate}}
-        </td>
-        <td mat-footer-cell *matFooterCellDef> </td>
-      </ng-container>
+    </mat-grid-tile>
 
-      <ng-container matColumnDef="Points">
-        <th mat-header-cell *matHeaderCellDef> Points </th>
-        <td mat-cell *matCellDef="let element"> {{element.points}} </td>
-        <td mat-footer-cell *matFooterCellDef> {{getTotalCost('points')}} </td>
-      </ng-container>
+    <mat-grid-tile rowspan="8" style="min-width: 300px;">
 
-      <ng-container matColumnDef="Assists">
-        <th mat-header-cell *matHeaderCellDef> Assists </th>
-        <td mat-cell *matCellDef="let element"> {{element.assists}} </td>
-        <td mat-footer-cell *matFooterCellDef> {{getTotalCost('assists')}} </td>
-      </ng-container>
+      <span class="example-list-section">
+        <mat-slide-toggle [(ngModel)]="isCombineStats" (ngModelChange)="reDrawLineGraph()">Combine
+          Stats</mat-slide-toggle>
+        <ul>
+          <li *ngFor="let box of fullDataset">
+            <mat-checkbox [(ngModel)]="box.showLine" [color]="box.color" (ngModelChange)="reDrawLineGraph()">
+              {{box.label}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+      <mat-form-field>
+        <mat-select placeholder="{{playerSeason}}">
+          <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
+            value="season">
+            {{season}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
 
-      <ng-container matColumnDef="Rebounds">
-        <th mat-header-cell *matHeaderCellDef> Rebounds </th>
-        <td mat-cell *matCellDef="let element"> {{element.totReb}} </td>
-        <td mat-footer-cell *matFooterCellDef> {{getTotalCost('totReb')}} </td>
-      </ng-container>
 
-      <ng-container matColumnDef="Blocks">
-        <th mat-header-cell *matHeaderCellDef> Blocks </th>
-        <td mat-cell *matCellDef="let element"> {{element.blocks}} </td>
-        <td mat-footer-cell *matFooterCellDef> {{getTotalCost('blocks')}} </td>
-      </ng-container>
 
-      <ng-container matColumnDef="Threes">
-        <th mat-header-cell *matHeaderCellDef> Threes </th>
-        <td mat-cell *matCellDef="let element"> {{element.tpm}} </td>
-        <td mat-footer-cell *matFooterCellDef> {{getTotalCost('tpm')}} </td>
-      </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-      <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: displayedColumns; "
-        style="height:auto;"></tr>
-      <tr mat-footer-row *matFooterRowDef="displayedColumns" style="border-top: 2px solid black;"></tr>
-    </table>
-  </mat-grid-tile>
 
-  <mat-grid-tile rowspan="8" colspan="2">
-    <div style="height: inherit; width: 100%; ">
-      <mat-grid-list cols="4" rowHeight="10px">
-        <mat-grid-tile colspan="4" rowspan="15"
-          style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start;">
-          <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
-            <div style="display: flex; ">
-              <mat-form-field *ngFor="let forms of formArray" style="padding-left: 1rem; padding-top: 1rem; ">
-                <mat-label>Select</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
-                    value={{stat.dataName}}>{{stat.label}}</mat-option>
-                </mat-select>
-                <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
-                <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
-                  (click)="$event.stopPropagation()">Delete</button>
 
-              </mat-form-field>
-              <div style="display: flex; flex-direction: column; padding-top: 2rem; gap: 1rem;">
-                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
-                  (click)="addStatForm()">Add</button>
-                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
-                  (click)="clearSearch()">Clear</button>
-                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
-                  (click)="searchNumberSubmit()">Search</button>
+    <mat-grid-tile rowspan="1" colspan="4" [ngStyle]="{ backgroundColor: teamInfo[0].primaryColor}">
+      <h1 [ngStyle]="{ color: teamInfo[0].alternateColor}"> Stats</h1>
+    </mat-grid-tile>
+
+
+
+
+    <mat-grid-tile colspan="2" rowspan="{{(seasonArrayTable.length/2) + 1}}" style="overflow:visible;">
+      <table mat-table [dataSource]="seasonArrayTable" class="mat-elevation-z8" style="height: inherit;">
+
+        <ng-container matColumnDef="Game">
+          <th mat-header-cell *matHeaderCellDef> Game </th>
+          <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
+            {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
+          </td>
+          <td mat-footer-cell *matFooterCellDef> Average </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.gameDate}}
+          </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Points">
+          <th mat-header-cell *matHeaderCellDef> Points </th>
+          <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost('points')}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Assists">
+          <th mat-header-cell *matHeaderCellDef> Assists </th>
+          <td mat-cell *matCellDef="let element"> {{element.assists}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost('assists')}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Rebounds">
+          <th mat-header-cell *matHeaderCellDef> Rebounds </th>
+          <td mat-cell *matCellDef="let element"> {{element.totReb}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost('totReb')}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Blocks">
+          <th mat-header-cell *matHeaderCellDef> Blocks </th>
+          <td mat-cell *matCellDef="let element"> {{element.blocks}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost('blocks')}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Threes">
+          <th mat-header-cell *matHeaderCellDef> Threes </th>
+          <td mat-cell *matCellDef="let element"> {{element.tpm}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCost('tpm')}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+        <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: displayedColumns; "
+          style="height:auto;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns" style="border-top: 2px solid black;"></tr>
+      </table>
+    </mat-grid-tile>
+
+    <mat-grid-tile rowspan="8" colspan="2">
+      <div style="height: inherit; width: 100%; ">
+        <mat-grid-list cols="4" rowHeight="10px">
+          <mat-grid-tile colspan="4" rowspan="15"
+            style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start;">
+            <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
+              <div style="display: flex; ">
+                <mat-form-field *ngFor="let forms of formArray" style="padding-left: 1rem; padding-top: 1rem; ">
+                  <mat-label>Select</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
+                      value={{stat.dataName}}>{{stat.label}}</mat-option>
+                  </mat-select>
+                  <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
+                  <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
+                    (click)="$event.stopPropagation()">Delete</button>
+
+                </mat-form-field>
+                <div style="display: flex; flex-direction: column; padding-top: 2rem; gap: 1rem;">
+                  <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                    (click)="addStatForm()">Add</button>
+                  <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                    (click)="clearSearch()">Clear</button>
+                  <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                    (click)="searchNumberSubmit()">Search</button>
+                </div>
+
               </div>
 
             </div>
 
-          </div>
 
 
 
+          </mat-grid-tile>
 
-        </mat-grid-tile>
-
-      </mat-grid-list>
-    </div>
+        </mat-grid-list>
+      </div>
 
 
-  </mat-grid-tile>
-</mat-grid-list>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

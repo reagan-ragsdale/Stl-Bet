@@ -22,7 +22,7 @@
   <div *ngIf="gamePropsClicked" style="">
     <mat-progress-bar mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
     <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1:1">
-      <mat-grid-tile rowspan="{{(team1GameStats.length/2) + 8}}"
+      <mat-grid-tile rowspan="{{(team1GameStats.length/2) + 8}}" colspan="1"
         [ngStyle]="{ backgroundColor: displayPropHtml1.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="16" rowHeight="5px">
@@ -3601,7 +3601,7 @@
         </div>
       </mat-grid-tile>
       <!-- background-color: '{{displayPropHtml2.teamInfo[0].primaryColor}}'; -->
-      <mat-grid-tile rowspan="{{(team2GameStats.length/2) + 8}}"
+      <mat-grid-tile rowspan="{{(team2GameStats.length/2) + 8}}" colspan="1"
         [ngStyle]="{ backgroundColor: displayPropHtml2.primaryColor}">
         <div style="height: inherit; width: 100%; ">
           <mat-grid-list cols="16" rowHeight="5px">
