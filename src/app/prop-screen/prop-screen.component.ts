@@ -1293,7 +1293,13 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStatsDto.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
 
       if (e.teamAgainstId == team2[0].teamId) {
-        this.team1GameVsOpponentData.push(e)
+        if(e.homeOrAway == "Home") {
+          this.team1GameVsOpponentData.push({data: e, homeOrAway: "home"})
+        }
+        else{
+          this.team1GameVsOpponentData.push({data: e, homeOrAway: "away"})
+        }
+        
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonVsOpponent += 1 : this.team1GameStatsDto.quarterOneLostVsOpponent += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDto.quarterTwoLostVsOpponent += 1;
         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonVsOpponent += 1 : this.team1GameStatsDto.quarterThreeLostVsOpponent += 1;

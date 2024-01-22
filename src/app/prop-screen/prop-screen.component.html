@@ -19,7 +19,7 @@
     <mat-tab label="Player Props"></mat-tab>
   </mat-tab-group>
 
-  <div *ngIf="gamePropsClicked" style="">
+  <div *ngIf="gamePropsClicked" >
     <mat-progress-bar mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
     <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1:1">
       <mat-grid-tile rowspan="{{(team1GameStats.length/2) + 8}}" colspan="1"
@@ -3556,7 +3556,7 @@
         
                   <ng-container matColumnDef="result">
                     <th mat-header-cell *matHeaderCellDef> Result </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pointsScoredOverall}} - {{element.pointsAllowedOverall}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.homeOrAway == "home" ? "H" : "A"}}{{element.data.pointsScoredOverall}} - {{element.data.pointsAllowedOverall}} {{element.homeOrAway == "home" ? "A" : "H"}} </td>
                   </ng-container>
         
                   <ng-container matColumnDef="q1Points">
