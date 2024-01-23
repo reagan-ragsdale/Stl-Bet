@@ -3550,7 +3550,7 @@
                 <table mat-table [dataSource]="team1GameVsOpponentData" style="justify-self: flex-end;">
                   <ng-container matColumnDef="date" >
                     <th mat-header-cell *matHeaderCellDef> Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.gameDate}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.data.gameDate}} </td>
                   </ng-container>
         
         
@@ -3561,7 +3561,7 @@
         
                   <ng-container matColumnDef="q1Points">
                     <th mat-header-cell *matHeaderCellDef> Q1 Result</th>
-                    <td mat-cell *matCellDef="let element">{{element.pointsScoredFirstQuarter}} - {{element.pointsAllowedFirstQuarter}}</td>
+                    <td mat-cell *matCellDef="let element">{{element.data.pointsScoredFirstQuarter}} - {{element.data.pointsAllowedFirstQuarter}}</td>
                   </ng-container>
         <!-- 
                    <ng-container matColumnDef="q2Points">
@@ -7138,17 +7138,17 @@
          -->
                    <ng-container matColumnDef="q2Points">
                     <th mat-header-cell *matHeaderCellDef> Q2 Result </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pointsScoredSecondQuarter}} - {{element.pointsAllowedSecondQuarter}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.data.pointsScoredSecondQuarter}} - {{element.data.pointsAllowedSecondQuarter}} </td>
                   </ng-container>
         
                   <ng-container matColumnDef="q3Points">
                     <th mat-header-cell *matHeaderCellDef> Q3 Result </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pointsScoredThirdQuarter}} - {{element.pointsAllowedThirdQuarter}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.data.pointsScoredThirdQuarter}} - {{element.data.pointsAllowedThirdQuarter}} </td>
                   </ng-container>
 
                   <ng-container matColumnDef="q4Points">
                     <th mat-header-cell *matHeaderCellDef> Q4 Result </th>
-                    <td mat-cell *matCellDef="let element"> {{element.pointsScoredFourthQuarter}} - {{element.pointsAllowedFourthQuarter}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.data.pointsScoredFourthQuarter}} - {{element.data.pointsAllowedFourthQuarter}} </td>
                   </ng-container>
            
                   

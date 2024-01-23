@@ -2610,7 +2610,7 @@
     "createdAt": "2023-11-14T22:40:30.194Z"
   },
   {
-    "id": "tlyz0p7tdqlkjijlkhny2x26",
+    "id": "r05i7rhyhb351wlblyb7jcf0",
     "bookId": "e0f0e4873572cba4283ce8eeb91b8c62",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2620,12 +2620,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "h2h",
     "teamName": "Cleveland Cavaliers",
-    "price": -135,
+    "price": -142,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.765Z"
+    "createdAt": "2024-01-22T21:50:00.824Z"
   },
   {
-    "id": "gbqdvuu7pnyuuwfgowsgwodc",
+    "id": "zcc8a598wbm6ctkojhujk0qu",
     "bookId": "e0f0e4873572cba4283ce8eeb91b8c62",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2635,12 +2635,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "h2h",
     "teamName": "Orlando Magic",
-    "price": 114,
+    "price": 120,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.768Z"
+    "createdAt": "2024-01-22T21:50:00.826Z"
   },
   {
-    "id": "ev7485aosh1u2aqqxnaaljch",
+    "id": "nptnd8c08oqkbqjto1fl7roq",
     "bookId": "e0f0e4873572cba4283ce8eeb91b8c62",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2650,12 +2650,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "spreads",
     "teamName": "Cleveland Cavaliers",
-    "price": -112,
-    "point": -2,
-    "createdAt": "2024-01-22T20:48:10.770Z"
+    "price": -110,
+    "point": -2.5,
+    "createdAt": "2024-01-22T21:50:00.828Z"
   },
   {
-    "id": "k81ybi43g28y9lu8nywdpvyk",
+    "id": "xp130ztyfnocev5uqfevhrtx",
     "bookId": "e0f0e4873572cba4283ce8eeb91b8c62",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2665,12 +2665,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "spreads",
     "teamName": "Orlando Magic",
-    "price": -108,
-    "point": 2,
-    "createdAt": "2024-01-22T20:48:10.773Z"
+    "price": -110,
+    "point": 2.5,
+    "createdAt": "2024-01-22T21:50:00.830Z"
   },
   {
-    "id": "s3eu16y3v69g5mr001e1s901",
+    "id": "x0i06v9dbxhf0ghzgn8t29c7",
     "bookId": "e0f0e4873572cba4283ce8eeb91b8c62",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2681,11 +2681,11 @@
     "marketKey": "totals",
     "teamName": "Over",
     "price": -110,
-    "point": 215.5,
-    "createdAt": "2024-01-22T20:48:10.775Z"
+    "point": 216,
+    "createdAt": "2024-01-22T21:50:00.832Z"
   },
   {
-    "id": "c5qn4aqex19fnzsnbqp73plv",
+    "id": "swkdu7lrmnit5xibvzrdaclq",
     "bookId": "e0f0e4873572cba4283ce8eeb91b8c62",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2696,11 +2696,11 @@
     "marketKey": "totals",
     "teamName": "Under",
     "price": -110,
-    "point": 215.5,
-    "createdAt": "2024-01-22T20:48:10.778Z"
+    "point": 216,
+    "createdAt": "2024-01-22T21:50:00.834Z"
   },
   {
-    "id": "my63vi1rhrxyi1z9wlb4de99",
+    "id": "q91c9pehsii5e3xi2ljpmvf4",
     "bookId": "1b7e8b8ba66965b9c9239835557f29a9",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2710,12 +2710,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "h2h",
     "teamName": "Detroit Pistons",
-    "price": 575,
+    "price": 550,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.780Z"
+    "createdAt": "2024-01-22T21:50:00.836Z"
   },
   {
-    "id": "dvz7cifaytxhfxu4kw30m12a",
+    "id": "w4l96ujqu80hafgg4nz01hko",
     "bookId": "1b7e8b8ba66965b9c9239835557f29a9",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2725,12 +2725,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "h2h",
     "teamName": "Milwaukee Bucks",
-    "price": -850,
+    "price": -800,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.782Z"
+    "createdAt": "2024-01-22T21:50:00.838Z"
   },
   {
-    "id": "l6f7d3lbm805drqt3wq8fsh0",
+    "id": "qh87esmkclhj7ys0izct9hvh",
     "bookId": "1b7e8b8ba66965b9c9239835557f29a9",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2742,10 +2742,10 @@
     "teamName": "Detroit Pistons",
     "price": -108,
     "point": 12.5,
-    "createdAt": "2024-01-22T20:48:10.785Z"
+    "createdAt": "2024-01-22T21:50:00.839Z"
   },
   {
-    "id": "pvzn5fv6bzdtvz2ot87qb9wn",
+    "id": "j9wqrrndnxu07wpwnae6l5cq",
     "bookId": "1b7e8b8ba66965b9c9239835557f29a9",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2757,10 +2757,10 @@
     "teamName": "Milwaukee Bucks",
     "price": -112,
     "point": -12.5,
-    "createdAt": "2024-01-22T20:48:10.787Z"
+    "createdAt": "2024-01-22T21:50:00.841Z"
   },
   {
-    "id": "hr32jb746qcri4g4xwm5cpci",
+    "id": "iv07hnj0v7g7ydnjq55zvu6i",
     "bookId": "1b7e8b8ba66965b9c9239835557f29a9",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2772,10 +2772,10 @@
     "teamName": "Over",
     "price": -110,
     "point": 247.5,
-    "createdAt": "2024-01-22T20:48:10.789Z"
+    "createdAt": "2024-01-22T21:50:00.843Z"
   },
   {
-    "id": "fb2tbwal6cj1ncvrmb0nft06",
+    "id": "z68gb4q0e4mody8hcmz44osu",
     "bookId": "1b7e8b8ba66965b9c9239835557f29a9",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2787,10 +2787,10 @@
     "teamName": "Under",
     "price": -110,
     "point": 247.5,
-    "createdAt": "2024-01-22T20:48:10.791Z"
+    "createdAt": "2024-01-22T21:50:00.845Z"
   },
   {
-    "id": "iupn79o9jng3thrgsiwuihp2",
+    "id": "ze7k5o6bxwuczy9apvg97m0w",
     "bookId": "2d3e8168f621f021109443894d574900",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2802,10 +2802,10 @@
     "teamName": "Philadelphia 76ers",
     "price": -1000,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.794Z"
+    "createdAt": "2024-01-22T21:50:00.849Z"
   },
   {
-    "id": "rmm6bio6069113r5jvw295mk",
+    "id": "u1z5baw80qey1w8pcdmc9n85",
     "bookId": "2d3e8168f621f021109443894d574900",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2817,10 +2817,10 @@
     "teamName": "San Antonio Spurs",
     "price": 650,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.796Z"
+    "createdAt": "2024-01-22T21:50:00.853Z"
   },
   {
-    "id": "tosimgbaemyydxra5d8gedq8",
+    "id": "lg3v9nn9q10um2un5czhulw2",
     "bookId": "2d3e8168f621f021109443894d574900",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2830,12 +2830,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "spreads",
     "teamName": "Philadelphia 76ers",
-    "price": -105,
+    "price": -108,
     "point": -14,
-    "createdAt": "2024-01-22T20:48:10.799Z"
+    "createdAt": "2024-01-22T21:50:00.857Z"
   },
   {
-    "id": "w9fk0xlcw0ct4ncm8xav0pqs",
+    "id": "rl78aj1o9upxlihnsepfe1f2",
     "bookId": "2d3e8168f621f021109443894d574900",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2845,12 +2845,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "spreads",
     "teamName": "San Antonio Spurs",
-    "price": -115,
+    "price": -112,
     "point": 14,
-    "createdAt": "2024-01-22T20:48:10.801Z"
+    "createdAt": "2024-01-22T21:50:00.859Z"
   },
   {
-    "id": "vykt1k5am78nxoblv2g7t4sq",
+    "id": "bq4cilkydg0fqnjkl9tbif8l",
     "bookId": "2d3e8168f621f021109443894d574900",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2861,11 +2861,11 @@
     "marketKey": "totals",
     "teamName": "Over",
     "price": -110,
-    "point": 237,
-    "createdAt": "2024-01-22T20:48:10.803Z"
+    "point": 236.5,
+    "createdAt": "2024-01-22T21:50:00.861Z"
   },
   {
-    "id": "rqxebnlv2a2os1gd04z72w9x",
+    "id": "xz9b1v3eug6po5jaivoei3wj",
     "bookId": "2d3e8168f621f021109443894d574900",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2876,11 +2876,11 @@
     "marketKey": "totals",
     "teamName": "Under",
     "price": -110,
-    "point": 237,
-    "createdAt": "2024-01-22T20:48:10.806Z"
+    "point": 236.5,
+    "createdAt": "2024-01-22T21:50:00.863Z"
   },
   {
-    "id": "tpktu4daqn7lqblyb78l8qbu",
+    "id": "lt2yprpq810vusmc07ccncq2",
     "bookId": "b5d99174d49d5b901ac5ebbaf114cd8d",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2890,12 +2890,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "h2h",
     "teamName": "Memphis Grizzlies",
-    "price": 220,
+    "price": 225,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.808Z"
+    "createdAt": "2024-01-22T21:50:00.865Z"
   },
   {
-    "id": "fgg4v5z9c2b14vxskplcc3zr",
+    "id": "n94o25aw86zccliln9icvtnr",
     "bookId": "b5d99174d49d5b901ac5ebbaf114cd8d",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2905,12 +2905,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "h2h",
     "teamName": "Toronto Raptors",
-    "price": -270,
+    "price": -278,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.810Z"
+    "createdAt": "2024-01-22T21:50:00.867Z"
   },
   {
-    "id": "sfcsdt9dbtsc1nwhuig97uyy",
+    "id": "xvtqmdkqijwcutcen6f3yti0",
     "bookId": "b5d99174d49d5b901ac5ebbaf114cd8d",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2922,10 +2922,10 @@
     "teamName": "Memphis Grizzlies",
     "price": -110,
     "point": 7,
-    "createdAt": "2024-01-22T20:48:10.812Z"
+    "createdAt": "2024-01-22T21:50:00.869Z"
   },
   {
-    "id": "yi9dee7ucnopqp80lslpuo4h",
+    "id": "o0rktlkjkx5z2hn41piyc7tz",
     "bookId": "b5d99174d49d5b901ac5ebbaf114cd8d",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2937,10 +2937,10 @@
     "teamName": "Toronto Raptors",
     "price": -110,
     "point": -7,
-    "createdAt": "2024-01-22T20:48:10.814Z"
+    "createdAt": "2024-01-22T21:50:00.871Z"
   },
   {
-    "id": "kltybnew5m7a3t9srcp4tt2i",
+    "id": "q83ap1y5ux8c2jf47qqbertw",
     "bookId": "b5d99174d49d5b901ac5ebbaf114cd8d",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -2950,87 +2950,87 @@
     "bookMaker": "DraftKings",
     "marketKey": "totals",
     "teamName": "Over",
-    "price": -110,
-    "point": 225.5,
-    "createdAt": "2024-01-22T20:48:10.817Z"
-  },
-  {
-    "id": "ji8mse4905m8h8la1mmej4f0",
-    "bookId": "b5d99174d49d5b901ac5ebbaf114cd8d",
-    "sportKey": "basketball_nba",
-    "sportTitle": "NBA",
-    "homeTeam": "Toronto Raptors",
-    "awayTeam": "Memphis Grizzlies",
-    "commenceTime": "2024-01-23T00:40:00.000Z",
-    "bookMaker": "DraftKings",
-    "marketKey": "totals",
-    "teamName": "Under",
-    "price": -110,
-    "point": 225.5,
-    "createdAt": "2024-01-22T20:48:10.823Z"
-  },
-  {
-    "id": "ejwgc6i4xt8d5dsmzgmhesox",
-    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
-    "sportKey": "basketball_nba",
-    "sportTitle": "NBA",
-    "homeTeam": "Minnesota Timberwolves",
-    "awayTeam": "Charlotte Hornets",
-    "commenceTime": "2024-01-23T01:10:00.000Z",
-    "bookMaker": "DraftKings",
-    "marketKey": "h2h",
-    "teamName": "Charlotte Hornets",
-    "price": 625,
-    "point": 0,
-    "createdAt": "2024-01-22T20:48:10.825Z"
-  },
-  {
-    "id": "cuozinnqmj2tx9ipy23xrvty",
-    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
-    "sportKey": "basketball_nba",
-    "sportTitle": "NBA",
-    "homeTeam": "Minnesota Timberwolves",
-    "awayTeam": "Charlotte Hornets",
-    "commenceTime": "2024-01-23T01:10:00.000Z",
-    "bookMaker": "DraftKings",
-    "marketKey": "h2h",
-    "teamName": "Minnesota Timberwolves",
-    "price": -950,
-    "point": 0,
-    "createdAt": "2024-01-22T20:48:10.827Z"
-  },
-  {
-    "id": "xejpj34beb9azaqdfket9jwd",
-    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
-    "sportKey": "basketball_nba",
-    "sportTitle": "NBA",
-    "homeTeam": "Minnesota Timberwolves",
-    "awayTeam": "Charlotte Hornets",
-    "commenceTime": "2024-01-23T01:10:00.000Z",
-    "bookMaker": "DraftKings",
-    "marketKey": "spreads",
-    "teamName": "Charlotte Hornets",
-    "price": -108,
-    "point": 12.5,
-    "createdAt": "2024-01-22T20:48:10.830Z"
-  },
-  {
-    "id": "k9n5cvanov55zwk3ikjri032",
-    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
-    "sportKey": "basketball_nba",
-    "sportTitle": "NBA",
-    "homeTeam": "Minnesota Timberwolves",
-    "awayTeam": "Charlotte Hornets",
-    "commenceTime": "2024-01-23T01:10:00.000Z",
-    "bookMaker": "DraftKings",
-    "marketKey": "spreads",
-    "teamName": "Minnesota Timberwolves",
     "price": -112,
-    "point": -12.5,
-    "createdAt": "2024-01-22T20:48:10.832Z"
+    "point": 225.5,
+    "createdAt": "2024-01-22T21:50:00.873Z"
   },
   {
-    "id": "d0jyh7trhnbsamwzazfqaz6z",
+    "id": "pxl14lq0b0379aar4nfir6ot",
+    "bookId": "b5d99174d49d5b901ac5ebbaf114cd8d",
+    "sportKey": "basketball_nba",
+    "sportTitle": "NBA",
+    "homeTeam": "Toronto Raptors",
+    "awayTeam": "Memphis Grizzlies",
+    "commenceTime": "2024-01-23T00:40:00.000Z",
+    "bookMaker": "DraftKings",
+    "marketKey": "totals",
+    "teamName": "Under",
+    "price": -108,
+    "point": 225.5,
+    "createdAt": "2024-01-22T21:50:00.875Z"
+  },
+  {
+    "id": "jxshgqdvw9ii3i7c4nilm6ox",
+    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
+    "sportKey": "basketball_nba",
+    "sportTitle": "NBA",
+    "homeTeam": "Minnesota Timberwolves",
+    "awayTeam": "Charlotte Hornets",
+    "commenceTime": "2024-01-23T01:10:00.000Z",
+    "bookMaker": "DraftKings",
+    "marketKey": "h2h",
+    "teamName": "Charlotte Hornets",
+    "price": 600,
+    "point": 0,
+    "createdAt": "2024-01-22T21:50:00.877Z"
+  },
+  {
+    "id": "ls0g5sxeud6duzb8ur2vwymf",
+    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
+    "sportKey": "basketball_nba",
+    "sportTitle": "NBA",
+    "homeTeam": "Minnesota Timberwolves",
+    "awayTeam": "Charlotte Hornets",
+    "commenceTime": "2024-01-23T01:10:00.000Z",
+    "bookMaker": "DraftKings",
+    "marketKey": "h2h",
+    "teamName": "Minnesota Timberwolves",
+    "price": -900,
+    "point": 0,
+    "createdAt": "2024-01-22T21:50:00.879Z"
+  },
+  {
+    "id": "rkodv9qd0zoujc6m8qhw01oa",
+    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
+    "sportKey": "basketball_nba",
+    "sportTitle": "NBA",
+    "homeTeam": "Minnesota Timberwolves",
+    "awayTeam": "Charlotte Hornets",
+    "commenceTime": "2024-01-23T01:10:00.000Z",
+    "bookMaker": "DraftKings",
+    "marketKey": "spreads",
+    "teamName": "Charlotte Hornets",
+    "price": -105,
+    "point": 12.5,
+    "createdAt": "2024-01-22T21:50:00.882Z"
+  },
+  {
+    "id": "zec18iu72umqxjpsnepedmwn",
+    "bookId": "61a2bfc755f758060c29f86800a4ee6c",
+    "sportKey": "basketball_nba",
+    "sportTitle": "NBA",
+    "homeTeam": "Minnesota Timberwolves",
+    "awayTeam": "Charlotte Hornets",
+    "commenceTime": "2024-01-23T01:10:00.000Z",
+    "bookMaker": "DraftKings",
+    "marketKey": "spreads",
+    "teamName": "Minnesota Timberwolves",
+    "price": -115,
+    "point": -12.5,
+    "createdAt": "2024-01-22T21:50:00.885Z"
+  },
+  {
+    "id": "dzg12o3q1jb7ix24iqhb34rr",
     "bookId": "61a2bfc755f758060c29f86800a4ee6c",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3040,12 +3040,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "totals",
     "teamName": "Over",
-    "price": -110,
+    "price": -108,
     "point": 220.5,
-    "createdAt": "2024-01-22T20:48:10.834Z"
+    "createdAt": "2024-01-22T21:50:00.889Z"
   },
   {
-    "id": "zqof0tizp2mrjgkvjzh9jgdk",
+    "id": "di85ubr405qaht0gkkg0rgm3",
     "bookId": "61a2bfc755f758060c29f86800a4ee6c",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3055,12 +3055,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "totals",
     "teamName": "Under",
-    "price": -110,
+    "price": -112,
     "point": 220.5,
-    "createdAt": "2024-01-22T20:48:10.837Z"
+    "createdAt": "2024-01-22T21:50:00.892Z"
   },
   {
-    "id": "wz1v5amm2z47e2dszosidk1x",
+    "id": "rg46ffu20s65wlzo53y6gq1b",
     "bookId": "af25ab1d02115c82509d6e64abf5041a",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3072,10 +3072,10 @@
     "teamName": "Boston Celtics",
     "price": -142,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.839Z"
+    "createdAt": "2024-01-22T21:50:00.894Z"
   },
   {
-    "id": "sj7tl80cj0mh1ww5qiat6in5",
+    "id": "l2w6ul35n3glizzj0ajdf0tg",
     "bookId": "af25ab1d02115c82509d6e64abf5041a",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3087,10 +3087,10 @@
     "teamName": "Dallas Mavericks",
     "price": 120,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.842Z"
+    "createdAt": "2024-01-22T21:50:00.898Z"
   },
   {
-    "id": "usp2o1m4gmxuzcxbdv8o08g8",
+    "id": "iwnl5a5dyv6jg7q4r039nd36",
     "bookId": "af25ab1d02115c82509d6e64abf5041a",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3101,11 +3101,11 @@
     "marketKey": "spreads",
     "teamName": "Boston Celtics",
     "price": -110,
-    "point": -3,
-    "createdAt": "2024-01-22T20:48:10.844Z"
+    "point": -2.5,
+    "createdAt": "2024-01-22T21:50:00.900Z"
   },
   {
-    "id": "nklr2yathw3mxgos6w10rq8y",
+    "id": "txy0gkqnai7rxoioz8qvohm7",
     "bookId": "af25ab1d02115c82509d6e64abf5041a",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3116,11 +3116,11 @@
     "marketKey": "spreads",
     "teamName": "Dallas Mavericks",
     "price": -110,
-    "point": 3,
-    "createdAt": "2024-01-22T20:48:10.847Z"
+    "point": 2.5,
+    "createdAt": "2024-01-22T21:50:00.903Z"
   },
   {
-    "id": "hqlnv9xhs16kuhjclvo1pr3i",
+    "id": "esllad1d5895b75qh2w23der",
     "bookId": "af25ab1d02115c82509d6e64abf5041a",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3130,12 +3130,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "totals",
     "teamName": "Over",
-    "price": -110,
+    "price": -112,
     "point": 239.5,
-    "createdAt": "2024-01-22T20:48:10.850Z"
+    "createdAt": "2024-01-22T21:50:00.905Z"
   },
   {
-    "id": "t1q2n1x8658q4xka5o4wfiyp",
+    "id": "shu19wdji4qnklylcdre0hqr",
     "bookId": "af25ab1d02115c82509d6e64abf5041a",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3145,12 +3145,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "totals",
     "teamName": "Under",
-    "price": -110,
+    "price": -108,
     "point": 239.5,
-    "createdAt": "2024-01-22T20:48:10.853Z"
+    "createdAt": "2024-01-22T21:50:00.907Z"
   },
   {
-    "id": "fdgn3hty7dcl4a18a43efa4b",
+    "id": "fhksqzvgn7n7gbgakwvr7zij",
     "bookId": "df7adb412b7288d797716b62e7fd9c08",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3162,10 +3162,10 @@
     "teamName": "Chicago Bulls",
     "price": 170,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.856Z"
+    "createdAt": "2024-01-22T21:50:00.909Z"
   },
   {
-    "id": "ujx9pxgvlwg4fxcqvm667ux6",
+    "id": "cjhhde9tvyog8vk08eapbu08",
     "bookId": "df7adb412b7288d797716b62e7fd9c08",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3177,10 +3177,10 @@
     "teamName": "Phoenix Suns",
     "price": -205,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.860Z"
+    "createdAt": "2024-01-22T21:50:00.912Z"
   },
   {
-    "id": "k53h6jk40cva6nlaqd5h9rvd",
+    "id": "itq8l892py3w8wu1fkzitxob",
     "bookId": "df7adb412b7288d797716b62e7fd9c08",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3192,10 +3192,10 @@
     "teamName": "Chicago Bulls",
     "price": -110,
     "point": 5.5,
-    "createdAt": "2024-01-22T20:48:10.863Z"
+    "createdAt": "2024-01-22T21:50:00.916Z"
   },
   {
-    "id": "yo1eoh6cj3ua22chalz4lg9b",
+    "id": "oajx346v8dyt4ikxuxjr92i4",
     "bookId": "df7adb412b7288d797716b62e7fd9c08",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3207,10 +3207,10 @@
     "teamName": "Phoenix Suns",
     "price": -110,
     "point": -5.5,
-    "createdAt": "2024-01-22T20:48:10.865Z"
+    "createdAt": "2024-01-22T21:50:00.918Z"
   },
   {
-    "id": "gj0ksxkdxe8n7b35sdkzp8ge",
+    "id": "jphe3520knfd7lmihptohgfy",
     "bookId": "df7adb412b7288d797716b62e7fd9c08",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3222,10 +3222,10 @@
     "teamName": "Over",
     "price": -108,
     "point": 227,
-    "createdAt": "2024-01-22T20:48:10.868Z"
+    "createdAt": "2024-01-22T21:50:00.920Z"
   },
   {
-    "id": "dwocheaoqv54yzevuce6qm4e",
+    "id": "h6v2l4jddp35wfo6146723w7",
     "bookId": "df7adb412b7288d797716b62e7fd9c08",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3237,10 +3237,10 @@
     "teamName": "Under",
     "price": -112,
     "point": 227,
-    "createdAt": "2024-01-22T20:48:10.874Z"
+    "createdAt": "2024-01-22T21:50:00.921Z"
   },
   {
-    "id": "nry3nwa8arddci1mj55flzdu",
+    "id": "zdf4bq9jbg3aeeb1h9bizi40",
     "bookId": "8d10317ba9e722c46b6b5c70d01287fb",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3252,10 +3252,10 @@
     "teamName": "Atlanta Hawks",
     "price": 275,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.876Z"
+    "createdAt": "2024-01-22T21:50:00.924Z"
   },
   {
-    "id": "dpmsoxeku3dykmhsu87wcxfl",
+    "id": "qku75rr70cqehk4unkifia2i",
     "bookId": "8d10317ba9e722c46b6b5c70d01287fb",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3267,10 +3267,10 @@
     "teamName": "Sacramento Kings",
     "price": -345,
     "point": 0,
-    "createdAt": "2024-01-22T20:48:10.878Z"
+    "createdAt": "2024-01-22T21:50:00.926Z"
   },
   {
-    "id": "p5fkionpz0pp4coinlr5dd08",
+    "id": "dnjc2ezw4dtjyn6qg73jtvwu",
     "bookId": "8d10317ba9e722c46b6b5c70d01287fb",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3280,12 +3280,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "spreads",
     "teamName": "Atlanta Hawks",
-    "price": -110,
+    "price": -112,
     "point": 8.5,
-    "createdAt": "2024-01-22T20:48:10.880Z"
+    "createdAt": "2024-01-22T21:50:00.929Z"
   },
   {
-    "id": "bhw1k336bvv6bqn9obz7xars",
+    "id": "su43ax02jajof7q6y9hukprf",
     "bookId": "8d10317ba9e722c46b6b5c70d01287fb",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3295,12 +3295,12 @@
     "bookMaker": "DraftKings",
     "marketKey": "spreads",
     "teamName": "Sacramento Kings",
-    "price": -110,
+    "price": -108,
     "point": -8.5,
-    "createdAt": "2024-01-22T20:48:10.883Z"
+    "createdAt": "2024-01-22T21:50:00.931Z"
   },
   {
-    "id": "n01s7mgw8hyucevhexvvb7rr",
+    "id": "eaovm397ydjsczwbblie0cq9",
     "bookId": "8d10317ba9e722c46b6b5c70d01287fb",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3312,10 +3312,10 @@
     "teamName": "Over",
     "price": -110,
     "point": 237.5,
-    "createdAt": "2024-01-22T20:48:10.886Z"
+    "createdAt": "2024-01-22T21:50:00.933Z"
   },
   {
-    "id": "pjmb3ros38y15l7peaxo9l9r",
+    "id": "ttc4dug8anwfuaz70yplm42i",
     "bookId": "8d10317ba9e722c46b6b5c70d01287fb",
     "sportKey": "basketball_nba",
     "sportTitle": "NBA",
@@ -3327,6 +3327,6 @@
     "teamName": "Under",
     "price": -110,
     "point": 237.5,
-    "createdAt": "2024-01-22T20:48:10.889Z"
+    "createdAt": "2024-01-22T21:50:00.936Z"
   }
 ]
