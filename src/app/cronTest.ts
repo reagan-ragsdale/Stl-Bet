@@ -8,9 +8,11 @@ import { ArrayOfDates } from "./array-of-dates"
 import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
 import { NbaPlayerInfoDb } from "../shared/dbTasks/NbaPlayerInfoDb"
 import { SportsNameToId } from "./sports-name-to-id"
+import { NbaService } from "./Services/NbaService"
 
 const newDKController = new draftKingsApiController
 const newNbaApiController = new nbaApiController
+const newNbaService = new NbaService
 
 const arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
 const arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
@@ -93,6 +95,15 @@ export const cronTestFile = async () => {
         let result = await newNbaApiController.loadTeamGameStats(arrayOfNBATeams[addUnderScoreToName(team.teamName)], 2023)
         await NbaController.nbaAddTeamGameStats(result)
     } 
+
+
+    //calculate player averages for the home screen that way it doesn't have to take up much time
+    for(const player of allPlayerInfo){
+        let playerStats = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player.playerId, 2023);
+        var averageData = newNbaService.convertPlayerStatDataToPlayerStatAverageData(playerStats)
+        await NbaController.nbaSetPlayerStatAverage(averageData)
+    }
+    
 
 
 

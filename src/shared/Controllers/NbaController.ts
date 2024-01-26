@@ -3,6 +3,7 @@ import { NbaPlayerInfoDb } from "../dbTasks/NbaPlayerInfoDb"
 import { DbNbaGameStats } from "../dbTasks/DbNbaGameStats"
 import { DbNbaTeamLogos } from "../dbTasks/DbNbaTeamLogos"
 import { DbNbaTeamGameStats } from "../dbTasks/DbNbaTeamGameStats"
+import { DbNbaPlayerStatAverages } from "../dbTasks/DbNbaPlayerStatAverages"
 //import { DbNbaTeamGameStats } from "../dbTasks/dbNbaTeamGameStats"
 
 export class NbaController {
@@ -248,6 +249,31 @@ export class NbaController {
     console.log("Below is nbacontroller")
     console.log(name)
     return await taskRepo.find({ where: { teamName: name } })
+  }
+
+
+  // nba player stat averages
+  @BackendMethod({ allowed: true })
+  static async nbaSetPlayerStatAverage(stat: DbNbaPlayerStatAverages) {
+    const taskRepo = remult.repo(DbNbaPlayerStatAverages)
+
+    var playerStat = await taskRepo.find({where: {playerId: stat.playerId}})
+
+    if(playerStat){
+      await taskRepo.delete(playerStat[0])
+    }
+    else{
+      await taskRepo.insert(stat)
+    }
+    
+  }
+
+  @BackendMethod({ allowed: true })
+  static async nbaGetPlayerStatAverage(playerId: number): Promise<DbNbaPlayerStatAverages[]> {
+    const taskRepo = remult.repo(DbNbaPlayerStatAverages)
+
+    return await taskRepo.find({where: {playerId: playerId}})
+    
   }
 
 
