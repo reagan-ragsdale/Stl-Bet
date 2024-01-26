@@ -259,8 +259,8 @@ export class NbaController {
     console.log("here in nbaSetPlayerStatAverage")
 
     var playerStat = await taskRepo.find({where: {playerId: stat.playerId}})
-
-    if(playerStat){
+     console.log(playerStat)
+    if(playerStat.length > 0){
       await taskRepo.delete(playerStat[0])
     }
     else{
