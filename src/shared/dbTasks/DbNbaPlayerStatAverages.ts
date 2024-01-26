@@ -22,46 +22,46 @@ export class DbNbaPlayerStatAverages {
   @Fields.integer()
   season = 0
 
-  @Fields.integer()
+  @Fields.number()
   assists = 0
 
-  @Fields.integer()
+  @Fields.number()
   points = 0
 
-  @Fields.integer()
+  @Fields.number()
   fgp = 0
 
-  @Fields.integer()
+  @Fields.number()
   ftp = 0
 
-  @Fields.integer()
+  @Fields.number()
   tpp = 0
 
-  @Fields.integer()
+  @Fields.number()
   offReb = 0
 
-  @Fields.integer()
+  @Fields.number()
   defReb = 0
 
-  @Fields.integer()
+  @Fields.number()
   totReb = 0
 
-  @Fields.integer()
+  @Fields.number()
   pFouls = 0
 
-  @Fields.integer()
+  @Fields.number()
   steals = 0
 
-  @Fields.integer()
+  @Fields.number()
   turnover = 0
 
-  @Fields.integer()
+  @Fields.number()
   blocks = 0
 
-  @Fields.integer()
+  @Fields.number()
   doubleDouble = 0
 
-  @Fields.integer()
+  @Fields.number()
   tripleDouble = 0
 
   @Fields.createdAt()
