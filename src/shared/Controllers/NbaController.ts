@@ -256,6 +256,7 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaSetPlayerStatAverage(stat: DbNbaPlayerStatAverages) {
     const taskRepo = remult.repo(DbNbaPlayerStatAverages)
+    console.log("here in nbaSetPlayerStatAverage")
 
     var playerStat = await taskRepo.find({where: {playerId: stat.playerId}})
 

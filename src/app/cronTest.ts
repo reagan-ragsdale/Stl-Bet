@@ -99,9 +99,13 @@ export const cronTestFile = async () => {
 
     //calculate player averages for the home screen that way it doesn't have to take up much time
     for(const player of allPlayerInfo){
+        console.log("Here 1")
         let playerStats = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player.playerId, 2023);
+        console.log("Here 2")
         var averageData = newNbaService.convertPlayerStatDataToPlayerStatAverageData(playerStats)
+        console.log("Here 3")
         await NbaController.nbaSetPlayerStatAverage(averageData)
+        console.log("Here 4")
     }
     
 
