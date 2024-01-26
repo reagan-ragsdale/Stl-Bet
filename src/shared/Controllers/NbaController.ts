@@ -4,7 +4,7 @@ import { DbNbaGameStats } from "../dbTasks/DbNbaGameStats"
 import { DbNbaTeamLogos } from "../dbTasks/DbNbaTeamLogos"
 import { DbNbaTeamGameStats } from "../dbTasks/DbNbaTeamGameStats"
 import { DbNbaPlayerStatAverages } from "../dbTasks/DbNbaPlayerStatAverages"
-//import { DbNbaTeamGameStats } from "../dbTasks/dbNbaTeamGameStats"
+import { DbNbaTeamStatAverages } from "../dbTasks/DbNbaTeamStatAverages"
 
 export class NbaController {
 
@@ -120,52 +120,6 @@ export class NbaController {
     const taskRepo2 = remult.repo(DbNbaGameStats)
     console.log("Here in addPlayerGameStats2023")
 
-    /* var db2023: DbNbaGameStats[] = await taskRepo2.find({ where: { playerId: playerData[0].playerId, season: 2023 } })
-    var newGamesToAdd: DbNbaGameStats[] = playerData
-
-    var db2023WithoutIdOrCreatedDate: DbNbaGameStats[] = []
-    if (db2023.length > 0) {
-      db2023.forEach(data => db2023WithoutIdOrCreatedDate.push({
-        playerId: data.playerId,
-        playerName: data.playerName,
-        teamName: data.teamName,
-        teamId: data.teamId,
-        teamAgainstName: data.teamAgainstName,
-        teamAgainstId: data.teamAgainstId,
-        homeOrAway: data.homeOrAway,
-        season: data.season,
-        gameId: data.gameId,
-        gameDate: data.gameDate,
-        playerStarted: data.playerStarted,
-        assists: data.assists,
-        points: data.points,
-        fgm: data.fgm,
-        fga: data.fga,
-        fgp: data.fgp,
-        ftm: data.ftm,
-        fta: data.fta,
-        ftp: data.ftp,
-        tpm: data.tpm,
-        tpa: data.tpa,
-        tpp: data.tpp,
-        offReb: data.offReb,
-        defReb: data.defReb,
-        totReb: data.totReb,
-        pFouls: data.pFouls,
-        steals: data.steals,
-        turnover: data.turnover,
-        blocks: data.blocks,
-        doubleDouble: data.doubleDouble,
-        tripleDouble: data.tripleDouble
-      }))
-      newGamesToAdd = []
-      //if there is already data in for the player then we need to find the difference between the already stored data and the data coming in and then insert just the difference 
-      //instead of deleting everything and reinserting 
-
-      
-      newGamesToAdd = playerData.filter(({gameId: game1}) => !db2023WithoutIdOrCreatedDate.some(({gameId: game2}) => game1 === game2))
-    } */
-
     playerData.forEach((e) => {
       if (e.playerName.includes("ü")) {
         e.playerName = e.playerName.replaceAll("ü", "u")
@@ -179,9 +133,6 @@ export class NbaController {
 
     })
 
-    /* for (const data of newGamesToAdd) {
-      await taskRepo2.insert({ playerId: data.playerId, playerName: data.playerName, teamName: data.teamName, teamId: data.teamId, teamAgainstName: data.teamAgainstName, teamAgainstId: data.teamAgainstId, homeOrAway: data.homeOrAway, season: data.season, gameId: data.gameId, gameDate: data.gameDate, playerStarted: data.playerStarted, assists: data.assists, points: data.points, fgm: data.fgm, fga: data.fga, fgp: data.fgp, ftm: data.ftm, fta: data.fta, ftp: data.ftp, tpm: data.tpm, tpa: data.tpa, tpp: data.tpp, offReb: data.offReb, defReb: data.defReb, totReb: data.totReb, pFouls: data.pFouls, steals: data.steals, turnover: data.turnover, blocks: data.blocks })
-    } */
     await taskRepo2.insert(playerData)
 
   }
@@ -276,6 +227,73 @@ export class NbaController {
     return await taskRepo.find({where: {playerId: playerId}})
     
   }
+
+  @BackendMethod({ allowed: true })
+  static async nbaGetPlayerStatAverageTop5(stat: string): Promise<DbNbaPlayerStatAverages[]> {
+    const taskRepo = remult.repo(DbNbaPlayerStatAverages)
+    var finalData: DbNbaPlayerStatAverages[] = []
+
+    if(stat == "points"){
+      finalData = await taskRepo.find({orderBy: {points: "desc"}, limit: 5})
+    }
+    else if(stat == "assists"){
+      finalData = await taskRepo.find({orderBy: {assists: "desc"}, limit: 5})
+    }
+    else if(stat == "rebounds"){
+      finalData = await taskRepo.find({orderBy: {totReb: "desc"}, limit: 5})
+    }
+    else if(stat == "threes"){
+      finalData = await taskRepo.find({orderBy: {tpp: "desc"}, limit: 5})
+    }
+    return finalData
+    
+    
+  }
+
+
+  // nba team stat averages
+  @BackendMethod({ allowed: true })
+  static async nbaSetTeamStatAverage(stat: DbNbaTeamStatAverages) {
+    const taskRepo = remult.repo(DbNbaTeamStatAverages)
+    console.log("here in nbaSetTeamStatAverage")
+
+    var teamStat = await taskRepo.find({where: {teamId: stat.teamId}})
+    if(teamStat.length > 0){
+      await taskRepo.delete(teamStat[0])
+    }
+    else{
+      await taskRepo.insert(stat)
+    }
+    
+  }
+
+  @BackendMethod({ allowed: true })
+  static async nbaGetTeamStatAverage(teamId: number): Promise<DbNbaTeamStatAverages[]> {
+    const taskRepo = remult.repo(DbNbaTeamStatAverages)
+
+    return await taskRepo.find({where: {teamId: teamId}})
+    
+  }
+
+  @BackendMethod({ allowed: true })
+  static async nbaGetTeamStatAverageTop5(stat: string): Promise<DbNbaTeamStatAverages[]> {
+    const taskRepo = remult.repo(DbNbaTeamStatAverages)
+    var finalData: DbNbaTeamStatAverages[] = []
+    if(stat == "pointsScored"){
+      finalData =  await taskRepo.find({orderBy: {pointsScored: "desc"}, limit: 5})
+    }
+    else if(stat == "wins"){
+      finalData = await taskRepo.find({orderBy: {wins: "desc"}, limit: 5})
+    }
+    else if(stat == "pointsAllowed"){
+      finalData = await taskRepo.find({orderBy: {pointsAllowed: "asc"}, limit: 5})
+    }
+    return finalData
+    
+    
+    
+  }
+
 
 
 

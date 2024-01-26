@@ -1,5 +1,7 @@
 import { DbNbaPlayerStatAverages } from "../../shared/dbTasks/DbNbaPlayerStatAverages"
 import { DbNbaGameStats } from "../../shared/dbTasks/DbNbaGameStats"
+import { DbNbaTeamGameStats } from "../../shared/dbTasks/DbNbaTeamGameStats"
+import { DbNbaTeamStatAverages } from "../../shared/dbTasks/DbNbaTeamStatAverages"
 
 
 
@@ -69,6 +71,39 @@ export class NbaService{
             blocks: dataAverage.blocks/statData.length,
             doubleDouble: dataAverage.doubleDouble/statData.length,
             tripleDouble: dataAverage.tripleDouble/statData.length
+        }
+        return FinalAverageData
+    }
+
+
+    convertTeamStatDataToPlayerStatAverageData(statData: DbNbaTeamGameStats[]) : DbNbaTeamStatAverages {
+        var dataAverage: DbNbaTeamStatAverages = {
+            teamName: "",
+            teamId: 0,
+            season: 0,
+            wins: 0,
+            losses: 0,
+            pointsScored: 0,
+            pointsAllowed: 0,
+            
+        }
+        statData.forEach(game => {
+            dataAverage.teamName = game.teamName,
+            dataAverage.teamId = game.teamId,
+            dataAverage.season = game.season,
+            dataAverage.wins += game.result == "Win" ? 1 : 0,
+            dataAverage.losses += game.result == "Loss" ? 1 : 0,
+            dataAverage.pointsScored += game.pointsScoredOverall,
+            dataAverage.pointsAllowed += game.pointsAllowedOverall
+        })
+        var FinalAverageData: DbNbaTeamStatAverages = {
+            teamName: dataAverage.teamName,
+            teamId: dataAverage.teamId,
+            season: dataAverage.season,
+            wins: dataAverage.wins,
+            losses: dataAverage.losses,
+            pointsScored: dataAverage.pointsScored/statData.length,
+            pointsAllowed: dataAverage.pointsAllowed/statData.length
         }
         return FinalAverageData
     }
