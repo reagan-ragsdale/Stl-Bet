@@ -213,6 +213,7 @@ export class NbaController {
      console.log(playerStat)
     if(playerStat.length > 0){
       await taskRepo.delete(playerStat[0])
+      await taskRepo.insert(stat)
     }
     else{
       await taskRepo.insert(stat)
@@ -260,6 +261,7 @@ export class NbaController {
     var teamStat = await taskRepo.find({where: {teamId: stat.teamId}})
     if(teamStat.length > 0){
       await taskRepo.delete(teamStat[0])
+      await taskRepo.insert(stat)
     }
     else{
       await taskRepo.insert(stat)
