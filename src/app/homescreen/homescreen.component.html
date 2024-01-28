@@ -28,7 +28,21 @@
         <div style=" width: 49.5%; height: 100%; border-right: 1px solid #F0ECE5; border-bottom: 1px solid #F0ECE5; border-radius: 10px; ">
           <h1 style=" width: 100%; text-align: center; margin-top: 1rem; color:#F0ECE5"> Top Players</h1>
           <div style="height: 100%; width: 100%; ">
-            <div *ngFor="let player of playerData" style="height: 15.7%; width: 100%; display: flex; border: 1px solid #F0ECE5; border-radius: 10px;">
+            <div style="height: 10%; width: 100%;border: 1px solid #F0ECE5; border-radius: 10px; display: flex; ">
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Player
+              </div>
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Points
+              </div>
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Assists
+              </div>
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Rebounds
+              </div>
+            </div>
+            <div *ngFor="let player of playerData" style="height: 13.65%; width: 100%; display: flex; border: 1px solid #F0ECE5; border-radius: 10px;">
               <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
                 {{player.playerName}}
               </div>
