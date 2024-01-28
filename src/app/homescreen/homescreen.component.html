@@ -23,33 +23,33 @@
     <div class="game-list" style="height: 100%; width: 10%; border-right: 3px solid #F0ECE5;">
         <button mat-button *ngFor="let game of gamesList" (click)="onSportsListClick(game)" style="display: block; margin: auto; margin-top: 2rem; width: 60px;background-color: #F0ECE5; color: #31304d">{{game}}</button>
     </div>
-    <div style="height: 100%; width:90%; display: flex; flex-direction: column;">
-      <div style="height: 40%; width: 100%; display: flex;">
-        <div style=" width: 50%; height: 100%;">
-          <h1 style=" width: 100%; text-align: center; margin-top: 1rem; background-color: red;"> Top Players</h1>
-          <div style="height: 100%; width: 100%; background-color: blueviolet;">
-            <div *ngFor="let player of playerData" style="height: 20%; width: 100%; background-color: orange;">
-              <div style="height: 100%; width: 20%;">
+    <div style="height: 100%; width:90%; display: flex; flex-direction: column; justify-content: space-between;">
+      <div style="height: 40%; width: 100%; display: flex; justify-content: space-between; ">
+        <div style=" width: 49.5%; height: 100%; border-right: 1px solid #F0ECE5; border-bottom: 1px solid #F0ECE5; border-radius: 10px; ">
+          <h1 style=" width: 100%; text-align: center; margin-top: 1rem; color:#F0ECE5"> Top Players</h1>
+          <div style="height: 100%; width: 100%; ">
+            <div *ngFor="let player of playerData" style="height: 15.7%; width: 100%; display: flex; border: 1px solid #F0ECE5; border-radius: 10px;">
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
                 {{player.playerName}}
               </div>
-              <div style="height: 100%; width: 20%;">
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
                 {{player.points}}
               </div>
-              <div style="height: 100%; width: 20%;">
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
                 {{player.assists}}
               </div>
-              <div style="height: 100%; width: 20%;">
+              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
                 {{player.totReb}}
               </div>
             </div>
           </div>
         </div>
-        <div style="background-color: green; width: 50%; height: 100%">
+        <div style=" width: 49.5%; height: 100%; border-left: 1px solid #F0ECE5; border-bottom: 1px solid #F0ECE5; border-radius: 10px; margin-right: 0;">
           <h1 style="height: 10%; width: 100%; text-align: center; margin-top: 1rem;"> Top Teams</h1>
         </div>
       </div>
       <div style="width: 100%; height: 60%;">
-        <div style="background-color: yellow; width: 100%; height: 100% ">
+        <div style=" width: 100%; height: 100% ">
           <h1 style="height: 10%; width: 100%; text-align: center; "> Upcoming Games</h1>
         </div>
       </div>
