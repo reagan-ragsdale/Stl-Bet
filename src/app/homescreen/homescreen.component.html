@@ -33,13 +33,13 @@
                 {{player.playerName}}
               </div>
               <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{player.points}}
+                {{player.points  | number: '1.0-2'}}
               </div>
               <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{player.assists}}
+                {{player.assists  | number: '1.0-2'}}
               </div>
               <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{player.totReb}}
+                {{player.totReb  | number: '1.0-2'}}
               </div>
             </div>
           </div>
