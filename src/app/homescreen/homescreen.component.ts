@@ -1,6 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
+import { NbaController } from '../../shared/Controllers/NbaController';
+import { SportsBookController } from '../../shared/Controllers/SportsBookController';
 
 @Component({
   selector: 'home-screen',
@@ -16,6 +18,12 @@ export class HomeScreenComponent {
   predictionClicked = false;
   screen: string = '';
 
+  public gamesList: string[] = ["NBA", "NHL", "MLB", "NFL"];
+  public selectedSport = this.gamesList[0]
+
+  public playerData: any[] = []
+  public teamData: any[] = []
+  public gameData: any[] = []
   
   propClicked(){
     this.router.navigate(["/props"])
@@ -25,17 +33,24 @@ export class HomeScreenComponent {
     this.router.navigate(["/playerStats/NBA/279"])
   }
 
+  async onSportsListClick(sport: string){
+   await this.getData(sport)
+  }
 
 
-  public buttonClick(event: string){
-    this.screen = event;
-    //console.log(this.screen);
+  async getData(sport: string){
+    if(sport == "NBA"){
+      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
+      this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
+      this.gameData = await SportsBookController.loadSportBookByH2H(sport)
+    }
+    
   }
 
 
   async ngOnInit(){
- 
-}
+    await this.getData(this.selectedSport)
+  }
 
 
 

@@ -46,8 +46,6 @@ export const api = remultExpress({
     NbaController,
   ],
 
-  //comment out below when local
-  //small change
   dataProvider:
     process.env['DATABASE_URL'] ?
       createPostgresDataProvider({

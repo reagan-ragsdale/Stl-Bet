@@ -11,6 +11,10 @@ mat-toolbar{
 .top-button button{
 
 }
+.game-list button:hover{
+    background-color: #415a77 !important;
+    color: #F0ECE5 !important;
+}
 
 .top-button button:hover{
     cursor: pointer;

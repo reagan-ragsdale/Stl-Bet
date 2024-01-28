@@ -1,13 +1,13 @@
-<div style=" height: 100%; width: auto; background-color:#31304d;">
+<div style=" height: 100%; width: auto; background-color:#31304d; display: block;">
 
-  <div style=" width: auto; height: 70px; display: flex; border-bottom: 3px solid #F0ECE5;">
-    <div style="width: 33%; height: inherit;  display:block;">
-      <h1 style="  color: #F0ECE5; font-size: xx-large; transform: translateY(50%); margin-left: 1rem;">
+  <div style="  height: 8%; width: auto; display: flex; border-bottom: 3px solid #F0ECE5;">
+    <div style="width: 33%; height: 100%;  display:block;">
+      <h1 style="  color: #F0ECE5; font-size: xx-large; transform: translateY(55%); margin-left: 1rem;">
         Sports Betting App
       </h1>
     </div>
     <div style="width: 67%; height: 100%;  display: flex; ">
-      <div class="top-button" style="transform: translateY(20%);  gap: 1rem; display:flex; margin-left: 70%;">
+      <div class="top-button" style="transform: translateY(20%);  gap: 1rem; display:flex; justify-content: flex-end; margin-right: 1rem;">
         <button mat-button style="background-color: #31304d; color: #F0ECE5" (click)="propClicked()" >Props</button>
         <button mat-button style="background-color: #31304d; color: #F0ECE5" (click)="playerStatsClicked()" >Player Stats</button>
         <button mat-button style="background-color: #31304d; color: #F0ECE5"  >Team Stats</button>
@@ -19,8 +19,43 @@
 
     <!-- <button mat-raised-button style="background-color: #B6BBC4; color: #F0ECE5" (click)="propClicked()" >Props</button> -->
   </div>
-  <div>
-
+  <div style=" height: 91.7%; width: auto; display: flex; background-color: #31304d; ">
+    <div class="game-list" style="height: 100%; width: 10%; border-right: 3px solid #F0ECE5;">
+        <button mat-button *ngFor="let game of gamesList" (click)="onSportsListClick(game)" style="display: block; margin: auto; margin-top: 2rem; width: 60px;background-color: #F0ECE5; color: #31304d">{{game}}</button>
+    </div>
+    <div style="height: 100%; width:90%; display: flex; flex-direction: column;">
+      <div style="height: 40%; width: 100%; display: flex;">
+        <div style=" width: 50%; height: 100%;">
+          <h1 style=" width: 100%; text-align: center; margin-top: 1rem; background-color: red;"> Top Players</h1>
+          <div style="height: 100%; background-color: blueviolet;">
+            <div *ngFor="let player of playerData" style="height: 20%; width: 100%; background-color: orange;">
+              <div style="height: 100%; width: 25%;">
+                {{player.playerName}}
+              </div>
+              <div style="height: 100%; width: 25%;">
+                {{player.points}}
+              </div>
+              <div style="height: 100%; width: 25%;">
+                {{player.assists}}
+              </div>
+              <div style="height: 100%; width: 25%;">
+                {{player.totReb}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: green; width: 50%; height: 100%">
+          <h1 style="height: 10%; width: 100%; text-align: center; margin-top: 1rem;"> Top Teams</h1>
+        </div>
+      </div>
+      <div style="width: 100%; height: 60%;">
+        <div style="background-color: yellow; width: 100%; height: 100% ">
+          <h1 style="height: 10%; width: 100%; text-align: center; "> Upcoming Games</h1>
+        </div>
+      </div>
+      
+      
+    </div>
   </div>
 
 </div>
