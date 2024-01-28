@@ -46,6 +46,7 @@ export class HomeScreenComponent {
       {playerName: "luka", points: 21, assists: 5, totReb: 11},
       {playerName: "asdf", points: 21, assists: 5, totReb: 11}] */
        this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
+       console.log(this.playerData)
        /*
       this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) */
