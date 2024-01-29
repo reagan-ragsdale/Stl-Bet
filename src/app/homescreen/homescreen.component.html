@@ -60,6 +60,42 @@
         </div>
         <div style=" width: 49.5%; height: 100%; border-left: 1px solid #F0ECE5; border-bottom: 1px solid #F0ECE5; border-radius: 10px; margin-right: 0;">
           <h1 style="height: 10%; width: 100%; text-align: center; margin-top: 1rem;"> Top Teams</h1>
+          <div style="height: 100%; width: 100%; ">
+            <div style="height: 10%; width: 100%;border: 1px solid #F0ECE5; border-radius: 10px; display: flex; ">
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Team
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Wins
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Losses
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Points Scored
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .5rem; color:#F0ECE5">
+                Points Allowed
+              </div>
+            </div>
+            <div *ngFor="let team of teamData" style="height: 13.65%; width: 100%; display: flex; border: 1px solid #F0ECE5; border-radius: 10px;">
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
+                {{team.teamName}}
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
+                {{team.wins}}
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
+                {{team.losses}}
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
+                {{team.pointsScored  | number: '1.0-2'}}
+              </div>
+              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
+                {{team.pointsAllowed  | number: '1.0-2'}}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div style="width: 100%; height: 60%;">
