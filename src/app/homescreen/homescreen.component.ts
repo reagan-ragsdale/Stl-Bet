@@ -24,6 +24,7 @@ export class HomeScreenComponent {
   public playerData: any[] = []
   public teamData: any[] = []
   public gameData: any[] = []
+  public gameDataFinal: any[] = []
   
   propClicked(){
     this.router.navigate(["/props"])
@@ -44,8 +45,11 @@ export class HomeScreenComponent {
       this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
       
-      this.gameData = this.gameData.filter((value, index, array) => array.indexOf(value.bookId) === index)
-      console.log(this.gameData)
+      this.gameData.forEach(e => {
+        if(!this.gameDataFinal.includes(e.bookId)){
+          this.gameDataFinal.push(e)
+        }
+      })
     }
     
   }
