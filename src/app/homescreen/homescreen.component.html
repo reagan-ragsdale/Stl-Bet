@@ -101,11 +101,11 @@
       <div style="width: 100%; height: 57%; display: flex; align-items: center; margin-top: 1rem;">
         <div style=" width: 98%; height: 99%; border: 1px solid #F0ECE5; border-radius: 10px; margin: 0 auto; display:flex; flex-direction: column;">
           <h1 style="height: 10%; width: 100%; text-align: center; margin-top:1rem; color:#F0ECE5"> Upcoming Games</h1>
-          <div style="height: 85%; width: 100%; display:flex; flex-wrap: wrap; justify-content: space-between; margin-top: 1rem;">
+          <div style="height: 85%; width: 100%; display:flex; flex-wrap: wrap; justify-content: space-between; margin-top: 1rem; margin-left: 1rem; margin-right: 1rem;">
             <div *ngFor="let game of gameDataFinal" style="height:100px; width: 300px; border: 1px solid #F0ECE5; border-radius: 10px; display:flex; flex-direction: column;">
-              <div style=" height: 45%; width: 35%; margin-left:1rem; margin-top:.5rem; color:#F0ECE5; font-size: small; background-color: red;">{{game.awayTeam}}</div>
+              <div style=" height: 45%; width: 35%; margin-left:1rem; margin-top:.5rem; color:#F0ECE5; font-size: small; ">{{game.awayTeam}}</div>
               <div style="height: 5%; width: 10%; color:#F0ECE5; font-size: small; ">@</div>
-              <div style=" height: 45%; width: 35%; margin-left:1rem; margin-top:.5rem; color:#F0ECE5; font-size: small; background-color: red;">{{game.homeTeam}}</div>
+              <div style=" height: 45%; width: 35%; margin-left:1rem; margin-top:.5rem; color:#F0ECE5; font-size: small; ">{{game.homeTeam}}</div>
             </div> 
           </div>
         </div>
