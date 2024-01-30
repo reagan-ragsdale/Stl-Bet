@@ -45,20 +45,9 @@ export class HomeScreenComponent {
       this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
       
-      this.gameData.forEach(e => {
-        if(this.gameDataFinal.length == 0){
-          this.gameDataFinal.push(e)
-        }
-        else{
-          this.gameDataFinal.forEach(d => {
-            if(d.bookId != e.bookId){
-              this.gameDataFinal.push(e)
-            }
-          })
-        }
-        
-        
-      })
+      
+      this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
+      console.log(this.gameDataFinal)
     }
     
   }
