@@ -51,8 +51,8 @@ export class HomeScreenComponent {
        console.log(this.playerData)
        
       this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
-      /*
-      this.gameData = await SportsBookController.loadSportBookByH2H(sport) */
+      
+      this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
     }
     
   }
