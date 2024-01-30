@@ -40,19 +40,11 @@ export class HomeScreenComponent {
 
   async getData(sport: string){
     if(sport == "NBA"){
-      /*
-       this.playerData = [{playerName: "Joel Em", points: 21, assists: 5, totReb: 11},
-      {playerName: "Jays", points: 21, assists: 5, totReb: 11},
-      {playerName: "nikola", points: 21, assists: 5, totReb: 11},
-      {playerName: "luka", points: 21, assists: 5, totReb: 11},
-      {playerName: "asdf", points: 21, assists: 5, totReb: 11}] */
-      
        this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
-       console.log(this.playerData)
-       
       this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
-      
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
+      
+      this.gameData = this.gameData.filter((value, index, array) => array.indexOf(value.bookId) === index)
       console.log(this.gameData)
     }
     
