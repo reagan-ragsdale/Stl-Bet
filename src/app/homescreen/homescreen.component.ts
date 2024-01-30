@@ -49,11 +49,9 @@ export class HomeScreenComponent {
         if(this.gameDataFinal.length == 0){
           this.gameDataFinal.push(e)
         }
-        this.gameDataFinal.forEach(d => {
-          if(!d.includes(e)){
-            this.gameDataFinal.push(e)
-          }
-        })
+        if(!this.gameDataFinal.includes(e)){
+          this.gameDataFinal.push(e)
+        }
         
       })
     }
