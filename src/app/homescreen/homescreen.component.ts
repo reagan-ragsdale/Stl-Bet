@@ -46,9 +46,16 @@ export class HomeScreenComponent {
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
       
       this.gameData.forEach(e => {
-        if(!this.gameDataFinal.includes(e.bookId)){
+        if(this.gameDataFinal.length == 0){
           this.gameDataFinal.push(e)
+          return
         }
+        this.gameDataFinal.forEach(d => {
+          if(!d.includes(e)){
+            this.gameDataFinal.push(e)
+          }
+        })
+        
       })
     }
     
