@@ -17,6 +17,7 @@ export class HomeScreenComponent {
   clicked = false;
   predictionClicked = false;
   screen: string = '';
+  playerStatsButtons: any[] = []
 
   public gamesList: string[] = ["NBA", "NHL", "MLB", "NFL"];
   public selectedSport = this.gamesList[0]
@@ -38,16 +39,36 @@ export class HomeScreenComponent {
    await this.getData(sport)
   }
 
+  async onPlayerStatsClick(stat: any){
+    this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat.dbName)
+    stat.selected = true;
+    let unselected = this.playerData.filter(e => e != stat);
+    unselected.forEach(e => e.selected = false)
+
+  }
+
 
   async getData(sport: string){
     if(sport == "NBA"){
        this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
+       this.playerStatsButtons = [
+        {selected: true,
+        name: "Points",
+        dbName: "points"},
+        {selected: false,
+        name: "Assists",
+        dbName: "assists"},
+        {selected: false,
+        name: "Rebounds",
+        dbName: "rebounds"},
+       ]
       this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
       
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
       console.log(this.gameDataFinal)
+
     }
     
   }
