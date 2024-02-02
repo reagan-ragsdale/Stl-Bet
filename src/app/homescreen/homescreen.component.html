@@ -29,7 +29,7 @@
           <div style="height: 15%; width: 100%; display: flex;">
             <h1 style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#F0ECE5"> Top Players</h1>
             <div style=" height: ingerit; width: 70%; padding-left: 1rem; padding-right: 1rem; padding-top: 1rem; display:flex; gap: 1rem; justify-content: flex-end; ">
-              <button mat-button *ngFor="let stat of playerStatsButtons" style="background-color: #31304d; color: #F0ECE5;" (click)="onPlayerStatsClick(stat)" [ngClass]="stat.selected == true ? 'selected' : 'unselected'" >{{stat.name}}</button>
+              <button mat-button *ngFor="let stat of playerStatsButtons" (click)="onPlayerStatsClick(stat)" [ngClass]="stat.selected == true ? 'selected' : 'unselected'" >{{stat.name}}</button>
             </div>
           </div>
           
