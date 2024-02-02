@@ -42,8 +42,8 @@ export class HomeScreenComponent {
   async onPlayerStatsClick(stat: any){
     this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat.dbName)
     stat.selected = true;
-    let unselected = this.playerData.filter(e => e != stat);
-    unselected.forEach(e => e.selected = false)
+    this.playerStatsButtons.filter(e => e.dbName != stat.dbName).forEach(d => d.selected = false);
+    
 
   }
 
