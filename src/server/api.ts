@@ -2,7 +2,7 @@ import { remultExpress } from 'remult/remult-express';
 //import { Task } from '../shared/dbTasks/Task';
 //import { TaskController } from '../shared/Controllers/TaskController';
 // Changed path from `src/shared/dbTasks/PlayerInfoMlb` to `../shared/dbTasks/PlayerInfoMlb` relative path works better
-import { PlayerInfoMlb } from '../shared/dbTasks/PlayerInfoMlb';
+import { PlayerInfoMlb } from '../shared/dbTasks/DbMlbPlayerInfo';
 import { MlbController } from '../shared/Controllers/MlbController';
 import { DbMlbGameBookData } from '../shared/dbTasks/DbMlbGameBookData';
 import { DbGameBookData } from '../shared/dbTasks/DbGameBookData';

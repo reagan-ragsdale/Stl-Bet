@@ -14,7 +14,7 @@ import { GamePropArray } from '../game-prop-array';
 import { DateArray } from '../date-array';
 import { SportPropArray } from '../sport-prop-array';
 import { remult } from 'remult';
-import { PlayerInfoMlb } from 'src/shared/dbTasks/PlayerInfoMlb';
+import { PlayerInfoMlb } from 'src/shared/dbTasks/DbMlbPlayerInfo';
 import { MlbController } from 'src/shared/Controllers/MlbController';
 import { ISportsBook } from '../isports-book';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';

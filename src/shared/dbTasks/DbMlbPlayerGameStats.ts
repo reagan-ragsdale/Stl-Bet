@@ -17,73 +17,81 @@ export class DBPlayerGameStatsMlb {
   teamId = 0
 
   @Fields.string()
-  player_position = ""
+  teamAgainstName = ""
 
   @Fields.string()
-  player_started = ""
-
-  @Fields.integer()
-  batter_home_runs = 0
-
-  @Fields.integer()
-  batter_hits = 0
-
-  @Fields.integer()
-  batter_total_bases = 0
-
-  @Fields.integer()
-  batter_rbis = 0
-
-  @Fields.integer()
-  batter_runs_scored = 0
-
-  @Fields.integer()
-  batter_hits_runs_rbis = 0
-
-  @Fields.integer()
-  batter_singles = 0
-
-  @Fields.integer()
-  batter_doubles = 0
-
-  @Fields.integer()
-  batter_triples = 0
-
-  @Fields.integer()
-  batter_walks = 0
-
-  @Fields.integer()
-  batter_strikeouts = 0
-
-  @Fields.integer()
-  batter_stolen_bases = 0
-
-  @Fields.integer()
-  pitcher_strikeouts = 0
-
-  @Fields.integer()
-  pitcher_record_a_win = 0
-
-  @Fields.integer()
-  pitcher_hits_allowed = 0
-
-  @Fields.integer()
-  pitcher_walks = 0
-
-  @Fields.integer()
-  pitcher_earned_runs = 0
-
-  @Fields.integer()
-  pitcher_outs = 0
+  teamAgainstId = ''
 
   @Fields.string()
   gameId = ""
 
   @Fields.string()
-  teamAgainst = ""
+  gameDate = ''
+
+  @Fields.integer()
+  season = 0
 
   @Fields.string()
-  teamAgainstId = ''
+  playerPosition = ""
+
+  @Fields.string()
+  playerStarted = ""
+
+  @Fields.integer()
+  batterHomeRuns = 0
+
+  @Fields.integer()
+  batterHits = 0
+
+  @Fields.integer()
+  batterTotalBases = 0
+
+  @Fields.integer()
+  batterRbis = 0
+
+  @Fields.integer()
+  batterRunsScored = 0
+
+  @Fields.integer()
+  batterHitsRunsRbis = 0
+
+  @Fields.integer()
+  batterSingles = 0
+
+  @Fields.integer()
+  batterDoubles = 0
+
+  @Fields.integer()
+  batterTriples = 0
+
+  @Fields.integer()
+  batterWalks = 0
+
+  @Fields.integer()
+  batterStrikeouts = 0
+
+  @Fields.integer()
+  batterStolenBases = 0
+
+  @Fields.integer()
+  pitcherStrikeouts = 0
+
+  @Fields.integer()
+  pitcherRecordAWin = 0
+
+  @Fields.integer()
+  pitcherHitsAllowed = 0
+
+  @Fields.integer()
+  pitcherWalks = 0
+
+  @Fields.integer()
+  pitcherEarnedRuns = 0
+
+  @Fields.integer()
+  pitcherOuts = 0
+
+ 
 
   @Fields.createdAt()
   createdAt?: Date
