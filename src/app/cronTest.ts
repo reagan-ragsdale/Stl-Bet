@@ -16,7 +16,7 @@ const newNbaService = new NbaService
 
 const arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
 const arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
-const arrayOfNbaTeamIds = [1,2, 4,  5, 6, 7,  8,  9, 10,  11, 14, 15,  16, 17, 19,  20,  21,  22,  23,  24,  25,  26,  27,  28,  29,  30,  31,  38,  40,  41 ]
+const arrayOfNbaTeamIds = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 38, 40, 41]
 
 export const cronTestFile = async () => {
     await loadNbaData()
@@ -35,9 +35,9 @@ export const cronTestFile = async () => {
     //nba loads
 
     //get and load draft kings game props
-    
 
-    
+
+
 
     const gamesFromDraftKings = await newDKController.getDatesAndGames("NBA");
 
@@ -47,7 +47,7 @@ export const cronTestFile = async () => {
     console.log("Finished sports book load")
 
     // get and load all nba player info
-    
+
     const allPlayerInfo = await newNbaApiController.getAllNbaPlayerInfoFromApi()
     NbaController.nbaAddPlayerInfoData(allPlayerInfo)
 
@@ -55,25 +55,25 @@ export const cronTestFile = async () => {
 
     //retreive all the players for the teams playing this day
     var listOfGamesToday: DbGameBookData[] = await SportsBookController.loadSportBookByH2H("NBA")
-   
+
     var listOfAllPlayersInGames: any[] = []
-    for(const game of listOfGamesToday){
+    for (const game of listOfGamesToday) {
         let result = await NbaController.nbaLoadPlayerInfoFromTeamId(arrayOfNBATeams[addUnderScoreToName(game.teamName)]);
         listOfAllPlayersInGames.push(result);
-        
+
     }
 
 
     console.log("Line 69")
     var individualPlayers: NbaPlayerInfoDb[] = []
-    for(const team of listOfAllPlayersInGames){
-        for(const players of team){
+    for (const team of listOfAllPlayersInGames) {
+        for (const players of team) {
             individualPlayers.push(players)
         }
     }
     console.log(individualPlayers.length)
     //call each players stats api and update in database
-    for(const player of individualPlayers){
+    for (const player of individualPlayers) {
         let result = await newNbaApiController.loadNba2023PlayerStatData(player.playerId)
         await NbaController.nbaAddPlayerGameStats2023(result)
         /*
@@ -91,20 +91,23 @@ export const cronTestFile = async () => {
     }
 
     //load team stats
-     for(const team of listOfGamesToday){
-        let result = await newNbaApiController.loadTeamGameStats(arrayOfNBATeams[addUnderScoreToName(team.teamName)], 2023)
+    for (const team of arrayOfNbaTeamIds) {
+        let result = await newNbaApiController.loadTeamGameStats(team, 2023)
         await NbaController.nbaAddTeamGameStats(result)
-    } 
+    }
 
 
     //calculate player averages for the home screen that way it doesn't have to take up much time
-    for(const player of allPlayerInfo){
+    for (const player of allPlayerInfo) {
         let playerStats = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player.playerId, 2023);
         var averagePlayerData = newNbaService.convertPlayerStatDataToPlayerStatAverageData(playerStats)
-        await NbaController.nbaSetPlayerStatAverage(averagePlayerData)
+
+        if (averagePlayerData.playerId != 0) {
+            await NbaController.nbaSetPlayerStatAverage(averagePlayerData)
+        }
     }
 
-    for(const team of arrayOfNbaTeamIds){
+    for (const team of arrayOfNbaTeamIds) {
         console.log("Here 1")
         let teamStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(team, 2023);
         console.log("Here 2")
@@ -113,11 +116,11 @@ export const cronTestFile = async () => {
         await NbaController.nbaSetTeamStatAverage(averageTeamData)
         console.log("Here 4")
     }
-    
 
 
 
-console.log("line 90")   
+
+    console.log("line 90")
 
 
 

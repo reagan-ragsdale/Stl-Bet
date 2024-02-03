@@ -31,9 +31,7 @@ export class NbaService{
             tripleDouble: 0
         }
         statData.forEach(game => {
-            if(game.playerId == 0){
-                return
-            }
+        
             dataAverage.playerId = game.playerId,
             dataAverage.playerName = game.playerName,
             dataAverage.teamName = game.teamName,

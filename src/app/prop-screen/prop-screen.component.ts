@@ -630,9 +630,9 @@ export class PropScreenComponent implements OnInit {
     this.selectedDate = ''
     this.setSelectedSport(sport.tab.textLabel);
     //await this.checkSportPlayerInfoDb();
-    await this.checkPlayerInfoDb();
+    //await this.checkPlayerInfoDb();
 
-    await this.checkSportsBookDb();
+    //await this.checkSportsBookDb();
 
     this.updateDates();
 
@@ -1735,71 +1735,9 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  async checkSportsBookDb() {
-    var dbEmpty
-    try {
-      console.time("Check sports book db")
-      dbEmpty = await this.SportsBookRepo.find({ where: { sportTitle: this.selectedSport } })
-
-      //if (dbEmpty.length == 0 || this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
-      var results = await this.draftKingsApiController.getDatesAndGames(this.selectedSport);
-      await SportsBookController.addBookData(results);
-      await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-      //}
-      //else {
-      //  await SportsBookController.loadSportBook(this.selectedSport).then(item => this.sportsBookDataFinal = item)
-      // }
-      console.timeEnd("Check sports book db")
-    } catch (error: any) {
-      alert(error.message)
-    }
-
-
-  }
-
-  async checkPlayerInfoDb() {
-    console.time("Check player info db")
-    var dbEmpty = []
-    if (this.selectedSport == "NHL") {
-      try {
-        dbEmpty = await this.nhlPlayerInfoRepo.find({ where: { playerId: { "!=": 0 } } })
-        if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
-          var results = await this.nhlApiController.getplayerInfo();
-          await NhlPlayerInfoController.nhlAddPlayerINfoData(results);
-        }
-      } catch (error: any) {
-        alert(error.message)
-      }
-    }
-
-    if (this.selectedSport == "NBA") {
-      /*
-      try {
-
-        var gameArray = this.splitGameString(this.gameString)
-        let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[0])]
-        let dbEmpty = await NbaController.nbaLoadPlayerInfoFromTeamId(teamId)
-        if (dbEmpty.length == 0 || this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
-          var returnCall = await this.nbaApiController.getAllNbaPlayerInfoFromApi();
-          await NbaController.nbaAddPlayerInfoData(returnCall);
-        }
-         else if (dbEmpty.length > 0) {
-          if (this.convertDate(dbEmpty[0].createdAt?.toString()!) != this.getMonthAndDay()) {
-            var returnCall = await this.nbaApiController.getNbaPlayerDataFromApi(this.gameString);
-            await NbaController.nbaAddPlayerInfoData(returnCall);
-          }
-        } 
-
-      } catch (error: any) {
-        alert(error.message)
-      }
-      
-      dbEmpty = []
-      */
-      console.timeEnd("Check player info db")
-
-    }
-  }
+  
+  
+  
 
   splitGameString(game: string): string[] {
     var bothGames: string[] = []
@@ -1830,15 +1768,7 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  //add checkplayerstat db for prevous and current season, if there is 0 data in 2022 then try the api call, if no data from api call for 2022 season then load one row for 2022 that has all defaults
-  // then check 2023 season, if there is 0 data for the 2023 season or the insert date is not the current date then try the
-
-
-
-
-
-
-
+  
 
 
   //API calls
@@ -1881,26 +1811,6 @@ export class PropScreenComponent implements OnInit {
 
 
 
-
-  //add this back when game props get fleshed out more
-  /* async loadGameProps() {
-    if (this.gamePropsClicked == true) {
-      this.gamePropsClicked = false;
-      return;
-    }
-    this.gamePropsClicked = true;
-    var urlNew = '';
-    if (this.selectedSport === "MLB") {
-      //replace batterhomeruns with stringcontaining all mlb player props
-      urlNew = this.pre_initial_player_prop + this.convertSport(this.selectedSport) + this.middle_initial_player_prop + this.selectedGame + this.middle_next_player_prop + "batter_home_runs,batter_hits,batter_total_bases" + this.post_initial_player_prop;
-    }
-
-    const promise = await fetch(urlNew);
-    const processedResponse = await promise.json();
-    this.playerProps = processedResponse;
-    console.log(this.playerProps)
-    this.addplayerPropToArray();
-  } */
 
   addplayerPropToArray() {
 
@@ -2030,7 +1940,6 @@ export class PropScreenComponent implements OnInit {
         }
       }
       if (this.selectedSport == "NBA") {
-        console.time("get player stats for season call")
         var previousName = ''
         for (let i = 0; i < element.length; i++) {
           let playerName = element[i].name
@@ -2038,55 +1947,14 @@ export class PropScreenComponent implements OnInit {
             await this.computeStatForPlayer(element[i])
             continue
           }
-          console.log(element)
           let player = await NbaController.nbaLoadPlayerInfoFromName(element[i].name)
           if (player.length == 0) {
             alert(element[i].name + " is not in the player database")
           }
-
-
-          /*
-          let db2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022)
-          let db2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023)
-          if (db2022.length == 0) {
-            let results = await this.nbaApiController.loadNba2022PlayerStatData(player[0].playerId)
-            if (results.length == 0) {
-              await NbaController.nbaAddPlayerStat2022BlankData(player[0].playerId, player[0].playerName);
-            }
-            else {
-              await NbaController.nbaAddPlayerGameStats2022(results);
-            }
-            await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => this.nbaPlayerStatData2022Final = item)
-          }
-          else {
-            await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2022).then(item => this.nbaPlayerStatData2022Final = item)
-          }
-
-          if (db2023.length == 0) {
-            let results = await this.nbaApiController.loadNba2023PlayerStatData(player[0].playerId)
-            await NbaController.nbaAddPlayerGameStats2023(results);
-
-            await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
-
-          }
-          else if (db2023.length != 0) {
-            if (this.convertDate(db2023[db2023.length - 1].createdAt?.toString()!) != this.getMonthAndDay()) {
-              let results = await this.nbaApiController.loadNba2023PlayerStatData(player[0].playerId)
-              await NbaController.nbaAddPlayerGameStats2023(results);
-
-              await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
-            }
-            else {
-              await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
-              //here
-            }
-          }
-          */
           await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(player[0].playerId, 2023).then(item => this.nbaPlayerStatData2023Final = item)
           await this.computeStatForPlayer(element[i]);
           previousName = element[i].name
         }
-        console.timeEnd("get player stats for season call")
       }
       this.displayProgressBar = false
     } catch (error: any) {
@@ -2097,11 +1965,9 @@ export class PropScreenComponent implements OnInit {
 
   async computeStatsForAllPlayersInProp(element: any) {
     this.displayProgressBar = true
-    console.time("compute stats for all players in prop")
     if (element[0].percentTeam == "") {
       await this.getPlayerStatsForSeasonCall(element)
     }
-    console.timeEnd("compute stats for all players in prop")
 
 
 

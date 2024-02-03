@@ -20,8 +20,8 @@ export class HomeScreenComponent {
   playerStatsButtons: any[] = []
   teamStatsButtons: any[] = []
 
-  public gamesList: string[] = ["NBA", "NHL", "MLB", "NFL"];
-  public selectedSport = this.gamesList[0]
+  public gamesList: any[] = [{name: "NBA", disabled: false}, {name: "NHL", disabled: true}, {name: "MLB", disabled: false}, {name: "NFL", disabled: true} ];
+  public selectedSport = ''
 
   public playerData: any[] = []
   public teamData: any[] = []
@@ -37,6 +37,7 @@ export class HomeScreenComponent {
   }
 
   async onSportsListClick(sport: string){
+    this.selectedSport = sport
    await this.getData(sport)
   }
 
@@ -84,11 +85,15 @@ export class HomeScreenComponent {
       console.log(this.gameDataFinal)
 
     }
+    else if(sport == "MLB"){
+    
+    }
     
   }
 
 
   async ngOnInit(){
+    this.selectedSport = this.gamesList[0].name
     await this.getData(this.selectedSport)
   }
 
