@@ -600,7 +600,7 @@ export class PropScreenComponent implements OnInit {
 
   public trimSports(sports: any) {
     //need to figure out a way to order the sports but for now just show the main ones
-    console.log("here 1")
+    
     sports.forEach((sport: { title: string; }) => {
       this.listOfSupportedSports.forEach(s => {
         if (sport.title == s) {
@@ -715,6 +715,7 @@ export class PropScreenComponent implements OnInit {
 
 
   updateDates() {
+    console.log("here in update dates")
     this.dates = [];
     this.sportsBookDataFinal.forEach((x) => {
       if (!this.dates.includes(reusedFunctions.convertDate(x.commenceTime))) {
@@ -725,6 +726,7 @@ export class PropScreenComponent implements OnInit {
     this.updateGames();
   }
   updateGames() {
+    console.log("here in update games")
     this.games = [];
     this.sportsBookDataFinal.forEach((x) => {
       if (this.selectedDate == reusedFunctions.convertDate(x.commenceTime)) {
