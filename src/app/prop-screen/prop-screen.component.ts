@@ -718,6 +718,8 @@ export class PropScreenComponent implements OnInit {
     console.log("here in update dates")
     this.dates = [];
     this.sportsBookDataFinal.forEach((x) => {
+      console.log(x)
+      console.log(reusedFunctions.convertDate(x.commenceTime))
       if (!this.dates.includes(reusedFunctions.convertDate(x.commenceTime))) {
         this.dates.push(reusedFunctions.convertDate(x.commenceTime));
       }
