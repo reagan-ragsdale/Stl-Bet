@@ -52,19 +52,19 @@ import { reusedFunctions } from '../Services/reusedFunctions';
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
-  providers: [nhlApiController, draftKingsApiController],
+  providers: [nhlApiController],
 })
 
 
 
 export class PropScreenComponent implements OnInit {
 
-  mlbPlayerrInfoRepo = remult.repo(PlayerInfoMlb)
+  /* mlbPlayerrInfoRepo = remult.repo(PlayerInfoMlb)
   SportsBookRepo = remult.repo(DbGameBookData)
   playerPropRepo = remult.repo(DbPlayerPropData)
   nhlPlayerInfoRepo = remult.repo(DbNhlPlayerInfo)
   nhlPlayerGameStatRepo = remult.repo(DbNhlPlayerGameStats)
-  nbaPlayerInfoRepo = remult.repo(NbaPlayerInfoDb)
+  nbaPlayerInfoRepo = remult.repo(NbaPlayerInfoDb) */
 
 
   expandedElement: PlayerProp[] | null | undefined;
@@ -146,9 +146,7 @@ export class PropScreenComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private nhlApiController: nhlApiController,
-    private draftKingsApiController: draftKingsApiController,
-    private router: Router,
-    private reusedFunctionsNew: reusedFunctions
+    private router: Router
   ) {
 
   }
@@ -1806,7 +1804,8 @@ export class PropScreenComponent implements OnInit {
   async getPlayerStatsForSeasonCall(element: any) {
 
     try {
-      if (this.selectedSport == "NHL") {
+
+      /* if (this.selectedSport == "NHL") {
         for (let i = 0; i < element.length; i++) {
           let player = await NhlPlayerInfoController.nhlLoadPlayerInfoFromName(element[i].name)
           let db2022 = await this.nhlPlayerGameStatRepo.find({ where: { season: "20222023", playerId: player[0].playerId } })
@@ -1841,7 +1840,7 @@ export class PropScreenComponent implements OnInit {
           }
           await this.computeStatForPlayer(element[i]);
         }
-      }
+      } */
       if (this.selectedSport == "NBA") {
         var previousName = ''
         for (let i = 0; i < element.length; i++) {
