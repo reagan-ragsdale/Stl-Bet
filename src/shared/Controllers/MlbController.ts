@@ -129,7 +129,7 @@ export class MlbController {
   }
 
   @BackendMethod({ allowed: true })
-  static async nbaGetTeamStatAverageTop5(stat: string): Promise<DbMlbTeamGameStatAverages[]> {
+  static async mlbGetTeamStatAverageTop5(stat: string): Promise<DbMlbTeamGameStatAverages[]> {
     const taskRepo = remult.repo(DbMlbTeamGameStatAverages)
     var finalData: DbMlbTeamGameStatAverages[] = []
     if(stat == "pointsScored"){
