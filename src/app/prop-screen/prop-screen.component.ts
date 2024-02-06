@@ -600,6 +600,7 @@ export class PropScreenComponent implements OnInit {
 
   public trimSports(sports: any) {
     //need to figure out a way to order the sports but for now just show the main ones
+    console.log("here 1")
     sports.forEach((sport: { title: string; }) => {
       this.listOfSupportedSports.forEach(s => {
         if (sport.title == s) {
@@ -611,13 +612,16 @@ export class PropScreenComponent implements OnInit {
   }
 
   setSelectedDate(date: string) {
+    console.log("here 3")
     this.selectedDate = date;
   }
   setSelectedSport(sport: string) {
+    console.log("here 2")
     this.selectedSport = sport;
   }
   setSelectedGame(game: string) {
     const temp = this.games.filter(x => x.game === game);
+    console.log("here 4")
     this.selectedGame = temp[0].id;
   }
 
