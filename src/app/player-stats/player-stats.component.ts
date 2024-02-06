@@ -44,7 +44,7 @@ export class PlayerStatsComponent {
     private router: Router,
     private route: ActivatedRoute,
     private nhlApiController: nhlApiController,
-    private draftKingsApiController: draftKingsApiController
+    //private draftKingsApiController: draftKingsApiController
   ) { }
   myControl = new FormControl('');
   public displayedColumns = ["Game", "Date",  "Points", "Assists", "Rebounds", "Blocks", "Threes"]

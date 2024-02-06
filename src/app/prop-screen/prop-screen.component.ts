@@ -1688,7 +1688,7 @@ export class PropScreenComponent implements OnInit {
     try {
       console.time("load player props")
 
-      var results = await this.draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
+      var results = await draftKingsApiController.getPlayerProps(this.selectedSport, this.selectedGame);
       if (results.length == 0) {
         alert("Player Props have not been added by Draft Kings yet")
       }
@@ -2327,7 +2327,7 @@ export class PropScreenComponent implements OnInit {
 
 
   async ngOnInit() {
-    this.trimSports(await this.draftKingsApiController.getSports());
+    this.trimSports(await draftKingsApiController.getSports());
   }
 
   detailedStatsClicked(element: any) {

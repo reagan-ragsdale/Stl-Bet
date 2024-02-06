@@ -8,15 +8,15 @@ import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 
 
 
-export class draftKingsApiController {
+ export class draftKingsApiController {
 
-  playerProps: any
-  playerPropData: DbPlayerPropData[] = []
-  selectedSportGames: any;
-  selectedSportsData: any;
-  sportsBookData: DbGameBookData[] = []
+  static playerProps: any
+  static playerPropData: DbPlayerPropData[] = []
+  static selectedSportGames: any;
+  static selectedSportsData: any;
+  static sportsBookData: DbGameBookData[] = []
 
-  sportsToTitle: SportsTitleToName = {
+  static sportsToTitle: SportsTitleToName = {
     NBA: "basketball_nba",
     NFL: "americanfootball_nfl",
     MLB: "baseball_mlb",
@@ -24,7 +24,7 @@ export class draftKingsApiController {
   }
 
 
-  async getPlayerProps(sport: string, game: string) {
+  static async getPlayerProps(sport: string, game: string) {
     var urlNew = '';
     var playerProps = '';
     if (sport === "MLB") {
@@ -47,7 +47,7 @@ export class draftKingsApiController {
     return this.playerPropData
   }
 
-  convertPropDataToInterface() {
+  static convertPropDataToInterface() {
     var tempData: DbPlayerPropData[] = [];
     for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
       for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
@@ -72,20 +72,20 @@ export class draftKingsApiController {
     }
     return tempData;
   }
-  convertSport(sport: any) {
+  static convertSport(sport: any) {
     return this.sportsToTitle[sport];
   }
 
 
 
-  public async getSports() {
+  public static async getSports() {
     const promise = await fetch("https://api.the-odds-api.com/v4/sports/?apiKey=5ab6923d5aa0ae822b05168709bb910c");
     const processedResponse = await promise.json();
     this.selectedSportGames = processedResponse;
     return processedResponse;
   }
  
-  public async getDatesAndGames(sport: string) {
+  public static async getDatesAndGames(sport: string) {
     const sportNew = this.convertSport(sport);
     const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=h2h,spreads,totals&bookmakers=draftkings&oddsFormat=american";
     const promise = await fetch(apiCall);
@@ -95,7 +95,7 @@ export class draftKingsApiController {
     return this.sportsBookData;
   }
 
-  convertSportsDataToInterface(): DbGameBookData[] {
+  static convertSportsDataToInterface(): DbGameBookData[] {
     var tempData: DbGameBookData[] = [];
     for (let i = 0; i < this.selectedSportsData.length; i++) {
       for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
