@@ -633,7 +633,7 @@ export class PropScreenComponent implements OnInit {
     this.setSelectedSport(sport.tab.textLabel);
     //await this.checkSportPlayerInfoDb();
     //await this.checkPlayerInfoDb();
-
+    this.sportsBookDataFinal = await SportsBookController.loadSportBook(this.selectedSport)
     //await this.checkSportsBookDb();
 
     this.updateDates();
