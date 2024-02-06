@@ -36,14 +36,13 @@ interface statSearch {
   selector: 'app-player-stats',
   templateUrl: './player-stats.component.html',
   styleUrls: ['./player-stats.component.scss'],
-  providers: [nbaApiController, nhlApiController, draftKingsApiController],
+  providers: [ nhlApiController, draftKingsApiController],
 })
 export class PlayerStatsComponent {
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private nbaApiController: nbaApiController,
     private nhlApiController: nhlApiController,
     private draftKingsApiController: draftKingsApiController
   ) { }
