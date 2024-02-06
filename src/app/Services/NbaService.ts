@@ -8,16 +8,15 @@ import { nbaApiController } from "../ApiCalls/nbaApiCalls"
 
 
 const newResusedFunctions = new reusedFunctions
+const newNbaApiController = new nbaApiController
 
 
 
 export class NbaService{
 
-   constructor(
-    private nbaApiController: nbaApiController
-   ){}
+   
 
-    convertPlayerStatDataToPlayerStatAverageData(statData: DbNbaGameStats[]) : DbNbaPlayerStatAverages {
+    static convertPlayerStatDataToPlayerStatAverageData(statData: DbNbaGameStats[]) : DbNbaPlayerStatAverages {
         var dataAverage: DbNbaPlayerStatAverages = {
             playerId: 0,
             playerName: "",
@@ -86,7 +85,7 @@ export class NbaService{
     }
 
 
-    convertTeamStatDataToPlayerStatAverageData(statData: DbNbaTeamGameStats[]) : DbNbaTeamStatAverages {
+    static convertTeamStatDataToPlayerStatAverageData(statData: DbNbaTeamGameStats[]) : DbNbaTeamStatAverages {
         var dataAverage: DbNbaTeamStatAverages = {
             teamName: "",
             teamId: 0,
@@ -118,7 +117,7 @@ export class NbaService{
         return FinalAverageData
     }
 
-    async convertNbaStatDataToInterface(id: number, season: number, playerStatData: any[]) {
+    static async convertNbaStatDataToInterface(id: number, season: number, playerStatData: any[]) {
         //console.time("convertNbaStatDataToInterface")
         var temp: DbNbaGameStats[] = []
         var games = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(id, season)
@@ -133,7 +132,7 @@ export class NbaService{
           if (oldGames.includes(playerStatData[i].game.id)) {
             continue
           }
-          var game = await this.nbaApiController.loadGameFromId(playerStatData[i].game.id)
+          var game = await newNbaApiController.loadGameFromId(playerStatData[i].game.id)
           temp.push({
             playerId: playerStatData[i].player.id,
             playerName: playerStatData[i].player.firstname + " " + playerStatData[i].player.lastname,
@@ -174,7 +173,7 @@ export class NbaService{
       }
 
 
-      async convertNbaGameDataToInterface(id: number, season: number, teamStatData: any[]) {
+      static async convertNbaGameDataToInterface(id: number, season: number, teamStatData: any[]) {
         var temp: DbNbaTeamGameStats[] = []
         var games = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(id, season)
         var oldGames = games.map((x) => {
@@ -221,7 +220,7 @@ export class NbaService{
       }
 
 
-      isDoubleDouble(statData: any): boolean {
+      static isDoubleDouble(statData: any): boolean {
         let count = 0;
         if (statData.assists >= 10) {
           count++
@@ -241,7 +240,7 @@ export class NbaService{
         return (count >= 2)
       }
     
-      isTripleDouble(statData: any): boolean {
+      static isTripleDouble(statData: any): boolean {
         let count = 0;
         if (statData.assists >= 10) {
           count++

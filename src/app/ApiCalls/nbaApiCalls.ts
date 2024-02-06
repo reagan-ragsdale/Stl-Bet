@@ -6,11 +6,11 @@ import { ArrayOfDates } from '../array-of-dates';
 import { DbNbaTeamGameStats } from '../../shared/dbTasks/DbNbaTeamGameStats'
 import { NbaService } from '../Services/NbaService';
 
-
+//const newNbaService = new NbaService(new nbaApiController)
 
 
 export class nbaApiController {
-  private newNbaService = new NbaService(new nbaApiController)
+  
   arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
   arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
   arrayOfNbaTeamIds: number[] = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 38, 40, 41]
@@ -261,7 +261,7 @@ export class nbaApiController {
     const promise = await fetch(url, options);
     const processedResponse = await promise.json();
     this.playerStatData = processedResponse.response;
-    await this.newNbaService.convertNbaStatDataToInterface(id, 2022, this.playerStatData).then(items => this.nbaPlayerStatData = items);
+    await NbaService.convertNbaStatDataToInterface(id, 2022, this.playerStatData).then(items => this.nbaPlayerStatData = items);
     //console.timeEnd("load nba 2022 player stat data")
     return this.nbaPlayerStatData;
 
@@ -283,7 +283,7 @@ export class nbaApiController {
     const processedResponse = await promise.json();
     this.playerStatData = processedResponse.response;
     console.log("In api call")
-    this.nbaPlayerStatData = await this.newNbaService.convertNbaStatDataToInterface(id, 2023, this.playerStatData)
+    this.nbaPlayerStatData = await NbaService.convertNbaStatDataToInterface(id, 2023, this.playerStatData)
     //console.timeEnd("load nba 2023 player stat data")
     return this.nbaPlayerStatData;
 
@@ -321,7 +321,7 @@ export class nbaApiController {
     const response = await fetch(url, options);
     const result = await response.json();
     this.nbaTeamGameStats = result.response
-    this.nbaTeamGameStatsDb = await this.newNbaService.convertNbaGameDataToInterface(id, season, this.nbaTeamGameStats)
+    this.nbaTeamGameStatsDb = await NbaService.convertNbaGameDataToInterface(id, season, this.nbaTeamGameStats)
     return this.nbaTeamGameStatsDb
 
 
