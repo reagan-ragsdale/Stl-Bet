@@ -121,6 +121,7 @@ export class PropScreenComponent implements OnInit {
   public pointsAllowed2QuarterClicked: boolean = false;
 
   public team1GameVsOpponentData: any[] = []
+  public displayProgressBar: boolean = false;
 
 
 
@@ -1800,7 +1801,7 @@ export class PropScreenComponent implements OnInit {
 
 
   }
-  //public displayProgressBar = true;
+  
   async getPlayerStatsForSeasonCall(element: any) {
 
     try {
