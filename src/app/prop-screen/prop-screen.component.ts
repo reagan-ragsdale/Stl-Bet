@@ -39,6 +39,7 @@ import { ArrayOfDates } from '../array-of-dates';
 import { Route, Router } from '@angular/router';
 import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
+import { reusedFunctions } from '../Services/reusedFunctions';
 
 @Component({
   selector: 'app-prop-screen',
@@ -51,7 +52,7 @@ import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
-  providers: [nbaApiController, nhlApiController, draftKingsApiController],
+  providers: [nhlApiController, draftKingsApiController],
 })
 
 
@@ -71,9 +72,7 @@ export class PropScreenComponent implements OnInit {
 
   public playerPropsClicked = false;
   public gamePropsClicked = true;
-  arrayOfMLBTeams: SportsTitleToName = { Minnesota_Twins: "MIN", Detroit_Tigers: "DET", Cincinnati_Reds: "CIN", Chicago_Cubs: "CHC", Milwaukee_Brewers: "MIL", Philadelphia_Phillies: "PHI", Oakland_Athletics: "OAK", Los_Angeles_Angels: "LAA", Pittsburgh_Pirates: "PIT", Cleveland_Guardians: "CLE", Tampa_Bay_Rays: "TB", Boston_Red_Socks: "BOS", Seattle_Mariners: "SEA", Miami_Marlins: "MIA", Los_Angeles_Dodgers: "LAD", New_York_Yankees: "NYY", Washington_Nationals: "WAS", New_York_Mets: "NYM", San_Francisco_Giants: "SF", Kansas_City_Royals: "KC", Chicago_White_Sox: "CHW", Atlanta_Braves: "ATL", St_Louis_Cardinals: "STL", Arizona_Diamondbacks: "ARI", Baltimore_Orioles: "BAL", Colorado_Rockies: "COL", Houston_Astros: "HOU", San_Diego_Padres: "SD", Texas_Rangers: "TEX", Toronto_Blue_Jays: "TOR" };
-  arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
-  arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
+ 
   home_team: string = '';
   away_team: string = '';
 
@@ -150,6 +149,7 @@ export class PropScreenComponent implements OnInit {
     private nhlApiController: nhlApiController,
     private draftKingsApiController: draftKingsApiController,
     private router: Router,
+    private reusedFunctionsNew: reusedFunctions
   ) {
 
   }
@@ -658,69 +658,9 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  async checkSportBookDb() {
-    if (this.selectedSport === "MLB") {
-      var dbEmpty
-      //try{
-      //change below find methods to call the controller instead
-      //dbEmpty = await MlbController.getMlbBookLength()
-      /* if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()){
-        await this.getMlbPlayerIds();
-         
-        await MlbController.updatePlayerINfo(this.playerInfoTemp);
-        
-      
-        await MlbController.loadPlayers().then(item => this.playerInfoFinal = item)
-       }
-       else{
-        await MlbController.loadPlayers().then(item => this.playerInfoFinal = item)
-       }
-    }catch (error: any){
-      alert(error.message)
-    } */
-    }
-  }
+  
 
-  async checkSportPlayerInfoDb() {
-    if (this.selectedSport === "MLB") {
-      var dbEmpty
-      try {
-        dbEmpty = await this.mlbPlayerrInfoRepo.find({ where: { playerId: { "!=": 0 } } })
-        if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()) {
-          await this.getMlbPlayerIds();
-
-          await MlbController.updatePlayerINfo(this.playerInfoTemp);
-
-
-          await MlbController.loadPlayers().then(item => this.playerInfoFinal = item)
-        }
-        else {
-          await MlbController.loadPlayers().then(item => this.playerInfoFinal = item)
-        }
-      } catch (error: any) {
-        alert(error.message)
-      }
-    }
-    /* if (this.selectedSport === "NHL") {
-      var dbEmpty
-      try{
-        dbEmpty = await this.mlbPlayerrInfoRepo.find({where: { playerId:{ "!=":0} }})
-        if (dbEmpty.length == 0 || dbEmpty[0].createdAt?.getDate() != this.date.getDate()){
-          await this.getMlbPlayerIds();
-           
-          await MlbController.updatePlayerINfo(this.playerInfoTemp);
-          
-        
-          await MlbController.loadPlayers().then(item => this.playerInfoFinal = item)
-         }
-         else{
-          await MlbController.loadPlayers().then(item => this.playerInfoFinal = item)
-         }
-      }catch (error: any){
-        alert(error.message)
-      }
-    } */
-  }
+  
 
   //adding items to checkout
   addPropToChechout(event: any) {
@@ -769,47 +709,14 @@ export class PropScreenComponent implements OnInit {
   convertSport(sport: any) {
     return this.sportsToTitle[sport];
   }
-  convertDate(fullDate: string) {
-    var tempDate = fullDate?.split("T");
-    var time = tempDate[1].slice(0, 2)
-    var subtractDay = false
-    if (parseInt(time) - 6 <= 0) {
-      subtractDay = true
-    }
-
-    var indexOfFirstDash = tempDate[0].indexOf("-");
-    var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
-    var finalDate = tempDate2.replace("-", "/");
-    if (subtractDay) {
-      var newDate = finalDate.split("/")
-      newDate[1] = (parseInt(newDate[1]) - 1).toString()
-      if (parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0) {
-        newDate[1] = '0' + newDate[1]
-      }
-      if (parseInt(newDate[1]) == 0) {
-        if (newDate[0] == '01') {
-          newDate[0] = '12'
-          newDate[1] = '31'
-        }
-        if (parseInt(newDate[0]) != 1) {
-          newDate[0] = (parseInt(newDate[0]) - 1).toString()
-          newDate[1] = this.arrayOfDates[parseInt(newDate[0])].toString()
-        }
-
-      }
-      finalDate = newDate[0] + "/" + newDate[1]
-
-    }
-
-    return finalDate;
-  }
+  
 
 
   updateDates() {
     this.dates = [];
     this.sportsBookDataFinal.forEach((x) => {
-      if (!this.dates.includes(this.convertDate(x.commenceTime))) {
-        this.dates.push(this.convertDate(x.commenceTime));
+      if (!this.dates.includes(this.reusedFunctionsNew.convertDate(x.commenceTime))) {
+        this.dates.push(this.reusedFunctionsNew.convertDate(x.commenceTime));
       }
     });
     this.setSelectedDate(this.dates[0])
@@ -818,7 +725,7 @@ export class PropScreenComponent implements OnInit {
   updateGames() {
     this.games = [];
     this.sportsBookDataFinal.forEach((x) => {
-      if (this.selectedDate == this.convertDate(x.commenceTime)) {
+      if (this.selectedDate == this.reusedFunctionsNew.convertDate(x.commenceTime)) {
         let check = this.games.filter((e) => e.id == x.bookId)
         if (check.length == 0) {
           this.games.push({ game: `${x.homeTeam} vs ${x.awayTeam}`, id: x.bookId });
@@ -863,7 +770,7 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
       }
       else { */
-    this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
+    this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.reusedFunctionsNew.arrayOfNBATeams[this.reusedFunctionsNew.addUnderScoreToName(team1[0].teamName)], 2023)
     //}
 
     //}
@@ -881,7 +788,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
       }
       else { */
-    this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
+    this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.reusedFunctionsNew.arrayOfNBATeams[this.reusedFunctionsNew.addUnderScoreToName(team2[0].teamName)], 2023)
     //}
     //}
 
@@ -1748,10 +1655,7 @@ export class PropScreenComponent implements OnInit {
     bothGames.push(game.slice(vsIndex + 3, game.length))
     return bothGames
   }
-  addUnderScoreToName(game: string): string {
-    game = game.replaceAll(" ", "_")
-    return game;
-  }
+  
 
 
   async onPropTypeClicked(event: any) {
@@ -2199,7 +2103,7 @@ export class PropScreenComponent implements OnInit {
       //let teamId1 = this.arrayOfNBATeams[tempTeamName1]
       //let teamId2 = this.arrayOfNBATeams[tempTeamName2]
       //let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
-      this.teamAgainst = this.arrayOfNBATeams[this.addUnderScoreToName(element.team1)] == this.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1
+      this.teamAgainst = this.reusedFunctionsNew.arrayOfNBATeams[this.reusedFunctionsNew.addUnderScoreToName(element.team1)] == this.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1
 
 
       var d = new Date();
@@ -2382,7 +2286,7 @@ export class PropScreenComponent implements OnInit {
   }
   getTeamName(team: string): string {
     team = this.insertUnderscore(team);
-    return this.arrayOfMLBTeams[team];
+    return this.reusedFunctionsNew.arrayOfMLBTeams[team];
   }
   insertUnderscore(team: string): string {
     team = team.replaceAll(' ', '_');

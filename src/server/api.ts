@@ -21,6 +21,7 @@ import { DbNbaTeamGameStats } from '../shared/dbTasks/DbNbaTeamGameStats';
 import { DbNbaTeamLogos } from '../shared/dbTasks/DbNbaTeamLogos';
 import {config} from 'dotenv'
 import { cronTestFile } from '../app/cronTest';
+//import { mlbCronFile } from '../app/mlbCron';
 import cron from 'node-cron'
 config()
 
@@ -53,6 +54,7 @@ export const api = remultExpress({
       }) : undefined
 ,initApi: async ()=>{
   cron.schedule('01 19 * * *',()=>  cronTestFile())
+  //cron.schedule('0 10 * * *', ()=>  mlbCronFile())
 }
 });
 

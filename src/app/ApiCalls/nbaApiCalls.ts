@@ -4,6 +4,7 @@ import { DbNbaGameStats } from '../../shared/dbTasks/DbNbaGameStats';
 import { NbaController } from '../../shared/Controllers/NbaController';
 import { ArrayOfDates } from '../array-of-dates';
 import { DbNbaTeamGameStats } from '../../shared/dbTasks/DbNbaTeamGameStats'
+import { NbaService } from '../Services/NbaService';
 
 
 
@@ -16,6 +17,12 @@ export class nbaApiController {
   playerStatData: any[] = []
   nbaTeamGameStats: any[] = []
   nbaTeamGameStatsDb: DbNbaTeamGameStats[] = []
+
+  constructor(
+    private newNbaService: NbaService
+  ){}
+  
+  
 
   async getNbaPlayerDataFromApi(games: string): Promise<NbaPlayerInfoDb[]> {
 
@@ -255,7 +262,7 @@ export class nbaApiController {
     const promise = await fetch(url, options);
     const processedResponse = await promise.json();
     this.playerStatData = processedResponse.response;
-    await this.convertNbaStatDataToInterface(id, 2022).then(items => this.nbaPlayerStatData = items);
+    await this.newNbaService.convertNbaStatDataToInterface(id, 2022, this.playerStatData).then(items => this.nbaPlayerStatData = items);
     //console.timeEnd("load nba 2022 player stat data")
     return this.nbaPlayerStatData;
 
@@ -277,66 +284,13 @@ export class nbaApiController {
     const processedResponse = await promise.json();
     this.playerStatData = processedResponse.response;
     console.log("In api call")
-    this.nbaPlayerStatData = await this.convertNbaStatDataToInterface(id, 2023)
+    this.nbaPlayerStatData = await this.newNbaService.convertNbaStatDataToInterface(id, 2023, this.playerStatData)
     //console.timeEnd("load nba 2023 player stat data")
     return this.nbaPlayerStatData;
 
   }
 
-  async convertNbaStatDataToInterface(id: number, season: number) {
-    //console.time("convertNbaStatDataToInterface")
-    var temp: DbNbaGameStats[] = []
-    var games = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(id, season)
-    var oldGames = games.map((x) => {
-      return x.gameId
-    })
-    for (let i = 0; i < this.playerStatData.length; i++) {
-      if (this.playerStatData[i].game.id >= 12478 && this.playerStatData[i].game.id <= 12548) {
-        continue
-      }
-      console.log(oldGames.includes(this.playerStatData[i].game.id))
-      if (oldGames.includes(this.playerStatData[i].game.id)) {
-        continue
-      }
-      var game = await this.loadGameFromId(this.playerStatData[i].game.id)
-      temp.push({
-        playerId: this.playerStatData[i].player.id,
-        playerName: this.playerStatData[i].player.firstname + " " + this.playerStatData[i].player.lastname,
-        teamName: this.playerStatData[i].team.name,
-        teamId: this.playerStatData[i].team.id,
-        teamAgainstName: this.arrayOfNBATeams[this.addUnderScoreToName(game.teams.visitors.name)] == this.playerStatData[i].team.id ? game.teams.home.name : game.teams.visitors.name,
-        teamAgainstId: this.arrayOfNBATeams[this.addUnderScoreToName(game.teams.visitors.name)] == this.playerStatData[i].team.id ? game.teams.home.id : game.teams.visitors.id,
-        homeOrAway: this.arrayOfNBATeams[this.addUnderScoreToName(game.teams.visitors.name)] == this.playerStatData[i].team.id ? "Away" : "Home",
-        season: season,
-        gameId: this.playerStatData[i].game.id,
-        gameDate: this.convertDate(game.date.start),
-        playerStarted: this.playerStatData[i].min != "00:00" ? "Y" : "N",
-        assists: this.playerStatData[i].assists,
-        points: this.playerStatData[i].points,
-        fgm: this.playerStatData[i].fgm,
-        fga: this.playerStatData[i].fga,
-        fgp: parseInt(this.playerStatData[i].fgp),
-        ftm: this.playerStatData[i].ftm,
-        fta: this.playerStatData[i].fta,
-        ftp: parseInt(this.playerStatData[i].ftp),
-        tpm: this.playerStatData[i].tpm,
-        tpa: this.playerStatData[i].tpa,
-        tpp: parseInt(this.playerStatData[i].tpp),
-        offReb: this.playerStatData[i].offReb,
-        defReb: this.playerStatData[i].defReb,
-        totReb: this.playerStatData[i].totReb,
-        pFouls: this.playerStatData[i].pFouls,
-        steals: this.playerStatData[i].steals,
-        turnover: this.playerStatData[i].turnovers,
-        blocks: this.playerStatData[i].blocks,
-        doubleDouble: this.isDoubleDouble(this.playerStatData[i]) ? 1 : 0,
-        tripleDouble: this.isTripleDouble(this.playerStatData[i]) ? 1 : 0
-      })
-
-    }
-    //console.timeEnd("convertNbaStatDataToInterface")
-    return temp
-  }
+  
 
   async loadGameFromId(id: number) {
     //console.time("loadGameFromId")
@@ -368,57 +322,13 @@ export class nbaApiController {
     const response = await fetch(url, options);
     const result = await response.json();
     this.nbaTeamGameStats = result.response
-    this.nbaTeamGameStatsDb = await this.convertNbaGameDataToInterface(id, season)
+    this.nbaTeamGameStatsDb = await this.newNbaService.convertNbaGameDataToInterface(id, season, this.nbaTeamGameStats)
     return this.nbaTeamGameStatsDb
 
 
   }
 
-  async convertNbaGameDataToInterface(id: number, season: number) {
-    var temp: DbNbaTeamGameStats[] = []
-    var games = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(id, season)
-    var oldGames = games.map((x) => {
-      return x.gameId
-    })
-    for (let i = 0; i < this.nbaTeamGameStats.length; i++) {
-      if (this.nbaTeamGameStats[i].id <= 12548) {
-        continue
-      }
-      if (oldGames.includes(this.nbaTeamGameStats[i].id)) {
-        continue
-      }
-      if (this.nbaTeamGameStats[i].status.long == "Scheduled") {
-        continue
-      }
-      if (this.nbaTeamGameStats[i].status.long == "In Play") {
-        continue
-      }
-
-      temp.push({
-        teamName: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].teams.visitors.name : this.nbaTeamGameStats[i].teams.home.name,
-        teamId: id,
-        teamAgainstName: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].teams.home.name : this.nbaTeamGameStats[i].teams.visitors.name,
-        teamAgainstId: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].teams.home.id : this.nbaTeamGameStats[i].teams.visitors.id,
-        homeOrAway: this.nbaTeamGameStats[i].teams.visitors.id == id ? "Away" : "Home",
-        season: season,
-        gameId: this.nbaTeamGameStats[i].id,
-        gameDate: this.convertDate(this.nbaTeamGameStats[i].date.start),
-        result: this.nbaTeamGameStats[i].teams.visitors.id == id ? (this.nbaTeamGameStats[i].scores.visitors.points > this.nbaTeamGameStats[i].scores.home.points) ? "Win" : "Loss" : (this.nbaTeamGameStats[i].scores.home.points > this.nbaTeamGameStats[i].scores.visitors.points ? "Win" : "Loss"),
-        pointsScoredOverall: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.points : this.nbaTeamGameStats[i].scores.home.points,
-        pointsScoredFirstQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[0] : this.nbaTeamGameStats[i].scores.home.linescore[0],
-        pointsScoredSecondQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[1] : this.nbaTeamGameStats[i].scores.home.linescore[1],
-        pointsScoredThirdQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[2] : this.nbaTeamGameStats[i].scores.home.linescore[2],
-        pointsScoredFourthQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.visitors.linescore[3] : this.nbaTeamGameStats[i].scores.home.linescore[3],
-        pointsAllowedOverall: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.points : this.nbaTeamGameStats[i].scores.visitors.points,
-        pointsAllowedFirstQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[0] : this.nbaTeamGameStats[i].scores.visitors.linescore[0],
-        pointsAllowedSecondQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[1] : this.nbaTeamGameStats[i].scores.visitors.linescore[1],
-        pointsAllowedThirdQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[2] : this.nbaTeamGameStats[i].scores.visitors.linescore[2],
-        pointsAllowedFourthQuarter: this.nbaTeamGameStats[i].teams.visitors.id == id ? this.nbaTeamGameStats[i].scores.home.linescore[3] : this.nbaTeamGameStats[i].scores.visitors.linescore[3]
-      })
-
-    }
-    return temp
-  }
+  
 
 
 

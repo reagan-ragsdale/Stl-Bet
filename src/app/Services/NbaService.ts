@@ -2,11 +2,18 @@ import { DbNbaPlayerStatAverages } from "../../shared/dbTasks/DbNbaPlayerStatAve
 import { DbNbaGameStats } from "../../shared/dbTasks/DbNbaGameStats"
 import { DbNbaTeamGameStats } from "../../shared/dbTasks/DbNbaTeamGameStats"
 import { DbNbaTeamStatAverages } from "../../shared/dbTasks/DbNbaTeamStatAverages"
+import { NbaController } from "../../shared/Controllers/NbaController"
+import { reusedFunctions } from "./reusedFunctions"
+
 
 
 
 
 export class NbaService{
+
+    constructor(
+        private reusedFunctions: reusedFunctions
+    ){}
 
     convertPlayerStatDataToPlayerStatAverageData(statData: DbNbaGameStats[]) : DbNbaPlayerStatAverages {
         var dataAverage: DbNbaPlayerStatAverages = {
@@ -108,6 +115,108 @@ export class NbaService{
         }
         return FinalAverageData
     }
+
+    async convertNbaStatDataToInterface(id: number, season: number, playerStatData: any[]) {
+        //console.time("convertNbaStatDataToInterface")
+        var temp: DbNbaGameStats[] = []
+        var games = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(id, season)
+        var oldGames = games.map((x) => {
+          return x.gameId
+        })
+        for (let i = 0; i < playerStatData.length; i++) {
+          if (playerStatData[i].game.id >= 12478 && playerStatData[i].game.id <= 12548) {
+            continue
+          }
+          console.log(oldGames.includes(playerStatData[i].game.id))
+          if (oldGames.includes(playerStatData[i].game.id)) {
+            continue
+          }
+          var game = await this.loadGameFromId(playerStatData[i].game.id)
+          temp.push({
+            playerId: playerStatData[i].player.id,
+            playerName: playerStatData[i].player.firstname + " " + playerStatData[i].player.lastname,
+            teamName: playerStatData[i].team.name,
+            teamId: playerStatData[i].team.id,
+            teamAgainstName: this.arrayOfNBATeams[this.reusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? game.teams.home.name : game.teams.visitors.name,
+            teamAgainstId: this.arrayOfNBATeams[this.reusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? game.teams.home.id : game.teams.visitors.id,
+            homeOrAway: this.arrayOfNBATeams[this.reusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? "Away" : "Home",
+            season: season,
+            gameId: playerStatData[i].game.id,
+            gameDate: this.reusedFunctions.convertDate(game.date.start),
+            playerStarted: playerStatData[i].min != "00:00" ? "Y" : "N",
+            assists: playerStatData[i].assists,
+            points: playerStatData[i].points,
+            fgm: playerStatData[i].fgm,
+            fga: playerStatData[i].fga,
+            fgp: parseInt(playerStatData[i].fgp),
+            ftm: playerStatData[i].ftm,
+            fta: playerStatData[i].fta,
+            ftp: parseInt(playerStatData[i].ftp),
+            tpm: playerStatData[i].tpm,
+            tpa: playerStatData[i].tpa,
+            tpp: parseInt(playerStatData[i].tpp),
+            offReb: playerStatData[i].offReb,
+            defReb: playerStatData[i].defReb,
+            totReb: playerStatData[i].totReb,
+            pFouls: playerStatData[i].pFouls,
+            steals: playerStatData[i].steals,
+            turnover: playerStatData[i].turnovers,
+            blocks: playerStatData[i].blocks,
+            doubleDouble: this.isDoubleDouble(playerStatData[i]) ? 1 : 0,
+            tripleDouble: this.isTripleDouble(playerStatData[i]) ? 1 : 0
+          })
+    
+        }
+        //console.timeEnd("convertNbaStatDataToInterface")
+        return temp
+      }
+
+
+      async convertNbaGameDataToInterface(id: number, season: number, teamStatData: any[]) {
+        var temp: DbNbaTeamGameStats[] = []
+        var games = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(id, season)
+        var oldGames = games.map((x) => {
+          return x.gameId
+        })
+        for (let i = 0; i < teamStatData.length; i++) {
+          if (teamStatData[i].id <= 12548) {
+            continue
+          }
+          if (oldGames.includes(teamStatData[i].id)) {
+            continue
+          }
+          if (teamStatData[i].status.long == "Scheduled") {
+            continue
+          }
+          if (teamStatData[i].status.long == "In Play") {
+            continue
+          }
+    
+          temp.push({
+            teamName: teamStatData[i].teams.visitors.id == id ? teamStatData[i].teams.visitors.name : teamStatData[i].teams.home.name,
+            teamId: id,
+            teamAgainstName: teamStatData[i].teams.visitors.id == id ? teamStatData[i].teams.home.name : teamStatData[i].teams.visitors.name,
+            teamAgainstId: teamStatData[i].teams.visitors.id == id ? teamStatData[i].teams.home.id : teamStatData[i].teams.visitors.id,
+            homeOrAway: teamStatData[i].teams.visitors.id == id ? "Away" : "Home",
+            season: season,
+            gameId: teamStatData[i].id,
+            gameDate: this.reusedFunctions.convertDate(teamStatData[i].date.start),
+            result: teamStatData[i].teams.visitors.id == id ? (teamStatData[i].scores.visitors.points > teamStatData[i].scores.home.points) ? "Win" : "Loss" : (teamStatData[i].scores.home.points > teamStatData[i].scores.visitors.points ? "Win" : "Loss"),
+            pointsScoredOverall: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.visitors.points : teamStatData[i].scores.home.points,
+            pointsScoredFirstQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.visitors.linescore[0] : teamStatData[i].scores.home.linescore[0],
+            pointsScoredSecondQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.visitors.linescore[1] : teamStatData[i].scores.home.linescore[1],
+            pointsScoredThirdQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.visitors.linescore[2] : teamStatData[i].scores.home.linescore[2],
+            pointsScoredFourthQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.visitors.linescore[3] : teamStatData[i].scores.home.linescore[3],
+            pointsAllowedOverall: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.home.points : teamStatData[i].scores.visitors.points,
+            pointsAllowedFirstQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.home.linescore[0] : teamStatData[i].scores.visitors.linescore[0],
+            pointsAllowedSecondQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.home.linescore[1] : teamStatData[i].scores.visitors.linescore[1],
+            pointsAllowedThirdQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.home.linescore[2] : teamStatData[i].scores.visitors.linescore[2],
+            pointsAllowedFourthQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.home.linescore[3] : teamStatData[i].scores.visitors.linescore[3]
+          })
+    
+        }
+        return temp
+      }
 
 
 
