@@ -722,6 +722,7 @@ export class PropScreenComponent implements OnInit {
         this.dates.push(reusedFunctions.convertDate(x.commenceTime));
       }
     });
+    console.log(this.dates)
     this.setSelectedDate(this.dates[0])
     this.updateGames();
   }
