@@ -1842,6 +1842,7 @@ export class PropScreenComponent implements OnInit {
         }
       } */
       if (this.selectedSport == "NBA") {
+        console.log("Here ")
         var previousName = ''
         for (let i = 0; i < element.length; i++) {
           let playerName = element[i].name
