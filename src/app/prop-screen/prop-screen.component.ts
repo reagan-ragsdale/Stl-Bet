@@ -1800,7 +1800,7 @@ export class PropScreenComponent implements OnInit {
 
 
   }
-  public displayProgressBar = true;
+  //public displayProgressBar = true;
   async getPlayerStatsForSeasonCall(element: any) {
 
     try {
