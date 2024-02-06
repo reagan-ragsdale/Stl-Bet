@@ -8,12 +8,14 @@ import { nbaApiController } from "../ApiCalls/nbaApiCalls"
 
 
 const newResusedFunctions = new reusedFunctions
-const newNbaApiController = new nbaApiController
+
 
 
 export class NbaService{
 
-   
+   constructor(
+    private nbaApiController: nbaApiController
+   ){}
 
     convertPlayerStatDataToPlayerStatAverageData(statData: DbNbaGameStats[]) : DbNbaPlayerStatAverages {
         var dataAverage: DbNbaPlayerStatAverages = {
@@ -131,7 +133,7 @@ export class NbaService{
           if (oldGames.includes(playerStatData[i].game.id)) {
             continue
           }
-          var game = await newNbaApiController.loadGameFromId(playerStatData[i].game.id)
+          var game = await this.nbaApiController.loadGameFromId(playerStatData[i].game.id)
           temp.push({
             playerId: playerStatData[i].player.id,
             playerName: playerStatData[i].player.firstname + " " + playerStatData[i].player.lastname,
