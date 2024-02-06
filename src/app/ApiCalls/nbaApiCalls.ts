@@ -5,31 +5,33 @@ import { NbaController } from '../../shared/Controllers/NbaController';
 import { ArrayOfDates } from '../array-of-dates';
 import { DbNbaTeamGameStats } from '../../shared/dbTasks/DbNbaTeamGameStats'
 import { NbaService } from '../Services/NbaService';
+import { reusedFunctions } from '../Services/reusedFunctions';
+
 
 //const newNbaService = new NbaService(new nbaApiController)
 
 
 export class nbaApiController {
   
-  arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
-  arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
-  arrayOfNbaTeamIds: number[] = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 38, 40, 41]
-  nbaPlayerStatData: DbNbaGameStats[] = []
-  playerStatData: any[] = []
-  nbaTeamGameStats: any[] = []
-  nbaTeamGameStatsDb: DbNbaTeamGameStats[] = []
+  static arrayOfNBATeams: SportsNameToId = { Atlanta_Hawks: 1, Boston_Celtics: 2, Brooklyn_Nets: 4, Charlotte_Hornets: 5, Chicago_Bulls: 6, Cleveland_Cavaliers: 7, Dallas_Mavericks: 8, Denver_Nuggets: 9, Detroit_Pistons: 10, Golden_State_Warriors: 11, Houston_Rockets: 14, Indiana_Pacers: 15, Los_Angeles_Clippers: 16, Los_Angeles_Lakers: 17, Memphis_Grizzlies: 19, Miami_Heat: 20, Milwaukee_Bucks: 21, Minnesota_Timberwolves: 22, New_Orleans_Pelicans: 23, New_York_Knicks: 24, Oklahoma_City_Thunder: 25, Orlando_Magic: 26, Philadelphia_76ers: 27, Phoenix_Suns: 28, Portland_Trail_Blazers: 29, Sacramento_Kings: 30, San_Antonio_Spurs: 31, Toronto_Raptors: 38, Utah_Jazz: 40, Washington_Wizards: 41 }
+  static arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
+  static arrayOfNbaTeamIds: number[] = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 38, 40, 41]
+  static nbaPlayerStatData: DbNbaGameStats[] = []
+  static playerStatData: any[] = []
+  static nbaTeamGameStats: any[] = []
+  static nbaTeamGameStatsDb: DbNbaTeamGameStats[] = []
 
   
   
   
 
-  async getNbaPlayerDataFromApi(games: string): Promise<NbaPlayerInfoDb[]> {
+  static async getNbaPlayerDataFromApi(games: string): Promise<NbaPlayerInfoDb[]> {
 
     var gameArray = this.splitGameString(games)
     var temp: NbaPlayerInfoDb[] = []
     for (let i = 0; i < gameArray.length; i++) {
       //console.time("get nba player data from api")
-      let teamId = this.arrayOfNBATeams[this.addUnderScoreToName(gameArray[i])]
+      let teamId = this.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(gameArray[i])]
       const url = `https://api-nba-v1.p.rapidapi.com/players?team=${teamId}&season=2023`;
       const options = {
         method: 'GET',
@@ -134,7 +136,7 @@ export class nbaApiController {
 
   }
 
-  async getAllNbaPlayerInfoFromApi(): Promise<NbaPlayerInfoDb[]> {
+  static async getAllNbaPlayerInfoFromApi(): Promise<NbaPlayerInfoDb[]> {
 
     var temp: NbaPlayerInfoDb[] = []
     for (let i = 0; i < this.arrayOfNbaTeamIds.length; i++) {
@@ -248,7 +250,7 @@ export class nbaApiController {
 
 
 
-  async loadNba2022PlayerStatData(id: number) {
+  static async loadNba2022PlayerStatData(id: number) {
     //console.time("load nba 2022 player stat data")
     const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${id}&season=2022`;
     const options = {
@@ -266,7 +268,7 @@ export class nbaApiController {
     return this.nbaPlayerStatData;
 
   }
-  async loadNba2023PlayerStatData(id: number) {
+  static async loadNba2023PlayerStatData(id: number) {
 
     //console.time("load nba 2023 player stat data")
     const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${id}&season=2023`;
@@ -291,7 +293,7 @@ export class nbaApiController {
 
   
 
-  async loadGameFromId(id: number) {
+  static async loadGameFromId(id: number) {
     //console.time("loadGameFromId")
     const url = `https://api-nba-v1.p.rapidapi.com/games?id=${id}`;
     const options = {
@@ -308,7 +310,7 @@ export class nbaApiController {
 
   }
 
-  async loadTeamGameStats(id: number, season: number) {
+  static async loadTeamGameStats(id: number, season: number) {
     const url = `https://api-nba-v1.p.rapidapi.com/games?season=${season}&team=${id}`;
     const options = {
       method: 'GET',
@@ -334,7 +336,7 @@ export class nbaApiController {
  
 
 
-  splitGameString(game: string): string[] {
+  static splitGameString(game: string): string[] {
     var bothGames: string[] = []
     var temp = ''
     var vsIndex = 0;
@@ -344,47 +346,8 @@ export class nbaApiController {
     return bothGames
   }
 
-  addUnderScoreToName(game: string): string {
-    game = game.replaceAll(" ", "_")
-    return game;
-  }
+  
 
-  convertDate(fullDate: string) {
-    console.log(fullDate)
-    //mew
-    var tempDate = fullDate?.split("T");
-    console.log(tempDate)
-    var time = tempDate[1].slice(0, 2)
-    var subtractDay = false
-    if (parseInt(time) - 6 <= 0) {
-      subtractDay = true
-    }
-
-    var indexOfFirstDash = tempDate[0].indexOf("-");
-    var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
-    var finalDate = tempDate2.replace("-", "/");
-    if (subtractDay) {
-      var newDate = finalDate.split("/")
-      newDate[1] = (parseInt(newDate[1]) - 1).toString()
-      if (parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0) {
-        newDate[1] = '0' + newDate[1]
-      }
-      if (parseInt(newDate[1]) == 0) {
-        if (newDate[0] == '01') {
-          newDate[0] = '12'
-          newDate[1] = '31'
-        }
-        if (parseInt(newDate[0]) != 1) {
-          newDate[0] = (parseInt(newDate[0]) - 1).toString()
-          newDate[1] = this.arrayOfDates[parseInt(newDate[0])].toString()
-        }
-
-      }
-      finalDate = newDate[0] + "/" + newDate[1]
-
-    }
-
-    return finalDate;
-  }
+  
 
 }

@@ -7,8 +7,6 @@ import { reusedFunctions } from "./reusedFunctions"
 import { nbaApiController } from "../ApiCalls/nbaApiCalls"
 
 
-const newResusedFunctions = new reusedFunctions
-const newNbaApiController = new nbaApiController
 
 
 
@@ -132,18 +130,18 @@ export class NbaService{
           if (oldGames.includes(playerStatData[i].game.id)) {
             continue
           }
-          var game = await newNbaApiController.loadGameFromId(playerStatData[i].game.id)
+          var game = await nbaApiController.loadGameFromId(playerStatData[i].game.id)
           temp.push({
             playerId: playerStatData[i].player.id,
             playerName: playerStatData[i].player.firstname + " " + playerStatData[i].player.lastname,
             teamName: playerStatData[i].team.name,
             teamId: playerStatData[i].team.id,
-            teamAgainstName: newResusedFunctions.arrayOfNBATeams[newResusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? game.teams.home.name : game.teams.visitors.name,
-            teamAgainstId: newResusedFunctions.arrayOfNBATeams[newResusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? game.teams.home.id : game.teams.visitors.id,
-            homeOrAway: newResusedFunctions.arrayOfNBATeams[newResusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? "Away" : "Home",
+            teamAgainstName: reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? game.teams.home.name : game.teams.visitors.name,
+            teamAgainstId: reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? game.teams.home.id : game.teams.visitors.id,
+            homeOrAway: reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(game.teams.visitors.name)] == playerStatData[i].team.id ? "Away" : "Home",
             season: season,
             gameId: playerStatData[i].game.id,
-            gameDate: newResusedFunctions.convertDate(game.date.start),
+            gameDate: reusedFunctions.convertDate(game.date.start),
             playerStarted: playerStatData[i].min != "00:00" ? "Y" : "N",
             assists: playerStatData[i].assists,
             points: playerStatData[i].points,
@@ -201,7 +199,7 @@ export class NbaService{
             homeOrAway: teamStatData[i].teams.visitors.id == id ? "Away" : "Home",
             season: season,
             gameId: teamStatData[i].id,
-            gameDate: newResusedFunctions.convertDate(teamStatData[i].date.start),
+            gameDate: reusedFunctions.convertDate(teamStatData[i].date.start),
             result: teamStatData[i].teams.visitors.id == id ? (teamStatData[i].scores.visitors.points > teamStatData[i].scores.home.points) ? "Win" : "Loss" : (teamStatData[i].scores.home.points > teamStatData[i].scores.visitors.points ? "Win" : "Loss"),
             pointsScoredOverall: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.visitors.points : teamStatData[i].scores.home.points,
             pointsScoredFirstQuarter: teamStatData[i].teams.visitors.id == id ? teamStatData[i].scores.visitors.linescore[0] : teamStatData[i].scores.home.linescore[0],

@@ -145,7 +145,6 @@ export class PropScreenComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private nbaApiController: nbaApiController,
     private nhlApiController: nhlApiController,
     private draftKingsApiController: draftKingsApiController,
     private router: Router,
@@ -715,8 +714,8 @@ export class PropScreenComponent implements OnInit {
   updateDates() {
     this.dates = [];
     this.sportsBookDataFinal.forEach((x) => {
-      if (!this.dates.includes(this.reusedFunctionsNew.convertDate(x.commenceTime))) {
-        this.dates.push(this.reusedFunctionsNew.convertDate(x.commenceTime));
+      if (!this.dates.includes(reusedFunctions.convertDate(x.commenceTime))) {
+        this.dates.push(reusedFunctions.convertDate(x.commenceTime));
       }
     });
     this.setSelectedDate(this.dates[0])
@@ -725,7 +724,7 @@ export class PropScreenComponent implements OnInit {
   updateGames() {
     this.games = [];
     this.sportsBookDataFinal.forEach((x) => {
-      if (this.selectedDate == this.reusedFunctionsNew.convertDate(x.commenceTime)) {
+      if (this.selectedDate == reusedFunctions.convertDate(x.commenceTime)) {
         let check = this.games.filter((e) => e.id == x.bookId)
         if (check.length == 0) {
           this.games.push({ game: `${x.homeTeam} vs ${x.awayTeam}`, id: x.bookId });
@@ -770,7 +769,7 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
       }
       else { */
-    this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.reusedFunctionsNew.arrayOfNBATeams[this.reusedFunctionsNew.addUnderScoreToName(team1[0].teamName)], 2023)
+    this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
     //}
 
     //}
@@ -788,7 +787,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
       }
       else { */
-    this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.reusedFunctionsNew.arrayOfNBATeams[this.reusedFunctionsNew.addUnderScoreToName(team2[0].teamName)], 2023)
+    this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team2[0].teamName)], 2023)
     //}
     //}
 
@@ -2103,7 +2102,7 @@ export class PropScreenComponent implements OnInit {
       //let teamId1 = this.arrayOfNBATeams[tempTeamName1]
       //let teamId2 = this.arrayOfNBATeams[tempTeamName2]
       //let playerId = await NbaController.nbaLoadPlayerInfoFromName(element.name)
-      this.teamAgainst = this.reusedFunctionsNew.arrayOfNBATeams[this.reusedFunctionsNew.addUnderScoreToName(element.team1)] == this.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1
+      this.teamAgainst = reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(element.team1)] == this.nbaPlayerStatData2023Final[0].teamId ? element.team2 : element.team1
 
 
       var d = new Date();
@@ -2286,7 +2285,7 @@ export class PropScreenComponent implements OnInit {
   }
   getTeamName(team: string): string {
     team = this.insertUnderscore(team);
-    return this.reusedFunctionsNew.arrayOfMLBTeams[team];
+    return reusedFunctions.arrayOfMLBTeams[team];
   }
   insertUnderscore(team: string): string {
     team = team.replaceAll(' ', '_');
