@@ -36,10 +36,13 @@ export class mlbApiController {
             }
         };
 
-        
-            const response = await fetch(url, options);
-            const result = await response.json();
-       
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const processedResult = result.response
+
+        return MlbService.mlbConvertPlayerGameStatsFromApiToDb(processedResult)
+
 
 
     }

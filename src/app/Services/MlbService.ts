@@ -3,6 +3,7 @@ import { DbNbaGameStats } from "../../shared/dbTasks/DbNbaGameStats"
 import { DbNbaTeamGameStats } from "../../shared/dbTasks/DbNbaTeamGameStats"
 import { DbNbaTeamStatAverages } from "../../shared/dbTasks/DbNbaTeamStatAverages"
 import { PlayerInfoMlb } from "src/shared/dbTasks/DbMlbPlayerInfo"
+import { DBPlayerGameStatsMlb } from "src/shared/dbTasks/DbMlbPlayerGameStats"
 
 
 
@@ -68,36 +69,71 @@ export class MlbService {
     }
 
 
-    convertTeamStatDataToPlayerStatAverageData(statData: DbNbaTeamGameStats[]): DbNbaTeamStatAverages {
-        var dataAverage: DbNbaTeamStatAverages = {
-            teamName: "",
-            teamId: 0,
-            season: 0,
-            wins: 0,
-            losses: 0,
-            pointsScored: 0,
-            pointsAllowed: 0,
+    static mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): DBPlayerGameStatsMlb[] {
+        var playerStatsFinal: DBPlayerGameStatsMlb[] = []
 
-        }
-        statData.forEach(game => {
-            dataAverage.teamName = game.teamName,
-                dataAverage.teamId = game.teamId,
-                dataAverage.season = game.season,
-                dataAverage.wins += game.result == "Win" ? 1 : 0,
-                dataAverage.losses += game.result == "Loss" ? 1 : 0,
-                dataAverage.pointsScored += game.pointsScoredOverall,
-                dataAverage.pointsAllowed += game.pointsAllowedOverall
-        })
-        var FinalAverageData: DbNbaTeamStatAverages = {
-            teamName: dataAverage.teamName,
-            teamId: dataAverage.teamId,
-            season: dataAverage.season,
-            wins: dataAverage.wins,
-            losses: dataAverage.losses,
-            pointsScored: dataAverage.pointsScored / statData.length,
-            pointsAllowed: dataAverage.pointsAllowed / statData.length
-        }
-        return FinalAverageData
+        //get player info to get player name and team id
+
+        playerStatData.forEach(game => 
+            playerStatsFinal.push({
+                playerId: game.playerID,
+                playerName: game.playerName,
+                teamName: game.team,
+                teamId: game.teamId,
+                teamAgainstName: this.getTeamAgainst(game.gameID, game.team),
+                teamAgainstId: "asdf",
+                gameId: game.gameID,
+                gameDate: this.getGameDate(game.gameID),
+                season: game.gameID,
+                playerPosition: game.startingPosition,
+                playerStarted: game.started ? "Y" : "N",
+                batterHomeRuns: game.Hitting.HR,
+                batterHits: game.Hitting.H,
+                batterTotalBases: game.Hitting.TB,
+                batterRbis: game.Hitting.RBI,
+                batterRunsScored: game.Hitting.R,
+                batterHitsRunsRbis: game.Hitting.H + game.Hitting.R + game.Hitting.RBI,
+                batterDoubles: game.Hitting['2B'],
+                batterTriples: game.Hitting['3B'],
+                batterWalks: game.Hitting.BB + game.Hitting.IBB,
+                batterStrikeouts: game.Hitting.SO,
+                batterStolenBases: game.BaseRunning.SB,
+                pitcherStrikes: game.Pitching.Strikes,
+                pitcherPitches: game.Pitching.Pitches,
+
+            })
+            )
+
+        return playerStatsFinal
+    }
+
+    static getTeamAgainst(gameId: string, teamName: string): string {
+        var teamAgainst = ""
+
+        let splitString = gameId.split("_")
+        teamAgainst = splitString[1].replace(teamName, "")
+        teamAgainst = teamAgainst.replace("@", "")
+
+        return teamAgainst
+
+    }
+
+    static getGameDate(gameId: string): string {
+        let gameDate = ""
+        
+
+        let splitString = gameId.split("_")
+
+        gameDate = splitString[0]
+        gameDate = gameDate.slice(3)
+        let month = gameDate.slice(0, 2)
+        let day = gameDate.slice(2)
+
+        return month + "/" + day
+    }
+
+    static getSeason(){
+        
     }
 
 

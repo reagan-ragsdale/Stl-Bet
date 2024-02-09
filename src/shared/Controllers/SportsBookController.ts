@@ -19,9 +19,9 @@ export class SportsBookController {
       await taskRepo.delete(d)
     } }
     
-    for (const data of bookData) {
-      await taskRepo.insert(data)
-    }
+    
+      await taskRepo.insert(bookData)
+  
 
   }
 

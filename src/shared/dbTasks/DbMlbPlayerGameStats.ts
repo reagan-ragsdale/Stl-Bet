@@ -56,9 +56,6 @@ export class DBPlayerGameStatsMlb {
   batterHitsRunsRbis = 0
 
   @Fields.integer()
-  batterSingles = 0
-
-  @Fields.integer()
   batterDoubles = 0
 
   @Fields.integer()
@@ -73,23 +70,16 @@ export class DBPlayerGameStatsMlb {
   @Fields.integer()
   batterStolenBases = 0
 
-  @Fields.integer()
-  pitcherStrikeouts = 0
+ 
+
 
   @Fields.integer()
-  pitcherRecordAWin = 0
+  pitcherStrikes = 0
 
   @Fields.integer()
-  pitcherHitsAllowed = 0
+  pitcherPitches = 0
 
-  @Fields.integer()
-  pitcherWalks = 0
-
-  @Fields.integer()
-  pitcherEarnedRuns = 0
-
-  @Fields.integer()
-  pitcherOuts = 0
+  
 
  
 
