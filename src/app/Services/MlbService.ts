@@ -17,46 +17,46 @@ export class MlbService {
         playerInfo.forEach((player: { longName: string, playerID: string, team: string, teamID: string }) => {
             console.log(player)
             if (player.longName.includes("á")) {
-                player.longName.replaceAll("á", "a")
+                player.longName = player.longName.replaceAll("á", "a")
             }
             if (player.longName.includes("Á")) {
-                player.longName.replaceAll("Á", "A")
+                player.longName = player.longName.replaceAll("Á", "A")
             }
             if (player.longName.includes("é")) {
-                player.longName.replaceAll("é", "e")
+                player.longName = player.longName.replaceAll("é", "e")
             }
             if (player.longName.includes("É")) {
-                player.longName.replaceAll("É", "E")
+                player.longName = player.longName.replaceAll("É", "E")
             }
             if (player.longName.includes("í")) {
-                player.longName.replaceAll("í", "i")
+                player.longName = player.longName.replaceAll("í", "i")
             }
             if (player.longName.includes("Í")) {
-                player.longName.replaceAll("Í", "I")
+                player.longName = player.longName.replaceAll("Í", "I")
             }
             if (player.longName.includes("ñ")) {
-                player.longName.replaceAll("ñ", "n")
+                player.longName = player.longName.replaceAll("ñ", "n")
             }
             if (player.longName.includes("Ñ")) {
-                player.longName.replaceAll("Ñ", "N")
+                player.longName = player.longName.replaceAll("Ñ", "N")
             }
             if (player.longName.includes("ó")) {
-                player.longName.replaceAll("ó", "o")
+                player.longName = player.longName.replaceAll("ó", "o")
             }
             if (player.longName.includes("Ó")) {
-                player.longName.replaceAll("Ó", "O")
+                player.longName = player.longName.replaceAll("Ó", "O")
             }
             if (player.longName.includes("ú")) {
-                player.longName.replaceAll("ú", "u")
+                player.longName = player.longName.replaceAll("ú", "u")
             }
             if (player.longName.includes("Ú")) {
-                player.longName.replaceAll("Ú", "U")
+                player.longName = player.longName.replaceAll("Ú", "U")
             }
             if (player.longName.includes("ü")) {
-                player.longName.replaceAll("ü", "u")
+                player.longName = player.longName.replaceAll("ü", "u")
             }
             if (player.longName.includes("Ü")) {
-                player.longName.replaceAll("Ü", "U")
+                player.longName = player.longName.replaceAll("Ü", "U")
             }
 
             playerList.push({
