@@ -13,10 +13,13 @@ export class MlbController {
   @BackendMethod({ allowed: true})
   static async mlbSetPlayerInfo(playerData: PlayerInfoMlb[]){
     const taskRepo = remult.repo(PlayerInfoMlb)
-    var currentDb = await taskRepo.find({ where: { playerId: { "!=": 0 } } })
-    for(let player of currentDb){
-      await taskRepo.delete(player)
+    var currentDb = await taskRepo.find({ where: { playerId: { ">=": 0 } } })
+    if(currentDb.length > 0){
+      for(let player of currentDb){
+        await taskRepo.delete(player)
+      }
     }
+    
     await taskRepo.insert(playerData)
   }
 
