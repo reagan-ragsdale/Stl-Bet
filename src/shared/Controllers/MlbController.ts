@@ -17,12 +17,17 @@ export class MlbController {
     var currentDb = await taskRepo.find({ where: { playerId: { ">=": 0 } } })
     console.log("here after currentDb")
     if(currentDb.length > 0){
+      console.log("here in if statement")
       for(let player of currentDb){
         await taskRepo.delete(player)
       }
     }
+    console.log("after if statement")
+    try{
+      await taskRepo.insert(playerData)
+    }catch(error: any){console.log(error.message)}
     
-    await taskRepo.insert(playerData)
+    console.log("after if statement")
   }
 
   @BackendMethod({ allowed: true})
