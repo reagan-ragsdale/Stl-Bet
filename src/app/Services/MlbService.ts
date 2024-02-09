@@ -12,8 +12,10 @@ export class MlbService {
 
     static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): PlayerInfoMlb[] {
         var playerList: PlayerInfoMlb[] = []
+        console.log("here in service")
 
         playerInfo.forEach((player: { longName: string, playerID: string, team: string, teamID: string }) => {
+            console.log(player)
             if (player.longName.includes("á")) {
                 player.longName.replaceAll("á", "a")
             }
