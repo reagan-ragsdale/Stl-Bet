@@ -21,9 +21,8 @@ export class mlbApiController {
 
 
         const response = await fetch(url, options);
-        console.log(response)
         const result = await response.json();
-        const processedResult = result.response
+        const processedResult = result.body
 
         return MlbService.mlbConvertPlayerInfoFromApiToDb(processedResult)
     }
@@ -41,7 +40,7 @@ export class mlbApiController {
 
         const response = await fetch(url, options);
         const result = await response.json();
-        const processedResult = result.response
+        const processedResult = result.body
 
         return MlbService.mlbConvertPlayerGameStatsFromApiToDb(processedResult)
 

@@ -84,7 +84,7 @@ export class MlbService {
                 teamAgainstId: "asdf",
                 gameId: game.gameID,
                 gameDate: this.getGameDate(game.gameID),
-                season: game.gameID,
+                season: this.getSeason(game.gameID),
                 playerPosition: game.startingPosition,
                 playerStarted: game.started ? "Y" : "N",
                 batterHomeRuns: game.Hitting.HR,
@@ -132,8 +132,10 @@ export class MlbService {
         return month + "/" + day
     }
 
-    static getSeason(){
-        
+    static getSeason(gameId: string): number{
+        let seasonFinal: any = ""
+        seasonFinal = parseInt(gameId.slice(0,4))
+        return seasonFinal
     }
 
 
