@@ -13,7 +13,7 @@ export class MlbService {
     static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): PlayerInfoMlb[] {
         var playerList: PlayerInfoMlb[] = []
 
-        playerInfo.forEach((player: { longName: string, playerID: number, team: string, teamID: number }) => {
+        playerInfo.forEach((player: { longName: string, playerID: string, team: string, teamID: string }) => {
             if (player.longName.includes("á")) {
                 player.longName.replaceAll("á", "a")
             }
@@ -58,10 +58,10 @@ export class MlbService {
             }
 
             playerList.push({
-                playerId: player.playerID,
+                playerId: parseInt(player.playerID),
                 playerName: player.longName,
                 teamName: player.team,
-                teamId: player.teamID
+                teamId: parseInt(player.teamID)
             })
 
         })
