@@ -23,7 +23,8 @@ export class mlbApiController {
         const response = await fetch(url, options);
         const result = await response.json();
         const processedResult = result.body
-        return MlbService.mlbConvertPlayerInfoFromApiToDb(processedResult)
+        var finalReturn = MlbService.mlbConvertPlayerInfoFromApiToDb(processedResult)
+        return finalReturn
     }
 
     static async getPlayerGameStats(playerId: number, season: number) {
