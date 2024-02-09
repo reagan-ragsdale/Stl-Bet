@@ -1,5 +1,5 @@
 import { Allow, BackendMethod, remult } from "remult"
-import {PlayerInfoMlb}   from '../dbTasks/DbMlbPlayerInfo'
+import {DbMlbPlayerInfo}   from '../dbTasks/DbMlbPlayerInfo'
 import { DBPlayerGameStatsMlb } from "../dbTasks/DbMlbPlayerGameStats"
 import { DbMlbTeamGameStats } from "../dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "../dbTasks/DbMlbPlayerGameStatAverages"
@@ -11,9 +11,9 @@ export class MlbController {
 
   //player info 
   @BackendMethod({ allowed: true})
-  static async mlbSetPlayerInfo(playerData: PlayerInfoMlb[]){
+  static async mlbSetPlayerInfo(playerData: DbMlbPlayerInfo[]){
     console.log("here in mlb player info controller")
-    const taskRepo = remult.repo(PlayerInfoMlb)
+    const taskRepo = remult.repo(DbMlbPlayerInfo)
     var currentDb = await taskRepo.find({ where: { playerId: { ">=": 0 } } })
     console.log("here after currentDb")
     if(currentDb.length > 0){
@@ -31,20 +31,20 @@ export class MlbController {
   }
 
   @BackendMethod({ allowed: true})
-  static async mlbGetPlayerInfoByPlayerId(id: number): Promise<PlayerInfoMlb[]>{
-    const taskRepo = remult.repo(PlayerInfoMlb)
+  static async mlbGetPlayerInfoByPlayerId(id: number): Promise<DbMlbPlayerInfo[]>{
+    const taskRepo = remult.repo(DbMlbPlayerInfo)
     return await taskRepo.find({where: {playerId: id}})
   }
 
   @BackendMethod({ allowed: true})
-  static async mlbGetPlayerInfoByPlayerName(name: string): Promise<PlayerInfoMlb[]>{
-    const taskRepo = remult.repo(PlayerInfoMlb)
+  static async mlbGetPlayerInfoByPlayerName(name: string): Promise<DbMlbPlayerInfo[]>{
+    const taskRepo = remult.repo(DbMlbPlayerInfo)
     return await taskRepo.find({where: {playerName: name}})
   }
 
   @BackendMethod({ allowed: true})
-  static async mlbGetAllPlayerInfo(): Promise<PlayerInfoMlb[]>{
-    const taskRepo = remult.repo(PlayerInfoMlb)
+  static async mlbGetAllPlayerInfo(): Promise<DbMlbPlayerInfo[]>{
+    const taskRepo = remult.repo(DbMlbPlayerInfo)
     return await taskRepo.find({ where: { playerId: { "!=": 0 } } })
   }
 

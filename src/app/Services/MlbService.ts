@@ -2,7 +2,7 @@ import { DbNbaPlayerStatAverages } from "../../shared/dbTasks/DbNbaPlayerStatAve
 import { DbNbaGameStats } from "../../shared/dbTasks/DbNbaGameStats"
 import { DbNbaTeamGameStats } from "../../shared/dbTasks/DbNbaTeamGameStats"
 import { DbNbaTeamStatAverages } from "../../shared/dbTasks/DbNbaTeamStatAverages"
-import { PlayerInfoMlb } from "src/shared/dbTasks/DbMlbPlayerInfo"
+import { DbMlbPlayerInfo } from "src/shared/dbTasks/DbMlbPlayerInfo"
 import { DBPlayerGameStatsMlb } from "src/shared/dbTasks/DbMlbPlayerGameStats"
 
 
@@ -10,8 +10,8 @@ import { DBPlayerGameStatsMlb } from "src/shared/dbTasks/DbMlbPlayerGameStats"
 
 export class MlbService {
 
-    static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): PlayerInfoMlb[] {
-        var playerList: PlayerInfoMlb[] = []
+    static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): DbMlbPlayerInfo[] {
+        var playerList: DbMlbPlayerInfo[] = []
         console.log("here in service")
 
         playerInfo.forEach((player: { longName: string, playerID: string, team: string, teamID: string }) => {

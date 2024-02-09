@@ -14,7 +14,7 @@ import { GamePropArray } from '../game-prop-array';
 import { DateArray } from '../date-array';
 import { SportPropArray } from '../sport-prop-array';
 import { remult } from 'remult';
-import { PlayerInfoMlb } from 'src/shared/dbTasks/DbMlbPlayerInfo';
+import { DbMlbPlayerInfo } from 'src/shared/dbTasks/DbMlbPlayerInfo';
 import { MlbController } from 'src/shared/Controllers/MlbController';
 import { ISportsBook } from '../isports-book';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
@@ -575,8 +575,8 @@ export class PropScreenComponent implements OnInit {
   selectedSportGames: any;
   selectedSportsData: any;
 
-  playerInfoTemp: PlayerInfoMlb[] = []
-  playerInfoFinal: PlayerInfoMlb[] = []
+  playerInfoTemp: DbMlbPlayerInfo[] = []
+  playerInfoFinal: DbMlbPlayerInfo[] = []
   gamePropData: ISportsBook[] = []
   sportsBookData: DbGameBookData[] = []
   sportsBookDataFinal: DbGameBookData[] = []
@@ -2240,7 +2240,7 @@ export class PropScreenComponent implements OnInit {
     console.timeEnd("update player prop array")
   }
 
-  playerNameSpanishConvert(list: PlayerInfoMlb[]): PlayerInfoMlb[] {
+  playerNameSpanishConvert(list: DbMlbPlayerInfo[]): DbMlbPlayerInfo[] {
     var newList = list;
     for (let i = 0; i < newList.length; i++) {
       var name = newList[i].playerName;

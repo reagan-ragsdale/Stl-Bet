@@ -1,9 +1,9 @@
 import { Allow, Entity, Fields, Validators } from "remult"
 
-@Entity("playerInfoMlb", {
+@Entity("DbMlbPlayerInfo", {
   allowApiCrud: true
 })
-export class PlayerInfoMlb {
+export class DbMlbPlayerInfo {
   @Fields.integer()
   playerId = 0
 
