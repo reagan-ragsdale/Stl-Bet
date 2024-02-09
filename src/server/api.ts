@@ -54,7 +54,7 @@ export const api = remultExpress({
       }) : undefined
 ,initApi: async ()=>{
   cron.schedule('22 15 * * *',()=>  cronTestFile())
-  cron.schedule('00 18 * * *', ()=>  mlbCronFile())
+  cron.schedule('00 19 * * *', ()=>  mlbCronFile())
 }
 });
 

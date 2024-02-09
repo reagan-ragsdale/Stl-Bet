@@ -12,8 +12,10 @@ export class MlbController {
   //player info 
   @BackendMethod({ allowed: true})
   static async mlbSetPlayerInfo(playerData: PlayerInfoMlb[]){
+    console.log("here in mlb player info controller")
     const taskRepo = remult.repo(PlayerInfoMlb)
     var currentDb = await taskRepo.find({ where: { playerId: { ">=": 0 } } })
+    console.log("here after currentDb")
     if(currentDb.length > 0){
       for(let player of currentDb){
         await taskRepo.delete(player)

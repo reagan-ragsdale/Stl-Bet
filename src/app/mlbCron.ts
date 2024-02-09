@@ -48,7 +48,6 @@ export const mlbCronFile = async () => {
     // get and load all nba player info
 
     const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
-    console.log(allPlayerInfo)
     MlbController.mlbSetPlayerInfo(allPlayerInfo)
 
     console.log("Finished player info load")
