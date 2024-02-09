@@ -67,6 +67,7 @@ export class MlbService {
             })
 
         })
+        console.log(playerList)
         return playerList
     }
 
