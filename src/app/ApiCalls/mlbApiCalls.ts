@@ -22,9 +22,7 @@ export class mlbApiController {
 
         const response = await fetch(url, options);
         const result = await response.json();
-        
         const processedResult = result.body
-        console.log(processedResult)
         return MlbService.mlbConvertPlayerInfoFromApiToDb(processedResult)
     }
 

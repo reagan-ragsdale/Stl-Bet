@@ -58,10 +58,10 @@ export class MlbService {
             }
 
             playerList.push({
-                playerId: parseInt(player.playerID),
+                playerId: player.playerID == '' ? 0 : parseInt(player.playerID),
                 playerName: player.longName,
                 teamName: player.team,
-                teamId: parseInt(player.teamID)
+                teamId: player.teamID == '' ? 0 : parseInt(player.teamID)
             })
 
         })
