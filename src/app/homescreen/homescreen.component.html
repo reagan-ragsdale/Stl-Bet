@@ -27,10 +27,10 @@
         [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
         style="display: block; margin: auto; margin-top: 2rem; width: 60px;">{{game.name}}</button>
     </div>
-    <div style="height: 100%; width:91%; display: flex; flex-direction: column; align-content: space-between;">
+    <div style="height: 100%; width:91%; display: flex; flex-direction: column; align-content: space-between; background-color: #F0ECE5;">
       <div style="height: 7%; width: 100%; display: flex; align-items: center;  ">
         <h1
-          style="width: 50%; height: 100%; text-align: start; padding-top: 2.5rem; font-weight: 500; color:#F0ECE5; margin-left: 1.5rem;">
+          style="width: 50%; height: 100%; text-align: start; padding-top: 2.5rem; font-weight: 500; color:#31304d; margin-left: 1.5rem;">
           {{selectedSport}} Dashboard</h1>
         <div style="height: 100%; width: 50%; display:flex; align-items: center; justify-content: flex-end;">
           <button mat-button style=" margin-right: 2rem; background-color: #415a77; color: #F0ECE5 ">Go to
@@ -40,8 +40,8 @@
       </div>
       <div style="height: 40%; width: 100%; display: flex;  justify-content: space-evenly; ">
         <div
-          style=" width: 48%; height: 100%; border: 1px solid #F0ECE5;  border-radius: 10px;  display: flex; flex-direction: column; gap: 1rem;">
-          <div style="height: 15%; width: 100%; display: flex;">
+          style=" width: 48%; height: 100%; border: 1px solid #F0ECE5;  border-radius: 10px;  display: flex; flex-direction: column; gap: 1rem; background-color: #31304d;">
+          <div style="height: 15%; width: 100%; display: flex; ">
             <h1
               style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#F0ECE5">
               Top Players</h1>
@@ -86,40 +86,11 @@
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
                 *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
             </table>
-            <!-- <div
-              style="height: 10%; width: 100%;border: 1px solid #F0ECE5; border-radius: 10px; display: flex; margin-bottom: 1rem;">
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Player
-              </div>
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Points
-              </div>
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Assists
-              </div>
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Rebounds
-              </div>
-            </div>
-            <div *ngFor="let player of playerData"
-              style="height: 15%; width: 100%; display: flex; border: 1px solid #F0ECE5; border-radius: 10px; ">
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{player.playerName}}
-              </div>
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{player.points | number: '1.0-2'}}
-              </div>
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{player.assists | number: '1.0-2'}}
-              </div>
-              <div style="height: 100%; width: 25%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{player.totReb | number: '1.0-2'}}
-              </div>
-            </div> -->
+            
           </div>
         </div>
         <div
-          style=" width: 48%; height: 100%; border: 1px solid #F0ECE5; border-radius: 10px;  display: flex; flex-direction: column; gap: 1rem;">
+          style=" width: 48%; height: 100%; border: 1px solid #F0ECE5; border-radius: 10px;  display: flex; flex-direction: column; gap: 1rem; background-color: #31304d;">
           <div style="height: 15%; width: 100%; display: flex;">
             <h1
               style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#F0ECE5">
@@ -130,49 +101,48 @@
                 [ngClass]="stat.selected === true ? 'selected' : 'unselected'">{{stat.name}}</button>
             </div>
           </div>
-          <div style="height: 100%; width: 96%; margin-left: 1rem; margin-right: 1rem;">
-            <div
-              style="height: 10%; width: 100%;border: 1px solid #F0ECE5; border-radius: 10px; display: flex; margin-bottom: 1rem;">
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Team
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Wins
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Losses
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Points Scored
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: .3rem; color:#F0ECE5">
-                Points Allowed
-              </div>
-            </div>
-            <div *ngFor="let team of teamData"
-              style="height: 15%; width: 100%; display: flex; border: 1px solid #F0ECE5; border-radius: 10px; ">
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{team.teamName}}
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{team.wins}}
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{team.losses}}
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{team.pointsScored | number: '1.0-2'}}
-              </div>
-              <div style="height: 100%; width: 20%;  text-align: center; padding-top: 1rem; color:#F0ECE5">
-                {{team.pointsAllowed | number: '1.0-2'}}
-              </div>
-            </div>
+          <div style="height: 100%; width: 96%; margin-left: 1rem; margin-right: 1rem; margin-bottom: 1rem;">
+            <table mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%;">
+
+              <ng-container matColumnDef="Team">
+                <th mat-header-cell *matHeaderCellDef> Team </th>
+                <td mat-cell *matCellDef="let element; let i = playerData; let j = index;">
+                  {{element.teamName}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Wins">
+                <th mat-header-cell *matHeaderCellDef> Wins </th>
+                <td mat-cell *matCellDef="let element"> {{element.wins}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Losses">
+                <th mat-header-cell *matHeaderCellDef> Losses </th>
+                <td mat-cell *matCellDef="let element"> {{element.losses}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Points Scored">
+                <th mat-header-cell *matHeaderCellDef> Points Scored </th>
+                <td mat-cell *matCellDef="let element"> {{element.pointsScored}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Points Allowed">
+                <th mat-header-cell *matHeaderCellDef> Points Allowed </th>
+                <td mat-cell *matCellDef="let element"> {{element.pointsAllowed}} </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:true"></tr>
+              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+            </table>
           </div>
         </div>
       </div>
       <div style="width: 100%; height: 53%; display: flex; align-items: center; margin-top: 1rem; ">
         <div
-          style=" width: 100%; height: 99%; border: 1px solid #F0ECE5; border-radius: 10px; margin-left: 1rem; margin-right: 1rem; display:flex; flex-direction: column; ">
+          style=" width: 100%; height: 99%; border: 1px solid #F0ECE5; border-radius: 10px; margin-left: 1rem; margin-right: 1rem; display:flex; flex-direction: column; background-color: #31304d;">
           <h1 style="height: 10%; width: 100%; text-align: center; margin-top:1rem; color:#F0ECE5"> Upcoming Games</h1>
           <div
             style="height: 85%; width: 100%; display:flex; flex-wrap: wrap; justify-content: space-between; margin-top: 1rem;">

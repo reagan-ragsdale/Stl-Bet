@@ -29,6 +29,7 @@ export class HomeScreenComponent {
   public gameDataFinal: any[] = []
 
   playerAverageColumns: string[] = ["Player", "Points", "Assists", "Rebounds"]
+  teamAverageColumns: string[] = ["Team", "Wins", "Losses", "Points Scored", "Points Allowed"]
   
   propClicked(){
     this.router.navigate(["/props"])
