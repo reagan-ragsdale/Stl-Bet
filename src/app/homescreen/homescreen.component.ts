@@ -95,6 +95,10 @@ export class HomeScreenComponent {
     
   }
 
+  teamClicked(teamName: string){
+    console.log(teamName)
+  }
+
 
   async ngOnInit(){
     this.selectedSport = this.gamesList[0].name
