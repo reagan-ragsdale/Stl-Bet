@@ -27,6 +27,8 @@ export class HomeScreenComponent {
   public teamData: any[] = []
   public gameData: any[] = []
   public gameDataFinal: any[] = []
+
+  playerAverageColumns: string[] = ["Player", "Points", "Assists", "Rebounds"]
   
   propClicked(){
     this.router.navigate(["/props"])
@@ -58,6 +60,7 @@ export class HomeScreenComponent {
   async getData(sport: string){
     if(sport == "NBA"){
        this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
+       
        this.playerStatsButtons = [
         {selected: true,
         name: "Points",

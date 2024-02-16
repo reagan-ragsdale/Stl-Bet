@@ -48,11 +48,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   ],
   imports: [
     BrowserModule,
-    /* RouterModule.forRoot([
-      {path: '', redirectTo: 'home', pathMatch: 'full'},
+     RouterModule.forRoot([
       {path: 'home', component: HomeScreenComponent},
       {path: 'props', component: PropScreenComponent},
-    ]), */
+      {path: '', redirectTo: 'home', pathMatch: 'full'}
+    ]), 
     AppRoutingModule, 
     HttpClientModule, 
     FormsModule,
