@@ -66,18 +66,18 @@
 
               <ng-container matColumnDef="Points">
                 <th mat-header-cell *matHeaderCellDef> Points </th>
-                <td mat-cell *matCellDef="let element"> {{element.points}}
+                <td mat-cell *matCellDef="let element"> {{element.points | number: '1.0-2'}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="Assists">
                 <th mat-header-cell *matHeaderCellDef> Assists </th>
-                <td mat-cell *matCellDef="let element"> {{element.assists}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.assists | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Rebounds">
                 <th mat-header-cell *matHeaderCellDef> Rebounds </th>
-                <td mat-cell *matCellDef="let element"> {{element.totReb}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.totReb | number: '1.0-2'}} </td>
               </ng-container>
 
 
@@ -124,12 +124,12 @@
 
               <ng-container matColumnDef="Points Scored">
                 <th mat-header-cell *matHeaderCellDef> Points Scored </th>
-                <td mat-cell *matCellDef="let element"> {{element.pointsScored}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.pointsScored | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Points Allowed">
                 <th mat-header-cell *matHeaderCellDef> Points Allowed </th>
-                <td mat-cell *matCellDef="let element"> {{element.pointsAllowed}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.pointsAllowed | number: '1.0-2'}} </td>
               </ng-container>
 
 
