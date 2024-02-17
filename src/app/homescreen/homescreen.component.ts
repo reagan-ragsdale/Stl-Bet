@@ -83,7 +83,7 @@ export class HomeScreenComponent {
         dbName: "pointsScored"}
        ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
-      
+      console.log(this.gameData)
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
       console.log(this.gameDataFinal)
