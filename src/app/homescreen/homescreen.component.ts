@@ -26,6 +26,7 @@ export class HomeScreenComponent {
   public playerData: any[] = []
   public teamData: any[] = []
   public gameData: any[] = []
+  public gameDataAll: any[] = []
   public gameDataFinal: any[] = []
 
   playerAverageColumns: string[] = ["Player", "Points", "Assists", "Rebounds"]
@@ -83,7 +84,12 @@ export class HomeScreenComponent {
         dbName: "pointsScored"}
        ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
+      this.gameDataAll = await SportsBookController.loadSportBook(sport)
+      var distinctGames = this.gameDataAll.map(game => game.gameId).filter((value, index, array) => array.indexOf(value === index))
+      console.log(distinctGames)
+      
       console.log(this.gameData)
+
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
       console.log(this.gameDataFinal)
