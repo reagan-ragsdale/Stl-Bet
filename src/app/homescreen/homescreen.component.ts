@@ -85,7 +85,7 @@ export class HomeScreenComponent {
        ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
       this.gameDataAll = await SportsBookController.loadSportBook(sport)
-      var distinctGames = this.gameDataAll.map(game => game.gameId).filter((value, index, array) => array.indexOf(value === index))
+      var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value === index))
       console.log(distinctGames)
       
       console.log(this.gameData)
