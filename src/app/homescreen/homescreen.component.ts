@@ -87,7 +87,9 @@ export class HomeScreenComponent {
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
       this.gameDataAll = await SportsBookController.loadSportBook(sport)
       var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      console.log(distinctGames)
       distinctGames.forEach(book =>{
+        console.log(book)
         let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
         this.gameDataAllFinal.push(allOfBook)
       })
@@ -95,7 +97,7 @@ export class HomeScreenComponent {
 
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
-      console.log(this.gameDataFinal)
+      //console.log(this.gameDataFinal)
 
     }
     else if(sport == "MLB"){
@@ -105,7 +107,7 @@ export class HomeScreenComponent {
   }
 
   teamClicked(teamName: string){
-    console.log(teamName)
+    //console.log(teamName)
   }
 
 
