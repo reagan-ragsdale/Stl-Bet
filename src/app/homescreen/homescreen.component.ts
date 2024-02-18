@@ -87,11 +87,17 @@ export class HomeScreenComponent {
       this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
       this.gameDataAll = await SportsBookController.loadSportBook(sport)
       var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
-      console.log(distinctGames)
+      //console.log(distinctGames)
       distinctGames.forEach(book =>{
         console.log(book)
         let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
-        this.gameDataAllFinal.push(allOfBook)
+        var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
+        let teamArray:any[] = []
+        distinctTeams.forEach(team =>{
+          let allOfTeam = allOfBook.filter(e => e.teamName == team)
+          teamArray.push(allOfTeam)
+        })
+        this.gameDataAllFinal.push(teamArray)
       })
       console.log(this.gameDataAllFinal)
 

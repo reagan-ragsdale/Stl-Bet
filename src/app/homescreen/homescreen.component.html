@@ -149,18 +149,29 @@
             <div
               style="height: 100%; width: auto; margin-right: 1rem; margin-left: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
               <mat-card *ngFor="let game of gameDataAllFinal" style="width: 300px; height: 200px;">
-                <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center;">
+                <!-- <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center;">
                   <mat-card-title style="font-size:small;"><a class="teamLink"  (click)="teamClicked(game[0].awayTeam)">{{game[0].awayTeam}}</a> @ <a class="teamLink"  (click)="teamClicked(game[0].awayTeam)">{{game[0].homeTeam}}</a></mat-card-title>
-                </mat-card-header>
+                </mat-card-header> -->
                 <mat-card-content style="display:flex; flex-direction: column;">
                   <div style="display: inline-block;">
                     <div class="games-prop-block">
                       {{game[0].awayTeam}}
                     </div>
+                    <div class="games-prop-block">
+                      {{game[0].awayTeam}}
+                    </div>
+                  </div>
+                  <div style="display: inline-block;">
+                    <div >
+                      @
+                    </div>
                   </div>
                   <div style="display: inline-block;">
                     <div class="games-prop-block">
                       {{game[0].homeTeam}}
+                    </div>
+                    <div class="games-prop-block">
+                      {{game[0].awayTeam}}
                     </div>
                   </div>
                  
