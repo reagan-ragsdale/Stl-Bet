@@ -84,11 +84,11 @@ export class HomeScreenComponent {
         name: "Points Scored",
         dbName: "pointsScored"}
        ]
-      //this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
-      //this.gameDataAll = await SportsBookController.loadSportBook(sport)
-      //var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
-      //console.log(distinctGames)
-      /* distinctGames.forEach(book =>{
+      this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
+      this.gameDataAll = await SportsBookController.loadSportBook(sport)
+      var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      console.log(distinctGames)
+      distinctGames.forEach(book =>{
         console.log(book)
         let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
         var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
@@ -98,9 +98,9 @@ export class HomeScreenComponent {
           teamArray.push(allOfTeam)
         })
         this.gameDataAllFinal.push(teamArray)
-      }) */
+      })
       //console.log(this.gameDataAllFinal)
-      let team1 = [{
+      /* let team1 = [{
         homeTeam: "Toronto Raptors Lakers",
         awayTeam: "Brooklyn Nets",
         marketKey: "h2h",
@@ -146,7 +146,7 @@ export class HomeScreenComponent {
       let final: any[] = [team1, team2, over, under]
 
       this.gameDataAllFinal.push(final)
-      
+       */
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
       //console.log(this.gameDataFinal)
 
