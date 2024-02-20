@@ -27,7 +27,8 @@
         [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
         style="display: block; margin: auto; margin-top: 2rem; width: 60px;">{{game.name}}</button>
     </div>
-    <div style="height: 100%; width:91%; display: flex; flex-direction: column; align-content: space-between; background-color: #F0ECE5;">
+    <div
+      style="height: 100%; width:91%; display: flex; flex-direction: column; align-content: space-between; background-color: #F0ECE5;">
       <div style="height: 7%; width: 100%; display: flex; align-items: center;  ">
         <h1
           style="width: 50%; height: 100%; text-align: start; padding-top: 2.5rem; font-weight: 500; color:#31304d; margin-left: 1.5rem;">
@@ -86,7 +87,7 @@
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
                 *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
             </table>
-            
+
           </div>
         </div>
         <div
@@ -148,9 +149,11 @@
             style="height: 85%; width: 100%; display:flex; flex-wrap: wrap; justify-content: space-between; margin-top: 1rem;">
             <div
               style="height: 100%; width: auto; margin-right: 1rem; margin-left: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-              <mat-card *ngFor="let game of gameDataAllFinal" style="width: 275px; height: 200px;">
+              <mat-card *ngFor="let game of gameDataAllFinal" style="width: 275px; height: 150px;">
                 <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .5rem;">
-                  <mat-card-title style="font-size:small; height: inherit"><a style="height: inherit;" class="teamLink"  (click)="teamClicked(game[0].awayTeam)">{{game[0][0].awayTeam}}</a> @ <a class="teamLink"  (click)="teamClicked(game[0].awayTeam)">{{game[0][0].homeTeam}}</a></mat-card-title>
+                  <mat-card-title style="font-size:small; height: inherit"><a style="height: inherit;" class="teamLink"
+                      (click)="teamClicked(game[0].awayTeam)">{{game[0][0].awayTeam}}</a> @ <a class="teamLink"
+                      (click)="teamClicked(game[0].awayTeam)">{{game[0][0].homeTeam}}</a></mat-card-title>
                 </mat-card-header>
                 <mat-card-content style="display:flex; flex-direction: column;">
                   <div style="display: flex; width: inherit;  ">
@@ -161,12 +164,12 @@
                       {{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}
                     </div>
                     <div class="games-prop-block" style="display:flex; flex-direction: column; width: 16%; ">
-                        <div style=" width: auto; text-align: center;">
-                          {{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}
-                        </div>
-                        <div style="width: auto; text-align: center;">
-                          {{game[0][1].price > 0 ? '+': ''}}{{game[0][1].price}}
-                        </div>
+                      <div style=" width: auto; text-align: center;">
+                        {{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}
+                      </div>
+                      <div style="width: auto; text-align: center;">
+                        {{game[0][1].price > 0 ? '+': ''}}{{game[0][1].price}}
+                      </div>
                     </div>
                     <div class="games-prop-block" style="display:flex; flex-direction: column; width: 16%">
                       <div style=" width: auto; text-align: center;">
@@ -175,10 +178,10 @@
                       <div style="width: auto; text-align: center;">
                         {{game[2][0].price > 0 ? '+' : ''}}{{+game[2][0].price}}
                       </div>
-                  </div>
+                    </div>
                   </div>
                   <div style="display: inline-block; width: 20px;">
-                    <div style="width: inherit;" >
+                    <div style="width: inherit;">
                       @
                     </div>
                   </div>
@@ -196,21 +199,18 @@
                       <div style="width: auto; text-align: center;">
                         {{game[1][1].price > 0 ? '+' : ''}}{{game[1][1].price}}
                       </div>
-                  </div>
-                  <div class="games-prop-block" style="display:flex; flex-direction: column; width: 16%">
-                    <div style=" width: auto; text-align: center;">
-                      {{game[3][0].point}}
                     </div>
-                    <div style="width: auto; text-align: center;">
-                      {{game[3][0].price> 0 ? '+' : ''}}{{game[3][0].price}}
+                    <div class="games-prop-block" style="display:flex; flex-direction: column; width: 16%">
+                      <div style=" width: auto; text-align: center;">
+                        {{game[3][0].point}}
+                      </div>
+                      <div style="width: auto; text-align: center;">
+                        {{game[3][0].price> 0 ? '+' : ''}}{{game[3][0].price}}
+                      </div>
                     </div>
-                </div>
                   </div>
-                 
+
                 </mat-card-content>
-                <mat-card-actions align="end">
-                  <button mat-button>Game Props</button>
-                </mat-card-actions>
               </mat-card>
             </div>
 
