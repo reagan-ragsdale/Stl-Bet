@@ -1,6 +1,6 @@
-<div style="height: 100vh; width: 100%; background-color: #252324; display: flex;">
-  <div style="width: 10%; background-color: red; height: inherit;">
-    <div style="height: 25px; width: 100px;" *ngFor="let game of selectedSportGamesFinal">
+<div style="height: 100%; width: 100%; background-color: #252324; ">
+  <div style="width: 10%; background-color: red; height: inherit; position:fixed; top:0px; left: 0px; z-index: 0;">
+    <div style="height: 100px; width: 100%; text-align: center; align-self: center;" *ngFor="let game of selectedSportGamesFinal">
       {{game[0][0].homeTeam}}
 
     </div>
@@ -18,7 +18,7 @@
     <mat-tab  class="games-tabs" *ngFor="let game of games" label="{{game.game}}"></mat-tab>
   </mat-tab-group>
  -->
- <div style="width: 90%; height: inherit">
+ <div style="width: 90%; height: inherit; margin-left: 10%;">
   <mat-tab-group class="props-tab" [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)"
     [selectedIndex]="0">
     <mat-tab label="Game Props"></mat-tab>
