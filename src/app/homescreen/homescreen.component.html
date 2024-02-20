@@ -31,7 +31,7 @@
       style="height: 100%; width:91%; display: flex; flex-direction: column; align-content: space-between; background-color: #F0ECE5;">
       <div style="height: 7%; width: 100%; display: flex; align-items: center;  ">
         <h1
-          style="width: 50%; height: 100%; text-align: start; padding-top: 2.5rem; font-weight: 500; color:#31304d; margin-left: 1.5rem;">
+          style="width: 50%; height: 100%; text-align: start; padding-top: 2.5rem; font-weight: 500; color:#31304d; margin-left: 1.5rem; font-size: xx-large;">
           {{selectedSport}} Dashboard</h1>
         <div style="height: 100%; width: 50%; display:flex; align-items: center; justify-content: flex-end;">
           <button mat-button style=" margin-right: 2rem; background-color: #415a77; color: #F0ECE5 ">Go to
@@ -146,17 +146,19 @@
           style=" width: 100%; height: 99%; border: 1px solid #F0ECE5; border-radius: 10px; margin-left: 1.5rem; margin-right: 1.5rem; margin-bottom: 1rem; display:flex; flex-direction: column; background-color: #31304d;">
           <h1 style="height: 10%; width: 100%; text-align: center; margin-top:1rem; color:#F0ECE5"> Upcoming Games</h1>
           <div
-            style="height: 85%; width: 100%; display:flex; flex-wrap: wrap; justify-content: space-between; margin-top: 1rem;">
+            style="height: 85%; width: 100%; display:flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem;">
             <div
-              style="height: 100%; width: auto; margin-right: 1rem; margin-left: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-              <mat-card *ngFor="let game of gameDataAllFinal" style="width: 275px; height: 150px;">
-                <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .5rem;">
-                  <mat-card-title style="font-size:small; height: inherit"><a style="height: inherit;" class="teamLink"
-                      (click)="teamClicked(game[0].awayTeam)">{{game[0][0].awayTeam}}</a> @ <a class="teamLink"
-                      (click)="teamClicked(game[0].awayTeam)">{{game[0][0].homeTeam}}</a></mat-card-title>
+              style="height: 100%; width: auto; margin-right: 1rem; margin-left: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-evenly;">
+              <mat-card *ngFor="let game of gameDataAllFinal" style="width: 250px; height: 140px;">
+                <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .25rem;">
+                  <mat-card-title style="font-size:small; height: inherit">
+                    <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap;">
+                      <a class="teamLink">{{game[0][0].awayTeam}} @ {{game[0][0].homeTeam}}</a>
+                    </div>
+                    </mat-card-title>
                 </mat-card-header>
                 <mat-card-content style="display:flex; flex-direction: column;">
-                  <div style="display: flex; width: inherit;  ">
+                  <div style="display: flex; width: inherit; margin-top: .5rem; ">
                     <div class="games-prop-block" style="width: 50%; align-self: center;">
                       {{game[0][0].awayTeam}}
                     </div>
@@ -180,12 +182,7 @@
                       </div>
                     </div>
                   </div>
-                  <div style="display: inline-block; width: 20px;">
-                    <div style="width: inherit;">
-                      @
-                    </div>
-                  </div>
-                  <div style="display: flex; width: inherit;">
+                  <div style="display: flex; width: inherit; margin-top: .5rem;">
                     <div class="games-prop-block" style="width: 50%; align-self: center;">
                       {{game[0][0].homeTeam}}
                     </div>
