@@ -62,6 +62,7 @@ export class HomeScreenComponent {
 
   async getData(sport: string){
     if(sport == "NBA"){
+      this.gameDataAllFinal = []
        this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
        
        this.playerStatsButtons = [
