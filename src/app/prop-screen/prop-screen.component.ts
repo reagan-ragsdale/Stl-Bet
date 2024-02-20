@@ -36,7 +36,7 @@ import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import { ArrayOfDates } from '../array-of-dates';
 
 
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
 import { reusedFunctions } from '../Services/reusedFunctions';
@@ -59,12 +59,7 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 
 export class PropScreenComponent implements OnInit {
 
-  /* mlbPlayerrInfoRepo = remult.repo(PlayerInfoMlb)
-  SportsBookRepo = remult.repo(DbGameBookData)
-  playerPropRepo = remult.repo(DbPlayerPropData)
-  nhlPlayerInfoRepo = remult.repo(DbNhlPlayerInfo)
-  nhlPlayerGameStatRepo = remult.repo(DbNhlPlayerGameStats)
-  nbaPlayerInfoRepo = remult.repo(NbaPlayerInfoDb) */
+ 
 
 
   expandedElement: PlayerProp[] | null | undefined;
@@ -83,9 +78,9 @@ export class PropScreenComponent implements OnInit {
   public nbaCount: number = 0
   public sportsNew: any[] = [];
   public gameString: string = ''
-  public selectedSport: string = '';
+  public selectedSport: any = '';
   public selectedDate: string = '';
-  public selectedGame: string = '';
+  public selectedGame: any = '';
   public selectedGameid: string = '';
   public exit: boolean = true;
   public teamPropIsLoading: boolean = true;
@@ -147,7 +142,8 @@ export class PropScreenComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private nhlApiController: nhlApiController,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
   }
@@ -572,7 +568,8 @@ export class PropScreenComponent implements OnInit {
   }
   postDateSelectedSportGames = {};
   selectedSportsDates: string[] = [];
-  selectedSportGames: any;
+  selectedSportGames: any[] = [];
+  selectedSportGamesFinal: any[] = [];
   selectedSportsData: any;
 
   playerInfoTemp: DbMlbPlayerInfo[] = []
@@ -596,7 +593,35 @@ export class PropScreenComponent implements OnInit {
   nbaPlayerStatData2023Final: DbNbaGameStats[] = []
 
 
+  initializeSport(): void {
+    if(this.route.snapshot.paramMap.get('sport') != null){
+      this.selectedSport = this.route.snapshot.paramMap.get('sport')
+    }
+    if(this.route.snapshot.paramMap.get('game') != null){
+      this.selectedGame = this.route.snapshot.paramMap.get('game')
+    }
+  }
 
+  async getGames(){
+    this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
+    var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      console.log(distinctGames)
+      distinctGames.forEach(book =>{
+        console.log(book)
+        let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
+        var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
+        let teamArray:any[] = []
+        distinctTeams.forEach(team =>{
+          let allOfTeam = allOfBook.filter(e => e.teamName == team)
+          teamArray.push(allOfTeam)
+        })
+        this.selectedSportGamesFinal.push(teamArray)
+      })
+      this.selectedGame = this.selectedSportGamesFinal[0][0][0].bookId
+    if(this.selectedGame == ''){
+      //this.
+    }
+  }
 
   public trimSports(sports: any) {
     //need to figure out a way to order the sports but for now just show the main ones
@@ -2334,10 +2359,13 @@ export class PropScreenComponent implements OnInit {
     return fullDate
   }
 
+  
 
 
   async ngOnInit() {
-    this.trimSports(await draftKingsApiController.getSports());
+    this.initializeSport()
+    //this.trimSports(await draftKingsApiController.getSports());
+    await this.getGames()
   }
 
   detailedStatsClicked(element: any) {

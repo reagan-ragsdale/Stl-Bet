@@ -37,6 +37,10 @@ export class HomeScreenComponent {
     this.router.navigate(["/props"])
   }
 
+  sportProps(sport: string): void {
+    this.router.navigate([`/props/${sport}`])
+  }
+
   playerStatsClicked(){
     this.router.navigate(["/playerStats/NBA/279"])
   }

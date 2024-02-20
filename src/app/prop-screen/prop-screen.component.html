@@ -1,7 +1,12 @@
-<div style="height: 100vh; width: 100%; background-color: #252324;">
+<div style="height: 100vh; width: 100%; background-color: #252324; display: flex;">
+  <div style="width: 10%; background-color: red; height: inherit;">
+    <div style="height: 25px; width: 100px;" *ngFor="let game of selectedSportGamesFinal">
+      {{game[0][0].homeTeam}}
 
+    </div>
+  </div>
 
-  <mat-tab-group class="sports-tab" [backgroundColor]="'warn'" (selectedTabChange)="onSportClick($event)">
+  <!-- <mat-tab-group class="sports-tab" [backgroundColor]="'warn'" (selectedTabChange)="onSportClick($event)">
     <mat-tab *ngFor="let sport of sportsNew" label="{{sport.title}}"></mat-tab>
   </mat-tab-group>
 
@@ -12,7 +17,8 @@
   <mat-tab-group  class="games-tab" [backgroundColor]="'warn'" (selectedTabChange)="onGameClick($event)" [disablePagination]="true" mat-align-tabs="start" >
     <mat-tab  class="games-tabs" *ngFor="let game of games" label="{{game.game}}"></mat-tab>
   </mat-tab-group>
-
+ -->
+ <div style="width: 90%; height: inherit">
   <mat-tab-group class="props-tab" [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)"
     [selectedIndex]="0">
     <mat-tab label="Game Props"></mat-tab>
@@ -7269,6 +7275,7 @@
       <!-- (click)="getPlayerStatsForSeason(element)" -->
     </mat-expansion-panel>
   </mat-accordion>
+</div>
 
 
   <div *ngIf="!playerPropsClicked">
