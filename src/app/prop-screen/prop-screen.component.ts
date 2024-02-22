@@ -2388,7 +2388,9 @@ export class PropScreenComponent implements OnInit {
   }
 
 
-
+  ngOnChanges() {
+    console.log("Changed")
+  }
   ngAfterContentInit(){
     console.log("Here5")
     this.selectedTab = 1;
