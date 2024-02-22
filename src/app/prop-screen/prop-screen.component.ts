@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, afterRender } from '@angular/core';
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { SelectedSportsData } from '../selected-sports-data';
 import { GameId } from '../game-id';
@@ -558,7 +558,7 @@ export class PropScreenComponent implements OnInit {
       alternateColor: ''
     };
 
-
+  public selectedTab: number =0;
   listOfSupportedSports: string[] = ["NBA"];
   sportsToTitle: SportsTitleToName = {
     NBA: "basketball_nba",
@@ -617,7 +617,6 @@ export class PropScreenComponent implements OnInit {
         teamArray[0].selected = false;
         this.selectedSportGamesFinal.push(teamArray)
       })
-      console.log(this.selectedSportGamesFinal)
       this.selectedGame = this.selectedSportGamesFinal[0][0][0].bookId
       this.selectedSportGamesFinal[0][0].selected = true;
     }
@@ -635,13 +634,14 @@ export class PropScreenComponent implements OnInit {
         teamArray[0].selected = false;
         this.selectedSportGamesFinal.push(teamArray)
       })
-      console.log(this.selectedSportGamesFinal)
       let currentGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
       currentGame[0][0].selected = true;
+      
     }
+    await this.onGameClick(this.selectedGame)
   }
 
-  public trimSports(sports: any) {
+  /* public trimSports(sports: any) {
     //need to figure out a way to order the sports but for now just show the main ones
 
     sports.forEach((sport: { title: string; }) => {
@@ -652,26 +652,22 @@ export class PropScreenComponent implements OnInit {
       })
     });
     this.selectedSport = this.sportsNew[0].title;
-  }
+  } */
 
   setSelectedDate(date: string) {
-    console.log("here 3")
     this.selectedDate = date;
   }
   setSelectedSport(sport: string) {
-    console.log("here 2")
     this.selectedSport = sport;
   }
   setSelectedGame(game: string) {
-    const temp = this.games.filter(x => x.game === game);
-    console.log("here 4")
-    this.selectedGame = temp[0].id;
+    this.selectedGame = game
   }
 
 
 
 
-  async onSportClick(sport: any) {
+  /* async onSportClick(sport: any) {
     this.selectedDate = ''
     this.setSelectedSport(sport.tab.textLabel);
     //await this.checkSportPlayerInfoDb();
@@ -684,22 +680,19 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  }
-  onDateClick(date: any) {
+  } */
+  /* onDateClick(date: any) {
     this.setSelectedDate(date.tab.textLabel);
     this.updateGames();
-  }
-  async onGameClick(game: any) {
-    if (this.gameString != game.tab.textLabel) {
-      this.gameString = game.tab.textLabel
-      this.setSelectedGame(game.tab.textLabel);
-      /* if (this.selectedSport == "NBA") {
-        await this.checkPlayerInfoDb();
-      } */
+  } */
+  async onGameClick(game: string) {
+    
+      this.setSelectedGame(game);
+    
       this.playerPropsClicked = false;
       this.gamePropsClicked = true;
       this.displayProp();
-    }
+    
 
   }
 
@@ -758,7 +751,6 @@ export class PropScreenComponent implements OnInit {
 
 
   updateDates() {
-    console.log("here in update dates")
     this.dates = [];
     this.sportsBookDataFinal.forEach((x) => {
       console.log(x)
@@ -772,7 +764,6 @@ export class PropScreenComponent implements OnInit {
     this.updateGames();
   }
   updateGames() {
-    console.log("here in update games")
     this.games = [];
     this.sportsBookDataFinal.forEach((x) => {
       if (this.selectedDate == reusedFunctions.convertDate(x.commenceTime)) {
@@ -790,9 +781,9 @@ export class PropScreenComponent implements OnInit {
 
 
 
-
+    console.log("Here89")
     console.time("Display Prop")
-    const tempProp = this.sportsBookDataFinal.filter((x) => x.bookId == this.selectedGame);
+    const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
     var h2h = '';
     var spreadPoint = '';
@@ -845,7 +836,6 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
 
 
-    console.log(team1)
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
     spreadPoint = team1.filter((e) => e.marketKey == "spreads")[0].point.toString();
@@ -1709,6 +1699,7 @@ export class PropScreenComponent implements OnInit {
 
 
   async onPropTypeClicked(event: any) {
+    console.log(event)
     if (event.tab.textLabel == "Player Props") {
       this.gamePropsClicked = false
       await this.loadPlayerProps()
@@ -1895,7 +1886,6 @@ export class PropScreenComponent implements OnInit {
         }
       } */
       if (this.selectedSport == "NBA") {
-        console.log("Here ")
         var previousName = ''
         for (let i = 0; i < element.length; i++) {
           let playerName = element[i].name
@@ -2379,11 +2369,23 @@ export class PropScreenComponent implements OnInit {
 
 
 
-
-  async ngOnInit() {
-    this.initializeSport()
+  ngAfterContentInit(){
+    console.log("Here5")
+    this.selectedTab = 1;
+  }
+    ngAfterViewInit() {
+      
+      console.log("Here3")
+    //this.onPropTypeClicked("Game Props")
     //this.trimSports(await draftKingsApiController.getSports());
-    await this.getGames()
+    
+    console.log("Here4")
+  }
+   ngOnInit() {
+    console.log("Here1")
+    this.initializeSport()
+    this.getGames()
+    console.log("Here2")
   }
 
   detailedStatsClicked(element: any) {

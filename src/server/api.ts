@@ -46,6 +46,7 @@ export const api = remultExpress({
     NhlPlayerGameStatsController,
     NbaController,
   ],
+  
 
   dataProvider:
     process.env['DATABASE_URL'] ?
