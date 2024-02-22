@@ -598,9 +598,12 @@ export class PropScreenComponent implements OnInit {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
     }
     if (this.route.snapshot.paramMap.get('game') != null) {
+
+      //this.selectedGame = this.route.params.subscribe((newPathParams) => console.log(newPathParams));
       this.selectedGame = this.route.snapshot.paramMap.get('game')
     }
   }
+  
 
   async getGames() {
     if (this.selectedGame == '') {
@@ -619,6 +622,7 @@ export class PropScreenComponent implements OnInit {
       })
       this.selectedGame = this.selectedSportGamesFinal[0][0][0].bookId
       this.selectedSportGamesFinal[0][0].selected = true;
+      this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
       this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
@@ -687,7 +691,15 @@ export class PropScreenComponent implements OnInit {
   } */
   async onGameClick(game: string) {
       this.setSelectedGame(game);
-
+      /* this.router.navigate(
+        [], 
+        {
+          relativeTo: this.route,
+          queryParams:  this.selectedGame,
+          queryParamsHandling: 'merge'
+        }
+      ); */
+      this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
       this.selectedSportGamesFinal.forEach(e => e[0].selected = false)
       let selectedGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
       selectedGame[0][0].selected = true
@@ -695,7 +707,7 @@ export class PropScreenComponent implements OnInit {
     
       this.playerPropsClicked = false;
       this.gamePropsClicked = true;
-      this.displayProp();
+      //this.displayProp();
     
 
   }
