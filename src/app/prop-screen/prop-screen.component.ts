@@ -600,11 +600,12 @@ export class PropScreenComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('game') != null) {
 
       //this.selectedGame = this.route.params.subscribe((newPathParams) => console.log(newPathParams));
-      this.selectedGame = this.route.snapshot.paramMap.get('game')
+      //this.selectedGame = this.route.snapshot.paramMap.get('game')
+      this.route.queryParams.subscribe(queryParams => {
+        this.selectedGame = queryParams['game'];
+      });
     }
-    this.route.queryParams.subscribe(queryParams => {
-      this.selectedGame = queryParams['game'];
-    });
+    
   }
   
 
