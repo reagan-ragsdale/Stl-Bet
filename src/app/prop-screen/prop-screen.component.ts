@@ -145,7 +145,7 @@ export class PropScreenComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-
+    
   }
   public notes: any = [];
 
@@ -602,6 +602,9 @@ export class PropScreenComponent implements OnInit {
       //this.selectedGame = this.route.params.subscribe((newPathParams) => console.log(newPathParams));
       this.selectedGame = this.route.snapshot.paramMap.get('game')
     }
+    this.route.queryParams.subscribe(queryParams => {
+      this.selectedGame = queryParams['game'];
+    });
   }
   
 
