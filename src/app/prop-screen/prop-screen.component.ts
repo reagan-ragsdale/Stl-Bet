@@ -686,8 +686,12 @@ export class PropScreenComponent implements OnInit {
     this.updateGames();
   } */
   async onGameClick(game: string) {
-    
       this.setSelectedGame(game);
+
+      this.selectedSportGamesFinal.forEach(e => e[0].selected = false)
+      let selectedGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
+      selectedGame[0][0].selected = true
+      
     
       this.playerPropsClicked = false;
       this.gamePropsClicked = true;
