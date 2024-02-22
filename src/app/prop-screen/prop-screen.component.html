@@ -6,7 +6,7 @@
     <div style="height: 60px; width: 100%; text-align: center; align-self: center;"
       *ngFor="let game of selectedSportGamesFinal">
       <button mat-raised-button style="width: inherit; height: inherit; border-bottom: 2px solid black"
-        [ngClass]="game[0].selected === true ? 'selected-game' : ''" (cllick)="onGameClick(game[0][0].bookId)" >
+        [ngClass]="game[0].selected === true ? 'selected-game' : ''" (click)="onGameClick(game[0][0].bookId)" >
         {{game[0][0].awayTeam}}@{{game[0][0].homeTeam}}
       </button>
 
