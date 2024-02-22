@@ -59,7 +59,7 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 
 export class PropScreenComponent implements OnInit {
 
- 
+
 
 
   expandedElement: PlayerProp[] | null | undefined;
@@ -67,7 +67,7 @@ export class PropScreenComponent implements OnInit {
 
   public playerPropsClicked = false;
   public gamePropsClicked = true;
- 
+
   home_team: string = '';
   away_team: string = '';
 
@@ -594,38 +594,56 @@ export class PropScreenComponent implements OnInit {
 
 
   initializeSport(): void {
-    if(this.route.snapshot.paramMap.get('sport') != null){
+    if (this.route.snapshot.paramMap.get('sport') != null) {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
     }
-    if(this.route.snapshot.paramMap.get('game') != null){
+    if (this.route.snapshot.paramMap.get('game') != null) {
       this.selectedGame = this.route.snapshot.paramMap.get('game')
     }
   }
 
-  async getGames(){
-    this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
-    var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
-      console.log(distinctGames)
-      distinctGames.forEach(book =>{
-        console.log(book)
+  async getGames() {
+    if (this.selectedGame == '') {
+      this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
+      var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
         var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
-        let teamArray:any[] = []
-        distinctTeams.forEach(team =>{
+        let teamArray: any[] = []
+        distinctTeams.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
           teamArray.push(allOfTeam)
         })
+        teamArray[0].selected = false;
         this.selectedSportGamesFinal.push(teamArray)
       })
+      console.log(this.selectedSportGamesFinal)
       this.selectedGame = this.selectedSportGamesFinal[0][0][0].bookId
-    if(this.selectedGame == ''){
-      //this.
+      this.selectedSportGamesFinal[0][0].selected = true;
+    }
+    else {
+      this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
+      var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      distinctGames.forEach(book => {
+        let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
+        var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
+        let teamArray: any[] = []
+        distinctTeams.forEach(team => {
+          let allOfTeam = allOfBook.filter(e => e.teamName == team)
+          teamArray.push(allOfTeam)
+        })
+        teamArray[0].selected = false;
+        this.selectedSportGamesFinal.push(teamArray)
+      })
+      console.log(this.selectedSportGamesFinal)
+      let currentGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
+      currentGame[0][0].selected = true;
     }
   }
 
   public trimSports(sports: any) {
     //need to figure out a way to order the sports but for now just show the main ones
-    
+
     sports.forEach((sport: { title: string; }) => {
       this.listOfSupportedSports.forEach(s => {
         if (sport.title == s) {
@@ -685,9 +703,9 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  
 
-  
+
+
 
   //adding items to checkout
   addPropToChechout(event: any) {
@@ -736,7 +754,7 @@ export class PropScreenComponent implements OnInit {
   convertSport(sport: any) {
     return this.sportsToTitle[sport];
   }
-  
+
 
 
   updateDates() {
@@ -1232,13 +1250,13 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStatsDto.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
 
       if (e.teamAgainstId == team2[0].teamId) {
-        if(e.homeOrAway == "Home") {
-          this.team1GameVsOpponentData.push({data: e, homeOrAway: "home"})
+        if (e.homeOrAway == "Home") {
+          this.team1GameVsOpponentData.push({ data: e, homeOrAway: "home" })
         }
-        else{
-          this.team1GameVsOpponentData.push({data: e, homeOrAway: "away"})
+        else {
+          this.team1GameVsOpponentData.push({ data: e, homeOrAway: "away" })
         }
-        
+
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonVsOpponent += 1 : this.team1GameStatsDto.quarterOneLostVsOpponent += 1;
         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDto.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDto.quarterTwoLostVsOpponent += 1;
         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDto.quarterThreeWonVsOpponent += 1 : this.team1GameStatsDto.quarterThreeLostVsOpponent += 1;
@@ -1260,19 +1278,19 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStatsDto.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team1GameStatsDto.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
         this.team1GameStatsDto.pointsScoredVsTeamGame += e.pointsScoredOverall
-      this.team1GameStatsDto.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
-      this.team1GameStatsDto.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamGame += e.pointsAllowedOverall
-      this.team1GameStatsDto.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
-      this.team1GameStatsDto.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+        this.team1GameStatsDto.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
+        this.team1GameStatsDto.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
+        this.team1GameStatsDto.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
+        this.team1GameStatsDto.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
+        this.team1GameStatsDto.pointsAllowedVsTeamGame += e.pointsAllowedOverall
+        this.team1GameStatsDto.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+        this.team1GameStatsDto.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team1GameStatsDto.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
+        this.team1GameStatsDto.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
+        this.team1GameStatsDto.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
+        this.team1GameStatsDto.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
       }
       if (e.homeOrAway == "Home") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonHome += 1 : this.team1GameStatsDto.quarterOneLostHome += 1;
@@ -1309,7 +1327,7 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStatsDto.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
         this.team1GameStatsDto.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
         this.team1GameStatsDto.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
-        
+
       }
       else if (e.homeOrAway == "Away") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDto.quarterOneWonAway += 1 : this.team1GameStatsDto.quarterOneLostAway += 1;
@@ -1410,19 +1428,19 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDto.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
         this.team2GameStatsDto.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
         this.team2GameStatsDto.pointsScoredVsTeamGame += e.pointsScoredOverall
-      this.team2GameStatsDto.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
-      this.team2GameStatsDto.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamGame += e.pointsAllowedOverall
-      this.team2GameStatsDto.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
-      this.team2GameStatsDto.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+        this.team2GameStatsDto.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
+        this.team2GameStatsDto.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
+        this.team2GameStatsDto.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
+        this.team2GameStatsDto.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
+        this.team2GameStatsDto.pointsAllowedVsTeamGame += e.pointsAllowedOverall
+        this.team2GameStatsDto.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+        this.team2GameStatsDto.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+        this.team2GameStatsDto.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
+        this.team2GameStatsDto.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
+        this.team2GameStatsDto.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
+        this.team2GameStatsDto.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
       }
       if (e.homeOrAway == "Home") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonHome += 1 : this.team2GameStatsDto.quarterOneLostHome += 1;
@@ -1459,7 +1477,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDto.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
         this.team2GameStatsDto.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
         this.team2GameStatsDto.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
-        
+
       }
       else if (e.homeOrAway == "Away") {
         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDto.quarterOneWonAway += 1 : this.team2GameStatsDto.quarterOneLostAway += 1;
@@ -1674,9 +1692,9 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  
-  
-  
+
+
+
 
   splitGameString(game: string): string[] {
     var bothGames: string[] = []
@@ -1687,7 +1705,7 @@ export class PropScreenComponent implements OnInit {
     bothGames.push(game.slice(vsIndex + 3, game.length))
     return bothGames
   }
-  
+
 
 
   async onPropTypeClicked(event: any) {
@@ -1704,7 +1722,7 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  
+
 
 
   //API calls
@@ -1835,7 +1853,7 @@ export class PropScreenComponent implements OnInit {
 
 
   }
-  
+
   async getPlayerStatsForSeasonCall(element: any) {
 
     try {
@@ -2359,7 +2377,7 @@ export class PropScreenComponent implements OnInit {
     return fullDate
   }
 
-  
+
 
 
   async ngOnInit() {
