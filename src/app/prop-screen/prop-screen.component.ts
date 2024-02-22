@@ -707,7 +707,7 @@ export class PropScreenComponent implements OnInit {
     
       this.playerPropsClicked = false;
       this.gamePropsClicked = true;
-      //this.displayProp();
+      this.displayProp();
     
 
   }
