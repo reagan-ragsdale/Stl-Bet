@@ -59,8 +59,10 @@ export const mlbCronFile = async () => {
     for(let player of listOfActivePlayers){
         //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for
         let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
+        console.log(playerStats)
         if(playerStats.length == 0){
             let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
+            console.log(player2023Stats)
             await MlbController.mlbSetPlayerGameStats(player2023Stats)
         }
     }
