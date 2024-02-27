@@ -1,6 +1,6 @@
 import { Allow, BackendMethod, remult } from "remult"
 import {DbMlbPlayerInfo}   from '../dbTasks/DbMlbPlayerInfo'
-import { DBPlayerGameStatsMlb } from "../dbTasks/DbMlbPlayerGameStats"
+import { DBMlbPlayerGameStats } from "../dbTasks/DbMlbPlayerGameStats"
 import { DbMlbTeamGameStats } from "../dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "../dbTasks/DbMlbPlayerGameStatAverages"
 import { DbMlbTeamGameStatAverages } from "../dbTasks/DbMlbTeamGameStatAverages"
@@ -50,14 +50,14 @@ export class MlbController {
 
   //player game stats
   @BackendMethod({ allowed: true})
-  static async mlbSetPlayerGameStats(playerStats: DBPlayerGameStatsMlb[]){
-    const taskRepo = remult.repo(DBPlayerGameStatsMlb)
+  static async mlbSetPlayerGameStats(playerStats: DBMlbPlayerGameStats[]){
+    const taskRepo = remult.repo(DBMlbPlayerGameStats)
     await taskRepo.insert(playerStats)
   }
 
   @BackendMethod({ allowed: true})
-  static async mlbGetPlayerGameStatsByPlayerIdAndSeason(id: number, season: number): Promise<DBPlayerGameStatsMlb[]>{
-    const taskRepo = remult.repo(DBPlayerGameStatsMlb)
+  static async mlbGetPlayerGameStatsByPlayerIdAndSeason(id: number, season: number): Promise<DBMlbPlayerGameStats[]>{
+    const taskRepo = remult.repo(DBMlbPlayerGameStats)
     return await taskRepo.find({where: {playerId : id, season: season}})
   }
 

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { NbaController } from '../../shared/Controllers/NbaController';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
+import { MlbController } from 'src/shared/Controllers/MlbController';
 
 @Component({
   selector: 'home-screen',
@@ -159,7 +160,96 @@ export class HomeScreenComponent {
 
     }
     else if(sport == "MLB"){
-    
+      this.gameDataAllFinal = []
+      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("HR")
+      
+      this.playerStatsButtons = [
+       {selected: true,
+       name: "Home Runs",
+       dbName: "HR"},
+       {selected: false,
+       name: "RBI's",
+       dbName: "rbis"},
+       {selected: false,
+       name: "Hits",
+       dbName: "hits"},
+      ]
+     this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
+     this.teamStatsButtons = [
+       {selected: true,
+       name: "Wins",
+       dbName: "wins"},
+       {selected: false,
+       name: "Runs Scored",
+       dbName: "runsScored"},
+       {selected: false,
+       name: "Runs Allowed",
+       dbName: "runsAllowed"}
+      ]
+     this.gameData = await SportsBookController.loadSportBookByH2H(sport) 
+     this.gameDataAll = await SportsBookController.loadSportBook(sport)
+     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+     distinctGames.forEach(book =>{
+       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
+       var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
+       let teamArray:any[] = []
+       distinctTeams.forEach(team =>{
+         let allOfTeam = allOfBook.filter(e => e.teamName == team)
+         teamArray.push(allOfTeam)
+       })
+       this.gameDataAllFinal.push(teamArray)
+     })
+     //console.log(this.gameDataAllFinal)
+     /* let team1 = [{
+       homeTeam: "Toronto Raptors Lakers",
+       awayTeam: "Brooklyn Nets",
+       marketKey: "h2h",
+       point: 0,
+       price: 110,
+       teamName: "Brooklyn Nets"
+     },
+     {homeTeam: "Toronto Raptors",
+     awayTeam: "Brooklyn Nets",
+     marketKey: "spread",
+     point: 2,
+     price: -110,
+     teamName: "Brooklyn Nets"}]
+     
+     let team2 = [{
+       homeTeam: "Toronto Raptors",
+       awayTeam: "Brooklyn Nets",
+       marketKey: "h2h",
+       point: 0,
+       price: -130,
+       teamName: "Toronto Raptors"
+     },
+     {homeTeam: "Toronto Raptors",
+     awayTeam: "Brooklyn Nets",
+     marketKey: "spread",
+     point: -2,
+     price: -110,
+     teamName: "Toronto Raptors"}]
+
+     let over = [{homeTeam: "Toronto Raptors",
+     awayTeam: "Brooklyn Nets",
+     marketKey: "spread",
+     point: 231.5,
+     price: -110,
+     teamName: "Over"}]
+     let under = [{homeTeam: "Toronto Raptors",
+     awayTeam: "Brooklyn Nets",
+     marketKey: "spread",
+     point: 231.5,
+     price: -110,
+     teamName: "Under"}]
+
+     let final: any[] = [team1, team2, over, under]
+
+     this.gameDataAllFinal.push(final)
+      */
+     this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
+     //console.log(this.gameDataFinal)
+
     }
     
   }

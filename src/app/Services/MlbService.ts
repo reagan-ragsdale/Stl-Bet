@@ -3,7 +3,7 @@ import { DbNbaGameStats } from "../../shared/dbTasks/DbNbaGameStats"
 import { DbNbaTeamGameStats } from "../../shared/dbTasks/DbNbaTeamGameStats"
 import { DbNbaTeamStatAverages } from "../../shared/dbTasks/DbNbaTeamStatAverages"
 import { DbMlbPlayerInfo } from "../../shared/dbTasks/DbMlbPlayerInfo"
-import { DBPlayerGameStatsMlb } from "../../shared/dbTasks/DbMlbPlayerGameStats"
+import { DBMlbPlayerGameStats } from "../../shared/dbTasks/DbMlbPlayerGameStats"
 import { MlbController } from "../../shared/Controllers/MlbController"
 import { reusedFunctions } from "./reusedFunctions"
 
@@ -76,8 +76,8 @@ export class MlbService {
     }
 
 
-    static async mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): Promise<DBPlayerGameStatsMlb[]> {
-        var playerStatsFinal: DBPlayerGameStatsMlb[] = []
+    static async mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): Promise<DBMlbPlayerGameStats[]> {
+        var playerStatsFinal: DBMlbPlayerGameStats[] = []
 
         //get player info to get player name and team id
         let playerDb = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerStatData[0].playerID, this.getSeason(playerStatData[0].gameID))
