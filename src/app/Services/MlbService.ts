@@ -2,9 +2,9 @@ import { DbNbaPlayerStatAverages } from "../../shared/dbTasks/DbNbaPlayerStatAve
 import { DbNbaGameStats } from "../../shared/dbTasks/DbNbaGameStats"
 import { DbNbaTeamGameStats } from "../../shared/dbTasks/DbNbaTeamGameStats"
 import { DbNbaTeamStatAverages } from "../../shared/dbTasks/DbNbaTeamStatAverages"
-import { DbMlbPlayerInfo } from "src/shared/dbTasks/DbMlbPlayerInfo"
-import { DBPlayerGameStatsMlb } from "src/shared/dbTasks/DbMlbPlayerGameStats"
-import { MlbController } from "src/shared/Controllers/MlbController"
+import { DbMlbPlayerInfo } from "../../shared/dbTasks/DbMlbPlayerInfo"
+import { DBPlayerGameStatsMlb } from "../../shared/dbTasks/DbMlbPlayerGameStats"
+import { MlbController } from "../../shared/Controllers/MlbController"
 import { reusedFunctions } from "./reusedFunctions"
 
 
