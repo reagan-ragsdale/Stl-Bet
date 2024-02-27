@@ -23,7 +23,7 @@ import {config} from 'dotenv'
 import { cronTestFile } from '../app/cronTest';
 import { mlbCronFile } from '../app/mlbCron';
 import cron from 'node-cron'
-import { DBMlbPlayerGameStats } from 'src/shared/dbTasks/DbMlbPlayerGameStats';
+import { DBMlbPlayerGameStats } from '../shared/dbTasks/DbMlbPlayerGameStats';
 config()
 
 export const api = remultExpress({
@@ -59,7 +59,7 @@ export const api = remultExpress({
   //9:15am
   cron.schedule('22 18 * * *',()=>  cronTestFile())
   //1:33pm
-  cron.schedule('40 21 * * *', ()=>  mlbCronFile())
+  cron.schedule('50 21 * * *', ()=>  mlbCronFile())
 }
 });
 
