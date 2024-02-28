@@ -40,6 +40,7 @@ export class mlbApiController {
         const response = await fetch(url, options);
         const result = await response.json();
         const processedResult = result.body
+        console.log(processedResult)
         if(processedResult.length == undefined){
             console.log("returning 0")
             return 0

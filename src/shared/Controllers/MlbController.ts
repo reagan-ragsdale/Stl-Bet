@@ -40,7 +40,7 @@ export class MlbController {
   @BackendMethod({ allowed: true})
   static async mlbGetAllPlayerInfo(): Promise<DbMlbPlayerInfo[]>{
     const taskRepo = remult.repo(DbMlbPlayerInfo)
-    return await taskRepo.find({ where: { playerId: { "!=": 0 } } })
+    return await taskRepo.find({ where: { playerId: { "!=": 0 } }, limit: 5 })
   }
 
   @BackendMethod({ allowed: true})
