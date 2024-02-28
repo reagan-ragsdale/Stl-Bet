@@ -76,28 +76,26 @@ export class MlbService {
 
 
     static async mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): Promise<DBMlbPlayerGameStats[]> {
+        console.log("here service")
         var playerStatsFinal: DBMlbPlayerGameStats[] = []
 
-        let i = 0
+        let index = 0
         let newPlayerStatData: any[] = []
-
-        playerStatData.forEach(game => {
+        for(let i in playerStatData){
+            newPlayerStatData[index] = playerStatData[i]
+            index++
+        }
+        /* playerStatData.forEach(game => {
+            console.log(game)
             newPlayerStatData[i] = game
             i++
-        })
-        console.log("Below is new player stat data")
-        console.log(newPlayerStatData)
+        }) */
 
         //get player info to get player name and team id
-        let playerDb = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerStatData[0].playerID, this.getSeason(playerStatData[0].gameID))
+        let playerDb = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(newPlayerStatData[0].playerID, this.getSeason(newPlayerStatData[0].gameID))
         let uniqueGameId = playerDb.map(e => {return e.gameId}) 
 
-        //change below to for loop and call the player info db to get the player name
-        for(let i = 0; i < playerStatData.length; i++){
-            if(uniqueGameId.includes(playerStatData[i].gameID)){
-                continue
-            }
-            let player = await MlbController.mlbGetPlayerInfoByPlayerId(playerStatData[i].playerID)
+        let player = await MlbController.mlbGetPlayerInfoByPlayerId(newPlayerStatData[0].playerID)
             var playerName = player[0].playerName
             if (playerName.includes("á")) {
                 playerName = playerName.replaceAll("á", "a")
@@ -142,31 +140,40 @@ export class MlbService {
                 playerName = playerName.replaceAll("Ü", "U")
             }
 
+
+
+        //change below to for loop and call the player info db to get the player name
+        for(let i = 0; i < newPlayerStatData.length; i++){
+            if(uniqueGameId.includes(newPlayerStatData[i].gameID)){
+                continue
+            }
+            
+
             playerStatsFinal.push({
-                playerId: playerStatData[i].playerID,
+                playerId: newPlayerStatData[i].playerID,
                 playerName: playerName,
-                teamName: playerStatData[i].team,
-                teamId: MlbService.mlbTeamIds[playerStatData[i].team],
-                teamAgainstName: this.getTeamAgainst(playerStatData[i].gameID, playerStatData[i].team),
-                teamAgainstId: reusedFunctions.arrayOfMLBTeams[this.getTeamAgainst(playerStatData[i].gameID, playerStatData[i].team)],
-                gameId: playerStatData[i].gameID,
-                gameDate: this.getGameDate(playerStatData[i].gameID),
-                season: this.getSeason(playerStatData[i].gameID),
-                playerPosition: playerStatData[i].startingPosition,
-                playerStarted: playerStatData[i].started ? "Y" : "N",
-                batterHomeRuns: playerStatData[i].Hitting.HR,
-                batterHits: playerStatData[i].Hitting.H,
-                batterTotalBases: playerStatData[i].Hitting.TB,
-                batterRbis: playerStatData[i].Hitting.RBI,
-                batterRunsScored: playerStatData[i].Hitting.R,
-                batterHitsRunsRbis: playerStatData[i].Hitting.H + playerStatData[i].Hitting.R + playerStatData[i].Hitting.RBI,
-                batterDoubles: playerStatData[i].Hitting['2B'],
-                batterTriples: playerStatData[i].Hitting['3B'],
-                batterWalks: playerStatData[i].Hitting.BB + playerStatData[i].Hitting.IBB,
-                batterStrikeouts: playerStatData[i].Hitting.SO,
-                batterStolenBases: playerStatData[i].BaseRunning.SB,
-                pitcherStrikes: playerStatData[i].Pitching.Strikes,
-                pitcherPitches: playerStatData[i].Pitching.Pitches,
+                teamName: newPlayerStatData[i].team,
+                teamId: MlbService.mlbTeamIds[newPlayerStatData[i].team],
+                teamAgainstName: this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team),
+                teamAgainstId: reusedFunctions.arrayOfMLBTeams[this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team)],
+                gameId: newPlayerStatData[i].gameID,
+                gameDate: this.getGameDate(newPlayerStatData[i].gameID),
+                season: this.getSeason(newPlayerStatData[i].gameID),
+                playerPosition: newPlayerStatData[i].startingPosition,
+                playerStarted: newPlayerStatData[i].started ? "Y" : "N",
+                batterHomeRuns: newPlayerStatData[i].Hitting.HR,
+                batterHits: newPlayerStatData[i].Hitting.H,
+                batterTotalBases: newPlayerStatData[i].Hitting.TB,
+                batterRbis: newPlayerStatData[i].Hitting.RBI,
+                batterRunsScored: newPlayerStatData[i].Hitting.R,
+                batterHitsRunsRbis: newPlayerStatData[i].Hitting.H + newPlayerStatData[i].Hitting.R + newPlayerStatData[i].Hitting.RBI,
+                batterDoubles: newPlayerStatData[i].Hitting['2B'],
+                batterTriples: newPlayerStatData[i].Hitting['3B'],
+                batterWalks: newPlayerStatData[i].Hitting.BB + newPlayerStatData[i].Hitting.IBB,
+                batterStrikeouts: newPlayerStatData[i].Hitting.SO,
+                batterStolenBases: newPlayerStatData[i].BaseRunning.SB,
+                pitcherStrikes: newPlayerStatData[i].Pitching.Strikes,
+                pitcherPitches: newPlayerStatData[i].Pitching.Pitches,
 
             })
         }
