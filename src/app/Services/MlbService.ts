@@ -16,7 +16,6 @@ export class MlbService {
 
     static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): DbMlbPlayerInfo[] {
         var playerList: DbMlbPlayerInfo[] = []
-        console.log("here in service")
 
         playerInfo.forEach((player: { longName: string, playerID: string, team: string, teamID: string }) => {
             var playerName = player.longName

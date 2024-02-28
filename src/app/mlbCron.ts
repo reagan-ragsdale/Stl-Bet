@@ -54,6 +54,7 @@ export const mlbCronFile = async () => {
     //retreive all the players and get their season stats
     
     let listOfActivePlayers = await MlbController.mlbGetAllPlayerInfo();
+    console.log(listOfActivePlayers)
 
     for(let player of listOfActivePlayers){
         //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for

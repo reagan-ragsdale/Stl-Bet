@@ -9,7 +9,6 @@ export class mlbApiController {
 
 
     static async getAllMlbPlayers() {
-        console.log("here in player mlb api call")
         const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBPlayerList';
         const options = {
             method: 'GET',

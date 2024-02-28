@@ -12,22 +12,17 @@ export class MlbController {
   //player info 
   @BackendMethod({ allowed: true})
   static async mlbSetPlayerInfo(playerData: DbMlbPlayerInfo[]){
-    console.log("here in mlb player info controller")
     const taskRepo = remult.repo(DbMlbPlayerInfo)
     var currentDb = await taskRepo.find({ where: { playerId: { ">=": 0 } } })
-    console.log("here after currentDb")
     if(currentDb.length > 0){
-      console.log("here in if statement")
       for(let player of currentDb){
         await taskRepo.delete(player)
       }
     }
-    console.log("after if statement")
     try{
       await taskRepo.insert(playerData)
     }catch(error: any){console.log(error.message)}
     
-    console.log("after if statement")
   }
 
   @BackendMethod({ allowed: true})
