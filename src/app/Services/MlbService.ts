@@ -79,6 +79,16 @@ export class MlbService {
     static async mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): Promise<DBMlbPlayerGameStats[]> {
         var playerStatsFinal: DBMlbPlayerGameStats[] = []
 
+        let i = 0
+        let newPlayerStatData: any[] = []
+
+        playerStatData.forEach(game => {
+            newPlayerStatData[i] = game
+            i++
+        })
+        console.log("Below is new player stat data")
+        console.log(newPlayerStatData)
+
         //get player info to get player name and team id
         let playerDb = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerStatData[0].playerID, this.getSeason(playerStatData[0].gameID))
         let uniqueGameId = playerDb.map(e => {return e.gameId}) 
