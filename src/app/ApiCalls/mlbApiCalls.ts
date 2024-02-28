@@ -39,11 +39,17 @@ export class mlbApiController {
 
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log(result)
         const processedResult = result.body
+        if(processedResult.length == 0){
+            console.log("returning 0")
+            return 0
+        }
+        else{
+            return MlbService.mlbConvertPlayerGameStatsFromApiToDb(processedResult)
+        }
         
 
-        return MlbService.mlbConvertPlayerGameStatsFromApiToDb(processedResult)
+        
 
 
 

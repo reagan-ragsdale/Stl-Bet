@@ -9,6 +9,7 @@ import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
 import { SportsNameToId } from "./sports-name-to-id"
 import { reusedFunctions } from "./Services/reusedFunctions"
 import { mlbApiController } from "./ApiCalls/mlbApiCalls"
+import { DBMlbPlayerGameStats } from "src/shared/dbTasks/DbMlbPlayerGameStats"
 
 
 
@@ -62,9 +63,11 @@ export const mlbCronFile = async () => {
         if(playerStats.length == 0){
             console.log("In if")
             let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
-            console.log("Below is api return")
-            console.log(player2023Stats)
-            await MlbController.mlbSetPlayerGameStats(player2023Stats)
+            if(typeof(player2023Stats) != 'number'){
+                console.log("hererere")
+                await MlbController.mlbSetPlayerGameStats(player2023Stats)
+            }
+            
         }
     }
 
