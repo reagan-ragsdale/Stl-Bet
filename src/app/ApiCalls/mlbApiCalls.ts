@@ -41,14 +41,8 @@ export class mlbApiController {
         const result = await response.json();
         const processedResult = result.body
         console.log(processedResult)
-        if(processedResult.length == undefined){
-            console.log("returning 0")
-            return 0
-        }
-        else{
-            console.log("going into service")
-            return MlbService.mlbConvertPlayerGameStatsFromApiToDb(processedResult)
-        }
+        return MlbService.mlbConvertPlayerGameStatsFromApiToDb(processedResult)
+        
         
 
         
