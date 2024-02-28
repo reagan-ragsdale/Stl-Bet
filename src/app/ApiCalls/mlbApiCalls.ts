@@ -45,6 +45,7 @@ export class mlbApiController {
             return 0
         }
         else{
+            console.log("going into service")
             return MlbService.mlbConvertPlayerGameStatsFromApiToDb(processedResult)
         }
         
