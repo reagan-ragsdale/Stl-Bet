@@ -1,5 +1,17 @@
-html, body {
+ 
+
+ html, body {
     height: 100%;
     width: 100%;
     margin: 0;
-  }
+    box-sizing: border-box;
+  } 
+  .top-button button:hover{
+    cursor: pointer;
+    background-color: #F0ECE5 !important;
+    color: #31304d !important;
+}
+button{
+  //height:65% !important;
+   //margin: auto 0 !important; 
+}

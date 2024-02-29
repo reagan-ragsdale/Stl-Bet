@@ -13,10 +13,7 @@ import { HostListener } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeScreenComponent {
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event: any) {
-    location.reload()
-  }
+  
   constructor(private router: Router) { }
   title = 'angulardemo1';
   opened = false;

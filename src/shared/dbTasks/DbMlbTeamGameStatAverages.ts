@@ -101,7 +101,7 @@ export class DbMlbTeamGameStatAverages {
   totalHomeRunsAllowed = 0
 
   @Fields.number()
-  toalHitsAllowed = 0
+  totalHitsAllowed = 0
 
   @Fields.number()
   totalFirstBaseAllowed = 0

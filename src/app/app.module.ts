@@ -36,6 +36,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     PropScreenComponent,
     PropCheckoutComponent,
     HomeScreenComponent,
-    PlayerStatsComponent
+    PlayerStatsComponent,
+    WelcomeScreenComponent,
     
   ],
   imports: [

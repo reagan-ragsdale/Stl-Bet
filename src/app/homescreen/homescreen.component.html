@@ -1,27 +1,7 @@
-<div style=" height: 100%; width: auto; background-color:#31304d; display: block;">
+<div style=" height: 93.35%; width: auto; background-color:#31304d; display:flex">
 
-  <div style="  height: 60px; width: auto; display: flex; border-bottom: 3px solid #F0ECE5;">
-    <div style="width: 33%; height: 100%;  display:block;">
-      <h1 style="  color: #F0ECE5; font-size: xx-large; transform: translateY(45%); margin-left: 1rem;">
-        STL Bet
-      </h1>
-    </div>
-    <div style="width: 67%; height: 100%;  display: flex; ">
-      <div class="top-button"
-        style="transform: translateY(20%);  gap: 1rem; display:flex; justify-content: flex-end; margin-right: 1rem;">
-        <button mat-button style="background-color: #31304d; color: #F0ECE5" (click)="propClicked()">Props</button>
-        <button mat-button style="background-color: #31304d; color: #F0ECE5" (click)="playerStatsClicked()">Player
-          Stats</button>
-        <button mat-button style="background-color: #31304d; color: #F0ECE5">Team Stats</button>
-
-        <button mat-button style="background-color: #31304d; color: #F0ECE5">Log In</button>
-        <button mat-button style="background-color: #31304d; color: #F0ECE5">Sign Up</button>
-      </div>
-    </div>
-
-    <!-- <button mat-raised-button style="background-color: #B6BBC4; color: #F0ECE5" (click)="propClicked()" >Props</button> -->
-  </div>
-  <div style=" height:93%; width: auto; display: flex; background-color: #31304d; ">
+  <!-- 
+  <div style=" height:93%; width: auto; display: flex; background-color: #31304d; "> -->
     <div class="game-list" style="height: 100%; width: 9%; border-right: 3px solid #F0ECE5;">
       <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
         [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
@@ -217,6 +197,6 @@
 
 
     </div>
-  </div>
+ <!--  </div> -->
 
 </div>

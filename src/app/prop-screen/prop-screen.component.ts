@@ -1,4 +1,4 @@
-import { Component, OnInit, afterRender } from '@angular/core';
+import { Component, HostListener, OnInit, afterRender } from '@angular/core';
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { SelectedSportsData } from '../selected-sports-data';
 import { GameId } from '../game-id';
@@ -59,7 +59,10 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 
 export class PropScreenComponent implements OnInit {
 
-
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    location.reload()
+  }
 
 
   expandedElement: PlayerProp[] | null | undefined;
