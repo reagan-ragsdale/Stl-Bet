@@ -37,6 +37,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
+import { TeamStatsComponent } from './team-stats/team-stats.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.componen
     HomeScreenComponent,
     PlayerStatsComponent,
     WelcomeScreenComponent,
+    TeamStatsComponent,
     
   ],
   imports: [

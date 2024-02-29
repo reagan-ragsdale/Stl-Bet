@@ -4,6 +4,7 @@ import { HomeScreenComponent } from './homescreen/homescreen.component';
 import { PropScreenComponent } from './prop-screen/prop-screen.component';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
+import { TeamStatsComponent } from './team-stats/team-stats.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: 'props/:sport', component: PropScreenComponent},
   { path: 'props/:sport/:game', component: PropScreenComponent},
   { path: 'playerStats', component: PlayerStatsComponent},
+  { path: 'teamStats/:team', component: TeamStatsComponent},
+
   { path: 'playerStats/:sport/:id', component: PlayerStatsComponent},
 ];
 
