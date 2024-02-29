@@ -1,5 +1,5 @@
-<div style="height: 100%; width: auto; background-color: #252324; ">
-  <div style="width: 10%; background-color: red; height: inherit; position:fixed;  left: 0px; z-index: 0;">
+<div style="height: 100%; width: auto; background-color: #252324; display: flex;">
+  <div style="width: 10%; background-color: red; height: inherit;">
     <div style="height: 50px; width: 100%; text-align: center; align-self: center;">
       <h1>Games</h1>
     </div>
@@ -26,7 +26,7 @@
   </mat-tab-group>
  -->
 
-  <div style="width: 90%; margin-left: 10%;"> 
+  <div style="width: 90%;"> 
 
     <mat-tab-group [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)">
       <mat-tab label="Game Props"></mat-tab>
