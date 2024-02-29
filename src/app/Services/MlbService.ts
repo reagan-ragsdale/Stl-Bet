@@ -75,9 +75,10 @@ export class MlbService {
     }
 
 
-    static async mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): Promise<DBMlbPlayerGameStats[]> {
+    static async mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): Promise<DBMlbPlayerGameStats[] | number> {
+        console.log("here in service")
         var playerStatsFinal: DBMlbPlayerGameStats[] = []
-        /* try{ */
+         try{ 
 
 
         let index = 0
@@ -177,9 +178,10 @@ export class MlbService {
 
 
 
-        /*  }catch (error: any) {
+          }catch (error: any) {
              console.log(error.message)
-           } */
+             return 0
+           } 
         return playerStatsFinal
     }
 

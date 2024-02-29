@@ -83,7 +83,7 @@ export class DbMlbTeamGameStatAverages {
   totalHomeRunsScored = 0
 
   @Fields.number()
-  toalHitsScored = 0
+  totalHitsScored = 0
 
   @Fields.number()
   totalFirstBaseScored = 0

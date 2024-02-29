@@ -603,6 +603,7 @@ export class PropScreenComponent implements OnInit {
       //this.selectedGame = this.route.snapshot.paramMap.get('game')
       this.route.paramMap.subscribe(params => {
         this.selectedGame = params.get("game")
+        this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
       })
     }
     
@@ -2404,10 +2405,8 @@ export class PropScreenComponent implements OnInit {
     console.log("Here4")
   }
    ngOnInit() {
-    console.log("Here1")
     this.initializeSport()
     this.getGames()
-    console.log("Here2")
   }
 
   detailedStatsClicked(element: any) {
