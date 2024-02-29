@@ -12,7 +12,7 @@ import { reusedFunctions } from "./reusedFunctions"
 
 export class MlbService {
 
-     static mlbTeamIds: {[key:string]: number} = {"ARI": 1, "ATL": 2, "BAL": 3, "BOS": 4, "CHC": 5, "CHW": 6, "CIN": 7, "CLE": 8, "COL": 9, "DET": 10, "HOU": 11, "KC": 12, "LAA": 13, "LAD": 14, "MIA": 15, "MIL": 16, "MIN": 17, "NYM": 18, "NYY": 19, "OAK": 20, "PHI": 21, "PIT": 22, "SD": 23, "SF": 24, "SEA": 25, "STL": 26, "TB": 27, "TEX": 28, "TOR": 29, "WAS": 30}
+    static mlbTeamIds: { [key: string]: number } = { "ARI": 1, "ATL": 2, "BAL": 3, "BOS": 4, "CHC": 5, "CHW": 6, "CIN": 7, "CLE": 8, "COL": 9, "DET": 10, "HOU": 11, "KC": 12, "LAA": 13, "LAD": 14, "MIA": 15, "MIL": 16, "MIN": 17, "NYM": 18, "NYY": 19, "OAK": 20, "PHI": 21, "PIT": 22, "SD": 23, "SF": 24, "SEA": 25, "STL": 26, "TB": 27, "TEX": 28, "TOR": 29, "WAS": 30 }
 
     static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): DbMlbPlayerInfo[] {
         var playerList: DbMlbPlayerInfo[] = []
@@ -76,78 +76,74 @@ export class MlbService {
 
 
     static async mlbConvertPlayerGameStatsFromApiToDb(playerStatData: any[]): Promise<DBMlbPlayerGameStats[]> {
-        console.log("here service")
         var playerStatsFinal: DBMlbPlayerGameStats[] = []
+        /* try{ */
+
 
         let index = 0
         let newPlayerStatData: any[] = []
-        for(let i in playerStatData){
+        for (let i in playerStatData) {
             newPlayerStatData[index] = playerStatData[i]
             index++
         }
-        /* playerStatData.forEach(game => {
-            console.log(game)
-            newPlayerStatData[i] = game
-            i++
-        }) */
+
 
         //get player info to get player name and team id
         let playerDb = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(newPlayerStatData[0].playerID, this.getSeason(newPlayerStatData[0].gameID))
-        let uniqueGameId = playerDb.map(e => {return e.gameId}) 
+        let uniqueGameId = playerDb.map(e => { return e.gameId })
 
         let player = await MlbController.mlbGetPlayerInfoByPlayerId(newPlayerStatData[0].playerID)
-            var playerName = player[0].playerName
-            if (playerName.includes("á")) {
-                playerName = playerName.replaceAll("á", "a")
-            }
-            if (playerName.includes("Á")) {
-                playerName = playerName.replaceAll("Á", "A")
-            }
-            if (playerName.includes("é")) {
-                playerName = playerName.replaceAll("é", "e")
-            }
-            if (playerName.includes("É")) {
-                playerName = playerName.replaceAll("É", "E")
-            }
-            if (playerName.includes("í")) {
-                playerName = playerName.replaceAll("í", "i")
-            }
-            if (playerName.includes("Í")) {
-                playerName = playerName.replaceAll("Í", "I")
-            }
-            if (playerName.includes("ñ")) {
-                playerName = playerName.replaceAll("ñ", "n")
-            }
-            if (playerName.includes("Ñ")) {
-                playerName = playerName.replaceAll("Ñ", "N")
-            }
-            if (playerName.includes("ó")) {
-                playerName = playerName.replaceAll("ó", "o")
-            }
-            if (playerName.includes("Ó")) {
-                playerName = playerName.replaceAll("Ó", "O")
-            }
-            if (playerName.includes("ú")) {
-                playerName = playerName.replaceAll("ú", "u")
-            }
-            if (playerName.includes("Ú")) {
-                playerName = playerName.replaceAll("Ú", "U")
-            }
-            if (playerName.includes("ü")) {
-                playerName = playerName.replaceAll("ü", "u")
-            }
-            if (playerName.includes("Ü")) {
-                playerName = playerName.replaceAll("Ü", "U")
-            }
+        var playerName = player[0].playerName
+        if (playerName.includes("á")) {
+            playerName = playerName.replaceAll("á", "a")
+        }
+        if (playerName.includes("Á")) {
+            playerName = playerName.replaceAll("Á", "A")
+        }
+        if (playerName.includes("é")) {
+            playerName = playerName.replaceAll("é", "e")
+        }
+        if (playerName.includes("É")) {
+            playerName = playerName.replaceAll("É", "E")
+        }
+        if (playerName.includes("í")) {
+            playerName = playerName.replaceAll("í", "i")
+        }
+        if (playerName.includes("Í")) {
+            playerName = playerName.replaceAll("Í", "I")
+        }
+        if (playerName.includes("ñ")) {
+            playerName = playerName.replaceAll("ñ", "n")
+        }
+        if (playerName.includes("Ñ")) {
+            playerName = playerName.replaceAll("Ñ", "N")
+        }
+        if (playerName.includes("ó")) {
+            playerName = playerName.replaceAll("ó", "o")
+        }
+        if (playerName.includes("Ó")) {
+            playerName = playerName.replaceAll("Ó", "O")
+        }
+        if (playerName.includes("ú")) {
+            playerName = playerName.replaceAll("ú", "u")
+        }
+        if (playerName.includes("Ú")) {
+            playerName = playerName.replaceAll("Ú", "U")
+        }
+        if (playerName.includes("ü")) {
+            playerName = playerName.replaceAll("ü", "u")
+        }
+        if (playerName.includes("Ü")) {
+            playerName = playerName.replaceAll("Ü", "U")
+        }
 
 
 
-        //change below to for loop and call the player info db to get the player name
-        for(let i = 0; i < newPlayerStatData.length; i++){
-            if(uniqueGameId.includes(newPlayerStatData[i].gameID)){
+        for (let i = 0; i < newPlayerStatData.length; i++) {
+            if (uniqueGameId.includes(newPlayerStatData[i].gameID)) {
                 continue
             }
-            
+
 
             playerStatsFinal.push({
                 playerId: newPlayerStatData[i].playerID,
@@ -155,7 +151,7 @@ export class MlbService {
                 teamName: newPlayerStatData[i].team,
                 teamId: MlbService.mlbTeamIds[newPlayerStatData[i].team],
                 teamAgainstName: this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team),
-                teamAgainstId: reusedFunctions.arrayOfMLBTeams[this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team)].toString(),
+                teamAgainstId: MlbService.mlbTeamIds[this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team)].toString(),
                 gameId: newPlayerStatData[i].gameID,
                 gameDate: this.getGameDate(newPlayerStatData[i].gameID),
                 season: this.getSeason(newPlayerStatData[i].gameID),
@@ -177,9 +173,13 @@ export class MlbService {
 
             })
         }
-        
 
 
+
+
+        /*  }catch (error: any) {
+             console.log(error.message)
+           } */
         return playerStatsFinal
     }
 
@@ -201,7 +201,7 @@ export class MlbService {
         let splitString = gameId.split("_")
 
         gameDate = splitString[0]
-        gameDate = gameDate.slice(3)
+        gameDate = gameDate.slice(4)
         let month = gameDate.slice(0, 2)
         let day = gameDate.slice(2)
 

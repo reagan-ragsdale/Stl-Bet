@@ -21,7 +21,7 @@
 
     <!-- <button mat-raised-button style="background-color: #B6BBC4; color: #F0ECE5" (click)="propClicked()" >Props</button> -->
   </div>
-  <div style=" height:auto; width: auto; display: flex; background-color: #31304d; ">
+  <div style=" height:93%; width: auto; display: flex; background-color: #31304d; ">
     <div class="game-list" style="height: 100%; width: 9%; border-right: 3px solid #F0ECE5;">
       <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
         [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
