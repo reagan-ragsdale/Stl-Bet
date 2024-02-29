@@ -51,4 +51,10 @@ export class reusedFunctions {
         return game;
       }
 
+      static addDash(team: string): string{
+        let name = team;
+        name = name.replaceAll(" ", "-")
+        return name
+      }
+
 }

@@ -541,6 +541,7 @@ export class PropScreenComponent implements OnInit {
   public displayPropHtml1: PropData =
     {
       name: '',
+      abvr: '',
       h2h: '',
       spreadPoint: '',
       spreadPrice: '',
@@ -552,6 +553,7 @@ export class PropScreenComponent implements OnInit {
   public displayPropHtml2: PropData =
     {
       name: '',
+      abvr: '',
       h2h: '',
       spreadPoint: '',
       spreadPrice: '',
@@ -867,7 +869,7 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(name1)
-    this.displayPropHtml1 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
+    this.displayPropHtml1 = ({ name: name1, abvr: reusedFunctions.addDash(name1), h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
 
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price.toString();
@@ -876,7 +878,7 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
     teamInfo = await NbaController.nbaGetLogoFromTeamName(name1)
-    this.displayPropHtml2 = ({ name: name1, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
+    this.displayPropHtml2 = ({ name: name1, abvr: reusedFunctions.addDash(name1), h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, primaryColor: teamInfo[0].primaryColor, alternateColor: teamInfo[0].alternateColor });
     console.timeEnd("Display Prop")
     this.teamPropIsLoading = false
   }
