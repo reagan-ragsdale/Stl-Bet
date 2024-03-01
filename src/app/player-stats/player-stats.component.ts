@@ -197,6 +197,7 @@ export class PlayerStatsComponent {
     this.allSportPlayerList.concat(await MlbController.mlbGetActivePlayerInfo())
     this.allSportPlayerList.concat(await NbaController.nbaLoadAllPlayerInfo())
     this.searchName = ""
+    console.log(this.allSportPlayerList)
   }
 
   async getPlayerInfo() {
