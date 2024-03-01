@@ -196,10 +196,10 @@ export class PlayerStatsComponent {
   async getAllSportPlayers(){
     let players: any[] = await MlbController.mlbGetActivePlayerInfo()
     console.log(players)
-    this.allSportPlayerList.concat(players)
+    this.allSportPlayerList = this.allSportPlayerList.concat(players)
     players = await NbaController.nbaLoadAllPlayerInfo()
     console.log(players)
-    this.allSportPlayerList.concat(players)
+    this.allSportPlayerList = this.allSportPlayerList.concat(players)
     this.searchName = ""
     console.log(this.allSportPlayerList)
   }
