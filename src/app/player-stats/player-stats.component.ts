@@ -202,6 +202,7 @@ export class PlayerStatsComponent {
     this.allSportPlayerList = this.allSportPlayerList.concat(players)
     this.searchName = ""
     console.log(this.allSportPlayerList)
+    this.filteredSearch = this.allSportPlayerList
   }
 
   async getPlayerInfo() {
