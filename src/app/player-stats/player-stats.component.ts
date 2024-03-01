@@ -177,6 +177,9 @@ export class PlayerStatsComponent {
       await this.getPlayerInfo()
       await this.getAllPlayerInfo()
       this.calculateMeanAndStd()
+      this.createChart()
+      this.createChart2()
+      this.createNormalDistChart()
     }
     else if (this.route.snapshot.paramMap.get('sport') == null && this.route.snapshot.paramMap.get('id') == null) {
       this.selectedSport = "all"
@@ -815,9 +818,7 @@ export class PlayerStatsComponent {
   async ngOnInit() {
     Chart.register(annotationPlugin);
     await this.loadData()
-    this.createChart()
-    this.createChart2()
-    this.createNormalDistChart()
+    
   }
 
 }
