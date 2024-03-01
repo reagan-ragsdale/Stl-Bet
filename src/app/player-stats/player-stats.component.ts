@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { nbaApiController } from '../ApiCalls/nbaApiCalls';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
@@ -19,9 +19,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ViewChild} from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
+import { MlbController } from 'src/shared/Controllers/MlbController';
 
 
 interface statSearch {
@@ -36,7 +37,7 @@ interface statSearch {
   selector: 'app-player-stats',
   templateUrl: './player-stats.component.html',
   styleUrls: ['./player-stats.component.scss'],
-  providers: [ nhlApiController, draftKingsApiController],
+  providers: [nhlApiController, draftKingsApiController],
 })
 export class PlayerStatsComponent {
 
@@ -46,10 +47,15 @@ export class PlayerStatsComponent {
     private nhlApiController: nhlApiController,
     //private draftKingsApiController: draftKingsApiController
   ) { }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    location.reload()
+  }
   myControl = new FormControl('');
-  public displayedColumns = ["Game", "Date",  "Points", "Assists", "Rebounds", "Blocks", "Threes"]
-//
-  
+  public displayedColumns = ["Game", "Date", "Points", "Assists", "Rebounds", "Blocks", "Threes"]
+  //
+
   public playerName: string = ''
   public playerId: any = 0
   public selectedSport: any = ''
@@ -61,7 +67,7 @@ export class PlayerStatsComponent {
 
   public chart: any;
 
-  
+
   public chart2: any;
   public chart3: any
 
@@ -158,19 +164,36 @@ export class PlayerStatsComponent {
   public nhlPlayerStatsInfo2023: DbNhlPlayerGameStats[] = []
   public nhlAllPlayerInfo: DbNhlPlayerInfo[] = []
 
+
+  //all
+  public isNull: boolean = false
+  public allSportPlayerList: any[] = []
+
+
   async loadData() {
-    if (this.route.snapshot.paramMap.get('id') != null) {
-      this.playerId = this.route.snapshot.paramMap.get('id')
-    }
-    if (this.route.snapshot.paramMap.get('sport') != null) {
+    if (this.route.snapshot.paramMap.get('sport') != null && this.route.snapshot.paramMap.get('id') != null) {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
+      this.playerId = this.route.snapshot.paramMap.get('id')
+      await this.getPlayerInfo()
+      await this.getAllPlayerInfo()
+      this.calculateMeanAndStd()
+    }
+    else if (this.route.snapshot.paramMap.get('sport') == null && this.route.snapshot.paramMap.get('id') == null) {
+      this.selectedSport = "all"
+      this.playerId = 0
+      this.isNull = true
+      await this.getAllSportPlayers()
     }
 
-    await this.getPlayerInfo()
-    await this.getAllPlayerInfo()
-    this.calculateMeanAndStd()
 
 
+
+  }
+
+  async getAllSportPlayers(){
+    this.allSportPlayerList.concat(await MlbController.mlbGetActivePlayerInfo())
+    this.allSportPlayerList.concat(await NbaController.nbaLoadAllPlayerInfo())
+    this.searchName = ""
   }
 
   async getPlayerInfo() {
@@ -189,16 +212,16 @@ export class PlayerStatsComponent {
       this.nbaPlayerStatsInfo2022Table.forEach((e) => e.isHighlighted = false)
       this.searchName = this.playerName
       this.playerSeasons.push("2023")
-      if(this.nbaPlayerStatsInfo2022.length > 1){
+      if (this.nbaPlayerStatsInfo2022.length > 1) {
         this.playerSeasons.push("2022")
       }
       this.seasonArray = this.nbaPlayerStatsInfo2023
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
       this.teamInfo = await NbaController.nbaGetLogoFromTeamId(this.nbaPlayerInfo[0].teamId)
 
-      
-      
-      
+
+
+
 
     }
     if (this.selectedSport == "NHL") {
@@ -288,20 +311,20 @@ export class PlayerStatsComponent {
     var num = this.seasonArrayTable.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
     return (num / this.seasonArrayTable.length).toFixed(2)
   }
-  updateSeasonsDisplayed(season: string){
+  updateSeasonsDisplayed(season: string) {
     this.playerSeason = season
-    if(this.playerSeason == "2023"){
+    if (this.playerSeason == "2023") {
       this.seasonArray = this.nbaPlayerStatsInfo2023
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
     }
-    else if(this.playerSeason == "2022"){
+    else if (this.playerSeason == "2022") {
       this.seasonArray = this.nbaPlayerStatsInfo2022
       this.seasonArrayTable = this.nbaPlayerStatsInfo2022Table
     }
     this.table.renderRows()
     this.reDrawLineGraph()
   }
-  
+
 
   createChart() {
     var points: number[] = []
@@ -390,50 +413,16 @@ export class PlayerStatsComponent {
     annotationVal = annotationVal / finalDataSetResult.length
     var max: number = 0
     finalDataSetResult.forEach(e => {
-      if(e > max){
+      if (e > max) {
         max = e
       }
     })
     max = (max + (max / 2))
-    if(max.toString().includes(".")){
+    if (max.toString().includes(".")) {
       var maxNew = max.toString().split(".")
       max = parseInt(maxNew[0]) + 1
     }
-var annotationObj = {
-  type: 'line',
-  borderColor: 'black',
-  borderDash: [6, 6],
-  borderDashOffset: 0,
-  borderWidth: 3,
-  scaleID: 'y',
-  label: {
-    display: true,
-    drawTime: 'beforeDatasetsDraw',
-    callout: {
-      display: true,
-      borderColor: 'rgba(102, 102, 102, 0.5)',
-      borderDash: [6, 6],
-      borderWidth: 2,
-      margin: 0
-    },
-    content: 'Average: ' + annotationVal.toFixed(2),
-
-    position: 'center',
-    xAdjust: 150,
-    yAdjust: -100
-  },
-  value: annotationVal,
-}
-var annotation: any[] = []
-if(this.isCombineStats){
-  annotation.push(annotationObj)
-}
-else{
-  filteredDataSet.forEach(e => {
-    annotationVal = 0
-    e.data.forEach((n: number) => annotationVal += n)
-    annotationVal = annotationVal / e.data.length
-    annotationObj = {
+    var annotationObj = {
       type: 'line',
       borderColor: 'black',
       borderDash: [6, 6],
@@ -451,21 +440,55 @@ else{
           margin: 0
         },
         content: 'Average: ' + annotationVal.toFixed(2),
-    
+
         position: 'center',
         xAdjust: 150,
         yAdjust: -100
       },
       value: annotationVal,
     }
-    annotation.push(annotationObj)
-    annotationVal = 0
-  })
-}
+    var annotation: any[] = []
+    if (this.isCombineStats) {
+      annotation.push(annotationObj)
+    }
+    else {
+      filteredDataSet.forEach(e => {
+        annotationVal = 0
+        e.data.forEach((n: number) => annotationVal += n)
+        annotationVal = annotationVal / e.data.length
+        annotationObj = {
+          type: 'line',
+          borderColor: 'black',
+          borderDash: [6, 6],
+          borderDashOffset: 0,
+          borderWidth: 3,
+          scaleID: 'y',
+          label: {
+            display: true,
+            drawTime: 'beforeDatasetsDraw',
+            callout: {
+              display: true,
+              borderColor: 'rgba(102, 102, 102, 0.5)',
+              borderDash: [6, 6],
+              borderWidth: 2,
+              margin: 0
+            },
+            content: 'Average: ' + annotationVal.toFixed(2),
+
+            position: 'center',
+            xAdjust: 150,
+            yAdjust: -100
+          },
+          value: annotationVal,
+        }
+        annotation.push(annotationObj)
+        annotationVal = 0
+      })
+    }
 
 
 
-    
+
 
     this.chart = new Chart("lineChart", {
 
@@ -493,9 +516,9 @@ else{
             common: {
               drawTime: 'beforeDatasetsDraw'
             },
-            annotations: 
+            annotations:
               annotation
-            
+
           }
         },
         scales: {
@@ -714,7 +737,7 @@ else{
       }
       combinedArrayFinal.push(sum)
     }
-    combinedArrayFinal = [5, 5, 5, 5, 8, 8, 8, 8, 12, 12, 12, 12 ,12, 12, 12, 28,  28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 36,  36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 48, 48,48,48,48,48,48,48,48,48,48,48,48,48, 56, 56,56,56,56,56,56, 62, 62,62,62, 65, 65]
+    combinedArrayFinal = [5, 5, 5, 5, 8, 8, 8, 8, 12, 12, 12, 12, 12, 12, 12, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 56, 56, 56, 56, 56, 56, 56, 62, 62, 62, 62, 65, 65]
 
     var newFilteredData: any[] = []
     for (let i = 0; i < 100; i++) {
@@ -765,9 +788,9 @@ else{
           },
 
 
-          
+
         },
-        
+
         maintainAspectRatio: false
       }
 
