@@ -54,8 +54,8 @@ export class HomeScreenComponent {
     this.router.navigate([`/teamStats/${teamName}`])
   }
 
-  playerStatsClicked() {
-    this.router.navigate(["/playerStats/NBA/279"])
+  playerStatsClicked(playerId: number) {
+    this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
   }
 
   async onSportsListClick(sport: string) {
@@ -63,6 +63,7 @@ export class HomeScreenComponent {
     await this.getData(sport)
   }
 
+  
   async onPlayerStatsClick(stat: any) {
     this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat.dbName)
     stat.selected = true;
