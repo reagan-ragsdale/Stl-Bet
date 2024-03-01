@@ -5,6 +5,7 @@ import { NbaController } from '../../shared/Controllers/NbaController';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
 import { MlbController } from 'src/shared/Controllers/MlbController';
 import { HostListener } from '@angular/core';
+import { reusedFunctions } from '../Services/reusedFunctions';
 
 @Component({
   selector: 'home-screen',
@@ -46,6 +47,11 @@ export class HomeScreenComponent {
 
   sportProps(): void {
     this.router.navigate([`/props/${this.selectedSport}`])
+  }
+
+  onTeamClick(team: string){
+    let teamName = reusedFunctions.addDash(team)
+    this.router.navigate([`/teamStats/${teamName}`])
   }
 
   playerStatsClicked() {
