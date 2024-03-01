@@ -8,7 +8,7 @@
         <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
           (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let player of allSportPlayerList" [value]="player.playerName"
+          <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
             (onSelectionChange)="loadNewPlayer(player.playerId, player.playerName)">
             {{player.playerName}}
           </mat-option>
