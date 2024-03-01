@@ -87,6 +87,9 @@ export class MlbService {
             newPlayerStatData[index] = playerStatData[i]
             index++
         }
+        if(newPlayerStatData.length == 0){
+            return 0
+        }
 
 
         //get player info to get player name and team id
