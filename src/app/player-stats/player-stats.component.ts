@@ -290,7 +290,13 @@ export class PlayerStatsComponent {
   }
 
   filterSearch() {
-    this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+    if(this.isNull){
+      this.filteredSearch = this.allSportPlayerList.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+    }
+    else{
+      this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+    }
+    
   }
 
   setSearchEmpty() {
