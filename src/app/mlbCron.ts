@@ -9,7 +9,8 @@ import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
 import { SportsNameToId } from "./sports-name-to-id"
 import { reusedFunctions } from "./Services/reusedFunctions"
 import { mlbApiController } from "./ApiCalls/mlbApiCalls"
-import { DBMlbPlayerGameStats } from "src/shared/dbTasks/DbMlbPlayerGameStats"
+import { DBMlbPlayerGameStats } from "../shared/dbTasks/DbMlbPlayerGameStats"
+import {PlayerInfoController} from "../shared/Controllers/PlayerInfoController"
 
 
 
@@ -48,8 +49,8 @@ export const mlbCronFile = async () => {
 
     // get and load all nba player info
 
-    //const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
-    //await MlbController.mlbSetPlayerInfo(allPlayerInfo)
+    const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
+    await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
 
     //retreive all the players and get their season stats

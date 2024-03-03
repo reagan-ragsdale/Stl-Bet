@@ -6,6 +6,7 @@ import { DbMlbPlayerInfo } from "../../shared/dbTasks/DbMlbPlayerInfo"
 import { DBMlbPlayerGameStats } from "../../shared/dbTasks/DbMlbPlayerGameStats"
 import { MlbController } from "../../shared/Controllers/MlbController"
 import { reusedFunctions } from "./reusedFunctions"
+import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo"
 
 
 
@@ -14,8 +15,8 @@ export class MlbService {
 
     static mlbTeamIds: { [key: string]: number } = { "ARI": 1, "ATL": 2, "BAL": 3, "BOS": 4, "CHC": 5, "CHW": 6, "CIN": 7, "CLE": 8, "COL": 9, "DET": 10, "HOU": 11, "KC": 12, "LAA": 13, "LAD": 14, "MIA": 15, "MIL": 16, "MIN": 17, "NYM": 18, "NYY": 19, "OAK": 20, "PHI": 21, "PIT": 22, "SD": 23, "SF": 24, "SEA": 25, "STL": 26, "TB": 27, "TEX": 28, "TOR": 29, "WAS": 30 }
 
-    static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): DbMlbPlayerInfo[] {
-        var playerList: DbMlbPlayerInfo[] = []
+    static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): DbPlayerInfo[] {
+        var playerList: DbPlayerInfo[] = []
 
         playerInfo.forEach((player: { longName: string, playerID: string, team: string, teamID: string }) => {
             var playerName = player.longName
@@ -66,7 +67,8 @@ export class MlbService {
                 playerId: player.playerID == '' ? 0 : parseInt(player.playerID),
                 playerName: playerName,
                 teamName: player.team == '' ? "None" : player.team,
-                teamId: player.teamID == '' ? 0 : parseInt(player.teamID)
+                teamId: player.teamID == '' ? 0 : parseInt(player.teamID),
+                sport: "MLB"
             })
 
         })

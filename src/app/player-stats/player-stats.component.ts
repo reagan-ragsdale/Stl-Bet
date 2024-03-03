@@ -11,18 +11,19 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
 import { filterHelper } from 'remult/src/filter/filter-interfaces';
 import { Observable } from 'rxjs';
-import { DbNhlPlayerInfo } from 'src/shared/dbTasks/DbNhlPlayerInfo';
-import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/DbNhlPlayerGameStats';
+import { DbNhlPlayerInfo } from '../../shared/dbTasks/DbNhlPlayerInfo';
+import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';
 import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGameStatsController';
-import { NhlPlayerInfoController } from 'src/shared/Controllers/NhlPlayerInfoController';
+import { NhlPlayerInfoController } from '../../shared/Controllers/NhlPlayerInfoController';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
-import { MlbController } from 'src/shared/Controllers/MlbController';
+import { DbNbaTeamLogos } from '../../shared/dbTasks/DbNbaTeamLogos';
+import { MlbController } from '../../shared/Controllers/MlbController';
+import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
 
 
 interface statSearch {
@@ -194,14 +195,9 @@ export class PlayerStatsComponent {
   }
 
   async getAllSportPlayers(){
-    let players: any[] = await MlbController.mlbGetActivePlayerInfo()
-    console.log(players)
-    this.allSportPlayerList = this.allSportPlayerList.concat(players)
-    players = await NbaController.nbaLoadAllPlayerInfo()
-    console.log(players)
-    this.allSportPlayerList = this.allSportPlayerList.concat(players)
+    let players = await PlayerInfoController.loadAllSportPlayerInfo()
+    this.allSportPlayerList = players
     this.searchName = ""
-    console.log(this.allSportPlayerList)
     this.filteredSearch = this.allSportPlayerList
   }
 
@@ -209,7 +205,7 @@ export class PlayerStatsComponent {
     this.playerSeasons = []
     if (this.selectedSport == "NBA") {
       this.selectedStatSearchNumber = 0
-      this.nbaPlayerInfo = await NbaController.nbaLoadPlayerInfoFromId(this.playerId)
+      this.nbaPlayerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NBA",this.playerId)
       this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
@@ -234,10 +230,13 @@ export class PlayerStatsComponent {
 
     }
     if (this.selectedSport == "NHL") {
-      this.nhlPlayerInfo = await NhlPlayerInfoController.nhlLoadPlayerInfoFromId(this.playerId)
+      this.nhlPlayerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL",this.playerId)
       this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
+    }
+    if(this.selectedSport == "MLB"){
+
     }
   }
 
