@@ -198,7 +198,6 @@ export class NbaController {
   static async nbaGetLogoFromTeamName(name: string): Promise<DbNbaTeamLogos[]> {
     const taskRepo = remult.repo(DbNbaTeamLogos)
     console.log("Below is nbacontroller")
-    console.log(name)
     return await taskRepo.find({ where: { teamName: name } })
   }
 
@@ -210,7 +209,6 @@ export class NbaController {
     console.log("here in nbaSetPlayerStatAverage")
 
     var playerStat = await taskRepo.find({where: {playerId: stat.playerId}})
-     console.log(playerStat)
     if(playerStat.length > 0){
       await taskRepo.delete(playerStat[0])
       await taskRepo.insert(stat)

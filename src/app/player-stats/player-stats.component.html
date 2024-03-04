@@ -9,7 +9,7 @@
           (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
-            (onSelectionChange)="loadNewPlayer(player.playerId, player.playerName)">
+            (onSelectionChange)="loadNewPlayer(player.playerId, player.sport)">
             {{player.playerName}}
           </mat-option>
         </mat-autocomplete>

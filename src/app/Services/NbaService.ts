@@ -126,7 +126,6 @@ export class NbaService{
           if (playerStatData[i].game.id >= 12478 && playerStatData[i].game.id <= 12548) {
             continue
           }
-          console.log(oldGames.includes(playerStatData[i].game.id))
           if (oldGames.includes(playerStatData[i].game.id)) {
             continue
           }
