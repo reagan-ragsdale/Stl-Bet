@@ -125,7 +125,15 @@ export class HomeScreenComponent {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
           teamArray.push(allOfTeam)
         })
-        this.gameDataAllFinal.push(teamArray)
+        let teamArrayFinal: any[] = []
+        if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+          teamArrayFinal.push(teamArray[1])
+          teamArrayFinal.push(teamArray[0])
+          teamArrayFinal.push(teamArray[2])
+          teamArrayFinal.push(teamArray[3])
+        }
+        else{teamArrayFinal = teamArray}
+        this.gameDataAllFinal.push(teamArrayFinal)
 
       })
       console.log(this.gameDataAllFinal)
