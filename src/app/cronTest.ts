@@ -9,6 +9,8 @@ import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
 import { NbaPlayerInfoDb } from "../shared/dbTasks/NbaPlayerInfoDb"
 import { SportsNameToId } from "./sports-name-to-id"
 import { NbaService } from "./Services/NbaService"
+import { PlayerInfoController } from "src/shared/Controllers/PlayerInfoController"
+import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo"
 
 //const newDKController = new draftKingsApiController
 
@@ -47,7 +49,7 @@ export const cronTestFile = async () => {
     // get and load all nba player info
 
     const allPlayerInfo = await nbaApiController.getAllNbaPlayerInfoFromApi()
-    NbaController.nbaAddPlayerInfoData(allPlayerInfo)
+    PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
     console.log("Finished player info load")
 
@@ -63,7 +65,7 @@ export const cronTestFile = async () => {
 
 
     console.log("Line 69")
-    var individualPlayers: NbaPlayerInfoDb[] = []
+    var individualPlayers: DbPlayerInfo[] = []
     for (const team of listOfAllPlayersInGames) {
         for (const players of team) {
             individualPlayers.push(players)

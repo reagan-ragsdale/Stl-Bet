@@ -140,9 +140,9 @@ export class nbaApiController {
 
   }
 
-  static async getAllNbaPlayerInfoFromApi(): Promise<NbaPlayerInfoDb[]> {
+  static async getAllNbaPlayerInfoFromApi(): Promise<DbPlayerInfo[]> {
 
-    var temp: NbaPlayerInfoDb[] = []
+    var temp: DbPlayerInfo[] = []
     for (let i = 0; i < this.arrayOfNbaTeamIds.length; i++) {
       const url = `https://api-nba-v1.p.rapidapi.com/players?team=${this.arrayOfNbaTeamIds[i]}&season=2023`;
       const options = {
@@ -238,7 +238,9 @@ export class nbaApiController {
           temp.push({
             playerId: e.id,
             playerName: playerName,
-            teamId: this.arrayOfNbaTeamIds[i]
+            teamName: this.nbaTeamIdAndName[this.arrayOfNbaTeamIds[i]],
+            teamId: this.arrayOfNbaTeamIds[i],
+            sport: "NBA"
           })
         })
 
