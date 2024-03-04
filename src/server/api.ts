@@ -25,6 +25,7 @@ import { mlbCronFile } from '../app/mlbCron';
 import cron from 'node-cron'
 import { DBMlbPlayerGameStats } from '../shared/dbTasks/DbMlbPlayerGameStats';
 import { DbPlayerInfo } from '../shared/dbTasks/DbPlayerInfo';
+import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
 config()
 
 export const api = remultExpress({
@@ -49,6 +50,7 @@ export const api = remultExpress({
     NhlPlayerInfoController,
     NhlPlayerGameStatsController,
     NbaController,
+    PlayerInfoController
   ],
   
 
