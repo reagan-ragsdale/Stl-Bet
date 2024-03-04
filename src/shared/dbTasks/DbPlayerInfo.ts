@@ -21,4 +21,7 @@ export class DbPlayerInfo {
 
   @Fields.createdAt()
   createdAt?: Date
+
+  @Fields.autoIncrement()
+  uniqueid?:number
 }
