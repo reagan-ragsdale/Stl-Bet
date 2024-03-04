@@ -9,8 +9,8 @@ import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
 import { NbaPlayerInfoDb } from "../shared/dbTasks/NbaPlayerInfoDb"
 import { SportsNameToId } from "./sports-name-to-id"
 import { NbaService } from "./Services/NbaService"
-import { PlayerInfoController } from "src/shared/Controllers/PlayerInfoController"
-import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo"
+import { PlayerInfoController } from "../shared/Controllers/PlayerInfoController"
+import { DbPlayerInfo } from "../shared/dbTasks/DbPlayerInfo"
 
 //const newDKController = new draftKingsApiController
 
