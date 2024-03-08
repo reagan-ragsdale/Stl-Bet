@@ -56,20 +56,16 @@ export const mlbCronFile = async () => {
     //retreive all the players and get their season stats
     let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
     //console.log(listOfActivePlayers)
-    var i = 0
     for (let player of listOfActivePlayers) {
         //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for
-        if (i < 250) {
+        
             let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
             if (playerStats.length == 0) {
                 console.log("Before api call")
                 try{
                     let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
                     if (typeof (player2023Stats) != 'number') {
-                        console.log("hererere")
-                        console.log(player2023Stats[0].playerId)
                         await MlbController.mlbSetPlayerGameStats(player2023Stats)
-                        i++;
                     }
                 }catch(error: any){
                     console.log(error.message)
@@ -77,7 +73,7 @@ export const mlbCronFile = async () => {
                 
 
             }
-        }
+        
 
     }
 
