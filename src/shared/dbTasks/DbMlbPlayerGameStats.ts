@@ -38,6 +38,9 @@ export class DBMlbPlayerGameStats {
   playerStarted = ""
 
   @Fields.integer()
+  batterAtBats = 0
+
+  @Fields.integer()
   batterHomeRuns = 0
 
   @Fields.integer()
