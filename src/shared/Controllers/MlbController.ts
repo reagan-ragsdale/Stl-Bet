@@ -53,6 +53,7 @@ export class MlbController {
   //player game stats
   @BackendMethod({ allowed: true})
   static async mlbSetPlayerGameStats(playerStats: DBMlbPlayerGameStats[]){
+    console.log("HEre in controler")
     const taskRepo = remult.repo(DBMlbPlayerGameStats)
     await taskRepo.insert(playerStats)
   }

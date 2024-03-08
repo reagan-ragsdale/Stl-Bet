@@ -54,7 +54,7 @@ export const mlbCronFile = async () => {
 
 
     //retreive all the players and get their season stats
-    let listOfActivePlayers = await MlbController.mlbGetAllPlayerInfo();
+    let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
     //console.log(listOfActivePlayers)
     var i = 0
     for (let player of listOfActivePlayers) {
@@ -63,12 +63,18 @@ export const mlbCronFile = async () => {
             let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
             if (playerStats.length == 0) {
                 console.log("Before api call")
-                let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
-                if (typeof (player2023Stats) != 'number') {
-                    console.log("hererere")
-                    await MlbController.mlbSetPlayerGameStats(player2023Stats)
-                    i++;
+                try{
+                    let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
+                    if (typeof (player2023Stats) != 'number') {
+                        console.log("hererere")
+                        console.log(player2023Stats[0].playerId)
+                        await MlbController.mlbSetPlayerGameStats(player2023Stats)
+                        i++;
+                    }
+                }catch(error: any){
+                    console.log(error.message)
                 }
+                
 
             }
         }
