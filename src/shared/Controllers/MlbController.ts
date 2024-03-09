@@ -4,6 +4,7 @@ import { DBMlbPlayerGameStats } from "../dbTasks/DbMlbPlayerGameStats"
 import { DbMlbTeamGameStats } from "../dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "../dbTasks/DbMlbPlayerGameStatAverages"
 import { DbMlbTeamGameStatAverages } from "../dbTasks/DbMlbTeamGameStatAverages"
+import { DbPlayerInfo } from "../dbTasks/DbPlayerInfo"
 
 export class MlbController {
 
@@ -63,6 +64,12 @@ export class MlbController {
     const taskRepo = remult.repo(DBMlbPlayerGameStats)
     return await taskRepo.find({where: {playerId : id, season: season}})
   }
+  @BackendMethod({ allowed: true})
+  static async mlbSetBlankPlayerGameStats(player: DbPlayerInfo, season: number){
+    const taskRepo = remult.repo(DBMlbPlayerGameStats)
+    await taskRepo.insert({playerId: player.playerId, playerName: player.playerName, season: season })
+  }
+  
 
   //team game stats
   @BackendMethod({ allowed: true})
@@ -113,12 +120,10 @@ export class MlbController {
     else if(stat == "rbis"){
       finalData = await taskRepo.find({orderBy: {batterRbis: "desc"}, limit: 5})
     }
-    else if(stat == "pitcherStrikeouts"){
-      finalData = await taskRepo.find({orderBy: {pitcherStrikeouts: "desc"}, limit: 5})
+    else if(stat == "pitcherStrikes"){
+      finalData = await taskRepo.find({orderBy: {pitcherStrikes: "desc"}, limit: 5})
     }
-    else if(stat == "pitcherEarnedRuns"){
-      finalData = await taskRepo.find({orderBy: {pitcherEarnedRuns: "asc"}, limit: 5})
-    }
+    
     return finalData
   }
 

@@ -20,6 +20,9 @@ export class DBMlbPlayerGameStatAverages {
   batterHits = 0
 
   @Fields.number()
+  batterAtBats = 0
+
+  @Fields.number()
   batterTotalBases = 0
 
   @Fields.number()
@@ -50,22 +53,10 @@ export class DBMlbPlayerGameStatAverages {
   batterStolenBases = 0
 
   @Fields.number()
-  pitcherStrikeouts = 0
+  pitcherStrikes = 0
 
   @Fields.number()
-  pitcherRecordAWin = 0
-
-  @Fields.number()
-  pitcherHitsAllowed = 0
-
-  @Fields.number()
-  pitcherWalks = 0
-
-  @Fields.number()
-  pitcherEarnedRuns = 0
-
-  @Fields.number()
-  pitcherOuts = 0
+  pitcherPitches = 0
 
   @Fields.createdAt()
   createdAt?: Date
