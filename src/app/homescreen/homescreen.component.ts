@@ -137,55 +137,8 @@ export class HomeScreenComponent {
 
       })
       console.log(this.gameDataAllFinal)
-      /* let team1 = [{
-        homeTeam: "Toronto Raptors Lakers",
-        awayTeam: "Brooklyn Nets",
-        marketKey: "h2h",
-        point: 0,
-        price: 110,
-        teamName: "Brooklyn Nets"
-      },
-      {homeTeam: "Toronto Raptors",
-      awayTeam: "Brooklyn Nets",
-      marketKey: "spread",
-      point: 2,
-      price: -110,
-      teamName: "Brooklyn Nets"}]
       
-      let team2 = [{
-        homeTeam: "Toronto Raptors",
-        awayTeam: "Brooklyn Nets",
-        marketKey: "h2h",
-        point: 0,
-        price: -130,
-        teamName: "Toronto Raptors"
-      },
-      {homeTeam: "Toronto Raptors",
-      awayTeam: "Brooklyn Nets",
-      marketKey: "spread",
-      point: -2,
-      price: -110,
-      teamName: "Toronto Raptors"}]
-
-      let over = [{homeTeam: "Toronto Raptors",
-      awayTeam: "Brooklyn Nets",
-      marketKey: "spread",
-      point: 231.5,
-      price: -110,
-      teamName: "Over"}]
-      let under = [{homeTeam: "Toronto Raptors",
-      awayTeam: "Brooklyn Nets",
-      marketKey: "spread",
-      point: 231.5,
-      price: -110,
-      teamName: "Under"}]
-
-      let final: any[] = [team1, team2, over, under]
-
-      this.gameDataAllFinal.push(final)
-       */
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
-      //console.log(this.gameDataFinal)
 
     }
     else if (sport == "MLB") {
@@ -235,10 +188,20 @@ export class HomeScreenComponent {
         var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
         let teamArray: any[] = []
         distinctTeams.forEach(team => {
+          console.log(team)
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
           teamArray.push(allOfTeam)
         })
-        this.gameDataAllFinal.push(teamArray)
+        let teamArrayFinal: any[] = []
+        if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+          teamArrayFinal.push(teamArray[1])
+          teamArrayFinal.push(teamArray[0])
+          teamArrayFinal.push(teamArray[2])
+          teamArrayFinal.push(teamArray[3])
+        }
+        else{teamArrayFinal = teamArray}
+        this.gameDataAllFinal.push(teamArrayFinal)
+
       })
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
 
