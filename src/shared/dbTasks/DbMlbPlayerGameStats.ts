@@ -19,8 +19,8 @@ export class DBMlbPlayerGameStats {
   @Fields.string()
   teamAgainstName = ""
 
-  @Fields.string()
-  teamAgainstId = ''
+  @Fields.integer()
+  teamAgainstId = 0
 
   @Fields.string()
   gameId = ""
