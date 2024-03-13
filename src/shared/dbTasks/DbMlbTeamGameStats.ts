@@ -59,7 +59,7 @@ export class DbMlbTeamGameStats {
   pointsScoredEigthInning = 0
 
   @Fields.integer()
-  pointsScoredNinethInning = 0
+  pointsScoredNinthInning = 0
 
   @Fields.integer()
   pointsAllowedOverall = 0
@@ -89,7 +89,7 @@ export class DbMlbTeamGameStats {
   pointsAllowedEigthInning = 0
 
   @Fields.integer()
-  pointsAllowedNinethInning = 0
+  pointsAllowedNinthInning = 0
 
   @Fields.integer()
   totalHomeRunsScored = 0
