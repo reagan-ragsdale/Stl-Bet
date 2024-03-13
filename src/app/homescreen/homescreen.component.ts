@@ -75,6 +75,7 @@ export class HomeScreenComponent {
     }
     if(this.selectedSport == "MLB"){
       this.playerData = await MlbController.mlbGetPlayerStatAverageTop5(stat.dbName)
+      console.log(stat.dbName)
     }
     
     stat.selected = true;
