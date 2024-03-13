@@ -87,31 +87,48 @@ export const mlbCronFile = async () => {
      for(let i = 1; i < 31; i++){
         //get the schedule for the current team id
         var gameStats: DbMlbTeamGameStats[] = []
-        let dbTeamGameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
-        if(dbTeamGameStats.length == 0){
-            let schedule = await mlbApiController.getTeamSchedule(i, 2023)
-            for(let game of schedule){
-                let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
-                gameStats.push(teamStats2023)
+        try{
+            let dbTeamGameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
+            if(dbTeamGameStats.length == 0){
+                let schedule = await mlbApiController.getTeamSchedule(i, 2023)
+                for(let game of schedule){
+                    let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
+                    gameStats.push(teamStats2023)
+                }
+                await MlbController.mlbSetTeamGameStats(gameStats)
             }
-            await MlbController.mlbSetTeamGameStats(gameStats)
+        }catch(error: any){
+            console.log(error.message)
         }
+       
         
     }
 
 
     //set the player game stat averages
     for(let player of listOfActivePlayers){
-        let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
-        let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
-        await MlbController.mlbSetPlayerStatAverage(playerAverage)
+        try{
+            let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
+            let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
+            await MlbController.mlbSetPlayerStatAverage(playerAverage)
+        }
+        catch(error:any){
+            console.log(error.message)
+        }
+        
     }
 
     //set the team game stat averages
     for(let i = 1; i < 31; i++){
-        let teamDbStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
-        let teamAverage = MlbService.setTeamGameAverages(teamDbStats)
-        await MlbController.mlbSetTeamStatAverage(teamAverage)
+        try{
+            let teamDbStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
+            let teamAverage = MlbService.setTeamGameAverages(teamDbStats)
+            await MlbController.mlbSetTeamStatAverage(teamAverage)
+        }
+        catch(error:any){
+            console.log(error.message)
+        }
+        
     } 
 
 
