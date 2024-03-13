@@ -95,7 +95,7 @@ export class DbMlbTeamGameStats {
   totalHomeRunsScored = 0
 
   @Fields.integer()
-  toalHitsScored = 0
+  totalHitsScored = 0
 
   @Fields.integer()
   totalFirstBaseScored = 0
@@ -113,7 +113,7 @@ export class DbMlbTeamGameStats {
   totalHomeRunsAllowed = 0
 
   @Fields.integer()
-  toalHitsAllowed = 0
+  totalHitsAllowed = 0
 
   @Fields.integer()
   totalFirstBaseAllowed = 0
