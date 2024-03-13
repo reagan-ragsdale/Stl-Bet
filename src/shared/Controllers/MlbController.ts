@@ -112,16 +112,16 @@ export class MlbController {
     var finalData: DBMlbPlayerGameStatAverages[] = []
 
     if(stat == "hits"){
-      finalData = await taskRepo.find({orderBy: {batterHits: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60} }, orderBy: {batterHits: "desc"}, limit: 5})
     }
     else if(stat == "homeRuns"){
-      finalData = await taskRepo.find({orderBy: {batterHomeRuns: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60} },orderBy: {batterHomeRuns: "desc"}, limit: 5})
     }
     else if(stat == "rbis"){
-      finalData = await taskRepo.find({orderBy: {batterRbis: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60} },orderBy: {batterRbis: "desc"}, limit: 5})
     }
     else if(stat == "pitcherStrikes"){
-      finalData = await taskRepo.find({orderBy: {pitcherStrikes: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60} },orderBy: {pitcherStrikes: "desc"}, limit: 5})
     }
     
     return finalData
