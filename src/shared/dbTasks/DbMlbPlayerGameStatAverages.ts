@@ -58,6 +58,9 @@ export class DBMlbPlayerGameStatAverages {
   @Fields.number()
   pitcherPitches = 0
 
+  @Fields.number()
+  totalGames = 0
+
   @Fields.createdAt()
   createdAt?: Date
 }

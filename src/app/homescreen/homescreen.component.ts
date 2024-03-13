@@ -91,6 +91,8 @@ export class HomeScreenComponent {
 
   async getData(sport: string) {
     if (sport == "NBA") {
+      this.playerAverageColumns = this.playerAverageColumnsNba
+      this.teamAverageColumns = this.teamAverageColumnsNba
       this.gameDataAllFinal = []
       this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
 
@@ -150,8 +152,7 @@ export class HomeScreenComponent {
       console.log(this.gameDataAllFinal)
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
-      this.playerAverageColumns = this.playerAverageColumnsNba
-      this.teamAverageColumns = this.teamAverageColumnsNba
+      
     }
     else if (sport == "MLB") {
       this.gameDataAllFinal = []

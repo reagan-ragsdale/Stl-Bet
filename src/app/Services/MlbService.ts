@@ -283,6 +283,7 @@ export class MlbService {
             ,batterStolenBases : 0
             ,pitcherStrikes: 0
             ,pitcherPitches : 0
+            ,totalGames: 0
         }
 
         for(let game of playerDbStats){
@@ -302,7 +303,9 @@ export class MlbService {
             playerAverageFinal.batterStrikeouts += game.batterStrikeouts,
             playerAverageFinal.batterStolenBases += game.batterStolenBases,
             playerAverageFinal.pitcherStrikes += game.pitcherStrikes,
-            playerAverageFinal.pitcherPitches += game.pitcherPitches
+            playerAverageFinal.pitcherPitches += game.pitcherPitches,
+            playerAverageFinal.totalGames += 1
+            
         }
 
         playerAverageFinal.batterHomeRuns = playerAverageFinal.batterHomeRuns/playerDbStats.length

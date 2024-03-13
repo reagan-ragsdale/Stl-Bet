@@ -49,8 +49,8 @@ export const mlbCronFile = async () => {
     // get and load all nba player info
 
 
-    const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
-    await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
+    //const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
+    //await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
 
     //retreive all the players and get their season stats
@@ -84,7 +84,7 @@ export const mlbCronFile = async () => {
     //next I want to get the team stats
     // call get team schedule and for each game in there call the get box score for that game 
     //this is assuming the mlb ids are always 1-30
-     for(let i = 1; i < 31; i++){
+     /* for(let i = 1; i < 31; i++){
         //get the schedule for the current team id
         var gameStats: DbMlbTeamGameStats[] = []
         try{
@@ -102,11 +102,11 @@ export const mlbCronFile = async () => {
         }
        
         
-    }
+    } */
 
 
     //set the player game stat averages
-    /* for(let player of listOfActivePlayers){
+     for(let player of listOfActivePlayers){
         try{
             let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
             let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
@@ -116,7 +116,7 @@ export const mlbCronFile = async () => {
             console.log(error.message)
         }
         
-    } */
+    } 
 
     //set the team game stat averages
     for(let i = 1; i < 31; i++){
