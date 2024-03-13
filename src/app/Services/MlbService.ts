@@ -161,7 +161,7 @@ export class MlbService {
                     teamName: newPlayerStatData[i].team,
                     teamId: MlbService.mlbTeamIds[newPlayerStatData[i].team],
                     teamAgainstName: this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team),
-                    teamAgainstId: MlbService.mlbTeamIds[this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team)].toString(),
+                    teamAgainstId: MlbService.mlbTeamIds[this.getTeamAgainst(newPlayerStatData[i].gameID, newPlayerStatData[i].team)],
                     gameId: newPlayerStatData[i].gameID,
                     gameDate: this.getGameDate(newPlayerStatData[i].gameID),
                     season: this.getSeason(newPlayerStatData[i].gameID),

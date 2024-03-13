@@ -87,13 +87,16 @@ export const mlbCronFile = async () => {
      for(let i = 1; i < 31; i++){
         //get the schedule for the current team id
         var gameStats: DbMlbTeamGameStats[] = []
-        
-        let schedule = await mlbApiController.getTeamSchedule(i, 2023)
-        for(let game of schedule){
-            let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
-            gameStats.push(teamStats2023)
+        let dbTeamGameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
+        if(dbTeamGameStats.length == 0){
+            let schedule = await mlbApiController.getTeamSchedule(i, 2023)
+            for(let game of schedule){
+                let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
+                gameStats.push(teamStats2023)
+            }
+            await MlbController.mlbSetTeamGameStats(gameStats)
         }
-        await MlbController.mlbSetTeamGameStats(gameStats)
+        
     }
 
 
