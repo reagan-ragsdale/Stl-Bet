@@ -34,8 +34,13 @@ export class HomeScreenComponent {
   public gameDataAllFinal: any[] = []
   public gameDataFinal: any[] = []
 
-  playerAverageColumns: string[] = ["Player", "Points", "Assists", "Rebounds"]
-  teamAverageColumns: string[] = ["Team", "Wins", "Losses", "Points Scored", "Points Allowed"]
+  playerAverageColumns: string[] = []
+  teamAverageColumns: string[] = []
+
+  playerAverageColumnsNba: string[] = ["Player", "Points", "Assists", "Rebounds"]
+  teamAverageColumnsNba: string[] = ["Team", "Wins", "Losses", "Points Scored", "Points Allowed"]
+
+  playerAverageColumnsMlb: string[] = ["Player", "Home Runs", "Rbi's", "Hits"]
 
   propClicked() {
     this.router.navigate(["/props"])
@@ -139,7 +144,8 @@ export class HomeScreenComponent {
       console.log(this.gameDataAllFinal)
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
-
+      this.playerAverageColumns = this.playerAverageColumnsNba
+      this.teamAverageColumns = this.teamAverageColumnsNba
     }
     else if (sport == "MLB") {
       this.gameDataAllFinal = []
@@ -204,7 +210,7 @@ export class HomeScreenComponent {
 
       })
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
-
+      this.playerAverageColumns = this.playerAverageColumnsMlb
     }
 
   }
