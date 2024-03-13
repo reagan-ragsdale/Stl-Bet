@@ -106,7 +106,7 @@ export const mlbCronFile = async () => {
 
 
     //set the player game stat averages
-    for(let player of listOfActivePlayers){
+    /* for(let player of listOfActivePlayers){
         try{
             let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
             let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
@@ -116,7 +116,7 @@ export const mlbCronFile = async () => {
             console.log(error.message)
         }
         
-    }
+    } */
 
     //set the team game stat averages
     for(let i = 1; i < 31; i++){
