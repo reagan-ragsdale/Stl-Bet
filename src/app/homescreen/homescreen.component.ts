@@ -70,7 +70,13 @@ export class HomeScreenComponent {
 
   
   async onPlayerStatsClick(stat: any) {
-    this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat.dbName)
+    if(this.selectedSport == "NBA"){
+      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat.dbName)
+    }
+    if(this.selectedSport == "MLB"){
+      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5(stat.dbName)
+    }
+    
     stat.selected = true;
     this.playerStatsButtons.filter(e => e.dbName != stat.dbName).forEach(d => d.selected = false);
 
