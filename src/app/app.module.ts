@@ -38,6 +38,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
 import { TeamStatsComponent } from './team-stats/team-stats.component';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { TeamStatsComponent } from './team-stats/team-stats.component';
     MatSlideToggleModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
