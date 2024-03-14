@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { NbaController } from '../../shared/Controllers/NbaController';
@@ -6,6 +6,8 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
 import { MlbController } from 'src/shared/Controllers/MlbController';
 import { HostListener } from '@angular/core';
 import { reusedFunctions } from '../Services/reusedFunctions';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'home-screen',
@@ -15,7 +17,19 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 })
 export class HomeScreenComponent {
   
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.playerDataFinal = new MatTableDataSource();
+  }
+
+  public playerDataFinal: MatTableDataSource<any>;
+
+  @ViewChild(MatSort)
+  sort!: MatSort;
+
+  ngAfterViewInit() {
+    this.playerDataFinal.sort = this.sort;
+  }
+
   title = 'angulardemo1';
   opened = false;
   clicked = false;
@@ -94,7 +108,7 @@ export class HomeScreenComponent {
       this.playerAverageColumns = this.playerAverageColumnsNba
       this.teamAverageColumns = this.teamAverageColumnsNba
       this.gameDataAllFinal = []
-      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
+      this.playerDataFinal = new MatTableDataSource(await NbaController.nbaGetPlayerStatAverageTop5("points"))
 
       this.playerStatsButtons = [
         {
@@ -156,7 +170,7 @@ export class HomeScreenComponent {
     }
     else if (sport == "MLB") {
       this.gameDataAllFinal = []
-      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns")
+      this.playerDataFinal = new MatTableDataSource(await MlbController.mlbGetPlayerStatAverageTop5("homeRuns"))
 
       this.playerStatsButtons = [
         {
