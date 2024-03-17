@@ -18,17 +18,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class HomeScreenComponent {
   
   constructor(private router: Router) { 
-    this.playerDataFinal = new MatTableDataSource();
   }
 
-  public playerDataFinal: MatTableDataSource<any>;
-
-  @ViewChild(MatSort)
-  sort!: MatSort;
-
-  ngAfterViewInit() {
-    this.playerDataFinal.sort = this.sort;
-  }
 
   title = 'angulardemo1';
   opened = false;
@@ -40,7 +31,7 @@ export class HomeScreenComponent {
 
   public gamesList: any[] = [{ name: "NBA", disabled: false }, { name: "NHL", disabled: true }, { name: "MLB", disabled: false }, { name: "NFL", disabled: true }];
   public selectedSport = ''
-
+  public playerDataFinal: any[] = []
   public playerData: any[] = []
   public teamData: any[] = []
   public gameData: any[] = []
@@ -108,7 +99,7 @@ export class HomeScreenComponent {
       this.playerAverageColumns = this.playerAverageColumnsNba
       this.teamAverageColumns = this.teamAverageColumnsNba
       this.gameDataAllFinal = []
-      this.playerDataFinal = new MatTableDataSource(await NbaController.nbaGetPlayerStatAverageTop5("points"))
+      this.playerDataFinal = await NbaController.nbaGetPlayerStatAverageTop5("points")
 
       this.playerStatsButtons = [
         {
@@ -170,8 +161,7 @@ export class HomeScreenComponent {
     }
     else if (sport == "MLB") {
       this.gameDataAllFinal = []
-      this.playerDataFinal = new MatTableDataSource(await MlbController.mlbGetPlayerStatAverageTop5("homeRuns"))
-
+      this.playerDataFinal = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns")
       this.playerStatsButtons = [
         {
           selected: true,
