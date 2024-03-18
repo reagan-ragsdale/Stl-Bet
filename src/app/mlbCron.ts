@@ -39,9 +39,9 @@ export const mlbCronFile = async () => {
 
 
 
-    //const gamesFromDraftKings = await draftKingsApiController.getDatesAndGames("MLB");
+    const gamesFromDraftKings = await draftKingsApiController.getDatesAndGames("MLB");
 
-    //await SportsBookController.addBookData(gamesFromDraftKings);
+    await SportsBookController.addBookData(gamesFromDraftKings);
 
 
     //console.log("Finished sports book load")
