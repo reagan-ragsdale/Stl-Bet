@@ -5,7 +5,7 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 
 
 export class mlbApiController {
-
+    
 
 
     static async getAllMlbPlayers() {
