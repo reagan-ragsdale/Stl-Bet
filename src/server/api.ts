@@ -26,6 +26,7 @@ import cron from 'node-cron'
 import { DBMlbPlayerGameStats } from '../shared/dbTasks/DbMlbPlayerGameStats';
 import { DbPlayerInfo } from '../shared/dbTasks/DbPlayerInfo';
 import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
+import { cronSportsBookHourly } from '../app/cronJobs/cronSportsBookLoadHourly';
 config()
 
 export const api = remultExpress({
@@ -64,6 +65,8 @@ export const api = remultExpress({
   cron.schedule('30 15 * * *',()=>  cronTestFile())
   //1:33pm
   cron.schedule('00 15 * * *', ()=>  mlbCronFile())
+
+  cron.schedule('00 * * * *', ()=> cronSportsBookHourly())
 }
 });
 
