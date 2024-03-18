@@ -160,6 +160,7 @@ export class HomeScreenComponent {
       
     }
     else if (sport == "MLB") {
+      sport = 'MLB Preseason'
       this.gameDataAllFinal = []
       this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns")
       this.playerStatsButtons = [
