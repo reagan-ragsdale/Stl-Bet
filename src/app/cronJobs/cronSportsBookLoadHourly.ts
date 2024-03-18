@@ -1,4 +1,4 @@
-import { SportsBookController } from "src/shared/Controllers/SportsBookController";
+import { SportsBookController } from "../../shared/Controllers/SportsBookController";
 import { draftKingsApiController } from "../ApiCalls/draftKingsApiCalls";
 
 export const cronSportsBookHourly = async () => {
