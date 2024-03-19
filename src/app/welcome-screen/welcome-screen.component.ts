@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-welcome-screen',
   templateUrl: './welcome-screen.component.html',
-  styleUrls: ['./welcome-screen.component.sass']
+  styleUrls: ['./welcome-screen.component.scss']
 })
 export class WelcomeScreenComponent {
   constructor(private router: Router) { 
