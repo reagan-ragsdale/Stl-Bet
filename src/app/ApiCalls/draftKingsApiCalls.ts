@@ -4,6 +4,7 @@
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
+import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
 
 
 
@@ -97,12 +98,14 @@ import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
     const promise = await fetch(apiCall);
     const processedResponse = await promise.json();
     this.selectedSportsData = processedResponse;
-    this.sportsBookData = this.convertSportsDataToInterface()
+    this.sportsBookData = await this.convertSportsDataToInterface()
     return this.sportsBookData;
   }
 
-  static convertSportsDataToInterface(): DbGameBookData[] {
+  static async convertSportsDataToInterface(): Promise<DbGameBookData[]> {
     var tempData: DbGameBookData[] = [];
+    let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
+    let nextBookSeq = bookDb[0].bookSeq + 1
     for (let i = 0; i < this.selectedSportsData.length; i++) {
       for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
         for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
@@ -118,7 +121,8 @@ import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
               marketKey: this.selectedSportsData[i].bookmakers[j].markets[k].key,
               teamName: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name,
               price: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
-              point: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0
+              point: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
+              bookSeq: nextBookSeq
             });
           }
         }

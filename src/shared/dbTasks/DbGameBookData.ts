@@ -1,4 +1,4 @@
-import { Allow, Entity, Fields, Validators } from "remult"
+import { Allow, Entity, Fields, Filter, SqlDatabase, Validators } from "remult"
 
 @Entity("DbGameBookData", {
   allowApiCrud: true
@@ -39,6 +39,24 @@ export class DbGameBookData {
   @Fields.number()
   point = 0
 
+  @Fields.number()
+  bookSeq = 0
+
   @Fields.createdAt()
   createdAt?: Date
+
+
+  static bookIdFilter = Filter.createCustom<DbGameBookData, { bookId: string }>(async ({bookId}) => {
+    return SqlDatabase.rawFilter((whereFragment) => {
+      whereFragment.sql = 'select * from dbgamebookdata where price = (select max(price) from dbgamebookdata where bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId) +') and bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId)
+    })
+  });
+
+  static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
+    return SqlDatabase.rawFilter((whereFragment) => {
+      whereFragment.sql = 'select * from dbgamebookdata b where b.nookSeq = (select max(c.bookSeq) from dbgamebookdata c where c.sporttitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and c.bookid = b.bookid )'
+    })
+  });
+
+
 }

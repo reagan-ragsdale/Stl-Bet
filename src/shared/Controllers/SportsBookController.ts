@@ -11,18 +11,7 @@ export class SportsBookController {
   @BackendMethod({ allowed: true })
   static async addBookData(bookData: DbGameBookData[]) {
     const taskRepo = remult.repo(DbGameBookData)
-   var d = new Date;
-   
-    var dbToDelete = await taskRepo.find({where: { sportTitle: bookData[0].sportTitle }})
-    if(dbToDelete.length > 0){
-      for( const d of dbToDelete){
-      await taskRepo.delete(d)
-    } }
-    
-    
       await taskRepo.insert(bookData)
-  
-
   }
 
   @BackendMethod({ allowed: true })
@@ -43,5 +32,25 @@ export class SportsBookController {
 
     return await taskRepo.find({where: {sportTitle: sport, commenceTime:{ ">": date}, marketKey: "h2h"}, orderBy: {commenceTime: "asc"}})
   }
+
+  @BackendMethod({ allowed: true })
+  static async loadMaxBookSeqByBookId(bookId: string): Promise<DbGameBookData[]> {
+    const taskRepo = remult.repo(DbGameBookData)
+
+    return await taskRepo.find({where: DbGameBookData.bookIdFilter({bookId: bookId})})
+
+    
+  }
+
+  @BackendMethod({ allowed: true })
+  static async loadAllBookDataBySportAndMaxBookSeq(sport: string): Promise<DbGameBookData[]> {
+    const taskRepo = remult.repo(DbGameBookData)
+
+    return await taskRepo.find({where: DbGameBookData.allSportFilterByMAxBookSeq({sport: sport})})
+
+    
+  }
+  
+  
 
 }
