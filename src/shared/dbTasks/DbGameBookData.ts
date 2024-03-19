@@ -48,7 +48,7 @@ export class DbGameBookData {
 
   static bookIdFilter = Filter.createCustom<DbGameBookData, { bookId: string }>(async ({bookId}) => {
     return SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'select * from dbgamebookdata where price = (select max(price) from dbgamebookdata where bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId) +') and bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId)
+      whereFragment.sql = 'select * from dbgamebookdata where bookeq = (select max(bookseq) from dbgamebookdata where bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId) +') and bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId)
     })
   });
 
