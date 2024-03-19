@@ -2,9 +2,9 @@
 
 
 import { SportsTitleToName } from '../sports-titel-to-name';
-import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
-import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
-import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
+import { DbPlayerPropData } from '../../shared/dbTasks/DbPlayerPropData';
+import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
+import { SportsBookController } from '../../shared/Controllers/SportsBookController';
 
 
 
