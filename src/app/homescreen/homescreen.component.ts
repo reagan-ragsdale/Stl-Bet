@@ -138,8 +138,16 @@ export class HomeScreenComponent {
         let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
         var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
         let teamArray: any[] = []
+        let distinctTeamsNew: any[] = []
+        let teamsName = distinctTeams.filter(e => e != "Over" || e != "Under")
+        distinctTeamsNew.push(teamsName[0])
+        distinctTeamsNew.push(teamsName[1])
+        let teamsNameOver = distinctTeams.filter(e => e == "Over")
+        distinctTeamsNew.push(teamsNameOver)
+        let teamsNameUnder = distinctTeams.filter(e => e == "Under")
+        distinctTeamsNew.push(teamsNameUnder)
         console.log(distinctTeams)
-        distinctTeams.forEach(team => {
+        distinctTeamsNew.forEach(team => {
           console.log(team)
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
           teamArray.push(allOfTeam)
