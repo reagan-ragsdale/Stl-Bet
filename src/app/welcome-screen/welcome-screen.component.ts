@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-welcome-screen',
@@ -10,5 +11,10 @@ export class WelcomeScreenComponent {
   constructor(private router: Router) { 
   }
  
+  private modalService = inject(NgbModal);
+
+  openVerticallyCentered(content: TemplateRef<any>) {
+		this.modalService.open(content, { centered: true });
+	}
 
 }

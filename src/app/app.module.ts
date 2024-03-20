@@ -39,6 +39,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
 import { TeamStatsComponent } from './team-stats/team-stats.component';
 import {MatSortModule} from '@angular/material/sort';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import {MatSortModule} from '@angular/material/sort';
     MatInputModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    MatSortModule
+    MatSortModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
