@@ -2,7 +2,7 @@
 
   <!-- 
   <div style=" height:93%; width: auto; display: flex; background-color: #31304d; "> -->
-    <div class="game-list" style="height: 100%; width: 6%; max-width: 100px; border-right: 3px solid #F0ECE5;">
+    <div class="game-list" style="height: 100%; width: 7%; max-width: 125px; border-right: 3px solid #F0ECE5;">
       <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
         [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
         style="display: block; margin: auto; margin-top: 2rem; width: 60px;">{{game.name}}</button>
@@ -167,7 +167,7 @@
             style="height: 85%; width: 100%; display:flex; flex-wrap: wrap; justify-content: space-between; margin-top: 1rem;">
             <div
               style="height: 100%; width: auto; margin-right: 1rem; margin-left: 1rem; display: flex; gap: 1rem; flex-wrap:wrap;  padding: 1rem;">
-              <mat-card *ngFor="let game of gameDataAllFinal" style="width: 10%; height: 10% ">
+              <mat-card *ngFor="let game of gameDataAllFinal" style="width: 10%; max-height: 25% ">
                 <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .2rem;">
                   <mat-card-title style="font-size:small; height: inherit">
                     <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap;">
