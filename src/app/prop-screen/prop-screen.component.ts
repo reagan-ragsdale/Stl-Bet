@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, afterRender, inject } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef, afterRender, inject } from '@angular/core';
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { SelectedSportsData } from '../selected-sports-data';
 import { GameId } from '../game-id';
@@ -1707,7 +1707,7 @@ export class PropScreenComponent implements OnInit {
     this.pointsAllowed2QuarterClicked = true;
   }
 
-  async propTrend(teamName: string, prop: string){
+  async propTrend(teamName: string, prop: string, content: TemplateRef<any>){
     this.modalService.open(content, { centered: true });
   }
 
