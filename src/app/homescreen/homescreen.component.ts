@@ -147,7 +147,7 @@ export class HomeScreenComponent {
         distinctTeamsNew.push(teamsNameOver)
         let teamsNameUnder = distinctTeams.filter(e => e == "Under")
         distinctTeamsNew.push(teamsNameUnder)
-        console.log(distinctTeams)
+        console.log(distinctTeamsNew)
         distinctTeamsNew.forEach(team => {
           console.log(team)
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
