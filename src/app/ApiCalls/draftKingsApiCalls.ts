@@ -105,7 +105,14 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
   static async convertSportsDataToInterface(): Promise<DbGameBookData[]> {
     var tempData: DbGameBookData[] = [];
     let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
-    let nextBookSeq = bookDb[0].bookSeq + 1
+    let nextBookSeq
+    if(bookDb.length == 0){
+      nextBookSeq = 0
+    }
+    else{
+      nextBookSeq = bookDb[0].bookSeq + 1
+    }
+   
     for (let i = 0; i < this.selectedSportsData.length; i++) {
       for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
         for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
