@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, afterRender } from '@angular/core';
+import { Component, HostListener, OnInit, afterRender, inject } from '@angular/core';
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { SelectedSportsData } from '../selected-sports-data';
 import { GameId } from '../game-id';
@@ -40,6 +40,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
 import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
 import { reusedFunctions } from '../Services/reusedFunctions';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-prop-screen',
@@ -64,7 +65,7 @@ export class PropScreenComponent implements OnInit {
     location.reload()
   }
 
-
+  private modalService = inject(NgbModal);
   expandedElement: PlayerProp[] | null | undefined;
 
 
@@ -1704,6 +1705,10 @@ export class PropScreenComponent implements OnInit {
     this.pointsAllowed2GameClicked = false;
     this.pointsAllowed2HalfClicked = false;
     this.pointsAllowed2QuarterClicked = true;
+  }
+
+  async propTrend(teamName: string, prop: string){
+    this.modalService.open(content, { centered: true });
   }
 
 
