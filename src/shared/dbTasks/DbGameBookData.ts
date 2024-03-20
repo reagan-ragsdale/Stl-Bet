@@ -48,14 +48,14 @@ export class DbGameBookData {
 
   static bookIdFilter = Filter.createCustom<DbGameBookData, { bookId: string }>(async ({bookId}) => {
     return SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'select * from dbgamebookdata d where d.bookseq = (select max(bookseq) from dbgamebookdata where bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId) +') and d.bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId)
+      whereFragment.sql = 'bookseq = (select max(b.bookseq) from dbgamebookdata b where b.bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId) +') and bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId)
     
     })
   });
 
   static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
     return SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'select * from dbgamebookdata d where d.bookseq = (select max(bookseq) from dbgamebookdata where sporttitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + 'and bookid = d.bookid)'
+      whereFragment.sql = 'bookseq = (select max(b.bookseq) from dbgamebookdata b where b.sporttitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + 'and b.bookid = bookid)'
     })
   });
 
