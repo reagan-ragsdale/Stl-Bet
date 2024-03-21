@@ -57,7 +57,7 @@ export class DbGameBookData {
   static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
     SqlDatabase.LogToConsole = true
     let result = SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'bookseq = (select max(b.bookseq) from dbgamebookdata b where b.sporttitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookid = bookid)'
+      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId)'
     })
     console.log(result)
     return result
