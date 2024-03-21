@@ -98,6 +98,7 @@ export class HomeScreenComponent {
     if (sport == "NBA") {
       this.playerAverageColumns = this.playerAverageColumnsNba
       this.teamAverageColumns = this.teamAverageColumnsNba
+      this.gameDataAll = []
       this.gameDataAllFinal = []
       this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
 
@@ -133,6 +134,7 @@ export class HomeScreenComponent {
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
       console.log(sport)
+      console.log(this.gameDataAll)
       this.gameDataAll = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(sport)
       console.log(this.gameDataAll)
       var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
