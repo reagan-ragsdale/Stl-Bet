@@ -141,10 +141,11 @@ export class HomeScreenComponent {
         console.log(distinctTeams)
         let teamArray: any[] = []
         let distinctTeamsNew: any[] = []
-        let teamsName = distinctTeams.filter(e => {return (e != 'Over' || e != 'Under')})
-        console.log(teamsName)
-        distinctTeamsNew.push(teamsName[0])
-        distinctTeamsNew.push(teamsName[1])
+        let teamsName = distinctTeams.filter(e => e != 'Over')
+        let bothTeams = teamsName.filter(f => f != 'Under')
+        console.log(bothTeams)
+        distinctTeamsNew.push(bothTeams[0])
+        distinctTeamsNew.push(bothTeams[1])
         let teamsNameOver = distinctTeams.filter(e => e == "Over")
         distinctTeamsNew.push(teamsNameOver[0])
         let teamsNameUnder = distinctTeams.filter(e => e == "Under")
