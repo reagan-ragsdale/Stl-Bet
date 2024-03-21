@@ -141,7 +141,7 @@ export class HomeScreenComponent {
         console.log(distinctTeams)
         let teamArray: any[] = []
         let distinctTeamsNew: any[] = []
-        let teamsName = distinctTeams.filter(e => e != "Over" || e != "Under")
+        let teamsName = distinctTeams.filter(e => e !== "Over" || e !== "Under")
         console.log(teamsName)
         distinctTeamsNew.push(teamsName[0])
         distinctTeamsNew.push(teamsName[1])
