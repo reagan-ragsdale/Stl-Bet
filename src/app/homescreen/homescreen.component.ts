@@ -146,9 +146,9 @@ export class HomeScreenComponent {
         distinctTeamsNew.push(teamsName[0])
         distinctTeamsNew.push(teamsName[1])
         let teamsNameOver = distinctTeams.filter(e => e == "Over")
-        distinctTeamsNew.push(teamsNameOver)
+        distinctTeamsNew.push(teamsNameOver[0])
         let teamsNameUnder = distinctTeams.filter(e => e == "Under")
-        distinctTeamsNew.push(teamsNameUnder)
+        distinctTeamsNew.push(teamsNameUnder[0])
         console.log(distinctTeamsNew)
         distinctTeamsNew.forEach(team => {
           console.log(team)
