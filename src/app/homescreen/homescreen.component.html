@@ -27,7 +27,7 @@
               style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#F0ECE5">
               Top Players</h1>
             <div
-              style=" height: ingerit; width: 70%; padding-left: 1rem; padding-right: 1rem; padding-top: 1rem; display:flex; gap: 1rem; justify-content: flex-end; ">
+              style=" height: inherit; width: 70%; padding-left: 1rem; padding-right: 1rem; padding-top: 1rem; display:flex; gap: 1rem; justify-content: flex-end; ">
               <button mat-button *ngFor="let stat of playerStatsButtons" (click)="onPlayerStatsClick(stat)"
                 [ngClass]="stat.selected === true ? 'selected' : 'unselected'">{{stat.name}}</button>
             </div>
@@ -109,7 +109,7 @@
         </div>
         <div
           style=" width: 48%;  min-width: 450px; height: 100%; border: 1px solid #F0ECE5; border-radius: 10px;  display: flex; flex-direction: column; gap: 1rem; background-color: #31304d;">
-          <div style="height: 15%; width: 100%; display: flex;">
+          <div style=" width: 100%; display: flex;">
             <h1
               style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#F0ECE5">
               Top Teams</h1>
