@@ -101,7 +101,6 @@ mat-chip-option{
 
 .top-fives{
     width: 48%; 
-    min-width: 430px; 
     border: 1px solid #F0ECE5;  
     border-radius: 10px;  
     display: flex; 
@@ -154,7 +153,6 @@ mat-chip-option{
 @media screen and (max-width: 974px) {
     .top-fives{
         width: 98%;
-        min-width: 420px; 
     border: 1px solid #F0ECE5;  
     border-radius: 10px;  
     display: flex; 
@@ -186,8 +184,8 @@ mat-chip-option{
         min-width: 300px;  
         height: 170px
     }
-    .mat-cell, .mat-header-cell {
-        padding: 8px 8px 8px 0;
+    .mat-mdc-cell, .mat-mdc-header-cell {
+        padding: 6px 6px 6px 0 !important;
       }
   }
   @media screen and (max-width: 680px){
