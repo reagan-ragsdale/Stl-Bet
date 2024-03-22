@@ -107,17 +107,17 @@
         </div>
         <div class="top-fives"
           >
-          <div style=" width: 100%; display: flex;">
+          <div style=" width: 100%; display: flex; margin-bottom: 0px;">
             <h1
               style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#F0ECE5">
               Top Teams</h1>
             <div
-              style=" height: ingerit; width: 70%; padding-left: 1rem; padding-right: 1rem; padding-top: 1rem; display:flex; gap: 1rem; justify-content: flex-end; ">
+              style=" height: ingerit; width: 70%; padding-left: 1rem; padding-right: 1rem; margin-top:auto; margin-bottom:auto; display:flex; gap: 1rem; justify-content: flex-end; ">
               <button mat-button *ngFor="let stat of teamStatsButtons" (click)="onTeamStatsClick(stat)"
                 [ngClass]="stat.selected === true ? 'selected' : 'unselected'">{{stat.name}}</button>
             </div>
           </div>
-          <div style="height: 100%; width: 96%; min-width:450px; margin-left: auto; margin-right: auto; margin-bottom: 1rem;">
+          <div style="height: 100%; width: 96%; min-width:450px; margin-left: auto; margin-right: auto; margin-bottom: 1rem; ">
             <table mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%;">
 
               <ng-container matColumnDef="Team">
