@@ -11,6 +11,20 @@
     background-color: #F0ECE5 !important;
     color: #31304d !important;
 }
+.top-button{
+  justify-content: flex-end; 
+  gap: 1rem; 
+  display:flex;  
+  margin-right: 1rem; 
+  height:100%; 
+  width: auto
+}
+@media screen and (max-width: 600px){
+  .top-button{
+    gap:.1rem;
+    font-size: 50%;
+  }
+}
 button{
   //height:65% !important;
    //margin: auto 0 !important; 
