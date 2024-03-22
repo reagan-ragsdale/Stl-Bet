@@ -129,6 +129,12 @@ mat-chip-option{
     flex-direction: column; 
     background-color: #F0ECE5;
 }
+.upcoming-games{
+    width: 96%; 
+    display: flex; 
+    align-items: center; 
+    margin-top: 1rem;
+}
 
 @media screen and (max-width: 974px) {
     .top-fives{
@@ -153,5 +159,8 @@ mat-chip-option{
     }
     .sport-section{
         width:100%;
+    }
+    .upcoming-games{
+        width: 98%;
     }
   }
