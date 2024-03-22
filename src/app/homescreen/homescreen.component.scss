@@ -187,3 +187,8 @@ mat-chip-option{
         height: 170px
     }
   }
+  @media screen and (max-width: 680px){
+    .game-card{
+        width: 98%; 
+    }
+  }
