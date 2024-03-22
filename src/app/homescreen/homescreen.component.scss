@@ -120,6 +120,7 @@ mat-chip-option{
     width: 7%; 
     max-width: 125px; 
     border-right: 3px solid #F0ECE5; 
+    margin-top: 3px;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -174,6 +175,7 @@ mat-chip-option{
         border-right: none;
         border-bottom: 3px solid #F0ECE5;
         display: flex;
+        background-color: #31304d;
     }
     .sport-section{
         width:100%;
