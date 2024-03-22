@@ -1,14 +1,13 @@
-<div style=" height: 93.35%; width: auto; background-color:#31304d; display:flex;">
+<div class="outer-div" style=" ">
 
   <!-- 
   <div style=" height:93%; width: auto; display: flex; background-color: #31304d; "> -->
-    <div class="game-list" style="height: 100%; width: 7%; max-width: 125px; border-right: 3px solid #F0ECE5; ">
+    <div class="game-list" >
       <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
         [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
-        style="display: block; margin: auto; margin-top: 2rem; width: 60px;">{{game.name}}</button>
+        style="margin:auto; width: 60px; ">{{game.name}}</button>
     </div>
-    <div
-      style=" width:94%; margin-top: 0; display: flex; flex-direction: column; background-color: #F0ECE5;">
+    <div class="sport-section">
       <div style=" width: 100%; display: flex; align-items: center;   margin-top: 1rem; margin-bottom: 1rem;">
         <h1
           style="width: 50%; height: 100%; text-align: start;  font-weight: 500; color:#31304d; margin-left: 1.5rem; font-size: xx-large; margin-top:auto; margin-bottom: auto;">

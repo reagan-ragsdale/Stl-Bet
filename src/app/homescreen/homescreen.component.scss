@@ -110,6 +110,26 @@ mat-chip-option{
     background-color: #31304d;
 }
 
+.outer-div{
+    height: 93.35%;
+     width: auto; 
+     background-color:#31304d; 
+     display:flex;
+}
+.game-list{
+    height: 100%; 
+    width: 7%; 
+    max-width: 125px; 
+    border-right: 3px solid #F0ECE5; 
+}
+.sport-section{
+    width:94%; 
+    margin-top: 0; 
+    display: flex; 
+    flex-direction: column; 
+    background-color: #F0ECE5;
+}
+
 @media screen and (max-width: 974px) {
     .top-fives{
         width: 98%;
@@ -120,5 +140,18 @@ mat-chip-option{
     flex-direction: column; 
     gap: 1rem; 
     background-color: #31304d;
+    }
+    .outer-div{
+        flex-direction: column;
+    }
+    .game-list{
+        height: 60px;
+        width: 100%;
+        border-right: none;
+        border-bottom: 3px solid #F0ECE5;
+        display: flex;
+    }
+    .sport-section{
+        width:100%;
     }
   }
