@@ -130,10 +130,21 @@ mat-chip-option{
     background-color: #F0ECE5;
 }
 .upcoming-games{
-    width: 96%; 
+    width: 100%; 
     display: flex; 
     align-items: center; 
     margin-top: 1rem;
+}
+.games-body{
+    width: 100%;  
+    border: 1px solid #F0ECE5;
+     border-radius: 10px; 
+     margin-left: 1.5rem; 
+     margin-right: 1.5rem; 
+     margin-bottom: 1rem; 
+     display:flex; 
+     flex-direction: column; 
+     background-color: #31304d;
 }
 
 @media screen and (max-width: 974px) {
@@ -161,6 +172,9 @@ mat-chip-option{
         width:100%;
     }
     .upcoming-games{
+        width: 100%;
+    }
+    .games-body{
         width: 98%;
     }
   }
