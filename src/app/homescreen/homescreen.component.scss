@@ -170,6 +170,7 @@ mat-chip-option{
     .game-list{
         height: 60px;
         width: 100%;
+        max-width: none;
         border-right: none;
         border-bottom: 3px solid #F0ECE5;
         display: flex;

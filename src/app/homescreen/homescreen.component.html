@@ -3,9 +3,10 @@
   <!-- 
   <div style=" height:93%; width: auto; display: flex; background-color: #31304d; "> -->
     <div class="game-list" >
-      <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
+        <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
         [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
         style="margin:auto; width: 60px; ">{{game.name}}</button>
+      
     </div>
     <div class="sport-section">
       <div style=" width: 100%; display: flex; align-items: center;   margin-top: 1rem; margin-bottom: 1rem;">
