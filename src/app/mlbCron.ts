@@ -84,7 +84,7 @@ export const mlbCronFile = async () => {
     //next I want to get the team stats
     // call get team schedule and for each game in there call the get box score for that game 
     //this is assuming the mlb ids are always 1-30
-     /* for(let i = 1; i < 31; i++){
+      for(let i = 1; i < 31; i++){
         //get the schedule for the current team id
         var gameStats: DbMlbTeamGameStats[] = []
         try{
@@ -102,7 +102,7 @@ export const mlbCronFile = async () => {
         }
        
         
-    } */
+    } 
 
 
     //set the player game stat averages
