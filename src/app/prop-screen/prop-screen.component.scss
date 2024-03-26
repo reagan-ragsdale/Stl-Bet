@@ -80,6 +80,24 @@
   a :hover{
     color:blue
   }
+  .prop-main{
+    display: flex;
+    width: 100%;
+  }
+
+  .away-team, .home-team{
+    width: 50%;
+
+  }
+
+  .away-team {
+    background-color: green;
+
+  }
+
+  .home-team{
+    background-color: red;
+  }
 
   
    
