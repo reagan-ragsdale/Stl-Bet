@@ -39,9 +39,9 @@ export const cronTestFile = async () => {
 
 
 
-    const gamesFromDraftKings = await draftKingsApiController.getDatesAndGames("NBA");
+    //const gamesFromDraftKings = await draftKingsApiController.getDatesAndGames("NBA");
 
-    await SportsBookController.addBookData(gamesFromDraftKings);
+    //await SportsBookController.addBookData(gamesFromDraftKings);
 
 
     console.log("Finished sports book load")
