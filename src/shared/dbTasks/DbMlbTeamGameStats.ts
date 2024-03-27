@@ -22,8 +22,8 @@ export class DbMlbTeamGameStats {
   @Fields.integer()
   season = 0
 
-  @Fields.integer()
-  gameId = 0
+  @Fields.string()
+  gameId = ''
 
   @Fields.string()
   gameDate = ''
