@@ -206,7 +206,7 @@ export class MlbService {
         let homeRunsTeam = 0
         let homeRunsAgainst = 0
         let playerStats = gameStats.playerStats
-        console.log(playerStats)
+        console.log(typeof(playerStats))
         for(let player of playerStats){
             if(player.team == team){
                 homeRunsTeam += player.Hitting.HR
