@@ -206,7 +206,14 @@ export class MlbService {
         let homeRunsTeam = 0
         let homeRunsAgainst = 0
         let playerStats = gameStats.playerStats
-        for(let player of playerStats){
+        
+        let index = 0
+        let newTeamStatData: any[] = []
+        for (let i in playerStats) {
+            newTeamStatData[index] = playerStats[i]
+            index++
+        }
+        for(let player of newTeamStatData){
             if(player.team == team){
                 homeRunsTeam += player.Hitting.HR
             }
@@ -214,6 +221,7 @@ export class MlbService {
                 homeRunsAgainst += player.Hitting.HR
             }
         }
+
         var teamStatFinal: DbMlbTeamGameStats = {
             teamName: team,
             teamId: this.mlbTeamIds[team],
