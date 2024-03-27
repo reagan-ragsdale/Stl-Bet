@@ -233,7 +233,7 @@ export class MlbService {
             gameDate: this.getGameDate(gameStats.gameID),
             result: gameStats.away == team ? gameStats.awayResult : gameStats.homeResult,
             pointsScoredOverall: gameStats.away == team ? gameStats.lineScore.away.R : gameStats.lineScore.home.R,
-            pointsScoredFirstInning: gameStats.away == team ? gameStats.lineScore.away.scoreByInning['1'] : gameStats.lineScore.home.scoreByInning['1'],
+            pointsScoredFirstInning: gameStats.away == team ? (gameStats.lineScore.away.scoreByInning['1'] != undefined ? gameStats.lineScore.away.scoreByInning['1'] : 0) : (gameStats.lineScore.home.scoreByInning['1'] != undefined ? gameStats.lineScore.home.scoreByInning['1'] : 0),
             pointsScoredSecondInning: gameStats.away == team ? gameStats.lineScore.away.scoreByInning['2'] : gameStats.lineScore.home.scoreByInning['2'],
             pointsScoredThirdInning: gameStats.away == team ? gameStats.lineScore.away.scoreByInning['3'] : gameStats.lineScore.home.scoreByInning['3'],
             pointsScoredFourthInning: gameStats.away == team ? gameStats.lineScore.away.scoreByInning['4'] : gameStats.lineScore.home.scoreByInning['4'],
