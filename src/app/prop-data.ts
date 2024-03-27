@@ -8,6 +8,4 @@ export interface PropData {
     spreadPrice: string;
     totalPoint: string;
     totalPrice: string;
-    primaryColor: string;
-    alternateColor: string;
 }

@@ -38,10 +38,10 @@ export const mlbCronFile = async () => {
 
 
 
-
+/* 
     const gamesFromDraftKings = await draftKingsApiController.getDatesAndGames("MLB");
 
-    await SportsBookController.addBookData(gamesFromDraftKings);
+    await SportsBookController.addBookData(gamesFromDraftKings); */
 
 
     //console.log("Finished sports book load")
@@ -54,7 +54,7 @@ export const mlbCronFile = async () => {
 
 
     //retreive all the players and get their season stats
-    let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
+   /*  let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
     //console.log(listOfActivePlayers)
     for (let player of listOfActivePlayers) {
         //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for
@@ -78,7 +78,7 @@ export const mlbCronFile = async () => {
             }
         
 
-    }
+    } */
 ///
 
     //next I want to get the team stats
@@ -107,7 +107,7 @@ export const mlbCronFile = async () => {
 
 
     //set the player game stat averages
-     for(let player of listOfActivePlayers){
+     /* for(let player of listOfActivePlayers){
         try{
             let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
             let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
@@ -117,7 +117,7 @@ export const mlbCronFile = async () => {
             console.log(error.message)
         }
         
-    } 
+    }  */
 
     //set the team game stat averages
     for(let i = 1; i < 31; i++){
