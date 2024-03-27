@@ -205,8 +205,10 @@ export class MlbService {
     static mlbConvertTeamGameStatsFromApiToDb(gameStats: any, team: string) {
         let homeRunsTeam = 0
         let homeRunsAgainst = 0
-        let playerStats = gameStats.playerStats
+        let playerStats: any[] = []
+        playerStats.push(gameStats.playerStats)
         console.log(typeof(playerStats))
+        console.log(typeof(gameStats.playerStats))
         for(let player of playerStats){
             if(player.team == team){
                 homeRunsTeam += player.Hitting.HR
