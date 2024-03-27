@@ -218,10 +218,10 @@ export class MlbService {
         }
         for(let player of newTeamStatData){
             if(player.team == team){
-                homeRunsTeam += player.Hitting.HR
+                homeRunsTeam += Number(player.Hitting.HR)
             }
             else {
-                homeRunsAgainst += player.Hitting.HR
+                homeRunsAgainst += Number(player.Hitting.HR)
             }
         }
 
