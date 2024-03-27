@@ -636,6 +636,9 @@ export class PropScreenComponent implements OnInit {
       this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
+      if(this.selectedSport == 'MLB'){
+        this.selectedSport = 'MLB Preseason'
+      }
       this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
