@@ -203,6 +203,9 @@ export class MlbService {
     }
 
     static mlbConvertTeamGameStatsFromApiToDb(gameStats: any, team: string) {
+        if(gameStats.gameStatus != "Completed"){
+            return 0
+        }
         let homeRunsTeam = 0
         let homeRunsAgainst = 0
         let playerStats = gameStats.playerStats

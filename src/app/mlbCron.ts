@@ -93,7 +93,10 @@ export const mlbCronFile = async () => {
                 let schedule = await mlbApiController.getTeamSchedule(i, 2023)
                 for(let game of schedule){
                     let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
-                    gameStats.push(teamStats2023)
+                    if(typeof(teamStats2023) != 'number'){
+                        gameStats.push(teamStats2023)
+                    }
+                    
                 }
                 await MlbController.mlbSetTeamGameStats(gameStats)
             }
