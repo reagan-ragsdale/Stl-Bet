@@ -84,22 +84,29 @@ export const mlbCronFile = async () => {
     //next I want to get the team stats
     // call get team schedule and for each game in there call the get box score for that game 
     //this is assuming the mlb ids are always 1-30
+    let count = 0;
       for(let i = 1; i < 31; i++){
         //get the schedule for the current team id
         var gameStats: DbMlbTeamGameStats[] = []
         try{
-            let dbTeamGameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
-            if(dbTeamGameStats.length == 0){
-                let schedule = await mlbApiController.getTeamSchedule(i, 2023)
-                for(let game of schedule){
-                    let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
-                    if(typeof(teamStats2023) != 'number'){
-                        gameStats.push(teamStats2023)
+            if(count < 800){
+                let dbTeamGameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
+                if(dbTeamGameStats.length == 0){
+                    let schedule = await mlbApiController.getTeamSchedule(i, 2023)
+                    count++
+                    for(let game of schedule){
+                        let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
+                        count++
+                        if(typeof(teamStats2023) != 'number'){
+                            gameStats.push(teamStats2023)
+                        }
+                        
                     }
+                    await MlbController.mlbSetTeamGameStats(gameStats)
                     
                 }
-                await MlbController.mlbSetTeamGameStats(gameStats)
             }
+            
         }catch(error: any){
             console.log(error.message)
         }
