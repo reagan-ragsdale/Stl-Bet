@@ -46,6 +46,7 @@ export class HomeScreenComponent {
   teamAverageColumnsNba: string[] = ["Team", "Wins", "Losses", "Points Scored", "Points Allowed"]
 
   playerAverageColumnsMlb: string[] = ["Player", "Home Runs", "Rbi's", "Hits", "Total Bases"]
+  teamAverageColumnsMlb: string[] = ["Team", "Wins", "Losses"]
 
   propClicked() {
     this.router.navigate(["/props"])
@@ -173,6 +174,7 @@ export class HomeScreenComponent {
     }
     else if (sport == "MLB") {
       sport = 'MLB Preseason'
+      this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
       this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns")
       this.playerStatsButtons = [

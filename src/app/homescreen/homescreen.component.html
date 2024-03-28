@@ -119,7 +119,7 @@
             </div>
           </div>
           <div style="height: 100%; width: 96%;  margin-left: auto; margin-right: auto; margin-bottom: 1rem; ">
-            <table mat-table [dataSource]="teamData" [fixedLayout]="false" class="mat-elevation-z8" style="height: 100%; width:98%">
+            <table *ngIf="this.selectedSport == 'NBA'" mat-table [dataSource]="teamData" [fixedLayout]="false" class="mat-elevation-z8" style="height: 100%; width:98%">
 
               <ng-container matColumnDef="Team">
                 <th mat-header-cell *matHeaderCellDef> Team </th>
@@ -153,6 +153,32 @@
               <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
                 *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+            </table>
+
+            <table *ngIf="this.selectedSport == 'MLB'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            
+              <ng-container matColumnDef="Team">
+                <th mat-header-cell *matHeaderCellDef> Team </th>
+                <td mat-cell *matCellDef="let element; let i = playerData; let j = index;">
+                  <a class="teamLink" (click)="onTeamClick(element.teamName)">{{element.teamName}}</a>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Wins">
+                <th mat-header-cell *matHeaderCellDef> Wins </th>
+                <td mat-cell *matCellDef="let element"> {{element.wins}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Losses">
+                <th mat-header-cell *matHeaderCellDef> Losses </th>
+                <td mat-cell *matCellDef="let element"> {{element.losses}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
+              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+
             </table>
           </div>
         </div>
