@@ -91,20 +91,22 @@ export const mlbCronFile = async () => {
         try{
             if(count < 800){
                 let dbTeamGameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
-                if(dbTeamGameStats.length == 0){
+                let listOfDistinctGames = dbTeamGameStats.map(game => game.gameId).filter((value, index, array) => array.indexOf(value) === index)
                     let schedule = await mlbApiController.getTeamSchedule(i, 2023)
                     count++
                     for(let game of schedule){
-                        let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
-                        count++
-                        if(typeof(teamStats2023) != 'number'){
-                            gameStats.push(teamStats2023)
+                        if(!listOfDistinctGames.includes(game)){
+                            let teamStats2023 = await mlbApiController.getTeamGameStats(game, MlbService.mlbIdToTeam[i])
+                            count++
+                            if(typeof(teamStats2023) != 'number'){
+                                gameStats.push(teamStats2023)
+                            }
                         }
+                        
                         
                     }
                     await MlbController.mlbSetTeamGameStats(gameStats)
                     
-                }
             }
             
         }catch(error: any){
