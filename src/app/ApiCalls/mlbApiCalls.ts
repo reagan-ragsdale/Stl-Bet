@@ -69,7 +69,7 @@ export class mlbApiController {
         return MlbService.mlbConvertTeamScheduleFromApiToDb(processedResult.schedule)
     }
 
-    static async getTeamGameStats(game: string, team: string) {
+    /* static async getTeamGameStats(game: string, team: string) {
         const url = `https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBoxScore?gameID=${game}`;
         const options = {
             method: 'GET',
@@ -85,7 +85,7 @@ export class mlbApiController {
         const processedResult = result.body
         console.log("Here in api")
         return MlbService.mlbConvertTeamGameStatsFromApiToDb(processedResult, team)
-    }
+    } */
 
     static async getMlbGamesScheduleByDate(gameDate: string) {
         const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBGamesForDate?gameDate=20240510';
@@ -108,7 +108,7 @@ export class mlbApiController {
     }
 
     static async getGameResults(gameId: string){
-        const url = `https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBoxScore?gameID=${game}`;
+        const url = `https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBBoxScore?gameID=${gameId}`;
         const options = {
             method: 'GET',
             headers: {
