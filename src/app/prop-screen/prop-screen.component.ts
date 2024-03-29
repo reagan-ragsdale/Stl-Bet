@@ -643,9 +643,6 @@ export class PropScreenComponent implements OnInit {
       this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
-      if (this.selectedSport == 'MLB') {
-        this.selectedSport = 'MLB Preseason'
-      }
       this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
@@ -852,7 +849,7 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
       this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team2[0].teamName)], 2023)
     }
-    else if (this.selectedSport == "MLB Preseason" || "MLB") {
+    else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
     }
@@ -1560,7 +1557,7 @@ export class PropScreenComponent implements OnInit {
 
     }
 
-    else if(this.selectedSport == "MLB Preseason" || this.selectedSport == "MLB"){
+    else if(this.selectedSport == "MLB"){
 
     }
 

@@ -24,8 +24,6 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     NHL: "icehockey_nhl"
   }
 
-  static mlbPreseasonId = 'baseball_mlb_preseason'
-  static mlbRegularSeasonId = 'baseball_mlb'
 
 
   static async getPlayerProps(sport: string, game: string) {
@@ -77,9 +75,6 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     return tempData;
   }
   static convertSport(sport: any) {
-    if(sport == 'MLB'){
-      return this.mlbPreseasonId
-    }
     return this.sportsToTitle[sport];
   }
 
