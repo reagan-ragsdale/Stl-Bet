@@ -32,59 +32,58 @@ export const mlbCronFile = async () => {
     // the draft kings calls might not have the player props yet so just loop through each player for each team and call the stats and load into database
 
 
-    //nba loads
-
-    //get and load draft kings game props
-
+    //try and load player stats the same time you load the team stats
+    //how to get list of game ids from the day
 
 
-/* 
-    const gamesFromDraftKings = await draftKingsApiController.getDatesAndGames("MLB");
-
-    await SportsBookController.addBookData(gamesFromDraftKings); */
+    const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
+    await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
 
-    //console.log("Finished sports book load")
+    let gameDate = reusedFunctions.getDateYMD()
 
-    // get and load all nba player info
-
-
-    //const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
-    //await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
-
+    let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
+    for(let game of listOfGamesToday){
+        let gameInfo = await mlbApiController.getGameResults(game.gameID)
+        let teamsGameStats = MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
+    }
 
     //retreive all the players and get their season stats
-   /*  let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
+     let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
     //console.log(listOfActivePlayers)
+    let playerStatCount = 0
     for (let player of listOfActivePlayers) {
         //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for
-        
-            let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
-            if (playerStats.length == 0) {
-                console.log("Before api call")
-                try{
-                    let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
-                    if (typeof (player2023Stats) != 'number') {
-                        await MlbController.mlbSetPlayerGameStats(player2023Stats)
+            if(playerStatCount < 900){
+                let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
+                if (playerStats.length == 0) {
+                    console.log("Before api call")
+                    try{
+                        let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2024)
+                        if (typeof (player2023Stats) != 'number') {
+                            await MlbController.mlbSetPlayerGameStats(player2023Stats)
+                        }
+                        else{
+                            await MlbController.mlbSetBlankPlayerGameStats(player, 2023)
+                        }
+                    }catch(error: any){
+                        console.log(error.message)
                     }
-                    else{
-                        await MlbController.mlbSetBlankPlayerGameStats(player, 2023)
-                    }
-                }catch(error: any){
-                    console.log(error.message)
+                    
+    
                 }
-                
-
             }
+
+            
         
 
-    } */
+    } 
 ///
 
     //next I want to get the team stats
     // call get team schedule and for each game in there call the get box score for that game 
     //this is assuming the mlb ids are always 1-30
-    let count = 0;
+    /* let count = 0;
       for(let i = 1; i < 31; i++){
         //get the schedule for the current team id
         var gameStats: DbMlbTeamGameStats[] = []
@@ -114,7 +113,7 @@ export const mlbCronFile = async () => {
         }
        
         
-    } 
+    }  */
     
 
 
