@@ -586,6 +586,133 @@ export class MlbService {
         return teamStatsFinal
     }
 
+    static async mlbConvertTeamGameStatsFromApiToDb2023(gameStats: any): Promise<any[] | number> {
+        if (gameStats.gameStatus != "Completed") {
+            return 0
+        }
+        let dbResultAway = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(this.mlbTeamIds[gameStats.away],2023)
+        
+        let resultLength = dbResultAway.filter(e =>{
+            e.gameId == gameStats.gameID
+        })
+
+        if(resultLength.length > 0){
+            return 0
+        }
+        
+        let homeRunsAway = 0
+        let homeRunsHome = 0
+        let playerStats = gameStats.playerStats
+
+        let index = 0
+        let newTeamStatData: any[] = []
+        for (let i in playerStats) {
+            newTeamStatData[index] = playerStats[i]
+            index++
+        }
+        for (let player of newTeamStatData) {
+            if (player.team == gameStats.away) {
+                homeRunsAway += Number(player.Hitting.HR)
+            }
+            else {
+                homeRunsHome += Number(player.Hitting.HR)
+            }
+        }
+
+        var teamStatAway: DbMlbTeamGameStats = {
+            teamName: gameStats.away,
+            teamId: this.mlbTeamIds[gameStats.away],
+            teamAgainstName: gameStats.home,
+            teamAgainstId: this.mlbTeamIds[gameStats.home],
+            homeOrAway: "Away",
+            season: this.getSeason(gameStats.gameID),
+            gameId: gameStats.gameID,
+            gameDate: this.getGameDate(gameStats.gameID),
+            result: gameStats.awayResult,
+            pointsScoredOverall: gameStats.lineScore.away.R,
+            pointsScoredFirstInning: gameStats.lineScore.away.scoresByInning[1],
+            pointsScoredSecondInning: gameStats.lineScore.away.scoresByInning[2],
+            pointsScoredThirdInning: gameStats.lineScore.away.scoresByInning[3],
+            pointsScoredFourthInning: gameStats.lineScore.away.scoresByInning[4],
+            pointsScoredFifthInning: gameStats.lineScore.away.scoresByInning[5],
+            pointsScoredSixthInning: gameStats.lineScore.away.scoresByInning[6],
+            pointsScoredSeventhInning: gameStats.lineScore.away.scoresByInning[7],
+            pointsScoredEigthInning: gameStats.lineScore.away.scoresByInning[8],
+            pointsScoredNinthInning: (gameStats.lineScore.away.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.away.scoresByInning[9]),
+            pointsAllowedOverall: gameStats.lineScore.home.R,
+            pointsAllowedFirstInning: gameStats.lineScore.home.scoresByInning[1],
+            pointsAllowedSecondInning: gameStats.lineScore.home.scoresByInning[2],
+            pointsAllowedThirdInning: gameStats.lineScore.home.scoresByInning[3],
+            pointsAllowedFourthInning: gameStats.lineScore.home.scoresByInning[4],
+            pointsAllowedFifthInning: gameStats.lineScore.home.scoresByInning[5],
+            pointsAllowedSixthInning: gameStats.lineScore.home.scoresByInning[6],
+            pointsAllowedSeventhInning: gameStats.lineScore.home.scoresByInning[7],
+            pointsAllowedEigthInning: gameStats.lineScore.home.scoresByInning[8],
+            pointsAllowedNinthInning: (gameStats.lineScore.home.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
+            totalHomeRunsScored: homeRunsAway,
+            totalHitsScored: gameStats.teamStats.away.Hitting.H,
+            totalFirstBaseScored: 0,
+            totalSecondBaseScored: gameStats.teamStats.away.Hitting['2B'],
+            totalThirdBaseScored: gameStats.teamStats.away.Hitting['3B'],
+            totalRbisScored: gameStats.teamStats.away.Hitting.RBI,
+            totalHomeRunsAllowed: homeRunsHome,
+            totalHitsAllowed: gameStats.teamStats.home.Hitting.H,
+            totalFirstBaseAllowed: 0,
+            totalSecondBaseAllowed: gameStats.teamStats.home.Hitting['2B'],
+            totalThirdBaseAllowed: gameStats.teamStats.home.Hitting['3B'],
+            totalRbisAllowed: gameStats.teamStats.home.Hitting.RBI
+        }
+
+        var teamStatHome: DbMlbTeamGameStats = {
+            teamName: gameStats.home,
+            teamId: this.mlbTeamIds[gameStats.home],
+            teamAgainstName: gameStats.away,
+            teamAgainstId: this.mlbTeamIds[gameStats.away],
+            homeOrAway: "Home",
+            season: this.getSeason(gameStats.gameID),
+            gameId: gameStats.gameID,
+            gameDate: this.getGameDate(gameStats.gameID),
+            result: gameStats.homeResult,
+            pointsScoredOverall: gameStats.lineScore.home.R,
+            pointsScoredFirstInning: gameStats.lineScore.home.scoresByInning[1],
+            pointsScoredSecondInning: gameStats.lineScore.home.scoresByInning[2],
+            pointsScoredThirdInning: gameStats.lineScore.home.scoresByInning[3],
+            pointsScoredFourthInning: gameStats.lineScore.home.scoresByInning[4],
+            pointsScoredFifthInning: gameStats.lineScore.home.scoresByInning[5],
+            pointsScoredSixthInning: gameStats.lineScore.home.scoresByInning[6],
+            pointsScoredSeventhInning: gameStats.lineScore.home.scoresByInning[7],
+            pointsScoredEigthInning: gameStats.lineScore.home.scoresByInning[8],
+            pointsScoredNinthInning: (gameStats.lineScore.home.scoresByInning[9] = "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
+            pointsAllowedOverall: gameStats.lineScore.away.R,
+            pointsAllowedFirstInning: gameStats.lineScore.away.scoresByInning[1],
+            pointsAllowedSecondInning: gameStats.lineScore.away.scoresByInning[2],
+            pointsAllowedThirdInning: gameStats.lineScore.away.scoresByInning[3],
+            pointsAllowedFourthInning: gameStats.lineScore.away.scoresByInning[4],
+            pointsAllowedFifthInning: gameStats.lineScore.away.scoresByInning[5],
+            pointsAllowedSixthInning: gameStats.lineScore.away.scoresByInning[6],
+            pointsAllowedSeventhInning: gameStats.lineScore.away.scoresByInning[7],
+            pointsAllowedEigthInning: gameStats.lineScore.away.scoresByInning[8],
+            pointsAllowedNinthInning: (gameStats.lineScore.away.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.away.scoresByInning[9]),
+            totalHomeRunsScored: homeRunsHome,
+            totalHitsScored: gameStats.teamStats.home.Hitting.H,
+            totalFirstBaseScored: 0,
+            totalSecondBaseScored: gameStats.teamStats.home.Hitting['2B'],
+            totalThirdBaseScored: gameStats.teamStats.home.Hitting['3B'],
+            totalRbisScored: gameStats.teamStats.home.Hitting.RBI,
+            totalHomeRunsAllowed: homeRunsAway,
+            totalHitsAllowed: gameStats.teamStats.away.Hitting.H,
+            totalFirstBaseAllowed: 0,
+            totalSecondBaseAllowed: gameStats.teamStats.away.Hitting['2B'],
+            totalThirdBaseAllowed: gameStats.teamStats.away.Hitting['3B'],
+            totalRbisAllowed: gameStats.teamStats.away.Hitting.RBI
+        }
+        var finalArray: any[] = []
+        finalArray.push(teamStatAway)
+        finalArray.push(teamStatHome)
+
+        return finalArray
+    }
+
     static getTeamAgainst(gameId: string, teamName: string): string {
         var teamAgainst = ""
 
