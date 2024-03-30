@@ -316,6 +316,7 @@ export class MlbService {
         var listOfPlayerGameStats: DBMlbPlayerGameStats[] = []
         for (let player of newTeamStatData) {
             let playerInfo = await MlbController.mlbGetPlayerInfoByPlayerId(player.playerID)
+            console.log(playerInfo)
             var playerName = playerInfo[0].playerName
             if (playerName.includes("á")) {
                 playerName = playerName.replaceAll("á", "a")

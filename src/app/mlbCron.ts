@@ -47,16 +47,10 @@ export const mlbCronFile = async () => {
         try{
 
             let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(prevGame)
-            console.log(listOfGamesToday)
             for(let game of listOfGamesToday){
-                console.log("here1")
                 let gameInfo = await mlbApiController.getGameResults(game.gameID)
-                console.log("here2")
                 let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
-                console.log("here3")
                 if(typeof(teamsGameStats) != 'number'){
-                    console.log("here4")
-                    console.log(teamsGameStats)
                     await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
                     await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
                     for(let player of teamsGameStats[2]){
