@@ -40,22 +40,26 @@ export const mlbCronFile = async () => {
     await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
 
-    /* let gameDate = reusedFunctions.getDateYMD()
+    //let gameDate = reusedFunctions.getDateYMD()
+    let listOfPreviousGames: string[] = ["20240320", "20240321", "20240328", "20240329"]
 
-    let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
-    for(let game of listOfGamesToday){
-        let gameInfo = await mlbApiController.getGameResults(game.gameID)
-        let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
-        if(typeof(teamsGameStats) != 'number'){
-            await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
-            await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
-            for(let player of teamsGameStats[2]){
-                await MlbController.mlbSetPlayerGameStats(player)
+    for(let prevGame of listOfPreviousGames){
+        let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(prevGame)
+        for(let game of listOfGamesToday){
+            let gameInfo = await mlbApiController.getGameResults(game.gameID)
+            let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
+            if(typeof(teamsGameStats) != 'number'){
+                await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
+                await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
+                for(let player of teamsGameStats[2]){
+                    await MlbController.mlbSetPlayerGameStats(player)
+                }
+    
             }
-
+            
         }
-        
-    } */
+    }
+     
 
     //retreive all the players and get their season stats
     /*  let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
@@ -92,7 +96,7 @@ export const mlbCronFile = async () => {
     //next I want to get the team stats
     // call get team schedule and for each game in there call the get box score for that game 
     //this is assuming the mlb ids are always 1-30
-    let count = 0;
+    /* let count = 0;
     for (let i = 1; i < 31; i++) {
         //get the schedule for the current team id
         var gameStats: DbMlbTeamGameStats[] = []
@@ -122,14 +126,15 @@ export const mlbCronFile = async () => {
         }
 
 
-    }
+    } */
 
 
 
     //set the player game stat averages
-    /* for(let player of listOfActivePlayers){
+    let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
+     for(let player of listOfActivePlayers){
        try{
-           let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
+           let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
            let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
            await MlbController.mlbSetPlayerStatAverage(playerAverage)
        }
@@ -137,12 +142,12 @@ export const mlbCronFile = async () => {
            console.log(error.message)
        }
        
-   }  */
+   }  
 
     //set the team game stat averages
     for (let i = 1; i < 31; i++) {
         try {
-            let teamDbStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2023)
+            let teamDbStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(i, 2024)
             let teamAverage = MlbService.setTeamGameAverages(teamDbStats)
             await MlbController.mlbSetTeamStatAverage(teamAverage)
         }
