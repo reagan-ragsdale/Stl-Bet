@@ -88,7 +88,7 @@ export class mlbApiController {
     } 
 
     static async getMlbGamesScheduleByDate(gameDate: string) {
-        const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBGamesForDate?gameDate=20240510';
+        const url = `https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBGamesForDate?gameDate=${gameDate}`;
         const options = {
             method: 'GET',
             headers: {
