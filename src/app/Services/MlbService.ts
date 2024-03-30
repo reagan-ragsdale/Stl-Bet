@@ -202,22 +202,22 @@ export class MlbService {
         return schedule
     }
 
-    static mlbConvertTeamGameStatsFromApiToDb(gameStats: any): any[] | number {
-        if(gameStats.gameStatus != "Completed"){
+    static async mlbConvertTeamGameStatsFromApiToDb(gameStats: any): Promise<any[] | number> {
+        if (gameStats.gameStatus != "Completed") {
             return 0
         }
         let homeRunsAway = 0
         let homeRunsHome = 0
         let playerStats = gameStats.playerStats
-        
+
         let index = 0
         let newTeamStatData: any[] = []
         for (let i in playerStats) {
             newTeamStatData[index] = playerStats[i]
             index++
         }
-        for(let player of newTeamStatData){
-            if(player.team == gameStats.away){
+        for (let player of newTeamStatData) {
+            if (player.team == gameStats.away) {
                 homeRunsAway += Number(player.Hitting.HR)
             }
             else {
@@ -280,7 +280,7 @@ export class MlbService {
             gameDate: this.getGameDate(gameStats.gameID),
             result: gameStats.homeResult,
             pointsScoredOverall: gameStats.lineScore.home.R,
-            pointsScoredFirstInning: gameStats.lineScore.home.scoresByInning[1] ,
+            pointsScoredFirstInning: gameStats.lineScore.home.scoresByInning[1],
             pointsScoredSecondInning: gameStats.lineScore.home.scoresByInning[2],
             pointsScoredThirdInning: gameStats.lineScore.home.scoresByInning[3],
             pointsScoredFourthInning: gameStats.lineScore.home.scoresByInning[4],
@@ -312,9 +312,89 @@ export class MlbService {
             totalThirdBaseAllowed: gameStats.teamStats.away.Hitting['3B'],
             totalRbisAllowed: gameStats.teamStats.away.Hitting.RBI
         }
+
+        var listOfPlayerGameStats: DBMlbPlayerGameStats[] = []
+        for (let player of newTeamStatData) {
+            let playerInfo = await MlbController.mlbGetPlayerInfoByPlayerId(player.playerID)
+            var playerName = playerInfo[0].playerName
+            if (playerName.includes("á")) {
+                playerName = playerName.replaceAll("á", "a")
+            }
+            if (playerName.includes("Á")) {
+                playerName = playerName.replaceAll("Á", "A")
+            }
+            if (playerName.includes("é")) {
+                playerName = playerName.replaceAll("é", "e")
+            }
+            if (playerName.includes("É")) {
+                playerName = playerName.replaceAll("É", "E")
+            }
+            if (playerName.includes("í")) {
+                playerName = playerName.replaceAll("í", "i")
+            }
+            if (playerName.includes("Í")) {
+                playerName = playerName.replaceAll("Í", "I")
+            }
+            if (playerName.includes("ñ")) {
+                playerName = playerName.replaceAll("ñ", "n")
+            }
+            if (playerName.includes("Ñ")) {
+                playerName = playerName.replaceAll("Ñ", "N")
+            }
+            if (playerName.includes("ó")) {
+                playerName = playerName.replaceAll("ó", "o")
+            }
+            if (playerName.includes("Ó")) {
+                playerName = playerName.replaceAll("Ó", "O")
+            }
+            if (playerName.includes("ú")) {
+                playerName = playerName.replaceAll("ú", "u")
+            }
+            if (playerName.includes("Ú")) {
+                playerName = playerName.replaceAll("Ú", "U")
+            }
+            if (playerName.includes("ü")) {
+                playerName = playerName.replaceAll("ü", "u")
+            }
+            if (playerName.includes("Ü")) {
+                playerName = playerName.replaceAll("Ü", "U")
+            }
+
+            listOfPlayerGameStats.push({
+                playerId: player.playerID,
+                playerName: playerName,
+                teamName: player.team,
+                teamId: MlbService.mlbTeamIds[player.team],
+                teamAgainstName: this.getTeamAgainst(player.gameID, player.team),
+                teamAgainstId: MlbService.mlbTeamIds[this.getTeamAgainst(player.gameID, player.team)],
+                gameId: player.gameID,
+                gameDate: this.getGameDate(player.gameID),
+                season: this.getSeason(player.gameID),
+                playerPosition: player.startingPosition,
+                playerStarted: player.started ? "Y" : "N",
+                batterAtBats: player.Hitting.AB,
+                batterHomeRuns: player.Hitting.HR,
+                batterHits: player.Hitting.H,
+                batterTotalBases: player.Hitting.TB,
+                batterRbis: player.Hitting.RBI,
+                batterRunsScored: player.Hitting.R,
+                batterHitsRunsRbis: Number(player.Hitting.H) + Number(player.Hitting.R) + Number(player.Hitting.RBI),
+                batterDoubles: player.Hitting['2B'],
+                batterTriples: player.Hitting['3B'],
+                batterWalks: Number(player.Hitting.BB) + Number(player.Hitting.IBB),
+                batterStrikeouts: player.Hitting.SO,
+                batterStolenBases: player.BaseRunning.SB,
+                pitcherStrikes: player.Pitching.Strikes,
+                pitcherPitches: player.Pitching.Pitches,
+
+            })
+
+
+        }
         var finalArray: any[] = []
         finalArray.push(teamStatAway)
         finalArray.push(teamStatHome)
+        finalArray.push(listOfPlayerGameStats)
 
         return finalArray
     }
@@ -322,63 +402,63 @@ export class MlbService {
 
     static setPlayerGameAverages(playerDbStats: DBMlbPlayerGameStats[]): DBMlbPlayerGameStatAverages {
         var playerAverageFinal: DBMlbPlayerGameStatAverages = {
-            playerId : 0
-            ,playerName :''
-            ,season : 0
-            ,batterHomeRuns : 0
-            ,batterHits : 0
-            ,batterAtBats : 0
-            ,batterTotalBases : 0
-            ,batterRbis : 0
-            ,batterRunsScored : 0
-            ,batterHitsRunsRbis : 0
-            ,batterSingles : 0
-            ,batterDoubles : 0
-            ,batterTriples : 0
-            ,batterWalks : 0
-            ,batterStrikeouts : 0
-            ,batterStolenBases : 0
-            ,pitcherStrikes: 0
-            ,pitcherPitches : 0
-            ,totalGames: 0
+            playerId: 0
+            , playerName: ''
+            , season: 0
+            , batterHomeRuns: 0
+            , batterHits: 0
+            , batterAtBats: 0
+            , batterTotalBases: 0
+            , batterRbis: 0
+            , batterRunsScored: 0
+            , batterHitsRunsRbis: 0
+            , batterSingles: 0
+            , batterDoubles: 0
+            , batterTriples: 0
+            , batterWalks: 0
+            , batterStrikeouts: 0
+            , batterStolenBases: 0
+            , pitcherStrikes: 0
+            , pitcherPitches: 0
+            , totalGames: 0
         }
 
-        for(let game of playerDbStats){
+        for (let game of playerDbStats) {
             playerAverageFinal.playerId = game.playerId,
-            playerAverageFinal.playerName = game.playerName,
-            playerAverageFinal.season = game.season,
-            playerAverageFinal.batterHomeRuns += game.batterHomeRuns,
-            playerAverageFinal.batterHits += game.batterHits,
-            playerAverageFinal.batterAtBats += game.batterAtBats,
-            playerAverageFinal.batterTotalBases += game.batterTotalBases,
-            playerAverageFinal.batterRbis += game.batterRbis,
-            playerAverageFinal.batterRunsScored += game.batterRunsScored,
-            playerAverageFinal.batterHitsRunsRbis += game.batterHitsRunsRbis,
-            playerAverageFinal.batterDoubles += game.batterDoubles,
-            playerAverageFinal.batterTriples += game.batterTriples,
-            playerAverageFinal.batterWalks += game.batterWalks,
-            playerAverageFinal.batterStrikeouts += game.batterStrikeouts,
-            playerAverageFinal.batterStolenBases += game.batterStolenBases,
-            playerAverageFinal.pitcherStrikes += game.pitcherStrikes,
-            playerAverageFinal.pitcherPitches += game.pitcherPitches,
-            playerAverageFinal.totalGames += 1
-            
+                playerAverageFinal.playerName = game.playerName,
+                playerAverageFinal.season = game.season,
+                playerAverageFinal.batterHomeRuns += game.batterHomeRuns,
+                playerAverageFinal.batterHits += game.batterHits,
+                playerAverageFinal.batterAtBats += game.batterAtBats,
+                playerAverageFinal.batterTotalBases += game.batterTotalBases,
+                playerAverageFinal.batterRbis += game.batterRbis,
+                playerAverageFinal.batterRunsScored += game.batterRunsScored,
+                playerAverageFinal.batterHitsRunsRbis += game.batterHitsRunsRbis,
+                playerAverageFinal.batterDoubles += game.batterDoubles,
+                playerAverageFinal.batterTriples += game.batterTriples,
+                playerAverageFinal.batterWalks += game.batterWalks,
+                playerAverageFinal.batterStrikeouts += game.batterStrikeouts,
+                playerAverageFinal.batterStolenBases += game.batterStolenBases,
+                playerAverageFinal.pitcherStrikes += game.pitcherStrikes,
+                playerAverageFinal.pitcherPitches += game.pitcherPitches,
+                playerAverageFinal.totalGames += 1
+
         }
 
-        playerAverageFinal.batterHomeRuns = playerAverageFinal.batterHomeRuns/playerDbStats.length
-        playerAverageFinal.batterHits = playerAverageFinal.batterHits/playerDbStats.length
-        playerAverageFinal.batterAtBats = playerAverageFinal.batterAtBats/playerDbStats.length
-        playerAverageFinal.batterTotalBases = playerAverageFinal.batterTotalBases/playerDbStats.length
-        playerAverageFinal.batterRbis = playerAverageFinal.batterRbis/playerDbStats.length
-        playerAverageFinal.batterRunsScored = playerAverageFinal.batterRunsScored/playerDbStats.length
-        playerAverageFinal.batterHitsRunsRbis = playerAverageFinal.batterHitsRunsRbis/playerDbStats.length
-        playerAverageFinal.batterDoubles = playerAverageFinal.batterDoubles/playerDbStats.length
-        playerAverageFinal.batterTriples = playerAverageFinal.batterTriples/playerDbStats.length
-        playerAverageFinal.batterWalks = playerAverageFinal.batterWalks/playerDbStats.length
-        playerAverageFinal.batterStrikeouts = playerAverageFinal.batterStrikeouts/playerDbStats.length
-        playerAverageFinal.batterStolenBases = playerAverageFinal.batterStolenBases/playerDbStats.length
-        playerAverageFinal.pitcherStrikes = playerAverageFinal.pitcherStrikes/playerDbStats.length
-        playerAverageFinal.pitcherPitches = playerAverageFinal.pitcherPitches/playerDbStats.length
+        playerAverageFinal.batterHomeRuns = playerAverageFinal.batterHomeRuns / playerDbStats.length
+        playerAverageFinal.batterHits = playerAverageFinal.batterHits / playerDbStats.length
+        playerAverageFinal.batterAtBats = playerAverageFinal.batterAtBats / playerDbStats.length
+        playerAverageFinal.batterTotalBases = playerAverageFinal.batterTotalBases / playerDbStats.length
+        playerAverageFinal.batterRbis = playerAverageFinal.batterRbis / playerDbStats.length
+        playerAverageFinal.batterRunsScored = playerAverageFinal.batterRunsScored / playerDbStats.length
+        playerAverageFinal.batterHitsRunsRbis = playerAverageFinal.batterHitsRunsRbis / playerDbStats.length
+        playerAverageFinal.batterDoubles = playerAverageFinal.batterDoubles / playerDbStats.length
+        playerAverageFinal.batterTriples = playerAverageFinal.batterTriples / playerDbStats.length
+        playerAverageFinal.batterWalks = playerAverageFinal.batterWalks / playerDbStats.length
+        playerAverageFinal.batterStrikeouts = playerAverageFinal.batterStrikeouts / playerDbStats.length
+        playerAverageFinal.batterStolenBases = playerAverageFinal.batterStolenBases / playerDbStats.length
+        playerAverageFinal.pitcherStrikes = playerAverageFinal.pitcherStrikes / playerDbStats.length
+        playerAverageFinal.pitcherPitches = playerAverageFinal.pitcherPitches / playerDbStats.length
 
 
         return playerAverageFinal
@@ -387,119 +467,119 @@ export class MlbService {
 
     static setTeamGameAverages(teamDbStats: DbMlbTeamGameStats[]): DbMlbTeamGameStatAverages {
         var teamStatsFinal: DbMlbTeamGameStatAverages = {
-            teamName : ''
-            ,teamId : 0
-            ,season : 0
-            ,wins : 0
-            ,losses : 0
-            ,pointsScoredOverall : 0
-            ,pointsScoredFirstInning : 0
-            ,pointsScoredSecondInning : 0
-            ,pointsScoredThirdInning : 0
-            ,pointsScoredFourthInning : 0
-            ,pointsScoredFifthInning : 0
-            ,pointsScoredSixthInning : 0
-            ,pointsScoredSeventhInning : 0
-            ,pointsScoredEigthInning : 0
-            ,pointsScoredNinthInning : 0
-            ,pointsAllowedOverall : 0
-            ,pointsAllowedFirstInning : 0
-            ,pointsAllowedSecondInning : 0
-            ,pointsAllowedThirdInning : 0
-            ,pointsAllowedFourthInning : 0
-            ,pointsAllowedFifthInning : 0
-            ,pointsAllowedSixthInning : 0
-            ,pointsAllowedSeventhInning : 0
-            ,pointsAllowedEigthInning : 0
-            ,pointsAllowedNinthInning : 0
-            ,totalHomeRunsScored : 0
-            ,totalHitsScored : 0
-            ,totalFirstBaseScored : 0
-            ,totalSecondBaseScored : 0
-            ,totalThirdBaseScored : 0
-            ,totalRbisScored : 0
-            ,totalHomeRunsAllowed : 0
-            ,totalHitsAllowed : 0
-            ,totalFirstBaseAllowed : 0
-            ,totalSecondBaseAllowed : 0
-            ,totalThirdBaseAllowed : 0
-            ,totalRbisAllowed : 0
+            teamName: ''
+            , teamId: 0
+            , season: 0
+            , wins: 0
+            , losses: 0
+            , pointsScoredOverall: 0
+            , pointsScoredFirstInning: 0
+            , pointsScoredSecondInning: 0
+            , pointsScoredThirdInning: 0
+            , pointsScoredFourthInning: 0
+            , pointsScoredFifthInning: 0
+            , pointsScoredSixthInning: 0
+            , pointsScoredSeventhInning: 0
+            , pointsScoredEigthInning: 0
+            , pointsScoredNinthInning: 0
+            , pointsAllowedOverall: 0
+            , pointsAllowedFirstInning: 0
+            , pointsAllowedSecondInning: 0
+            , pointsAllowedThirdInning: 0
+            , pointsAllowedFourthInning: 0
+            , pointsAllowedFifthInning: 0
+            , pointsAllowedSixthInning: 0
+            , pointsAllowedSeventhInning: 0
+            , pointsAllowedEigthInning: 0
+            , pointsAllowedNinthInning: 0
+            , totalHomeRunsScored: 0
+            , totalHitsScored: 0
+            , totalFirstBaseScored: 0
+            , totalSecondBaseScored: 0
+            , totalThirdBaseScored: 0
+            , totalRbisScored: 0
+            , totalHomeRunsAllowed: 0
+            , totalHitsAllowed: 0
+            , totalFirstBaseAllowed: 0
+            , totalSecondBaseAllowed: 0
+            , totalThirdBaseAllowed: 0
+            , totalRbisAllowed: 0
         }
 
-        for(let game of teamDbStats){
+        for (let game of teamDbStats) {
             teamStatsFinal.teamName = game.teamName,
-            teamStatsFinal.teamId = game.teamId,
-            teamStatsFinal.season = game.season,
-            teamStatsFinal.wins += game.result == "W" ? 1 : 0,
-            teamStatsFinal.losses += game.result == "L" ? 1 : 0,
-            teamStatsFinal.pointsScoredOverall += game.pointsScoredOverall,
-            teamStatsFinal.pointsScoredFirstInning += game.pointsScoredFirstInning,
-            teamStatsFinal.pointsScoredSecondInning += game.pointsScoredSecondInning,
-            teamStatsFinal.pointsScoredThirdInning += game.pointsScoredThirdInning,
-            teamStatsFinal.pointsScoredFourthInning += game.pointsScoredFourthInning,
-            teamStatsFinal.pointsScoredFifthInning += game.pointsScoredFifthInning,
-            teamStatsFinal.pointsScoredSixthInning += game.pointsScoredSixthInning,
-            teamStatsFinal.pointsScoredSeventhInning += game.pointsScoredSeventhInning,
-            teamStatsFinal.pointsScoredEigthInning += game.pointsScoredEigthInning,
-            teamStatsFinal.pointsScoredNinthInning += game.pointsScoredNinthInning,
-            teamStatsFinal.pointsAllowedOverall += game.pointsAllowedOverall,
-            teamStatsFinal.pointsAllowedFirstInning += game.pointsAllowedFirstInning,
-            teamStatsFinal.pointsAllowedSecondInning += game.pointsAllowedSecondInning,
-            teamStatsFinal.pointsAllowedThirdInning += game.pointsAllowedThirdInning,
-            teamStatsFinal.pointsAllowedFourthInning += game.pointsAllowedFourthInning,
-            teamStatsFinal.pointsAllowedFifthInning += game.pointsAllowedFifthInning,
-            teamStatsFinal.pointsAllowedSixthInning += game.pointsAllowedSixthInning,
-            teamStatsFinal.pointsAllowedSeventhInning += game.pointsAllowedSeventhInning,
-            teamStatsFinal.pointsAllowedEigthInning += game.pointsAllowedEigthInning,
-            teamStatsFinal.pointsAllowedNinthInning += game.pointsAllowedNinthInning,
-            teamStatsFinal.totalHomeRunsScored += game.totalHomeRunsScored,
-            teamStatsFinal.totalHitsScored += game.totalHitsScored,
-            teamStatsFinal.totalFirstBaseScored += game.totalFirstBaseScored,
-            teamStatsFinal.totalSecondBaseScored += game.totalSecondBaseScored,
-            teamStatsFinal.totalThirdBaseScored += game.totalThirdBaseScored,
-            teamStatsFinal.totalRbisScored += game.totalRbisScored,
-            teamStatsFinal.totalHomeRunsAllowed += game.totalHomeRunsAllowed,
-            teamStatsFinal.totalHitsAllowed += game.totalHitsAllowed,
-            teamStatsFinal.totalFirstBaseAllowed += game.totalFirstBaseAllowed,
-            teamStatsFinal.totalSecondBaseAllowed += game.totalSecondBaseAllowed,
-            teamStatsFinal.totalThirdBaseAllowed += game.totalThirdBaseAllowed,
-            teamStatsFinal.totalRbisAllowed += game.totalRbisAllowed
+                teamStatsFinal.teamId = game.teamId,
+                teamStatsFinal.season = game.season,
+                teamStatsFinal.wins += game.result == "W" ? 1 : 0,
+                teamStatsFinal.losses += game.result == "L" ? 1 : 0,
+                teamStatsFinal.pointsScoredOverall += game.pointsScoredOverall,
+                teamStatsFinal.pointsScoredFirstInning += game.pointsScoredFirstInning,
+                teamStatsFinal.pointsScoredSecondInning += game.pointsScoredSecondInning,
+                teamStatsFinal.pointsScoredThirdInning += game.pointsScoredThirdInning,
+                teamStatsFinal.pointsScoredFourthInning += game.pointsScoredFourthInning,
+                teamStatsFinal.pointsScoredFifthInning += game.pointsScoredFifthInning,
+                teamStatsFinal.pointsScoredSixthInning += game.pointsScoredSixthInning,
+                teamStatsFinal.pointsScoredSeventhInning += game.pointsScoredSeventhInning,
+                teamStatsFinal.pointsScoredEigthInning += game.pointsScoredEigthInning,
+                teamStatsFinal.pointsScoredNinthInning += game.pointsScoredNinthInning,
+                teamStatsFinal.pointsAllowedOverall += game.pointsAllowedOverall,
+                teamStatsFinal.pointsAllowedFirstInning += game.pointsAllowedFirstInning,
+                teamStatsFinal.pointsAllowedSecondInning += game.pointsAllowedSecondInning,
+                teamStatsFinal.pointsAllowedThirdInning += game.pointsAllowedThirdInning,
+                teamStatsFinal.pointsAllowedFourthInning += game.pointsAllowedFourthInning,
+                teamStatsFinal.pointsAllowedFifthInning += game.pointsAllowedFifthInning,
+                teamStatsFinal.pointsAllowedSixthInning += game.pointsAllowedSixthInning,
+                teamStatsFinal.pointsAllowedSeventhInning += game.pointsAllowedSeventhInning,
+                teamStatsFinal.pointsAllowedEigthInning += game.pointsAllowedEigthInning,
+                teamStatsFinal.pointsAllowedNinthInning += game.pointsAllowedNinthInning,
+                teamStatsFinal.totalHomeRunsScored += game.totalHomeRunsScored,
+                teamStatsFinal.totalHitsScored += game.totalHitsScored,
+                teamStatsFinal.totalFirstBaseScored += game.totalFirstBaseScored,
+                teamStatsFinal.totalSecondBaseScored += game.totalSecondBaseScored,
+                teamStatsFinal.totalThirdBaseScored += game.totalThirdBaseScored,
+                teamStatsFinal.totalRbisScored += game.totalRbisScored,
+                teamStatsFinal.totalHomeRunsAllowed += game.totalHomeRunsAllowed,
+                teamStatsFinal.totalHitsAllowed += game.totalHitsAllowed,
+                teamStatsFinal.totalFirstBaseAllowed += game.totalFirstBaseAllowed,
+                teamStatsFinal.totalSecondBaseAllowed += game.totalSecondBaseAllowed,
+                teamStatsFinal.totalThirdBaseAllowed += game.totalThirdBaseAllowed,
+                teamStatsFinal.totalRbisAllowed += game.totalRbisAllowed
         }
 
-            teamStatsFinal.wins += teamStatsFinal.wins/teamDbStats.length,
-            teamStatsFinal.losses += teamStatsFinal.losses/teamDbStats.length,
-            teamStatsFinal.pointsScoredOverall += teamStatsFinal.pointsScoredOverall/teamDbStats.length,
-            teamStatsFinal.pointsScoredFirstInning += teamStatsFinal.pointsScoredFirstInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredSecondInning += teamStatsFinal.pointsScoredSecondInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredThirdInning += teamStatsFinal.pointsScoredThirdInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredFourthInning += teamStatsFinal.pointsScoredFourthInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredFifthInning += teamStatsFinal.pointsScoredFifthInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredSixthInning += teamStatsFinal.pointsScoredSixthInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredSeventhInning += teamStatsFinal.pointsScoredSeventhInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredEigthInning += teamStatsFinal.pointsScoredEigthInning/teamDbStats.length,
-            teamStatsFinal.pointsScoredNinthInning += teamStatsFinal.pointsScoredNinthInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedOverall += teamStatsFinal.pointsAllowedOverall/teamDbStats.length,
-            teamStatsFinal.pointsAllowedFirstInning += teamStatsFinal.pointsAllowedFirstInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedSecondInning += teamStatsFinal.pointsAllowedSecondInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedThirdInning += teamStatsFinal.pointsAllowedThirdInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedFourthInning += teamStatsFinal.pointsAllowedFourthInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedFifthInning += teamStatsFinal.pointsAllowedFifthInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedSixthInning += teamStatsFinal.pointsAllowedSixthInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedSeventhInning += teamStatsFinal.pointsAllowedSeventhInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedEigthInning += teamStatsFinal.pointsAllowedEigthInning/teamDbStats.length,
-            teamStatsFinal.pointsAllowedNinthInning += teamStatsFinal.pointsAllowedNinthInning/teamDbStats.length,
-            teamStatsFinal.totalHomeRunsScored += teamStatsFinal.totalHomeRunsScored/teamDbStats.length,
-            teamStatsFinal.totalHitsScored += teamStatsFinal.totalHitsScored/teamDbStats.length,
-            teamStatsFinal.totalFirstBaseScored += teamStatsFinal.totalFirstBaseScored/teamDbStats.length,
-            teamStatsFinal.totalSecondBaseScored += teamStatsFinal.totalSecondBaseScored/teamDbStats.length,
-            teamStatsFinal.totalThirdBaseScored += teamStatsFinal.totalThirdBaseScored/teamDbStats.length,
-            teamStatsFinal.totalRbisScored += teamStatsFinal.totalRbisScored/teamDbStats.length,
-            teamStatsFinal.totalHomeRunsAllowed += teamStatsFinal.totalHomeRunsAllowed/teamDbStats.length,
-            teamStatsFinal.totalHitsAllowed += teamStatsFinal.totalHitsAllowed/teamDbStats.length,
-            teamStatsFinal.totalFirstBaseAllowed += teamStatsFinal.totalFirstBaseAllowed/teamDbStats.length,
-            teamStatsFinal.totalSecondBaseAllowed += teamStatsFinal.totalSecondBaseAllowed/teamDbStats.length,
-            teamStatsFinal.totalThirdBaseAllowed += teamStatsFinal.totalThirdBaseAllowed/teamDbStats.length,
-            teamStatsFinal.totalRbisAllowed += teamStatsFinal.totalRbisAllowed/teamDbStats.length
+        teamStatsFinal.wins += teamStatsFinal.wins / teamDbStats.length,
+            teamStatsFinal.losses += teamStatsFinal.losses / teamDbStats.length,
+            teamStatsFinal.pointsScoredOverall += teamStatsFinal.pointsScoredOverall / teamDbStats.length,
+            teamStatsFinal.pointsScoredFirstInning += teamStatsFinal.pointsScoredFirstInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredSecondInning += teamStatsFinal.pointsScoredSecondInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredThirdInning += teamStatsFinal.pointsScoredThirdInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredFourthInning += teamStatsFinal.pointsScoredFourthInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredFifthInning += teamStatsFinal.pointsScoredFifthInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredSixthInning += teamStatsFinal.pointsScoredSixthInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredSeventhInning += teamStatsFinal.pointsScoredSeventhInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredEigthInning += teamStatsFinal.pointsScoredEigthInning / teamDbStats.length,
+            teamStatsFinal.pointsScoredNinthInning += teamStatsFinal.pointsScoredNinthInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedOverall += teamStatsFinal.pointsAllowedOverall / teamDbStats.length,
+            teamStatsFinal.pointsAllowedFirstInning += teamStatsFinal.pointsAllowedFirstInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedSecondInning += teamStatsFinal.pointsAllowedSecondInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedThirdInning += teamStatsFinal.pointsAllowedThirdInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedFourthInning += teamStatsFinal.pointsAllowedFourthInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedFifthInning += teamStatsFinal.pointsAllowedFifthInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedSixthInning += teamStatsFinal.pointsAllowedSixthInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedSeventhInning += teamStatsFinal.pointsAllowedSeventhInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedEigthInning += teamStatsFinal.pointsAllowedEigthInning / teamDbStats.length,
+            teamStatsFinal.pointsAllowedNinthInning += teamStatsFinal.pointsAllowedNinthInning / teamDbStats.length,
+            teamStatsFinal.totalHomeRunsScored += teamStatsFinal.totalHomeRunsScored / teamDbStats.length,
+            teamStatsFinal.totalHitsScored += teamStatsFinal.totalHitsScored / teamDbStats.length,
+            teamStatsFinal.totalFirstBaseScored += teamStatsFinal.totalFirstBaseScored / teamDbStats.length,
+            teamStatsFinal.totalSecondBaseScored += teamStatsFinal.totalSecondBaseScored / teamDbStats.length,
+            teamStatsFinal.totalThirdBaseScored += teamStatsFinal.totalThirdBaseScored / teamDbStats.length,
+            teamStatsFinal.totalRbisScored += teamStatsFinal.totalRbisScored / teamDbStats.length,
+            teamStatsFinal.totalHomeRunsAllowed += teamStatsFinal.totalHomeRunsAllowed / teamDbStats.length,
+            teamStatsFinal.totalHitsAllowed += teamStatsFinal.totalHitsAllowed / teamDbStats.length,
+            teamStatsFinal.totalFirstBaseAllowed += teamStatsFinal.totalFirstBaseAllowed / teamDbStats.length,
+            teamStatsFinal.totalSecondBaseAllowed += teamStatsFinal.totalSecondBaseAllowed / teamDbStats.length,
+            teamStatsFinal.totalThirdBaseAllowed += teamStatsFinal.totalThirdBaseAllowed / teamDbStats.length,
+            teamStatsFinal.totalRbisAllowed += teamStatsFinal.totalRbisAllowed / teamDbStats.length
 
 
 

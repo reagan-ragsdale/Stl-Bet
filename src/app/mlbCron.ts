@@ -45,11 +45,20 @@ export const mlbCronFile = async () => {
     let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
     for(let game of listOfGamesToday){
         let gameInfo = await mlbApiController.getGameResults(game.gameID)
-        let teamsGameStats = MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
+        let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
+        if(typeof(teamsGameStats) != 'number'){
+            await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
+            await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
+            for(let player of teamsGameStats[2]){
+                await MlbController.mlbSetPlayerGameStats(player)
+            }
+
+        }
+        
     }
 
     //retreive all the players and get their season stats
-     let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
+    /*  let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
     //console.log(listOfActivePlayers)
     let playerStatCount = 0
     for (let player of listOfActivePlayers) {
@@ -77,7 +86,7 @@ export const mlbCronFile = async () => {
             
         
 
-    } 
+    }  */
 ///
 
     //next I want to get the team stats
