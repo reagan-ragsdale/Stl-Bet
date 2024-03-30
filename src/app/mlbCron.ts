@@ -68,12 +68,12 @@ export const mlbCronFile = async () => {
      
 
     //retreive all the players and get their season stats
-    /*  let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
+      let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
    //console.log(listOfActivePlayers)
    let playerStatCount = 0
    for (let player of listOfActivePlayers) {
        //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for
-           if(playerStatCount < 900){
+           if(playerStatCount < 10000){
                let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
                if (playerStats.length == 0) {
                    console.log("Before api call")
@@ -96,7 +96,7 @@ export const mlbCronFile = async () => {
            
        
 
-   }   */
+   }   
     ///
 
     //next I want to get the team stats
@@ -137,7 +137,7 @@ export const mlbCronFile = async () => {
 
 
     //set the player game stat averages
-    let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
+    //let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
      for(let player of listOfActivePlayers){
        try{
            let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
