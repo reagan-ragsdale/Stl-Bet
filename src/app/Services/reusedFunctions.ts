@@ -62,7 +62,7 @@ export class reusedFunctions {
     var year = d.getFullYear().toString();
     
     var day = (d.getDate() - 1)
-    var month = (d.getMonth() + 1);
+    var month = d.getMonth() + 1;
     var monthNew = month.toString()
     var dayNew = day.toString()
     if(day == 0){
@@ -84,7 +84,7 @@ export class reusedFunctions {
     if (monthNew.length == 1) {
       monthNew = "0" + monthNew;
     }
-    var fullDate = year+month+day
+    var fullDate = year+monthNew+dayNew
     return fullDate
   }
 
