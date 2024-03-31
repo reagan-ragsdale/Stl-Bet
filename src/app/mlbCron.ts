@@ -39,64 +39,63 @@ export const mlbCronFile = async () => {
     const allPlayerInfo = await mlbApiController.getAllMlbPlayers()
     await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
-//test
-    //let gameDate = reusedFunctions.getDateYMD()
-    let listOfPreviousGames: string[] = ["20240320", "20240321", "20240328", "20240329"]
+    //test
+    let gameDate = reusedFunctions.getPreviousDateYMD()
+    console.log(gameDate)
 
-    for(let prevGame of listOfPreviousGames){
-        try{
+    try {
 
-            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(prevGame)
-            for(let game of listOfGamesToday){
-                let gameInfo = await mlbApiController.getGameResults(game.gameID)
-                let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
-                if(typeof(teamsGameStats) != 'number'){
-                    await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
-                    await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
-                    for(let player of teamsGameStats[2]){
-                        await MlbController.mlbSetPlayerGameStats(player)
-                    }
-        
+        let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
+        for (let game of listOfGamesToday) {
+            let gameInfo = await mlbApiController.getGameResults(game.gameID)
+            let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
+            if (typeof (teamsGameStats) != 'number') {
+                await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
+                await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
+                for (let player of teamsGameStats[2]) {
+                    await MlbController.mlbSetPlayerGameStats(player)
                 }
-                
+
             }
-        }catch(error: any){
-            console.log(error.message)
+
         }
-        
+    } catch (error: any) {
+        console.log(error.message)
     }
-     
+
+
+
 
     //retreive all the players and get their season stats
-      let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
-   //console.log(listOfActivePlayers)
-   let playerStatCount = 0
-   for (let player of listOfActivePlayers) {
-       //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for
-           if(playerStatCount < 10000){
-               let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
-               if (playerStats.length == 0) {
-                   console.log("Before api call")
-                   try{
-                       let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
-                       if (typeof (player2023Stats) != 'number') {
-                           await MlbController.mlbSetPlayerGameStats(player2023Stats)
-                       }
-                       else{
-                           await MlbController.mlbSetBlankPlayerGameStats(player, 2023)
-                       }
-                   }catch(error: any){
-                       console.log(error.message)
-                   }
-                   
-   
-               }
-           }
-
-           
-       
-
-   }   
+    let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
+    //console.log(listOfActivePlayers)
+    /* let playerStatCount = 0
+    for (let player of listOfActivePlayers) {
+        //get 2022 stats - - if there is data in the database already then we don't call the api bc there are no new 2023 games to check for
+            if(playerStatCount < 10000){
+                let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2023)
+                if (playerStats.length == 0) {
+                    console.log("Before api call")
+                    try{
+                        let player2023Stats = await mlbApiController.getPlayerGameStats(player.playerId, 2023)
+                        if (typeof (player2023Stats) != 'number') {
+                            await MlbController.mlbSetPlayerGameStats(player2023Stats)
+                        }
+                        else{
+                            await MlbController.mlbSetBlankPlayerGameStats(player, 2023)
+                        }
+                    }catch(error: any){
+                        console.log(error.message)
+                    }
+                    
+    
+                }
+            }
+ 
+            
+        
+ 
+    }  */
     ///
 
     //next I want to get the team stats
@@ -138,17 +137,17 @@ export const mlbCronFile = async () => {
 
     //set the player game stat averages
     //let listOfActivePlayers = await PlayerInfoController.loadPlayerInfoBySport("MLB");
-     for(let player of listOfActivePlayers){
-       try{
-           let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
-           let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
-           await MlbController.mlbSetPlayerStatAverage(playerAverage)
-       }
-       catch(error:any){
-           console.log(error.message)
-       }
-       
-   }  
+    for (let player of listOfActivePlayers) {
+        try {
+            let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
+            let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
+            await MlbController.mlbSetPlayerStatAverage(playerAverage)
+        }
+        catch (error: any) {
+            console.log(error.message)
+        }
+
+    }
 
     //set the team game stat averages
     for (let i = 1; i < 31; i++) {

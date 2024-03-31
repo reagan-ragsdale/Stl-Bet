@@ -57,16 +57,32 @@ export class reusedFunctions {
     return name
   }
 
-  static getDateYMD(): string {
+  static getPreviousDateYMD(): string {
     var d = new Date();
     var year = d.getFullYear().toString();
-    var month = (d.getMonth() + 1).toString();
-    if (month.length == 1) {
-      month = "0" + month;
+    
+    var day = (d.getDate() - 1)
+    var month = (d.getMonth() + 1);
+    var monthNew = month.toString()
+    var dayNew = day.toString()
+    if(day == 0){
+      if(month == 1){
+        month = 12
+        day = 31
+      }
+      else{
+        month = month - 1
+        day = this.arrayOfDates[month]
+      }
+      monthNew = month.toString()
+      dayNew = day.toString()
     }
-    var day = d.getDate().toString();
-    if (day.length == 1) {
-      day = "0" + day;
+    if (dayNew.length == 1) {
+      dayNew = "0" + dayNew;
+    }
+    
+    if (monthNew.length == 1) {
+      monthNew = "0" + monthNew;
     }
     var fullDate = year+month+day
     return fullDate
