@@ -107,21 +107,21 @@ export class MlbController {
   }
 
   @BackendMethod({ allowed: true })
-  static async mlbGetPlayerStatAverageTop5(stat: string): Promise<DBMlbPlayerGameStatAverages[]> {
+  static async mlbGetPlayerStatAverageTop5(stat: string, season: number): Promise<DBMlbPlayerGameStatAverages[]> {
     const taskRepo = remult.repo(DBMlbPlayerGameStatAverages)
     var finalData: DBMlbPlayerGameStatAverages[] = []
 
     if(stat == "hits"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 60} }, orderBy: {batterHits: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60}, season: season },  orderBy: {batterHits: "desc"}, limit: 5})
     }
     else if(stat == "homeRuns"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 60} },orderBy: {batterHomeRuns: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60}, season: season },orderBy: {batterHomeRuns: "desc"}, limit: 5})
     }
     else if(stat == "rbis"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 60} },orderBy: {batterRbis: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60}, season: season },orderBy: {batterRbis: "desc"}, limit: 5})
     }
     else if(stat == "pitcherStrikes"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 60} },orderBy: {pitcherStrikes: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {totalGames:{">": 60}, season: season },orderBy: {pitcherStrikes: "desc"}, limit: 5})
     }
     
     return finalData
@@ -151,17 +151,17 @@ export class MlbController {
   }
 
   @BackendMethod({ allowed: true })
-  static async mlbGetTeamStatAverageTop5(stat: string): Promise<DbMlbTeamGameStatAverages[]> {
+  static async mlbGetTeamStatAverageTop5(stat: string, season: number): Promise<DbMlbTeamGameStatAverages[]> {
     const taskRepo = remult.repo(DbMlbTeamGameStatAverages)
     var finalData: DbMlbTeamGameStatAverages[] = []
     if(stat == "pointsScored"){
-      finalData =  await taskRepo.find({orderBy: {pointsScoredOverall: "desc"}, limit: 5})
+      finalData =  await taskRepo.find({where: {season: season}, orderBy: {pointsScoredOverall: "desc"}, limit: 5})
     }
     else if(stat == "wins"){
-      finalData = await taskRepo.find({orderBy: {wins: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {season: season},orderBy: {wins: "desc"}, limit: 5})
     }
     else if(stat == "pointsAllowed"){
-      finalData = await taskRepo.find({orderBy: {pointsAllowedOverall: "asc"}, limit: 5})
+      finalData = await taskRepo.find({where: {season: season},orderBy: {pointsAllowedOverall: "asc"}, limit: 5})
     }
     return finalData
   }

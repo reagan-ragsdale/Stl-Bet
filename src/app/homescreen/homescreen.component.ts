@@ -80,7 +80,7 @@ export class HomeScreenComponent {
       this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat.dbName)
     }
     if(this.selectedSport == "MLB"){
-      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5(stat.dbName)
+      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5(stat.dbName, 2024)
     }
     
     stat.selected = true;
@@ -175,7 +175,7 @@ export class HomeScreenComponent {
     else if (sport == "MLB") {
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
-      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns")
+      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns", 2024)
       this.playerStatsButtons = [
         {
           selected: true,
@@ -193,7 +193,7 @@ export class HomeScreenComponent {
           dbName: "hits"
         },
       ]
-      this.teamData = await MlbController.mlbGetTeamStatAverageTop5("wins")
+      this.teamData = await MlbController.mlbGetTeamStatAverageTop5("wins", 2024)
       this.teamStatsButtons = [
         {
           selected: true,
