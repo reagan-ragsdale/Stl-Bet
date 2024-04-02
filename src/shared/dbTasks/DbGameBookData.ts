@@ -57,15 +57,17 @@ export class DbGameBookData {
   static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
     SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and commencetime > ' + DbGameBookData.getDate()
+      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and commencetime >= ' + DbGameBookData.getDate()
     })
     
   });
 
   static getDate(){
     let d = new Date()
-    let date = d.toISOString()
-    return date
+    let day = d.getDate().toString()
+    let month = (d.getMonth() + 1).toString()
+    let year = d.getFullYear().toString()
+    return year + "-" + month + "-" + day
   }
 
 
