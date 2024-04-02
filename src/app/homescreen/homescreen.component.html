@@ -197,12 +197,14 @@
                   <mat-card-title style="font-size:small; height: inherit">
                     <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap;">
                       <a class="teamLink" (click)="gameClick(game[0][0].bookId)" >{{game[0][0].awayTeam}} @ {{game[0][0].homeTeam}}</a>
+                      <br>
+                      <p>{{game[0][0].commenceTime}}</p>
                     </div>
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content style="display:flex; flex-direction: column;">
                   <div class="team-row">
-                    <a class="teamLink" (click)="onTeamClick(game[0][0].awayTeam)"><p class="team-name">{{game[0][0].awayTeam}}</p></a><p *ngIf="game[0][0].price" class="team-prop">{{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}</p><div *ngIf="game[0][1].point" class="spread-prop" ><p>{{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}</p><p>{{game[0][1].price > 0 ? '+' : ''}}{{game[0][1].price}}</p></div><p *ngIf="game[0][1].price" class="team-prop">{{game[0][1].price > 0 ? '+': ''}}{{game[0][1].price}}</p>
+                    <a class="teamLink" (click)="onTeamClick(game[0][0].awayTeam)"><p class="team-name">{{game[0][0].awayTeam}}</p></a><p *ngIf="game[0][0]" class="team-prop">{{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}</p><div *ngIf="game[0][1]" class="spread-prop" ><p>{{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}</p><p>{{game[0][1].price > 0 ? '+' : ''}}{{game[0][1].price}}</p></div><p *ngIf="game[0][1]" class="team-prop">{{game[0][1].price > 0 ? '+': ''}}{{game[0][1].price}}</p>
                   </div>
                   <!-- <div style="display: flex; width: inherit; margin-top: .5rem; ">
                     <div class="games-prop-block" style="width: 50%; align-self: center;">
@@ -232,10 +234,10 @@
                     <div class="games-prop-block" style="width: 50%; align-self: center;">
                       <a class="teamLink" (click)="onTeamClick(game[0][0].homeTeam)">{{game[0][0].homeTeam}}</a>
                     </div>
-                    <div *ngIf="game[1][0].price" class="games-prop-block" style="width: 16%; align-self: center; text-align: end; ">
+                    <div *ngIf="game[1][0]" class="games-prop-block" style="width: 16%; align-self: center; text-align: end; ">
                       {{game[1][0].price > 0 ? '+' : ''}}{{game[1][0].price}}
                     </div>
-                    <div *ngIf="game[1][1].point" class="games-prop-block" style="display:flex; flex-direction: column; width: 16%; ">
+                    <div *ngIf="game[1][1]" class="games-prop-block" style="display:flex; flex-direction: column; width: 16%; ">
                       <div style=" width: auto; text-align: center;">
                         {{game[1][1].point > 0 ? '+': ''}}{{game[1][1].point}}
                       </div>
@@ -243,7 +245,7 @@
                         {{game[1][1].price > 0 ? '+' : ''}}{{game[1][1].price}}
                       </div>
                     </div>
-                    <div *ngIf="game[3][0].point" class="games-prop-block" style="display:flex; flex-direction: column; width: 16%">
+                    <div *ngIf="game[3][0]" class="games-prop-block" style="display:flex; flex-direction: column; width: 16%">
                       <div style=" width: auto; text-align: center;">
                         {{game[3][0].point}}
                       </div>
