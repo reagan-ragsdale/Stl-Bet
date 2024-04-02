@@ -40,61 +40,62 @@ import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.componen
 import { TeamStatsComponent } from './team-stats/team-stats.component';
 import {MatSortModule} from '@angular/material/sort';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TransformFromTimestampToMonthDayPipe } from "./customPipes/transformTimestampToMonthDay.pipe";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PropScreenComponent,
-    PropCheckoutComponent,
-    HomeScreenComponent,
-    PlayerStatsComponent,
-    WelcomeScreenComponent,
-    TeamStatsComponent,
-    
-  ],
-  imports: [
-    BrowserModule,
-     /* RouterModule.forRoot([
-      {path: 'home', component: HomeScreenComponent},
-      {path: 'props:/sport:/game', component: PropScreenComponent},
-      {path: '', redirectTo: 'home', pathMatch: 'full'}
-    ]),  */
-    AppRoutingModule, 
-    HttpClientModule, 
-    FormsModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatTableModule,
-    MatGridListModule,
-    MatDividerModule,
-    MatProgressBarModule,
-    MatExpansionModule,
-    MatDialogModule,
-    MatSliderModule,
-    MatChipsModule,
-    ScrollingModule,
-    HttpClientModule,
-    MatCheckboxModule,
-    MatAutocompleteModule,
-    MatSlideToggleModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatTooltipModule,
-    MatSortModule,
-    NgbModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PropScreenComponent,
+        PropCheckoutComponent,
+        HomeScreenComponent,
+        PlayerStatsComponent,
+        WelcomeScreenComponent,
+        TeamStatsComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        /* RouterModule.forRoot([
+         {path: 'home', component: HomeScreenComponent},
+         {path: 'props:/sport:/game', component: PropScreenComponent},
+         {path: '', redirectTo: 'home', pathMatch: 'full'}
+       ]),  */
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatTableModule,
+        MatGridListModule,
+        MatDividerModule,
+        MatProgressBarModule,
+        MatExpansionModule,
+        MatDialogModule,
+        MatSliderModule,
+        MatChipsModule,
+        ScrollingModule,
+        HttpClientModule,
+        MatCheckboxModule,
+        MatAutocompleteModule,
+        MatSlideToggleModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatTooltipModule,
+        MatSortModule,
+        NgbModule,
+        TransformFromTimestampToMonthDayPipe
+    ]
 })
 export class AppModule { 
   constructor(zone: NgZone) {

@@ -8,12 +8,13 @@ import { HostListener } from '@angular/core';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TransformFromTimestampToMonthDayPipe } from '../customPipes/transformTimestampToMonthDay.pipe';
 
 @Component({
-  selector: 'home-screen',
-  templateUrl: './homescreen.component.html',
-  styleUrls: ['./homescreen.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'home-screen',
+    templateUrl: './homescreen.component.html',
+    styleUrls: ['./homescreen.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class HomeScreenComponent {
   

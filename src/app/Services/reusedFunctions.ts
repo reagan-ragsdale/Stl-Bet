@@ -15,7 +15,7 @@ export class reusedFunctions {
     var tempDate = fullDate?.split("T");
     var time = tempDate[1].slice(0, 2)
     var subtractDay = false
-    if (parseInt(time) - 6 <= 0) {
+    if (parseInt(time) - 5 <= 0) {
       subtractDay = true
     }
 
