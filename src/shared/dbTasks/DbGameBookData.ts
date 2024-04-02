@@ -67,7 +67,7 @@ export class DbGameBookData {
     let day = d.getDate().toString()
     let month = (d.getMonth() + 1).toString()
     let year = d.getFullYear().toString()
-    return year + "-" + month + "-" + day
+    return year + "-" + month + "-" + day + " 00:00:00"
   }
 
 
