@@ -7496,15 +7496,20 @@
         </mat-grid-tile>
       </mat-grid-list>
 
-      <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" style="width:90%">
+      <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" style="width:90%; display: flex;">
         <div class="away-team">
           <div style="text-align: center;">
-            <h2>displayPropHtml2.name</h2>
+            <h2>{{displayPropHtml2.name}}</h2>
+            <h3>Props</h3>
+            <div class="prop-names" style="display: inline-block; width: 100%;">
+              <p>MoneyLine</p><p>Spread</p><p>O/U</p>
+            </div>
           </div>
         </div>
+        @
         <div class="home-team">
           <div stlye="text-align: center;">
-            <h2>displayPropHtml1.name</h2>
+            <h2>{{displayPropHtml1.name}}</h2>
           </div>
         </div>
       </div>
