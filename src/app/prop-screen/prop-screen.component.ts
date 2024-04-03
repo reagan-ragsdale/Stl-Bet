@@ -554,21 +554,21 @@ export class PropScreenComponent implements OnInit {
     {
       name: '',
       abvr: '',
-      h2h: '',
-      spreadPoint: '',
-      spreadPrice: '',
-      totalPoint: '',
-      totalPrice: ''
+      h2h: 0,
+      spreadPoint: 0,
+      spreadPrice: 0,
+      totalPoint: 0,
+      totalPrice: 0
     };
   public displayPropHtml2: PropData =
     {
       name: '',
       abvr: '',
-      h2h: '',
-      spreadPoint: '',
-      spreadPrice: '',
-      totalPoint: '',
-      totalPrice: ''
+      h2h: 0,
+      spreadPoint: 0,
+      spreadPrice: 0,
+      totalPoint: 0,
+      totalPrice: 0
     };
 
   public selectedTab: number = 0;
@@ -815,11 +815,11 @@ export class PropScreenComponent implements OnInit {
 
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
-    var h2h = '';
-    var spreadPoint = '';
-    var spreadPrice = '';
-    var totalPoint = '';
-    var totalPrice = ''
+    var h2h = 0;
+    var spreadPoint = 0;
+    var spreadPrice = 0;
+    var totalPoint = 0;
+    var totalPrice = 0
     var teamInfo: any[] = []
     var logo = ''
     this.team1GameStats = []
@@ -850,19 +850,19 @@ export class PropScreenComponent implements OnInit {
 
 console.log(team1)
     name1 = team1[0].teamName;
-    h2h = team1.filter((e) => e.marketKey == "h2h")[0].price.toString();
+    h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
     spreadPoint = team1.filter((e) => e.marketKey == "spreads")[0].point.toString();
     spreadPrice = team1.filter((e) => e.marketKey == "spreads")[0].price.toString();
-    totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point.toString();
-    totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price.toString();
+    totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
+    totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
     this.displayPropHtml1 = ({ name: name1, abvr: reusedFunctions.addDash(name1), h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice});
 console.log(this.displayPropHtml1)
     name1 = team2[0].teamName;
-    h2h = team2.filter((e) => e.marketKey == "h2h")[0].price.toString();
-    spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point.toString();
-    spreadPrice = team2.filter((e) => e.marketKey == "spreads")[0].price.toString();
-    totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point.toString();
-    totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price.toString();
+    h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
+    spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point;
+    spreadPrice = team2.filter((e) => e.marketKey == "spreads")[0].price;
+    totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
+    totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: reusedFunctions.addDash(name1), h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
     console.log(this.displayPropHtml2)
     this.teamPropIsLoading = false
