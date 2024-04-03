@@ -614,7 +614,7 @@ export class PropScreenComponent implements OnInit {
 
       //this.selectedGame = this.route.params.subscribe((newPathParams) => console.log(newPathParams));
       //this.selectedGame = this.route.snapshot.paramMap.get('game')
-      this.route.paramMap.subscribe(params => {
+      this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
         this.selectedGame = params.get("game")
         this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
       })
@@ -625,7 +625,7 @@ export class PropScreenComponent implements OnInit {
 
   async getGames() {
     if (this.selectedGame == '') {
-      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeqAndh2h(this.selectedSport)
+      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
@@ -643,7 +643,7 @@ export class PropScreenComponent implements OnInit {
       this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
-      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeqAndBookId(this.selectedSport, this.selectedGame)
+      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
