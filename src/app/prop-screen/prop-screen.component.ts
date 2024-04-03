@@ -643,7 +643,7 @@ export class PropScreenComponent implements OnInit {
       this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
-      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeqAndh2h(this.selectedSport)
+      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeqAndBookId(this.selectedSport, this.selectedGame)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)

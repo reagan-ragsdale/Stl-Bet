@@ -72,6 +72,17 @@ export class DbGameBookData {
     
   });
 
+  static loadAllBookDataBySportAndMaxBookSeqAndBookId = Filter.createCustom<DbGameBookData, { sport: string, bookId: string }>(async ({sport, bookId}) => {
+    SqlDatabase.LogToConsole = true
+    return SqlDatabase.rawFilter((whereFragment) => {
+      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and date(commencetime) >= CURRENT_DATE and bookid = ' +  whereFragment.addParameterAndReturnSqlToken(bookId)
+    })
+    
+    
+  });
+
+  
+
 
 
 }
