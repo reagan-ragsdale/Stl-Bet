@@ -828,19 +828,7 @@ export class PropScreenComponent implements OnInit {
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
-    //var team1GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-    /* if (team1GameStats2023.length == 0) {
-      let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-      await NbaController.nbaAddTeamGameStats(result)
-      this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-    }
-    else if (team1GameStats2023.length > 0) {
-      if (this.convertDate(team1GameStats2023[0].createdAt?.toString()!) != this.getMonthAndDay()) {
-        let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-        await NbaController.nbaAddTeamGameStats(result)
-        this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team1[0].teamName)], 2023)
-      }
-      else { */
+    
     if (this.selectedSport == "NBA") {
       this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
       this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team2[0].teamName)], 2023)
@@ -856,27 +844,7 @@ export class PropScreenComponent implements OnInit {
     else if(this.selectedSport == "NFL"){
 
     }
-    //}
-
-    //}
-
-    //var team2GameStats2023 = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-    /* if (team2GameStats2023.length == 0) {
-      let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-      await NbaController.nbaAddTeamGameStats(result)
-      this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-    }
-    else if (team2GameStats2023.length > 0) {
-      if (this.convertDate(team2GameStats2023[0].createdAt?.toString()!) != this.getMonthAndDay()) {
-        let result = await this.nbaApiController.loadTeamGameStats(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-        await NbaController.nbaAddTeamGameStats(result)
-        this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(this.arrayOfNBATeams[this.addUnderScoreToName(team2[0].teamName)], 2023)
-      }
-      else { */
-
-   
-    //}
-    //}
+    
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
 
