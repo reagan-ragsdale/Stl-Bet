@@ -13,11 +13,11 @@
 
 
 <div style="height: 100%; width: auto; background-color: #252324; display: flex;">
-  <div style="width: 10%; background-color: red; position: sticky; top: 60px; left:0; z-index:99;">
+  <div style="width: 10%; background-color: red; position: sticky; top: 60px; left:0; z-index:99;overflow-y: scroll;">
     <div style="height: 50px; width: 100%; text-align: center; align-self: center;">
       <h1>Games</h1>
     </div>
-    <div style="height: 60px; width: 100%; text-align: center; align-self: center; overflow-y: scroll;"
+    <div style="height: 60px; width: 100%; text-align: center; align-self: center; "
       *ngFor="let game of selectedSportGamesFinal">
       <button mat-raised-button style="width: inherit; height: inherit; border-bottom: 2px solid black; font-size: 75%;"
         [ngClass]="game[0].selected === true ? 'selected-game' : ''" (click)="onGameClick(game[0][0].bookId)">
@@ -7496,7 +7496,7 @@
         </mat-grid-tile>
       </mat-grid-list>
 
-      <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" style="width:90%; display: flex;">
+      <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" style="width:100%; display: flex;">
         <div class="away-team">
           <div style="text-align: center;">
             <h2>{{displayPropHtml2.name}}</h2>
@@ -7510,6 +7510,10 @@
         <div class="home-team">
           <div stlye="text-align: center;">
             <h2>{{displayPropHtml1.name}}</h2>
+            <h3>Props</h3>
+            <div class="prop-names" style="display: flex; width: 100%;">
+              <p>MoneyLine</p><p>Spread</p><p>O/U</p>
+            </div>
           </div>
         </div>
       </div>
