@@ -1,4 +1,5 @@
 import { Allow, Entity, Fields, Filter, SqlDatabase, Validators } from "remult"
+import { TeamStatsComponent } from "src/app/team-stats/team-stats.component"
 
 @Entity("DbGameBookData", {
   allowApiCrud: true
@@ -80,6 +81,18 @@ export class DbGameBookData {
     
     
   });
+
+  static loadAllBookDataBySportAndBookIdAndTeamAndProp = Filter.createCustom<DbGameBookData, { sport: string, bookId: string, teamName: string, prop: string }>(async ({sport, bookId, teamName, prop}) => {
+    SqlDatabase.LogToConsole = true
+    return SqlDatabase.rawFilter((whereFragment) => {
+      //whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and date(commencetime) >= CURRENT_DATE and bookid = ' +  whereFragment.addParameterAndReturnSqlToken(bookId)
+      whereFragment.sql = 'bookId = ' + whereFragment.addParameterAndReturnSqlToken(bookId) + ' and teamname = ' + whereFragment.addParameterAndReturnSqlToken(teamName) + ' and marketkey = ' + whereFragment.addParameterAndReturnSqlToken(prop)
+    })
+    
+    
+  });
+
+  
 
   
 

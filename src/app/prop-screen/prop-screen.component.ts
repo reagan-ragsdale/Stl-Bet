@@ -123,6 +123,9 @@ export class PropScreenComponent implements OnInit {
   public team1GameVsOpponentData: any[] = []
   public displayProgressBar: boolean = false;
 
+  public selectedPropHistoryName: string = ''
+  public propHistory: DbGameBookData[] = []
+
 
 
 
@@ -1708,6 +1711,9 @@ console.log(this.displayPropHtml1)
   }
 
   async propTrend(teamName: string, prop: string, content: TemplateRef<any>) {
+    this.selectedPropHistoryName = prop
+    this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
+    console.log(this.propHistory)
     this.modalService.open(content, { centered: true });
   }
 
