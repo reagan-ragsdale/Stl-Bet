@@ -625,7 +625,7 @@ export class PropScreenComponent implements OnInit {
 
   async getGames() {
     if (this.selectedGame == '') {
-      this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
+      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeqAndh2h(this.selectedSport)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
@@ -643,7 +643,7 @@ export class PropScreenComponent implements OnInit {
       this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
-      this.selectedSportGames = await SportsBookController.loadSportBook(this.selectedSport)
+      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeqAndh2h(this.selectedSport)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
@@ -813,10 +813,6 @@ export class PropScreenComponent implements OnInit {
   async displayProp() {
     this.teamPropIsLoading = true
 
-
-
-    console.log("Here89")
-    console.time("Display Prop")
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
     var h2h = '';
@@ -905,7 +901,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   computeTeamsGameStats(team1: any[], team2: any[]) {
-    if (this.selectedSport) {
+    if (this.selectedSport == "NBA") {
       this.team1GameVsOpponentData = []
       this.team1GameStatsDtoNBA = {
         gamesWon: 0,
@@ -1558,7 +1554,7 @@ export class PropScreenComponent implements OnInit {
     }
 
     else if(this.selectedSport == "MLB"){
-
+      
     }
 
     else if(this.selectedSport == "NHL"){

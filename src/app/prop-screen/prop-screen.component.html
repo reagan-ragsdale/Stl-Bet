@@ -19,7 +19,7 @@
     </div>
     <div style="height: 60px; width: 100%; text-align: center; align-self: center; "
       *ngFor="let game of selectedSportGamesFinal">
-      <button mat-raised-button style="width: inherit; height: inherit; border-bottom: 2px solid black"
+      <button mat-raised-button style="width: inherit; height: inherit; border-bottom: 2px solid black; font-size: 75%;"
         [ngClass]="game[0].selected === true ? 'selected-game' : ''" (click)="onGameClick(game[0][0].bookId)">
         {{game[0][0].awayTeam}} @ {{game[0][0].homeTeam}}
       </button>
@@ -63,7 +63,7 @@
         </div>
       </div> -->
 
-      <mat-grid-list *ngIf="!teamPropIsLoading" cols="2" rowHeight="1:1">
+      <mat-grid-list *ngIf="selectedSport == 'NBA' && !teamPropIsLoading" cols="2" rowHeight="1:1">
         <mat-grid-tile rowspan="{{(team1GameStats.length/4) + 8}}" colspan="1"
           >
           <div style="height: inherit; width: 100%; ">
@@ -7495,6 +7495,19 @@
           </div>
         </mat-grid-tile>
       </mat-grid-list>
+
+      <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" style="width:90%">
+        <div class="away-team">
+          <div style="text-align: center;">
+            <h2>displayPropHtml2.name</h2>
+          </div>
+        </div>
+        <div class="home-team">
+          <div stlye="text-align: center;">
+            <h2>displayPropHtml1.name</h2>
+          </div>
+        </div>
+      </div>
 
     </div>
 
