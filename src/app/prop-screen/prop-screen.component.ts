@@ -1738,6 +1738,7 @@ console.log(this.displayPropHtml1)
     })
     dataPoint.forEach(d => {
       d = reusedFunctions.convertDateToDateTime(d)
+      console.log(d)
     })
     
     var annotationObj = {
