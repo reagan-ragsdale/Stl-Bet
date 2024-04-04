@@ -1729,7 +1729,7 @@ console.log(this.displayPropHtml1)
 
     var dataPoint: string[] = []
     var index = 1
-    if(this.selectedPropHistoryName == 'h2h'){
+    
       this.propHistory.forEach((e) => {
         historyOfProp.push(e.price)
         if(e.createdAt){
@@ -1737,8 +1737,8 @@ console.log(this.displayPropHtml1)
         }
         
       })
-    }
-    else if(this.selectedPropHistoryName == 'spread'){
+    
+    /* else if(this.selectedPropHistoryName == 'spread'){
       this.propHistory.forEach((e) => {
         historyOfProp.push(e.point)
         if(e.createdAt){
@@ -1746,7 +1746,7 @@ console.log(this.displayPropHtml1)
         }
         
       })
-    }
+    } */
     this.propHistory.forEach((e) => {
       historyOfProp.push(e.price)
       if(e.createdAt){
