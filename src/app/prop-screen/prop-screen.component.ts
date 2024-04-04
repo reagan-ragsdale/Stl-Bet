@@ -1804,8 +1804,8 @@ console.log(this.displayPropHtml1)
         },
         scales: {
           y: {
-            min: -1000,
-            max: 1000
+            min: 300,
+            max: -300
           }
         },
         maintainAspectRatio: false
