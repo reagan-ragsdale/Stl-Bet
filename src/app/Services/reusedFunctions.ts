@@ -88,4 +88,48 @@ export class reusedFunctions {
     return fullDate
   }
 
+  static convertDateToDateTime(fullDate: string) : string{
+    var tempDate = fullDate?.split("T");
+    var time = tempDate[1].slice(0, 2)
+    var subtractDay = false
+    if (parseInt(time) - 5 <= 0) {
+      subtractDay = true
+    }
+    var timeHourMinute = tempDate[1].slice(0, 5)
+    let hour = timeHourMinute.slice(0, 2)
+    let minute = timeHourMinute.slice(2)
+    if(parseInt(hour) < 5){
+      hour = (24 - (5 - parseInt(hour))).toString() 
+    }
+    else if(parseInt(hour) == 5){
+      hour = "00"
+    }
+
+    var indexOfFirstDash = tempDate[0].indexOf("-");
+    var tempDate2 = tempDate[0].slice(indexOfFirstDash + 1, tempDate[0].length + 1);
+    var finalDate = tempDate2.replace("-", "/");
+    if (subtractDay) {
+      var newDate = finalDate.split("/")
+      newDate[1] = (parseInt(newDate[1]) - 1).toString()
+      if (parseInt(newDate[1]) < 10 && parseInt(newDate[1]) > 0) {
+        newDate[1] = '0' + newDate[1]
+      }
+      if (parseInt(newDate[1]) == 0) {
+        if (newDate[0] == '01') {
+          newDate[0] = '12'
+          newDate[1] = '31'
+        }
+        if (parseInt(newDate[0]) != 1) {
+          newDate[0] = (parseInt(newDate[0]) - 1).toString()
+          newDate[1] = this.arrayOfDates[parseInt(newDate[0])].toString()
+        }
+
+      }
+      finalDate = newDate[0] + "/" + newDate[1]
+
+    }
+
+    return finalDate + " " + hour + ":" + minute;
+  }
+
 }

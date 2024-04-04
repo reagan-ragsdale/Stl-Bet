@@ -1736,6 +1736,9 @@ console.log(this.displayPropHtml1)
       }
       
     })
+    dataPoint.forEach(d => {
+      d = reusedFunctions.convertDateToDateTime(d)
+    })
     
     var annotationObj = {
       type: 'line',
