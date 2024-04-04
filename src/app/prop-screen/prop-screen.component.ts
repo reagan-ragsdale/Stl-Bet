@@ -1781,10 +1781,10 @@ console.log(this.displayPropHtml1)
         count++
       }
       if(e > max){
-        e = max
+        max = e
       }
       if(e < max){
-        e = max
+        min = e
       }
     }) 
 
