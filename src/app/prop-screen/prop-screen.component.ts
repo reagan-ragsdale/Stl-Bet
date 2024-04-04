@@ -1736,10 +1736,11 @@ console.log(this.displayPropHtml1)
       }
       
     })
+    let finalLabel: string[] = []
     dataPoint.forEach(d => {
-      d = reusedFunctions.convertDateToDateTime(d)
-      console.log(d)
+      finalLabel.push(reusedFunctions.convertDateToDateTime(d))
     })
+    
     
     var annotationObj = {
       type: 'line',
@@ -1797,7 +1798,7 @@ console.log(this.displayPropHtml1)
       type: 'line',
 
       data: {// values on X-Axis
-        labels: dataPoint,
+        labels: finalLabel,
         datasets: fullDisplayDataSet,
 
       },

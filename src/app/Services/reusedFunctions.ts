@@ -129,7 +129,7 @@ export class reusedFunctions {
 
     }
 
-    return finalDate + " " + hour + ":" + minute;
+    return finalDate + " " + hour + minute;
   }
 
 }
