@@ -69,7 +69,7 @@ export class SportsBookController {
   @BackendMethod({ allowed: true })
   static async loadAllBookDataBySportAndBookIdAndTeamAndProp(sport: string, bookId: string, teamName: string, prop: string): Promise<DbGameBookData[]> {
     const taskRepo = remult.repo(DbGameBookData)
-    return await taskRepo.find({where: DbGameBookData.loadAllBookDataBySportAndBookIdAndTeamAndProp({sport: sport, bookId: bookId, teamName: teamName, prop: prop}), orderBy: {createdAt: "desc"}})
+    return await taskRepo.find({where: DbGameBookData.loadAllBookDataBySportAndBookIdAndTeamAndProp({sport: sport, bookId: bookId, teamName: teamName, prop: prop}), orderBy: {createdAt: "asc"}})
 
     
   }

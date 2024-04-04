@@ -32,6 +32,7 @@ import { SportsNameToId } from '../sports-name-to-id';
 import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
+import annotationPlugin from 'chartjs-plugin-annotation';
 
 import { ArrayOfDates } from '../array-of-dates';
 
@@ -42,6 +43,7 @@ import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MlbService } from '../Services/MlbService';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-prop-screen',
@@ -125,6 +127,9 @@ export class PropScreenComponent implements OnInit {
 
   public selectedPropHistoryName: string = ''
   public propHistory: DbGameBookData[] = []
+
+  //charts
+  public chart: any;
 
 
 
@@ -1715,6 +1720,96 @@ console.log(this.displayPropHtml1)
     this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
     console.log(this.propHistory)
     this.modalService.open(content, { centered: true });
+    this.createChart()
+  }
+
+  createChart() {
+    var historyOfProp: number[] = []
+    
+
+    var dataPoint: string[] = []
+    var index = 1
+    this.propHistory.forEach((e) => {
+      historyOfProp.push(e.price)
+      if(e.createdAt)
+      dataPoint.push(e.createdAt.toDateString())
+    })
+    
+    var annotationObj = {
+      type: 'line',
+      borderColor: 'black',
+      borderDash: [6, 6],
+      borderDashOffset: 0,
+      borderWidth: 3,
+      scaleID: 'y',
+      label: {
+        display: true,
+        drawTime: 'beforeDatasetsDraw',
+        callout: {
+          display: true,
+          borderColor: 'rgba(102, 102, 102, 0.5)',
+          borderDash: [6, 6],
+          borderWidth: 2,
+          margin: 0
+        },
+       // content: 'Average: ' + annotationVal.toFixed(2),
+
+        position: 'center',
+        xAdjust: 150,
+        yAdjust: -100
+      },
+      //value: annotationVal,
+    }
+    var annotation: any[] = []
+
+    var fullDisplayDataSet = [{
+      label: "Prop over time",
+      data: historyOfProp,
+      backgroundColor: 'blue',
+      showLine: true
+    }]
+
+    this.chart = new Chart("lineChart", {
+
+      type: 'line',
+
+      data: {// values on X-Axis
+        labels: dataPoint,
+        datasets: fullDisplayDataSet,
+
+      },
+      options: {
+        elements: {
+          point: {
+            radius: 5
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Points by Game'
+          },
+
+
+          annotation: {
+            common: {
+              drawTime: 'beforeDatasetsDraw'
+            },
+            annotations:
+              annotation
+
+          }
+        },
+        scales: {
+          y: {
+            min: -1000,
+            max: 1000
+          }
+        },
+        maintainAspectRatio: false
+      }
+
+    });
   }
 
 
@@ -2421,6 +2516,7 @@ console.log(this.displayPropHtml1)
     console.log("Here4")
   }
   ngOnInit() {
+    Chart.register(annotationPlugin);
     this.initializeSport()
     this.getGames()
   }
