@@ -1738,7 +1738,7 @@ console.log(this.displayPropHtml1)
         
       })
     }
-    else if(this.selectedPropHistoryName == 'spread'){
+    else if(this.selectedPropHistoryName == 'spreads'){
       this.propHistory.forEach((e) => {
         historyOfProp.push(e.point)
         if(e.createdAt){
@@ -1791,7 +1791,7 @@ console.log(this.displayPropHtml1)
       min = min - 10
       max = max + 10
     }
-    else if (this.selectedPropHistoryName == 'spread'){
+    else if (this.selectedPropHistoryName == 'spreads'){
       min = min - 1
       max = max + 1
     }
