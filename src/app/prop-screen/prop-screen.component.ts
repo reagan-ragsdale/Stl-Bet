@@ -1731,8 +1731,10 @@ console.log(this.displayPropHtml1)
     var index = 1
     this.propHistory.forEach((e) => {
       historyOfProp.push(e.price)
-      if(e.createdAt)
-      dataPoint.push(e.createdAt.toString())
+      if(e.createdAt){
+        dataPoint.push(e.createdAt.toString())
+      }
+      
     })
     
     var annotationObj = {
