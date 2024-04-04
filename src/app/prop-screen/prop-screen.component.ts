@@ -1771,6 +1771,23 @@ console.log(this.displayPropHtml1)
       showLine: true
     }]
 
+    var max:number = 0
+    var min:number = 0
+    var count: number = 0
+    historyOfProp.forEach(e => {
+      if (count == 0){
+        min = e
+        max = e
+        count++
+      }
+      if(e > max){
+        e = max
+      }
+      if(e < max){
+        e = max
+      }
+    }) 
+
     this.chart = new Chart("lineChart", {
 
       type: 'line',
@@ -1804,8 +1821,8 @@ console.log(this.displayPropHtml1)
         },
         scales: {
           y: {
-            min: 300,
-            max: -300
+            min: min - 10,
+            max: max + 10
           }
         },
         maintainAspectRatio: false
