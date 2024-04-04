@@ -1729,6 +1729,24 @@ console.log(this.displayPropHtml1)
 
     var dataPoint: string[] = []
     var index = 1
+    if(this.selectedPropHistoryName == 'h2h'){
+      this.propHistory.forEach((e) => {
+        historyOfProp.push(e.price)
+        if(e.createdAt){
+          dataPoint.push(e.createdAt.toString())
+        }
+        
+      })
+    }
+    else if(this.selectedPropHistoryName == 'spread'){
+      this.propHistory.forEach((e) => {
+        historyOfProp.push(e.point)
+        if(e.createdAt){
+          dataPoint.push(e.createdAt.toString())
+        }
+        
+      })
+    }
     this.propHistory.forEach((e) => {
       historyOfProp.push(e.price)
       if(e.createdAt){
@@ -1742,31 +1760,7 @@ console.log(this.displayPropHtml1)
     })
     
     
-    var annotationObj = {
-      type: 'line',
-      borderColor: 'black',
-      borderDash: [6, 6],
-      borderDashOffset: 0,
-      borderWidth: 3,
-      scaleID: 'y',
-      label: {
-        display: true,
-        drawTime: 'beforeDatasetsDraw',
-        callout: {
-          display: true,
-          borderColor: 'rgba(102, 102, 102, 0.5)',
-          borderDash: [6, 6],
-          borderWidth: 2,
-          margin: 0
-        },
-       // content: 'Average: ' + annotationVal.toFixed(2),
-
-        position: 'center',
-        xAdjust: 150,
-        yAdjust: -100
-      },
-      //value: annotationVal,
-    }
+    
     var annotation: any[] = []
 
     var fullDisplayDataSet = [{
@@ -1792,6 +1786,15 @@ console.log(this.displayPropHtml1)
         min = e
       }
     }) 
+
+    if(this.selectedPropHistoryName == 'h2h'){
+      min = min - 10
+      max = max + 10
+    }
+    else if (this.selectedPropHistoryName == 'spread'){
+      min = min - 1
+      max = max + 1
+    }
 
     this.chart = new Chart("lineChart", {
 
@@ -1826,8 +1829,8 @@ console.log(this.displayPropHtml1)
         },
         scales: {
           y: {
-            min: min - 10,
-            max: max + 10
+            min: min,
+            max: max
           }
         },
         maintainAspectRatio: false
