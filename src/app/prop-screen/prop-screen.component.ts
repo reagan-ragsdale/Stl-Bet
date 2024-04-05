@@ -130,6 +130,8 @@ export class PropScreenComponent implements OnInit {
 
   //charts
   public chart: any;
+  public chart2: any;
+  public spreadAndTotalChart: boolean = false
 
 
 
@@ -1741,10 +1743,19 @@ export class PropScreenComponent implements OnInit {
 
   async propTrend(teamName: string, prop: string, content: TemplateRef<any>) {
     this.selectedPropHistoryName = prop
-    this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
+    if(prop == 'totals'){
+      this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndProp(this.selectedSport, this.selectedGame, prop)
+    }
+    else{
+      this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
+    }
     console.log(this.propHistory)
     this.modalService.open(content, { centered: true });
     this.createChart()
+    if(this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals'){
+      this.spreadAndTotalChart = true;
+      this.createChart2();
+    }
   }
 
   createChart() {
@@ -1762,7 +1773,7 @@ export class PropScreenComponent implements OnInit {
         
       })
     }
-    else if(this.selectedPropHistoryName == 'spreads'){
+    else if(this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals'){
       this.propHistory.forEach((e) => {
         historyOfProp.push(e.point)
         if(e.createdAt){
@@ -1788,7 +1799,7 @@ export class PropScreenComponent implements OnInit {
     var annotation: any[] = []
 
     var fullDisplayDataSet = [{
-      label: "Prop over time",
+      label: "Price",
       data: historyOfProp,
       backgroundColor: 'blue',
       showLine: true
@@ -1806,7 +1817,7 @@ export class PropScreenComponent implements OnInit {
       if(e > max){
         max = e
       }
-      if(e < max){
+      if(e < min){
         min = e
       }
     }) 
@@ -1832,7 +1843,103 @@ export class PropScreenComponent implements OnInit {
       options: {
         elements: {
           point: {
-            radius: 5
+            radius: 3
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Points by Game'
+          },
+
+
+          annotation: {
+            common: {
+              drawTime: 'beforeDatasetsDraw'
+            },
+            annotations:
+              annotation
+
+          }
+        },
+        scales: {
+          y: {
+            min: min,
+            max: max
+          }
+        },
+        maintainAspectRatio: false
+      }
+
+    });
+  }
+
+  createChart2() {
+    var historyOfProp: number[] = []
+    
+
+    var dataPoint: string[] = []
+    var index = 1
+      this.propHistory.forEach((e) => {
+        historyOfProp.push(e.price)
+        if(e.createdAt){
+          dataPoint.push(e.createdAt.toString())
+        }
+        
+      })
+    
+   
+    
+    let finalLabel: string[] = []
+    dataPoint.forEach(d => {
+      finalLabel.push(reusedFunctions.convertDateToDateTime(d))
+    })
+    
+    
+    
+    var annotation: any[] = []
+
+    var fullDisplayDataSet = [{
+      label: "Price",
+      data: historyOfProp,
+      backgroundColor: 'blue',
+      showLine: true
+    }]
+
+    var max:number = 0
+    var min:number = 0
+    var count: number = 0
+    historyOfProp.forEach(e => {
+      if (count == 0){
+        min = e
+        max = e
+        count++
+      }
+      if(e > max){
+        max = e
+      }
+      if(e < min){
+        min = e
+      }
+    }) 
+
+    
+      min = min - 10
+      max = max + 10
+
+    this.chart = new Chart("lineChart2", {
+
+      type: 'line',
+
+      data: {// values on X-Axis
+        labels: finalLabel,
+        datasets: fullDisplayDataSet,
+
+      },
+      options: {
+        elements: {
+          point: {
+            radius: 3
           }
         },
         plugins: {
