@@ -1756,15 +1756,11 @@ export class PropScreenComponent implements OnInit {
       this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
     }
     console.log(this.propHistory)
-    let dialogRef = this.dialog.open(this.callAPIDialog);
-    let dc = new MatDialogConfig()
-    dc.width = '450px';
-    dc.height = '550px'
-    //this.modalService.open(content, { centered: true });
+    let dialogRef = this.dialog.open(this.callAPIDialog, {width: '450px', height: '550px'});
     
     if(this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals'){
       this.spreadAndTotalChart = true;
-      dc.width = '900px';
+      dialogRef.updateSize('900px')
       this.createChart()
       this.createChart2();
     }
