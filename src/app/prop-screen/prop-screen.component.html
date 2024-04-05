@@ -5,7 +5,7 @@
 	</div>
 	<div class="modal-body" style="height:400px; width: 100%; display: flex;">
 		<canvas id="lineChart">{{ chart }}</canvas>
-    <canvas *ngIf="spreadAndTotalChart" id="lineChart2">{{ chart2 }}</canvas>
+    <canvas id="lineChart2">{{ chart2 }}</canvas>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
