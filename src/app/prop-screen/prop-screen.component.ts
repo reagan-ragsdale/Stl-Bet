@@ -860,6 +860,7 @@ export class PropScreenComponent implements OnInit {
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
     spreadPoint = team1.filter((e) => e.marketKey == "spreads")[0].point.toString();
+    console.log(spreadPoint)
     spreadPrice = team1.filter((e) => e.marketKey == "spreads")[0].price.toString();
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
