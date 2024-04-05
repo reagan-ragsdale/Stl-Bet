@@ -856,7 +856,7 @@ export class PropScreenComponent implements OnInit {
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
 
-console.log(team1)
+    console.log(team1)
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
     spreadPoint = team1.filter((e) => e.marketKey == "spreads")[0].point.toString();
@@ -864,7 +864,7 @@ console.log(team1)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
     this.displayPropHtml1 = ({ name: name1, abvr: reusedFunctions.addDash(name1), h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice});
-console.log(this.displayPropHtml1)
+    console.log(this.displayPropHtml1)
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
     spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point;
