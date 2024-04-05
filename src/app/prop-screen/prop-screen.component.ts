@@ -1759,12 +1759,17 @@ export class PropScreenComponent implements OnInit {
     let dialogRef = this.dialog.open(this.callAPIDialog);
     let dc = new MatDialogConfig()
     dc.width = '450px';
+    dc.height = '550px'
     //this.modalService.open(content, { centered: true });
-    this.createChart()
+    
     if(this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals'){
       this.spreadAndTotalChart = true;
       dc.width = '900px';
+      this.createChart()
       this.createChart2();
+    }
+    else {
+      this.createChart()
     }
   }
 
@@ -1882,6 +1887,7 @@ export class PropScreenComponent implements OnInit {
       }
 
     });
+    
   }
 
   createChart2() {
