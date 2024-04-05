@@ -5,7 +5,7 @@
 	</div>
 	<div mat-dialog-content style="height:400px; display: flex; " [ngClass]="!spreadAndTotalChart ? 'maindis' : 'mainenabled'">
 		<canvas id="lineChart" [ngClass]="!spreadAndTotalChart ? 'disabled' : 'enabled'">{{ chart }}</canvas>
-    <canvas [hidden]="!spreadAndTotalChart" id="lineChart2" style="width: 50%;">{{ chart2 }}</canvas>
+    <canvas [hidden]="!spreadAndTotalChart" id="lineChart2" style="width: 350px;">{{ chart2 }}</canvas>
 	</div>
 	<div mat-dialog-actions>
 		<button mat-raised-button mat-dialog-close>Close</button>
