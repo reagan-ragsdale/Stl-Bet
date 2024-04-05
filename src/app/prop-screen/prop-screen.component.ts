@@ -859,17 +859,40 @@ export class PropScreenComponent implements OnInit {
     console.log(team1)
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
-    spreadPoint = team1.filter((e) => e.marketKey == "spreads")[0].point.toString();
-    console.log(spreadPoint)
-    spreadPrice = team1.filter((e) => e.marketKey == "spreads")[0].price.toString();
+    let spreadProp  = team1.filter((e) => e.marketKey == "spreads")
+    if(spreadProp.length > 0){
+      spreadPoint = spreadProp[0].point
+    }
+    else{
+      spreadPoint = 0
+    }
+    let spreadPriceProp = team1.filter((e) => e.marketKey == "spreads")
+    if(spreadPriceProp.length > 0){
+      spreadPrice = spreadPriceProp[0].price
+    }
+    else{
+      spreadPrice = 0
+    }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
     this.displayPropHtml1 = ({ name: name1, abvr: reusedFunctions.addDash(name1), h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice});
     console.log(this.displayPropHtml1)
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
-    spreadPoint = team2.filter((e) => e.marketKey == "spreads")[0].point;
-    spreadPrice = team2.filter((e) => e.marketKey == "spreads")[0].price;
+    spreadProp  = team2.filter((e) => e.marketKey == "spreads")
+    if(spreadProp.length > 0){
+      spreadPoint = spreadProp[0].point
+    }
+    else{
+      spreadPoint = 0
+    }
+    spreadPriceProp = team2.filter((e) => e.marketKey == "spreads")
+    if(spreadPriceProp.length > 0){
+      spreadPrice = spreadPriceProp[0].price
+    }
+    else{
+      spreadPrice = 0
+    }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: reusedFunctions.addDash(name1), h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });

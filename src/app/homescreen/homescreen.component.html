@@ -204,7 +204,7 @@
                 </mat-card-header>
                 <mat-card-content style="display:flex; flex-direction: column;">
                   <div class="team-row">
-                    <a class="teamLink" (click)="onTeamClick(game[0][0].awayTeam)"><p class="team-name">{{game[0][0].awayTeam}}</p></a><p *ngIf="game[0][0]" class="team-prop">{{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}</p><div *ngIf="game[0][1]" class="spread-prop" ><p>{{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}</p><p>{{game[0][1].price > 0 ? '+' : ''}}{{game[0][1].price}}</p></div><div *ngIf="game[2][0]" class="spread-prop" ><p>{{game[2][0].point}}</p><p>{{game[2][0].price > 0 ? '+' : ''}}{{game[2][0].price}}</p></div>
+                    <a class="teamLink" (click)="onTeamClick(game[0][0].awayTeam)"><p class="team-name">{{game[0][0].awayTeam}}</p></a><p *ngIf="game[0][0]" class="team-prop">{{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}</p><div *ngIf="game[0][1]" class="spread-prop" ><p>{{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}</p><p>{{game[0][1].price > 0 ? '+' : ''}}{{game[0][1].price}}</p></div><div *ngIf="game[2][0]" class="spread-prop" ><p>{{game[2][0].point}}</p><p>{{game[2][0].price > 0 ? '+' : ''}}{{game[2][0].price}}</p></div><span>O</span>
                   </div>
                   <!-- <div style="display: flex; width: inherit; margin-top: .5rem; ">
                     <div class="games-prop-block" style="width: 50%; align-self: center;">
@@ -253,6 +253,7 @@
                         {{game[3][0].price> 0 ? '+' : ''}}{{game[3][0].price}}
                       </div>
                     </div>
+                    U
                   </div>
 
                   
