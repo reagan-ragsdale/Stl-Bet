@@ -1748,6 +1748,7 @@ export class PropScreenComponent implements OnInit {
 
   async propTrend(teamName: string, prop: string, content: TemplateRef<any>) {
     this.selectedPropHistoryName = prop
+    this.spreadAndTotalChart = false;
     if(prop == 'totals'){
       this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndProp(this.selectedSport, this.selectedGame, prop)
     }
