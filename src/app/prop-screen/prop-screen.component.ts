@@ -1760,8 +1760,9 @@ export class PropScreenComponent implements OnInit {
     let dialogRef = this.dialog.open(this.callAPIDialog, {width: '600px', height: '550px'});
     
     if(this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals'){
-      this.spreadAndTotalChart = true;
       dialogRef.updateSize('900px')
+      this.spreadAndTotalChart = true;
+      
       this.createChart()
       this.createChart2();
     }
@@ -1880,7 +1881,7 @@ export class PropScreenComponent implements OnInit {
             max: max
           }
         },
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         responsive: false
       }
 
@@ -1978,7 +1979,7 @@ export class PropScreenComponent implements OnInit {
             max: max
           }
         },
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         responsive: false
       }
 
