@@ -4,8 +4,8 @@
 		<button mat-raised-button mat-dialog-close>X</button>
 	</div>
 	<div mat-dialog-content style="height:400px; display: flex; " [ngClass]="!spreadAndTotalChart ? 'maindis' : 'mainenabled'">
-		<canvas id="lineChart" [ngClass]="!spreadAndTotalChart ? 'disabled' : 'enabled'">{{ chart }}</canvas>
-    <canvas [hidden]="!spreadAndTotalChart" id="lineChart2" style="width: 50%;">{{ chart2 }}</canvas>
+		<canvas id="lineChart" [width]=".5" height="1" [ngClass]="!spreadAndTotalChart ? 'disabled' : 'enabled'">{{ chart }}</canvas>
+    <canvas [hidden]="!spreadAndTotalChart" id="lineChart2" style="width: 50%;" [width]=".5">{{ chart2 }}</canvas>
 	</div>
 	<div mat-dialog-actions>
 		<button mat-raised-button (click)="onChartClose()">Close</button>

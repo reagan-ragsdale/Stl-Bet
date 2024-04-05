@@ -1881,8 +1881,8 @@ export class PropScreenComponent implements OnInit {
             max: max
           }
         },
-        maintainAspectRatio: true,
-        responsive: false
+        maintainAspectRatio: false,
+        responsive: true
       }
 
     });
@@ -1979,8 +1979,8 @@ export class PropScreenComponent implements OnInit {
             max: max
           }
         },
-        maintainAspectRatio: true,
-        responsive: false
+        maintainAspectRatio: false,
+        responsive: true
       }
 
     });
