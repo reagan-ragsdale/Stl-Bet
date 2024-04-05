@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, TemplateRef, afterRender, inject } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef, ViewChild, afterRender, inject } from '@angular/core';
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { SelectedSportsData } from '../selected-sports-data';
 import { GameId } from '../game-id';
@@ -44,6 +44,7 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MlbService } from '../Services/MlbService';
 import { Chart } from 'chart.js';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-prop-screen',
@@ -67,6 +68,8 @@ export class PropScreenComponent implements OnInit {
   onPopState(event: any) {
     location.reload()
   }
+
+  @ViewChild('content') callAPIDialog: TemplateRef<any>;
 
   private modalService = inject(NgbModal);
   expandedElement: PlayerProp[] | null | undefined;
@@ -158,7 +161,8 @@ export class PropScreenComponent implements OnInit {
     private http: HttpClient,
     private nhlApiController: nhlApiController,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {
 
   }
@@ -1750,7 +1754,8 @@ export class PropScreenComponent implements OnInit {
       this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
     }
     console.log(this.propHistory)
-    this.modalService.open(content, { centered: true });
+    let dialogRef = this.dialog.open(this.callAPIDialog);
+    //this.modalService.open(content, { centered: true });
     this.createChart()
     if(this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals'){
       this.spreadAndTotalChart = true;
