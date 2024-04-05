@@ -44,7 +44,7 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MlbService } from '../Services/MlbService';
 import { Chart } from 'chart.js';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-prop-screen',
@@ -1756,10 +1756,13 @@ export class PropScreenComponent implements OnInit {
     }
     console.log(this.propHistory)
     let dialogRef = this.dialog.open(this.callAPIDialog);
+    let dc = new MatDialogConfig()
+    dc.width = '450px';
     //this.modalService.open(content, { centered: true });
     this.createChart()
     if(this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals'){
       this.spreadAndTotalChart = true;
+      dc.width = '900px';
       this.createChart2();
     }
   }

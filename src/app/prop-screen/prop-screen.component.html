@@ -3,7 +3,7 @@
 		<h4>{{selectedPropHistoryName}} History</h4>
 		<button mat-raised-button mat-dialog-close>X</button>
 	</div>
-	<div mat-dialog-content style="height:400px; display: flex;">
+	<div mat-dialog-content style="height:400px; display: flex; width">
 		<canvas id="lineChart" style="width: 350px;">{{ chart }}</canvas>
     <canvas [hidden]="!spreadAndTotalChart" id="lineChart2" style="width: 350px;">{{ chart2 }}</canvas>
 	</div>
