@@ -1927,7 +1927,7 @@ export class PropScreenComponent implements OnInit {
       min = min - 10
       max = max + 10
 
-    this.chart = new Chart("lineChart2", {
+    this.chart2 = new Chart("lineChart2", {
 
       type: 'line',
 
