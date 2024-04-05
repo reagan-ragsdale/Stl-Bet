@@ -1747,6 +1747,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   async propTrend(teamName: string, prop: string, content: TemplateRef<any>) {
+    
     this.selectedPropHistoryName = prop
     this.spreadAndTotalChart = false;
     if(prop == 'totals'){
@@ -1982,7 +1983,11 @@ export class PropScreenComponent implements OnInit {
     });
   }
 
-
+  onChartClose(){
+    this.dialog.closeAll()
+    this.chart.destroy()
+    this.chart2.destroy()
+  }
 
 
 

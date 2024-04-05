@@ -8,7 +8,7 @@
     <canvas [hidden]="!spreadAndTotalChart" id="lineChart2" style="width: 350px;">{{ chart2 }}</canvas>
 	</div>
 	<div mat-dialog-actions>
-		<button mat-raised-button mat-dialog-close>Close</button>
+		<button mat-raised-button (click)="onChartClose()">Close</button>
 	</div>
 </ng-template>
 
