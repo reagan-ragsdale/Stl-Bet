@@ -68,11 +68,11 @@ mat-chip-option{
 .teamLink{
     text-decoration: none;
     width: 60%;
-    color: #BADEFC !important;
+    color: #22577A !important;
 }
 .teamLink:hover{
     cursor: pointer;
-    color: #57CC99;
+    color: #57CC99 !important;
 
 
 }
@@ -108,7 +108,10 @@ mat-chip-option{
     display: flex; 
     flex-direction: column; 
     gap: 1rem; 
-    background-color: #22577A;
+    background-color: #BADEFC;
+}
+.mat-mdc-table{
+    border-radius: 10px;
 }
 
 .outer-div{
