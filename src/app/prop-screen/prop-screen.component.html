@@ -1,7 +1,7 @@
 <ng-template #content>
 	<div mat-dialog-title style="display:flex">
 		<h4>{{selectedPropHistoryName}} History</h4>
-		<button mat-raised-button mat-dialog-close>X</button>
+		<button mat-raised-button mat-dialog-close style="margin-left: auto;">X</button>
 	</div>
 	<div mat-dialog-content style="height:400px; display: flex; " [ngClass]="!spreadAndTotalChart ? 'maindis' : 'mainenabled'">
 		<canvas id="lineChart" [width]=".5" height="1" [ngClass]="!spreadAndTotalChart ? 'disabled' : 'enabled'">{{ chart }}</canvas>
