@@ -105,16 +105,18 @@
     
   }
   .enabled{
-    width: 50%;
+    width: 50% !important;
   }
   .disabled{
-    width: 100%;
+    width: 100% !important;
   }
   .maindis{
-    width: 600px; 
+    width: 600px !important; 
   }
   .mainenabled{
-    width:900px;
+    width:900px !important;
   }
-  
+  #lineChart2{
+    width: 50% !important;
+  }
    
