@@ -9,19 +9,12 @@ mat-toolbar{
     width: inherit;
 }
 
-.top-button button{
 
-}
 .game-list button:hover{
     background-color: #415a77 !important;
     color: #F0ECE5 !important;
 }
 
-.top-button button:hover{
-    cursor: pointer;
-    background-color: #F0ECE5 !important;
-    color: #31304d !important;
-}
 
 mat-sidenav-container{
     height:calc(205vh - 112vh);
