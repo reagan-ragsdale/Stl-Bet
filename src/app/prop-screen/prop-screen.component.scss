@@ -105,6 +105,16 @@ black
     display: flex;
     width: 100%;
   }
+  .games-list{
+    width: 10%; 
+    background-color: #8ecae6; 
+    position: sticky; 
+    top: 60px; 
+    left:0; 
+    z-index:99;
+    overflow-y: scroll;
+
+  }
 
   .away-team, .home-team{
     width: 50%;
