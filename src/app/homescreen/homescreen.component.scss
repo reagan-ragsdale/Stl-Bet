@@ -206,13 +206,16 @@ table {
 .mat-mdc-row :last-child{
     margin-bottom: 1rem !important;
 }
-.mat-mdc-header-cell{
+.mat-mdc-header{
     padding-top: 3px !important;
     padding-bottom: 3px !important;
 }
 .mat-mdc-cell{
     margin-top: 2px !important;
     margin-bottom: 2px !important;
+}
+.mat-header-row{
+    height: 20px !important;
 }
 
 @media screen and (max-width: 974px) {
