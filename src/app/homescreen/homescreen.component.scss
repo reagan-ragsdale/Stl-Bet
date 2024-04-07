@@ -203,6 +203,9 @@ table {
 .mat-table {
     border-radius: 10px !important;
 }
+.mat-mdc-row :last-child{
+    margin-bottom: 5px;
+}
 
 @media screen and (max-width: 974px) {
     .top-fives {
