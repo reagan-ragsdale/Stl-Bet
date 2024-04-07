@@ -58,13 +58,17 @@ mat-chip-option{
     color: #F0ECE5 !important;
 }
 
-.disabled{
-    background-color: gray !important;
+
+.button-unselected{
+    background-color: #bbdefc !important;
+    color: #240604 !important;
 }
-.enabled{
-    background-color: #F0ECE5 !important;
-    color: #31304d !important;
+.button-selected{
+    background-color: #fb8501 !important;
+    color: #240604 !important;
 }
+
+
 .teamLink{
     text-decoration: none;
     width: 60%;
@@ -124,7 +128,7 @@ mat-chip-option{
     height: 100%; 
     width: 7%; 
     max-width: 125px; 
-    margin-top: 3rem;
+    margin-top: 4rem;
     position: sticky !important;
     top: 60px !important;
     z-index: 99;

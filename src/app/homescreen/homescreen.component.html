@@ -4,7 +4,7 @@
   <div style=" height:93%; width: auto; display: flex; background-color: #31304d; "> -->
     <div class="game-list" >
         <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
-        [ngClass]="game.disabled == true ? 'disabled' : 'enabled'" (click)="onSportsListClick(game.name)"
+        [ngClass]="game.selected ? 'button-selected': 'button-unselected'" (click)="onSportsListClick(game.name)"
         style="margin-left:auto; margin-right:auto; margin-bottom:3px; width: 96%; ">{{game.name}}</button>
       
     </div>

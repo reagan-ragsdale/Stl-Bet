@@ -30,7 +30,7 @@ export class HomeScreenComponent {
   playerStatsButtons: any[] = []
   teamStatsButtons: any[] = []
 
-  public gamesList: any[] = [{ name: "NBA", disabled: false }, { name: "NHL", disabled: true }, { name: "MLB", disabled: false }, { name: "NFL", disabled: true }];
+  public gamesList: any[] = [{ name: "NBA", disabled: false, selected: true }, { name: "NHL", disabled: true, selected: false }, { name: "MLB", disabled: false, selected: false }, { name: "NFL", disabled: true, selected: false }];
   public selectedSport = ''
   public playerDataFinal: any[] = []
   public playerData: any[] = []
@@ -72,6 +72,9 @@ export class HomeScreenComponent {
 
   async onSportsListClick(sport: string) {
     this.selectedSport = sport
+    let selected = this.gamesList.filter(e => e.name == sport)
+    this.gamesList.forEach(e => e.selected == false)
+    selected[0].selected == true
     await this.getData(sport)
   }
 
