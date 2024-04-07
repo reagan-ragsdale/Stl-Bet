@@ -64,8 +64,8 @@ mat-chip-option {
 .button-unselected {
 
     width: 92%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
     margin-bottom: 3px;
     margin-top: 1rem;
     background-color: #bbdefc !important;
@@ -75,8 +75,8 @@ mat-chip-option {
 .button-selected {
 
     width: 92%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
     margin-bottom: 3px;
     margin-top: 1rem;
     background-color: #fb8501 !important;
