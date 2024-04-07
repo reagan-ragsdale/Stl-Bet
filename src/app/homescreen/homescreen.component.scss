@@ -1,11 +1,10 @@
-
-div{
+div {
     padding: 0;
-    
+
     width: 100vw;
 }
 
-mat-toolbar{
+mat-toolbar {
     width: inherit;
 }
 
@@ -13,182 +12,211 @@ mat-toolbar{
 
 
 
-mat-sidenav-container{
-    height:calc(205vh - 112vh);
+mat-sidenav-container {
+    height: calc(205vh - 112vh);
 }
-mat-sidenav{
-    width:150px;
+
+mat-sidenav {
+    width: 150px;
     background-color: #eee;
 }
-mat-sidenav button{
+
+mat-sidenav button {
     display: flex;
     flex-direction: column;
     columns: 1;
     width: inherit;
     gap: 1rem;
     margin-top: 1rem;
-} 
-.sports-tab{
+}
+
+.sports-tab {
     border-top: 2px solid white;
 }
-.welcome{
-   text-align: center;
+
+.welcome {
+    text-align: center;
 }
-mat-chip-option{
+
+mat-chip-option {
     height: 75%;
 }
+
 .example-spacer {
     flex: 1 1 auto;
-  }
+}
 
-  @media screen and (max-width: 750px) {
-    mat-sidenav-container{
-    }
-  }
+@media screen and (max-width: 750px) {
+    mat-sidenav-container {}
+}
 
 .selected {
-    background-color: #415a77 !important ;
+    background-color: #415a77 !important;
     color: #F0ECE5 !important;
 }
+
 .unselected {
     background-color: #31304d !important;
     color: #F0ECE5 !important;
 }
 
 
-.button-unselected{
-    margin-left:auto;
-     margin-right:auto; 
-     margin-bottom:3px; 
-     margin-top: 1rem; 
-     width: 92%; 
+.button-unselected {
+
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    margin-top: 1rem;
     background-color: #bbdefc !important;
     color: #240604 !important;
 }
-.button-selected{
-    margin-left:auto;
-     margin-right:auto; 
-     margin-bottom:3px; 
-     margin-top: 1rem; 
-     width: 92%; 
+
+.button-selected {
+
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    margin-top: 1rem;
     background-color: #fb8501 !important;
     color: #240604 !important;
 }
 
 
-.teamLink{
+.teamLink {
     text-decoration: none;
     width: 60%;
     color: #3a86ff !important;
 }
-.teamLink:hover{
+
+.teamLink:hover {
     cursor: pointer;
     color: #57CC99 !important;
 
 
 }
-.team-row{
+
+.team-row {
     width: auto;
     display: flex;
 }
-.team-row p{
+
+.team-row p {
     display: inline-block;
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.team-name{
+
+.team-name {
     text-align: left;
     width: 60%;
 }
-.team-prop{
+
+.team-prop {
     text-align: right;
     width: 15%;
 }
-.spread-prop{
+
+.spread-prop {
     text-align: right;
     width: 15%;
-    display:flex; 
+    display: flex;
     flex-direction: column;
 }
 
 
-.top-fives{
-    width: 48%; 
-    border: 1px solid #F0ECE5;  
-    border-radius: 10px;  
-    display: flex; 
-    flex-direction: column; 
-    gap: 1rem; 
+.top-fives {
+    width: 48%;
+    border: 1px solid #F0ECE5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     background-color: #22577A;
 }
-.mat-mdc-table{
+
+.mat-mdc-table {
     border-radius: 10px !important;
+    overflow: hidden !important;
 }
 
-.outer-div{
-    height: 93.35%;
-     width: auto; 
-     background-color:#FFFFFF; 
-     display:flex;
+table {
+    border-radius: 10px !important;
+    overflow: hidden !important;
 }
-.game-list{
-    height: 100%; 
-    width: 7%; 
-    max-width: 125px; 
+
+.outer-div {
+    height: 93.35%;
+    width: auto;
+    background-color: #FFFFFF;
+    display: flex;
+}
+
+.game-list {
+    height: 100%;
+    width: 7%;
+    max-width: 125px;
     position: sticky !important;
     top: 60px !important;
     z-index: 99;
     background-color: #8ecae6;
     gap: .5rem
-    
 }
-.sport-section{
-    width:93.6%; 
-    margin-top: 0; 
-    display: flex; 
-    flex-direction: column; 
+
+.sport-section {
+    width: 93.6%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
     background-color: #ebebeb;
 }
-.upcoming-games{
-    width: 100%; 
-    display: flex; 
-    align-items: center; 
+
+.upcoming-games {
+    width: 100%;
+    display: flex;
+    align-items: center;
     margin-top: 1rem;
 }
-.games-body{
-    width: 98%;  
+
+.games-body {
+    width: 98%;
     border: 1px solid #F0ECE5;
-     border-radius: 10px; 
-     margin-left: auto; 
-     margin-right: auto; 
-     margin-bottom: 1rem; 
-     display:flex; 
-     flex-direction: column; 
-     background-color: #22577A;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #22577A;
 }
-.game-card{
-    width: 15%; 
-    min-width: 300px;  
+
+.game-card {
+    width: 15%;
+    min-width: 300px;
     height: 170px
 }
 
-.mat-table{
+.mat-table {
     border-radius: 10px !important;
 }
+
 @media screen and (max-width: 974px) {
-    .top-fives{
+    .top-fives {
         width: 98%;
-    border: 1px solid #F0ECE5;  
-    border-radius: 10px;  
-    display: flex; 
-    flex-direction: column; 
-    gap: 1rem; 
-    background-color: #22577A;
+        border: 1px solid #F0ECE5;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: #22577A;
     }
-    .outer-div{
+
+    .outer-div {
         flex-direction: column;
     }
-    .game-list{
+
+    .game-list {
         height: 60px;
         width: 100%;
         max-width: none;
@@ -197,26 +225,33 @@ mat-chip-option{
         display: flex;
         background-color: #22577A;
     }
-    .sport-section{
-        width:100%;
-    }
-    .upcoming-games{
+
+    .sport-section {
         width: 100%;
     }
-    .games-body{
+
+    .upcoming-games {
+        width: 100%;
+    }
+
+    .games-body {
         width: 98%;
     }
-    .game-card{
-        width: 48%; 
-        min-width: 300px;  
+
+    .game-card {
+        width: 48%;
+        min-width: 300px;
         height: 170px
     }
-    .mat-mdc-cell, .mat-mdc-header-cell {
+
+    .mat-mdc-cell,
+    .mat-mdc-header-cell {
         padding: 6px 6px 6px 2px !important;
-      }
-  }
-  @media screen and (max-width: 680px){
-    .game-card{
-        width: 98%; 
     }
-  }
+}
+
+@media screen and (max-width: 680px) {
+    .game-card {
+        width: 98%;
+    }
+}
