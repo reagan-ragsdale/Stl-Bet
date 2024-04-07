@@ -73,7 +73,7 @@ export class HomeScreenComponent {
   async onSportsListClick(sport: string) {
     this.selectedSport = sport
     let selected = this.gamesList.filter(e => e.name == sport)
-    this.gamesList.forEach(e => e.selected == false)
+    this.gamesList.forEach(e => e.selected = false)
     selected[0].selected = true
     await this.getData(sport)
   }
