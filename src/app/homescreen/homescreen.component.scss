@@ -57,10 +57,20 @@ mat-chip-option{
 
 
 .button-unselected{
+    margin-left:auto;
+     margin-right:auto; 
+     margin-bottom:3px; 
+     margin-top: 1rem; 
+     width: 92%; 
     background-color: #bbdefc !important;
     color: #240604 !important;
 }
 .button-selected{
+    margin-left:auto;
+     margin-right:auto; 
+     margin-bottom:3px; 
+     margin-top: 1rem; 
+     width: 92%; 
     background-color: #fb8501 !important;
     color: #240604 !important;
 }
