@@ -63,6 +63,7 @@ mat-chip-option {
 
 .button-unselected {
 
+    display: block;
     width: 92%;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -74,6 +75,7 @@ mat-chip-option {
 
 .button-selected {
 
+    display: block;
     width: 92%;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -162,6 +164,7 @@ table {
     z-index: 99;
     background-color: #8ecae6;
     gap: .5rem
+    
 }
 
 .sport-section {
