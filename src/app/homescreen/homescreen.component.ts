@@ -74,7 +74,7 @@ export class HomeScreenComponent {
     this.selectedSport = sport
     let selected = this.gamesList.filter(e => e.name == sport)
     this.gamesList.forEach(e => e.selected == false)
-    selected[0].selected == true
+    selected[0].selected = true
     await this.getData(sport)
   }
 
