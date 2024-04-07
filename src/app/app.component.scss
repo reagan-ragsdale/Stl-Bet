@@ -24,6 +24,9 @@
   transform: translateY(35%); 
   margin-left: 1rem;
 }
+.logo:hover{
+  color: #57CC99;
+}
 @media screen and (max-width: 600px){
   .top-button{
     gap:0;
