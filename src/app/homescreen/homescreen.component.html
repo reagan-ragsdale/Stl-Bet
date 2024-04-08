@@ -99,7 +99,7 @@
 
 
 
-              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" ></tr>
+              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header"></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
                 *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
             </table>

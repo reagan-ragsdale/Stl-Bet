@@ -227,7 +227,7 @@ table {
     cursor: pointer !important;
     color: #fb8501 !important;
 }
-.click-header :hover{
+.click-header:not(:first) :hover{
     cursor: pointer !important;
     color: #fb8501 !important;
 }
