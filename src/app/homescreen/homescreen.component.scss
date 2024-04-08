@@ -217,6 +217,11 @@ table {
 .mat-header-row{
     height: 20px !important;
 }
+.mat-header-row:hover{
+    height: 20px !important;
+    cursor: pointer !important;
+    color: #fb8501 !important;
+}
 .click-header :hover{
     cursor: pointer !important;
     color: #fb8501 !important;
