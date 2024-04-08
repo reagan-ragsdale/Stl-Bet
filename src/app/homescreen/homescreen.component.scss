@@ -218,8 +218,8 @@ table {
     height: 20px !important;
 }
 .click-header :hover{
-    cursor: pointer;
-    color: #fb8501;
+    cursor: pointer !important;
+    color: #fb8501 !important;
 }
 
 @media screen and (max-width: 974px) {
