@@ -78,21 +78,18 @@ export class HomeScreenComponent {
     await this.getData(sport)
   }
 
-  onTableColumnClick(stat: string){
-    console.log(stat)
-  }
 
   
-  async onPlayerStatsClick(stat: any) {
+  async onPlayerStatsClick(stat: string) {
     if(this.selectedSport == "NBA"){
-      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat.dbName)
+      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat)
     }
     if(this.selectedSport == "MLB"){
-      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5(stat.dbName, 2024)
+      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5(stat, 2024)
     }
     
-    stat.selected = true;
-    this.playerStatsButtons.filter(e => e.dbName != stat.dbName).forEach(d => d.selected = false);
+    //stat.selected = true;
+    //this.playerStatsButtons.filter(e => e.dbName != stat).forEach(d => d.selected = false);
 
 
   }
