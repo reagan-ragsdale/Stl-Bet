@@ -78,6 +78,10 @@ export class HomeScreenComponent {
     await this.getData(sport)
   }
 
+  onTableColumnClick(stat: string){
+    console.log(stat)
+  }
+
   
   async onPlayerStatsClick(stat: any) {
     if(this.selectedSport == "NBA"){
