@@ -45,8 +45,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MlbService } from '../Services/MlbService';
 import { Chart } from 'chart.js';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFullTeamNameToAbvr.pip';
 
 @Component({
+  standalone: true,
   selector: 'app-prop-screen',
   templateUrl: './prop-screen.component.html',
   styleUrls: ['./prop-screen.component.scss'],

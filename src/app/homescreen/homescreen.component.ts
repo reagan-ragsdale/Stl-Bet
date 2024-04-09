@@ -9,6 +9,7 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TransformFromTimestampToMonthDayPipe } from '../customPipes/transformTimestampToMonthDay.pipe';
+import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFullTeamNameToAbvr.pip';
 
 @Component({
     selector: 'home-screen',

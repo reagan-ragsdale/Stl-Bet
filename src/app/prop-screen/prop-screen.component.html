@@ -18,7 +18,7 @@
     <!-- <h1 style="margin-top:1rem; text-align: center;">Games</h1> -->
     <button *ngFor="let game of selectedSportGamesFinal" mat-raised-button style="display:block; width: 82%; font-size: 75%; margin-left: auto; margin-right: auto;"
         [ngClass]="game[0].selected === true ? 'selected-game' : ''" (click)="onGameClick(game[0][0].bookId)">
-        {{game[0][0].awayTeam}} @ {{game[0][0].homeTeam}}
+        {{game[0][0].awayTeam | transforFromFullTeamNameToAbvr}} @ {{game[0][0].homeTeam | transforFromFullTeamNameToAbvr}}
     </button>
   </div>
 

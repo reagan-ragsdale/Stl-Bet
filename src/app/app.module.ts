@@ -41,6 +41,7 @@ import { TeamStatsComponent } from './team-stats/team-stats.component';
 import {MatSortModule} from '@angular/material/sort';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TransformFromTimestampToMonthDayPipe } from "./customPipes/transformTimestampToMonthDay.pipe";
+import { TransforFromFullTeamNameToAbvr } from './customPipes/transformFromFullTeamNameToAbvr.pip';
 
 @NgModule({
     declarations: [
@@ -94,7 +95,8 @@ import { TransformFromTimestampToMonthDayPipe } from "./customPipes/transformTim
         MatTooltipModule,
         MatSortModule,
         NgbModule,
-        TransformFromTimestampToMonthDayPipe
+        TransformFromTimestampToMonthDayPipe,
+        TransforFromFullTeamNameToAbvr
     ]
 })
 export class AppModule { 
