@@ -90,6 +90,8 @@ mat-chip-option {
     text-decoration: none;
     width: 60%;
     color: #3a86ff !important;
+    margin-top:auto;
+    margin-bottom:auto;
 }
 
 .teamLink:hover {
@@ -107,8 +109,8 @@ mat-chip-option {
 
 .team-row p {
     display: inline-block;
-    margin-top: 1px;
-    margin-bottom: 1px;
+    margin-top: auto;
+    margin-bottom: auto;
     
 }
 
