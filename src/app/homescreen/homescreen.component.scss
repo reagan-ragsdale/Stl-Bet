@@ -163,11 +163,12 @@ table {
     height: 100%;
     width: 7%;
     max-width: 125px;
-    position: sticky !important;
+    position: fixed !important;
     top: 60px !important;
     z-index: 99;
     background-color: #8ecae6;
-    gap: .5rem
+    gap: .5rem;
+    left:0;
     
 }
 
@@ -177,6 +178,7 @@ table {
     display: flex;
     flex-direction: column;
     background-color: #ebebeb;
+    margin-left:7%;
 }
 
 .upcoming-games {
@@ -184,6 +186,7 @@ table {
     display: flex;
     align-items: center;
     margin-top: 1rem;
+    background-color: #ebebeb;
 }
 
 .games-body {
