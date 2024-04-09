@@ -108,7 +108,7 @@ black
   .games-list{
     width: 10%; 
     background-color: #8ecae6; 
-    height: 100%;
+    height: calc(100% - 60px);
     position: fixed; 
     top: 60px; 
     left:0; 
