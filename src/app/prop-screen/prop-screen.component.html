@@ -37,26 +37,13 @@
 
   <div style="width: 90%; margin-left: 10%"> 
 
-    <mat-tab-group [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)">
-      <mat-tab label="Game Props"></mat-tab>
-      <mat-tab label="Player Props"></mat-tab>
+    <mat-tab-group [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)" style="width:100%">
+      <mat-tab style="width: 50%" label="Game Props"></mat-tab>
+      <mat-tab style="width: 50%" label="Player Props"></mat-tab>
     </mat-tab-group>
 
     <div *ngIf="gamePropsClicked" class="prop-main">
       <mat-progress-bar style="width:auto" mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
-
-      <!-- <div class="away-team">
-        <h1 style="margin-top: 1rem; text-align: center;">Team 1</h1>
-        <div class="away-team-props">
-          
-        </div>
-      </div>
-      <div class="home-team">
-        <h1 style="margin-top: 1rem; text-align: center;">Team 2</h1>
-        <div class="home-team-props">
-
-        </div>
-      </div> -->
 
       <mat-grid-list *ngIf="selectedSport == 'NBA' && !teamPropIsLoading" cols="2" rowHeight="1:1">
         <mat-grid-tile rowspan="{{(team1GameStats.length/4) + 8}}" colspan="1"
