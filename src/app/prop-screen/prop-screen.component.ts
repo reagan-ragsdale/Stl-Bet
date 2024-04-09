@@ -48,7 +48,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFullTeamNameToAbvr.pip';
 
 @Component({
-  standalone: true,
   selector: 'app-prop-screen',
   templateUrl: './prop-screen.component.html',
   styleUrls: ['./prop-screen.component.scss'],
