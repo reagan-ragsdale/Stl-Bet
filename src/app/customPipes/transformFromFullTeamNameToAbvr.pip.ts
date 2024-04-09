@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MlbService } from '../Services/MlbService';
+import { reusedFunctions } from '../Services/reusedFunctions';
 
 @Pipe({
   standalone: true,
@@ -7,7 +7,7 @@ import { MlbService } from '../Services/MlbService';
 })
 export class TransforFromFullTeamNameToAbvr implements PipeTransform {
   transform(value: string): string {
-    return MlbService.mlbTeamNameToAbvr[value]
+    return reusedFunctions.teamNamesToAbvr[value]
     
   }
 }
