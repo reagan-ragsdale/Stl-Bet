@@ -195,7 +195,7 @@
               <mat-card *ngFor="let game of gameDataAllFinal" class="game-card" >
                 <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .2rem;">
                   <mat-card-title style="font-size:small; height: inherit">
-                    <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap;">
+                    <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap; margin-left: auto; margin-right: auto;">
                       <a class="teamLink" (click)="gameClick(game[0][0].bookId)" >{{game[0][0].awayTeam}} @ {{game[0][0].homeTeam}}</a>
                       
                       <h5 style="margin-top: 0; margin-bottom: 0;">{{game[0][0].commenceTime | transforFromTimestampToMonthDay}}</h5>
