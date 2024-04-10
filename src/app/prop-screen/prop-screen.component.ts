@@ -1347,6 +1347,7 @@ export class PropScreenComponent implements OnInit {
 
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
+    console.log(this.team1GameStatsDtoMLB)
 
     console.log(team1)
     name1 = team1[0].teamName;
@@ -2053,8 +2054,12 @@ export class PropScreenComponent implements OnInit {
     }
 
     else if (this.selectedSport == "MLB") {
+      console.log(team1)
+      console.log(team2)
       var team1New: DbMlbTeamGameStats[] = team1
       var team2New: DbMlbTeamGameStats[] = team2
+      console.log(team1New)
+      console.log(team2New)
       this.team1GameStatsDtoMLB = {
         gamesWon: 0,
         gamesLost: 0,
@@ -2936,7 +2941,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.spreadSeventhInningAway += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
           this.team2GameStatsDtoMLB.spreadEighthInningAway += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
           this.team2GameStatsDtoMLB.spreadNinthInningAway += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-2
+
           //tota2
           this.team2GameStatsDtoMLB.totalAway += (e.pointsScoredOverall + e.pointsAllowedOverall)
           this.team2GameStatsDtoMLB.totalFirstInningAway += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
@@ -2948,7 +2953,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.totalSeventhInningAway += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
           this.team2GameStatsDtoMLB.totalEighthInningAway += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
           this.team2GameStatsDtoMLB.totalNinthInningAway += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-2
+
           //points 2cored
           this.team2GameStatsDtoMLB.pointsScoredAwayGame += e.pointsScoredOverall
           this.team2GameStatsDtoMLB.pointsScoredFirstInningAway += e.pointsScoredFirstInning
