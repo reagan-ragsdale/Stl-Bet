@@ -1335,7 +1335,7 @@ export class PropScreenComponent implements OnInit {
     }
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2024)
-      this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2024)
+      this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[reusedFunctions.addUnderScoreToName(team2[0].teamName)], 2024)
     }
     else if (this.selectedSport == "NHL") {
 
