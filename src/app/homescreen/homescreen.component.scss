@@ -237,6 +237,10 @@ table {
     cursor: pointer !important;
     color: #fb8501 !important;
 }
+.mat-mdc-card-header-text{
+    margin-right:auto;
+    margin-left:auto;
+}
 
 @media screen and (max-width: 974px) {
     .top-fives {
