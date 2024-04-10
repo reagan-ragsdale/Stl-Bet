@@ -2817,7 +2817,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDtoMLB.spreadSixthInning += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
         this.team2GameStatsDtoMLB.spreadSeventhInning += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
         this.team2GameStatsDtoMLB.spreadEighthInning += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-        this.team2GameStatsDtoMLB.spreadNinthInning += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)2
+        this.team2GameStatsDtoMLB.spreadNinthInning += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
         //tota2
         this.team2GameStatsDtoMLB.totalOverall += (e.pointsScoredOverall + e.pointsAllowedOverall)
         this.team2GameStatsDtoMLB.totalFirstInning += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
@@ -2828,7 +2828,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDtoMLB.totalSixthInning += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
         this.team2GameStatsDtoMLB.totalSeventhInning += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
         this.team2GameStatsDtoMLB.totalEighthInning += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-        this.team2GameStatsDtoMLB.totalNinthInning += e.pointsScoredNinthInning + e.pointsAllowedNinthInning2
+        this.team2GameStatsDtoMLB.totalNinthInning += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
         //points 2cored
         this.team2GameStatsDtoMLB.pointsScoredOverallGame += e.pointsScoredOverall
         this.team2GameStatsDtoMLB.pointsScoredOverallFirstInning += e.pointsScoredFirstInning
@@ -2839,7 +2839,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDtoMLB.pointsScoredOverallSixthInning += e.pointsScoredSixthInning
         this.team2GameStatsDtoMLB.pointsScoredOverallSeventhInning += e.pointsScoredSeventhInning
         this.team2GameStatsDtoMLB.pointsScoredOverallEighthInning += e.pointsScoredEigthInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallNinthInning += e.pointsScoredNinthInning2
+        this.team2GameStatsDtoMLB.pointsScoredOverallNinthInning += e.pointsScoredNinthInning
         //points 2llowed
         this.team2GameStatsDtoMLB.pointsAllowedOverallGame += e.pointsAllowedOverall
         this.team2GameStatsDtoMLB.pointsAllowedOverallFirstInning += e.pointsAllowedFirstInning
@@ -2864,7 +2864,7 @@ export class PropScreenComponent implements OnInit {
         e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonHome += 1 : this.team2GameStatsDtoMLB.inningSixLostHome += 1;
         e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonHome += 1 : this.team2GameStatsDtoMLB.inningSevenLostHome += 1;
         e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonHome += 1 : this.team2GameStatsDtoMLB.inningEightLostHome += 1;
-        e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonHome += 1 : this.team2GameStatsDtoMLB.inningNineLostHome += 1;2
+        e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonHome += 1 : this.team2GameStatsDtoMLB.inningNineLostHome += 1;
         //spread
         this.team2GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
         this.team2GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
@@ -2875,7 +2875,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
         this.team2GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
         this.team2GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-        this.team2GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)2
+        this.team2GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
         //tota2
         this.team2GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
         this.team2GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
@@ -2886,7 +2886,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
         this.team2GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
         this.team2GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-        this.team2GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning2
+        this.team2GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
         //points 2cored
         this.team2GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
         this.team2GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
@@ -2897,7 +2897,7 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
         this.team2GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
         this.team2GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
-        this.team2GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning2
+        this.team2GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
         //points 2llowed
         this.team2GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
         this.team2GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
