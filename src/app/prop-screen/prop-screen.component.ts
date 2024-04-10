@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, TemplateRef, ViewChild, afterRender, inject } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef, ViewChild, ViewEncapsulation, afterRender, inject } from '@angular/core';
 import { SportsTitleToName } from '../sports-titel-to-name';
 import { SelectedSportsData } from '../selected-sports-data';
 import { GameId } from '../game-id';
@@ -60,6 +60,7 @@ import { DbMlbTeamGameStats } from 'src/shared/dbTasks/DbMlbTeamGameStats';
     ]),
   ],
   providers: [nhlApiController],
+  encapsulation: ViewEncapsulation.None,
 })
 
 

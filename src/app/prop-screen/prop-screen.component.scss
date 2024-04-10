@@ -26,8 +26,11 @@ black
 mat-tab-group{
   background-color: #22577A;
 }
-mdc-tab__text-label{
+mdc-tab-label{
   color: white
+}
+.mat-tab-label{
+  color:white
 }
 .team-prop-display{
     background-color:rgb(255, 56, 56);
