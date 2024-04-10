@@ -37,6 +37,21 @@
 
   <div style="width: 90%; margin-left: 10%"> 
 
+    <div style="display:flex; flex-direction: column; width: 100%">
+      <div style="display:flex">
+        <h2 style="width: 48%; text-align: center;">Team 1</h2>
+        <h2 style="width: 4%; text-align: center;">@</h2>
+        <h2 style="width: 48%; text-align: center;">Team 2</h2>
+      </div>
+      <div>
+        <div style="display:flex">
+          <h2 style="width: 48%; text-align: center;">5-4</h2>
+          <h2 style="width: 4%; text-align: center;"></h2>
+          <h2 style="width: 48%; text-align: center;">6-3</h2>
+        </div>
+      </div>
+    </div>
+
     <mat-tab-group [backgroundColor]="'primary'" (selectedTabChange)="onPropTypeClicked($event)" style="width:100%">
       <mat-tab style="width: 50%" label="Game Props"></mat-tab>
       <mat-tab style="width: 50%" label="Player Props"></mat-tab>
