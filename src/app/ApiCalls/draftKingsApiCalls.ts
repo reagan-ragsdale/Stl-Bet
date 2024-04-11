@@ -93,22 +93,19 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     const promise = await fetch(apiCall);
     const processedResponse = await promise.json();
     this.selectedSportsData = processedResponse;
-    this.sportsBookData = await this.convertSportsDataToInterface("new")
+    this.sportsBookData = await this.convertSportsDataToInterface()
     return this.sportsBookData;
   }
 
-  static async convertSportsDataToInterface(seq: string): Promise<DbGameBookData[]> {
+  static async convertSportsDataToInterface(): Promise<DbGameBookData[]> {
     var tempData: DbGameBookData[] = [];
     let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
     let nextBookSeq = 0
     if(bookDb.length == 0){
       nextBookSeq = 0
     }
-    else if(seq == "new"){
+    else{
       nextBookSeq = bookDb[0].bookSeq + 1
-    }
-    else if(seq = "same"){
-      nextBookSeq = bookDb[0].bookSeq
     }
    
     for (let i = 0; i < this.selectedSportsData.length; i++) {
@@ -136,14 +133,49 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     return tempData;
   }
 
+  static async convertSportsSinglePropDataToInterface(): Promise<DbGameBookData[]> {
+    var tempData: DbGameBookData[] = [];
+    let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
+    let nextBookSeq = 0
+    if(bookDb.length == 0){
+      nextBookSeq = 0
+    }
+    else {
+      nextBookSeq = bookDb[0].bookSeq
+    }
+   
+    
+      for (let j = 0; j < this.selectedSportsData.bookmakers.length; j++) {
+        for (let k = 0; k < this.selectedSportsData.bookmakers[j].markets.length; k++) {
+          for (let m = 0; m < this.selectedSportsData.bookmakers[j].markets[k].outcomes.length; m++) {
+            tempData.push({
+              bookId: this.selectedSportsData.id,
+              sportKey: this.selectedSportsData.sport_key,
+              sportTitle: this.selectedSportsData.sport_title,
+              homeTeam: this.selectedSportsData.home_team,
+              awayTeam: this.selectedSportsData.away_team,
+              commenceTime: this.selectedSportsData.commence_time,
+              bookMaker: this.selectedSportsData.bookmakers[j].title,
+              marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
+              teamName: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name,
+              price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
+              point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
+              bookSeq: nextBookSeq
+            });
+          }
+        }
+      }
+    
+    return tempData;
+  }
+
   public static async getSpecificPropByBookId(bookId: string, prop: string, sport: string){
     let url = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=" + prop + "&bookmakers=draftkings&oddsFormat=american";
     try{
       const promise = await fetch(url);
       const processedResponse = await promise.json();
       this.selectedSportsData = processedResponse;
-      console.log(this.selectedSportsData)
-      this.sportsBookData = await this.convertSportsDataToInterface("same")
+      this.sportsBookData = await this.convertSportsSinglePropDataToInterface()
       
     }catch(error:any){
       console.log(error.message)
