@@ -1051,7 +1051,7 @@ export class PropScreenComponent implements OnInit {
   public dates: string[] = [];
   public games: GameId[] = [];
 
-  public displayPropHtml1: PropData =
+  public displayPropHtml1 =
     {
       name: '',
       abvr: '',
@@ -1059,9 +1059,10 @@ export class PropScreenComponent implements OnInit {
       spreadPoint: 0,
       spreadPrice: 0,
       totalPoint: 0,
-      totalPrice: 0
+      totalPrice: 0,
+      commenceTime: ''
     };
-  public displayPropHtml2: PropData =
+  public displayPropHtml2 =
     {
       name: '',
       abvr: '',
@@ -1069,7 +1070,8 @@ export class PropScreenComponent implements OnInit {
       spreadPoint: 0,
       spreadPrice: 0,
       totalPoint: 0,
-      totalPrice: 0
+      totalPrice: 0,
+      commenceTime: ''
     };
 
   public selectedTab: number = 0;
@@ -1373,7 +1375,7 @@ export class PropScreenComponent implements OnInit {
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
+    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
     console.log(this.displayPropHtml1)
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
@@ -1396,7 +1398,7 @@ export class PropScreenComponent implements OnInit {
     }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
-    this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice });
+    this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
     console.log(this.displayPropHtml2)
     this.teamPropIsLoading = false
   }
