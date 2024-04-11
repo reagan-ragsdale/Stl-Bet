@@ -9,7 +9,7 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
 
 
 
- export class draftKingsApiController {
+export class draftKingsApiController {
 
   static playerProps: any
   static playerPropData: DbPlayerPropData[] = []
@@ -86,7 +86,7 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     this.selectedSportGames = processedResponse;
     return processedResponse;
   }
- 
+
   public static async getDatesAndGames(sport: string) {
     const sportNew = this.convertSport(sport);
     const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=h2h,spreads,totals&bookmakers=draftkings&oddsFormat=american";
@@ -101,13 +101,13 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     var tempData: DbGameBookData[] = [];
     let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
     let nextBookSeq = 0
-    if(bookDb.length == 0){
+    if (bookDb.length == 0) {
       nextBookSeq = 0
     }
-    else{
+    else {
       nextBookSeq = bookDb[0].bookSeq + 1
     }
-   
+
     for (let i = 0; i < this.selectedSportsData.length; i++) {
       for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
         for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
@@ -137,55 +137,55 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     console.log(this.selectedSportsData.id)
     console.log(this.selectedSportsData.bookmakers)
     var tempData: DbGameBookData[] = [];
-    let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
+    let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData.id)
     let nextBookSeq = 0
-    if(bookDb.length == 0){
+    if (bookDb.length == 0) {
       nextBookSeq = 0
     }
     else {
       nextBookSeq = bookDb[0].bookSeq
     }
-   
-    
-      for (let j = 0; j < this.selectedSportsData.bookmakers.length; j++) {
-        for (let k = 0; k < this.selectedSportsData.bookmakers[j].markets.length; k++) {
-          for (let m = 0; m < this.selectedSportsData.bookmakers[j].markets[k].outcomes.length; m++) {
-            tempData.push({
-              bookId: this.selectedSportsData.id,
-              sportKey: this.selectedSportsData.sport_key,
-              sportTitle: this.selectedSportsData.sport_title,
-              homeTeam: this.selectedSportsData.home_team,
-              awayTeam: this.selectedSportsData.away_team,
-              commenceTime: this.selectedSportsData.commence_time,
-              bookMaker: this.selectedSportsData.bookmakers[j].title,
-              marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
-              teamName: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name,
-              price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
-              point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
-              bookSeq: nextBookSeq
-            });
-          }
+
+
+    for (let j = 0; j < this.selectedSportsData.bookmakers.length; j++) {
+      for (let k = 0; k < this.selectedSportsData.bookmakers[j].markets.length; k++) {
+        for (let m = 0; m < this.selectedSportsData.bookmakers[j].markets[k].outcomes.length; m++) {
+          tempData.push({
+            bookId: this.selectedSportsData.id,
+            sportKey: this.selectedSportsData.sport_key,
+            sportTitle: this.selectedSportsData.sport_title,
+            homeTeam: this.selectedSportsData.home_team,
+            awayTeam: this.selectedSportsData.away_team,
+            commenceTime: this.selectedSportsData.commence_time,
+            bookMaker: this.selectedSportsData.bookmakers[j].title,
+            marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
+            teamName: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name,
+            price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
+            point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
+            bookSeq: nextBookSeq
+          });
         }
       }
-    
+    }
+
     return tempData;
   }
 
-  public static async getSpecificPropByBookId(bookId: string, prop: string, sport: string){
+  public static async getSpecificPropByBookId(bookId: string, prop: string, sport: string) {
     let url = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=" + prop + "&bookmakers=draftkings&oddsFormat=american";
-    try{
+    try {
       const promise = await fetch(url);
       const processedResponse = await promise.json();
       this.selectedSportsData = processedResponse;
       this.sportsBookData = await this.convertSportsSinglePropDataToInterface()
-      
-    }catch(error:any){
+
+    } catch (error: any) {
       console.log(error.message)
     }
     return this.sportsBookData;
-    
+
   }
 
 
-  
+
 }
