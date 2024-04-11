@@ -138,11 +138,18 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
 
   public static async getSpecificPropByBookId(bookId: string, prop: string, sport: string){
     let url = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=" + prop + "&bookmakers=draftkings&oddsFormat=american";
-    const promise = await fetch(url);
-    const processedResponse = await promise.json();
-    this.selectedSportsData = processedResponse;
-    this.sportsBookData = await this.convertSportsDataToInterface("same")
+    try{
+      const promise = await fetch(url);
+      const processedResponse = await promise.json();
+      this.selectedSportsData = processedResponse;
+      console.log(this.selectedSportsData)
+      this.sportsBookData = await this.convertSportsDataToInterface("same")
+      
+    }catch(error:any){
+      console.log(error.message)
+    }
     return this.sportsBookData;
+    
   }
 
 
