@@ -134,6 +134,8 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
   }
 
   static async convertSportsSinglePropDataToInterface(): Promise<DbGameBookData[]> {
+    console.log(this.selectedSportsData.id)
+    console.log(this.selectedSportsData.bookmakers)
     var tempData: DbGameBookData[] = [];
     let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
     let nextBookSeq = 0
@@ -175,7 +177,6 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
       const promise = await fetch(url);
       const processedResponse = await promise.json();
       this.selectedSportsData = processedResponse;
-      console.log(this.selectedSportsData)
       this.sportsBookData = await this.convertSportsSinglePropDataToInterface()
       
     }catch(error:any){
