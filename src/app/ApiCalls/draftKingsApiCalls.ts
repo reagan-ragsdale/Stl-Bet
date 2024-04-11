@@ -175,6 +175,7 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
       const promise = await fetch(url);
       const processedResponse = await promise.json();
       this.selectedSportsData = processedResponse;
+      console.log(this.selectedSportsData)
       this.sportsBookData = await this.convertSportsSinglePropDataToInterface()
       
     }catch(error:any){
