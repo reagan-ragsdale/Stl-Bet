@@ -6,7 +6,7 @@ export const cronSportsBookHourly = async () => {
 
     const listOfActiveSports: string[] = ["MLB", "NBA"]
 
-    const listOfMlbExtraGameProps: string = "alternate_spreads, alternate_totals"
+    const listOfMlbExtraGameProps: string = "alternate_spreads,alternate_totals"
 
     for (let sport of listOfActiveSports) {
         try {
