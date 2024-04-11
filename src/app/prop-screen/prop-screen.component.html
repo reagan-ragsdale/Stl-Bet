@@ -13,7 +13,7 @@
 </ng-template>
 
 
-<div style="height: 100%; width: auto; background-color: #252324; display: flex;">
+<div style="width: auto; background-color: #252324; display: flex;">
   <div class="games-list">
     <!-- <h1 style="margin-top:1rem; text-align: center;">Games</h1> -->
     <button *ngFor="let game of selectedSportGamesFinal" mat-raised-button style="display:block; width: 82%; font-size: 75%; margin-left: auto; margin-right: auto; margin-top: 5px; "
@@ -47,8 +47,8 @@
         <div style="display:flex">
           <h2 style="width: 47%; text-align: center;">{{team2GameStatsDtoMLB.gamesWon}} - {{team2GameStatsDtoMLB.gamesLost}}</h2>
           <div style="width: 6%; display: flex; flex-direction:column;">
-            <h2 style="width: 100%; text-align: center;">{{displayPropHtml2.commenceTime | transforFromTimestampToMonthDay}}</h2>
-            <h3 style="width: 100%; text-align: center;">{{displayPropHtml2.commenceTime | transformFromTimestampToTime}}</h3>
+            <h2 style="width: 100%; text-align: center; margin-bottom:0;">{{displayPropHtml2.commenceTime | transforFromTimestampToMonthDay}}</h2>
+            <h3 style="width: 100%; text-align: center; margin-bottom:0;">{{displayPropHtml2.commenceTime | transformFromTimestampToTime}}</h3>
           </div>
           <h2 style="width: 47%; text-align: center;">{{team1GameStatsDtoMLB.gamesWon}} - {{team1GameStatsDtoMLB.gamesLost}}</h2>
         </div>
