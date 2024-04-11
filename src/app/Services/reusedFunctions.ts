@@ -152,10 +152,19 @@ export class reusedFunctions {
     else if(parseInt(hour) == 5){
       hour = "24"
     }
+    else{
+      hour = (parseInt(hour) - 5).toString()
+    }
 
     if(parseInt(hour) > 12){
       hour = (parseInt(hour) - 12).toString()
       amPm = "PM"
+    }
+    else if(parseInt(hour) == 12){
+      amPm = "PM"
+    }
+    if(hour == "24"){
+      hour = "12"
     }
     finalTime = hour + minute + " " + amPm
 
