@@ -93,19 +93,22 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
     const promise = await fetch(apiCall);
     const processedResponse = await promise.json();
     this.selectedSportsData = processedResponse;
-    this.sportsBookData = await this.convertSportsDataToInterface()
+    this.sportsBookData = await this.convertSportsDataToInterface("new")
     return this.sportsBookData;
   }
 
-  static async convertSportsDataToInterface(): Promise<DbGameBookData[]> {
+  static async convertSportsDataToInterface(seq: string): Promise<DbGameBookData[]> {
     var tempData: DbGameBookData[] = [];
     let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
-    let nextBookSeq
+    let nextBookSeq = 0
     if(bookDb.length == 0){
       nextBookSeq = 0
     }
-    else{
+    else if(seq == "new"){
       nextBookSeq = bookDb[0].bookSeq + 1
+    }
+    else if(seq = "same"){
+      nextBookSeq = bookDb[0].bookSeq
     }
    
     for (let i = 0; i < this.selectedSportsData.length; i++) {
@@ -131,6 +134,15 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
       }
     }
     return tempData;
+  }
+
+  public static async getSpecificPropByBookId(bookId: string, prop: string, sport: string){
+    let url = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=" + prop + "&bookmakers=draftkings&oddsFormat=american";
+    const promise = await fetch(url);
+    const processedResponse = await promise.json();
+    this.selectedSportsData = processedResponse;
+    this.sportsBookData = await this.convertSportsDataToInterface("same")
+    return this.sportsBookData;
   }
 
 
