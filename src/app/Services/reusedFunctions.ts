@@ -134,4 +134,32 @@ export class reusedFunctions {
     return finalDate + " " + hour + minute;
   }
 
+  static convertTimestampToTime(fullTime: string): string {
+    var finalTime = ''
+    var amPm = 'AM'
+    var tempDate = fullTime?.split("T");
+    var time = tempDate[1].slice(0, 2)
+    var subtractDay = false
+    if (parseInt(time) - 5 <= 0) {
+      subtractDay = true
+    }
+    var timeHourMinute = tempDate[1].slice(0, 5)
+    let hour = timeHourMinute.slice(0, 2)
+    let minute = timeHourMinute.slice(2)
+    if(parseInt(hour) < 5){
+      hour = (24 - (5 - parseInt(hour))).toString() 
+    }
+    else if(parseInt(hour) == 5){
+      hour = "24"
+    }
+
+    if(parseInt(hour) > 12){
+      hour = (parseInt(hour) - 12).toString()
+      amPm = "PM"
+    }
+    finalTime = hour + minute + " " + amPm
+
+    return finalTime
+  }
+
 }
