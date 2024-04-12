@@ -67,7 +67,7 @@ export class DbGameBookData {
   static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
     SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and marketkey in (' +  whereFragment.addParameterAndReturnSqlToken('h2h, totals, spreads') + ') and date(commencetime) >= CURRENT_DATE'
+      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and marketkey in (' +  whereFragment.addParameterAndReturnSqlToken('h2h') + ', ' + whereFragment.addParameterAndReturnSqlToken('spreads') + ', ' + whereFragment.addParameterAndReturnSqlToken('totals') +') and date(commencetime) >= CURRENT_DATE'
     })
     
     
