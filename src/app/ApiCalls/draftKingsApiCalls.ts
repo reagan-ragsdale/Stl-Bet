@@ -135,7 +135,7 @@ export class draftKingsApiController {
 
   static async convertSportsSinglePropDataToInterface(): Promise<DbGameBookData[]> {
     console.log(this.selectedSportsData.id)
-    console.log(this.selectedSportsData.bookmakers)
+    console.log(this.selectedSportsData.bookmakers.length)
     var tempData: DbGameBookData[] = [];
     let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData.id)
     let nextBookSeq = 0
@@ -172,7 +172,8 @@ export class draftKingsApiController {
   }
 
   public static async getSpecificPropByBookId(bookId: string, prop: string, sport: string) {
-    let url = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=" + prop + "&bookmakers=draftkings&oddsFormat=american";
+    let sportNew = this.convertSport(sport)
+    let url = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=" + prop + "&bookmakers=draftkings&oddsFormat=american";
     try {
       const promise = await fetch(url);
       const processedResponse = await promise.json();

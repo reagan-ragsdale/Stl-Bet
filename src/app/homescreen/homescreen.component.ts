@@ -10,6 +10,7 @@ import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TransformFromTimestampToMonthDayPipe } from '../customPipes/transformTimestampToMonthDay.pipe';
 import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFullTeamNameToAbvr.pip';
+import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 
 @Component({
     selector: 'home-screen',
@@ -175,6 +176,11 @@ export class HomeScreenComponent {
       
     }
     else if (sport == "MLB") {
+      let url = "https://api.the-odds-api.com/v4/sports/baseball_mlb/events/3d8ad09142a65f353c419f64285d06e2/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=alternate_totals,alternate_spreads&bookmakers=draftkings&oddsFormat=american";
+    
+      const promise = await fetch(url);
+      const processedResponse = await promise.json();
+      console.log(processedResponse)
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
       this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns", 2024)
