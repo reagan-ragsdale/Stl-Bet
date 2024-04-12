@@ -7498,18 +7498,21 @@
 
       <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" style="width:100%; display: flex;">
         <div class="away-team">
-            <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center" >{{displayPropHtml2.name}}</h2>
-            <h3 style="text-align:center;">Props</h3>
+            <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center" >{{displayPropHtml2.name}} game props</h2>
+            <!-- <h3 style="text-align:center;">Props</h3>
             <div class="prop-names" style="display: flex; width: 100%;">
               <p>MoneyLine</p><p>Spread</p><p>O/U</p>
             </div>
             <div class="prop-names" style="display: flex; width: 100%;">
               <button mat-raised-button (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{displayPropHtml2.h2h > 0 ? "+" : " "}}{{displayPropHtml2.h2h}}</button><button mat-raised-button (click)="propTrend(displayPropHtml2.name, 'spreads', content)">{{displayPropHtml2.spreadPoint > 0 ? "+" : " "}}{{displayPropHtml2.spreadPoint}} | {{displayPropHtml2.spreadPrice > 0 ? "+" : " "}}{{displayPropHtml2.spreadPrice}}</button><button mat-raised-button (click)="propTrend(displayPropHtml2.name, 'totals', content)"><span style="display: flex;"><span style="margin-top:auto; margin-bottom:auto;">{{displayPropHtml2.totalPoint}} | </span><span style="display:flex; flex-direction: column; align-items: center;"><span>{{displayPropHtml2.totalPrice > 0 ? "+" : " "}}{{displayPropHtml2.totalPrice}} O</span><span>{{displayPropHtml1.totalPrice > 0 ? "+" : " "}}{{displayPropHtml1.totalPrice}} U</span></span></span></button>
-            </div>
+            </div> -->
             <div style="width: 100%; display: flex; flex-direction: column;">
               <div style="display: flex; width: 96%; margin-top: 1rem; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A;">
-                <div style="width: 20%; text-align:center; margin-top: 1rem; margin-left: 1rem; margin-right: auto;">
+                <div style="width: 20%; text-align:center; margin-top: 1rem; margin-left: 1rem; ">
                   <h2>Moneyline:</h2>
+                </div>
+                <div style="width: 20%; margin-left: 1rem;">
+                  <button  style="width: 82%; height: 80%; margin: auto;" mat-raised-button (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{displayPropHtml2.h2h > 0 ? "+" : " "}}{{displayPropHtml2.h2h}}</button>
                 </div>
               </div>
             </div>
