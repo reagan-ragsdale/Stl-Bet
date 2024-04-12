@@ -64,6 +64,15 @@ export class DbGameBookData {
     
   });
 
+  static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
+    SqlDatabase.LogToConsole = true
+    return SqlDatabase.rawFilter((whereFragment) => {
+      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + 'and markeykey in (h2h, spreads, totals) and date(commencetime) >= CURRENT_DATE'
+    })
+    
+    
+  });
+
   static allSportFilterByMaxBookSeqAndh2h = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
     SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
