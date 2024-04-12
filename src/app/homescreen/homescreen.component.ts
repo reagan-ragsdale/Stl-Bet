@@ -176,7 +176,7 @@ export class HomeScreenComponent {
       
     }
     else if (sport == "MLB") {
-      let url = "https://api.the-odds-api.com/v4/sports/baseball_mlb/events/3d8ad09142a65f353c419f64285d06e2/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=alternate_totals,alternate_spreads&bookmakers=draftkings&oddsFormat=american";
+      let url = "https://api.the-odds-api.com/v4/sports/baseball_mlb/events/9a24f550f71e1d4c0ebab0caa37adf60/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=alternate_totals,alternate_spreads&bookmakers=draftkings&oddsFormat=american";
     
       const promise = await fetch(url);
       const processedResponse = await promise.json();
@@ -221,7 +221,7 @@ export class HomeScreenComponent {
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
       this.gameDataAll = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(sport)
-      console.log(this.gameDataAll)
+      
       var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
