@@ -2737,7 +2737,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
           this.team1GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
         }
-        if(e.teamAgainstName == team2New[0].teamName){
+        if(e.teamAgainstId == team2New[0].teamAgainstId){
           e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team1GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
           //result by inning
@@ -2982,7 +2982,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
           this.team2GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
         }
-        if(e.teamAgainstName == team2New[0].teamName){
+        if(e.teamAgainstId == team1New[0].teamAgainstId){
           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
           //result by inning
