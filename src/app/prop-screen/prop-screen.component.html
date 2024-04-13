@@ -7220,16 +7220,15 @@
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <h3 style="text-align:center">Overall %</h3>
-                <p>{{team1GameStatsDtoMLB.gamesWon / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon) | number}}</p>
+                <p style="text-align:center">{{team1GameStatsDtoMLB.gamesWon / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon) | number}}</p>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <h3 style="text-align:center">Home %</h3>
-                <p>{{team1GameStatsDtoMLB.gamesWonHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesWonHome) | number}}</p>
+                <p style="text-align:center">{{team1GameStatsDtoMLB.gamesWonHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesWonHome) | number}}</p>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <h3 style="text-align:center">Vs Team %</h3>
-                <p *ngif="team1GameStatsDtoMLB.gamesWonVsOpponent != 0 || team1GameStatsDtoMLB.gamesLostVsOpponent != 0">{{team1GameStatsDtoMLB.gamesWonVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent) | number}}</p>
-                <p *ngif="team1GameStatsDtoMLB.gamesWonVsOpponent == 0 || team1GameStatsDtoMLB.gamesLostVsOpponent == 0">0</p>
+                <p style="text-align:center" *ngif="team1GameStatsDtoMLB.gamesWonVsOpponent != 0 || team1GameStatsDtoMLB.gamesLostVsOpponent != 0">{{team1GameStatsDtoMLB.gamesWonVsOpponent == 0 ? 0 : team1GameStatsDtoMLB.gamesWonVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent) | number}}</p>
 
               </div>
               
