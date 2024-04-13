@@ -1351,7 +1351,7 @@ export class PropScreenComponent implements OnInit {
 
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
-    console.log(this.team1GameStatsDtoMLB)
+    console.log(this.team2GameStatsDtoMLB)
 
     console.log(team1)
     name1 = team1[0].teamName;
@@ -2809,7 +2809,7 @@ export class PropScreenComponent implements OnInit {
         e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWon += 1 : this.team2GameStatsDtoMLB.inningOneLost += 1;
         e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWon += 1 : this.team2GameStatsDtoMLB.inningTwoLost += 1;
         e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWon += 1 : this.team2GameStatsDtoMLB.inningThreeLost += 1;
-        e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWon += 1 : this.team1GameStatsDtoMLB.inningFourLost += 1;
+        e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWon += 1 : this.team2GameStatsDtoMLB.inningFourLost += 1;
         e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWon += 1 : this.team2GameStatsDtoMLB.inningFiveLost += 1;
         e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWon += 1 : this.team2GameStatsDtoMLB.inningSixLost += 1;
         e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWon += 1 : this.team2GameStatsDtoMLB.inningSevenLost += 1;
@@ -2983,7 +2983,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
         }
         if(e.teamAgainstName == team2New[0].teamName){
-          e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team1GameStatsDtoMLB.gamesLostVsOpponent += 1;
+          e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
           //result by inning
           e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningOneLostVsOpponent += 1;
