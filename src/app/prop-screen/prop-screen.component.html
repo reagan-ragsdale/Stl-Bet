@@ -7264,9 +7264,9 @@
                 </button>
                 <form style="align-items: center;" class="example-form">
                   <mat-form-field class="example-full-width">
-                      <mat-option *ngFor="let prop of alternateSpreads" [value]="prop"
+                      <mat-option *ngFor="let prop of alternateSpreads" [value]="0"
                         (onSelectionChange)="loadNewSpreadProp(team2GameStats, team1GameStats, prop)">
-                        {{prop}}
+                        0
                       </mat-option>
                   </mat-form-field>
                 </form>

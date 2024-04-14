@@ -1339,7 +1339,8 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
-     console.log(team1)
+      this.alternateSpreads = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
+      console.log(this.alternateSpreads)
     }
     else if (this.selectedSport == "NHL") {
 
