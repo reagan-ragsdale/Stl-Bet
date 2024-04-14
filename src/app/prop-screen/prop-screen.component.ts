@@ -135,6 +135,7 @@ export class PropScreenComponent implements OnInit {
 
   public selectedPropHistoryName: string = ''
   public propHistory: DbGameBookData[] = []
+  public alternateSpreads: number[] = []
 
   //charts
   public chart: any;
@@ -1338,6 +1339,7 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
+     console.log(team1)
     }
     else if (this.selectedSport == "NHL") {
 
@@ -1396,6 +1398,7 @@ export class PropScreenComponent implements OnInit {
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
 
+    
     this.teamPropIsLoading = false
   }
 
@@ -3053,11 +3056,15 @@ export class PropScreenComponent implements OnInit {
 
   }
 
+  loadNewSpreadProp(team1: any[], team2: any[], prop: number ){
+    this.awaySpreadOverallChance = this.calculateSpreadPropChace(team1, team2, prop, 'overall')
+  }
+
   //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
   //because for a positive spread that means everything less than that number wins
   //when the prop is negative then we want t
-
-  calculateSpreadPropChace(teamStats: DbMlbTeamGameStats[], prop: number, type: string, teamAgainst?: DbMlbTeamGameStats[]): number {
+  public awaySpreadOverallChance: number = 0
+  calculateSpreadPropChace(teamStats: any[], teamAgainstStats: any[], prop: number, type: string): number {
     let final = 0;
     let totalFor: DbMlbTeamGameStats[] = [];
     let totalOverall: number = 0;
@@ -3079,11 +3086,11 @@ export class PropScreenComponent implements OnInit {
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Away").length
     }
-    if(type == "team" && teamAgainst){
+    if(type == "team"){
       totalFor = teamStats.filter(e => {
-        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainst[0].teamId
+        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId
       })
-      totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainst[0].teamId).length
+      totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
     }
     
     final = totalFor.length / totalOverall

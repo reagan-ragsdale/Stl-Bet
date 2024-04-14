@@ -7257,15 +7257,23 @@
                 <h2 style="margin-top:auto; margin-bottom: auto; margin-left: 1rem; color: white;">Spread:</h2>
               </div>
               <div style="width: 15%; height: inherit; display: flex;">
-                <button style=" margin: auto; height: 60%;"
+                <button style=" margin: auto; height: 60%;" []
                   mat-raised-button (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{displayPropHtml2.spreadPoint > 0 ? "+" :
                   " "}}{{displayPropHtml2.spreadPoint}} | {{displayPropHtml2.spreadPrice > 0 ? "+" : "
                   "}}{{displayPropHtml2.spreadPrice}}
                 </button>
+                <form style="align-items: center;" class="example-form">
+                  <mat-form-field class="example-full-width">
+                      <mat-option *ngFor="let prop of alternateSpreads" [value]="prop"
+                        (onSelectionChange)="loadNewSpreadProp(team2GameStats, team1GameStats, prop)">
+                        {{prop}}
+                      </mat-option>
+                  </mat-form-field>
+                </form>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" [value]="calculateSpreadPropChace(team2GameStats, displayPropHtml2.spreadPrice, 'overall')">
-                  
+                <button mat-raised-button style="margin:auto; height: 60%;" >
+                  {{awaySpreadOverallChance}}
                 </button>
                 
               </div>
