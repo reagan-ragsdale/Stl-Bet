@@ -1372,7 +1372,7 @@ export class PropScreenComponent implements OnInit {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
     this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
-    
+
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
     spreadProp = team2.filter((e) => e.marketKey == "spreads")
@@ -1395,7 +1395,7 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
-    
+
     this.teamPropIsLoading = false
   }
 
@@ -2605,70 +2605,70 @@ export class PropScreenComponent implements OnInit {
         this.team1GameStatsDtoMLB.pointsAllowedOverallEighthInning += e.pointsAllowedEigthInning
         this.team1GameStatsDtoMLB.pointsAllowedOverallNinthInning += e.pointsAllowedNinthInning
 
-        if(e.homeOrAway == "Home"){
+        if (e.homeOrAway == "Home") {
           e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonHome += 1 : this.team1GameStatsDtoMLB.gamesLostHome += 1;
 
-        //result by inning
-        e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonHome += 1 : this.team1GameStatsDtoMLB.inningOneLostHome += 1;
-        e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonHome += 1 : this.team1GameStatsDtoMLB.inningTwoLostHome += 1;
-        e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonHome += 1 : this.team1GameStatsDtoMLB.inningThreeLostHome += 1;
-        e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonHome += 1 : this.team1GameStatsDtoMLB.inningFourLostHome += 1;
-        e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonHome += 1 : this.team1GameStatsDtoMLB.inningFiveLostHome += 1;
-        e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonHome += 1 : this.team1GameStatsDtoMLB.inningSixLostHome += 1;
-        e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonHome += 1 : this.team1GameStatsDtoMLB.inningSevenLostHome += 1;
-        e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonHome += 1 : this.team1GameStatsDtoMLB.inningEightLostHome += 1;
-        e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonHome += 1 : this.team1GameStatsDtoMLB.inningNineLostHome += 1;
+          //result by inning
+          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonHome += 1 : this.team1GameStatsDtoMLB.inningOneLostHome += 1;
+          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonHome += 1 : this.team1GameStatsDtoMLB.inningTwoLostHome += 1;
+          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonHome += 1 : this.team1GameStatsDtoMLB.inningThreeLostHome += 1;
+          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonHome += 1 : this.team1GameStatsDtoMLB.inningFourLostHome += 1;
+          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonHome += 1 : this.team1GameStatsDtoMLB.inningFiveLostHome += 1;
+          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonHome += 1 : this.team1GameStatsDtoMLB.inningSixLostHome += 1;
+          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonHome += 1 : this.team1GameStatsDtoMLB.inningSevenLostHome += 1;
+          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonHome += 1 : this.team1GameStatsDtoMLB.inningEightLostHome += 1;
+          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonHome += 1 : this.team1GameStatsDtoMLB.inningNineLostHome += 1;
 
-        //spread 
-        this.team1GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
-        this.team1GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-        this.team1GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-        this.team1GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-        this.team1GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-        this.team1GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-        this.team1GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-        this.team1GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-        this.team1GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-        this.team1GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+          //spread 
+          this.team1GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
+          this.team1GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+          this.team1GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+          this.team1GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+          this.team1GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+          this.team1GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+          this.team1GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+          this.team1GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+          this.team1GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+          this.team1GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
 
-        //total
-        this.team1GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
-        this.team1GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-        this.team1GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-        this.team1GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-        this.team1GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-        this.team1GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-        this.team1GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-        this.team1GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-        this.team1GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-        this.team1GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+          //total
+          this.team1GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
+          this.team1GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+          this.team1GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+          this.team1GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+          this.team1GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+          this.team1GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+          this.team1GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+          this.team1GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+          this.team1GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+          this.team1GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
 
-        //points scored
-        this.team1GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
-        this.team1GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
-        this.team1GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
-        this.team1GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
-        this.team1GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
-        this.team1GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
-        this.team1GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
-        this.team1GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
-        this.team1GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
-        this.team1GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
+          //points scored
+          this.team1GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
+          this.team1GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
+          this.team1GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
+          this.team1GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
+          this.team1GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
+          this.team1GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
+          this.team1GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
+          this.team1GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
+          this.team1GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
+          this.team1GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
 
-        //points allowed
-        this.team1GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
-        this.team1GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
-        this.team1GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
-        this.team1GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
-        this.team1GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
-        this.team1GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
-        this.team1GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
-        this.team1GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
-        this.team1GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
-        this.team1GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
+          //points allowed
+          this.team1GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
+          this.team1GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
+          this.team1GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
+          this.team1GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
+          this.team1GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
+          this.team1GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
+          this.team1GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
+          this.team1GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
+          this.team1GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
+          this.team1GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
 
         }
-        else if(e.homeOrAway == "Away"){
+        else if (e.homeOrAway == "Away") {
           e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonAway += 1 : this.team1GameStatsDtoMLB.gamesLostAway += 1;
 
           //result by inning
@@ -2681,7 +2681,7 @@ export class PropScreenComponent implements OnInit {
           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonAway += 1 : this.team1GameStatsDtoMLB.inningSevenLostAway += 1;
           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonAway += 1 : this.team1GameStatsDtoMLB.inningEightLostAway += 1;
           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonAway += 1 : this.team1GameStatsDtoMLB.inningNineLostAway += 1;
-  
+
           //spread 
           this.team1GameStatsDtoMLB.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall)
           this.team1GameStatsDtoMLB.spreadFirstInningAway += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
@@ -2693,7 +2693,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.spreadSeventhInningAway += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
           this.team1GameStatsDtoMLB.spreadEighthInningAway += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
           this.team1GameStatsDtoMLB.spreadNinthInningAway += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-  
+
           //total
           this.team1GameStatsDtoMLB.totalAway += (e.pointsScoredOverall + e.pointsAllowedOverall)
           this.team1GameStatsDtoMLB.totalFirstInningAway += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
@@ -2705,7 +2705,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.totalSeventhInningAway += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
           this.team1GameStatsDtoMLB.totalEighthInningAway += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
           this.team1GameStatsDtoMLB.totalNinthInningAway += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-  
+
           //points scored
           this.team1GameStatsDtoMLB.pointsScoredAwayGame += e.pointsScoredOverall
           this.team1GameStatsDtoMLB.pointsScoredFirstInningAway += e.pointsScoredFirstInning
@@ -2717,7 +2717,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.pointsScoredSeventhInningAway += e.pointsScoredSeventhInning
           this.team1GameStatsDtoMLB.pointsScoredEighthInningAway += e.pointsScoredEigthInning
           this.team1GameStatsDtoMLB.pointsScoredNinthInningAway += e.pointsScoredNinthInning
-  
+
           //points allowed
           this.team1GameStatsDtoMLB.pointsAllowedAwayGame += e.pointsAllowedOverall
           this.team1GameStatsDtoMLB.pointsAllowedFirstInningAway += e.pointsAllowedFirstInning
@@ -2730,7 +2730,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
           this.team1GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
         }
-        if(e.teamAgainstId == team2New[0].teamId){
+        if (e.teamAgainstId == team2New[0].teamId) {
           e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team1GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
           //result by inning
@@ -2743,7 +2743,7 @@ export class PropScreenComponent implements OnInit {
           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningSevenLostVsOpponent += 1;
           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningEightLostVsOpponent += 1;
           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningNineLostVsOpponent += 1;
-  
+
           //spread 
           this.team1GameStatsDtoMLB.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall)
           this.team1GameStatsDtoMLB.spreadFirstInningVsOpponent += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
@@ -2755,7 +2755,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.spreadSeventhInningVsOpponent += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
           this.team1GameStatsDtoMLB.spreadEighthInningVsOpponent += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
           this.team1GameStatsDtoMLB.spreadNinthInningVsOpponent += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-  
+
           //total
           this.team1GameStatsDtoMLB.totalVsTeam += (e.pointsScoredOverall + e.pointsAllowedOverall)
           this.team1GameStatsDtoMLB.totalFirstInningVsOpponent += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
@@ -2767,7 +2767,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.totalSeventhInningVsOpponent += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
           this.team1GameStatsDtoMLB.totalEighthInningVsOpponent += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
           this.team1GameStatsDtoMLB.totalNinthInningVsOpponent += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-  
+
           //points scored
           this.team1GameStatsDtoMLB.pointsScoredVsTeamGame += e.pointsScoredOverall
           this.team1GameStatsDtoMLB.pointsScoredFirstInningVsOpponent += e.pointsScoredFirstInning
@@ -2779,7 +2779,7 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.pointsScoredSeventhInningVsOpponent += e.pointsScoredSeventhInning
           this.team1GameStatsDtoMLB.pointsScoredEighthInningVsOpponent += e.pointsScoredEigthInning
           this.team1GameStatsDtoMLB.pointsScoredNinthInningVsOpponent += e.pointsScoredNinthInning
-  
+
           //points allowed
           this.team1GameStatsDtoMLB.pointsAllowedVsTeamGame += e.pointsAllowedOverall
           this.team1GameStatsDtoMLB.pointsAllowedFirstInningVsOpponent += e.pointsAllowedFirstInning
@@ -2854,66 +2854,66 @@ export class PropScreenComponent implements OnInit {
         this.team2GameStatsDtoMLB.pointsAllowedOverallEighthInning += e.pointsAllowedEigthInning
         this.team2GameStatsDtoMLB.pointsAllowedOverallNinthInning += e.pointsAllowedNinthInning
 
-        if(e.homeOrAway == "Home"){
+        if (e.homeOrAway == "Home") {
           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonHome += 1 : this.team2GameStatsDtoMLB.gamesLostHome += 1;
 
-        //result by inning
-        e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonHome += 1 : this.team2GameStatsDtoMLB.inningOneLostHome += 1;
-        e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonHome += 1 : this.team2GameStatsDtoMLB.inningTwoLostHome += 1;
-        e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonHome += 1 : this.team2GameStatsDtoMLB.inningThreeLostHome += 1;
-        e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonHome += 1 : this.team2GameStatsDtoMLB.inningFourLostHome += 1;
-        e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonHome += 1 : this.team2GameStatsDtoMLB.inningFiveLostHome += 1;
-        e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonHome += 1 : this.team2GameStatsDtoMLB.inningSixLostHome += 1;
-        e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonHome += 1 : this.team2GameStatsDtoMLB.inningSevenLostHome += 1;
-        e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonHome += 1 : this.team2GameStatsDtoMLB.inningEightLostHome += 1;
-        e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonHome += 1 : this.team2GameStatsDtoMLB.inningNineLostHome += 1;
-        //spread
-        this.team2GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
-        this.team2GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-        this.team2GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-        this.team2GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-        this.team2GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-        this.team2GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-        this.team2GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-        this.team2GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-        this.team2GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-        this.team2GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-        //tota2
-        this.team2GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
-        this.team2GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-        this.team2GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-        this.team2GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-        this.team2GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-        this.team2GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-        this.team2GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-        this.team2GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-        this.team2GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-        this.team2GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-        //points 2cored
-        this.team2GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
-        this.team2GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
-        this.team2GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
-        this.team2GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
-        this.team2GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
-        this.team2GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
-        this.team2GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
-        this.team2GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
-        this.team2GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
-        this.team2GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
-        //points 2llowed
-        this.team2GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
-        this.team2GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
-        this.team2GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
-        this.team2GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
-        this.team2GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
-        this.team2GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
-        this.team2GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
-        this.team2GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
-        this.team2GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
-        this.team2GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
+          //result by inning
+          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonHome += 1 : this.team2GameStatsDtoMLB.inningOneLostHome += 1;
+          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonHome += 1 : this.team2GameStatsDtoMLB.inningTwoLostHome += 1;
+          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonHome += 1 : this.team2GameStatsDtoMLB.inningThreeLostHome += 1;
+          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonHome += 1 : this.team2GameStatsDtoMLB.inningFourLostHome += 1;
+          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonHome += 1 : this.team2GameStatsDtoMLB.inningFiveLostHome += 1;
+          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonHome += 1 : this.team2GameStatsDtoMLB.inningSixLostHome += 1;
+          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonHome += 1 : this.team2GameStatsDtoMLB.inningSevenLostHome += 1;
+          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonHome += 1 : this.team2GameStatsDtoMLB.inningEightLostHome += 1;
+          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonHome += 1 : this.team2GameStatsDtoMLB.inningNineLostHome += 1;
+          //spread
+          this.team2GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
+          this.team2GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+          this.team2GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+          this.team2GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+          this.team2GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+          this.team2GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+          this.team2GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+          this.team2GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+          this.team2GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+          this.team2GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+          //tota2
+          this.team2GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
+          this.team2GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+          this.team2GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+          this.team2GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+          this.team2GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+          this.team2GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+          this.team2GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+          this.team2GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+          this.team2GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+          this.team2GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+          //points 2cored
+          this.team2GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
+          this.team2GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
+          this.team2GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
+          this.team2GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
+          this.team2GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
+          this.team2GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
+          this.team2GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
+          this.team2GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
+          this.team2GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
+          this.team2GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
+          //points 2llowed
+          this.team2GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
+          this.team2GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
+          this.team2GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
+          this.team2GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
+          this.team2GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
+          this.team2GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
+          this.team2GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
+          this.team2GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
+          this.team2GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
+          this.team2GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
 
         }
-        else if(e.homeOrAway == "Away"){
+        else if (e.homeOrAway == "Away") {
           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonAway += 1 : this.team2GameStatsDtoMLB.gamesLostAway += 1;
 
           //result by inning
@@ -2926,7 +2926,7 @@ export class PropScreenComponent implements OnInit {
           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonAway += 1 : this.team2GameStatsDtoMLB.inningSevenLostAway += 1;
           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonAway += 1 : this.team2GameStatsDtoMLB.inningEightLostAway += 1;
           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonAway += 1 : this.team2GameStatsDtoMLB.inningNineLostAway += 1;
-  
+
           //spread 
           this.team2GameStatsDtoMLB.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall)
           this.team2GameStatsDtoMLB.spreadFirstInningAway += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
@@ -2962,7 +2962,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsScoredSeventhInningAway += e.pointsScoredSeventhInning
           this.team2GameStatsDtoMLB.pointsScoredEighthInningAway += e.pointsScoredEigthInning
           this.team2GameStatsDtoMLB.pointsScoredNinthInningAway += e.pointsScoredNinthInning
-2
+          2
           //points 2llowed
           this.team2GameStatsDtoMLB.pointsAllowedAwayGame += e.pointsAllowedOverall
           this.team2GameStatsDtoMLB.pointsAllowedFirstInningAway += e.pointsAllowedFirstInning
@@ -2978,7 +2978,7 @@ export class PropScreenComponent implements OnInit {
         console.log(e.teamAgainstId)
         console.log(team1New[0].teamId)
         console.log(e.teamAgainstId == team1New[0].teamId)
-        if(e.teamAgainstId == team1New[0].teamId){
+        if (e.teamAgainstId == team1New[0].teamId) {
           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
           //result by inning
@@ -2991,7 +2991,7 @@ export class PropScreenComponent implements OnInit {
           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningSevenLostVsOpponent += 1;
           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningEightLostVsOpponent += 1;
           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningNineLostVsOpponent += 1;
-  
+
           //spread 
           this.team2GameStatsDtoMLB.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall)
           this.team2GameStatsDtoMLB.spreadFirstInningVsOpponent += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
@@ -3003,7 +3003,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.spreadSeventhInningVsOpponent += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
           this.team2GameStatsDtoMLB.spreadEighthInningVsOpponent += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
           this.team2GameStatsDtoMLB.spreadNinthInningVsOpponent += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-2
+
           //tota2
           this.team2GameStatsDtoMLB.totalVsTeam += (e.pointsScoredOverall + e.pointsAllowedOverall)
           this.team2GameStatsDtoMLB.totalFirstInningVsOpponent += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
@@ -3015,7 +3015,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.totalSeventhInningVsOpponent += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
           this.team2GameStatsDtoMLB.totalEighthInningVsOpponent += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
           this.team2GameStatsDtoMLB.totalNinthInningVsOpponent += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-2
+
           //points 2cored
           this.team2GameStatsDtoMLB.pointsScoredVsTeamGame += e.pointsScoredOverall
           this.team2GameStatsDtoMLB.pointsScoredFirstInningVsOpponent += e.pointsScoredFirstInning
@@ -3027,7 +3027,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsScoredSeventhInningVsOpponent += e.pointsScoredSeventhInning
           this.team2GameStatsDtoMLB.pointsScoredEighthInningVsOpponent += e.pointsScoredEigthInning
           this.team2GameStatsDtoMLB.pointsScoredNinthInningVsOpponent += e.pointsScoredNinthInning
-2
+
           //points 2llowed
           this.team2GameStatsDtoMLB.pointsAllowedVsTeamGame += e.pointsAllowedOverall
           this.team2GameStatsDtoMLB.pointsAllowedFirstInningVsOpponent += e.pointsAllowedFirstInning
@@ -3051,6 +3051,45 @@ export class PropScreenComponent implements OnInit {
 
     }
 
+  }
+
+  //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
+  //because for a positive spread that means everything less than that number wins
+  //when the prop is negative then we want t
+
+  calculateSpreadPropChace(teamStats: DbMlbTeamGameStats[], prop: number, type: string, teamAgainst?: DbMlbTeamGameStats[]): number {
+    let final = 0;
+    let totalFor: DbMlbTeamGameStats[] = [];
+    let totalOverall: number = 0;
+    if(type == "overall"){
+      totalFor = teamStats.filter(e => {
+        (e.pointsAllowedOverall - e.pointsScoredOverall) < prop
+      })
+      totalOverall = teamStats.length
+    }
+    if(type == "home"){
+      totalFor = teamStats.filter(e => {
+        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home"
+      })
+      totalOverall = teamStats.filter(e => e.homeOrAway == "Home").length
+    }
+    if(type == "away"){
+      totalFor = teamStats.filter(e => {
+        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Away"
+      })
+      totalOverall = teamStats.filter(e => e.homeOrAway == "Away").length
+    }
+    if(type == "team" && teamAgainst){
+      totalFor = teamStats.filter(e => {
+        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainst[0].teamId
+      })
+      totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainst[0].teamId).length
+    }
+    
+    final = totalFor.length / totalOverall
+
+
+    return final;
   }
 
   moneylineGameToggled() {
