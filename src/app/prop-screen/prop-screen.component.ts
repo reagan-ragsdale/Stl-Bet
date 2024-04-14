@@ -1291,8 +1291,6 @@ export class PropScreenComponent implements OnInit {
   updateDates() {
     this.dates = [];
     this.sportsBookDataFinal.forEach((x) => {
-      console.log(x)
-      console.log(reusedFunctions.convertDate(x.commenceTime))
       if (!this.dates.includes(reusedFunctions.convertDate(x.commenceTime))) {
         this.dates.push(reusedFunctions.convertDate(x.commenceTime));
       }
@@ -1351,9 +1349,6 @@ export class PropScreenComponent implements OnInit {
 
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
-    console.log(this.team2GameStatsDtoMLB)
-
-    console.log(team1)
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
     let spreadProp = team1.filter((e) => e.marketKey == "spreads")
@@ -1377,7 +1372,7 @@ export class PropScreenComponent implements OnInit {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
     this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
-    console.log(this.displayPropHtml1)
+    
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
     spreadProp = team2.filter((e) => e.marketKey == "spreads")
@@ -2058,8 +2053,6 @@ export class PropScreenComponent implements OnInit {
     }
 
     else if (this.selectedSport == "MLB") {
-      console.log(team1)
-      console.log(team2)
       var team1New: DbMlbTeamGameStats[] = team1
       var team2New: DbMlbTeamGameStats[] = team2
       console.log(team1New)
@@ -2982,6 +2975,9 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
           this.team2GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
         }
+        console.log(e.teamAgainstId)
+        console.log(team1New[0].teamId)
+        console.log(e.teamAgainstId == team1New[0].teamId)
         if(e.teamAgainstId == team1New[0].teamId){
           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
@@ -3239,7 +3235,6 @@ export class PropScreenComponent implements OnInit {
     else {
       this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
     }
-    console.log(this.propHistory)
     let dialogRef = this.dialog.open(this.callAPIDialog, { width: '600px', height: '550px' });
 
     if (this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals') {
@@ -3492,7 +3487,6 @@ export class PropScreenComponent implements OnInit {
 
 
   async onPropTypeClicked(event: any) {
-    console.log(event)
     if (event.tab.textLabel == "Player Props") {
       this.gamePropsClicked = false
       await this.loadPlayerProps()
