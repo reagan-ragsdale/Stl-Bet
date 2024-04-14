@@ -7224,7 +7224,7 @@
               </div>
             </div>
             <div
-              style="display: flex; width: 96%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px;">
+              style="display: flex; width: 96%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
               
               <div style="width: 20%; height: inherit; display: flex">
                 <h2 style="margin-top:auto; margin-bottom: auto; margin-left: 1rem; color: white;">Moneyline:</h2>
@@ -7236,16 +7236,71 @@
                 </button>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto">
+                <button mat-raised-button style="margin:auto; height: 60%;">
                   {{(team2GameStatsDtoMLB.gamesWon / (team2GameStatsDtoMLB.gamesLost + team2GameStatsDtoMLB.gamesWon)) * 100 | number}}%
                 </button>
                 
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesLostAway + team2GameStatsDtoMLB.gamesWonAway)) * 100 | number}}%</button>
+                <button mat-raised-button style="margin:auto; height: 60%;">{{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesLostAway + team2GameStatsDtoMLB.gamesWonAway)) * 100 | number}}%</button>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent == 0 ? 0 : (team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent + team2GameStatsDtoMLB.gamesWonVsOpponent)) * 100 | number}}%</button>
+                <button mat-raised-button style="margin:auto; height: 60%;">{{team2GameStatsDtoMLB.gamesWonVsOpponent == 0 ? 0 : (team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent + team2GameStatsDtoMLB.gamesWonVsOpponent)) * 100 | number}}%</button>
+
+              </div>
+              
+            </div>
+            <div
+              style="display: flex; width: 96%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
+              
+              <div style="width: 20%; height: inherit; display: flex">
+                <h2 style="margin-top:auto; margin-bottom: auto; margin-left: 1rem; color: white;">Spread:</h2>
+              </div>
+              <div style="width: 15%; height: inherit; display: flex;">
+                <button style=" margin: auto; height: 60%;"
+                  mat-raised-button (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{displayPropHtml2.spreadPoint > 0 ? "+" :
+                  " "}}{{displayPropHtml2.spreadPoint}} | {{displayPropHtml2.spreadPrice > 0 ? "+" : "
+                  "}}{{displayPropHtml2.spreadPrice}}
+                </button>
+              </div>
+              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+                <button mat-raised-button style="margin:auto; height: 60%;">
+                  {{(team2GameStatsDtoMLB.spreadGame / (team2GameStatsDtoMLB.gamesLost + team2GameStatsDtoMLB.gamesWon)) | number}}%
+                </button>
+                
+              </div>
+              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+                <button mat-raised-button style="margin:auto; height: 60%;">{{(team2GameStatsDtoMLB.spreadAway / (team2GameStatsDtoMLB.gamesLostAway + team2GameStatsDtoMLB.gamesWonAway)) | number}}%</button>
+              </div>
+              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+                <button mat-raised-button style="margin:auto; height: 60%;">{{team2GameStatsDtoMLB.spreadVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent + team2GameStatsDtoMLB.gamesWonVsOpponent)) | number}}%</button>
+
+              </div>
+              
+            </div>
+            <div
+              style="display: flex; width: 96%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
+              
+              <div style="width: 20%; height: inherit; display: flex">
+                <h2 style="margin-top:auto; margin-bottom: auto; margin-left: 1rem; color: white;">Total:</h2>
+              </div>
+              <div style="width: 15%; height: inherit; display: flex;">
+                <button style=" margin: auto; height: 60%;"
+                  mat-raised-button (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{displayPropHtml2.h2h > 0
+                  ? "+" : " "}}{{displayPropHtml2.h2h}}
+                </button>
+              </div>
+              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+                <button mat-raised-button style="margin:auto; height: 60%;">
+                  {{(team2GameStatsDtoMLB.gamesWon / (team2GameStatsDtoMLB.gamesLost + team2GameStatsDtoMLB.gamesWon)) * 100 | number}}%
+                </button>
+                
+              </div>
+              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+                <button mat-raised-button style="margin:auto; height: 60%;">{{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesLostAway + team2GameStatsDtoMLB.gamesWonAway)) * 100 | number}}%</button>
+              </div>
+              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+                <button mat-raised-button style="margin:auto; height: 60%;">{{team2GameStatsDtoMLB.gamesWonVsOpponent == 0 ? 0 : (team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent + team2GameStatsDtoMLB.gamesWonVsOpponent)) * 100 | number}}%</button>
 
               </div>
               
