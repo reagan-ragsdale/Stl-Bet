@@ -7266,7 +7266,7 @@
                   <mat-form-field class="example-full-width">
                       <mat-option *ngFor="let prop of alternateSpreads" [value]="0"
                         (onSelectionChange)="loadNewSpreadProp(team2GameStats, team1GameStats, prop)">
-                        0
+                        {{prop}}
                       </mat-option>
                   </mat-form-field>
                 </form>
