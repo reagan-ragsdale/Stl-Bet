@@ -3058,12 +3058,14 @@ export class PropScreenComponent implements OnInit {
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: number ){
+    this.team2SelectedSpreadPoint = prop
     this.awaySpreadOverallChance = this.calculateSpreadPropChace(team1, team2, prop, 'overall')
   }
 
   //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
   //because for a positive spread that means everything less than that number wins
   //when the prop is negative then we want t
+  public team2SelectedSpreadPoint: number = 0
   public awaySpreadOverallChance: number = 0
   calculateSpreadPropChace(teamStats: any[], teamAgainstStats: any[], prop: number, type: string): number {
     let final = 0;
