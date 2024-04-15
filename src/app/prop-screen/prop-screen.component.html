@@ -7261,10 +7261,10 @@
                   mat-raised-button (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{team2SelectedSpreadPoint}}
                 </button>
                 <form style="align-items: center; margin-top:auto; margin-bottom: auto; width: 30px;" class="example-form">
-                  <mat-form-field class="example-full-width">
-                    <mat-select [(value)]="team2SelectedSpreadPoint" [disableOptionCentering]="true" style="margin-left:30px !important;">
+                  <mat-form-field class="example-full-width" style="width:30px;">
+                    <mat-select [disableOptionCentering]="true" style="width: 30px; margin-right:30px !important;">
                       <mat-option *ngFor="let prop of alternateSpreads" [value]="prop"
-                        (onSelectionChange)="loadNewSpreadProp(team2GameStats, team1GameStats, prop)">
+                        (onSelectionChange)="loadNewSpreadProp(team2GameStats, team1GameStats, prop)" style="margin-right:30px !important;">
                         {{prop}}
                       </mat-option>
                     </mat-select>
