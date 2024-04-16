@@ -7265,7 +7265,7 @@
                 <button style=" margin: auto; height: 60%;" mat-raised-button
                   (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{team2SelectedSpreadPoint}}
                 </button>
-                <button mat-button [matMenuTriggerFor]="beforeMenu" style="width:10px;  margin: auto; height: 60%;">Before</button>
+                <button mat-button [matMenuTriggerFor]="beforeMenu" style="width:10px;  margin-top:auto; margin-bottom; padding-left:0; height: 60%;">O</button>
                 <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu-pannel" >
                   <button mat-menu-item *ngFor="let prop of alternateSpreads" (click)="testClick()" >{{prop}}</button>
                 </mat-menu>
