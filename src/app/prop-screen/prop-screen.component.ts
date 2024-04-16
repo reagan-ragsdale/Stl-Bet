@@ -3084,13 +3084,13 @@ export class PropScreenComponent implements OnInit {
 
 
       totalFor = teamStats.filter(e => {
-        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Away"
+        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Away")
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Away").length
       this.awaySpreadAwayChance = totalFor.length/totalOverall
 
       totalFor = teamStats.filter(e => {
-        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId
+        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId)
       })
       totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
       this.awaySpreadTeamChance = totalFor.length/totalOverall
@@ -3099,20 +3099,20 @@ export class PropScreenComponent implements OnInit {
     else if(type == 'home'){
 
       totalFor = teamStats.filter(e => {
-        (e.pointsAllowedOverall - e.pointsScoredOverall) < prop
+        return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop)
       })
       totalOverall = teamStats.length
       this.homeSpreadOverallChance = totalFor.length/totalOverall
 
 
       totalFor = teamStats.filter(e => {
-        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home"
+       return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home")
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Home").length
       this.homeSpreadHomeChance = totalFor.length/totalOverall
 
       totalFor = teamStats.filter(e => {
-        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId
+        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId)
       })
       totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
       this.homeSpreadTeamChance = totalFor.length/totalOverall
