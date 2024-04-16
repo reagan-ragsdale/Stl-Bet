@@ -3077,14 +3077,9 @@ export class PropScreenComponent implements OnInit {
     let totalOverall: number = 0;
     if(type == 'away'){
       totalFor = teamStats.filter(e => {
-        console.log(e.pointsAllowedOverall);
-        console.log(e.pointsScoredOverall);
-        console.log(prop);
-        (e.pointsAllowedOverall - e.pointsScoredOverall) < prop;
+        return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop);
       })
       totalOverall = teamStats.length
-      console.log(totalFor)
-      console.log(totalOverall)
       this.awaySpreadOverallChance = totalFor.length/totalOverall
 
 
