@@ -3042,7 +3042,13 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsAllowedEighthInningVsOpponent += e.pointsAllowedEigthInning
           this.team2GameStatsDtoMLB.pointsAllowedNinthInningVsOpponent += e.pointsAllowedNinthInning
         }
+
       })
+      this.awaySpreadOverallChance = (this.team2GameStatsDtoMLB.pointsAllowedOverallGame - this.team2GameStatsDtoMLB.pointsScoredOverallGame) / team2New.length
+      let away = team2New.filter(e => { return (e.homeOrAway == "Away")})
+      this.awaySpreadAwayChance = (this.team2GameStatsDtoMLB.pointsAllowedAwayGame - this.team2GameStatsDtoMLB.pointsScoredAwayGame) / away.length
+      let team = team2New.filter(e => {return e.teamAgainstId == team1New[0].teamId})
+      this.awaySpreadTeamChance = (this.team2GameStatsDtoMLB.pointsAllowedVsTeamGame - this.team2GameStatsDtoMLB.pointsScoredVsTeamGame) / team.length
     }
 
     else if (this.selectedSport == "NHL") {
