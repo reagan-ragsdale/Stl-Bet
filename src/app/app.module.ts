@@ -43,6 +43,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TransformFromTimestampToMonthDayPipe } from "./customPipes/transformTimestampToMonthDay.pipe";
 import { TransforFromFullTeamNameToAbvr } from './customPipes/transformFromFullTeamNameToAbvr.pip';
 import { TransformFromTimestampToTimePipe } from './customPipes/transformFromTimestampToTime.pipe';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
     declarations: [
@@ -98,7 +99,8 @@ import { TransformFromTimestampToTimePipe } from './customPipes/transformFromTim
         NgbModule,
         TransformFromTimestampToMonthDayPipe,
         TransforFromFullTeamNameToAbvr,
-        TransformFromTimestampToTimePipe
+        TransformFromTimestampToTimePipe,
+        MatMenuModule
     ]
 })
 export class AppModule { 

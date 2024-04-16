@@ -3062,6 +3062,10 @@ export class PropScreenComponent implements OnInit {
     this.awaySpreadOverallChance = this.calculateSpreadPropChace(team1, team2, prop, 'overall')
   }
 
+  testClick(){
+    console.log("works")
+  }
+
   //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
   //because for a positive spread that means everything less than that number wins
   //when the prop is negative then we want t
