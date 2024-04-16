@@ -7266,7 +7266,7 @@
                   (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{team2SelectedSpreadPoint}}
                 </button>
                 <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <mat-menu #beforeMenu="matMenu" xPosition="before" style="height: 100px; overflow-y:scroll;">
                   <button mat-menu-item *ngFor="let prop of alternateSpreads" (click)="testClick()">{{prop}}</button>
                 </mat-menu>
               </div>
