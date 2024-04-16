@@ -2979,9 +2979,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
           this.team2GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
         }
-        console.log(e.teamAgainstId)
-        console.log(team1New[0].teamId)
-        console.log(e.teamAgainstId == team1New[0].teamId)
+        
         if (e.teamAgainstId == team1New[0].teamId) {
           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
@@ -3082,6 +3080,8 @@ export class PropScreenComponent implements OnInit {
         (e.pointsAllowedOverall - e.pointsScoredOverall) < prop
       })
       totalOverall = teamStats.length
+      console.log(totalFor)
+      console.log(totalOverall)
       this.awaySpreadOverallChance = totalFor.length/totalOverall
 
 
