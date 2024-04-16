@@ -3057,53 +3057,71 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  loadNewSpreadProp(team1: any[], team2: any[], prop: number ){
+  loadNewSpreadProp(team1: any[], team2: any[], prop: number, type: string ){
     this.team2SelectedSpreadPoint = prop
-    this.awaySpreadOverallChance = this.calculateSpreadPropChace(team1, team2, prop, 'overall')
+    this.calculateSpreadPropChace(team1, team2, prop, type)
   }
 
-  testClick(){
-    console.log("works")
-  }
 
   //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
   //because for a positive spread that means everything less than that number wins
   //when the prop is negative then we want t
   public team2SelectedSpreadPoint: number = 0
   public awaySpreadOverallChance: number = 0
-  calculateSpreadPropChace(teamStats: any[], teamAgainstStats: any[], prop: number, type: string): number {
-    let final = 0;
-    let totalFor: DbMlbTeamGameStats[] = [];
+  public awaySpreadAwayChance: number = 0
+  public awaySpreadTeamChance: number = 0
+  public homeSpreadOverallChance: number = 0
+  public homeSpreadHomeChance: number = 0
+  public homeSpreadTeamChance: number = 0
+  calculateSpreadPropChace(teamStats: any[], teamAgainstStats: any[], prop: number, type: string) {
+    
+    let totalFor: any[] = [];
     let totalOverall: number = 0;
-    if(type == "overall"){
+    if(type == 'away'){
       totalFor = teamStats.filter(e => {
         (e.pointsAllowedOverall - e.pointsScoredOverall) < prop
       })
       totalOverall = teamStats.length
-    }
-    if(type == "home"){
-      totalFor = teamStats.filter(e => {
-        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home"
-      })
-      totalOverall = teamStats.filter(e => e.homeOrAway == "Home").length
-    }
-    if(type == "away"){
+      this.awaySpreadOverallChance = totalFor.length/totalOverall
+
+
       totalFor = teamStats.filter(e => {
         ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Away"
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Away").length
-    }
-    if(type == "team"){
+      this.awaySpreadAwayChance = totalFor.length/totalOverall
+
       totalFor = teamStats.filter(e => {
         ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId
       })
       totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
+      this.awaySpreadTeamChance = totalFor.length/totalOverall
+
     }
+    else if(type == 'home'){
+
+      totalFor = teamStats.filter(e => {
+        (e.pointsAllowedOverall - e.pointsScoredOverall) < prop
+      })
+      totalOverall = teamStats.length
+      this.homeSpreadOverallChance = totalFor.length/totalOverall
+
+
+      totalFor = teamStats.filter(e => {
+        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home"
+      })
+      totalOverall = teamStats.filter(e => e.homeOrAway == "Home").length
+      this.homeSpreadHomeChance = totalFor.length/totalOverall
+
+      totalFor = teamStats.filter(e => {
+        ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId
+      })
+      totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
+      this.homeSpreadTeamChance = totalFor.length/totalOverall
+
     
-    final = totalFor.length / totalOverall
+    }
 
-
-    return final;
   }
 
   moneylineGameToggled() {
