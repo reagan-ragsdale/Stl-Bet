@@ -1333,6 +1333,8 @@ export class PropScreenComponent implements OnInit {
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
+    
+    console.log(team2)
 
     if (this.selectedSport == "NBA") {
       this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
