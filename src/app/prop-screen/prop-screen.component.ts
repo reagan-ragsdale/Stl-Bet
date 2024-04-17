@@ -1342,6 +1342,7 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
       this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
+      console.log(this.awayAlternateSpreadstemp)
       this.homeAlternateSpreads = team1.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
     }
     else if (this.selectedSport == "NHL") {
@@ -1400,6 +1401,7 @@ export class PropScreenComponent implements OnInit {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
     this.awayAlternateSpreadstemp.push(spreadPoint)
+    console.log(this.awayAlternateSpreadstemp)
     this.awayAlternateSpreads = this.awayAlternateSpreadstemp.sort((a,b) => a-b)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
