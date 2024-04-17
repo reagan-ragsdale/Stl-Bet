@@ -136,6 +136,7 @@ export class PropScreenComponent implements OnInit {
   public selectedPropHistoryName: string = ''
   public propHistory: DbGameBookData[] = []
   public awayAlternateSpreads: number[] = []
+   public awayAlternateSpreadstemp: number[] = []
   public homeAlternateSpreads: number[] = []
 
   //charts
@@ -1340,7 +1341,7 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
-      this.awayAlternateSpreads = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
+      this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
       this.homeAlternateSpreads = team1.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
     }
     else if (this.selectedSport == "NHL") {
@@ -1398,8 +1399,8 @@ export class PropScreenComponent implements OnInit {
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.awayAlternateSpreads.push(spreadPoint)
-    this.awayAlternateSpreads = this.awayAlternateSpreads.sort(function(a,b){return a-b})
+    this.awayAlternateSpreadstemp.push(spreadPoint)
+    this.awayAlternateSpreads = this.awayAlternateSpreadstemp.sort((a,b) => a-b)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
