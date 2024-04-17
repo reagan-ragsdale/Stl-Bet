@@ -3150,10 +3150,22 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  onMoneylineModal(teamStats: any[], type: string){
+  onMoneylineModal(teamStats: any[], type: string, location: string){
+    let teamStatsAverage = {}
+    let teamStatsFinal = []
+    if(location == 'away'){
+      if(this.selectedSport == 'MLB'){
+        teamStatsAverage = this.team2GameStatsDtoMLB
+      }
+    }
+    else if(location == 'home'){
 
-    
-    let dialogRef = this.dialog.open(this.propDialog, { width: '600px', height: '550px' });
+    }
+    teamStatsFinal.push(teamStats, teamStatsAverage)
+    console.log(teamStatsFinal)
+
+
+    let dialogRef = this.dialog.open(this.propDialog, {data: teamStatsFinal, width: '600px', height: '550px' });
 
     
     
