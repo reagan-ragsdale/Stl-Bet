@@ -3152,16 +3152,18 @@ export class PropScreenComponent implements OnInit {
 
   onMoneylineModal(teamStats: any[], type: string, location: string){
     let teamStatsAverage = {}
+    let teamAgainstStatAverage = {}
     let teamStatsFinal = []
     if(location == 'away'){
       if(this.selectedSport == 'MLB'){
         teamStatsAverage = this.team2GameStatsDtoMLB
+        teamAgainstStatAverage = this.team1GameStatsDtoMLB
       }
     }
     else if(location == 'home'){
 
     }
-    teamStatsFinal.push(teamStats, teamStatsAverage)
+    teamStatsFinal.push(teamStats, teamStatsAverage, teamAgainstStatAverage, type)
     console.log(teamStatsFinal)
 
 
