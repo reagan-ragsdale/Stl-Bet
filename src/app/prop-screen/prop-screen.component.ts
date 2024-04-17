@@ -3044,12 +3044,21 @@ export class PropScreenComponent implements OnInit {
         }
 
       })
-      this.awaySpreadOverallChance = ((this.team2GameStatsDtoMLB.pointsAllowedOverallGame - this.team2GameStatsDtoMLB.pointsScoredOverallGame) / team2New.length) * 100
-      let away = team2New.filter(e => { return (e.homeOrAway == "Away")})
-      this.awaySpreadAwayChance = ((this.team2GameStatsDtoMLB.pointsAllowedAwayGame - this.team2GameStatsDtoMLB.pointsScoredAwayGame) / away.length) * 100
-      let team = team2New.filter(e => {return e.teamAgainstId == team1New[0].teamId})
-      this.awaySpreadTeamChance = ((this.team2GameStatsDtoMLB.pointsAllowedVsTeamGame - this.team2GameStatsDtoMLB.pointsScoredVsTeamGame) / team.length) * 100
-    }
+      let totalFor = []
+      let totalOverall = 0;
+      totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint})
+      totalOverall = team2New.length
+      this.awaySpreadOverallChance = (totalFor.length/totalOverall) * 100
+      
+      totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint) && e.homeOrAway == "Away")})
+      totalOverall = team2New.filter(e => e.homeOrAway == "Away").length
+      this.awaySpreadAwayChance = (totalFor.length/totalOverall) * 100
+      
+      totalFor = team2New.filter(e => {
+        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint) && (e.teamAgainstId == team1New[0].teamId))
+      })
+      totalOverall = team2New.filter(e => e.teamAgainstId == team1New[0].teamId).length
+      this.awaySpreadTeamChance = (totalFor.length/totalOverall) * 100}
 
     else if (this.selectedSport == "NHL") {
 
