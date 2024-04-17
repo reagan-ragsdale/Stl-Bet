@@ -135,7 +135,8 @@ export class PropScreenComponent implements OnInit {
 
   public selectedPropHistoryName: string = ''
   public propHistory: DbGameBookData[] = []
-  public alternateSpreads: number[] = []
+  public awayAlternateSpreads: number[] = []
+  public homeAlternateSpreads: number[] = []
 
   //charts
   public chart: any;
@@ -1339,8 +1340,8 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
-      this.alternateSpreads = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
-      console.log(this.alternateSpreads)
+      this.awayAlternateSpreads = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
+      this.homeAlternateSpreads = team1.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
     }
     else if (this.selectedSport == "NHL") {
 
@@ -1370,6 +1371,8 @@ export class PropScreenComponent implements OnInit {
     }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
+    this.homeAlternateSpreads.push(spreadPoint)
+    this.homeAlternateSpreads = this.homeAlternateSpreads.sort()
     let abvr = ''
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
@@ -1395,6 +1398,8 @@ export class PropScreenComponent implements OnInit {
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
+    this.awayAlternateSpreads.push(spreadPoint)
+    this.awayAlternateSpreads = this.awayAlternateSpreads.sort()
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
