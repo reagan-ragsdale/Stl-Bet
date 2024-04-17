@@ -76,6 +76,9 @@ export class PropScreenComponent implements OnInit {
   @ViewChild('content')
   callAPIDialog!: TemplateRef<any>;
 
+  @ViewChild('propStat')
+  propDialog!: TemplateRef<any>;
+
   private modalService = inject(NgbModal);
   expandedElement: PlayerProp[] | null | undefined;
 
@@ -3145,6 +3148,15 @@ export class PropScreenComponent implements OnInit {
     
     }
 
+  }
+
+  onMoneylineModal(teamStats: any[], type: string){
+
+    
+    let dialogRef = this.dialog.open(this.propDialog, { width: '600px', height: '550px' });
+
+    
+    
   }
 
   moneylineGameToggled() {

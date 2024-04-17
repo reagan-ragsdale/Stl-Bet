@@ -13,6 +13,20 @@
   </div>
 </ng-template>
 
+<ng-template #propStat>
+  <div mat-dialog-title style="display:flex">
+    <h4>{{selectedPropHistoryName}} Stats</h4>
+    <button mat-raised-button mat-dialog-close style="margin-left: auto;">X</button>
+  </div>
+  <div mat-dialog-content style="height:400px; display: flex; ">
+    <div style="width: 20%; height: 100%; background-color: red;"></div>
+    <div style="width: 80%; height: 100%; background-color: blue;"></div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="onChartClose()">Close</button>
+  </div>
+</ng-template>
+
 
 <div style="width: auto; background-color: #252324; display: flex;">
   <div class="games-list">
@@ -7237,7 +7251,7 @@
                 </button>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;">
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onMoneylineModal(team1GameStats, 'overall')">
                   {{(team2GameStatsDtoMLB.gamesWon / (team2GameStatsDtoMLB.gamesLost + team2GameStatsDtoMLB.gamesWon)) *
                   100 | number}}%
                 </button>
