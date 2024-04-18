@@ -2072,8 +2072,6 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "MLB") {
       var team1New: DbMlbTeamGameStats[] = team1
       var team2New: DbMlbTeamGameStats[] = team2
-      console.log(team1New)
-      console.log(team2New)
       this.team1GameStatsDtoMLB = {
         gamesWon: 0,
         gamesLost: 0,
@@ -3071,6 +3069,8 @@ export class PropScreenComponent implements OnInit {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint) && (e.teamAgainstId == team1New[0].teamId))
       })
       totalOverall = team2New.filter(e => e.teamAgainstId == team1New[0].teamId).length
+      console.log(totalFor)
+      console.log(totalOverall)
       this.awaySpreadTeamChance = (totalFor.length/totalOverall) * 100}
 
     else if (this.selectedSport == "NHL") {
