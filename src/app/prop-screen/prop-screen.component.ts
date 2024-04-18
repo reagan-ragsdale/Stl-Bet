@@ -3059,6 +3059,8 @@ export class PropScreenComponent implements OnInit {
       let totalOverall = 0;
       totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint})
       totalOverall = team2New.length
+      console.log(totalFor)
+      console.log(totalOverall)
       this.awaySpreadOverallChance = (totalFor.length/totalOverall) * 100
       
       totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint) && e.homeOrAway == "Away")})
@@ -3069,8 +3071,7 @@ export class PropScreenComponent implements OnInit {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint) && (e.teamAgainstId == team1New[0].teamId))
       })
       totalOverall = team2New.filter(e => e.teamAgainstId == team1New[0].teamId).length
-      console.log(totalFor)
-      console.log(totalOverall)
+      
       this.awaySpreadTeamChance = (totalFor.length/totalOverall) * 100}
 
     else if (this.selectedSport == "NHL") {
