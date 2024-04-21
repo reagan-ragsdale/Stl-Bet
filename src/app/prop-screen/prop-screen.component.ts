@@ -1380,6 +1380,7 @@ export class PropScreenComponent implements OnInit {
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
     this.homeAlternateSpreads.push(spreadPoint)
     this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function(a,b){return a-b})
+    
     let abvr = ''
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
@@ -1408,6 +1409,7 @@ export class PropScreenComponent implements OnInit {
     this.awayAlternateSpreadstemp.push(spreadPoint)
     console.log(this.awayAlternateSpreadstemp)
     this.awayAlternateSpreads = this.awayAlternateSpreadstemp.sort((a,b) => a-b)
+    this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
