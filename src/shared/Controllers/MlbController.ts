@@ -82,6 +82,7 @@ export class MlbController {
   static async mlbGetTeamGameStatsByTeamIdAndSeason(id: number, season: number): Promise<DbMlbTeamGameStats[]>{
     const taskRepo = remult.repo(DbMlbTeamGameStats)
     return await taskRepo.find({where: {teamId : id, season: season}})
+    
   }
 
   //player stat averages

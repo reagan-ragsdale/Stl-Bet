@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { NbaController } from '../../shared/Controllers/NbaController';
@@ -11,6 +11,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TransformFromTimestampToMonthDayPipe } from '../customPipes/transformTimestampToMonthDay.pipe';
 import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFullTeamNameToAbvr.pip';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
+import { remult } from 'remult';
+import { DbMlbGameBookData } from 'src/shared/dbTasks/DbMlbGameBookData';
+import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 
 @Component({
     selector: 'home-screen',
@@ -20,10 +23,11 @@ import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 })
 export class HomeScreenComponent {
   
-  constructor(private router: Router) { 
+  constructor(private router: Router, zone: NgZone) { 
+    remult.apiClient.wrapMessageHandling = (handler: () => any) => zone.run(() => handler())
   }
 
-
+  
   title = 'angulardemo1';
   opened = false;
   clicked = false;
@@ -142,6 +146,7 @@ export class HomeScreenComponent {
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
       this.gameDataAll = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(sport)
+
       var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
@@ -176,11 +181,8 @@ export class HomeScreenComponent {
       
     }
     else if (sport == "MLB") {
-      let url = "https://api.the-odds-api.com/v4/sports/baseball_mlb/events/9a24f550f71e1d4c0ebab0caa37adf60/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=alternate_totals,alternate_spreads&bookmakers=draftkings&oddsFormat=american";
-    
-      const promise = await fetch(url);
-      const processedResponse = await promise.json();
-      console.log(processedResponse)
+      var taskRepo = remult.repo(DbGameBookData)
+      var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
       this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns", 2024)
@@ -220,7 +222,12 @@ export class HomeScreenComponent {
         }
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
-      this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
+      //this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
+      unsubscribe = taskRepo
+      .liveQuery({
+        where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
+      })
+      .subscribe(info => (this.gameDataAll = info.applyChanges(this.gameDataAll)))
       console.log(this.gameDataAll)
       var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
