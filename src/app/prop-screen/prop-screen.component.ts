@@ -3163,7 +3163,8 @@ export class PropScreenComponent implements OnInit {
       if(this.selectedSport == 'MLB'){
         teamStatsAverage = this.team2GameStatsDtoMLB
         teamAgainstStatAverage = this.team1GameStatsDtoMLB
-        teamTable = teamStats.slice(0, 9)
+        teamTable = teamStats.reverse()
+        teamTable = teamTable.slice(0, 9)
       }
     }
     else if(location == 'home'){
