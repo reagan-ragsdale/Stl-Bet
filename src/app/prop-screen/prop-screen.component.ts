@@ -3151,20 +3151,23 @@ export class PropScreenComponent implements OnInit {
 
   }
 
+  moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
   onMoneylineModal(teamStats: any[], type: string, location: string){
     let teamStatsAverage = {}
     let teamAgainstStatAverage = {}
     let teamStatsFinal = []
+    let teamTable = []
     if(location == 'away'){
       if(this.selectedSport == 'MLB'){
         teamStatsAverage = this.team2GameStatsDtoMLB
         teamAgainstStatAverage = this.team1GameStatsDtoMLB
+        teamTable = teamStats.slice(0, 9)
       }
     }
     else if(location == 'home'){
 
     }
-    teamStatsFinal.push(teamStats, teamStatsAverage, teamAgainstStatAverage, type)
+    teamStatsFinal.push(teamStats, teamStatsAverage, teamAgainstStatAverage, type, teamTable)
     console.log(teamStatsFinal)
 
 

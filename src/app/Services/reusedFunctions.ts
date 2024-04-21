@@ -171,4 +171,18 @@ export class reusedFunctions {
     return finalTime
   }
 
+
+
+
+
+
+
+
+
+  // me creating my own js built in functions to understand how they work better
+
+  static myForEach(array: any[]){
+
+  }
+
 }
