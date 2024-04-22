@@ -1,6 +1,7 @@
 import { Allow, BackendMethod, remult } from "remult"
 
 import { DbGameBookData } from "../dbTasks/DbGameBookData";
+import { filter } from "compression";
 
 export class SportsBookController {
 
@@ -12,6 +13,21 @@ export class SportsBookController {
   static async addBookData(bookData: DbGameBookData[]) {
     const taskRepo = remult.repo(DbGameBookData)
       await taskRepo.insert(bookData)
+      let uniqueBookIds = bookData.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      for(let book of uniqueBookIds){
+        let bookProps = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
+        if(bookProps.length != 0){
+          for(let prop of bookProps){
+            let filteredNewProp = bookData.filter(e => {
+              e.bookId == book && e.teamName == prop.teamName && e.marketKey == prop.marketKey
+            })
+            if(filteredNewProp.length != 0){
+              await taskRepo.save({...filteredNewProp[0], createdAt: filteredNewProp[0].createdAt, price: filteredNewProp[0].price, point: filteredNewProp[0].point})
+            }
+          }
+        }
+      }
+      
   }
 
   @BackendMethod({ allowed: true })

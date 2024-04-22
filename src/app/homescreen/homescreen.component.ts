@@ -222,12 +222,15 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
       //this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
+
+
+
        this.unsubscribe = taskRepo
       .liveQuery({
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
       .subscribe(info => this.loadProps(info.items)) 
-      //this.loadProps()
+      
       
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
