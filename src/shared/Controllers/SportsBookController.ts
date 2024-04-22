@@ -13,15 +13,19 @@ export class SportsBookController {
   static async addBookData(bookData: DbGameBookData[]) {
     const taskRepo = remult.repo(DbGameBookData)
       await taskRepo.insert(bookData)
+      console.log("HEre after insert")
       let uniqueBookIds = bookData.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      console.log(uniqueBookIds)
       for(let book of uniqueBookIds){
         let bookProps = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
+        console.log(bookProps)
         if(bookProps.length != 0){
           for(let prop of bookProps){
             let filteredNewProp = bookData.filter(e => {
               e.bookId == book && e.teamName == prop.teamName && e.marketKey == prop.marketKey
             })
             if(filteredNewProp.length != 0){
+              console.log(filteredNewProp)
               await taskRepo.save({...filteredNewProp[0], createdAt: filteredNewProp[0].createdAt, price: filteredNewProp[0].price, point: filteredNewProp[0].point})
             }
           }
