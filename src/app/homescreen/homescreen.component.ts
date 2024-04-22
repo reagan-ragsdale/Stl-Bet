@@ -227,7 +227,7 @@ export class HomeScreenComponent {
       .liveQuery({
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
-      .subscribe(info => (this.gameDataAll = info.applyChanges(this.gameDataAll))).apply(this.loadProps())
+      .subscribe(info => this.loadProps(info.items))
 
       
       
@@ -237,7 +237,8 @@ export class HomeScreenComponent {
 
   }
 
-  loadProps(){
+  loadProps(change: any){
+    this.gameDataAll = change
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
     distinctGames.forEach(book => {
       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
