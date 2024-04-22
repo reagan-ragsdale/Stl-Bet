@@ -12,11 +12,12 @@ export class SportsBookController {
   @BackendMethod({ allowed: true })
   static async addBookData(bookData: DbGameBookData[]) {
     const taskRepo = remult.repo(DbGameBookData)
+    let bookDataTemp = bookData
       await taskRepo.insert(bookData)
       console.log("HEre after insert")
       console.log("Bookdata below")
-      console.log(bookData)
-      let uniqueBookIds = bookData.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      console.log(bookDataTemp)
+      let uniqueBookIds = bookDataTemp.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
       console.log("uniquebookid below")
       console.log(uniqueBookIds.length)
       for(let book of uniqueBookIds){
@@ -25,7 +26,7 @@ export class SportsBookController {
         console.log(bookProps)
         if(bookProps.length != 0){
           for(let prop of bookProps){
-            let filteredNewProp = bookData.filter(e => {
+            let filteredNewProp = bookDataTemp.filter(e => {
               e.bookId == book && e.teamName == prop.teamName && e.marketKey == prop.marketKey
             })
             if(filteredNewProp.length != 0){
