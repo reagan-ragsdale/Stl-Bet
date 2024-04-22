@@ -18,14 +18,13 @@ export class SportsBookController {
       await taskRepo.insert(bookData)
       console.log("HEre after insert")
       console.log("Bookdata below")
-      console.log(bookDataTemp)
       let uniqueBookIds = bookDataTemp.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
       console.log("uniquebookid below")
       console.log(uniqueBookIds.length)
       for(let book of uniqueBookIds){
         let bookProps = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
         console.log("bookProps below")
-        console.log(bookProps)
+        console.log(bookProps.length)
         if(bookProps.length != 0){
           for(let prop of bookProps){
             let filteredNewProp = bookDataTemp.filter(e => {
@@ -33,7 +32,7 @@ export class SportsBookController {
             })
             if(filteredNewProp.length != 0){
               console.log("filteredNewProp below")
-              console.log(filteredNewProp)
+              console.log(filteredNewProp.length)
               await taskRepo.save({...filteredNewProp[0], createdAt: filteredNewProp[0].createdAt, price: filteredNewProp[0].price, point: filteredNewProp[0].point})
             }
           }
