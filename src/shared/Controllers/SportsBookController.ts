@@ -13,6 +13,8 @@ export class SportsBookController {
   static async addBookData(bookData: DbGameBookData[]) {
     const taskRepo = remult.repo(DbGameBookData)
     let bookDataTemp = bookData
+    console.log("HEre before insert")
+    console.log(bookData.length)
       await taskRepo.insert(bookData)
       console.log("HEre after insert")
       console.log("Bookdata below")

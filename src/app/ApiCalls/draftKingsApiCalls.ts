@@ -134,8 +134,6 @@ export class draftKingsApiController {
   }
 
   static async convertSportsSinglePropDataToInterface(): Promise<DbGameBookData[]> {
-    console.log(this.selectedSportsData.id)
-    console.log(this.selectedSportsData.bookmakers.length)
     var tempData: DbGameBookData[] = [];
     let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData.id)
     let nextBookSeq = 0
