@@ -16,7 +16,7 @@ export class SportsBookController {
       console.log("HEre after insert")
       let uniqueBookIds = bookData.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
       console.log("uniquebookid below")
-      console.log(uniqueBookIds)
+      console.log(uniqueBookIds.length)
       for(let book of uniqueBookIds){
         let bookProps = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
         console.log("bookProps below")
