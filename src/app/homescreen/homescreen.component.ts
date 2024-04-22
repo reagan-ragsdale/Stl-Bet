@@ -239,7 +239,6 @@ export class HomeScreenComponent {
 
   loadProps(){
     console.log("here")
-    console.log(change)
     //this.gameDataAll = change
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
