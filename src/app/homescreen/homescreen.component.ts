@@ -222,13 +222,13 @@ export class HomeScreenComponent {
         }
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
-      //this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
-      var unsubscribe = taskRepo
+      this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
+      /* var unsubscribe = taskRepo
       .liveQuery({
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
-      .subscribe(info => this.loadProps(info.items))
-
+      .subscribe(info => this.loadProps(info.items)) */
+      this.loadProps()
       
       
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
@@ -237,10 +237,11 @@ export class HomeScreenComponent {
 
   }
 
-  loadProps(change: any){
+  loadProps(){
     console.log("here")
     console.log(change)
-    this.gameDataAll = change
+    //this.gameDataAll = change
+    this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
     distinctGames.forEach(book => {
       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
