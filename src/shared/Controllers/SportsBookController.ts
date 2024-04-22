@@ -14,6 +14,8 @@ export class SportsBookController {
     const taskRepo = remult.repo(DbGameBookData)
       await taskRepo.insert(bookData)
       console.log("HEre after insert")
+      console.log("Bookdata below")
+      console.log(bookData)
       let uniqueBookIds = bookData.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
       console.log("uniquebookid below")
       console.log(uniqueBookIds.length)
