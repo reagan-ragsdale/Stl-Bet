@@ -48,7 +48,7 @@ export class DbGameBookData {
 
 
   static bookIdFilter = Filter.createCustom<DbGameBookData, { bookId: string }>(async ({bookId}) => {
-    SqlDatabase.LogToConsole = true
+    //SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookseq = (select max(b.bookseq) from dbgamebookdata b where b.bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId) +') and bookid = ' + whereFragment.addParameterAndReturnSqlToken(bookId)
     
@@ -56,7 +56,7 @@ export class DbGameBookData {
   });
 
   static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
-    SqlDatabase.LogToConsole = true
+    //SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and date(commencetime) >= CURRENT_DATE'
     })
@@ -65,7 +65,7 @@ export class DbGameBookData {
   });
 
   static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
-    SqlDatabase.LogToConsole = true
+   // SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookSeq = 0 and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and marketkey in (' +  whereFragment.addParameterAndReturnSqlToken('h2h') + ', ' + whereFragment.addParameterAndReturnSqlToken('spreads') + ', ' + whereFragment.addParameterAndReturnSqlToken('totals') +') and date(commencetime) >= CURRENT_DATE'
     })
@@ -74,7 +74,7 @@ export class DbGameBookData {
   });
 
   static allSportFilterByMaxBookSeqAndh2h = Filter.createCustom<DbGameBookData, { sport: string }>(async ({sport}) => {
-    SqlDatabase.LogToConsole = true
+    //SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and date(commencetime) >= CURRENT_DATE and marketkey = ' + whereFragment.addParameterAndReturnSqlToken('h2h')
     })
@@ -83,7 +83,7 @@ export class DbGameBookData {
   });
 
   static loadAllBookDataBySportAndMaxBookSeqAndBookId = Filter.createCustom<DbGameBookData, { sport: string, bookId: string }>(async ({sport, bookId}) => {
-    SqlDatabase.LogToConsole = true
+    //SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and date(commencetime) >= CURRENT_DATE and bookid = ' +  whereFragment.addParameterAndReturnSqlToken(bookId)
     })
@@ -92,14 +92,14 @@ export class DbGameBookData {
   });
 
   static loadAllBookDataBySportAndBookIdAndTeamAndProp = Filter.createCustom<DbGameBookData, { sport: string, bookId: string, teamName: string, prop: string }>(async ({sport, bookId, teamName, prop}) => {
-    SqlDatabase.LogToConsole = true
+   // SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
      whereFragment.sql = 'bookId = ' + whereFragment.addParameterAndReturnSqlToken(bookId) + ' and teamname = ' + whereFragment.addParameterAndReturnSqlToken(teamName) + ' and marketkey = ' + whereFragment.addParameterAndReturnSqlToken(prop)
     })
   });
 
   static loadAllBookDataBySportAndBookIdAndProp = Filter.createCustom<DbGameBookData, { sport: string, bookId: string, prop: string }>(async ({sport, bookId, prop}) => {
-    SqlDatabase.LogToConsole = true
+    //SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookId = ' + whereFragment.addParameterAndReturnSqlToken(bookId) + ' and marketkey = ' + whereFragment.addParameterAndReturnSqlToken(prop)
     })
