@@ -227,7 +227,7 @@ export class HomeScreenComponent {
       .liveQuery({
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
-      .subscribe(info => (this.gameDataAll = info.applyChanges(this.gameDataAll))).call(this.loadProps())
+      .subscribe(info => (this.gameDataAll = info.applyChanges(this.gameDataAll))).apply(this.loadProps())
 
       
       
