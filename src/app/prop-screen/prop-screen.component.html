@@ -19,16 +19,16 @@
     <button mat-raised-button mat-dialog-close style="margin-left: auto;">X</button>
   </div>
   <div mat-dialog-content style="height:400px; display: flex; ">
-    <div style="width: 20%; height: 100%; background-color: red; ">
-      <div style="width:100%; height: 25%; display:flex; flex-direction: column;">
+    <div style="width: 20%; height: 100%; background-color:#ebebeb; ">
+      <div style="width:100%; height: 25%; display:flex; flex-direction: column; background-color:#22577A">
         <h2 style="margin:auto">Record</h2>
         <h2 style="margin:auto">{{teamStatsFinal[1].gamesWon}} - {{teamStatsFinal[1].gamesLost}}</h2>
       </div>
-      <div style="width:100%; height: 25%; display:flex; flex-direction: column;">
+      <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A">
         <h2 style="margin:auto">Chance to win</h2>
         <h2 style="margin:auto">{{(teamStatsFinal[1].gamesWon / (teamStatsFinal[1].gamesWon + teamStatsFinal[1].gamesLost)) * 100 | number}}%</h2>
       </div>
-      <div style="width:100%; height: 25%; display:flex; flex-direction: column;">
+      <div style="width:100%; height: 25%; display:flex; flex-direction: column; background-color:#22577A">
         <h2 style="margin:auto">overall vs team</h2>
         <h2 style="margin:auto">{{((teamStatsFinal[1].gamesWon / (teamStatsFinal[1].gamesWon + teamStatsFinal[1].gamesLost)) * (teamStatsFinal[2].gamesLost / (teamStatsFinal[2].gamesWon + teamStatsFinal[2].gamesLost))) * 100 | number}}%</h2>
       </div>
@@ -54,7 +54,7 @@
   
           <ng-container matColumnDef="Score">
             <th mat-header-cell *matHeaderCellDef> Score </th>
-            <td mat-cell *matCellDef="let element"> {{element.pointsScoredOverall}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.pointsScoredOverall}} - {{element.pointsAllowedOverall}} </td>
           </ng-container>
   
           <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"></tr>

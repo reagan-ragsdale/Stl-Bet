@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { NbaController } from '../../shared/Controllers/NbaController';
@@ -21,10 +21,9 @@ import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
     styleUrls: ['./homescreen.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class HomeScreenComponent {
+export class HomeScreenComponent implements OnDestroy, OnInit {
   
-  constructor(private router: Router, zone: NgZone) { 
-    remult.apiClient.wrapMessageHandling = (handler: () => any) => zone.run(() => handler())
+  constructor(private router: Router) { 
   }
 
   
@@ -105,7 +104,7 @@ export class HomeScreenComponent {
     this.teamStatsButtons.filter(e => e.dbName != stat.dbName).forEach(d => d.selected = false);
   }
 
-
+  unsubscribe = () => {}
   async getData(sport: string) {
     if (sport == "NBA") {
       this.playerAverageColumns = this.playerAverageColumnsNba
@@ -223,7 +222,7 @@ export class HomeScreenComponent {
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
       //this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
-       var unsubscribe = taskRepo
+       this.unsubscribe = taskRepo
       .liveQuery({
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
@@ -281,6 +280,10 @@ export class HomeScreenComponent {
   async ngOnInit() {
     this.selectedSport = this.gamesList[0].name
     await this.getData(this.selectedSport)
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe()
   }
 
   
