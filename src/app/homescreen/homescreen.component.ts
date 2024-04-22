@@ -182,7 +182,7 @@ export class HomeScreenComponent {
     }
     else if (sport == "MLB") {
       var taskRepo = remult.repo(DbGameBookData)
-      var unsubscribe = () => {}
+      //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
       this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns", 2024)
@@ -223,45 +223,50 @@ export class HomeScreenComponent {
       ]
       this.gameData = await SportsBookController.loadSportBookByH2H(sport)
       //this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
-      unsubscribe = taskRepo
+      var unsubscribe = taskRepo
       .liveQuery({
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
-      .subscribe(info => (this.gameDataAll = info.applyChanges(this.gameDataAll)))
-      console.log(this.gameDataAll)
-      var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
-      distinctGames.forEach(book => {
-        let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
-        let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
-        let teamArray: any[] = []
-        let distinctTeamsNew: any[] = []
-        let teamsName = distinctTeams.filter(e => e != 'Over')
-        let bothTeams = teamsName.filter(f => f != 'Under')
-        distinctTeamsNew.push(bothTeams[0])
-        distinctTeamsNew.push(bothTeams[1])
-        let teamsNameOver = distinctTeams.filter(e => e == "Over")
-        distinctTeamsNew.push(teamsNameOver[0])
-        let teamsNameUnder = distinctTeams.filter(e => e == "Under")
-        distinctTeamsNew.push(teamsNameUnder[0])
-        distinctTeamsNew.forEach(team => {
-          let allOfTeam = allOfBook.filter(e => e.teamName == team)
-          teamArray.push(allOfTeam)
-        })
-        let teamArrayFinal: any[] = []
-        if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
-          teamArrayFinal.push(teamArray[1])
-          teamArrayFinal.push(teamArray[0])
-          teamArrayFinal.push(teamArray[2])
-          teamArrayFinal.push(teamArray[3])
-        }
-        else{teamArrayFinal = teamArray}
-        this.gameDataAllFinal.push(teamArrayFinal)
+      .subscribe(info => (this.gameDataAll = info.applyChanges(this.gameDataAll))).call(this.loadProps())
 
-      })
+      
+      
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
       this.playerAverageColumns = this.playerAverageColumnsMlb
     }
 
+  }
+
+  loadProps(){
+    var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+    distinctGames.forEach(book => {
+      let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
+      let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
+      let teamArray: any[] = []
+      let distinctTeamsNew: any[] = []
+      let teamsName = distinctTeams.filter(e => e != 'Over')
+      let bothTeams = teamsName.filter(f => f != 'Under')
+      distinctTeamsNew.push(bothTeams[0])
+      distinctTeamsNew.push(bothTeams[1])
+      let teamsNameOver = distinctTeams.filter(e => e == "Over")
+      distinctTeamsNew.push(teamsNameOver[0])
+      let teamsNameUnder = distinctTeams.filter(e => e == "Under")
+      distinctTeamsNew.push(teamsNameUnder[0])
+      distinctTeamsNew.forEach(team => {
+        let allOfTeam = allOfBook.filter(e => e.teamName == team)
+        teamArray.push(allOfTeam)
+      })
+      let teamArrayFinal: any[] = []
+      if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+        teamArrayFinal.push(teamArray[1])
+        teamArrayFinal.push(teamArray[0])
+        teamArrayFinal.push(teamArray[2])
+        teamArrayFinal.push(teamArray[3])
+      }
+      else{teamArrayFinal = teamArray}
+      this.gameDataAllFinal.push(teamArrayFinal)
+
+    })
   }
 
   teamClicked(teamName: string) {
@@ -273,6 +278,8 @@ export class HomeScreenComponent {
     this.selectedSport = this.gamesList[0].name
     await this.getData(this.selectedSport)
   }
+
+  
 
 
 
