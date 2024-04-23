@@ -33,7 +33,7 @@ export class SportsBookController {
             if(filteredNewProp.length != 0){
               console.log("filteredNewProp below")
               console.log(filteredNewProp[0])
-              await taskRepo.save({...prop, price: 511, point: filteredNewProp[0].point})
+              await taskRepo.save({...prop, price: 777, point: filteredNewProp[0].point})
             }
           }
         }
