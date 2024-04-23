@@ -27,7 +27,7 @@ import { DBMlbPlayerGameStats } from '../shared/dbTasks/DbMlbPlayerGameStats';
 import { DbPlayerInfo } from '../shared/dbTasks/DbPlayerInfo';
 import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
 import { cronSportsBookHourly } from '../app/cronJobs/cronSportsBookLoadHourly';
-import { DBMlbPlayerGameStatTotals } from 'src/shared/dbTasks/DbMlbPlayerGameStatTotals';
+import { DBMlbPlayerGameStatTotals } from '../shared/dbTasks/DbMlbPlayerGameStatTotals';
 config()
 
 export const api = remultExpress({

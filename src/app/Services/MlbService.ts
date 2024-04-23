@@ -6,11 +6,11 @@ import { DbMlbPlayerInfo } from "../../shared/dbTasks/DbMlbPlayerInfo"
 import { DBMlbPlayerGameStats } from "../../shared/dbTasks/DbMlbPlayerGameStats"
 import { MlbController } from "../../shared/Controllers/MlbController"
 import { reusedFunctions } from "./reusedFunctions"
-import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo"
-import { DbMlbTeamGameStats } from "src/shared/dbTasks/DbMlbTeamGameStats"
-import { DBMlbPlayerGameStatAverages } from "src/shared/dbTasks/DbMlbPlayerGameStatAverages"
-import { DbMlbTeamGameStatAverages } from "src/shared/dbTasks/DbMlbTeamGameStatAverages"
-import { DBMlbPlayerGameStatTotals } from "src/shared/dbTasks/DbMlbPlayerGameStatTotals"
+import { DbPlayerInfo } from "../../shared/dbTasks/DbPlayerInfo"
+import { DbMlbTeamGameStats } from "../../shared/dbTasks/DbMlbTeamGameStats"
+import { DBMlbPlayerGameStatAverages } from "../../shared/dbTasks/DbMlbPlayerGameStatAverages"
+import { DbMlbTeamGameStatAverages } from "../../shared/dbTasks/DbMlbTeamGameStatAverages"
+import { DBMlbPlayerGameStatTotals } from "../../shared/dbTasks/DbMlbPlayerGameStatTotals"
 
 
 
