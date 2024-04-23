@@ -142,6 +142,8 @@ export const mlbCronFile = async () => {
             let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
             let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
             await MlbController.mlbSetPlayerStatAverage(playerAverage)
+            let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
+            await MlbController.mlbSetPlayerStatTotals(playerTotals)
         }
         catch (error: any) {
             console.log(error.message)

@@ -5,6 +5,7 @@ import { DbMlbTeamGameStats } from "../dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "../dbTasks/DbMlbPlayerGameStatAverages"
 import { DbMlbTeamGameStatAverages } from "../dbTasks/DbMlbTeamGameStatAverages"
 import { DbPlayerInfo } from "../dbTasks/DbPlayerInfo"
+import { DBMlbPlayerGameStatTotals } from "../dbTasks/DbMlbPlayerGameStatTotals"
 
 export class MlbController {
 
@@ -165,6 +166,24 @@ export class MlbController {
       finalData = await taskRepo.find({where: {season: season},orderBy: {pointsAllowedOverall: "asc"}, limit: 5})
     }
     return finalData
+  }
+
+
+  //player stat totals
+  
+  @BackendMethod({ allowed: true })
+  static async mlbSetPlayerStatTotals(stat: DBMlbPlayerGameStatTotals) {
+    const taskRepo = remult.repo(DBMlbPlayerGameStatTotals)
+
+    var playerStat = await taskRepo.find({where: {playerId: stat.playerId}})
+    if(playerStat.length > 0){
+      await taskRepo.delete(playerStat[0])
+      await taskRepo.insert(stat)
+    }
+    else{
+      await taskRepo.insert(stat)
+    }
+    
   }
 
   

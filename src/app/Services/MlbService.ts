@@ -10,6 +10,7 @@ import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo"
 import { DbMlbTeamGameStats } from "src/shared/dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "src/shared/dbTasks/DbMlbPlayerGameStatAverages"
 import { DbMlbTeamGameStatAverages } from "src/shared/dbTasks/DbMlbTeamGameStatAverages"
+import { DBMlbPlayerGameStatTotals } from "src/shared/dbTasks/DbMlbPlayerGameStatTotals"
 
 
 
@@ -465,6 +466,56 @@ export class MlbService {
 
 
         return playerAverageFinal
+    }
+
+
+
+    static setPlayerGameTotals(playerStats: DBMlbPlayerGameStats[]): DBMlbPlayerGameStatTotals{
+        var playerTotalFinal: DBMlbPlayerGameStatAverages = {
+            playerId: 0
+            , playerName: ''
+            , season: 0
+            , batterHomeRuns: 0
+            , batterHits: 0
+            , batterAtBats: 0
+            , batterTotalBases: 0
+            , batterRbis: 0
+            , batterRunsScored: 0
+            , batterHitsRunsRbis: 0
+            , batterSingles: 0
+            , batterDoubles: 0
+            , batterTriples: 0
+            , batterWalks: 0
+            , batterStrikeouts: 0
+            , batterStolenBases: 0
+            , pitcherStrikes: 0
+            , pitcherPitches: 0
+            , totalGames: 0
+        }
+
+        for (let game of playerStats) {
+                playerTotalFinal.playerId = game.playerId,
+                playerTotalFinal.playerName = game.playerName,
+                playerTotalFinal.season = game.season,
+                playerTotalFinal.batterHomeRuns += game.batterHomeRuns,
+                playerTotalFinal.batterHits += game.batterHits,
+                playerTotalFinal.batterAtBats += game.batterAtBats,
+                playerTotalFinal.batterTotalBases += game.batterTotalBases,
+                playerTotalFinal.batterRbis += game.batterRbis,
+                playerTotalFinal.batterRunsScored += game.batterRunsScored,
+                playerTotalFinal.batterHitsRunsRbis += game.batterHitsRunsRbis,
+                playerTotalFinal.batterDoubles += game.batterDoubles,
+                playerTotalFinal.batterTriples += game.batterTriples,
+                playerTotalFinal.batterWalks += game.batterWalks,
+                playerTotalFinal.batterStrikeouts += game.batterStrikeouts,
+                playerTotalFinal.batterStolenBases += game.batterStolenBases,
+                playerTotalFinal.pitcherStrikes += game.pitcherStrikes,
+                playerTotalFinal.pitcherPitches += game.pitcherPitches,
+                playerTotalFinal.totalGames += 1
+
+        }
+
+        return playerTotalFinal
     }
 
 
