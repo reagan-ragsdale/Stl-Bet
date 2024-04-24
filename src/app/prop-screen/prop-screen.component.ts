@@ -3155,26 +3155,51 @@ export class PropScreenComponent implements OnInit {
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
   onMoneylineModal(teamStats: any[], type: string, location: string){
+    var teamInfo: any = {};
     let teamStatsAverage = {}
     let teamAgainstStatAverage = {}
-    let teamStatsFinal = []
+    let teamStatsFinal: any[] = []
     let teamTable = []
     if(location == 'away'){
       if(this.selectedSport == 'MLB'){
-        teamStatsAverage = this.team2GameStatsDtoMLB
-        teamAgainstStatAverage = this.team1GameStatsDtoMLB
-        teamTable = teamStats.reverse()
-        teamTable = teamTable.slice(0, 9)
+        if(type == 'overall'){
+          teamTable = teamStats.reverse()
+          teamTable = teamTable.slice(0, 9)
+          teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWon
+          teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLost
+          teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWon
+          teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLost
+          teamInfo.teamTable = teamTable
+        }
+        else if(type == 'homeAway'){
+          teamTable = teamStats.reverse()
+          teamTable = teamTable.filter(e => e.homeOrAway == "Away")
+          teamTable = teamTable.slice(0, 9)
+          teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonAway
+          teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostAway
+          teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonHome
+          teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostHome
+          teamInfo.teamTable = teamTable
+        }
+        else if(type == 'team'){
+          teamTable = teamStats.reverse()
+          teamTable = teamTable.filter(e => e.teamAgainstId == this.team2GameStats[0].teamId)
+          teamTable = teamTable.slice(0, 9)
+          teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonVsOpponent
+          teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostVsOpponent
+          teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonVsOpponent
+          teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+          teamInfo.teamTable = teamTable
+        }
+        
       }
     }
     else if(location == 'home'){
 
     }
-    teamStatsFinal.push(teamStats, teamStatsAverage, teamAgainstStatAverage, type, teamTable)
-    console.log(teamStatsFinal)
 
 
-    let dialogRef = this.dialog.open(this.propDialog, {data: teamStatsFinal, width: '600px', height: '550px' });
+    let dialogRef = this.dialog.open(this.propDialog, {data: teamInfo, width: '600px', height: '550px' });
 
     
     
