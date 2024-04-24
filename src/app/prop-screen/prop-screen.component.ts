@@ -3183,7 +3183,7 @@ export class PropScreenComponent implements OnInit {
         }
         else if(type == 'team'){
           teamTable = teamStats.reverse()
-          teamTable = teamTable.filter(e => e.teamAgainstId == this.team2GameStats[0].teamId)
+          teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
           teamTable = teamTable.slice(0, 9)
           teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonVsOpponent
           teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostVsOpponent
