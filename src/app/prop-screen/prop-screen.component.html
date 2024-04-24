@@ -15,7 +15,7 @@
 
 <ng-template #propStat let-teamInfo>
   <div mat-dialog-title style="display:flex">
-    <h4>{{moneyline | titlecase}} Stats</h4>
+    <h4>Moneyline Stats</h4>
     <button mat-raised-button mat-dialog-close style="margin-left: auto;">X</button>
   </div>
   <div mat-dialog-content style="height:400px; display: flex; ">
@@ -38,7 +38,7 @@
         <h2 style="text-align:center; margin-top: 5px;">Last 10 Games</h2>
       </div>
       <div style="width:100%">
-        <table mat-table [dataSource]="teamStatsFinal[4]">
+        <table mat-table [dataSource]="teamInfo.teamTable">
           <ng-container matColumnDef="TeamAgainst">
             <th mat-header-cell *matHeaderCellDef> Team </th>
             <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
