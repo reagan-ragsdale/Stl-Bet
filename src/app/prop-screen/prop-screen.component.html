@@ -20,15 +20,15 @@
   </div>
   <div mat-dialog-content style="height:400px; display: flex; ">
     <div style="width: 20%; height: 100%; background-color:#ebebeb; ">
-      <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px;">
+      <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
         <h2 style="margin:auto">Record</h2>
         <h2 style="margin:auto">{{teamInfo.teamGamesWon}} - {{teamInfo.teamGamesLost}}</h2>
       </div>
-      <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px;">
+      <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
         <h2 style="margin:auto">Win %</h2>
         <h2 style="margin:auto">{{(teamInfo.teamGamesWon / (teamInfo.teamGamesWon + teamInfo.teamGamesLost)) * 100 | number}}%</h2>
       </div>
-      <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px;">
+      <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
         <h2 style="margin:auto">Weighted %</h2>
         <h2 style="margin:auto">{{((teamInfo.teamGamesWon / (teamInfo.teamGamesWon + teamInfo.teamGamesLost)) * (teamInfo.teamAgainstGamesLost / (teamInfo.teamAgainstGamesWon + teamInfo.teamAgainstGamesLost))) * 100 | number}}%</h2>
       </div>
