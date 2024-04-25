@@ -3205,6 +3205,13 @@ export class PropScreenComponent implements OnInit {
     
   }
 
+  onSpreadModal(){
+
+  }
+  onTotalModal(){
+    
+  }
+
   moneylineGameToggled() {
     this.moneylineGameClicked = true;
     this.moneylineHalfClicked = false;
