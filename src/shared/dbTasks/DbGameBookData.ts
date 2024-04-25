@@ -1,6 +1,9 @@
 import { Allow, Entity, Fields, Filter, SqlDatabase, Validators } from "remult"
 import { TeamStatsComponent } from "src/app/team-stats/team-stats.component"
 
+//export const sportKeyOptions = ['MLB','NBA','NFL','NHL'] as const
+//export type SportKey = typeof sportkey
+
 @Entity("DbGameBookData", {
   allowApiCrud: true
 })
@@ -65,11 +68,13 @@ export class DbGameBookData {
   });
 
   static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
+    let today = new Date();
+    today.setHours(0,0,0,0);
     return {
       bookSeq: 0,
       sportTitle: sport,
       marketKey: ['h2h', 'totals', 'spreads'],
-     //[ ] commenceTime: { $gte: new Date() }
+      commenceTime: { $gte: today }
     }
     // SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {

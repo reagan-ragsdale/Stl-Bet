@@ -9,7 +9,7 @@ import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
-import { filterHelper } from 'remult/src/filter/filter-interfaces';
+
 
 import { DbNhlPlayerInfo } from '../../shared/dbTasks/DbNhlPlayerInfo';
 import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';

@@ -19,7 +19,7 @@ import { DbNbaGameStats } from '../shared/dbTasks/DbNbaGameStats';
 import { createPostgresDataProvider } from 'remult/postgres';
 import { DbNbaTeamGameStats } from '../shared/dbTasks/DbNbaTeamGameStats';
 import { DbNbaTeamLogos } from '../shared/dbTasks/DbNbaTeamLogos';
-import {config} from 'dotenv'
+import { config } from 'dotenv'
 import { cronTestFile } from '../app/cronTest';
 import { mlbCronFile } from '../app/mlbCron';
 import cron from 'node-cron'
@@ -28,6 +28,7 @@ import { DbPlayerInfo } from '../shared/dbTasks/DbPlayerInfo';
 import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
 import { cronSportsBookHourly } from '../app/cronJobs/cronSportsBookLoadHourly';
 import { DBMlbPlayerGameStatTotals } from '../shared/dbTasks/DbMlbPlayerGameStatTotals';
+import { repo } from 'remult';
 config()
 
 export const api = remultExpress({
@@ -55,22 +56,25 @@ export const api = remultExpress({
     NbaController,
     PlayerInfoController
   ],
-  
 
+  admin: true,
   dataProvider:
     process.env['DATABASE_URL'] ?
       createPostgresDataProvider({
+        caseInsensitiveIdentifiers: true,
         connectionString: process.env['DATABASE_URL']
       }) : undefined
-,initApi: async ()=>{
-  //test
-  //9:15am
-  cron.schedule('30 15 * * *',()=>  cronTestFile())
-  //1:33pm
-  cron.schedule('58 16 * * *', ()=>  mlbCronFile())
+  , initApi: async () => {
 
-  cron.schedule('*/3 * * * *', ()=> cronSportsBookHourly())
-}
+        //test
+    //9:15am
+    cron.schedule('30 15 * * *', () => cronTestFile())
+    //1:33pm
+
+    cron.schedule('58 16 * * *', () => mlbCronFile())
+
+    cron.schedule('*/3 * * * *', () => cronSportsBookHourly())
+  }
 });
 
 
