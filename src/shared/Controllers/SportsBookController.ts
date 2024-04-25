@@ -24,7 +24,7 @@ export class SportsBookController {
              return (e.bookId == book && e.teamName == prop.teamName && e.marketKey == prop.marketKey)
             })
             if(filteredNewProp.length != 0){
-              await taskRepo.save({...prop, price: 888, point: filteredNewProp[0].point})
+              await taskRepo.save({...prop, price: filteredNewProp[0].price, point: filteredNewProp[0].point})
             }
           }
         }
