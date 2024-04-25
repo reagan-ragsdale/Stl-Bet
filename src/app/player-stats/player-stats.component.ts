@@ -10,7 +10,7 @@ import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
 import { filterHelper } from 'remult/src/filter/filter-interfaces';
-import { Observable } from 'rxjs';
+
 import { DbNhlPlayerInfo } from '../../shared/dbTasks/DbNhlPlayerInfo';
 import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';
 import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGameStatsController';

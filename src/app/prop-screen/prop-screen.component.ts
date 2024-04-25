@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MlbPlayerid } from '../mlb-playerid';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, of } from 'rxjs';
+
 import { PropArray } from '../prop-array';
 import { GamePropArray } from '../game-prop-array';
 import { DateArray } from '../date-array';
