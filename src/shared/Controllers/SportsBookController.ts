@@ -23,7 +23,16 @@ export class SportsBookController {
              return (e.bookId == book && e.teamName == prop.teamName && e.marketKey == prop.marketKey)
             })
             if(filteredNewProp.length != 0){
-              await taskRepo.save({...prop, price: filteredNewProp[0].price, point: filteredNewProp[0].point})
+              if(filteredNewProp.length > 1){
+                for(let fprop of filteredNewProp){
+                  let matchedProp = bookDataTemp.filter(e =>{return e.bookId == book && e.teamName == fprop.teamName && e.marketKey == fprop.marketKey && e.point == fprop.point})
+                  await taskRepo.save({...prop, price: matchedProp[0].price})
+                }
+              }
+              else{
+                await taskRepo.save({...prop, price: filteredNewProp[0].price, point: filteredNewProp[0].point})
+              }
+              
             }
           }
         }
