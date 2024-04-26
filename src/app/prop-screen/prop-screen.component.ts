@@ -1380,7 +1380,8 @@ export class PropScreenComponent implements OnInit {
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
     this.homeAlternateSpreads.push(spreadPoint)
     this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function(a,b){return a-b})
-    
+    this.homeAlternateSpreads = this.homeAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
+    this.team1SelectedSpreadPoint = spreadPoint
     let abvr = ''
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
@@ -3096,6 +3097,7 @@ export class PropScreenComponent implements OnInit {
   //because for a positive spread that means everything less than that number wins
   //when the prop is negative then we want t
   public team2SelectedSpreadPoint: number = 0
+  public team1SelectedSpreadPoint: number = 0
   public awaySpreadOverallChance: number = 0
   public awaySpreadAwayChance: number = 0
   public awaySpreadTeamChance: number = 0
