@@ -99,20 +99,22 @@ export class draftKingsApiController {
 
   static async convertSportsDataToInterface(): Promise<DbGameBookData[]> {
     var tempData: DbGameBookData[] = [];
-    let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[0].id)
+    
     let nextBookSeq = 0
-    if (bookDb.length == 0) {
-      console.log("bookseq equals zero")
-      console.log(this.selectedSportsData[0].id)
-      nextBookSeq = 0
-    }
-    else {
-      console.log("bookseq not zero")
-      console.log(bookDb[0].bookId)
-      nextBookSeq = bookDb[0].bookSeq + 1
-    }
+    
 
     for (let i = 0; i < this.selectedSportsData.length; i++) {
+      let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[i].id)
+      if (bookDb.length == 0) {
+        console.log("bookseq equals zero")
+        console.log(this.selectedSportsData[0].id)
+        nextBookSeq = 0
+      }
+      else {
+        console.log("bookseq not zero")
+        console.log(bookDb[0].bookId)
+        nextBookSeq = bookDb[0].bookSeq + 1
+      }
       for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
         for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
           for (let m = 0; m < this.selectedSportsData[i].bookmakers[j].markets[k].outcomes.length; m++) {
