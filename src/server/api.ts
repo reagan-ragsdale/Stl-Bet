@@ -71,7 +71,7 @@ export const api = remultExpress({
     cron.schedule('30 15 * * *', () => cronTestFile())
     //1:33pm
 
-    cron.schedule('48 19 * * *', () => mlbCronFile())
+    cron.schedule('04 20 * * *', () => mlbCronFile())
 
     cron.schedule('*/15 * * * *', () => cronSportsBookHourly())
   }
