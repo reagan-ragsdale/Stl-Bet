@@ -7409,18 +7409,18 @@
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <button mat-raised-button style="margin:auto; height: 60%;"
-                  (click)="onMoneylineModal(team1GameStats, 'overall', 'away')">
+                  (click)="onPropModal(team1GameStats, 'overall', 'away')">
                   {{(team1GameStatsDtoMLB.gamesWon / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) *
                   100 | number}}%
                 </button>
 
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onMoneylineModal(team1GameStats, 'homeAway', 'away')">{{(team1GameStatsDtoMLB.gamesWonAway /
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team1GameStats, 'homeAway', 'away')">{{(team1GameStatsDtoMLB.gamesWonAway /
                   (team1GameStatsDtoMLB.gamesLostAway + team1GameStatsDtoMLB.gamesWonAway)) * 100 | number}}%</button>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onMoneylineModal(team1GameStats, 'team', 'away')">{{team1GameStatsDtoMLB.gamesWonVsOpponent ==
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team1GameStats, 'team', 'away')">{{team1GameStatsDtoMLB.gamesWonVsOpponent ==
                   0 ? 0 : (team1GameStatsDtoMLB.gamesWonVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent +
                   team1GameStatsDtoMLB.gamesWonVsOpponent)) * 100 | number}}%</button>
 
