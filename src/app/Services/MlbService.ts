@@ -207,6 +207,11 @@ export class MlbService {
         if (gameStats.gameStatus != "Completed") {
             return 0
         }
+        let gameHistory = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(this.mlbTeamIds[gameStats.away], 2024)
+        let listOfGameIds = gameHistory.map(g => g.gameId)
+        if(listOfGameIds.includes(gameStats.gameID)){
+            return 0;
+        }
         let homeRunsAway = 0
         let homeRunsHome = 0
         let playerStats = gameStats.playerStats
@@ -644,7 +649,7 @@ export class MlbService {
         if (gameStats.gameStatus != "Completed") {
             return 0
         }
-        let dbResultAway = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(this.mlbTeamIds[gameStats.away],2023)
+        let dbResultAway = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(this.mlbTeamIds[gameStats.away],2024)
         
         let resultLength = dbResultAway.filter(e =>{
             e.gameId == gameStats.gameID

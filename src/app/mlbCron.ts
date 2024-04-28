@@ -40,12 +40,13 @@ export const mlbCronFile = async () => {
     await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
     //test
-    let gameDate = reusedFunctions.getPreviousDateYMD()
-    console.log(gameDate)
+    //let gameDate = reusedFunctions.getPreviousDateYMD()
+    //console.log(gameDate)
+    let gameDate = ["20240401","20240402","20240403","20240404","20240405","20240406","20240407","20240408","20240409","20240410","20240411","20240412","20240413","20240414","20240415","20240416","20240417","20240418","20240419","20240420","20240421","20240422","20240423","20240424","20240425","20240426","20240427",]
 
     try {
-
-        let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
+     for(let date of gameDate){
+        let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(date)
         for (let game of listOfGamesToday) {
             let gameInfo = await mlbApiController.getGameResults(game.gameID)
             let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
@@ -59,6 +60,7 @@ export const mlbCronFile = async () => {
             }
 
         }
+    }
     } catch (error: any) {
         console.log(error.message)
     }
