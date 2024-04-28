@@ -42,7 +42,7 @@ export const mlbCronFile = async () => {
     //test
     //let gameDate = reusedFunctions.getPreviousDateYMD()
     //console.log(gameDate)
-    let gameDate = ["20240401","20240402","20240403","20240404","20240405","20240406","20240407","20240408","20240409","20240410","20240411","20240412","20240413","20240414","20240415","20240416","20240417","20240418","20240419","20240420","20240421","20240422","20240423","20240424","20240425","20240426","20240427",]
+    let gameDate = ["20240425","20240426","20240427",]
 
     try {
      for(let date of gameDate){
@@ -144,8 +144,8 @@ export const mlbCronFile = async () => {
             let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
             let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
             await MlbController.mlbSetPlayerStatAverage(playerAverage)
-            let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
-            await MlbController.mlbSetPlayerStatTotals(playerTotals)
+            //let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
+            //await MlbController.mlbSetPlayerStatTotals(playerTotals)
         }
         catch (error: any) {
             console.log("Player stats: " + error.message)

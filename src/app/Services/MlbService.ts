@@ -291,7 +291,7 @@ export class MlbService {
             pointsScoredThirdInning: gameStats.lineScore.home.scoresByInning[3],
             pointsScoredFourthInning: gameStats.lineScore.home.scoresByInning[4],
             pointsScoredFifthInning: gameStats.lineScore.home.scoresByInning[5],
-            pointsScoredSixthInning: gameStats.lineScore.home.scoresByInning[6],
+            pointsScoredSixthInning: typeof(gameStats.lineScore.home.scoresByInning[6]) == 'number' ? gameStats.lineScore.home.scoresByInning[6]: 0,
             pointsScoredSeventhInning: gameStats.lineScore.home.scoresByInning[7],
             pointsScoredEigthInning: gameStats.lineScore.home.scoresByInning[8],
             pointsScoredNinthInning: (gameStats.lineScore.home.scoresByInning[9] = "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
