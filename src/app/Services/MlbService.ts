@@ -368,6 +368,7 @@ export class MlbService {
             if (playerName.includes("Ü")) {
                 playerName = playerName.replaceAll("Ü", "U")
             }
+            console.log(player.Hitting.HR)
 
             listOfPlayerGameStats.push({
                 playerId: player.playerID,
