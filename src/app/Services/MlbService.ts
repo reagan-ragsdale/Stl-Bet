@@ -391,7 +391,8 @@ export class MlbService {
                 batterHitsRunsRbis: (Number(player.Hitting.H) + Number(player.Hitting.R) + Number(player.Hitting.RBI)) ? Number(player.Hitting.H) + Number(player.Hitting.R) + Number(player.Hitting.RBI) : 0,
                 batterDoubles: player.Hitting['2B'],
                 batterTriples: player.Hitting['3B'],
-                batterWalks: Number(player.Hitting.BB) + Number(player.Hitting.IBB),
+                batterWalks: 0,
+                //Number(player.Hitting.BB) + Number(player.Hitting.IBB),
                 batterStrikeouts: player.Hitting.SO,
                 batterStolenBases: player.BaseRunning.SB,
                 pitcherStrikes: player.Pitching.Strikes,
@@ -455,7 +456,7 @@ export class MlbService {
 
         }
 
-        playerAverageFinal.batterHomeRuns = playerAverageFinal.batterHomeRuns / playerDbStats.length
+        playerAverageFinal.batterHomeRuns = parseFloat((playerAverageFinal.batterHomeRuns / playerDbStats.length).toPrecision(5))
         playerAverageFinal.batterHits = playerAverageFinal.batterHits / playerDbStats.length
         playerAverageFinal.batterAtBats = playerAverageFinal.batterAtBats / playerDbStats.length
         playerAverageFinal.batterTotalBases = playerAverageFinal.batterTotalBases / playerDbStats.length
