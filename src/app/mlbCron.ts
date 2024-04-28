@@ -62,7 +62,7 @@ export const mlbCronFile = async () => {
         }
     }
     } catch (error: any) {
-        console.log(error.message)
+        console.log("Game stats: " + error.message)
     }
 
 
@@ -148,7 +148,7 @@ export const mlbCronFile = async () => {
             await MlbController.mlbSetPlayerStatTotals(playerTotals)
         }
         catch (error: any) {
-            console.log(error.message)
+            console.log("Player stats: " + error.message)
         }
 
     }
@@ -161,7 +161,7 @@ export const mlbCronFile = async () => {
             await MlbController.mlbSetTeamStatAverage(teamAverage)
         }
         catch (error: any) {
-            console.log(error.message)
+            console.log("Team stats: " + error.message)
         }
 
     }

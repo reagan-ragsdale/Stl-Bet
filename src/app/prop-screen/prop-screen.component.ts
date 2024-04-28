@@ -3156,7 +3156,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
-  onMoneylineModal(teamStats: any[], type: string, location: string){
+  onPropModal(teamStats: any[], type: string, location: string){
     var teamInfo: any = {};
     let teamStatsAverage = {}
     let teamAgainstStatAverage = {}
