@@ -142,10 +142,13 @@ export const mlbCronFile = async () => {
     for (let player of listOfActivePlayers) {
         try {
             let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
-            let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
-            await MlbController.mlbSetPlayerStatAverage(playerAverage)
-            //let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
-            //await MlbController.mlbSetPlayerStatTotals(playerTotals)
+            if(playerDbStats.length > 0){
+                let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
+                await MlbController.mlbSetPlayerStatAverage(playerAverage)
+                //let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
+                //await MlbController.mlbSetPlayerStatTotals(playerTotals)
+            }
+            
         }
         catch (error: any) {
             console.log("Player stats: " + error.message)
