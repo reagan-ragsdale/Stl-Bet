@@ -40,13 +40,10 @@ export const mlbCronFile = async () => {
     await PlayerInfoController.playerInfoAddPlayers(allPlayerInfo)
 
     //test
-    //let gameDate = reusedFunctions.getPreviousDateYMD()
-    //console.log(gameDate)
-    let gameDate = ["20240425","20240426","20240427",]
+    let gameDate = reusedFunctions.getPreviousDateYMD()
 
     try {
-     for(let date of gameDate){
-        let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(date)
+        let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
         for (let game of listOfGamesToday) {
             let gameInfo = await mlbApiController.getGameResults(game.gameID)
             let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
@@ -58,8 +55,6 @@ export const mlbCronFile = async () => {
                 }
 
             }
-
-        }
     }
     } catch (error: any) {
         console.log("Game stats: " + error.message)
