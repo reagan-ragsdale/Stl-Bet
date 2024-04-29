@@ -1301,7 +1301,6 @@ export class PropScreenComponent implements OnInit {
         this.dates.push(reusedFunctions.convertDate(x.commenceTime));
       }
     });
-    console.log(this.dates)
     this.setSelectedDate(this.dates[0])
     this.updateGames();
   }
@@ -1337,7 +1336,6 @@ export class PropScreenComponent implements OnInit {
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
     
-    console.log(team2)
 
     if (this.selectedSport == "NBA") {
       this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
@@ -1347,7 +1345,6 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
       this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
-      console.log(this.awayAlternateSpreadstemp)
       this.homeAlternateSpreads = team1.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
     }
     else if (this.selectedSport == "NHL") {
@@ -1408,7 +1405,6 @@ export class PropScreenComponent implements OnInit {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
     this.awayAlternateSpreadstemp.push(spreadPoint)
-    console.log(this.awayAlternateSpreadstemp)
     this.awayAlternateSpreads = this.awayAlternateSpreadstemp.sort((a,b) => a-b)
     this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
@@ -3062,6 +3058,7 @@ export class PropScreenComponent implements OnInit {
       let totalOverall = 0;
       totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint})
       totalOverall = team2New.length
+      console.log("spread beolow")
       console.log(totalFor)
       console.log(totalOverall)
       this.awaySpreadOverallChance = (totalFor.length/totalOverall) * 100
