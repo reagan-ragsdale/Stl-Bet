@@ -1356,7 +1356,7 @@ export class PropScreenComponent implements OnInit {
     }
 
 
-    this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
+    
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
     let spreadProp = team1.filter((e) => e.marketKey == "spreads")
@@ -1411,6 +1411,8 @@ export class PropScreenComponent implements OnInit {
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp[0].commenceTime });
     this.team2SelectedSpreadPoint = spreadPoint
+
+    this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     
     this.teamPropIsLoading = false
   }
@@ -3056,9 +3058,10 @@ export class PropScreenComponent implements OnInit {
       })
       let totalFor = []
       let totalOverall = 0;
-      totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint})
+      totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint})
       totalOverall = team2New.length
       console.log("spread beolow")
+      console.log(this.displayPropHtml2.spreadPoint)
       console.log(totalFor)
       console.log(totalOverall)
       this.awaySpreadOverallChance = (totalFor.length/totalOverall) * 100
