@@ -2808,6 +2808,26 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.pointsAllowedEighthInningVsOpponent += e.pointsAllowedEigthInning
           this.team1GameStatsDtoMLB.pointsAllowedNinthInningVsOpponent += e.pointsAllowedNinthInning
         }
+        let totalFor = []
+      let totalOverall = 0;
+      totalFor = team1New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint})
+      totalOverall = team1New.length
+      console.log("spread beolow")
+      console.log(this.displayPropHtml2.spreadPoint)
+      console.log(totalFor)
+      console.log(totalOverall)
+      this.homeSpreadOverallChance = (totalFor.length/totalOverall) * 100
+      
+      totalFor = team1New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && e.homeOrAway == "Home")})
+      totalOverall = team1New.filter(e => e.homeOrAway == "Home").length
+      this.homeSpreadHomeChance = (totalFor.length/totalOverall) * 100
+      
+      totalFor = team1New.filter(e => {
+        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && (e.teamAgainstId == team2New[0].teamId))
+      })
+      totalOverall = team1New.filter(e => e.teamAgainstId == team2New[0].teamId).length
+      
+      this.homeSpreadTeamChance = (totalFor.length/totalOverall) * 100
       })
 
       team2New.forEach(e => {
@@ -3066,16 +3086,17 @@ export class PropScreenComponent implements OnInit {
       console.log(totalOverall)
       this.awaySpreadOverallChance = (totalFor.length/totalOverall) * 100
       
-      totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint) && e.homeOrAway == "Away")})
+      totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away")})
       totalOverall = team2New.filter(e => e.homeOrAway == "Away").length
       this.awaySpreadAwayChance = (totalFor.length/totalOverall) * 100
       
       totalFor = team2New.filter(e => {
-        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.displayPropHtml2.spreadPoint) && (e.teamAgainstId == team1New[0].teamId))
+        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && (e.teamAgainstId == team1New[0].teamId))
       })
       totalOverall = team2New.filter(e => e.teamAgainstId == team1New[0].teamId).length
       
-      this.awaySpreadTeamChance = (totalFor.length/totalOverall) * 100}
+      this.awaySpreadTeamChance = (totalFor.length/totalOverall) * 100
+    }
 
     else if (this.selectedSport == "NHL") {
 

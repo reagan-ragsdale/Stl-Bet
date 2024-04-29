@@ -7435,14 +7435,14 @@
               </div>
               <div style="width: 15%; height: inherit; display: flex;">
                 <button style=" margin: auto; height: 60%; margin-right:1px;" mat-raised-button
-                  (click)="propTrend(displayPropHtml1.name, 'h2h', content)">{{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team1SelectedSpreadPoint}}
+                  (click)="propTrend(displayPropHtml1.name, 'h2h', content)">{{team1SelectedSpreadPoint > 0 ? "+" : ''}}{{team1SelectedSpreadPoint}}
                 </button>
                 <button mat-button [matMenuTriggerFor]="beforeMenu"
                   style="width:10px;  margin-top:auto; margin-bottom: auto; height: 60%; background-color:white; color:#252324; min-width:5px; max-width:12px;">
                   <span class="material-icons">expand_more</span></button>
                 <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu-pannel">
                   <button mat-menu-item *ngFor="let prop of homeAlternateSpreads"
-                    (click)="loadNewSpreadProp(team1GameStats, team2GameStats, prop, 'home')">{{prop > 0 ? "+" : ''}}{{prop}}</button>
+                    (click)="loadNewSpreadProp(team2GameStats, team1GameStats, prop, 'home')">{{prop > 0 ? "+" : ''}}{{prop}}</button>
                 </mat-menu>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
