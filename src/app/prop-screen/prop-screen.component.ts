@@ -3206,30 +3206,30 @@ export class PropScreenComponent implements OnInit {
           if(type == 'overall'){
             teamTable = teamStats.reverse()
             teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);})
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);})
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);})
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);})
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);}).length
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);}).length
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);}).length
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);}).length
             teamInfo.teamTable = teamTable
           }
           else if(type == 'homeAway'){
             teamTable = teamStats.reverse()
             teamTable = teamTable.filter(e => e.homeOrAway == "Away")
             teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";})
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";})
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";})
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";})
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";}).length
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";}).length
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";}).length
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";}).length
             teamInfo.teamTable = teamTable
           }
           else if(type == 'team'){
             teamTable = teamStats.reverse()
             teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
             teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;})
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;})
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;})
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;})
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;}).length
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;}).length
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;}).length
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;}).length
             teamInfo.teamTable = teamTable
           }
         }
