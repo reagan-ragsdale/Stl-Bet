@@ -33,7 +33,7 @@
         <h2 style="margin:auto">{{((teamInfo.teamGamesWon / (teamInfo.teamGamesWon + teamInfo.teamGamesLost)) * (teamInfo.teamAgainstGamesLost / (teamInfo.teamAgainstGamesWon + teamInfo.teamAgainstGamesLost))) * 100 | number}}%</h2>
       </div>
     </div>
-    <div style="width: 80%; height: 100%; background-color: blue; display:flex; flex-direction: column;">
+    <div style="width: 80%; height: 100%; background-color: #ebebeb; display:flex; flex-direction: column;">
       <div style="width:100%;">
         <h2 style="text-align:center; margin-top: 5px;">Last 10 Games</h2>
       </div>
@@ -7288,18 +7288,18 @@
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <button mat-raised-button style="margin:auto; height: 60%;"
-                  (click)="onPropModal(team2GameStats, 'overall', 'away')">
+                  (click)="onPropModal(team2GameStats, 'overall', 'away', 'ml')">
                   {{(team2GameStatsDtoMLB.gamesWon / (team2GameStatsDtoMLB.gamesLost + team2GameStatsDtoMLB.gamesWon)) *
                   100 | number}}%
                 </button>
 
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'homeAway', 'away')">{{(team2GameStatsDtoMLB.gamesWonAway /
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'homeAway', 'away', 'ml')">{{(team2GameStatsDtoMLB.gamesWonAway /
                   (team2GameStatsDtoMLB.gamesLostAway + team2GameStatsDtoMLB.gamesWonAway)) * 100 | number}}%</button>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'team', 'away')">{{team2GameStatsDtoMLB.gamesWonVsOpponent ==
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'team', 'away', 'ml')">{{team2GameStatsDtoMLB.gamesWonVsOpponent ==
                   0 ? 0 : (team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent +
                   team2GameStatsDtoMLB.gamesWonVsOpponent)) * 100 | number}}%</button>
 
@@ -7314,7 +7314,7 @@
               </div>
               <div style="width: 15%; height: inherit; display: flex;">
                 <button style=" margin: auto; height: 60%; margin-right:1px;" mat-raised-button
-                  (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team2SelectedSpreadPoint}}
+                  (click)="propTrend(displayPropHtml2.name, 'spreads', content)">{{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team2SelectedSpreadPoint}}
                 </button>
                 <button mat-button [matMenuTriggerFor]="beforeMenu"
                   style="width:10px;  margin-top:auto; margin-bottom: auto; height: 60%; background-color:white; color:#252324; min-width:5px; max-width:12px;">
@@ -7325,16 +7325,16 @@
                 </mat-menu>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'team', 'away')">
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'overall', 'away', 'spread')">
                   {{awaySpreadOverallChance | number}}%
                 </button>
 
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'team', 'away')">{{awaySpreadAwayChance | number}}%</button>
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'homeAway', 'away', 'spread')">{{awaySpreadAwayChance | number}}%</button>
               </div>
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
-                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'team', 'away')">{{awaySpreadTeamChance | number}}%</button>
+                <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'team', 'away', 'spread')">{{awaySpreadTeamChance | number}}%</button>
 
               </div>
 

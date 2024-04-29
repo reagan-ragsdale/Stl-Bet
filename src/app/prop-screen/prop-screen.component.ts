@@ -3088,7 +3088,14 @@ export class PropScreenComponent implements OnInit {
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: number, type: string ){
-    this.team2SelectedSpreadPoint = prop
+    
+    if(type == 'away'){
+      this.team2SelectedSpreadPoint = prop
+    }
+    else {
+      this.team1SelectedSpreadPoint = prop
+    }
+    
     this.calculateSpreadPropChace(team1, team2, prop, type)
   }
 
@@ -3156,7 +3163,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
-  onPropModal(teamStats: any[], type: string, location: string){
+  onPropModal(teamStats: any[], type: string, location: string, betType: string){
     var teamInfo: any = {};
     let teamStatsAverage = {}
     let teamAgainstStatAverage = {}
@@ -3164,35 +3171,69 @@ export class PropScreenComponent implements OnInit {
     let teamTable = []
     if(location == 'away'){
       if(this.selectedSport == 'MLB'){
-        if(type == 'overall'){
-          teamTable = teamStats.reverse()
-          teamTable = teamTable.slice(0, 9)
-          teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWon
-          teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLost
-          teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWon
-          teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLost
-          teamInfo.teamTable = teamTable
+        if(betType == 'ml'){
+          if(type == 'overall'){
+            teamTable = teamStats.reverse()
+            teamTable = teamTable.slice(0, 9)
+            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWon
+            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLost
+            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWon
+            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLost
+            teamInfo.teamTable = teamTable
+          }
+          else if(type == 'homeAway'){
+            teamTable = teamStats.reverse()
+            teamTable = teamTable.filter(e => e.homeOrAway == "Away")
+            teamTable = teamTable.slice(0, 9)
+            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonAway
+            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostAway
+            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonHome
+            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostHome
+            teamInfo.teamTable = teamTable
+          }
+          else if(type == 'team'){
+            teamTable = teamStats.reverse()
+            teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
+            teamTable = teamTable.slice(0, 9)
+            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonVsOpponent
+            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostVsOpponent
+            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonVsOpponent
+            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+            teamInfo.teamTable = teamTable
+          }
         }
-        else if(type == 'homeAway'){
-          teamTable = teamStats.reverse()
-          teamTable = teamTable.filter(e => e.homeOrAway == "Away")
-          teamTable = teamTable.slice(0, 9)
-          teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonAway
-          teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostAway
-          teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonHome
-          teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostHome
-          teamInfo.teamTable = teamTable
+        else if(betType == 'spread'){
+          if(type == 'overall'){
+            teamTable = teamStats.reverse()
+            teamTable = teamTable.slice(0, 9)
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);})
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);})
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);})
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);})
+            teamInfo.teamTable = teamTable
+          }
+          else if(type == 'homeAway'){
+            teamTable = teamStats.reverse()
+            teamTable = teamTable.filter(e => e.homeOrAway == "Away")
+            teamTable = teamTable.slice(0, 9)
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";})
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";})
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";})
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";})
+            teamInfo.teamTable = teamTable
+          }
+          else if(type == 'team'){
+            teamTable = teamStats.reverse()
+            teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
+            teamTable = teamTable.slice(0, 9)
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;})
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;})
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;})
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;})
+            teamInfo.teamTable = teamTable
+          }
         }
-        else if(type == 'team'){
-          teamTable = teamStats.reverse()
-          teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
-          teamTable = teamTable.slice(0, 9)
-          teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonVsOpponent
-          teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostVsOpponent
-          teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonVsOpponent
-          teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostVsOpponent
-          teamInfo.teamTable = teamTable
-        }
+        
         
       }
     }
@@ -3403,7 +3444,7 @@ export class PropScreenComponent implements OnInit {
       this.spreadAndTotalChart = true;
 
       this.createChart()
-      this.createChart2();
+      //this.createChart2();
     }
     else {
       this.createChart()
