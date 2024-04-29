@@ -4355,19 +4355,11 @@ export class PropScreenComponent implements OnInit {
 
 
   ngOnChanges() {
-    console.log("Changed")
   }
   ngAfterContentInit() {
-    console.log("Here5")
     this.selectedTab = 1;
   }
   ngAfterViewInit() {
-
-    console.log("Here3")
-    //this.onPropTypeClicked("Game Props")
-    //this.trimSports(await draftKingsApiController.getSports());
-
-    console.log("Here4")
   }
   ngOnInit() {
     Chart.register(annotationPlugin);
