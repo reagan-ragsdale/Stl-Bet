@@ -60,6 +60,13 @@ export class DbGameBookData {
 
   static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
     //SqlDatabase.LogToConsole = true
+    let today = new Date();
+    today.setHours(5,0,0,0);
+    return {
+      bookSeq: 0,
+      sportTitle: sport,
+      commenceTime: { $gte: today }
+    }
     return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.param(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.param(sport) + ' and date(commencetime) >= CURRENT_DATE'
     })
