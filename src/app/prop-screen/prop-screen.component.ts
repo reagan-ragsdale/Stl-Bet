@@ -3109,7 +3109,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: number, type: string ){
-    
+    console.log(type)
     if(type == 'away'){
       this.team2SelectedSpreadPoint = prop
     }
