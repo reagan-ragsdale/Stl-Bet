@@ -7,6 +7,7 @@
     [ngClass]="'maindis'">
     <mat-tab-group [backgroundColor]="'primary'"  style="width:100%;">
       <mat-tab style="width: 50%; color: white" label="Prop Trend">
+        
         <canvas id="lineChart" [ngClass]="'disabled'">{{ chart }}</canvas>
       </mat-tab>
       <mat-tab style="width: 50%; color: white; display: flex;" label="Prop Stats">
