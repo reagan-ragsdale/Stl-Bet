@@ -3515,7 +3515,7 @@ export class PropScreenComponent implements OnInit {
     let finalLabel: string[] = []
     dataPoint.forEach(d => {
       //finalLabel.push(reusedFunctions.convertDateToDateTime(d))
-      finalLabel.push(reusedFunctions.convertDateToDateTime("d"))
+      finalLabel.push("d")
     })
 
 
