@@ -5,11 +5,11 @@
   </div>
   <div mat-dialog-content style="height:400px; display: flex; "
     [ngClass]="'maindis'">
-    <mat-tab-group [backgroundColor]="'primary'"  style="width:100%">
+    <mat-tab-group [backgroundColor]="'primary'"  style="width:100%;">
       <mat-tab style="width: 50%; color: white" label="Prop Trend">
         <canvas id="lineChart" [ngClass]="'disabled'">{{ chart }}</canvas>
       </mat-tab>
-      <mat-tab style="width: 50%; color: white" label="Prop Stats">
+      <mat-tab style="width: 50%; color: white; display: flex;" label="Prop Stats">
         <div style="width: 20%; height: 100%; background-color:#ebebeb; ">
           <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
             <h2 style="margin:auto">Record</h2>

@@ -3473,9 +3473,10 @@ export class PropScreenComponent implements OnInit {
 
     }
 
+    
     let dialogRef = this.dialog.open(this.callAPIDialog, {data: teamInfo, width: '600px', height: '550px' });
-
     this.createChart()
+    
     
   }
 
@@ -3498,7 +3499,8 @@ export class PropScreenComponent implements OnInit {
       this.propHistory.forEach((e) => {
         historyOfProp.push(e.point)
         if (e.createdAt) {
-          dataPoint.push(e.createdAt.toString())
+          dataPoint.push("h")
+          //dataPoint.push(e.createdAt.toString())
         }
 
       })
@@ -3512,7 +3514,8 @@ export class PropScreenComponent implements OnInit {
     }) */
     let finalLabel: string[] = []
     dataPoint.forEach(d => {
-      finalLabel.push(reusedFunctions.convertDateToDateTime(d))
+      //finalLabel.push(reusedFunctions.convertDateToDateTime(d))
+      finalLabel.push(reusedFunctions.convertDateToDateTime("d"))
     })
 
 
