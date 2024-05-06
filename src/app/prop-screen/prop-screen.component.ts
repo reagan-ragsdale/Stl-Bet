@@ -3490,7 +3490,7 @@ export class PropScreenComponent implements OnInit {
       this.propHistory.forEach((e) => {
         historyOfProp.push(e.price)
         if (e.createdAt) {
-          dataPoint.push(e.createdAt.toString())
+          dataPoint.push("f")
         }
 
       })

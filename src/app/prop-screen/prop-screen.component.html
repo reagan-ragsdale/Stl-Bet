@@ -7,54 +7,59 @@
     [ngClass]="'maindis'">
     <mat-tab-group [backgroundColor]="'primary'"  style="width:100%;">
       <mat-tab style="width: 50%; color: white" label="Prop Trend">
+        <ng-template matTabContent>
+          <canvas id="lineChart" [ngClass]="'disabled'">{{ chart }}</canvas>
+        </ng-template>
         
-        <canvas id="lineChart" [ngClass]="'disabled'">{{ chart }}</canvas>
       </mat-tab>
       <mat-tab style="width: 50%; color: white; display: flex;" label="Prop Stats">
-        <div style="width: 20%; height: 100%; background-color:#ebebeb; ">
-          <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
-            <h2 style="margin:auto">Record</h2>
-            <h2 style="margin:auto">{{teamInfo.teamGamesWon}} - {{teamInfo.teamGamesLost}}</h2>
+        <div style="width: 100%; display:flex;">
+          <div style="width: 20%; height: 100%; background-color:#ebebeb; ">
+            <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+              <h2 style="margin:auto">Record</h2>
+              <h2 style="margin:auto">{{teamInfo.teamGamesWon}} - {{teamInfo.teamGamesLost}}</h2>
+            </div>
+            <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+              <h2 style="margin:auto">Win %</h2>
+              <h2 style="margin:auto">{{(teamInfo.teamGamesWon / (teamInfo.teamGamesWon + teamInfo.teamGamesLost)) * 100 | number}}%</h2>
+            </div>
+            <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+              <h2 style="margin:auto">Weighted %</h2>
+              <h2 style="margin:auto">{{((teamInfo.teamGamesWon / (teamInfo.teamGamesWon + teamInfo.teamGamesLost)) * (teamInfo.teamAgainstGamesLost / (teamInfo.teamAgainstGamesWon + teamInfo.teamAgainstGamesLost))) * 100 | number}}%</h2>
+            </div>
           </div>
-          <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
-            <h2 style="margin:auto">Win %</h2>
-            <h2 style="margin:auto">{{(teamInfo.teamGamesWon / (teamInfo.teamGamesWon + teamInfo.teamGamesLost)) * 100 | number}}%</h2>
-          </div>
-          <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
-            <h2 style="margin:auto">Weighted %</h2>
-            <h2 style="margin:auto">{{((teamInfo.teamGamesWon / (teamInfo.teamGamesWon + teamInfo.teamGamesLost)) * (teamInfo.teamAgainstGamesLost / (teamInfo.teamAgainstGamesWon + teamInfo.teamAgainstGamesLost))) * 100 | number}}%</h2>
+          <div style="width: 80%; height: 100%; background-color: #ebebeb; display:flex; flex-direction: column;">
+            <div style="width:100%;">
+              <h2 style="text-align:center; margin-top: 5px;">Last 10 Games</h2>
+            </div>
+            <div style="width:100%">
+              <table mat-table [dataSource]="teamInfo.teamTable">
+                <ng-container matColumnDef="TeamAgainst">
+                  <th mat-header-cell *matHeaderCellDef> Team </th>
+                  <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
+                    {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
+                  </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="Date">
+                  <th mat-header-cell *matHeaderCellDef> Date </th>
+                  <td mat-cell *matCellDef="let element"> {{element.gameDate}}
+                  </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="Score">
+                  <th mat-header-cell *matHeaderCellDef> Score </th>
+                  <td mat-cell *matCellDef="let element"> {{element.pointsScoredOverall}} - {{element.pointsAllowedOverall}} </td>
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"></tr>
+                <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
+                  style="height:auto;"></tr>
+              </table>
+            </div>
           </div>
         </div>
-        <div style="width: 80%; height: 100%; background-color: #ebebeb; display:flex; flex-direction: column;">
-          <div style="width:100%;">
-            <h2 style="text-align:center; margin-top: 5px;">Last 10 Games</h2>
-          </div>
-          <div style="width:100%">
-            <table mat-table [dataSource]="teamInfo.teamTable">
-              <ng-container matColumnDef="TeamAgainst">
-                <th mat-header-cell *matHeaderCellDef> Team </th>
-                <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
-                  {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
-                </td>
-              </ng-container>
-      
-              <ng-container matColumnDef="Date">
-                <th mat-header-cell *matHeaderCellDef> Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.gameDate}}
-                </td>
-              </ng-container>
-      
-              <ng-container matColumnDef="Score">
-                <th mat-header-cell *matHeaderCellDef> Score </th>
-                <td mat-cell *matCellDef="let element"> {{element.pointsScoredOverall}} - {{element.pointsAllowedOverall}} </td>
-              </ng-container>
-      
-              <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"></tr>
-              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
-                style="height:auto;"></tr>
-            </table>
-          </div>
-        </div>
+        
       </mat-tab>
     </mat-tab-group>
     
