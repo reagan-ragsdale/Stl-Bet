@@ -3448,7 +3448,7 @@ export class PropScreenComponent implements OnInit {
     this.pointsAllowed2QuarterClicked = true;
   }
 
-  async propTrend(teamName: string, prop: string, content: TemplateRef<any>) {
+  async propTrend(teamName: string, prop: string, homeAway: string, content: TemplateRef<any>) {
 
     this.selectedPropHistoryName = prop
     this.spreadAndTotalChart = false;
@@ -3458,18 +3458,25 @@ export class PropScreenComponent implements OnInit {
     else {
       this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
     }
-    let dialogRef = this.dialog.open(this.callAPIDialog, { width: '600px', height: '550px' });
-
-    if (this.selectedPropHistoryName == 'spreads' || this.selectedPropHistoryName == 'totals') {
-      dialogRef.updateSize('900px')
-      this.spreadAndTotalChart = true;
-
-      this.createChart()
-      //this.createChart2();
+    var teamInfo: any = {}
+    if(homeAway == 'away'){
+            let teamTable = JSON.parse(JSON.stringify(this.team1GameStats))
+            teamTable = teamTable.reverse()
+            teamTable = teamTable.slice(0, 9)
+            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWon
+            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLost
+            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWon
+            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLost
+            teamInfo.teamTable = teamTable
     }
-    else {
-      this.createChart()
+    else{
+
     }
+
+    let dialogRef = this.dialog.open(this.callAPIDialog, {data: teamInfo, width: '600px', height: '550px' });
+
+    this.createChart()
+    
   }
 
   createChart() {
