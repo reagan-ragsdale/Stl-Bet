@@ -7290,12 +7290,12 @@
 
             </div>
             <div
-              style="display: flex; width: 96%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
+              style="display: flex; width: 33%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
 
-              <div style="width: 20%; height: inherit; display: flex">
+              <div style="width: 50%; height: inherit; display: flex">
                 <h2 style="margin-top:auto; margin-bottom: auto; margin-left: 1rem; color: white;">Spread:</h2>
               </div>
-              <div style="width: 15%; height: inherit; display: flex;">
+              <div style="width: 50%; height: inherit; display: flex;">
                 <button style=" margin: auto; height: 60%; margin-right:1px;" mat-raised-button
                   (click)="propTrend(displayPropHtml2.name, 'spreads', content)">{{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team2SelectedSpreadPoint}}
                 </button>
@@ -7307,7 +7307,7 @@
                     (click)="loadNewSpreadProp(team2GameStats, team1GameStats, prop, 'away')">{{prop > 0 ? "+" : ''}}{{prop}}</button>
                 </mat-menu>
               </div>
-              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+              <!-- <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'overall', 'away', 'spread')">
                   {{awaySpreadOverallChance | number}}%
                 </button>
@@ -7319,22 +7319,22 @@
               <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <button mat-raised-button style="margin:auto; height: 60%;" (click)="onPropModal(team2GameStats, 'team', 'away', 'spread')">{{awaySpreadTeamChance | number}}%</button>
 
-              </div>
+              </div> -->
 
             </div>
             <div
-              style="display: flex; width: 96%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
+              style="display: flex; width: 33%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
 
-              <div style="width: 20%; height: inherit; display: flex">
+              <div style="width: 50%; height: inherit; display: flex">
                 <h2 style="margin-top:auto; margin-bottom: auto; margin-left: 1rem; color: white;">Total:</h2>
               </div>
-              <div style="width: 15%; height: inherit; display: flex;">
+              <div style="width: 50%; height: inherit; display: flex;">
                 <button style=" margin: auto; height: 60%;" mat-raised-button
                   (click)="propTrend(displayPropHtml2.name, 'h2h', content)">{{displayPropHtml2.h2h > 0
                   ? "+" : " "}}{{displayPropHtml2.h2h}}
                 </button>
               </div>
-              <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
+              <!-- <div style="width: 25%; height: inherit; display:flex; flex-direction: column">
                 <button mat-raised-button style="margin:auto; height: 60%;">
                   {{(team2GameStatsDtoMLB.gamesWon / (team2GameStatsDtoMLB.gamesLost + team2GameStatsDtoMLB.gamesWon)) *
                   100 | number}}%
@@ -7350,7 +7350,7 @@
                   0 ? 0 : (team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent +
                   team2GameStatsDtoMLB.gamesWonVsOpponent)) * 100 | number}}%</button>
 
-              </div>
+              </div> -->
 
             </div>
           </div>
