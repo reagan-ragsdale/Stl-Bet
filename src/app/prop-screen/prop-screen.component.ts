@@ -143,7 +143,7 @@ export class PropScreenComponent implements OnInit {
   public homeAlternateSpreads: number[] = []
 
   //charts
-  public chart: any;
+  public chart: any = [];
   public chart2: any;
   public spreadAndTotalChart: boolean = false
 
@@ -3510,7 +3510,7 @@ export class PropScreenComponent implements OnInit {
       teamInfo.teamGamesLostTeam = this.team1GameStatsDtoMLB.gamesLostVsOpponent
       teamInfo.teamAgainstGamesWonTeam = this.team2GameStatsDtoMLB.gamesWonVsOpponent
       teamInfo.teamAgainstGamesLostTeam = this.team2GameStatsDtoMLB.gamesLostVsOpponent
-      
+
       teamInfo.teamTable = teamTable
       teamInfo.teamTableHomeAway = teamTableHomeAway
       teamInfo.teamTableVsTeam = teamTableVsTeam
