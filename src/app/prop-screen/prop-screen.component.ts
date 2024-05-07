@@ -139,7 +139,7 @@ export class PropScreenComponent implements OnInit {
   public selectedPropHistoryName: string = ''
   public propHistory: DbGameBookData[] = []
   public awayAlternateSpreads: number[] = []
-   public awayAlternateSpreadstemp: number[] = []
+  public awayAlternateSpreadstemp: number[] = []
   public homeAlternateSpreads: number[] = []
 
   //charts
@@ -1335,7 +1335,7 @@ export class PropScreenComponent implements OnInit {
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
-    
+
 
     if (this.selectedSport == "NBA") {
       this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
@@ -1356,7 +1356,7 @@ export class PropScreenComponent implements OnInit {
     }
 
 
-    
+
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
     let spreadProp = team1.filter((e) => e.marketKey == "spreads")
@@ -1376,14 +1376,14 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
     this.homeAlternateSpreads.push(spreadPoint)
-    this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function(a,b){return a-b})
+    this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function (a, b) { return a - b })
     this.homeAlternateSpreads = this.homeAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     this.team1SelectedSpreadPoint = spreadPoint
     let abvr = ''
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? spreadPriceProp[0].commenceTime : 0});
+    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? spreadPriceProp[0].commenceTime : 0 });
 
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
@@ -1405,7 +1405,7 @@ export class PropScreenComponent implements OnInit {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
     this.awayAlternateSpreadstemp.push(spreadPoint)
-    this.awayAlternateSpreads = this.awayAlternateSpreadstemp.sort((a,b) => a-b)
+    this.awayAlternateSpreads = this.awayAlternateSpreadstemp.sort((a, b) => a - b)
     this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
@@ -1413,7 +1413,7 @@ export class PropScreenComponent implements OnInit {
     this.team2SelectedSpreadPoint = spreadPoint
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
-    
+
     this.teamPropIsLoading = false
   }
 
@@ -2809,25 +2809,25 @@ export class PropScreenComponent implements OnInit {
           this.team1GameStatsDtoMLB.pointsAllowedNinthInningVsOpponent += e.pointsAllowedNinthInning
         }
         let totalFor = []
-      let totalOverall = 0;
-      totalFor = team1New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint})
-      totalOverall = team1New.length
-      console.log("spread beolow")
-      console.log(this.displayPropHtml2.spreadPoint)
-      console.log(totalFor)
-      console.log(totalOverall)
-      this.homeSpreadOverallChance = (totalFor.length/totalOverall) * 100
-      
-      totalFor = team1New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && e.homeOrAway == "Home")})
-      totalOverall = team1New.filter(e => e.homeOrAway == "Home").length
-      this.homeSpreadHomeChance = (totalFor.length/totalOverall) * 100
-      
-      totalFor = team1New.filter(e => {
-        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && (e.teamAgainstId == team2New[0].teamId))
-      })
-      totalOverall = team1New.filter(e => e.teamAgainstId == team2New[0].teamId).length
-      
-      this.homeSpreadTeamChance = (totalFor.length/totalOverall) * 100
+        let totalOverall = 0;
+        totalFor = team1New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint })
+        totalOverall = team1New.length
+        console.log("spread beolow")
+        console.log(this.displayPropHtml2.spreadPoint)
+        console.log(totalFor)
+        console.log(totalOverall)
+        this.homeSpreadOverallChance = (totalFor.length / totalOverall) * 100
+
+        totalFor = team1New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && e.homeOrAway == "Home") })
+        totalOverall = team1New.filter(e => e.homeOrAway == "Home").length
+        this.homeSpreadHomeChance = (totalFor.length / totalOverall) * 100
+
+        totalFor = team1New.filter(e => {
+          return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && (e.teamAgainstId == team2New[0].teamId))
+        })
+        totalOverall = team1New.filter(e => e.teamAgainstId == team2New[0].teamId).length
+
+        this.homeSpreadTeamChance = (totalFor.length / totalOverall) * 100
       })
 
       team2New.forEach(e => {
@@ -3011,7 +3011,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
           this.team2GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
         }
-        
+
         if (e.teamAgainstId == team1New[0].teamId) {
           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
 
@@ -3078,24 +3078,24 @@ export class PropScreenComponent implements OnInit {
       })
       let totalFor = []
       let totalOverall = 0;
-      totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint})
+      totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint })
       totalOverall = team2New.length
       console.log("spread beolow")
       console.log(this.displayPropHtml2.spreadPoint)
       console.log(totalFor)
       console.log(totalOverall)
-      this.awaySpreadOverallChance = (totalFor.length/totalOverall) * 100
-      
-      totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away")})
+      this.awaySpreadOverallChance = (totalFor.length / totalOverall) * 100
+
+      totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away") })
       totalOverall = team2New.filter(e => e.homeOrAway == "Away").length
-      this.awaySpreadAwayChance = (totalFor.length/totalOverall) * 100
-      
+      this.awaySpreadAwayChance = (totalFor.length / totalOverall) * 100
+
       totalFor = team2New.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && (e.teamAgainstId == team1New[0].teamId))
       })
       totalOverall = team2New.filter(e => e.teamAgainstId == team1New[0].teamId).length
-      
-      this.awaySpreadTeamChance = (totalFor.length/totalOverall) * 100
+
+      this.awaySpreadTeamChance = (totalFor.length / totalOverall) * 100
     }
 
     else if (this.selectedSport == "NHL") {
@@ -3108,15 +3108,15 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  loadNewSpreadProp(team1: any[], team2: any[], prop: number, type: string ){
+  loadNewSpreadProp(team1: any[], team2: any[], prop: number, type: string) {
     console.log(type)
-    if(type == 'away'){
+    if (type == 'away') {
       this.team2SelectedSpreadPoint = prop
     }
     else {
       this.team1SelectedSpreadPoint = prop
     }
-    
+
     this.calculateSpreadPropChace(team1, team2, prop, type)
   }
 
@@ -3133,67 +3133,67 @@ export class PropScreenComponent implements OnInit {
   public homeSpreadHomeChance: number = 0
   public homeSpreadTeamChance: number = 0
   calculateSpreadPropChace(teamStats: any[], teamAgainstStats: any[], prop: number, type: string) {
-    
+
     let totalFor: any[] = [];
     let totalOverall: number = 0;
-    if(type == 'away'){
+    if (type == 'away') {
       totalFor = teamStats.filter(e => {
         return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop);
       })
       totalOverall = teamStats.length
-      this.awaySpreadOverallChance = (totalFor.length/totalOverall) * 100
+      this.awaySpreadOverallChance = (totalFor.length / totalOverall) * 100
 
 
       totalFor = teamStats.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Away")
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Away").length
-      this.awaySpreadAwayChance = (totalFor.length/totalOverall) * 100
+      this.awaySpreadAwayChance = (totalFor.length / totalOverall) * 100
 
       totalFor = teamStats.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && (e.teamAgainstId == teamAgainstStats[0].teamId))
       })
       totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
-      this.awaySpreadTeamChance = (totalFor.length/totalOverall) * 100
+      this.awaySpreadTeamChance = (totalFor.length / totalOverall) * 100
 
     }
-    else if(type == 'home'){
+    else if (type == 'home') {
 
       totalFor = teamStats.filter(e => {
         return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop)
       })
       totalOverall = teamStats.length
-      this.homeSpreadOverallChance = (totalFor.length/totalOverall) * 100
+      this.homeSpreadOverallChance = (totalFor.length / totalOverall) * 100
 
 
       totalFor = teamStats.filter(e => {
-       return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home")
+        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home")
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Home").length
-      this.homeSpreadHomeChance = (totalFor.length/totalOverall) * 100
+      this.homeSpreadHomeChance = (totalFor.length / totalOverall) * 100
 
       totalFor = teamStats.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId)
       })
       totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
-      this.homeSpreadTeamChance = (totalFor.length/totalOverall) * 100
+      this.homeSpreadTeamChance = (totalFor.length / totalOverall) * 100
 
-    
+
     }
 
   }
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
-  onPropModal(teamStats: any[], type: string, location: string, betType: string){
+  onPropModal(teamStats: any[], type: string, location: string, betType: string) {
     var teamInfo: any = {};
     let teamStatsAverage = {}
     let teamAgainstStatAverage = {}
     let teamStatsFinal: any[] = []
     let teamTable = []
-    if(location == 'away'){
-      if(this.selectedSport == 'MLB'){
-        if(betType == 'ml'){
-          if(type == 'overall'){
+    if (location == 'away') {
+      if (this.selectedSport == 'MLB') {
+        if (betType == 'ml') {
+          if (type == 'overall') {
             teamTable = teamStats.reverse()
             teamTable = teamTable.slice(0, 9)
             teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWon
@@ -3202,7 +3202,7 @@ export class PropScreenComponent implements OnInit {
             teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLost
             teamInfo.teamTable = teamTable
           }
-          else if(type == 'homeAway'){
+          else if (type == 'homeAway') {
             teamTable = teamStats.reverse()
             teamTable = teamTable.filter(e => e.homeOrAway == "Away")
             teamTable = teamTable.slice(0, 9)
@@ -3212,7 +3212,7 @@ export class PropScreenComponent implements OnInit {
             teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostHome
             teamInfo.teamTable = teamTable
           }
-          else if(type == 'team'){
+          else if (type == 'team') {
             teamTable = teamStats.reverse()
             teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
             teamTable = teamTable.slice(0, 9)
@@ -3223,57 +3223,57 @@ export class PropScreenComponent implements OnInit {
             teamInfo.teamTable = teamTable
           }
         }
-        else if(betType == 'spread'){
-          if(type == 'overall'){
+        else if (betType == 'spread') {
+          if (type == 'overall') {
             teamTable = teamStats.reverse()
             teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);}).length
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);}).length
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint);}).length
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint);}).length
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint); }).length
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint); }).length
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint); }).length
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint); }).length
             teamInfo.teamTable = teamTable
           }
-          else if(type == 'homeAway'){
+          else if (type == 'homeAway') {
             teamTable = teamStats.reverse()
             teamTable = teamTable.filter(e => e.homeOrAway == "Away")
             teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";}).length
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Away";}).length
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";}).length
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Home";}).length
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away"; }).length
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Away"; }).length
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Home"; }).length
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Home"; }).length
             teamInfo.teamTable = teamTable
           }
-          else if(type == 'team'){
+          else if (type == 'team') {
             teamTable = teamStats.reverse()
             teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
             teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;}).length
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId;}).length
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;}).length
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId;}).length
+            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId; }).length
+            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId; }).length
+            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId; }).length
+            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId; }).length
             teamInfo.teamTable = teamTable
           }
         }
-        
-        
+
+
       }
     }
-    else if(location == 'home'){
+    else if (location == 'home') {
 
     }
 
 
-    let dialogRef = this.dialog.open(this.propDialog, {data: teamInfo, width: '600px', height: '550px' });
+    let dialogRef = this.dialog.open(this.propDialog, { data: teamInfo, width: '600px', height: '550px' });
 
-    
-    
-  }
 
-  onSpreadModal(){
 
   }
-  onTotalModal(){
-    
+
+  onSpreadModal() {
+
+  }
+  onTotalModal() {
+
   }
 
   moneylineGameToggled() {
@@ -3459,25 +3459,68 @@ export class PropScreenComponent implements OnInit {
       this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndTeamAndProp(this.selectedSport, this.selectedGame, teamName, prop)
     }
     var teamInfo: any = {}
-    if(homeAway == 'away'){
-            let teamTable = JSON.parse(JSON.stringify(this.team1GameStats))
-            teamTable = teamTable.reverse()
-            teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWon
-            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLost
-            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWon
-            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLost
-            teamInfo.teamTable = teamTable
-    }
-    else{
+    if (homeAway == 'away') {
+      let teamTable = JSON.parse(JSON.stringify(this.team2GameStats))
+      teamTable = teamTable.reverse()
 
+      let teamTableHomeAway = teamTable.filter((e: { homeOrAway: string; }) => e.homeOrAway == 'Away')
+      let teamTableVsTeam = teamTable.filter((e: { teamAgainstId: any; }) => e.teamAgainstId == this.team1GameStats[0].teamId)
+
+      teamTable = teamTable.slice(0, 9)
+      teamTableHomeAway = teamTableHomeAway.slice(0,9)
+      teamTableVsTeam = teamTableVsTeam.slice(0,9)
+
+      teamInfo.teamGamesWonOverall = this.team2GameStatsDtoMLB.gamesWon
+      teamInfo.teamGamesLostOverall = this.team2GameStatsDtoMLB.gamesLost
+      teamInfo.teamAgainstGamesWonOverall = this.team1GameStatsDtoMLB.gamesWon
+      teamInfo.teamAgainstGamesLostOverall = this.team1GameStatsDtoMLB.gamesLost
+      teamInfo.teamGamesWonHomeAway = this.team2GameStatsDtoMLB.gamesWonAway
+      teamInfo.teamGamesLostHomeAway = this.team2GameStatsDtoMLB.gamesLostAway
+      teamInfo.teamAgainstGamesWonHomeAway = this.team1GameStatsDtoMLB.gamesWonHome
+      teamInfo.teamAgainstGamesLostHomeAway = this.team1GameStatsDtoMLB.gamesLostHome
+      teamInfo.teamGamesWonTeam = this.team2GameStatsDtoMLB.gamesWonVsOpponent
+      teamInfo.teamGamesLostTeam = this.team2GameStatsDtoMLB.gamesLostVsOpponent
+      teamInfo.teamAgainstGamesWonTeam = this.team1GameStatsDtoMLB.gamesWonVsOpponent
+      teamInfo.teamAgainstGamesLostTeam = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+
+      teamInfo.teamTable = teamTable
+      teamInfo.teamTableHomeAway = teamTableHomeAway
+      teamInfo.teamTableVsTeam = teamTableVsTeam
+    }
+    else {
+      let teamTable = JSON.parse(JSON.stringify(this.team1GameStats))
+      teamTable = teamTable.reverse()
+
+      let teamTableHomeAway = teamTable.filter((e: { homeOrAway: string; }) => e.homeOrAway == 'Home')
+      let teamTableVsTeam = teamTable.filter((e: { teamAgainstId: any; }) => e.teamAgainstId == this.team2GameStats[0].teamId)
+
+      teamTable = teamTable.slice(0, 9)
+      teamTableHomeAway = teamTableHomeAway.slice(0,9)
+      teamTableVsTeam = teamTableVsTeam.slice(0,9)
+      
+      teamInfo.teamGamesWonOverall = this.team1GameStatsDtoMLB.gamesWon
+      teamInfo.teamGamesLostOverall = this.team1GameStatsDtoMLB.gamesLost
+      teamInfo.teamAgainstGamesWonOverall = this.team2GameStatsDtoMLB.gamesWon
+      teamInfo.teamAgainstGamesLostOverall = this.team2GameStatsDtoMLB.gamesLost
+      teamInfo.teamGamesWonHomeAway = this.team1GameStatsDtoMLB.gamesWonHome
+      teamInfo.teamGamesLostHomeAway = this.team1GameStatsDtoMLB.gamesLostHome
+      teamInfo.teamAgainstGamesWonHomeAway = this.team2GameStatsDtoMLB.gamesWonAway
+      teamInfo.teamAgainstGamesLostHomeAway = this.team2GameStatsDtoMLB.gamesLostAway
+      teamInfo.teamGamesWonTeam = this.team1GameStatsDtoMLB.gamesWonVsOpponent
+      teamInfo.teamGamesLostTeam = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+      teamInfo.teamAgainstGamesWonTeam = this.team2GameStatsDtoMLB.gamesWonVsOpponent
+      teamInfo.teamAgainstGamesLostTeam = this.team2GameStatsDtoMLB.gamesLostVsOpponent
+      
+      teamInfo.teamTable = teamTable
+      teamInfo.teamTableHomeAway = teamTableHomeAway
+      teamInfo.teamTableVsTeam = teamTableVsTeam
     }
 
-    
-    let dialogRef = this.dialog.open(this.callAPIDialog, {data: teamInfo, width: '600px', height: '550px' });
+
+    let dialogRef = this.dialog.open(this.callAPIDialog, { data: teamInfo, width: '600px', height: '550px' });
     this.createChart()
-    
-    
+
+
   }
 
   createChart() {
