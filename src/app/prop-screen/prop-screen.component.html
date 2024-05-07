@@ -6,8 +6,8 @@
   <div mat-dialog-content style="height:400px; display: flex; "
     [ngClass]="'maindis'">
     <mat-tab-group [backgroundColor]="'primary'"  style="width:100%;">
-      <mat-tab style="width: 50%; color: white" label="Prop Trend">
-        <ng-template matTabContent>
+      <mat-tab label="Prop Trend">
+        <ng-template >
           <canvas id="lineChart" [ngClass]="'disabled'">{{ chart }}</canvas>
         </ng-template>
         
