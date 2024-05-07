@@ -18,9 +18,9 @@ export const cronSportsBookHourly = async () => {
             let finalBookIds = individualBookIds.map(b => b.bookId).filter((value, index, array) => array.indexOf(value) === index)
 
             for (let book of finalBookIds) {
-                const propData = await draftKingsApiController.getSpecificPropByBookId(book, listOfMlbExtraGameProps, sport)
-                await SportsBookController.addBookData(propData)
-            } 
+                    const propData = await draftKingsApiController.getSpecificPropByBookId(book, listOfMlbExtraGameProps, sport)
+                    await SportsBookController.addBookData(propData)
+                } 
         }
         catch (error: any) {
             console.log(error.message)
