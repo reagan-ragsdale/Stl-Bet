@@ -2812,10 +2812,6 @@ export class PropScreenComponent implements OnInit {
         let totalOverall = 0;
         totalFor = team1New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint })
         totalOverall = team1New.length
-        console.log("spread beolow")
-        console.log(this.displayPropHtml2.spreadPoint)
-        console.log(totalFor)
-        console.log(totalOverall)
         this.homeSpreadOverallChance = (totalFor.length / totalOverall) * 100
 
         totalFor = team1New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && e.homeOrAway == "Home") })
@@ -3080,10 +3076,6 @@ export class PropScreenComponent implements OnInit {
       let totalOverall = 0;
       totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint })
       totalOverall = team2New.length
-      console.log("spread beolow")
-      console.log(this.displayPropHtml2.spreadPoint)
-      console.log(totalFor)
-      console.log(totalOverall)
       this.awaySpreadOverallChance = (totalFor.length / totalOverall) * 100
 
       totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away") })
@@ -3109,7 +3101,6 @@ export class PropScreenComponent implements OnInit {
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: number, type: string) {
-    console.log(type)
     if (type == 'away') {
       this.team2SelectedSpreadPoint = prop
     }
