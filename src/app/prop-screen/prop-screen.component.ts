@@ -2994,7 +2994,7 @@ export class PropScreenComponent implements OnInit {
           this.team2GameStatsDtoMLB.pointsScoredSeventhInningAway += e.pointsScoredSeventhInning
           this.team2GameStatsDtoMLB.pointsScoredEighthInningAway += e.pointsScoredEigthInning
           this.team2GameStatsDtoMLB.pointsScoredNinthInningAway += e.pointsScoredNinthInning
-          2
+          
           //points 2llowed
           this.team2GameStatsDtoMLB.pointsAllowedAwayGame += e.pointsAllowedOverall
           this.team2GameStatsDtoMLB.pointsAllowedFirstInningAway += e.pointsAllowedFirstInning

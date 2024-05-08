@@ -154,24 +154,45 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         let distinctTeamsNew: any[] = []
         let teamsName = distinctTeams.filter(e => e != 'Over')
         let bothTeams = teamsName.filter(f => f != 'Under')
-        distinctTeamsNew.push(bothTeams[0])
-        distinctTeamsNew.push(bothTeams[1])
+        if(teamsName.length > 0){
+          distinctTeamsNew.push(bothTeams[0])
+        }
+        if(bothTeams.length > 0){
+          distinctTeamsNew.push(bothTeams[1])
+        }
+        
+        
         let teamsNameOver = distinctTeams.filter(e => e == "Over")
-        distinctTeamsNew.push(teamsNameOver[0])
+        if(teamsNameOver.length > 0){
+          distinctTeamsNew.push(teamsNameOver[0])
+        }
+       
         let teamsNameUnder = distinctTeams.filter(e => e == "Under")
-        distinctTeamsNew.push(teamsNameUnder[0])
+       
+        if(teamsNameUnder.length > 0){
+         distinctTeamsNew.push(teamsNameUnder[0])
+        }
+        
+        
         distinctTeamsNew.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
-          teamArray.push(allOfTeam)
+          if(allOfTeam.length > 0){
+            teamArray.push(allOfTeam)
+          }
+          
         })
         let teamArrayFinal: any[] = []
-        if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
-          teamArrayFinal.push(teamArray[1])
-          teamArrayFinal.push(teamArray[0])
-          teamArrayFinal.push(teamArray[2])
-          teamArrayFinal.push(teamArray[3])
+        if(teamArray.length > 0){
+          if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+            teamArrayFinal.push(teamArray[1])
+            teamArrayFinal.push(teamArray[0])
+            teamArrayFinal.push(teamArray[2])
+            teamArrayFinal.push(teamArray[3])
+          }
+          else{teamArrayFinal = teamArray}
         }
-        else{teamArrayFinal = teamArray}
+        
+        
         this.gameDataAllFinal.push(teamArrayFinal)
 
       })
@@ -252,24 +273,43 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       let distinctTeamsNew: any[] = []
       let teamsName = distinctTeams.filter(e => e != 'Over')
       let bothTeams = teamsName.filter(f => f != 'Under')
-      distinctTeamsNew.push(bothTeams[0])
-      distinctTeamsNew.push(bothTeams[1])
+      if(teamsName.length > 0){
+        distinctTeamsNew.push(bothTeams[0])
+      }
+      if(bothTeams.length > 0){
+        distinctTeamsNew.push(bothTeams[1])
+      }
+      
+      
       let teamsNameOver = distinctTeams.filter(e => e == "Over")
-      distinctTeamsNew.push(teamsNameOver[0])
+      if(teamsNameOver.length > 0){
+        distinctTeamsNew.push(teamsNameOver[0])
+      }
+     
       let teamsNameUnder = distinctTeams.filter(e => e == "Under")
-      distinctTeamsNew.push(teamsNameUnder[0])
+     
+      if(teamsNameUnder.length > 0){
+       distinctTeamsNew.push(teamsNameUnder[0])
+      }
+      
+      
       distinctTeamsNew.forEach(team => {
         let allOfTeam = allOfBook.filter(e => e.teamName == team)
-        teamArray.push(allOfTeam)
+        if(allOfTeam.length > 0){
+          teamArray.push(allOfTeam)
+        }
+        
       })
       let teamArrayFinal: any[] = []
-      if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
-        teamArrayFinal.push(teamArray[1])
-        teamArrayFinal.push(teamArray[0])
-        teamArrayFinal.push(teamArray[2])
-        teamArrayFinal.push(teamArray[3])
+      if(teamArray.length > 0){
+        if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+          teamArrayFinal.push(teamArray[1])
+          teamArrayFinal.push(teamArray[0])
+          teamArrayFinal.push(teamArray[2])
+          teamArrayFinal.push(teamArray[3])
+        }
+        else{teamArrayFinal = teamArray}
       }
-      else{teamArrayFinal = teamArray}
       this.gameDataAllFinal.push(teamArrayFinal)
 
     })
