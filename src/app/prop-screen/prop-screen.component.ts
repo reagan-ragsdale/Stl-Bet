@@ -3510,6 +3510,7 @@ export class PropScreenComponent implements OnInit {
 
     let dialogRef = this.dialog.open(this.callAPIDialog, { data: teamInfo, width: '600px', height: '550px' });
     let afterOpen = dialogRef.getState()
+
      if(afterOpen == 0){
       this.createChart()
     } 
@@ -3517,6 +3518,10 @@ export class PropScreenComponent implements OnInit {
     //this.createChart()
 
 
+  }
+
+  openChart(event: any){
+    console.log(event)
   }
 
   createChart() {
