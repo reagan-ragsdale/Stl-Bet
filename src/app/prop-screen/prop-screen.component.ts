@@ -3510,10 +3510,9 @@ export class PropScreenComponent implements OnInit {
 
     let dialogRef = this.dialog.open(this.callAPIDialog, { data: teamInfo, width: '600px', height: '550px' });
     let afterOpen = dialogRef.getState()
-    console.log(afterOpen)
-    /* if(afterOpen.closed == false){
+     if(afterOpen == 0){
       this.createChart()
-    } */
+    } 
     
     //this.createChart()
 
