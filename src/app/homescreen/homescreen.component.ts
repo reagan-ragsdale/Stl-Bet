@@ -303,13 +303,18 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       let teamArrayFinal: any[] = []
       if(teamArray.length > 0){
         console.log(teamArray)
-        if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
-          teamArrayFinal.push(teamArray[1])
-          teamArrayFinal.push(teamArray[0])
-          teamArrayFinal.push(teamArray[2])
-          teamArrayFinal.push(teamArray[3])
+        if(teamArray[0].length > 0){
+          if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+            teamArrayFinal.push(teamArray[1])
+            teamArrayFinal.push(teamArray[0])
+            teamArrayFinal.push(teamArray[2])
+            teamArrayFinal.push(teamArray[3])
+          }
+          
         }
         else{teamArrayFinal = teamArray}
+        
+        
       }
       this.gameDataAllFinal.push(teamArrayFinal)
 
