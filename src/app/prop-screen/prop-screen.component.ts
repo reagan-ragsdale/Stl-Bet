@@ -3509,7 +3509,7 @@ export class PropScreenComponent implements OnInit {
 
 
     let dialogRef = this.dialog.open(this.callAPIDialog, { data: teamInfo, width: '600px', height: '550px' });
-    let afterOpen = this.dialog.afterOpened()
+    let afterOpen = this.dialog.afterOpened
     console.log(afterOpen)
 
      if(afterOpen == 0){
