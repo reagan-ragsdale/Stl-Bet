@@ -7337,7 +7337,15 @@
               </div>
               <div style="width: 45%; height: inherit; display: flex;">
                 <button style="margin-left: 0; margin-top: auto; margin-bottom: auto; height: 60%; margin-right:1px;" mat-raised-button
-                  (click)="propTrend(displayPropHtml2.name,'spreads', 'away', content)">{{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team2SelectedSpreadPoint}}
+                  (click)="propTrend(displayPropHtml2.name,'spreads', 'away', content)">
+                  <div style="display:flex; flex-direction:column;">
+                    <span>
+                      {{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team2SelectedSpreadPoint}}
+                    </span>
+                    <span>
+                      {{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team2SelectedSpreadPoint}}
+                    </span>
+                  </div>
                 </button>
                 <button mat-button [matMenuTriggerFor]="beforeMenu"
                   style="width:10px;  margin-top:auto; margin-bottom: auto; height: 60%; background-color:white; color:#252324; min-width:5px; max-width:12px;">
