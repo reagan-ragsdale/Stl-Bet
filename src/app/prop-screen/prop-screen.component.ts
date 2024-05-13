@@ -3515,7 +3515,6 @@ export class PropScreenComponent implements OnInit {
 
   openChart(event: any){
     if(event == 0){
-      if(this.chart.)
       this.chart.destroy()
     }
     if(event == 1){
