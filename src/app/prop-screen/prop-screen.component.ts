@@ -3114,7 +3114,7 @@ export class PropScreenComponent implements OnInit {
       this.team2SelectedSpreadPoint = prop.point
       this.team2SelectedSpreadPrice = prop.price
     }
-    else {
+    else if(type == 'home') {
       this.team1SelectedSpreadPoint = prop.point
       this.team1SelectedSpreadPrice = prop.price
     }
