@@ -5,7 +5,7 @@
   </div>
   <div mat-dialog-content style="height:400px; display: flex; "
     [ngClass]="'maindis'">
-    <mat-tab-group [backgroundColor]="'primary'"  style="width:100%;" preserveContent (selectedIndexChange)="openChart($event)" ()>
+    <mat-tab-group [backgroundColor]="'primary'"  style="width:100%;" preserveContent (selectedIndexChange)="openChart($event)" >
       
       <mat-tab style="width: 50%; color: white; display: flex;" label="Prop Stats">
         <div style="width: 100%; display:flex;">
@@ -58,9 +58,7 @@
       </mat-tab>
       <mat-tab label="Prop Trend" >
           <ng-template matTabContent>
-              <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;"></canvas>
-            
-             
+              <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{ chart }}</canvas>
             
             
           </ng-template>
