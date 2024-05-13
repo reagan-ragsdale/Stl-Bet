@@ -140,7 +140,7 @@ export class PropScreenComponent implements OnInit {
   public propHistory: DbGameBookData[] = []
   public awayAlternateSpreads: number[] = []
   public awayAlternateSpreadstemp: number[] = []
-  public homeAlternateSpreads: number[] = []
+  public homeAlternateSpreads: any[] = []
 
   //charts
   public chart: any = [];
@@ -1344,8 +1344,8 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
-      this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
-      this.homeAlternateSpreads = team1.filter(e => e.marketKey == "alternate_spreads").map(e => e.point)
+      this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads")
+      this.homeAlternateSpreads = team1.filter(e => e.marketKey == "alternate_spreads")
     }
     else if (this.selectedSport == "NHL") {
 
@@ -1375,8 +1375,8 @@ export class PropScreenComponent implements OnInit {
     }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
-    this.homeAlternateSpreads.push(spreadPoint)
-    this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function (a, b) { return a - b })
+    this.homeAlternateSpreads.push({point: spreadPoint, price: spreadPrice})
+    this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function (a, b) { return a.point - b.point })
     this.homeAlternateSpreads = this.homeAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     this.team1SelectedSpreadPoint = spreadPoint
     this.team1SelectedSpreadPrice = spreadPrice
