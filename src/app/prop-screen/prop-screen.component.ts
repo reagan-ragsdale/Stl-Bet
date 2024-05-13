@@ -1409,8 +1409,11 @@ export class PropScreenComponent implements OnInit {
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.awayAlternateSpreadstemp.push(spreadPoint)
-    this.awayAlternateSpreads = this.awayAlternateSpreadstemp.sort((a, b) => a - b)
+    this.awayAlternateSpreadstemp.forEach(e => {
+      this.awayAlternateSpreads.push({point: e.point, price: e.price})
+    })
+    this.awayAlternateSpreads.push({point: spreadPoint, price: spreadPrice})
+    this.awayAlternateSpreads = this.awayAlternateSpreads.sort(function (a, b) { return a.point - b.point })
     this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
