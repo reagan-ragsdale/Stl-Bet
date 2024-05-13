@@ -138,8 +138,9 @@ export class PropScreenComponent implements OnInit {
 
   public selectedPropHistoryName: string = ''
   public propHistory: DbGameBookData[] = []
-  public awayAlternateSpreads: number[] = []
-  public awayAlternateSpreadstemp: number[] = []
+  public awayAlternateSpreads: any[] = []
+  public awayAlternateSpreadstemp: any[] = []
+  public homeAlternateSpreadstemp: any[] =[]
   public homeAlternateSpreads: any[] = []
 
   //charts
@@ -1345,7 +1346,7 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
       this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads")
-      this.homeAlternateSpreads = team1.filter(e => e.marketKey == "alternate_spreads")
+      this.homeAlternateSpreadstemp = team1.filter(e => e.marketKey == "alternate_spreads")
     }
     else if (this.selectedSport == "NHL") {
 
@@ -1375,6 +1376,9 @@ export class PropScreenComponent implements OnInit {
     }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
+    this.homeAlternateSpreadstemp.forEach(e => {
+      this.homeAlternateSpreads.push({point: e.point, price: e.price})
+    })
     this.homeAlternateSpreads.push({point: spreadPoint, price: spreadPrice})
     this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function (a, b) { return a.point - b.point })
     this.homeAlternateSpreads = this.homeAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
@@ -3102,15 +3106,17 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  loadNewSpreadProp(team1: any[], team2: any[], prop: number, type: string) {
+  loadNewSpreadProp(team1: any[], team2: any[], prop: any, type: string) {
     if (type == 'away') {
-      this.team2SelectedSpreadPoint = prop
+      this.team2SelectedSpreadPoint = prop.point
+      this.team2SelectedSpreadPrice = prop.price
     }
     else {
-      this.team1SelectedSpreadPoint = prop
+      this.team1SelectedSpreadPoint = prop.point
+      this.team1SelectedSpreadPrice = prop.price
     }
 
-    this.calculateSpreadPropChace(team1, team2, prop, type)
+    this.calculateSpreadPropChace(team1, team2, prop.point, type)
   }
 
 

@@ -7352,7 +7352,7 @@
                   <span class="material-icons">expand_more</span></button>
                 <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu-pannel">
                   <button mat-menu-item *ngFor="let prop of awayAlternateSpreads"
-                    (click)="loadNewSpreadProp(team2GameStats, team1GameStats, prop, 'away')">{{prop > 0 ? "+" : ''}}{{prop}}</button>
+                    (click)="loadNewSpreadProp(team2GameStats, team1GameStats, prop, 'away')">{{prop.point > 0 ? "+" : ''}}{{prop.point}}</button>
                 </mat-menu>
               </div>
              
@@ -7419,7 +7419,7 @@
                   <span class="material-icons">expand_more</span></button>
                 <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu-pannel">
                   <button mat-menu-item *ngFor="let prop of homeAlternateSpreads"
-                    (click)="loadNewSpreadProp(team2GameStats, team1GameStats, prop, 'home')">{{prop > 0 ? "+" : ''}}{{prop.point}}</button>
+                    (click)="loadNewSpreadProp(team2GameStats, team1GameStats, prop, 'home')">{{prop.point > 0 ? "+" : ''}}{{prop.point}}</button>
                 </mat-menu>
               </div>
              
