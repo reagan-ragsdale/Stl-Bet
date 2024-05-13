@@ -3512,9 +3512,8 @@ export class PropScreenComponent implements OnInit {
     let afterOpen = this.dialog.afterOpened
     console.log(afterOpen)
 
-     if(afterOpen == 0){
       this.createChart()
-    } 
+    
     
     //this.createChart()
 
