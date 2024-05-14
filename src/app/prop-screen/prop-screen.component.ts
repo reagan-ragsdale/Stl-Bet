@@ -1380,8 +1380,11 @@ export class PropScreenComponent implements OnInit {
       this.homeAlternateSpreads.push({point: e.point, price: e.price})
     })
     this.homeAlternateSpreads.push({point: spreadPoint, price: spreadPrice})
+    console.log(this.homeAlternateSpreads)
     this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function (a, b) { return a.point - b.point })
+    console.log(this.homeAlternateSpreads)
     this.homeAlternateSpreads = this.homeAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
+    console.log(this.homeAlternateSpreads)
     this.team1SelectedSpreadPoint = spreadPoint
     this.team1SelectedSpreadPrice = spreadPrice
     let abvr = ''
