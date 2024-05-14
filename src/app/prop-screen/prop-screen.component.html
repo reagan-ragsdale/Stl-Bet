@@ -7414,10 +7414,10 @@
                     </span>
                   </div>
                 </button>
-                <button mat-button [matMenuTriggerFor]="beforeMenu"
+                <button mat-button [matMenuTriggerFor]="beforeMenu2"
                   style="width:10px;  margin-top:auto; margin-bottom: auto; height: 60%; background-color:white; color:#252324; min-width:5px; max-width:12px;">
                   <span class="material-icons">expand_more</span></button>
-                <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu-pannel">
+                <mat-menu #beforeMenu2="matMenu" xPosition="before" class="menu-pannel">
                   <button mat-menu-item *ngFor="let prop of homeAlternateSpreads"
                     (click)="loadNewSpreadProp(team2GameStats, team1GameStats, prop, 'home')">{{prop.point > 0 ? "+" : ''}}{{prop.point}}</button>
                 </mat-menu>
