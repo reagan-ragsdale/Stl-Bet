@@ -24,9 +24,10 @@ export class SportsBookController {
             })
             
             if(filteredNewProp.length != 0){
-              console.log("filteredNewProp Below")
-              console.log(filteredNewProp)
+              
               if(filteredNewProp.length > 1){
+                console.log("filteredNewProp Below")
+              console.log(filteredNewProp)
                 for(let fprop of filteredNewProp){
                   let matchedProp = bookDataTemp.filter(e =>{return e.bookId == book && e.teamName == fprop.teamName && e.marketKey == fprop.marketKey && e.point == fprop.point})
                   console.log(matchedProp)
