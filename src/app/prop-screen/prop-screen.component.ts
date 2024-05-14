@@ -3272,7 +3272,7 @@ export class PropScreenComponent implements OnInit {
     }
 
 
-    let dialogRef = this.dialog.open(this.propDialog, { data: teamInfo, width: '600px', height: '550px' });
+    let dialogRef = this.dialog.open(this.propDialog, { data: teamInfo, width: '800px', height: '600px' });
 
 
 
