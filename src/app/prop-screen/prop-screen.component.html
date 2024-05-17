@@ -9,21 +9,38 @@
       
       <mat-tab style="width: 50%; color: white; display: flex;" label="Prop Stats">
         <div style="width: 100%; display:flex;">
-          <div style="width: 20%; height: 100%; background-color:#ebebeb; ">
-            <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
-              <h2 style="margin:auto">Record</h2>
-              <h2 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h2>
+          <div style="width: 40%; height: 100%; background-color:#ebebeb; display: flex; ">
+            <div style="display: flex; flex-direction: column; width: 50%;">
+              <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+                <h2 style="margin:auto">Record</h2>
+                <h2 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h2>
+              </div>
+              <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+                <h2 style="margin:auto">Win %</h2>
+                <h2 style="margin:auto">{{(teamInfo.teamGamesWonOverall / (teamInfo.teamGamesWonOverall + teamInfo.teamGamesLostOverall)) * 100 | number}}%</h2>
+              </div>
+              <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+                <h2 style="margin:auto">Weighted %</h2>
+                <h2 style="margin:auto">{{((teamInfo.teamGamesWonOverall / (teamInfo.teamGamesWonOverall + teamInfo.teamGamesLostOverall)) * (teamInfo.teamAgainstGamesLostOverall / (teamInfo.teamAgainstGamesWonOverall + teamInfo.teamAgainstGamesLostOverall))) * 100 | number}}%</h2>
+              </div>
             </div>
-            <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
-              <h2 style="margin:auto">Win %</h2>
-              <h2 style="margin:auto">{{(teamInfo.teamGamesWonOverall / (teamInfo.teamGamesWonOverall + teamInfo.teamGamesLostOverall)) * 100 | number}}%</h2>
+            <div style="display: flex; flex-direction: column; width: 50%;">
+              <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+                <h2 style="margin:auto">Record</h2>
+                <h2 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h2>
+              </div>
+              <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+                <h2 style="margin:auto">Win %</h2>
+                <h2 style="margin:auto">{{(teamInfo.teamGamesWonOverall / (teamInfo.teamGamesWonOverall + teamInfo.teamGamesLostOverall)) * 100 | number}}%</h2>
+              </div>
+              <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
+                <h2 style="margin:auto">Weighted %</h2>
+                <h2 style="margin:auto">{{((teamInfo.teamGamesWonOverall / (teamInfo.teamGamesWonOverall + teamInfo.teamGamesLostOverall)) * (teamInfo.teamAgainstGamesLostOverall / (teamInfo.teamAgainstGamesWonOverall + teamInfo.teamAgainstGamesLostOverall))) * 100 | number}}%</h2>
+              </div>
             </div>
-            <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
-              <h2 style="margin:auto">Weighted %</h2>
-              <h2 style="margin:auto">{{((teamInfo.teamGamesWonOverall / (teamInfo.teamGamesWonOverall + teamInfo.teamGamesLostOverall)) * (teamInfo.teamAgainstGamesLostOverall / (teamInfo.teamAgainstGamesWonOverall + teamInfo.teamAgainstGamesLostOverall))) * 100 | number}}%</h2>
-            </div>
+            
           </div>
-          <div style="width: 80%; height: 100%; background-color: #ebebeb; display:flex; flex-direction: column;">
+          <div style="width: 60%; height: 100%; background-color: #ebebeb; display:flex; flex-direction: column;">
             <div style="width:100%;">
               <h2 style="text-align:center; margin-top: 5px;">Last 10 Games</h2>
             </div>

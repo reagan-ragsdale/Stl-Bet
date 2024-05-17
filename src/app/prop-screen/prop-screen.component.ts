@@ -3231,6 +3231,7 @@ export class PropScreenComponent implements OnInit {
             teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostVsOpponent
             teamInfo.teamTable = teamTable
           }
+          teamInfo.type = 'ml'
         }
         else if (betType == 'spread') {
           if (type == 'overall') {
@@ -3262,6 +3263,10 @@ export class PropScreenComponent implements OnInit {
             teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId; }).length
             teamInfo.teamTable = teamTable
           }
+          teamInfo.averageSpreadOverall = this.team2GameStatsDtoMLB.spreadGame
+          teamInfo.averageSpreadHomeAway = this.team2GameStatsDtoMLB.spreadAway
+          teamInfo.averageSpreadVsTeam = this.team2GameStatsDtoMLB.spreadVsOpponent
+          teamInfo.type = 'spread'
         }
 
 
