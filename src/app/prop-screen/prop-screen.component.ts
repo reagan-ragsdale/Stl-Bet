@@ -3500,6 +3500,13 @@ export class PropScreenComponent implements OnInit {
       teamInfo.teamTable = teamTable
       teamInfo.teamTableHomeAway = teamTableHomeAway
       teamInfo.teamTableVsTeam = teamTableVsTeam
+
+      if(prop == 'spreads'){
+        teamInfo.averageSpreadOverall = this.team2GameStatsDtoMLB.spreadGame
+          teamInfo.averageSpreadHomeAway = this.team2GameStatsDtoMLB.spreadAway
+          teamInfo.averageSpreadVsTeam = this.team2GameStatsDtoMLB.spreadVsOpponent
+          teamInfo.type = 'spread'
+      }
     }
     else {
       let teamTable = JSON.parse(JSON.stringify(this.team1GameStats))
@@ -3528,10 +3535,17 @@ export class PropScreenComponent implements OnInit {
       teamInfo.teamTable = teamTable
       teamInfo.teamTableHomeAway = teamTableHomeAway
       teamInfo.teamTableVsTeam = teamTableVsTeam
+
+      if(prop == 'spreads'){
+        teamInfo.averageSpreadOverall = this.team2GameStatsDtoMLB.spreadGame
+          teamInfo.averageSpreadHomeAway = this.team2GameStatsDtoMLB.spreadAway
+          teamInfo.averageSpreadVsTeam = this.team2GameStatsDtoMLB.spreadVsOpponent
+          teamInfo.type = 'spread'
+      }
     }
 
 
-    let dialogRef = this.dialog.open(this.callAPIDialog, { data: teamInfo, width: '600px', height: '550px' });
+    let dialogRef = this.dialog.open(this.callAPIDialog, { data: teamInfo, width: '800px', height: '600px' });
   
 
   }
