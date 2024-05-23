@@ -4019,7 +4019,6 @@ export class PropScreenComponent implements OnInit {
 
   }
   async computeStatForPlayer(element: any) {
-    console.time("compute stat for player")
     //add this function to get called when the original elements get added to the interface
     //don't make the call each time. Make the call once then add it to an array then once they click again check to see if it's already stored
     this.playerAverageForSeason = 0;
@@ -4353,12 +4352,10 @@ export class PropScreenComponent implements OnInit {
 
       } else { this.average2022vsTeam = -1 }
     }
-    console.timeEnd("compute stat for player")
     this.updatePlayerPropArray(element);
   }
 
   updatePlayerPropArray(element: any) {
-    console.time("update player prop array")
     element.avgTotal = this.playerAverageForSeason;
     element.percentTotal = this.playerPercentForSeason;
     element.percentTeam = this.playerPercentVsTeam;
@@ -4370,7 +4367,6 @@ export class PropScreenComponent implements OnInit {
     element.average2022 = this.average2022
     element.average2022vsTeam = this.average2022vsTeam
     element.id = this.playerId
-    console.timeEnd("update player prop array")
   }
 
   playerNameSpanishConvert(list: DbMlbPlayerInfo[]): DbMlbPlayerInfo[] {
