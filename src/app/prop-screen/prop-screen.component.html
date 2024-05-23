@@ -3,10 +3,10 @@
     <h4>{{selectedPropHistoryName}} History</h4>
     <button mat-raised-button mat-dialog-close style="margin-left: auto;">X</button>
   </div>
-  <div mat-dialog-content style="height:400px; display: flex; " [ngClass]="'maindis'">
+  <div mat-dialog-content style="height:400px; display: flex; " >
     <mat-tab-group [backgroundColor]="'primary'" style="width:100%;" preserveContent
       (selectedIndexChange)="openChart($event)">
-      <mat-tab style="width: 50%; color: white; display: flex;" label="Prop Stats">
+      <mat-tab style=" color: white; display: flex;" label="Prop Stats">
       <div class="full-body" style="width:100%; height:100%; display: flex;">
         <div class="full-stats"
           style="width: 60%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px;">
@@ -106,7 +106,7 @@
       </div>
 
 
-      <!--   <div style="width: 100%; display:flex; height: 85%">
+        <!--   <div style="width: 100%; display:flex; height: 85%">
           <div style="width: 40%; height: 100%; background-color:#ebebeb; display: flex; ">
             <div style="display: flex; flex-direction: column; width: 50%;">
               <div style="width:90%; height: 25%; display:flex; flex-direction: column; background-color:#22577A; margin-left: auto; margin-right:auto; margin-top:5px; border-radius: 10px;">
