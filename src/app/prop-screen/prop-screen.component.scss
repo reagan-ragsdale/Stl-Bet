@@ -74,6 +74,27 @@ mat-tab-label{
 mat-mdc-tab-body-content{
   display:flex !important;
 }
+
+.ml-stat{
+  width: 96%;
+  height:25%;
+  margin-left: auto;
+  margin-right: auto;
+  display:flex;
+  flex-direction: column;
+  margin-top:5px;
+}
+.other-stat{
+  width: 96%;
+  height:15%;
+  margin-left: auto;
+  margin-right: auto;
+  display:flex;
+  flex-direction: column;
+  margin-top:5px;
+}
+
+
   
  
   

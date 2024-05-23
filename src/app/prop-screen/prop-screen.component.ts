@@ -3476,6 +3476,7 @@ export class PropScreenComponent implements OnInit {
     if (homeAway == 'away') {
       let teamTable = JSON.parse(JSON.stringify(this.team2GameStats))
       teamTable = teamTable.reverse()
+      teamInfo.type='ml'
 
       let teamTableHomeAway = teamTable.filter((e: { homeOrAway: string; }) => e.homeOrAway == 'Away')
       let teamTableVsTeam = teamTable.filter((e: { teamAgainstId: any; }) => e.teamAgainstId == this.team1GameStats[0].teamId)
