@@ -7462,21 +7462,21 @@
                       <div class="full-stats"
                         style="width: 96%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px;">
                         <div class="overall-stats"
-                          style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:red;">
+                          style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:red;">
                           <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                             <h3 style="margin:auto">Overall</h3>
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">% Win</h3>
-                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon - team2GameStatsDtoMLB.gamesLost}}</h3>
+                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)}}</h3>
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">Weighted %</h3>
-                            <h3 style="margin:auto"></h3>
+                            <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost))}}</h3>
                           </div>
                         </div>
                         <div class="homeaway-stats"
-                          style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:green;">
+                          style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:green;">
                           <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                             <h3 style="margin:auto">Away</h3>
                           </div>
@@ -7490,8 +7490,8 @@
                           </div>
                         </div>
                         <div class="team-stats"
-                          style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:blue;">
-                          <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                          style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:blue;">
+                          <div style="height:10%; width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                             <h3 style="margin:auto">Team</h3>
                           </div>
                           <div [ngClass]="'ml-stat'">
