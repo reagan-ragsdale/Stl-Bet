@@ -73,11 +73,11 @@ export class PropScreenComponent implements OnInit {
     location.reload()
   }
 
-  @ViewChild('content')
+ /*  @ViewChild('content')
   callAPIDialog!: TemplateRef<any>;
 
   @ViewChild('propStat')
-  propDialog!: TemplateRef<any>;
+  propDialog!: TemplateRef<any>; */
 
   private modalService = inject(NgbModal);
   expandedElement: PlayerProp[] | null | undefined;
