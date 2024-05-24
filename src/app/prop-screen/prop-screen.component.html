@@ -7468,11 +7468,11 @@
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">% Win</h3>
-                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)}}</h3>
+                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)  | percent: '2.2-2'}}</h3>
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">Weighted %</h3>
-                            <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost))}}</h3>
+                            <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
                           </div>
                         </div>
                         <div class="homeaway-stats"
@@ -7482,11 +7482,11 @@
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">% Win</h3>
-                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)}}</h3>
+                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway) | percent: '2.2-2'}}</h3>
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">Weighted %</h3>
-                            <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome))}}</h3>
+                            <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
                           </div>
                         </div>
                         <div class="team-stats"
@@ -7496,11 +7496,11 @@
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">% Win</h3>
-                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)}}</h3>
+                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent) | percent: '2.2-2'}}</h3>
                           </div>
                           <div [ngClass]="'ml-stat'">
                             <h3 style="margin:auto">Weighted %</h3>
-                            <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))}}</h3>
+                            <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
                           </div>
                         </div>
                       </div>
