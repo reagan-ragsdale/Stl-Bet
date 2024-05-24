@@ -7447,78 +7447,113 @@
           <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{displayPropHtml2.name}} game props</h2>
 
           <div style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly;">
-
-            <mat-card style="width:90%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
-              <mat-card-header>
-                <mat-card-title>Moneyline: {{displayPropHtml2.h2h > 0
-                  ? "+" : " "}}{{displayPropHtml2.h2h}}</mat-card-title>
-              </mat-card-header>
-              <mat-card-content style="height:400px">
-                <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
-                  (selectedIndexChange)="openChart($event)">
-                  <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
-                    <div class="full-body" style="width:100%; height:100%; display: flex;">
-                      <div class="full-stats"
-                        style="width: 96%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px;">
-                        <div class="overall-stats"
-                          style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:red;">
-                          <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                            <h3 style="margin:auto">Overall</h3>
+            <mat-accordion>
+              <mat-expansion-panel >
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Moneyline:
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    {{displayPropHtml2.h2h > 0
+                      ? "+" : " "}}{{displayPropHtml2.h2h}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card style="width:90%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
+                  <mat-card-header>
+                    <mat-card-title>Moneyline: {{displayPropHtml2.h2h > 0
+                      ? "+" : " "}}{{displayPropHtml2.h2h}}</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content style="height:400px">
+                    <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
+                      (selectedIndexChange)="openChart($event)">
+                      <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
+                        <div class="full-body" style="width:100%; height:100%; display: flex;">
+                          <div class="full-stats"
+                            style="width: 96%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px;">
+                            <div class="overall-stats"
+                              style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:red;">
+                              <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                <h3 style="margin:auto">Overall</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)  | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
+                              </div>
+                            </div>
+                            <div class="homeaway-stats"
+                              style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:green;">
+                              <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                <h3 style="margin:auto">Away</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway) | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
+                              </div>
+                            </div>
+                            <div class="team-stats"
+                              style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:blue;">
+                              <div style="height:10%; width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                <h3 style="margin:auto">Team</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent) | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
+                              </div>
+                            </div>
                           </div>
-                          <div [ngClass]="'ml-stat'">
-                            <h3 style="margin:auto">% Win</h3>
-                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)  | percent: '2.2-2'}}</h3>
-                          </div>
-                          <div [ngClass]="'ml-stat'">
-                            <h3 style="margin:auto">Weighted %</h3>
-                            <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
+                          <div class="full-gamne-log"
+                            style="width: 30%; height: 90%; margin-right:1rem; margin-top: auto; margin-bottom: auto;">
+                            <!-- <table mat-table [dataSource]="teamInfo.teamTable">
+                              <ng-container matColumnDef="TeamAgainst">
+                                <th mat-header-cell *matHeaderCellDef> Team </th>
+                                <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
+                                  {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
+                                </td>
+                              </ng-container>
+                      
+                              <ng-container matColumnDef="Date">
+                                <th mat-header-cell *matHeaderCellDef> Date </th>
+                                <td mat-cell *matCellDef="let element"> {{element.gameDate}}
+                                </td>
+                              </ng-container>
+                      
+                              <ng-container matColumnDef="Score">
+                                <th mat-header-cell *matHeaderCellDef> Score </th>
+                                <td mat-cell *matCellDef="let element"> {{element.pointsScoredOverall}} - {{element.pointsAllowedOverall}} </td>
+                              </ng-container>
+                      
+                              <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"></tr>
+                              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
+                                style="height:auto;"></tr>
+                            </table> -->
                           </div>
                         </div>
-                        <div class="homeaway-stats"
-                          style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:green;">
-                          <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                            <h3 style="margin:auto">Away</h3>
-                          </div>
-                          <div [ngClass]="'ml-stat'">
-                            <h3 style="margin:auto">% Win</h3>
-                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway) | percent: '2.2-2'}}</h3>
-                          </div>
-                          <div [ngClass]="'ml-stat'">
-                            <h3 style="margin:auto">Weighted %</h3>
-                            <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
-                          </div>
-                        </div>
-                        <div class="team-stats"
-                          style="width: 25%; height:100%; display: flex; flex-direction: column; background-color:blue;">
-                          <div style="height:10%; width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                            <h3 style="margin:auto">Team</h3>
-                          </div>
-                          <div [ngClass]="'ml-stat'">
-                            <h3 style="margin:auto">% Win</h3>
-                            <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent) | percent: '2.2-2'}}</h3>
-                          </div>
-                          <div [ngClass]="'ml-stat'">
-                            <h3 style="margin:auto">Weighted %</h3>
-                            <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="full-gamne-log"
-                        style="width: 30%; height: 90%; margin-right:1rem; margin-top: auto; margin-bottom: auto;">
-
-                      </div>
-                    </div>
-                  </mat-tab>
-                  <mat-tab label="Prop Trend">
-                    <ng-template matTabContent>
-                      <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{ chart
-                        }}</canvas>
-                    </ng-template>
-
-                  </mat-tab>
-                </mat-tab-group>
-              </mat-card-content>
-            </mat-card>
+                      </mat-tab>
+                      <mat-tab label="Prop Trend">
+                        <ng-template matTabContent>
+                          <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{ chart
+                            }}</canvas>
+                        </ng-template>
+    
+                      </mat-tab>
+                    </mat-tab-group>
+                  </mat-card-content>
+                </mat-card>
+              </mat-expansion-panel>
+            </mat-accordion>
+            
             <div
               style="display: flex; width: 90%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
 
