@@ -1,109 +1,115 @@
-<ng-template #content let-teamInfo>
+<!-- <ng-template #content let-teamInfo>
   <div mat-dialog-title style="display:flex">
     <h4>{{selectedPropHistoryName}} History</h4>
     <button mat-raised-button mat-dialog-close style="margin-left: auto;">X</button>
   </div>
-  <div mat-dialog-content style="height:400px; display: flex; " >
-    <mat-tab-group [backgroundColor]="'primary'" style="width:100%;" preserveContent
+  <div mat-dialog-content style="height:500px; display: flex; ">
+    <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
       (selectedIndexChange)="openChart($event)">
       <mat-tab style=" color: white; display: flex;" label="Prop Stats">
-      <div class="full-body" style="width:100%; height:100%; display: flex;">
-        <div class="full-stats"
-          style="width: 60%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px;">
-          <div class="overall-stats"
-            style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#ebebeb;">
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Overall</h3>
+        <div class="full-body" style="width:100%; height:100%; display: flex;">
+          <div class="full-stats"
+            style="width: 60%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px;">
+            <div class="overall-stats"
+              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:red;">
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">Overall</h3>
+              </div>
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">% Win</h3>
+                <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall / (teamInfo.teamGamesLostOverall +
+                  teamInfo.teamGamesWonOverall)}}</h3>
+              </div>
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">Weighted %</h3>
+                <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+              </div>
+              <div *ngIf="teamInfo.type != 'Moneyline'"
+                [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">Record</h3>
+                <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+              </div>
+              <div *ngIf="teamInfo.type != 'Moneyline'"
+                [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">Record</h3>
+                <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+              </div>
+              <div *ngIf="teamInfo.type != 'Moneyline'"
+                [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">Record</h3>
+                <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+              </div>
+              <div *ngIf="teamInfo.type != 'Moneyline'"
+                [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">Record</h3>
+                <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+              </div>
+              <div *ngIf="teamInfo.type != 'Moneyline'"
+                [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+                <h3 style="margin:auto">Record</h3>
+                <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+              </div>
             </div>
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Record</h3>
-              <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+            <div class="homeaway-stats"
+              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:green;">
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
             </div>
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Record</h3>
-              <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
-            </div>
-            <div *ngIf="teamInfo.type != 'ml'" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Record</h3>
-              <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
-            </div>
-            <div *ngIf="teamInfo.type != 'ml'" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Record</h3>
-              <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
-            </div>
-            <div *ngIf="teamInfo.type != 'ml'" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Record</h3>
-              <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
-            </div>
-            <div *ngIf="teamInfo.type != 'ml'" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Record</h3>
-              <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
-            </div>
-            <div *ngIf="teamInfo.type != 'ml'" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-              <h3 style="margin:auto">Record</h3>
-              <h3 style="margin:auto">{{teamInfo.teamGamesWonOverall}} - {{teamInfo.teamGamesLostOverall}}</h3>
+            <div class="team-stats"
+              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:blue;">
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
+              <div *ngIf="" [ngClass]="teamInfo.type == 'Moneyline' ? 'ml-stat' : 'other-stat'">
+
+              </div>
             </div>
           </div>
-          <div class="homeaway-stats"
-            style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#ebebeb;">
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
+          <div class="full-gamne-log"
+            style="width: 30%; height: 90%; margin-right:1rem; margin-top: auto; margin-bottom: auto;">
 
-            </div>
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-          </div>
-          <div class="team-stats"
-            style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#ebebeb;">
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
-            <div *ngIf="" [ngClass]="teamInfo.type == 'ml' ? 'ml-stat' : 'other-stat'">
-
-            </div>
           </div>
         </div>
-        <div class="full-gamne-log"
-          style="width: 30%; height: 90%; margin-right:1rem; margin-top: auto; margin-bottom: auto;">
-
-        </div>
-      </div>
 
 
         <!--   <div style="width: 100%; display:flex; height: 85%">
@@ -174,7 +180,7 @@
             <h4 style="margin:auto">AVG</h4>
             <h4 style="margin:auto">{{teamInfo</h4>
           </div>
-        </div> -->
+        </div> 
 
       </mat-tab>
       <mat-tab label="Prop Trend">
@@ -191,9 +197,9 @@
   <div mat-dialog-actions>
     <button mat-raised-button (click)="onChartClose()">Close</button>
   </div>
-</ng-template>
+</ng-template> -->
 
-<ng-template #propStat let-teamInfo>
+<!-- <ng-template #propStat let-teamInfo>
   <div mat-dialog-title style="display:flex">
     <h4>Moneyline Stats</h4>
     <button mat-raised-button mat-dialog-close style="margin-left: auto;">X</button>
@@ -254,7 +260,7 @@
   <div mat-dialog-actions>
     <button mat-raised-button (click)="onChartClose()">Close</button>
   </div>
-</ng-template>
+</ng-template> -->
 
 
 <div style="width: auto; background-color: #252324; display: flex;">
@@ -7442,15 +7448,87 @@
 
           <div style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly;">
 
+            <mat-card style="width:90%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
+              <mat-card-header>
+                <mat-card-title>Moneyline</mat-card-title>
+                <mat-card-subtitle>{{displayPropHtml2.h2h > 0
+                  ? "+" : " "}}{{displayPropHtml2.h2h}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
+                  (selectedIndexChange)="openChart($event)">
+                  <mat-tab style=" color: white; display: flex;" label="Prop Stats">
+                    <div class="full-body" style="width:100%; height:100%; display: flex;">
+                      <div class="full-stats"
+                        style="width: 60%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px;">
+                        <div class="overall-stats"
+                          style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:red;">
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">Overall</h3>
+                          </div>
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">% Win</h3>
+                            <h3 style="margin:auto"></h3>
+                          </div>
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">Weighted %</h3>
+                            <h3 style="margin:auto"></h3>
+                          </div>
+                        </div>
+                        <div class="homeaway-stats"
+                          style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:green;">
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">Overall</h3>
+                          </div>
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">% Win</h3>
+                            <h3 style="margin:auto"></h3>
+                          </div>
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">Weighted %</h3>
+                            <h3 style="margin:auto"></h3>
+                          </div>
+                        </div>
+                        <div class="team-stats"
+                          style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:blue;">
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">Overall</h3>
+                          </div>
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">% Win</h3>
+                            <h3 style="margin:auto"></h3>
+                          </div>
+                          <div [ngClass]="'ml-stat'">
+                            <h3 style="margin:auto">Weighted %</h3>
+                            <h3 style="margin:auto"></h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="full-gamne-log"
+                        style="width: 30%; height: 90%; margin-right:1rem; margin-top: auto; margin-bottom: auto;">
+
+                      </div>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="Prop Trend">
+                    <ng-template matTabContent>
+                      <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{ chart
+                        }}</canvas>
+                    </ng-template>
+
+                  </mat-tab>
+                </mat-tab-group>
+              </mat-card-content>
+            </mat-card>
             <div
-              style="display: flex; width: 30%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
+              style="display: flex; width: 90%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
 
               <div style="width: 60%; height: inherit; display: flex">
                 <h2 style="margin:auto; color: white;">Moneyline:</h2>
               </div>
               <div style="width: 40%; height: inherit; display: flex; ">
                 <button style="margin-left: 0; margin-top: auto; margin-bottom: auto; height: 60%;" mat-raised-button
-                  (click)="propTrend(displayPropHtml2.name,'h2h', 'away', content)">{{displayPropHtml2.h2h > 0
+                  (click)="propTrend(displayPropHtml2.name,'Moneyline', 'away', content)">{{displayPropHtml2.h2h > 0
                   ? "+" : " "}}{{displayPropHtml2.h2h}}
                 </button>
               </div>
@@ -7458,14 +7536,14 @@
 
             </div>
             <div
-              style="display: flex; width: 30%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
+              style="display: flex; width: 90%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
 
               <div style="width: 55%; height: inherit; display: flex">
                 <h2 style="margin:auto; color: white;">Spread:</h2>
               </div>
               <div style="width: 45%; height: inherit; display: flex;">
                 <button style="margin-left: 0; margin-top: auto; margin-bottom: auto; height: 60%; margin-right:1px;"
-                  mat-raised-button (click)="propTrend(displayPropHtml2.name,'spreads', 'away', content)">
+                  mat-raised-button (click)="propTrend(displayPropHtml2.name,'Spread', 'away', content)">
                   <div style="display:flex; flex-direction:column;">
                     <span>
                       {{team2SelectedSpreadPoint > 0 ? "+" : ''}}{{team2SelectedSpreadPoint}}
@@ -7488,14 +7566,14 @@
 
             </div>
             <div
-              style="display: flex; width: 30%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
+              style="display: flex; width: 90%; margin-left:auto; margin-right: auto; border-radius: 10px; background-color: #22577A; min-height: 90px; margin-bottom:1rem;">
 
               <div style="width: 55%; height: inherit; display: flex">
                 <h2 style="margin:auto; color: white;">Total:</h2>
               </div>
               <div style="width: 45%; height: inherit; display: flex;">
                 <button style="margin-left: 0; margin-top: auto; margin-bottom: auto; height: 60%;" mat-raised-button
-                  (click)="propTrend(displayPropHtml2.name, 'totals', 'away', content)">{{displayPropHtml2.h2h > 0
+                  (click)="propTrend(displayPropHtml2.name, 'Total', 'away', content)">{{displayPropHtml2.h2h > 0
                   ? "+" : " "}}{{displayPropHtml2.h2h}}
                 </button>
               </div>
@@ -7518,7 +7596,7 @@
               </div>
               <div style="width: 40%; height: inherit; display: flex; ">
                 <button style="margin-left: 0; margin-top: auto; margin-bottom: auto; height: 60%;" mat-raised-button
-                  (click)="propTrend(displayPropHtml1.name,'h2h', 'home', content)">{{displayPropHtml1.h2h > 0
+                  (click)="propTrend(displayPropHtml1.name,'Moneyline', 'home', content)">{{displayPropHtml1.h2h > 0
                   ? "+" : " "}}{{displayPropHtml1.h2h}}
                 </button>
               </div>
@@ -7533,7 +7611,7 @@
               </div>
               <div style="width: 45%; height: inherit; display: flex;">
                 <button style="margin-left: 0; margin-top: auto; margin-bottom: auto; height: 60%; margin-right:1px;"
-                  mat-raised-button (click)="propTrend(displayPropHtml1.name,'spreads', 'home', content)">
+                  mat-raised-button (click)="propTrend(displayPropHtml1.name,'Spread', 'home', content)">
                   <div style="display:flex; flex-direction:column;">
                     <span>
                       {{team1SelectedSpreadPoint > 0 ? "+" : ''}}{{team1SelectedSpreadPoint}}
@@ -7563,7 +7641,8 @@
               </div>
               <div style="width: 45%; height: inherit; display: flex;">
                 <button style="margin-left: 0; margin-top: auto; margin-bottom: auto; height: 60%;" mat-raised-button
-                  (click)="propTrend(displayPropHtml1.name, 'totals', 'home', content)">{{displayPropHtml1.h2h > 0
+                  (click)="propTrend(displayPropHtml1.name, 'team1GameVsOpponentData', 'home', content)">{{displayPropHtml1.h2h
+                  > 0
                   ? "+" : " "}}{{displayPropHtml1.h2h}}
                 </button>
               </div>

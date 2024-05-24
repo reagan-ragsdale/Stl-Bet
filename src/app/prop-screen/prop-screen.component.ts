@@ -3193,95 +3193,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
-  onPropModal(teamStats: any[], type: string, location: string, betType: string) {
-    var teamInfo: any = {};
-    let teamStatsAverage = {}
-    let teamAgainstStatAverage = {}
-    let teamStatsFinal: any[] = []
-    let teamTable = []
-    if (location == 'away') {
-      if (this.selectedSport == 'MLB') {
-        if (betType == 'ml') {
-          if (type == 'overall') {
-            teamTable = teamStats.reverse()
-            teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWon
-            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLost
-            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWon
-            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLost
-            teamInfo.teamTable = teamTable
-          }
-          else if (type == 'homeAway') {
-            teamTable = teamStats.reverse()
-            teamTable = teamTable.filter(e => e.homeOrAway == "Away")
-            teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonAway
-            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostAway
-            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonHome
-            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostHome
-            teamInfo.teamTable = teamTable
-          }
-          else if (type == 'team') {
-            teamTable = teamStats.reverse()
-            teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
-            teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = this.team2GameStatsDtoMLB.gamesWonVsOpponent
-            teamInfo.teamGamesLost = this.team2GameStatsDtoMLB.gamesLostVsOpponent
-            teamInfo.teamAgainstGamesWon = this.team1GameStatsDtoMLB.gamesWonVsOpponent
-            teamInfo.teamAgainstGamesLost = this.team1GameStatsDtoMLB.gamesLostVsOpponent
-            teamInfo.teamTable = teamTable
-          }
-          teamInfo.type = 'ml'
-        }
-        else if (betType == 'spread') {
-          if (type == 'overall') {
-            teamTable = teamStats.reverse()
-            teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint); }).length
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint); }).length
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint); }).length
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint); }).length
-            teamInfo.teamTable = teamTable
-          }
-          else if (type == 'homeAway') {
-            teamTable = teamStats.reverse()
-            teamTable = teamTable.filter(e => e.homeOrAway == "Away")
-            teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away"; }).length
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Away"; }).length
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Home"; }).length
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.homeOrAway == "Home"; }).length
-            teamInfo.teamTable = teamTable
-          }
-          else if (type == 'team') {
-            teamTable = teamStats.reverse()
-            teamTable = teamTable.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId)
-            teamTable = teamTable.slice(0, 9)
-            teamInfo.teamGamesWon = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId; }).length
-            teamInfo.teamGamesLost = teamStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == this.team1GameStats[0].teamId; }).length
-            teamInfo.teamAgainstGamesWon = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId; }).length
-            teamInfo.teamAgainstGamesLost = this.team1GameStats.filter(e => { return ((e.pointsAllowedOverall - e.pointsScoredOverall) >= this.team2SelectedSpreadPoint) && e.teamAgainstId == teamStats[0].teamId; }).length
-            teamInfo.teamTable = teamTable
-          }
-          teamInfo.averageSpreadOverall = this.team2GameStatsDtoMLB.spreadGame
-          teamInfo.averageSpreadHomeAway = this.team2GameStatsDtoMLB.spreadAway
-          teamInfo.averageSpreadVsTeam = this.team2GameStatsDtoMLB.spreadVsOpponent
-          teamInfo.type = 'spread'
-        }
-
-
-      }
-    }
-    else if (location == 'home') {
-
-    }
-
-
-    let dialogRef = this.dialog.open(this.propDialog, { data: teamInfo, width: '800px', height: '600px' });
-
-
-
-  }
+  
 
   onSpreadModal() {
 
@@ -3463,9 +3375,9 @@ export class PropScreenComponent implements OnInit {
   }
 
   async propTrend(teamName: string, prop: string, homeAway: string, content: TemplateRef<any>) {
-
-    this.selectedPropHistoryName = prop
-    this.spreadAndTotalChart = false;
+    
+    teamInfo.type = prop
+    
     if (prop == 'totals') {
       this.propHistory = await SportsBookController.loadAllBookDataBySportAndBookIdAndProp(this.selectedSport, this.selectedGame, prop)
     }
@@ -3476,7 +3388,7 @@ export class PropScreenComponent implements OnInit {
     if (homeAway == 'away') {
       let teamTable = JSON.parse(JSON.stringify(this.team2GameStats))
       teamTable = teamTable.reverse()
-      teamInfo.type='ml'
+      
 
       let teamTableHomeAway = teamTable.filter((e: { homeOrAway: string; }) => e.homeOrAway == 'Away')
       let teamTableVsTeam = teamTable.filter((e: { teamAgainstId: any; }) => e.teamAgainstId == this.team1GameStats[0].teamId)
@@ -3485,28 +3397,65 @@ export class PropScreenComponent implements OnInit {
       teamTableHomeAway = teamTableHomeAway.slice(0,9)
       teamTableVsTeam = teamTableVsTeam.slice(0,9)
 
-      teamInfo.teamGamesWonOverall = this.team2GameStatsDtoMLB.gamesWon
-      teamInfo.teamGamesLostOverall = this.team2GameStatsDtoMLB.gamesLost
-      teamInfo.teamAgainstGamesWonOverall = this.team1GameStatsDtoMLB.gamesWon
-      teamInfo.teamAgainstGamesLostOverall = this.team1GameStatsDtoMLB.gamesLost
-      teamInfo.teamGamesWonHomeAway = this.team2GameStatsDtoMLB.gamesWonAway
-      teamInfo.teamGamesLostHomeAway = this.team2GameStatsDtoMLB.gamesLostAway
-      teamInfo.teamAgainstGamesWonHomeAway = this.team1GameStatsDtoMLB.gamesWonHome
-      teamInfo.teamAgainstGamesLostHomeAway = this.team1GameStatsDtoMLB.gamesLostHome
-      teamInfo.teamGamesWonTeam = this.team2GameStatsDtoMLB.gamesWonVsOpponent
-      teamInfo.teamGamesLostTeam = this.team2GameStatsDtoMLB.gamesLostVsOpponent
-      teamInfo.teamAgainstGamesWonTeam = this.team1GameStatsDtoMLB.gamesWonVsOpponent
-      teamInfo.teamAgainstGamesLostTeam = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+      if(teamInfo.type == 'Moneyline'){
+        teamInfo.percentChance
+        teamInfo.weightedPercentChance
+        teamInfo.average
+        teamInfo.averageFor
+        teamInfo.averageAgainst
+        teamInfo.high
+        teamInfo.low
+        teamInfo.teamGamesWonOverall = this.team2GameStatsDtoMLB.gamesWon
+        teamInfo.teamGamesLostOverall = this.team2GameStatsDtoMLB.gamesLost
+        teamInfo.teamAgainstGamesWonOverall = this.team1GameStatsDtoMLB.gamesWon
+        teamInfo.teamAgainstGamesLostOverall = this.team1GameStatsDtoMLB.gamesLost
+        teamInfo.teamGamesWonHomeAway = this.team2GameStatsDtoMLB.gamesWonAway
+        teamInfo.teamGamesLostHomeAway = this.team2GameStatsDtoMLB.gamesLostAway
+        teamInfo.teamAgainstGamesWonHomeAway = this.team1GameStatsDtoMLB.gamesWonHome
+        teamInfo.teamAgainstGamesLostHomeAway = this.team1GameStatsDtoMLB.gamesLostHome
+        teamInfo.teamGamesWonTeam = this.team2GameStatsDtoMLB.gamesWonVsOpponent
+        teamInfo.teamGamesLostTeam = this.team2GameStatsDtoMLB.gamesLostVsOpponent
+        teamInfo.teamAgainstGamesWonTeam = this.team1GameStatsDtoMLB.gamesWonVsOpponent
+        teamInfo.teamAgainstGamesLostTeam = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+      }
+      else if(teamInfo.type == 'Spread'){
+        teamInfo.teamGamesWonOverall = this.awaySpreadOverallChance
+        teamInfo.teamGamesLostOverall = 1-this.awaySpreadOverallChance
+        teamInfo.teamAgainstGamesWonOverall = this.team1GameStatsDtoMLB.gamesWon
+        teamInfo.teamAgainstGamesLostOverall = this.team1GameStatsDtoMLB.gamesLost
+        teamInfo.teamGamesWonHomeAway = this.team2GameStatsDtoMLB.gamesWonAway
+        teamInfo.teamGamesLostHomeAway = this.team2GameStatsDtoMLB.gamesLostAway
+        teamInfo.teamAgainstGamesWonHomeAway = this.team1GameStatsDtoMLB.gamesWonHome
+        teamInfo.teamAgainstGamesLostHomeAway = this.team1GameStatsDtoMLB.gamesLostHome
+        teamInfo.teamGamesWonTeam = this.team2GameStatsDtoMLB.gamesWonVsOpponent
+        teamInfo.teamGamesLostTeam = this.team2GameStatsDtoMLB.gamesLostVsOpponent
+        teamInfo.teamAgainstGamesWonTeam = this.team1GameStatsDtoMLB.gamesWonVsOpponent
+        teamInfo.teamAgainstGamesLostTeam = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+      }
+      else if(teamInfo.type == 'Total'){
+        teamInfo.teamGamesWonOverall = this.team2GameStatsDtoMLB.gamesWon
+        teamInfo.teamGamesLostOverall = this.team2GameStatsDtoMLB.gamesLost
+        teamInfo.teamAgainstGamesWonOverall = this.team1GameStatsDtoMLB.gamesWon
+        teamInfo.teamAgainstGamesLostOverall = this.team1GameStatsDtoMLB.gamesLost
+        teamInfo.teamGamesWonHomeAway = this.team2GameStatsDtoMLB.gamesWonAway
+        teamInfo.teamGamesLostHomeAway = this.team2GameStatsDtoMLB.gamesLostAway
+        teamInfo.teamAgainstGamesWonHomeAway = this.team1GameStatsDtoMLB.gamesWonHome
+        teamInfo.teamAgainstGamesLostHomeAway = this.team1GameStatsDtoMLB.gamesLostHome
+        teamInfo.teamGamesWonTeam = this.team2GameStatsDtoMLB.gamesWonVsOpponent
+        teamInfo.teamGamesLostTeam = this.team2GameStatsDtoMLB.gamesLostVsOpponent
+        teamInfo.teamAgainstGamesWonTeam = this.team1GameStatsDtoMLB.gamesWonVsOpponent
+        teamInfo.teamAgainstGamesLostTeam = this.team1GameStatsDtoMLB.gamesLostVsOpponent
+      }
+      
 
       teamInfo.teamTable = teamTable
       teamInfo.teamTableHomeAway = teamTableHomeAway
       teamInfo.teamTableVsTeam = teamTableVsTeam
 
-      if(prop == 'spreads'){
+      if(prop == 'Spread'){
         teamInfo.averageSpreadOverall = this.team2GameStatsDtoMLB.spreadGame
           teamInfo.averageSpreadHomeAway = this.team2GameStatsDtoMLB.spreadAway
           teamInfo.averageSpreadVsTeam = this.team2GameStatsDtoMLB.spreadVsOpponent
-          teamInfo.type = 'spread'
       }
     }
     else {
@@ -3537,11 +3486,10 @@ export class PropScreenComponent implements OnInit {
       teamInfo.teamTableHomeAway = teamTableHomeAway
       teamInfo.teamTableVsTeam = teamTableVsTeam
 
-      if(prop == 'spreads'){
+      if(prop == 'Spread'){
         teamInfo.averageSpreadOverall = this.team2GameStatsDtoMLB.spreadGame
           teamInfo.averageSpreadHomeAway = this.team2GameStatsDtoMLB.spreadAway
           teamInfo.averageSpreadVsTeam = this.team2GameStatsDtoMLB.spreadVsOpponent
-          teamInfo.type = 'spread'
       }
     }
 
