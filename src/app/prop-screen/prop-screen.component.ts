@@ -3374,7 +3374,7 @@ export class PropScreenComponent implements OnInit {
     this.pointsAllowed2QuarterClicked = true;
   }
 
-  async propTrend(teamName: string, prop: string, homeAway: string, content: TemplateRef<any>) {
+  /* async propTrend(teamName: string, prop: string, homeAway: string, content: TemplateRef<any>) {
     
     teamInfo.type = prop
     
@@ -3497,7 +3497,7 @@ export class PropScreenComponent implements OnInit {
     let dialogRef = this.dialog.open(this.callAPIDialog, { data: teamInfo, width: '800px', height: '600px' });
   
 
-  }
+  } */
 
   openChart(event: any){
     if(event == 0){
