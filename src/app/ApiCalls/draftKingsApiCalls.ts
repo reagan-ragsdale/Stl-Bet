@@ -101,6 +101,10 @@ export class draftKingsApiController {
     var tempData: DbGameBookData[] = [];
     
     let nextBookSeq = 0
+
+    //I want to check each individual prop to see what the seq is or if there is an entry at all 
+    //becuase if in the big three there might nhot be a spread at first then if I look at the book id, 
+    //there alreqady is something for that id and it will put the spread at a later one and not put in a zero seq
     
 
     for (let i = 0; i < this.selectedSportsData.length; i++) {
@@ -117,6 +121,19 @@ export class draftKingsApiController {
       }
       for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
         for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
+          let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData.bookmakers[j].markets[k].key)
+        if(selectedProp.length == 0){
+          nextBookSeq = 0
+        }
+        else{ 
+          let highestSeq = 0
+          selectedProp.forEach(e => {
+            if(highestSeq < e.bookSeq){
+              highestSeq = e.bookSeq
+            }
+          })
+          nextBookSeq = highestSeq + 1
+        }
           for (let m = 0; m < this.selectedSportsData[i].bookmakers[j].markets[k].outcomes.length; m++) {
             tempData.push({
               bookId: this.selectedSportsData[i].id,
