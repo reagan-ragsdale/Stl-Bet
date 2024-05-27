@@ -1376,6 +1376,7 @@ export class PropScreenComponent implements OnInit {
     }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
+    this.calculateNewTotalChance(totalPoint, 'away', 'MLB')
     this.homeAlternateSpreadstemp.forEach(e => {
       this.homeAlternateSpreads.push({point: e.point, price: e.price})
     })
@@ -1420,6 +1421,7 @@ export class PropScreenComponent implements OnInit {
     this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
+    this.calculateNewTotalChance(totalPoint, 'home', 'MLB')
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? spreadPriceProp[0].commenceTime : 0 });
     this.team2SelectedSpreadPoint = spreadPoint
     this.team2SelectedSpreadPrice = spreadPrice
@@ -3190,6 +3192,76 @@ export class PropScreenComponent implements OnInit {
 
     }
 
+  }
+  
+  public overTrueUnderFalseAway: boolean = true
+  public overTrueUnderFalseHome: boolean = true
+  public totalAwayOverallChance: number = 0
+  public totalHomeOverallChance: number = 0
+  public totalAwayAwayChance: number = 0
+  public totalHomeHomeChance: number = 0
+  public totalAwayTeamChance: number = 0
+  public totalHomeTeamChance: number = 0
+  calculateNewTotalChance(prop:number, homeAway:string, sport: string){
+    if(sport == 'MLB'){
+      if(homeAway == 'away'){
+        if(this.overTrueUnderFalseAway == true){
+          let totalFor = this.team2GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) > prop})
+          let totalOverall = this.team2GameStats.length
+          this.totalAwayOverallChance = totalFor.length / totalOverall
+
+          totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.homeAway == 'Away'})
+          totalOverall = this.team2GameStats.filter(e => {return e.homeAway == 'Away'}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+
+          totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.teamAgainstId == this.team1GameStats[0].teamId})
+          totalOverall = this.team2GameStats.filter(e => {return e.teamAgainstId == this.team1GameStats[0].teamId}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+        }
+        else if(this.overTrueUnderFalseAway == false){
+          let totalFor = this.team2GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) < prop})
+          let totalOverall = this.team2GameStats.length
+          this.totalAwayOverallChance = totalFor.length / totalOverall
+
+          totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.homeAway == 'Away'})
+          totalOverall = this.team2GameStats.filter(e => {return e.homeAway == 'Away'}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+
+          totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.teamAgainstId == this.team1GameStats[0].teamId})
+          totalOverall = this.team2GameStats.filter(e => {return e.teamAgainstId == this.team1GameStats[0].teamId}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+        }
+        
+      }
+      else if(homeAway == 'home'){
+        if(this.overTrueUnderFalseHome == true){
+          let totalFor = this.team1GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) > prop})
+          let totalOverall = this.team1GameStats.length
+          this.totalAwayOverallChance = totalFor.length / totalOverall
+
+          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.homeAway == 'Away'})
+          totalOverall = this.team1GameStats.filter(e => {return e.homeAway == 'Away'}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+
+          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.teamAgainstId == this.team2GameStats[0].teamId})
+          totalOverall = this.team1GameStats.filter(e => {return e.teamAgainstId == this.team2GameStats[0].teamId}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+        }
+        else if(this.overTrueUnderFalseHome == false){
+          let totalFor = this.team1GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) < prop})
+          let totalOverall = this.team1GameStats.length
+          this.totalAwayOverallChance = totalFor.length / totalOverall
+
+          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.homeAway == 'Away'})
+          totalOverall = this.team1GameStats.filter(e => {return e.homeAway == 'Away'}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+
+          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.teamAgainstId == this.team2GameStats[0].teamId})
+          totalOverall = this.team1GameStats.filter(e => {return e.teamAgainstId == this.team2GameStats[0].teamId}).length
+          this.totalAwayAwayChance = totalFor.length / totalOverall
+        }
+      }
+    }
   }
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
