@@ -7639,7 +7639,7 @@
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
                       (selectedIndexChange)="openChart($event)">
                       <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
-                        <div class="full-body" style="width:100%; height:100%; display: flex;">
+                        <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column">
                           <div style="display:flex;">
                             <mat-slide-toggle [(ngModel)]="overTrueUnderFalseAway" [labelPosition]="'before'" (ngModelChange)="calculateNewTotalChance(selectedTotalAwayProp, 'away')">Under</mat-slide-toggle>
                             Over
