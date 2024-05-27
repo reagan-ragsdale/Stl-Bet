@@ -7533,13 +7533,15 @@
                   </mat-panel-title>
                   <mat-panel-description>
                     {{displayPropHtml2.spreadPoint > 0
-                      ? "+" : " "}}{{displayPropHtml2.spreadPoint}}
+                      ? "+" : " "}}{{displayPropHtml2.spreadPoint}} | {{displayPropHtml2.spreadPrice > 0
+                      ? "+" : " "}}{{displayPropHtml2.spreadPrice}}
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 <mat-card style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                   <mat-card-header>
                     <mat-card-title>Spread: {{displayPropHtml2.spreadPoint > 0
-                      ? "+" : " "}}{{displayPropHtml2.spreadPoint}}</mat-card-title>
+                      ? "+" : " "}}{{displayPropHtml2.spreadPoint}} | {{displayPropHtml2.spreadPrice > 0
+                      ? "+" : " "}}{{displayPropHtml2.spreadPrice}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content style="height:400px">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
@@ -7561,6 +7563,10 @@
                                 <h3 style="margin:auto">Weighted %</h3>
                                 <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
                               </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Avg</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadGame / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) | number: '2.2-2'}}</h3>
+                              </div>
                             </div>
                             <div class="homeaway-stats"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:green;">
@@ -7575,6 +7581,10 @@
                                 <h3 style="margin:auto">Weighted %</h3>
                                 <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
                               </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Avg</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadAway / (team1GameStatsDtoMLB.gamesLostAway + team1GameStatsDtoMLB.gamesWonAway)) | number: '2.2-2'}}</h3>
+                              </div>
                             </div>
                             <div class="team-stats"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:blue;">
@@ -7588,6 +7598,10 @@
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Weighted %</h3>
                                 <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Avg</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '2.2-2'}}</h3>
                               </div>
                             </div>
                           </div>
