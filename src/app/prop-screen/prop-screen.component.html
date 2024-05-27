@@ -7565,7 +7565,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
-                                <h3 style="margin:auto">{{awaySpreadTeamChance| percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadGame / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) | number: '2.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="homeaway-stats"
