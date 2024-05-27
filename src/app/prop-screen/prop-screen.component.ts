@@ -48,6 +48,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFullTeamNameToAbvr.pip';
 import { DbMlbTeamGameStats } from 'src/shared/dbTasks/DbMlbTeamGameStats';
 import { TransformFromTimestampToTimePipe } from '../customPipes/transformFromTimestampToTime.pipe';
+import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-prop-screen',
@@ -1318,6 +1319,8 @@ export class PropScreenComponent implements OnInit {
     });
   }
 
+  public selectedTotalAwayProp: number = 0
+  public selectedTotalHomeProp: number = 0
   async displayProp() {
     this.teamPropIsLoading = true
 
@@ -1376,6 +1379,7 @@ export class PropScreenComponent implements OnInit {
     }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
+    this.selectedTotalAwayProp = totalPoint
     this.calculateNewTotalChance(totalPoint, 'away', 'MLB')
     this.homeAlternateSpreadstemp.forEach(e => {
       this.homeAlternateSpreads.push({point: e.point, price: e.price})
@@ -3202,8 +3206,8 @@ export class PropScreenComponent implements OnInit {
   public totalHomeHomeChance: number = 0
   public totalAwayTeamChance: number = 0
   public totalHomeTeamChance: number = 0
-  calculateNewTotalChance(prop:number, homeAway:string, sport: string){
-    if(sport == 'MLB'){
+  calculateNewTotalChance(prop:number, homeAway:string){
+    if(this.selectedSport == 'MLB'){
       if(homeAway == 'away'){
         if(this.overTrueUnderFalseAway == true){
           let totalFor = this.team2GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) > prop})
