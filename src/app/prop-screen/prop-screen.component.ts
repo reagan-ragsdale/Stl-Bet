@@ -1380,7 +1380,7 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
     this.selectedTotalAwayProp = totalPoint
-    this.calculateNewTotalChance(totalPoint, 'away', 'MLB')
+    this.calculateNewTotalChance(totalPoint, 'away')
     this.homeAlternateSpreadstemp.forEach(e => {
       this.homeAlternateSpreads.push({point: e.point, price: e.price})
     })
@@ -1425,7 +1425,7 @@ export class PropScreenComponent implements OnInit {
     this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
-    this.calculateNewTotalChance(totalPoint, 'home', 'MLB')
+    this.calculateNewTotalChance(totalPoint, 'home')
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? spreadPriceProp[0].commenceTime : 0 });
     this.team2SelectedSpreadPoint = spreadPoint
     this.team2SelectedSpreadPrice = spreadPrice
