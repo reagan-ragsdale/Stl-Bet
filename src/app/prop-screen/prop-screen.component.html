@@ -7565,7 +7565,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
-                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadGame / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) | number: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadGame / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) > 0 ? '+' : ''}}{{(team2GameStatsDtoMLB.spreadGame / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) | number: '1.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="homeaway-stats"
@@ -7583,7 +7583,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
-                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadAway / (team1GameStatsDtoMLB.gamesLostAway + team1GameStatsDtoMLB.gamesWonAway)) | number: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadAway / (team1GameStatsDtoMLB.gamesLostAway + team1GameStatsDtoMLB.gamesWonAway)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadAway / (team1GameStatsDtoMLB.gamesLostAway + team1GameStatsDtoMLB.gamesWonAway)) | number: '1.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="team-stats"
@@ -7601,7 +7601,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
-                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
                               </div>
                             </div>
                           </div>
