@@ -19,7 +19,7 @@ import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
     selector: 'home-screen',
     templateUrl: './homescreen.component.html',
     styleUrls: ['./homescreen.component.scss'],
-    encapsulation: ViewEncapsulation.None,
+    //encapsulation: ViewEncapsulation.None,
 })
 export class HomeScreenComponent implements OnDestroy, OnInit {
   

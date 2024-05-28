@@ -6,7 +6,7 @@ import { remult } from 'remult';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  //encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   constructor(zone: NgZone) {
