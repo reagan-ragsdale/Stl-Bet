@@ -3219,15 +3219,24 @@ export class PropScreenComponent implements OnInit {
         else if(this.overTrueUnderFalseAway == false){
           let totalFor = this.team2GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) < prop})
           let totalOverall = this.team2GameStats.length
-          this.totalAwayOverallChance = totalFor.length / totalOverall
+          if(totalOverall == 0){
+            this.totalAwayOverallChance = 0
+          }
+          else{this.totalAwayOverallChance = totalFor.length / totalOverall}
 
           totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.homeOrAway == 'Away'})
           totalOverall = this.team2GameStats.filter(e => {return e.homeOrAway == 'Away'}).length
-          this.totalAwayAwayChance = totalFor.length / totalOverall
+          if(totalOverall == 0){
+            this.totalAwayAwayChance = 0
+          }
+          else{this.totalAwayAwayChance = totalFor.length / totalOverall}
 
           totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.teamAgainstId == this.team1GameStats[0].teamId})
           totalOverall = this.team2GameStats.filter(e => {return e.teamAgainstId == this.team1GameStats[0].teamId}).length
-          this.totalAwayTeamChance = totalFor.length / totalOverall
+          if(totalOverall == 0){
+            this.totalAwayTeamChance = 0
+          }
+          else{this.totalAwayTeamChance = totalFor.length / totalOverall}
         }
         
       }
@@ -3235,28 +3244,47 @@ export class PropScreenComponent implements OnInit {
         if(this.overTrueUnderFalseHome == true){
           let totalFor = this.team1GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) > prop})
           let totalOverall = this.team1GameStats.length
-          this.totalHomeOverallChance = totalFor.length / totalOverall
+          if(totalOverall == 0){
+            this.totalHomeOverallChance = 0
+          }
+          else{this.totalHomeOverallChance = totalFor.length / totalOverall}
 
-          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.homeAway == 'Away'})
-          totalOverall = this.team1GameStats.filter(e => {return e.homeAway == 'Away'}).length
-          this.totalHomeHomeChance = totalFor.length / totalOverall
+          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.homeOrAway == 'Away'})
+          totalOverall = this.team1GameStats.filter(e => {return e.homeOrAway == 'Away'}).length
+          if(totalOverall == 0){
+            this.totalHomeHomeChance = 0
+          }
+          else{this.totalHomeHomeChance = totalFor.length / totalOverall}
 
           totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.teamAgainstId == this.team2GameStats[0].teamId})
           totalOverall = this.team1GameStats.filter(e => {return e.teamAgainstId == this.team2GameStats[0].teamId}).length
-          this.totalHomeTeamChance = totalFor.length / totalOverall
+          if(totalOverall == 0){
+            this.totalHomeTeamChance = 0
+          }
+          else{this.totalHomeTeamChance = totalFor.length / totalOverall}
         }
         else if(this.overTrueUnderFalseHome == false){
           let totalFor = this.team1GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) < prop})
           let totalOverall = this.team1GameStats.length
-          this.totalHomeOverallChance = totalFor.length / totalOverall
+          if(totalOverall == 0){
+            this.totalHomeOverallChance = 0
+          }
+          else{this.totalHomeOverallChance = totalFor.length / totalOverall}
 
-          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.homeAway == 'Away'})
-          totalOverall = this.team1GameStats.filter(e => {return e.homeAway == 'Away'}).length
-          this.totalHomeHomeChance = totalFor.length / totalOverall
+          totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.homeOrAway == 'Away'})
+          totalOverall = this.team1GameStats.filter(e => {return e.homeOrAway == 'Away'}).length
+          if(totalOverall == 0){
+            this.totalHomeHomeChance = 0
+          }
+          else{this.totalHomeHomeChance = totalFor.length / totalOverall}
+          
 
           totalFor =  this.team1GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.teamAgainstId == this.team2GameStats[0].teamId})
           totalOverall = this.team1GameStats.filter(e => {return e.teamAgainstId == this.team2GameStats[0].teamId}).length
-          this.totalHomeTeamChance = totalFor.length / totalOverall
+          if(totalOverall == 0){
+            this.totalHomeTeamChance = 0
+          }
+          else{this.totalHomeTeamChance = totalFor.length / totalOverall}
         }
       }
     }
