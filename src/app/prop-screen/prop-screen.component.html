@@ -7659,7 +7659,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto">{{totalHomeOverallChance != 0 ? totalAwayOverallChance * (1 - totalHomeOverallChance) : 0| percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">{{totalHomeOverallChance != 1 ? totalAwayOverallChance * (1 - totalHomeOverallChance) : 0 | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="homeaway-stats"
@@ -7673,7 +7673,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto"> {{totalHomeHomeChance != 0 ? totalAwayAwayChance * (1 - totalHomeHomeChance) : 0 | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto"> {{totalHomeHomeChance != 1 ? totalAwayAwayChance * (1 - totalHomeHomeChance) : 0 | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="team-stats"
