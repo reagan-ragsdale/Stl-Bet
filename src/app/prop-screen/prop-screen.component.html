@@ -7635,7 +7635,7 @@
                       ? "+" : " "}}{{displayPropHtml2.totalPrice}} : Over {{displayPropHtml1.totalPoint}} | {{displayPropHtml1.totalPrice > 0
                       ? "+" : " "}}{{displayPropHtml1.totalPrice}} </mat-card-title>
                   </mat-card-header>
-                  <mat-card-content style="height:400px">
+                  <mat-card-content style="min-height:400px">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
                       (selectedIndexChange)="openChart($event)">
                       <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
@@ -7647,9 +7647,9 @@
                           
                           
                           <div class="full-stats"
-                            style="width: 96%; height: 90%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px; justify-content:space-evenly">
+                            style="width: 96%; display: flex; margin-left:1rem; margin-top: auto; margin-bottom: auto; background-color: #22577A; border-radius: 10px; justify-content:space-evenly">
                             <div class="overall-stats"
-                              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:red;">
+                              style="width: 30%; display: flex; flex-direction: column; background-color:red;">
                               <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                                 <h3 style="margin:auto">Overall</h3>
                               </div>
@@ -7675,7 +7675,7 @@
                               </div>
                             </div>
                             <div class="homeaway-stats"
-                              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:green;">
+                              style="width: 30%; display: flex; flex-direction: column; background-color:green;">
                               <div style="height:10%; width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                                 <h3 style="margin:auto">Away</h3>
                               </div>
@@ -7701,7 +7701,7 @@
                               </div>
                             </div>
                             <div class="team-stats"
-                              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:blue;">
+                              style="width: 30%;  display: flex; flex-direction: column; background-color:blue;">
                               <div style="height:10%; width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                                 <h3 style="margin:auto">Team</h3>
                               </div>
