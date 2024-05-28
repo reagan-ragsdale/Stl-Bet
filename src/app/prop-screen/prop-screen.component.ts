@@ -1381,11 +1381,8 @@ export class PropScreenComponent implements OnInit {
       this.homeAlternateSpreads.push({point: e.point, price: e.price})
     })
     this.homeAlternateSpreads.push({point: spreadPoint, price: spreadPrice})
-    console.log(this.homeAlternateSpreads)
     this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function (a, b) { return a.point - b.point })
-    console.log(this.homeAlternateSpreads)
     this.homeAlternateSpreads = this.homeAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
-    console.log(this.homeAlternateSpreads)
     this.team1SelectedSpreadPoint = spreadPoint
     this.team1SelectedSpreadPrice = spreadPrice
     let abvr = ''
@@ -3115,8 +3112,6 @@ export class PropScreenComponent implements OnInit {
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: any, type: string) {
-    console.log(typeof(type))
-    console.log(prop)
     if (type == 'away') {
       this.team2SelectedSpreadPoint = prop.point
       this.team2SelectedSpreadPrice = prop.price
@@ -3202,6 +3197,7 @@ export class PropScreenComponent implements OnInit {
   public totalHomeHomeChance: number = 0
   public totalAwayTeamChance: number = 0
   public totalHomeTeamChance: number = 0
+
   calculateNewTotalChance(prop:number, homeAway:string){
     if(this.selectedSport == 'MLB'){
       if(homeAway == 'away'){
@@ -3213,6 +3209,11 @@ export class PropScreenComponent implements OnInit {
           totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.homeAway == 'Away'})
           totalOverall = this.team2GameStats.filter(e => {return e.homeAway == 'Away'}).length
           this.totalAwayAwayChance = totalFor.length / totalOverall
+
+          console.log(prop)
+          console.log(totalFor)
+          console.log(totalOverall)
+          console.log(this.totalAwayAwayChance)
 
           totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.teamAgainstId == this.team1GameStats[0].teamId})
           totalOverall = this.team2GameStats.filter(e => {return e.teamAgainstId == this.team1GameStats[0].teamId}).length
