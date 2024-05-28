@@ -9,11 +9,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MlbPlayerid } from '../mlb-playerid';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { PropArray } from '../prop-array';
-import { GamePropArray } from '../game-prop-array';
-import { DateArray } from '../date-array';
-import { SportPropArray } from '../sport-prop-array';
-import { remult } from 'remult';
+
 import { DbMlbPlayerInfo } from 'src/shared/dbTasks/DbMlbPlayerInfo';
 import { MlbController } from 'src/shared/Controllers/MlbController';
 import { ISportsBook } from '../isports-book';
@@ -62,7 +58,7 @@ import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
     ]),
   ],
   providers: [nhlApiController],
-  encapsulation: ViewEncapsulation.None,
+  //encapsulation: ViewEncapsulation.None,
 })
 
 
