@@ -7659,7 +7659,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">{{totalAwayOverallChance * (1 - totalHomeOverallChance) | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="homeaway-stats"
@@ -7668,12 +7668,12 @@
                                 <h3 style="margin:auto">Away</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Chance</h3>
                                 <h3 style="margin:auto">{{totalAwayAwayChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto"> {{totalAwayAwayChance * (1 - totalHomeHomeChance) | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="team-stats"
@@ -7687,7 +7687,7 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">{{ totalAwayTeamChance * (1 - totalHomeTeamChance)| percent: '2.2-2'}}</h3>
                               </div>
                             </div>
                           </div>
