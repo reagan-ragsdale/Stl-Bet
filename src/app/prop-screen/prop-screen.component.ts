@@ -3194,7 +3194,7 @@ export class PropScreenComponent implements OnInit {
 
   }
   
-  overTrueUnderFalseAway: boolean = true
+  public overTrueUnderFalseAway: boolean = true
   public overTrueUnderFalseHome: boolean = true
   public totalAwayOverallChance: number = 0
   public totalHomeOverallChance: number = 0
