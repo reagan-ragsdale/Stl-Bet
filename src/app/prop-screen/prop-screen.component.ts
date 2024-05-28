@@ -3210,14 +3210,12 @@ export class PropScreenComponent implements OnInit {
           totalOverall = this.team2GameStats.filter(e => {return e.homeOrAway == 'Away'}).length
           this.totalAwayAwayChance = totalFor.length / totalOverall
 
-          console.log(prop)
-          console.log(totalFor)
-          console.log(totalOverall)
-          console.log(this.totalAwayAwayChance)
-
           totalFor =  this.team2GameStats.filter(e => {return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.teamAgainstId == this.team1GameStats[0].teamId})
           totalOverall = this.team2GameStats.filter(e => {return e.teamAgainstId == this.team1GameStats[0].teamId}).length
           this.totalAwayTeamChance = totalFor.length / totalOverall
+          console.log(totalFor)
+          console.log(totalOverall)
+          console.log(this.totalAwayTeamChance)
         }
         else if(this.overTrueUnderFalseAway == false){
           let totalFor = this.team2GameStats.filter(e => {return (e.pointsScoredOverall + e.pointsAllowedOverall) < prop})
