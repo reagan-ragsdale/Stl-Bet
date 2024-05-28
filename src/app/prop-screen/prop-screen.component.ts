@@ -3198,6 +3198,121 @@ export class PropScreenComponent implements OnInit {
   public totalAwayTeamChance: number = 0
   public totalHomeTeamChance: number = 0
 
+  getTotalHighLow(homeAway: string, type: string, highLow: string) : number{
+    let finalTotal = 0
+    if(homeAway == 'away'){
+      if(highLow == 'high'){
+        if(type == 'overall'){
+          finalTotal = 0
+          this.team2GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'away'){
+          finalTotal = 0
+          this.team2GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.homeOrAway == 'Away'){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'team'){
+          finalTotal = 0
+          this.team2GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.teamAgainstId == this.team1GameStats[0].teamId){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+      }
+      else{
+        if(type == 'overall'){
+          finalTotal = 1000
+          this.team2GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'away'){
+          finalTotal = 1000
+          this.team2GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.homeOrAway == 'Away'){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'team'){
+          finalTotal = 1000
+          this.team2GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.teamAgainstId == this.team1GameStats[0].teamId){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+      }
+      
+    }
+    else{
+      if(highLow == 'high'){
+        if(type == 'overall'){
+          finalTotal = 0
+          this.team1GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'home'){
+          finalTotal = 0
+          this.team1GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.homeOrAway == 'Home'){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'team'){
+          finalTotal = 0
+          this.team1GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.teamAgainstId == this.team2GameStats[0].teamId){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+      }
+      else{
+        if(type == 'overall'){
+          finalTotal = 1000
+          this.team1GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'home'){
+          finalTotal = 1000
+          this.team1GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.homeOrAway == 'Home'){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+        else if(type == 'team'){
+          finalTotal = 1000
+          this.team1GameStats.forEach(e => {
+            if((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.teamAgainstId == this.team2GameStats[0].teamId){
+              finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
+            }
+          })
+        }
+      }
+      
+    }
+    return finalTotal
+  }
+
   calculateNewTotalChance(prop:number, homeAway:string){
     if(this.selectedSport == 'MLB'){
       if(homeAway == 'away'){
