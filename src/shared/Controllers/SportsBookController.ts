@@ -11,18 +11,26 @@ export class SportsBookController {
 
   @BackendMethod({ allowed: true })
   static async addBookData(bookData: DbGameBookData[]) {
-    const taskRepo = remult.repo(DbGameBookData)
-    let bookDataTemp = bookData
+    try{
+      console.log("in add bookdata")
+      console.log(bookData.length)
+      const taskRepo = remult.repo(DbGameBookData)
+     //let bookDataTemp = bookData
       await taskRepo.insert(bookData)
+      console.log("added book data")
+      /*
       let uniqueBookIds = bookDataTemp.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      console.log(uniqueBookIds.length)
       for(let book of uniqueBookIds){
         let bookProps = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
+        console.log(bookProps.length)
         if(bookProps.length != 0){
           for(let prop of bookProps){
+
             let filteredNewProp = bookDataTemp.filter(e =>  {
              return (e.bookId == book && e.teamName == prop.teamName && e.marketKey == prop.marketKey)
             })
-            
+            console.log(filteredNewProp.length)
             if(filteredNewProp.length != 0){
               
               if(filteredNewProp.length > 1){
@@ -42,8 +50,41 @@ export class SportsBookController {
             }
           }
         }
-      }
+      }*/
+    }
+    catch(error: any){
+      console.log(error.message)
+    }
+    
       
+  }
+
+  @BackendMethod({ allowed: true})
+  static async updateBookSeqZero(bookData: DbGameBookData[]){
+    const taskRepo = remult.repo(DbGameBookData)
+    //get each individual book id
+    let individualBookIds = bookData.map(e => e.bookId).filter((value, index, array) => array.indexOf(value) === index)
+    //loop through each book id
+    for(let book of individualBookIds){
+      //find if there is already a entry in the db with bookseq 0
+      let databaseBookSeqZero = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
+      
+      if(databaseBookSeqZero.length > 0){
+        //get all the incoming prop data matched on the book id
+        let propDataMathcedOnBookId = bookData.filter(e => e.bookId == book)
+        //loop through each of the props for that book id
+        for(let individualProp of propDataMathcedOnBookId){
+          //find the prop from the database that matches the incoming prop
+          let matchedProp = databaseBookSeqZero.filter(e => e.marketKey == individualProp.marketKey && e.teamName == individualProp.teamName)
+          //update the databasebookseqZero
+          
+          await taskRepo.save({...matchedProp, price: individualProp.price, point: individualProp.point})
+          console.log("after save")
+        }
+        
+      }
+
+    }
   }
 
   @BackendMethod({ allowed: true })

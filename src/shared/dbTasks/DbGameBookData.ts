@@ -52,10 +52,14 @@ export class DbGameBookData {
 
   static bookIdFilter = Filter.createCustom<DbGameBookData, { bookId: string }>(async ({ bookId }) => {
     //SqlDatabase.LogToConsole = true
-    return SqlDatabase.rawFilter((whereFragment) => {
+
+    return{
+      bookId: bookId
+    }
+    /* return SqlDatabase.rawFilter((whereFragment) => {
       whereFragment.sql = 'bookseq = (select max(b.bookseq) from dbgamebookdata b where b.bookid = ' + whereFragment.param(bookId) + ') and bookid = ' + whereFragment.param(bookId)
 
-    })
+    }) */
   });
 
   static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
