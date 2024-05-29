@@ -111,7 +111,6 @@ export class draftKingsApiController {
       let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[i].id)
       if (bookDb.length == 0) {
         console.log("bookseq equals zero")
-        console.log(this.selectedSportsData[0].id)
         nextBookSeq = 0
       }
       else {

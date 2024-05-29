@@ -7567,6 +7567,14 @@
                                 <h3 style="margin:auto">Avg</h3>
                                 <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadGame / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) > 0 ? '+' : ''}}{{(team2GameStatsDtoMLB.spreadGame / (team1GameStatsDtoMLB.gamesLost + team1GameStatsDtoMLB.gamesWon)) | number: '1.2-2'}}</h3>
                               </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">High</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Low</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
+                              </div>
                             </div>
                             <div class="homeaway-stats"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:green;">
@@ -7585,6 +7593,14 @@
                                 <h3 style="margin:auto">Avg</h3>
                                 <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadAway / (team1GameStatsDtoMLB.gamesLostAway + team1GameStatsDtoMLB.gamesWonAway)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadAway / (team1GameStatsDtoMLB.gamesLostAway + team1GameStatsDtoMLB.gamesWonAway)) | number: '1.2-2'}}</h3>
                               </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">High</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Low</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
+                              </div>
                             </div>
                             <div class="team-stats"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:blue;">
@@ -7601,6 +7617,14 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">High</h3>
+                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Low</h3>
                                 <h3 style="margin:auto">{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) > 0 ? '+':''}}{{(team2GameStatsDtoMLB.spreadVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent)) | number: '1.2-2'}}</h3>
                               </div>
                             </div>
@@ -7641,7 +7665,7 @@
                       <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                         <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column; ">
                           <div style="margin-left:2rem; margin-bottom:.5rem; margin-top:.5rem; color: white">
-                            <mat-slide-toggle style="color:white;" [(ngModel)]="overTrueUnderFalseAway" (ngModelChange)="calculateNewTotalChance(selectedTotalAwayProp,'away')" [labelPosition]="'before'">Under</mat-slide-toggle>
+                            <mat-slide-toggle style="color:white !important;" [(ngModel)]="overTrueUnderFalseAway" (ngModelChange)="calculateNewTotalChance(selectedTotalAwayProp,'away')" [labelPosition]="'before'" []>Under</mat-slide-toggle>
                             Over
                           </div>
                           
