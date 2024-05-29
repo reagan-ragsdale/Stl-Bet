@@ -42,20 +42,32 @@ export const mlbCronFile = async () => {
     //test
     let gameDate = reusedFunctions.getPreviousDateYMD()
 
-    try {
-        let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
-        for (let game of listOfGamesToday) {
-            let gameInfo = await mlbApiController.getGameResults(game.gameID)
-            let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
-            if (typeof (teamsGameStats) != 'number') {
-                await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
-                await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
-                for (let player of teamsGameStats[2]) {
-                    await MlbController.mlbSetPlayerGameStats(player)
-                }
+    const datesArray = [
+        '20240401', '20240402', '20240403', '20240404', '20240405', '20240406', '20240407', '20240408', '20240409', '20240410',
+        '20240411', '20240412', '20240413', '20240414', '20240415', '20240416', '20240417', '20240418', '20240419', '20240420',
+        '20240421', '20240422', '20240423', '20240424', '20240425', '20240426', '20240427', '20240428', '20240429', '20240430',
+        '20240501', '20240502', '20240503', '20240504', '20240505', '20240506', '20240507', '20240508', '20240509', '20240510',
+        '20240511', '20240512', '20240513', '20240514', '20240515', '20240516', '20240517', '20240518', '20240519', '20240520',
+        '20240521', '20240522', '20240523', '20240524', '20240525', '20240526', '20240527', '20240528', '20240529'
+    ];
 
+    try {
+        for (let date of datesArray) {
+            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(date)
+            for (let game of listOfGamesToday) {
+                let gameInfo = await mlbApiController.getGameResults(game.gameID)
+                let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
+                if (typeof (teamsGameStats) != 'number') {
+                    await MlbController.mlbSetTeamGameStats(teamsGameStats[0])
+                    await MlbController.mlbSetTeamGameStats(teamsGameStats[1])
+                    for (let player of teamsGameStats[2]) {
+                        await MlbController.mlbSetPlayerGameStats(player)
+                    }
+
+                }
             }
-    }
+
+        }
     } catch (error: any) {
         console.log("Game stats: " + error.message)
     }
@@ -137,13 +149,13 @@ export const mlbCronFile = async () => {
     for (let player of listOfActivePlayers) {
         try {
             let playerDbStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(player.playerId, 2024)
-            if(playerDbStats.length > 0){
+            if (playerDbStats.length > 0) {
                 let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
                 await MlbController.mlbSetPlayerStatAverage(playerAverage)
                 //let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
                 //await MlbController.mlbSetPlayerStatTotals(playerTotals)
             }
-            
+
         }
         catch (error: any) {
             console.log("Player stats: " + error.message)
