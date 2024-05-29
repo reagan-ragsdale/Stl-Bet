@@ -7569,11 +7569,11 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">High</h3>
-                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'overall', 'High') | number: '1.2-2'}}</h3>
+                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'overall', 'high') > 0 ? '+' : ''}}{{getSpreadHighLow('away', 'overall', 'High') | number: '1.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Low</h3>
-                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'overall', 'low') | number: '1.2-2'}}</h3>
+                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'overall', 'low') > 0 ? '+' : ''}}{{getSpreadHighLow('away', 'overall', 'low') | number: '1.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="homeaway-stats"
@@ -7595,11 +7595,11 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">High</h3>
-                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'away', 'high') | number: '1.2-2'}}</h3>
+                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'away', 'high') > 0 ? '+' : ''}}{{getSpreadHighLow('away', 'away', 'high') | number: '1.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Low</h3>
-                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'away', 'low') | number: '1.2-2'}}</h3>
+                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'away', 'low') > 0 ? '+' : ''}}{{getSpreadHighLow('away', 'away', 'low') | number: '1.2-2'}}</h3>
                               </div>
                             </div>
                             <div class="team-stats"
@@ -7621,11 +7621,11 @@
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">High</h3>
-                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'team', 'high') | number: '1.2-2'}}</h3>
+                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'team', 'high') > 0 ? '+' : ''}}{{getSpreadHighLow('away', 'team', 'high') | number: '1.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Low</h3>
-                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'team', 'low') | number: '1.2-2'}}</h3>
+                                <h3 style="margin:auto">{{getSpreadHighLow('away', 'team', 'low') > 0 ? '+' : ''}}{{getSpreadHighLow('away', 'team', 'low') | number: '1.2-2'}}</h3>
                               </div>
                             </div>
                           </div>

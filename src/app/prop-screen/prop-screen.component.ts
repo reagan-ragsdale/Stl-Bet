@@ -3197,15 +3197,16 @@ export class PropScreenComponent implements OnInit {
           finalSpread = 1000
           this.team2GameStats.forEach(e => {
             if((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread){
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
+              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall);
             }
           })
+          console.log(finalSpread)
         }
         else if(type == 'away'){
           finalSpread = 1000
           this.team2GameStats.forEach(e => {
             if((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.homeOrAway == 'Away'){
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
+              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall);
             }
           })
         }
@@ -3213,7 +3214,7 @@ export class PropScreenComponent implements OnInit {
           finalSpread = 1000
           this.team2GameStats.forEach(e => {
             if((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.teamAgainstId == this.team1GameStats[0].teamId){
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
+              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall);
             }
           })
         }
