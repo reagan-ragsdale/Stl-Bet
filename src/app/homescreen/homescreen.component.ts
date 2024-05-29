@@ -261,8 +261,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   loadProps(change: any){
-    console.log("here")
-    console.log(change)
     this.gameDataAll = change
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
@@ -311,9 +309,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
             teamArrayFinal.push(teamArray[2])
             teamArrayFinal.push(teamArray[3])
           }
+          else{teamArrayFinal = teamArray}
           
         }
-        else{teamArrayFinal = teamArray}
+        
         
         
       }
