@@ -316,7 +316,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         
         
       }
-      teamArrayFinal[0][0].commenceTime = this.convertCommenceTime(teamArrayFinal[0][0].commenceTime.toString() )
+      teamArrayFinal[0][0].commenceTime = reusedFunctions.convertCommenceTime(teamArrayFinal[0][0].commenceTime.toString() )
       this.gameDataAllFinal.push(teamArrayFinal)
     })
     //let test = this.gameDataAllFinal[0][0][0].commenceTime.toString()
@@ -327,24 +327,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     //console.log(teamName)
   }
 
-  convertCommenceTime(date: string):string{
-    let day = date.slice(0,3)
-    let index = date.indexOf(':')
-    let time = date.slice(index-2, index+3)
-    let AMPM = 'AM'
-    let hour = time.slice(0,2)
-    let minute = time.slice(3)
-    let hourNumber = Number(hour)
-    if(hourNumber >= 12){
-      AMPM = 'PM'
-      if(hourNumber > 12){
-        hourNumber = hourNumber - 12
-        
-      }
-      hour = hourNumber.toString()
-    }
-    return day + " " + hour + ":" + minute + " " + AMPM
-  }
+  
 
 
   async ngOnInit() {

@@ -171,6 +171,25 @@ export class reusedFunctions {
     return finalTime
   }
 
+  static convertCommenceTime(date: string):string{
+    let day = date.slice(0,3)
+    let index = date.indexOf(':')
+    let time = date.slice(index-2, index+3)
+    let AMPM = 'AM'
+    let hour = time.slice(0,2)
+    let minute = time.slice(3)
+    let hourNumber = Number(hour)
+    if(hourNumber >= 12){
+      AMPM = 'PM'
+      if(hourNumber > 12){
+        hourNumber = hourNumber - 12
+        
+      }
+      hour = hourNumber.toString()
+    }
+    return day + " " + hour + ":" + minute + " " + AMPM
+  }
+
 
 
 

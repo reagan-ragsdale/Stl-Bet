@@ -1389,7 +1389,7 @@ export class PropScreenComponent implements OnInit {
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? spreadPriceProp[0].commenceTime : 0 });
+    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? reusedFunctions.convertCommenceTime(spreadPriceProp[0].commenceTime.toString()) : 0 });
 
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
@@ -1419,7 +1419,7 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.calculateNewTotalChance(totalPoint, 'home')
-    this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? spreadPriceProp[0].commenceTime : 0 });
+    this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: spreadPriceProp.length > 0 ? reusedFunctions.convertCommenceTime(spreadPriceProp[0].commenceTime.toString()) : 0 });
     this.team2SelectedSpreadPoint = spreadPoint
     this.team2SelectedSpreadPrice = spreadPrice
 
