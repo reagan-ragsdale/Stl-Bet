@@ -120,7 +120,7 @@ export class draftKingsApiController {
       }
       for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
         for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
-          let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData.bookmakers[j].markets[k].key)
+          let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData[i].bookmakers[j].markets[k].key)
         if(selectedProp.length == 0){
           nextBookSeq = 0
         }
