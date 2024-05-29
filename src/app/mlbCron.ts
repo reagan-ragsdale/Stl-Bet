@@ -52,8 +52,7 @@ export const mlbCronFile = async () => {
     ];
 
     try {
-        for (let date of datesArray) {
-            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(date)
+            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
             for (let game of listOfGamesToday) {
                 let gameInfo = await mlbApiController.getGameResults(game.gameID)
                 let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
@@ -67,7 +66,7 @@ export const mlbCronFile = async () => {
                 }
             }
 
-        }
+        
     } catch (error: any) {
         console.log("Game stats: " + error.message)
     }

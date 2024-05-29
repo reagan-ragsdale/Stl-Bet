@@ -7476,6 +7476,10 @@
                                 <h3 style="margin:auto">Overall</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Record</h3>
+                                <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon}} - {{team2GameStatsDtoMLB.gamesLost}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">% Win</h3>
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)  | percent: '2.2-2'}}</h3>
                               </div>
@@ -7490,6 +7494,10 @@
                                 <h3 style="margin:auto">Away</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Record</h3>
+                                <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway}} - {{team2GameStatsDtoMLB.gamesLostAway}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">% Win</h3>
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway) | percent: '2.2-2'}}</h3>
                               </div>
@@ -7502,6 +7510,10 @@
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:blue;">
                               <div style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                                 <h3 style="margin:auto">Team</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Record</h3>
+                                <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent}} - {{team2GameStatsDtoMLB.gamesLostVsOpponent}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">% Win</h3>
