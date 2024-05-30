@@ -3530,6 +3530,33 @@ export class PropScreenComponent implements OnInit {
     }
   }
 
+  returnGameLog(homeAway:string,type:string): any[]{
+    let finalArray = []
+    if(homeAway == 'away'){
+      if(type == 'overall'){
+        finalArray = this.team2GameStatsReversed.slice(0,10)
+      }
+      else if(type == 'away'){
+        finalArray = this.team2GameStatsReversed.filter(e => e.homeOrAway == 'Away').slice(0,10)
+      }
+      else if(type == 'team'){
+        finalArray = this.team2GameStatsReversed.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId).slice(0,10)
+      }
+    }
+    else{
+      if(type == 'overall'){
+        finalArray = this.team1GameStatsReversed.slice(0,10)
+      }
+      else if(type == 'away'){
+        finalArray = this.team1GameStatsReversed.filter(e => e.homeOrAway == 'Home').slice(0,10)
+      }
+      else if(type == 'team'){
+        finalArray = this.team1GameStatsReversed.filter(e => e.teamAgainstId == this.team2GameStats[0].teamId).slice(0,10)
+      }
+    }
+    return finalArray
+  }
+
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
   
 
