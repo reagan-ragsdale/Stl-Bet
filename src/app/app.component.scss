@@ -11,39 +11,46 @@
     background-color: #BADEFC !important;
 }
 .top-button{
-  justify-content: flex-end; 
-  gap: 1rem; 
+  justify-content: space-evenly; 
+  //gap: 1rem; 
   display:flex;  
-  margin-right: 1rem; 
+  //margin-right: 1rem; 
   height:100%; 
-  width: auto
+  width: auto;
 }
 .logo{
   color: #240605; 
   font-size: 250% !important;
   font-weight: 500 !important;
-  transform: translateY(35%); 
   margin-left: 1rem;
+  text-wrap: nowrap;
+  display:flex;
+  margin-top: auto;
+  margin-bottom:auto;
+
+
+
 }
 .logo:hover{
   color: #57CC99;
 }
 @media screen and (max-width: 600px){
   .top-button{
-    gap:0;
-    margin-right: 0; 
-    margin-left:0;
-    text-align: right;
+    margin-left:0.5rem;
+    
   }
   .top-button button{
-    width: 15%;
+    display:flex;
+
+    //width: auto;
     text-wrap: wrap;
     font-size: 70%;
-    margin-right:0;
-    margin-left:0;
+    margin-right:auto !important;
+    margin-left:auto !important;
   }
   .logo{
-    font-size: 70%;
+    font-size: 200% !important;
+    margin-left: .5rem;
   }
 }
 button{

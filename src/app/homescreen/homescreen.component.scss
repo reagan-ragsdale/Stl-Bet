@@ -265,10 +265,15 @@ table {
         border-bottom: 3px solid #F0ECE5;
         display: flex;
         background-color: #22577A;
+        gap: 0.5rem;
+        position: unset !important;
+        padding-left:.5rem;
+        padding-right:.5rem;
     }
 
     .sport-section {
         width: 100%;
+        margin-left:0;
     }
 
     .upcoming-games {
@@ -288,6 +293,29 @@ table {
     .mat-mdc-cell,
     .mat-mdc-header-cell {
         padding: 6px 6px 6px 2px !important;
+    }
+    .button-unselected {
+
+        display: flex;
+        //width: 82%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: auto !important;
+        margin-top: auto !important;
+        background-color: #bbdefc !important;
+        color: #240604 !important;
+    }
+    
+    .button-selected {
+    
+        display: flex;
+        //width: 82%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: auto !important;
+        margin-top: auto !important;
+        background-color: #fb8501 !important;
+        color: #240604 !important;
     }
 }
 
