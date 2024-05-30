@@ -262,6 +262,36 @@
   </div>
 </ng-template> -->
 
+<ng-template #gameLog let-gameStats>
+  <h1>Last 10 Games</h1>
+  <div style="width:100%">
+    <table mat-table [dataSource]="gameStats">
+      <ng-container matColumnDef="TeamAgainst">
+        <th mat-header-cell *matHeaderCellDef> Team </th>
+        <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
+          {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.gameDate}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Score">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let element"> {{element.pointsScoredOverall}} - {{element.pointsAllowedOverall}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"></tr>
+      <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
+        style="height:auto;"></tr>
+    </table>
+  </div>
+
+</ng-template>
+
 
 <div style="width: auto; background-color: #252324; display: flex;">
   <div class="games-list">
@@ -7463,7 +7493,7 @@
                     <mat-card-title>Moneyline: {{displayPropHtml2.h2h > 0
                       ? "+" : " "}}{{displayPropHtml2.h2h}}</mat-card-title>
                   </mat-card-header>
-                  <mat-card-content style="height:400px">
+                  <mat-card-content style="min-height:400px">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
                       (selectedIndexChange)="openChart($event)">
                       <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
@@ -7535,6 +7565,8 @@
     
                       </mat-tab>
                     </mat-tab-group>
+                    <ng-container [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: team2GameStatsReversed.slice(0,10)}">
+                    </ng-container>
                   </mat-card-content>
                 </mat-card>
               </mat-expansion-panel>

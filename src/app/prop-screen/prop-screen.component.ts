@@ -1021,6 +1021,8 @@ export class PropScreenComponent implements OnInit {
 
   team1GameStats: any[] = []
   team2GameStats: any[] = []
+  team1GameStatsReversed: any[] = []
+  team2GameStatsReversed: any[] = []
 
 
 
@@ -1331,6 +1333,9 @@ export class PropScreenComponent implements OnInit {
     var logo = ''
     this.team1GameStats = []
     this.team2GameStats = []
+    this.team1GameStatsReversed = []
+    this.team2GameStatsReversed = []
+
 
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
@@ -1344,6 +1349,8 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
+      this.team1GameStatsReversed = JSON.parse(JSON.stringify(this.team1GameStats))
+      this.team2GameStatsReversed = JSON.parse(JSON.stringify(this.team2GameStats))
       this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads")
       this.homeAlternateSpreadstemp = team1.filter(e => e.marketKey == "alternate_spreads")
     }
