@@ -1350,7 +1350,9 @@ export class PropScreenComponent implements OnInit {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
       this.team1GameStatsReversed = JSON.parse(JSON.stringify(this.team1GameStats))
+      this.team1GameStatsReversed = this.team1GameStatsReversed.reverse()
       this.team2GameStatsReversed = JSON.parse(JSON.stringify(this.team2GameStats))
+      this.team2GameStatsReversed = this.team2GameStatsReversed.reverse()
       this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads")
       this.homeAlternateSpreadstemp = team1.filter(e => e.marketKey == "alternate_spreads")
     }
@@ -1396,8 +1398,8 @@ export class PropScreenComponent implements OnInit {
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertCommenceTime(spreadPriceProp[0].commenceTime.toString()) });
-
+    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertTimestampToTime(spreadPriceProp[0].commenceTime.toString()) });
+    
     name1 = team2[0].teamName;
     h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
     spreadProp = team2.filter((e) => e.marketKey == "spreads")
@@ -1426,7 +1428,7 @@ export class PropScreenComponent implements OnInit {
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
     this.calculateNewTotalChance(totalPoint, 'home')
-    this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertCommenceTime(spreadPriceProp[0].commenceTime.toString()) });
+    this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertTimestampToTime(spreadPriceProp[0].commenceTime.toString()) });
     this.team2SelectedSpreadPoint = spreadPoint
     this.team2SelectedSpreadPrice = spreadPrice
 
