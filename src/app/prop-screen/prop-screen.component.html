@@ -7689,6 +7689,15 @@
     
                       </mat-tab>
                     </mat-tab-group>
+                    <h1 style="margin-top:1rem; font-weight:bold;">Last 10 Games</h1>
+                    <div style="display:flex; justify-content:space-evenly; margin-left: 1rem;">
+                      <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'overall')}">
+                      </ng-container>
+                      <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'away')}">
+                      </ng-container>
+                      <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('away','team')}">
+                      </ng-container>
+                    </div>
                   </mat-card-content>
                 </mat-card>
               </mat-expansion-panel>
@@ -7811,6 +7820,15 @@
     
                       </mat-tab>
                     </mat-tab-group>
+                    <h1 style="margin-top:1rem; font-weight:bold;">Last 10 Games</h1>
+                    <div style="display:flex; justify-content:space-evenly; margin-left: 1rem;">
+                      <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'overall')}">
+                      </ng-container>
+                      <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'away')}">
+                      </ng-container>
+                      <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('away','team')}">
+                      </ng-container>
+                    </div>
                   </mat-card-content>
                 </mat-card>
               </mat-expansion-panel>
