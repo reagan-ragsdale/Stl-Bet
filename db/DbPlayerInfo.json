@@ -1,0 +1,1235 @@
+[
+  {
+    "playerId": 382,
+    "playerName": "Dejounte Murray",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.326Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1858,
+    "playerName": "Bruno Fernando",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.331Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1046,
+    "playerName": "Trae Young",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.332Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1868,
+    "playerName": "De'Andre Hunter",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.335Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1903,
+    "playerName": "Dylan Windler",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.337Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2327,
+    "playerName": "Garrison Mathews",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.338Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2629,
+    "playerName": "Onyeka Okongwu",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.339Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2569,
+    "playerName": "Saddiq Bey",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.340Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2589,
+    "playerName": "Trent Forrest",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.341Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2608,
+    "playerName": "Vit Krejci",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.343Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2819,
+    "playerName": "Jalen Johnson",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.345Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3444,
+    "playerName": "AJ Griffin",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.349Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3938,
+    "playerName": "Kobe Bufkin",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.350Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3939,
+    "playerName": "Mouhamed Gueye",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.351Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3941,
+    "playerName": "Seth Lundy",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.352Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3942,
+    "playerName": "Miles Norris",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.353Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 365,
+    "playerName": "Patty Mills",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.354Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 341,
+    "playerName": "Wesley Matthews",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.355Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 92,
+    "playerName": "Clint Capela",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.355Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 743,
+    "playerName": "Bogdan Bogdanovic",
+    "teamName": "Atlanta Hawks",
+    "teamId": 1,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.356Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 75,
+    "playerName": "Jaylen Brown",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.357Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 882,
+    "playerName": "Jayson Tatum",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.358Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 897,
+    "playerName": "Derrick White",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.360Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 819,
+    "playerName": "Luke Kornet",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.361Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1006,
+    "playerName": "Svi Mykhailiuk",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.362Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2110,
+    "playerName": "Oshae Brissett",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.363Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 970,
+    "playerName": "Wenyen Gabriel",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.365Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2844,
+    "playerName": "Neemias Queta",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.366Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2635,
+    "playerName": "Payton Pritchard",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.367Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2647,
+    "playerName": "Lamar Stevens",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.368Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2656,
+    "playerName": "Xavier Tillman",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.369Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2851,
+    "playerName": "Jaden Springer",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.370Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2921,
+    "playerName": "DJ Steward",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.371Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2812,
+    "playerName": "Sam Hauser",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.372Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2788,
+    "playerName": "Dalano Banton",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.373Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3429,
+    "playerName": "JD Davison",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.374Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3943,
+    "playerName": "Jordan Walsh",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.375Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3995,
+    "playerName": "Drew Peterson",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.377Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 248,
+    "playerName": "Al Horford",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.379Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 242,
+    "playerName": "Jrue Holiday",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.381Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 432,
+    "playerName": "Kristaps Porzingis",
+    "teamName": "Boston Celtics",
+    "teamId": 2,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.382Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 851,
+    "playerName": "Royce O'Neale",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.383Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 481,
+    "playerName": "Ben Simmons",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.385Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 175,
+    "playerName": "Dorian Finney-Smith",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.386Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 876,
+    "playerName": "Dennis Smith Jr",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.387Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 934,
+    "playerName": "Keita Bates-Diop",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.388Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 940,
+    "playerName": "Mikal Bridges",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.389Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1038,
+    "playerName": "Lonnie Walker IV",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.390Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1847,
+    "playerName": "Darius Bazley",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.391Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1854,
+    "playerName": "Nicolas Claxton",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.392Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1871,
+    "playerName": "Cameron Johnson",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.393Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2325,
+    "playerName": "Armoni Brooks",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.395Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2848,
+    "playerName": "Day'Ron Sharpe",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.396Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2820,
+    "playerName": "Keon Johnson",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.397Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2855,
+    "playerName": "Cameron Thomas",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.398Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2861,
+    "playerName": "Trendon Watford",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.399Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3892,
+    "playerName": "Jacob Gilyard",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.400Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3944,
+    "playerName": "Noah Clowney",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.401Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3945,
+    "playerName": "Dariq Whitehead",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.403Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3946,
+    "playerName": "Jalen Wilson",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.404Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 4041,
+    "playerName": "Harry Giles III",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.405Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 472,
+    "playerName": "Dennis Schroder",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.406Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 142,
+    "playerName": "Spencer Dinwiddie",
+    "teamName": "Brooklyn Nets",
+    "teamId": 4,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.408Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 254,
+    "playerName": "RJ Hunter",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.410Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 458,
+    "playerName": "Terry Rozier",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.412Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 850,
+    "playerName": "Frank Ntilikina",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.415Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 880,
+    "playerName": "Edmond Sumner",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.417Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 941,
+    "playerName": "Miles Bridges",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.419Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1879,
+    "playerName": "Cody Martin",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.421Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1897,
+    "playerName": "PJ Washington",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.423Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1901,
+    "playerName": "Grant Williams",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.425Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2482,
+    "playerName": "Marques Bolden",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.426Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2566,
+    "playerName": "LaMelo Ball",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.428Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2614,
+    "playerName": "Theo Maledon",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.429Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2633,
+    "playerName": "Aleksej Pokusevski",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.430Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2639,
+    "playerName": "Nick Richards",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.432Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2831,
+    "playerName": "Tre Mann",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.433Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2793,
+    "playerName": "James Bouknight",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.434Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2856,
+    "playerName": "JT Thor",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.435Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3506,
+    "playerName": "Mark Williams",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.436Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3469,
+    "playerName": "Bryce McGowens",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.437Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3947,
+    "playerName": "Amari Bailey",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.439Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3948,
+    "playerName": "Leaky Black",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.440Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3949,
+    "playerName": "Nathan Mensah",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.441Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3950,
+    "playerName": "Brandon Miller",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.442Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 4042,
+    "playerName": "Nick Smith Jr",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.443Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 227,
+    "playerName": "Gordon Hayward",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.444Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 488,
+    "playerName": "Ish Smith",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.445Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 52,
+    "playerName": "Davis Bertans",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.447Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 123,
+    "playerName": "Seth Curry",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.448Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2739,
+    "playerName": "Vasilije Micic",
+    "teamName": "Charlotte Hornets",
+    "teamId": 5,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.449Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 631,
+    "playerName": "Alex Caruso",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.451Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 765,
+    "playerName": "Torrey Craig",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.453Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 949,
+    "playerName": "Jevon Carter",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.454Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1900,
+    "playerName": "Coby White",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.455Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2404,
+    "playerName": "Javonte Green",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.457Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2664,
+    "playerName": "Patrick Williams",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.458Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2802,
+    "playerName": "Ayo Dosunmu",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.461Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3081,
+    "playerName": "Carlik Jones",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.462Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2853,
+    "playerName": "Terry Taylor",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.463Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3461,
+    "playerName": "Justin Lewis",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.464Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3494,
+    "playerName": "Dalen Terry",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.465Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3452,
+    "playerName": "Quenton Jackson",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.466Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3951,
+    "playerName": "Onuralp Bitim",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.467Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3952,
+    "playerName": "Henri Drell",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.468Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3953,
+    "playerName": "Max Heidegger",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.469Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3954,
+    "playerName": "Julian Phillips",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.471Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3955,
+    "playerName": "Adama Sanogo",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.472Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3964,
+    "playerName": "Andrew Funk",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.473Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 136,
+    "playerName": "DeMar DeRozan",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.474Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 534,
+    "playerName": "Nikola Vucevic",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.475Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 147,
+    "playerName": "Andre Drummond",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.476Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 308,
+    "playerName": "Zach LaVine",
+    "teamName": "Chicago Bulls",
+    "teamId": 6,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.478Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 281,
+    "playerName": "Damian Jones",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.479Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 317,
+    "playerName": "Caris LeVert",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.480Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 391,
+    "playerName": "Georges Niang",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.481Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 840,
+    "playerName": "Donovan Mitchell",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.483Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 727,
+    "playerName": "Jarrett Allen",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.485Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1025,
+    "playerName": "Zhaire Smith",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.487Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2051,
+    "playerName": "Max Strus",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.489Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1860,
+    "playerName": "Darius Garland",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.491Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 1870,
+    "playerName": "Ty Jerome",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.493Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2392,
+    "playerName": "Dean Wade",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.494Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2630,
+    "playerName": "Isaac Okoro",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.495Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2623,
+    "playerName": "Sam Merrill",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.496Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2800,
+    "playerName": "Sharife Cooper",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.497Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 2835,
+    "playerName": "Evan Mobley",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.499Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3472,
+    "playerName": "Isaiah Mobley",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.500Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3956,
+    "playerName": "Emoni Bates",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.501Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3957,
+    "playerName": "Pete Nance",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.502Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 3958,
+    "playerName": "Justin Powell",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.503Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 4043,
+    "playerName": "Craig Porter Jr",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.505Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 515,
+    "playerName": "Tristan Thompson",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.506Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 373,
+    "playerName": "Marcus Morris Sr",
+    "teamName": "Cleveland Cavaliers",
+    "teamId": 7,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.508Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 246,
+    "playerName": "Richaun Holmes",
+    "teamName": "Dallas Mavericks",
+    "teamId": 8,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.510Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 283,
+    "playerName": "Derrick Jones Jr",
+    "teamName": "Dallas Mavericks",
+    "teamId": 8,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.513Z",
+    "uniqueid": 0
+  },
+  {
+    "playerId": 817,
+    "playerName": "Maxi Kleber",
+    "teamName": "Dallas Mavericks",
+    "teamId": 8,
+    "sport": "NBA",
+    "createdAt": "2024-05-30T20:30:22.515Z",
+    "uniqueid": 0
+  }
+]

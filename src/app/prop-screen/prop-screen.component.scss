@@ -147,21 +147,8 @@ mat-mdc-tab-body-content{
   a :hover{
     color:blue
   }
-  .prop-main{
-    display: flex;
-    width: 100%;
-  }
-  .games-list{
-    width: 10%; 
-    background-color: #8ecae6; 
-    height: calc(100% - 60px);
-    position: fixed; 
-    top: 60px; 
-    left:0; 
-    z-index:99;
-    overflow-y: scroll;
-
-  }
+  
+  
 
   .away-team, .home-team{
     width: 50%;
@@ -197,5 +184,92 @@ mat-mdc-tab-body-content{
   }
   #lineChart2{
     width: 50% !important;
+  }
+
+  
+.main-div{
+  width: auto; 
+  background-color: #252324; 
+  display: flex;
+  flex-direction: row;
+}
+.games-list{
+  width: 10%; 
+  background-color: #8ecae6; 
+  height: calc(100% - 60px);
+  position: fixed; 
+  top: 60px; 
+  left:0; 
+  z-index:99;
+  overflow-y: scroll;
+
+}
+.prop-div{
+  width: 90%; 
+  margin-left: 10%; 
+  background-color: #ebebeb
+}
+.prop-main{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.prop-section{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+}
+.games-list button{
+  display:block; 
+  width: 82%; 
+  font-size: 75%; 
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: 5px;
+}
+  @media screen and (max-width: 974px) {
+    .main-div{
+      flex-direction: column;
+    }
+    .games-list{
+      width:100%;
+      position:unset;
+      height:70px;
+      display:flex;
+      flex-direction: row;
+      padding-left:0.5rem;
+      padding-right:0.5rem;
+      gap:0.5rem;
+
+    }
+    .prop-div{
+      width:100%;
+      margin-left:0;
+    }
+    .prop-section{
+      flex-direction: column;
+    }
+    .away-team, .home-team{
+      width: 100%;
+      padding-bottom: 1rem;
+    }
+    .games-list button{
+      min-width:100px;
+      margin-top:auto;
+      margin-bottom:auto;
+
+    }
+    .commence-time{
+      text-wrap: nowrap;
+    }
+    .commence{
+      width:33% !important;
+    }
+    .record1{
+      width:33% !important;
+    }
+    .record2{
+      width:33% !important;
+    }
   }
    

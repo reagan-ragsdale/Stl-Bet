@@ -292,11 +292,11 @@
 </ng-template>
 
 
-<div style="width: auto; background-color: #252324; display: flex;">
+<div class="main-div" >
   <div class="games-list">
     <!-- <h1 style="margin-top:1rem; text-align: center;">Games</h1> -->
     <button *ngFor="let game of selectedSportGamesFinal" mat-raised-button
-      style="display:block; width: 82%; font-size: 75%; margin-left: auto; margin-right: auto; margin-top: 5px; "
+      
       [ngClass]="game[0].selected === true ? 'selected-game' : ''" (click)="onGameClick(game[0][0].bookId)">
       {{game[0][0].awayTeam | transforFromFullTeamNameToAbvr}} @ {{game[0][0].homeTeam |
       transforFromFullTeamNameToAbvr}}
@@ -316,7 +316,7 @@
   </mat-tab-group>
  -->
 
-  <div style="width: 90%; margin-left: 10%; background-color: #ebebeb">
+  <div class="prop-div" >
 
     <div style="display:flex; flex-direction: column; width: 100%; margin-top: 1rem;">
       <div style="display:flex">
@@ -326,12 +326,12 @@
       </div>
       <div>
         <div style="display:flex">
-          <h2 style="width: 46%; text-align: center;">{{team2GameStatsDtoMLB.gamesWon}} -
+          <h2 class="record1" style="width: 50%; text-align: center;">{{team2GameStatsDtoMLB.gamesWon}} -
             {{team2GameStatsDtoMLB.gamesLost}}</h2>
-          <div style="width: 8%; display: flex; flex-direction:column;">
-            <h2 style="width: 100%; text-align: center; margin-bottom:0;">{{displayPropHtml2.commenceTime }}</h2>
+          <div class="commence" style="width: 10%; display: flex; flex-direction:column;">
+            <h2 class="commence-time" style="width: 100%; text-align: center; margin-bottom:0;">{{displayPropHtml2.commenceTime }}</h2>
           </div>
-          <h2 style="width: 46%; text-align: center;">{{team1GameStatsDtoMLB.gamesWon}} -
+          <h2 class="record2" style="width: 50%; text-align: center;">{{team1GameStatsDtoMLB.gamesWon}} -
             {{team1GameStatsDtoMLB.gamesLost}}</h2>
         </div>
       </div>
@@ -7470,7 +7470,7 @@
         </mat-grid-tile>
       </mat-grid-list>
 
-      <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" style="width:100%; display: flex;">
+      <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" class="prop-section" >
         <div class="away-team">
           <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{displayPropHtml2.name}} game props</h2>
 
