@@ -7508,11 +7508,11 @@
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon}} - {{team2GameStatsDtoMLB.gamesLost}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)  | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) * (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
@@ -7526,11 +7526,11 @@
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway}} - {{team2GameStatsDtoMLB.gamesLostAway}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
@@ -7544,11 +7544,11 @@
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent}} - {{team2GameStatsDtoMLB.gamesLostVsOpponent}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
                               </div>
                             </div>
@@ -7606,12 +7606,12 @@
                                 <h3 style="margin:auto">Overall</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Chance</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{awaySpreadOverallChance  | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto">{{awaySpreadAwayChance | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto">{{(awaySpreadOverallChance * (1 - homeSpreadOvaerallChance)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
@@ -7632,12 +7632,12 @@
                                 <h3 style="margin:auto">Away</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{awaySpreadAwayChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway / (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) * (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome + team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto"> {{(awaySpreadAwayChance * (1 - homeSpreadHomeChance)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
@@ -7658,12 +7658,12 @@
                                 <h3 style="margin:auto">Team</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{awaySpreadTeamChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent / (team2GameStatsDtoMLB.gamesWonVsOpponent + team2GameStatsDtoMLB.gamesLostVsOpponent)) * (team1GameStatsDtoMLB.gamesLostVsOpponent / (team1GameStatsDtoMLB.gamesLostVsOpponent + team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto">{{(awaySpreadTeamChance * (1 - homeSpreadTeamChance))| percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
@@ -7737,11 +7737,11 @@
                                 <h3 style="margin:auto">Overall</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{totalAwayOverallChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{(totalHomeOverallChance != 1 ? (totalAwayOverallChance * (1 - totalHomeOverallChance)) : (0)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
@@ -7763,11 +7763,11 @@
                                 <h3 style="margin:auto">Away</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Chance</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{totalAwayAwayChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto"> {{(totalHomeHomeChance != 1 ? (totalAwayAwayChance * (1 - totalHomeHomeChance)) : (0)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
@@ -7789,11 +7789,11 @@
                                 <h3 style="margin:auto">Team</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{totalAwayTeamChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{ (totalHomeTeamChance != 1 ? (totalAwayTeamChance * (1 - totalHomeTeamChance)) : (0)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
@@ -7873,11 +7873,11 @@
                                 <h3 style="margin:auto">{{team1GameStatsDtoMLB.gamesWon}} - {{team1GameStatsDtoMLB.gamesLost}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{team1GameStatsDtoMLB.gamesWon/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)  | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{(team1GameStatsDtoMLB.gamesWon/ (team1GameStatsDtoMLB.gamesWon + team1GameStatsDtoMLB.gamesLost)) * (team2GameStatsDtoMLB.gamesLost/ (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
@@ -7891,11 +7891,11 @@
                                 <h3 style="margin:auto">{{team1GameStatsDtoMLB.gamesWonAway}} - {{team1GameStatsDtoMLB.gamesLostAway}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{team1GameStatsDtoMLB.gamesWonAway / (team1GameStatsDtoMLB.gamesWonAway + team1GameStatsDtoMLB.gamesLostAway) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto"> {{(team1GameStatsDtoMLB.gamesWonAway / (team1GameStatsDtoMLB.gamesWonAway + team1GameStatsDtoMLB.gamesLostAway)) * (team2GameStatsDtoMLB.gamesLostHome / (team2GameStatsDtoMLB.gamesLostHome + team2GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
                               </div>
                             </div>
@@ -7909,11 +7909,11 @@
                                 <h3 style="margin:auto">{{team1GameStatsDtoMLB.gamesWonVsOpponent}} - {{team1GameStatsDtoMLB.gamesLostVsOpponent}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{team1GameStatsDtoMLB.gamesWonVsOpponent / (team1GameStatsDtoMLB.gamesWonVsOpponent + team1GameStatsDtoMLB.gamesLostVsOpponent) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{(team1GameStatsDtoMLB.gamesWonVsOpponent / (team1GameStatsDtoMLB.gamesWonVsOpponent + team1GameStatsDtoMLB.gamesLostVsOpponent)) * (team2GameStatsDtoMLB.gamesLostVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent + team2GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
                               </div>
                             </div>
@@ -7971,12 +7971,12 @@
                                 <h3 style="margin:auto">Overall</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Chance</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{homeSpreadOverallChance  | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto">{{homeSpreadHomeChance | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto">{{(homeSpreadOverallChance * (1 - awaySpreadOverallChance)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
@@ -7997,12 +7997,12 @@
                                 <h3 style="margin:auto">Home</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{homeSpreadHomeChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto"> {{(team1GameStatsDtoMLB.gamesWonAway / (team1GameStatsDtoMLB.gamesWonAway + team1GameStatsDtoMLB.gamesLostAway)) * (team2GameStatsDtoMLB.gamesLostHome / (team2GameStatsDtoMLB.gamesLostHome + team2GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto"> {{(homeSpreadHomeChance * (1 - awaySpreadAwayChance)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
@@ -8023,12 +8023,12 @@
                                 <h3 style="margin:auto">Team</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{homeSpreadTeamChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
-                                <h3 style="margin:auto">{{(team1GameStatsDtoMLB.gamesWonVsOpponent / (team1GameStatsDtoMLB.gamesWonVsOpponent + team1GameStatsDtoMLB.gamesLostVsOpponent)) * (team2GameStatsDtoMLB.gamesLostVsOpponent / (team2GameStatsDtoMLB.gamesLostVsOpponent + team2GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto">{{(homeSpreadTeamChance * (1 - awaySpreadTeamChance))| percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Avg</h3>
@@ -8102,11 +8102,11 @@
                                 <h3 style="margin:auto">Overall</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{totalHomeOverallChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{(totalAwayOverallChance != 1 ? (totalHomeOverallChance * (1 - totalAwayOverallChance)) : (0)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
@@ -8128,11 +8128,11 @@
                                 <h3 style="margin:auto">Away</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Chance</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{totalHomeHomeChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto"> {{(totalAwayAwayChance != 1 ? (totalHomeHomeChance * (1 - totalAwayAwayChance)) : (0)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
@@ -8154,11 +8154,11 @@
                                 <h3 style="margin:auto">Team</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">% Win</h3>
+                                <h3 style="margin:auto">Win</h3>
                                 <h3 style="margin:auto">{{totalHomeTeamChance | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
-                                <h3 style="margin:auto">Weighted %</h3>
+                                <h3 style="margin:auto">Weighted</h3>
                                 <h3 style="margin:auto">{{ (totalAwayTeamChance != 1 ? (totalHomeTeamChance * (1 - totalAwayTeamChance)) : (0)) | percent: '2.2-2'}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
