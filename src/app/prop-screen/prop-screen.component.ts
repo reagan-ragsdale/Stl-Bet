@@ -3547,7 +3547,7 @@ export class PropScreenComponent implements OnInit {
       if(type == 'overall'){
         finalArray = this.team1GameStatsReversed.slice(0,10)
       }
-      else if(type == 'away'){
+      else if(type == 'home'){
         finalArray = this.team1GameStatsReversed.filter(e => e.homeOrAway == 'Home').slice(0,10)
       }
       else if(type == 'team'){
