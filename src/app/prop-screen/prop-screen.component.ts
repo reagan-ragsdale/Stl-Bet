@@ -2832,18 +2832,18 @@ export class PropScreenComponent implements OnInit {
         let totalOverall = 0;
         totalFor = team1New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint })
         totalOverall = team1New.length
-        this.homeSpreadOverallChance = (totalFor.length / totalOverall) * 100
+        this.homeSpreadOverallChance = (totalFor.length / totalOverall)
 
         totalFor = team1New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && e.homeOrAway == "Home") })
         totalOverall = team1New.filter(e => e.homeOrAway == "Home").length
-        this.homeSpreadHomeChance = (totalFor.length / totalOverall) * 100
+        this.homeSpreadHomeChance = (totalFor.length / totalOverall)
 
         totalFor = team1New.filter(e => {
           return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && (e.teamAgainstId == team2New[0].teamId))
         })
         totalOverall = team1New.filter(e => e.teamAgainstId == team2New[0].teamId).length
 
-        this.homeSpreadTeamChance = (totalFor.length / totalOverall) * 100
+        this.homeSpreadTeamChance = (totalFor.length / totalOverall) 
       })
 
       team2New.forEach(e => {
@@ -3156,20 +3156,20 @@ export class PropScreenComponent implements OnInit {
         return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop);
       })
       totalOverall = teamStats.length
-      this.awaySpreadOverallChance = (totalFor.length / totalOverall) * 100
+      this.awaySpreadOverallChance = (totalFor.length / totalOverall)
 
 
       totalFor = teamStats.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Away")
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Away").length
-      this.awaySpreadAwayChance = (totalFor.length / totalOverall) * 100
+      this.awaySpreadAwayChance = (totalFor.length / totalOverall) 
 
       totalFor = teamStats.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && (e.teamAgainstId == teamAgainstStats[0].teamId))
       })
       totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
-      this.awaySpreadTeamChance = (totalFor.length / totalOverall) * 100
+      this.awaySpreadTeamChance = (totalFor.length / totalOverall) 
 
     }
     else if (type == 'home') {
@@ -3178,20 +3178,20 @@ export class PropScreenComponent implements OnInit {
         return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop)
       })
       totalOverall = teamStats.length
-      this.homeSpreadOverallChance = (totalFor.length / totalOverall) * 100
+      this.homeSpreadOverallChance = (totalFor.length / totalOverall)
 
 
       totalFor = teamStats.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home")
       })
       totalOverall = teamStats.filter(e => e.homeOrAway == "Home").length
-      this.homeSpreadHomeChance = (totalFor.length / totalOverall) * 100
+      this.homeSpreadHomeChance = (totalFor.length / totalOverall)
 
       totalFor = teamStats.filter(e => {
         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId)
       })
       totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
-      this.homeSpreadTeamChance = (totalFor.length / totalOverall) * 100
+      this.homeSpreadTeamChance = (totalFor.length / totalOverall) 
 
 
     }
