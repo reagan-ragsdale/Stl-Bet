@@ -82,7 +82,7 @@ export class MlbController {
   @BackendMethod({ allowed: true})
   static async mlbGetTeamGameStatsByTeamIdAndSeason(id: number, season: number): Promise<DbMlbTeamGameStats[]>{
     const taskRepo = remult.repo(DbMlbTeamGameStats)
-    return await taskRepo.find({where: {teamId : id, season: season}})
+    return await taskRepo.find({where: {teamId : id, season: season}, orderBy:{gameDate: 'asc'}})
     
   }
 

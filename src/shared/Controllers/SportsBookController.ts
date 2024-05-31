@@ -135,7 +135,7 @@ export class SportsBookController {
   @BackendMethod({ allowed: true })
   static async loadAllSportFilterByMAxBookSeqBigThree(sport: string): Promise<DbGameBookData[]> {
     const taskRepo = remult.repo(DbGameBookData)
-    return await taskRepo.find({where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}})
+    return await taskRepo.find({where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {commenceTime: "asc"}})
 
     
   }
