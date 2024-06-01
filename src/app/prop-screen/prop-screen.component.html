@@ -8189,7 +8189,7 @@
                     <div style="display:flex; justify-content:space-evenly; margin-left: 1rem;">
                       <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('home','overall')}">
                       </ng-container>
-                      <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('home', 'away')}">
+                      <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('home', 'home')}">
                       </ng-container>
                       <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: returnGameLog('home','team')}">
                       </ng-container>
