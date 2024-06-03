@@ -4,7 +4,7 @@ import { draftKingsApiController } from "../ApiCalls/draftKingsApiCalls";
 
 export const cronLoadMlbPlayer = async () => {
 
-
+    console.log("running mlb player props")
     const listOfActiveSports: string[] = ["MLB"]
 
     const listOfMlbExtraGameProps: string = "alternate_spreads,alternate_totals"
@@ -23,6 +23,6 @@ export const cronLoadMlbPlayer = async () => {
         catch (error: any) {
             console.log(error.message)
         }
-    
+        console.log("finished mlb player props")
 
 }
