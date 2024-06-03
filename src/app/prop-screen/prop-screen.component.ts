@@ -3174,7 +3174,7 @@ export class PropScreenComponent implements OnInit {
     for(let player of individualPlayers){
       let playerInfo = this.playerInfoAll.filter(e => e.playerName == player)
       let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerInfo[0].playerId, 2024)
-      this.playerStatsFinal.push(playerStats)
+      this.playerStatsFinal = this.playerStatsFinal.concat(playerStats)
     }
     console.log(this.playerStatsFinal)
     
