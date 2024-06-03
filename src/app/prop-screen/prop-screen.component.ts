@@ -3176,17 +3176,19 @@ export class PropScreenComponent implements OnInit {
       let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerInfo[0].playerId, 2024)
       this.playerStatsFinal.push(playerStats)
     }
+    console.log(this.playerStatsFinal)
     
   }
 
   getPlayerStats(player: any, prop: number){
     let playerInfo = this.playerInfoAll.filter(e => e.playerName == player.playerName)
     let playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
+    console.log(player)
     
     let teamName = ''
     let teamAgainstName = ''
     let homeAway = 'away'
-    console.log(playerStats)
+    //console.log(playerStats)
     if(playerInfo[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
       homeAway = 'home'
       teamName = reusedFunctions.teamNamesToAbvr[player.homeTeam]
