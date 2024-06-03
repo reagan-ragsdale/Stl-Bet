@@ -28,6 +28,7 @@ import { DbPlayerInfo } from '../shared/dbTasks/DbPlayerInfo';
 import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
 import { cronSportsBookHourly } from '../app/cronJobs/cronSportsBookLoadHourly';
 import { DBMlbPlayerGameStatTotals } from '../shared/dbTasks/DbMlbPlayerGameStatTotals';
+import { cronLoadMlbPlayer } from '../app/cronJobs/cronLoadMlbPlayerPropsHorly';
 import { repo } from 'remult';
 config()
 
@@ -75,6 +76,7 @@ export const api = remultExpress({
     cron.schedule('00 09 * * *', () => mlbCronFile())
 
     cron.schedule('*/30 * * * *', () => cronSportsBookHourly())
+    cron.schedule('*/30 * * * *', () => cronLoadMlbPlayer())
   }
 });
 
