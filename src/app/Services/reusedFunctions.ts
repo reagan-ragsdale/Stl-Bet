@@ -195,6 +195,7 @@ export class reusedFunctions {
 
     let teams = gameId.slice(gameId.indexOf('_'))
     let awayTeam = teams.slice(0, teams.indexOf('@'))
+    console.log(awayTeam)
     if(teamName == awayTeam){
       homeAway == 'away'
     }

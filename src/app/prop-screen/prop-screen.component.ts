@@ -3198,7 +3198,6 @@ export class PropScreenComponent implements OnInit {
       teamName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
       teamAgainstName = reusedFunctions.teamNamesToAbvr[player.homeTeam] 
     }
-    console.log(reusedFunctions.getHomeAwayFromGameId(this.selectedGame, teamName))
     
     let totalOverall = playerStats.length
     var totalHomeAway = 0
