@@ -3198,6 +3198,7 @@ export class PropScreenComponent implements OnInit {
       teamName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
       teamAgainstName = reusedFunctions.teamNamesToAbvr[player.homeTeam] 
     }
+    console.log(reusedFunctions.getHomeAwayFromGameId(this.selectedGame, teamName))
     
     let totalOverall = playerStats.length
     var totalHomeAway = 0
@@ -3217,7 +3218,7 @@ export class PropScreenComponent implements OnInit {
           return e.batterHits > prop
         }).length
         overHomeAway = playerStats.filter(e => {
-          console.log(reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName))
+          
           return e.batterHits > prop && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
         }).length
         overTeam = playerStats.filter(e => {
