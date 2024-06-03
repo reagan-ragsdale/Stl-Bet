@@ -3180,7 +3180,7 @@ export class PropScreenComponent implements OnInit {
     
   }
 
-  getPlayerStats(player: any, prop: number){
+    getPlayerStats(player: any, prop: number){
     let playerInfo = this.playerInfoAll.filter(e => e.playerName == player.playerName)
     let playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
     //console.log(player)
