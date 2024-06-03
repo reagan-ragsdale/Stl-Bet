@@ -43,6 +43,14 @@ export class DbPlayerPropData {
   @Fields.number()
   point = 0
 
+  @Fields.number()
+  bookSeq = 0
+
   @Fields.createdAt()
   createdAt?: Date
+
+  
+
+  // create a bookseq
+  // how would it work for the alternates to understand which ones would need to get updated?
 }

@@ -55,6 +55,7 @@ export const api = remultExpress({
     NhlPlayerGameStatsController,
     NbaController,
     PlayerInfoController
+    
   ],
 
   admin: true,

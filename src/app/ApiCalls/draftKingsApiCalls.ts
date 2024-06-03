@@ -5,6 +5,7 @@ import { SportsTitleToName } from '../sports-titel-to-name';
 import { DbPlayerPropData } from '../../shared/dbTasks/DbPlayerPropData';
 import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
+import { PlayerPropController } from '../../shared/Controllers/PlayerPropController';
 
 
 
@@ -45,15 +46,22 @@ export class draftKingsApiController {
     const promise = await fetch(urlNew);
     const processedResponse = await promise.json();
     this.playerProps = processedResponse;
-    this.playerPropData = this.convertPropDataToInterface()
+    this.playerPropData = await this.convertPropDataToInterface(sport, game)
     return this.playerPropData
   }
 
-  static convertPropDataToInterface() {
+  static async convertPropDataToInterface(sport: string, game: string) {
     var tempData: DbPlayerPropData[] = [];
+    let allOfPlayersBook = await PlayerPropController.loadPlayerPropData(sport, game) 
     for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
       for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
         for (let m = 0; m < this.playerProps.bookmakers[j].markets[k].outcomes.length; m++) {
+          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.playerProps.bookmakers[j].markets[k].outcomes[m].description && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name)
+          let newBookSeq = 0
+          if(filteredPlayer.length > 0){
+            newBookSeq = filteredPlayer[0].bookSeq + 1
+          }
+          
           tempData.push({
             bookId: this.playerProps.id,
             sportKey: this.playerProps.sport_key,
@@ -66,7 +74,8 @@ export class draftKingsApiController {
             description: this.playerProps.bookmakers[j].markets[k].outcomes[m].name,
             playerName: this.playerProps.bookmakers[j].markets[k].outcomes[m].description,
             price: this.playerProps.bookmakers[j].markets[k].outcomes[m].price,
-            point: this.playerProps.bookmakers[j].markets[k].outcomes[m].point != null ? this.playerProps.bookmakers[j].markets[k].outcomes[m].point : 0
+            point: this.playerProps.bookmakers[j].markets[k].outcomes[m].point != null ? this.playerProps.bookmakers[j].markets[k].outcomes[m].point : 0,
+            bookSeq: newBookSeq
           });
         }
       }
@@ -213,6 +222,81 @@ export class draftKingsApiController {
 
   }
 
+  public static async getEventsBySport(sport: string): Promise<string[]>{
+    let finalReturn: string[] = []
 
 
-}
+    let url = `https://api.the-odds-api.com/v4/sports/${sport}/events?apiKey=5ab6923d5aa0ae822b05168709bb910c`;
+    try {
+      const promise = await fetch(url);
+      const processedResponse = await promise.json();
+      this.selectedSportsData = processedResponse;
+      finalReturn = await this.convertToGameStrings(this.selectedSportsData)
+
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    return finalReturn;
+  }
+
+  public static convertToGameStrings(response: any[]):string[]{
+    let gamesFinal: string[] = []
+
+    for(let game of response){
+      gamesFinal.push(game.id)
+    }
+    return gamesFinal
+  }
+
+ /*  public static async getMLBPLayerPropData(bookId: string){
+
+    let url = "https://api.the-odds-api.com/v4/sports/baseball_mlb/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=batter_home_runs,batter_hits,batter_total_bases,batter_rbis,batter_runs_scored,batter_hits_runs_rbis,&bookmakers=draftkings&oddsFormat=american";
+    try {
+      const promise = await fetch(url);
+      const processedResponse = await promise.json();
+      this.selectedSportsData = processedResponse;
+      this.playerPropData = await this.convertMlbPlayerPropToDb()
+
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    return this.sportsBookData;
+  }
+
+  public static async convertMlbPlayerPropToDb():Promise<DbPlayerPropData[]>{
+    let playerPropFinal: DbPlayerPropData[] = []
+
+    let playerPropTemp = this.selectedSportsData
+
+    for(let i = 0; i < playerPropTemp.length; i++){ 
+      for(let j = 0; j < playerPropTemp[i].bookmakers.length; j++){
+        for(let k = 0; k < playerPropTemp[i].bookmakers[j].markets.length; k++){
+          for(let l = 0; l < playerPropTemp[i].bookmakers[j].markets[k].outcomes.length; l++){
+              playerPropFinal.push({
+                bookId: playerPropTemp[i].id,
+                sportKey: playerPropTemp[i].sport_key,
+                sportTitle: playerPropTemp[i].sport_title,
+                homeTeam: playerPropTemp[i].home_team,
+                awayTeam: playerPropTemp[i].away_team,
+                commenceTime: playerPropTemp[i].commence_time,
+                bookMaker: playerPropTemp[i].bookmakers[j].title,
+                marketKey: playerPropTemp[i].bookmakers[j].markets[k].key,
+                description: playerPropTemp[i].bookmakers[j].markets[k].name,
+                playerName: playerPropTemp[i].bookmakers[j].markets[k].description,
+                price: playerPropTemp[i].bookmakers[j].markets[k].price,
+                point: playerPropTemp[i].bookmakers[j].markets[k].point
+              })
+            }
+          }
+        }
+      }
+      return playerPropFinal;
+
+    }
+  }
+    
+  */
+
+
+
+} 
