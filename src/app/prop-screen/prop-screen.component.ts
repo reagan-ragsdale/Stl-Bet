@@ -3228,9 +3228,10 @@ export class PropScreenComponent implements OnInit {
         averageOverall = totalSum / totalOverall
 
         totalSum = 0
-        playerStats.filter(e => {
+        let homeAwayGames = playerStats.filter(e => {
           return reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
-        }).forEach(f => {
+        })
+        homeAwayGames.forEach(f => {
           totalSum += f.batterHits
           totalHomeAway++
         })
@@ -3238,9 +3239,10 @@ export class PropScreenComponent implements OnInit {
         console.log(totalSum)
         console.log(totalHomeAway)
         totalSum = 0
-        playerStats.filter(e => {
+        let teamGames = playerStats.filter(e => {
           return e.teamAgainstName == teamAgainstName
-        }).forEach(f => {
+        })
+        teamGames.forEach(f => {
           totalSum += f.batterHits
           totalTeam++
         })
@@ -3263,9 +3265,10 @@ export class PropScreenComponent implements OnInit {
         })
         averageOverall = totalSum / totalOverall
         totalSum = 0
-        playerStats.filter(e => {
+        let homeAwayGames = playerStats.filter(e => {
           return reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
-        }).forEach(f => {
+        })
+        homeAwayGames.forEach(f => {
           totalSum += f.batterHits
           totalHomeAway++
         })
@@ -3273,9 +3276,10 @@ export class PropScreenComponent implements OnInit {
         
 
         totalSum = 0
-        playerStats.filter(e => {
+        let teamGames = playerStats.filter(e => {
           return e.teamAgainstName == teamAgainstName
-        }).forEach(f => {
+        })
+        teamGames.forEach(f => {
           totalSum += f.batterHits
           totalTeam++
         })
@@ -3300,17 +3304,19 @@ export class PropScreenComponent implements OnInit {
         })
         averageOverall = totalSum / totalOverall
         totalSum = 0
-        playerStats.filter(e => {
+        let homeAwayGames = playerStats.filter(e => {
           return reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
-        }).forEach(f => {
+        })
+        homeAwayGames.forEach(f => {
           totalSum += f.batterHits
           totalHomeAway++
         })
         averageHomeAway = totalSum / totalHomeAway
         totalSum = 0
-        playerStats.filter(e => {
+        let teamGames = playerStats.filter(e => {
           return e.teamAgainstName == teamAgainstName
-        }).forEach(f => {
+        })
+        teamGames.forEach(f => {
           totalSum += f.batterHits
           totalTeam++
         })
