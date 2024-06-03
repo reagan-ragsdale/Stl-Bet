@@ -190,6 +190,21 @@ export class reusedFunctions {
     return day + " " + hour + ":" + minute + " " + AMPM
   }
 
+  static getHomeAwayFromGameId(gameId: string, teamName: string):string{
+    let homeAway = ''
+
+    let teams = gameId.slice(gameId.indexOf('_'))
+    let awayTeam = teams.slice(0, teams.indexOf('@'))
+    if(teamName == awayTeam){
+      homeAway == 'away'
+    }
+    else{
+      homeAway == 'home'
+    }
+
+    return homeAway
+  }
+
 
 
 

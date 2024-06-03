@@ -45,6 +45,10 @@ import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFull
 import { DbMlbTeamGameStats } from 'src/shared/dbTasks/DbMlbTeamGameStats';
 import { TransformFromTimestampToTimePipe } from '../customPipes/transformFromTimestampToTime.pipe';
 import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
+import { filter } from 'compression';
+import { DBMlbPlayerGameStats } from '../../shared/dbTasks/DbMlbPlayerGameStats';
+import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
+import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
 
 @Component({
   selector: 'app-prop-screen',
@@ -1024,6 +1028,11 @@ export class PropScreenComponent implements OnInit {
   team1GameStatsReversed: any[] = []
   team2GameStatsReversed: any[] = []
 
+  playerPropData: DbPlayerPropData[] = []
+  playerPropDataFinal: any[] = []
+  playerStatsFinal:any[] = []
+  playerInfoAll: DbPlayerInfo[] = []
+
 
 
   playerPropsArray: PlayerProp[] = [{
@@ -1100,8 +1109,8 @@ export class PropScreenComponent implements OnInit {
   gamePropData: ISportsBook[] = []
   sportsBookData: DbGameBookData[] = []
   sportsBookDataFinal: DbGameBookData[] = []
-  playerPropData: DbPlayerPropData[] = []
-  playerPropDataFinal: DbPlayerPropData[] = []
+  //playerPropData: DbPlayerPropData[] = []
+  //playerPropDataFinal: DbPlayerPropData[] = []
   nhlPlayerInfo: DbNhlPlayerInfo[] = []
   nhlPlayerInfoFinal: DbNhlPlayerInfo[] = []
   playerInfo: any
@@ -1355,6 +1364,8 @@ export class PropScreenComponent implements OnInit {
       this.team2GameStatsReversed = this.team2GameStatsReversed.reverse()
       this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads")
       this.homeAlternateSpreadstemp = team1.filter(e => e.marketKey == "alternate_spreads")
+
+      
     }
     else if (this.selectedSport == "NHL") {
 
@@ -1364,7 +1375,30 @@ export class PropScreenComponent implements OnInit {
 
     }
 
+    this.playerPropData = await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame)
+    let uniquePlayerProps = this.playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
+    
+    //the player prop data brings back every single prop and each of those props has two entries per person if its over or under
+    //need to go through each distinct prop and find the ones per name and then load those into the final array 
+    
+    for(let prop of uniquePlayerProps){
+      let propSpecificArray = []
+      let uniquePlayerNames = this.playerPropData.filter(e => e.marketKey == prop).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
+      
+      for(let player of uniquePlayerNames){
+        let filteredPlayer = this.playerPropData.filter(e => e.playerName == player && e.marketKey == prop)
+        //console.log(filteredPlayer)
+        
+        propSpecificArray.push(filteredPlayer)
+      }
+      this.playerPropDataFinal.push(propSpecificArray)
+      console.log(this.playerPropDataFinal)
+    }
+    this.loadPlayerStatData()
+    
+    
 
+    //I need to get all of the player stat data for each player within the player props
 
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
@@ -3133,6 +3167,64 @@ export class PropScreenComponent implements OnInit {
     this.calculateSpreadPropChace(team1, team2, prop.point, type)
   }
 
+  async loadPlayerStatData(){
+    let individualPlayers = this.playerPropData.map(e => e.playerName).filter((value, index,array) => array.indexOf(value) === index)
+    console.log(this.selectedSport)
+    this.playerInfoAll = await PlayerInfoController.loadPlayerInfoBySport(this.selectedSport)
+    for(let player of individualPlayers){
+      let playerInfo = this.playerInfoAll.filter(e => e.playerName == player)
+      let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerInfo[0].playerId, 2024)
+      this.playerStatsFinal.push(playerStats)
+    }
+    
+  }
+
+  getPlayerStats(player: any, prop: number){
+    let playerInfo = this.playerInfoAll.filter(e => e.playerName == player[0].playerName)
+    let playerStats = this.playerStatsFinal.filter(e => e.playerName == player[0].playerName)
+    
+    let teamName = ''
+    let teamAgainstName = ''
+    let homeAway = 'away'
+    if(playerInfo[0].teamName == reusedFunctions.teamNamesToAbvr[player[0].homeTeam]){
+      homeAway = 'home'
+      teamName = reusedFunctions.teamNamesToAbvr[player[0].homeTeam]
+      teamAgainstName = reusedFunctions.teamNamesToAbvr[player[0].awayTeam]
+    }
+    else{
+      teamName = reusedFunctions.teamNamesToAbvr[player[0].awayTeam]
+      teamAgainstName = reusedFunctions.teamNamesToAbvr[player[0].homeTeam] 
+    }
+    
+    let totalOverall = playerStats.length
+    var overOverall = 0
+    var overHomeAway = 0
+    if(this.selectedSport == 'MLb'){
+      if(player[0].marketKey == 'batter_hits'){
+        overOverall = playerStats.filter(e => {
+          return e.batterHits > prop
+        }).length
+        overHomeAway = playerStats.filter(e => {
+          return e.batterHits > prop && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
+        }).length
+      }
+        
+    }
+
+    let returnObj = {
+      totalOverall: totalOverall,
+      overOverall: overOverall,
+      overHomeAway: overHomeAway
+
+    }
+
+    return returnObj
+    
+
+    
+    
+  }
+
 
   //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
   //because for a positive spread that means everything less than that number wins
@@ -3209,7 +3301,6 @@ export class PropScreenComponent implements OnInit {
               finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall);
             }
           })
-          console.log(finalSpread)
         }
         else if(type == 'away'){
           finalSpread = 1000
