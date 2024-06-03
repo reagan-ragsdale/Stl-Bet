@@ -35087,3 +35087,38 @@
     "bookSeq": 4,
     "createdAt": "2024-06-03T17:30:20.608Z"
   },
+  {
+    "id": "eoj6f8kk5ojggu0vvs3mw52n",
+    "bookId": "71eeb738f39088c08d9d985e1f64b773",
+    "sportKey": "baseball_mlb",
+    "sportTitle": "MLB",
+    "homeTeam": "Texas Rangers",
+    "awayTeam": "Detroit Tigers",
+    "commenceTime": "2024-06-04T00:05:00.000Z",
+    "bookMaker": "DraftKings",
+    "marketKey": "batter_home_runs",
+    "description": "Over",
+    "playerName": "Jake Rogers",
+    "price": 800,
+    "point": 0.5,
+    "bookSeq": 4,
+    "createdAt": "2024-06-03T17:30:20.620Z"
+  },
+  {
+    "id": "hijjrp6uc3w6q41rcy28hvr8",
+    "bookId": "71eeb738f39088c08d9d985e1f64b773",
+    "sportKey": "baseball_mlb",
+    "sportTitle": "MLB",
+    "homeTeam": "Texas Rangers",
+    "awayTeam": "Detroit Tigers",
+    "commenceTime": "2024-06-04T00:05:00.000Z",
+    "bookMaker": "DraftKings",
+    "marketKey": "batter_home_runs",
+    "description": "Under",
+    "playerName": "Jake Rogers",
+    "price": -2500,
+    "point": 0.5,
+    "bookSeq": 4,
+    "createdAt": "2024-06-03T17:30:20.637Z"
+  }
+]
