@@ -3229,13 +3229,14 @@ export class PropScreenComponent implements OnInit {
 
         totalSum = 0
         playerStats.filter(e => {
-          return e.teamAgainstName == teamAgainstName
+          return reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
         }).forEach(f => {
           totalSum += f.batterHits
-          totalTeam++
+          totalHomeAway++
         })
-        averageHomeAway = totalSum / totalTeam
-
+        averageHomeAway = totalSum / totalHomeAway
+        console.log(totalSum)
+        console.log(totalHomeAway)
         totalSum = 0
         playerStats.filter(e => {
           return e.teamAgainstName == teamAgainstName
@@ -3269,6 +3270,7 @@ export class PropScreenComponent implements OnInit {
           totalHomeAway++
         })
         averageHomeAway = totalSum / totalHomeAway
+        
 
         totalSum = 0
         playerStats.filter(e => {
@@ -3278,7 +3280,7 @@ export class PropScreenComponent implements OnInit {
           totalTeam++
         })
         averageTeam = totalSum / totalTeam
-
+        
         
       }
       else if(player.marketKey == 'batter_total_bases'){
