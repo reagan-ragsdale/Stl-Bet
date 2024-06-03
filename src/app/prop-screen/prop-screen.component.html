@@ -1240,7 +1240,7 @@
       <mat-tab style="width: 50%; color: white" label="Player Props">
         <div
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
-          <mat-accordion *ngFor="let prop of playerPropDataFinal" style="width:90%">
+          <mat-accordion *ngFor="let prop of playerPropDataFinal" style="width:90%; margin-bottom:.5rem;">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -1249,7 +1249,7 @@
                 <mat-panel-description>
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <mat-accordion *ngFor="let player of prop">
+              <mat-accordion *ngFor="let player of prop" style="margin-bottom:.5rem;">
                 <mat-expansion-panel>
                   <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -1281,20 +1281,16 @@
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Record</h3>
-                                    <h3 style="margin:auto">{{playerStats.totalOverall}}</h3>
+                                    <h3 style="margin:auto">{{playerStats.overOverall}}-{{playerStats.totalOverall}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Win</h3>
-                                    <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWon/
-                                      (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost) | percent:
+                                    <h3 style="margin:auto">{{(playerStats.overOverall / playerStats.totalOverall) | percent:
                                       '2.2-2'}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Weighted</h3>
-                                    <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWon/
-                                      (team2GameStatsDtoMLB.gamesWon + team2GameStatsDtoMLB.gamesLost)) *
-                                      (team1GameStatsDtoMLB.gamesLost/ (team1GameStatsDtoMLB.gamesWon +
-                                      team1GameStatsDtoMLB.gamesLost)) | percent: '2.2-2'}}</h3>
+                                    <h3 style="margin:auto">Avg</h3>
+                                    <h3 style="margin:auto">{{playerStats.averageOverall | number: '1.2-2'}}</h3>
                                   </div>
                                 </div>
                                 <div class="homeaway-stats"
@@ -1305,21 +1301,17 @@
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Record</h3>
-                                    <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway}} -
-                                      {{team2GameStatsDtoMLB.gamesLostAway}}</h3>
+                                    <h3 style="margin:auto">{{playerStats.overHomeAway}} -
+                                      {{playerStats.totalHomeAway}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Win</h3>
-                                    <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonAway /
-                                      (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway) |
+                                    <h3 style="margin:auto">{{(playerStats.overHomeAway / playerStats.totalHomeAway) |
                                       percent: '2.2-2'}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Weighted</h3>
-                                    <h3 style="margin:auto"> {{(team2GameStatsDtoMLB.gamesWonAway /
-                                      (team2GameStatsDtoMLB.gamesWonAway + team2GameStatsDtoMLB.gamesLostAway)) *
-                                      (team1GameStatsDtoMLB.gamesLostHome / (team1GameStatsDtoMLB.gamesLostHome +
-                                      team1GameStatsDtoMLB.gamesLostHome)) | percent: '2.2-2'}}</h3>
+                                    <h3 style="margin:auto">Avg</h3>
+                                    <h3 style="margin:auto"> {{playerStats.averageHomeAway | number: '1.2-2'}}</h3>
                                   </div>
                                 </div>
                                 <div class="team-stats"
@@ -1330,23 +1322,16 @@
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Record</h3>
-                                    <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent}} -
-                                      {{team2GameStatsDtoMLB.gamesLostVsOpponent}}</h3>
+                                    <h3 style="margin:auto">{{playerStats.overTeam}} -
+                                      {{playerStats.totalTeam}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Win</h3>
-                                    <h3 style="margin:auto">{{team2GameStatsDtoMLB.gamesWonVsOpponent /
-                                      (team2GameStatsDtoMLB.gamesWonVsOpponent +
-                                      team2GameStatsDtoMLB.gamesLostVsOpponent) | percent: '2.2-2'}}</h3>
+                                    <h3 style="margin:auto">{{playerStats.totalTeam == 0 ? 'NA' : ((playerStats.overTeam / playerStats.totalTeam) | percent: '2.2-2') }}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Weighted</h3>
-                                    <h3 style="margin:auto">{{(team2GameStatsDtoMLB.gamesWonVsOpponent /
-                                      (team2GameStatsDtoMLB.gamesWonVsOpponent +
-                                      team2GameStatsDtoMLB.gamesLostVsOpponent)) *
-                                      (team1GameStatsDtoMLB.gamesLostVsOpponent /
-                                      (team1GameStatsDtoMLB.gamesLostVsOpponent +
-                                      team1GameStatsDtoMLB.gamesWonVsOpponent))| percent: '2.2-2'}}</h3>
+                                    <h3 style="margin:auto">Avg</h3>
+                                    <h3 style="margin:auto">{{playerStats.averageTeam | number: '1.2-2'}}</h3>
                                   </div>
                                 </div>
                               </div>
