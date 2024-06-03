@@ -3210,6 +3210,7 @@ export class PropScreenComponent implements OnInit {
     var high = 0
     var low = 0
     let overTeam = 0
+    console.log(reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName))
     if(this.selectedSport == 'MLB'){
       if(player.marketKey == 'batter_hits'){
         overOverall = playerStats.filter(e => {
@@ -3236,8 +3237,6 @@ export class PropScreenComponent implements OnInit {
           totalHomeAway++
         })
         averageHomeAway = totalSum / totalHomeAway
-        console.log(totalSum)
-        console.log(totalHomeAway)
         totalSum = 0
         let teamGames = playerStats.filter(e => {
           return e.teamAgainstName == teamAgainstName
