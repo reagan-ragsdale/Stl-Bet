@@ -293,7 +293,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       
       distinctTeamsNew.forEach(team => {
         let allOfTeam = allOfBook.filter(e => e.teamName == team)
-        console.log(allOfTeam)
+        //console.log(allOfTeam)
         if(allOfTeam.length > 0){
           teamArray.push(allOfTeam)
         }
@@ -301,7 +301,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       })
       let teamArrayFinal: any[] = []
       if(teamArray.length > 0){
-        console.log(teamArray)
+        //console.log(teamArray)
         if(teamArray[0].length > 0){
           if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
             teamArrayFinal.push(teamArray[1])

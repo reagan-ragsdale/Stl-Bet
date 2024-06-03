@@ -1392,7 +1392,7 @@ export class PropScreenComponent implements OnInit {
         propSpecificArray.push(filteredPlayer)
       }
       this.playerPropDataFinal.push(propSpecificArray)
-      console.log(this.playerPropDataFinal)
+      //console.log(this.playerPropDataFinal)
     }
     await this.loadPlayerStatData()
     
@@ -3169,7 +3169,7 @@ export class PropScreenComponent implements OnInit {
 
   async loadPlayerStatData(){
     let individualPlayers = this.playerPropData.map(e => e.playerName).filter((value, index,array) => array.indexOf(value) === index)
-    console.log(this.selectedSport)
+    //console.log(this.selectedSport)
     this.playerInfoAll = await PlayerInfoController.loadPlayerInfoBySport(this.selectedSport)
     for(let player of individualPlayers){
       let playerInfo = this.playerInfoAll.filter(e => e.playerName == player)
