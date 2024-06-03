@@ -3171,12 +3171,9 @@ export class PropScreenComponent implements OnInit {
     let individualPlayers = this.playerPropData.map(e => e.playerName).filter((value, index,array) => array.indexOf(value) === index)
     console.log(this.selectedSport)
     this.playerInfoAll = await PlayerInfoController.loadPlayerInfoBySport(this.selectedSport)
-    console.log(this.playerInfoAll)
     for(let player of individualPlayers){
       let playerInfo = this.playerInfoAll.filter(e => e.playerName == player)
-      console.log(playerInfo)
       let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerInfo[0].playerId, 2024)
-      console.log(playerStats)
       this.playerStatsFinal.push(playerStats)
     }
     
@@ -3189,6 +3186,7 @@ export class PropScreenComponent implements OnInit {
     let teamName = ''
     let teamAgainstName = ''
     let homeAway = 'away'
+    console.log(playerInfo)
     if(playerInfo[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
       homeAway = 'home'
       teamName = reusedFunctions.teamNamesToAbvr[player.homeTeam]
@@ -3202,7 +3200,7 @@ export class PropScreenComponent implements OnInit {
     let totalOverall = playerStats.length
     var overOverall = 0
     var overHomeAway = 0
-    if(this.selectedSport == 'MLb'){
+    if(this.selectedSport == 'MLB'){
       if(player.marketKey == 'batter_hits'){
         overOverall = playerStats.filter(e => {
           return e.batterHits > prop
