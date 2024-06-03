@@ -3186,7 +3186,7 @@ export class PropScreenComponent implements OnInit {
     let teamName = ''
     let teamAgainstName = ''
     let homeAway = 'away'
-    console.log(playerInfo)
+    console.log(playerStats)
     if(playerInfo[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
       homeAway = 'home'
       teamName = reusedFunctions.teamNamesToAbvr[player.homeTeam]
