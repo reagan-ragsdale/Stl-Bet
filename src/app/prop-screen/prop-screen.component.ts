@@ -3210,13 +3210,14 @@ export class PropScreenComponent implements OnInit {
     var high = 0
     var low = 0
     let overTeam = 0
-    console.log(reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName))
+    
     if(this.selectedSport == 'MLB'){
       if(player.marketKey == 'batter_hits'){
         overOverall = playerStats.filter(e => {
           return e.batterHits > prop
         }).length
         overHomeAway = playerStats.filter(e => {
+          console.log(reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName))
           return e.batterHits > prop && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
         }).length
         overTeam = playerStats.filter(e => {
