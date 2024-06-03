@@ -3183,27 +3183,27 @@ export class PropScreenComponent implements OnInit {
   }
 
   getPlayerStats(player: any, prop: number){
-    let playerInfo = this.playerInfoAll.filter(e => e.playerName == player[0].playerName)
-    let playerStats = this.playerStatsFinal.filter(e => e.playerName == player[0].playerName)
+    let playerInfo = this.playerInfoAll.filter(e => e.playerName == player.playerName)
+    let playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
     
     let teamName = ''
     let teamAgainstName = ''
     let homeAway = 'away'
-    if(playerInfo[0].teamName == reusedFunctions.teamNamesToAbvr[player[0].homeTeam]){
+    if(playerInfo[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
       homeAway = 'home'
-      teamName = reusedFunctions.teamNamesToAbvr[player[0].homeTeam]
-      teamAgainstName = reusedFunctions.teamNamesToAbvr[player[0].awayTeam]
+      teamName = reusedFunctions.teamNamesToAbvr[player.homeTeam]
+      teamAgainstName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
     }
     else{
-      teamName = reusedFunctions.teamNamesToAbvr[player[0].awayTeam]
-      teamAgainstName = reusedFunctions.teamNamesToAbvr[player[0].homeTeam] 
+      teamName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
+      teamAgainstName = reusedFunctions.teamNamesToAbvr[player.homeTeam] 
     }
     
     let totalOverall = playerStats.length
     var overOverall = 0
     var overHomeAway = 0
     if(this.selectedSport == 'MLb'){
-      if(player[0].marketKey == 'batter_hits'){
+      if(player.marketKey == 'batter_hits'){
         overOverall = playerStats.filter(e => {
           return e.batterHits > prop
         }).length
