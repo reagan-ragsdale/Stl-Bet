@@ -66,9 +66,9 @@ export class MlbController {
     return await taskRepo.find({where: {playerId : id, season: season}})
   }
   @BackendMethod({ allowed: true})
-  static async mlbGetPlayerGameStatsByTeamAndSeason(team: string[], season: number): Promise<DBMlbPlayerGameStats[]>{
+  static async mlbGetPlayerGameStatsByTeamAndSeason(team: number[], season: number): Promise<DBMlbPlayerGameStats[]>{
     const taskRepo = remult.repo(DBMlbPlayerGameStats)
-    return await taskRepo.find({where: {teamName : team, season: season}})
+    return await taskRepo.find({where: {teamId : [team[0], team[1]], season: season}})
   }
   @BackendMethod({ allowed: true})
   static async mlbSetBlankPlayerGameStats(player: DbPlayerInfo, season: number){

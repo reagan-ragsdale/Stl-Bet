@@ -3167,7 +3167,7 @@ export class PropScreenComponent implements OnInit {
     this.calculateSpreadPropChace(team1, team2, prop.point, type)
   }
 
-  async loadPlayerStatData(team1: string, team2: string){
+  async loadPlayerStatData(team1: number, team2: number){
     let individualPlayers = this.playerPropData.map(e => e.playerName).filter((value, index,array) => array.indexOf(value) === index)
     
     this.playerInfoAll = await PlayerInfoController.loadPlayerInfoBySport(this.selectedSport)
