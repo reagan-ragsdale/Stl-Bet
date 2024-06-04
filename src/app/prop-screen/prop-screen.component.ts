@@ -3181,7 +3181,7 @@ export class PropScreenComponent implements OnInit {
 
     getPlayerStats(player: any, prop: number){
       //try and figure out how to make this quicker
-    let playerInfo = this.playerInfoAll.filter(e => e.playerName == player.playerName)
+    //let playerInfo = this.playerInfoAll.filter(e => e.playerName == player.playerName)
     let playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
     //console.log(player)
     
@@ -3189,7 +3189,7 @@ export class PropScreenComponent implements OnInit {
     let teamAgainstName = ''
     let homeAway = 'away'
     //console.log(playerStats)
-    if(playerInfo[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
+    if(playerStats[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
       homeAway = 'home'
       teamName = reusedFunctions.teamNamesToAbvr[player.homeTeam]
       teamAgainstName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
