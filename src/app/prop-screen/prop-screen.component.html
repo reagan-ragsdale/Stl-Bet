@@ -1246,7 +1246,7 @@
         <div
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
           <mat-accordion *ngFor="let prop of playerPropDataFinal" style="width:90%; margin-bottom:.5rem;">
-            <mat-expansion-panel>
+            <mat-expansion-panel >
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   {{prop[0][0].marketKey}}:
@@ -1254,6 +1254,7 @@
                 <mat-panel-description>
                 </mat-panel-description>
               </mat-expansion-panel-header>
+              <ng-template matExpansionPanelContent>
               <mat-accordion *ngFor="let player of prop" style="margin-bottom:.5rem;">
                 <mat-expansion-panel>
                   <mat-expansion-panel-header>
@@ -1261,6 +1262,7 @@
                       {{player[0].playerName}}
                     </mat-panel-title>
                   </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
                   <mat-card
                     style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                     <mat-card-header>
@@ -1391,9 +1393,10 @@
 
                     </mat-card-content>
                   </mat-card>
+                </ng-template>
                 </mat-expansion-panel>
               </mat-accordion>
-
+            </ng-template>
             </mat-expansion-panel>
           </mat-accordion>
         </div>
