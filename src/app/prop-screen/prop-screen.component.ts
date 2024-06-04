@@ -3217,7 +3217,8 @@ export class PropScreenComponent implements OnInit {
           return e.batterHits > prop
         }).length
         overHomeAway = playerStats.filter(e => {
-          console.log(reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway)
+          console.log(reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName))
+          console.log(teamName)
           return e.batterHits > prop && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
         }).length
         overTeam = playerStats.filter(e => {
