@@ -340,6 +340,7 @@
 
     <mat-tab-group [backgroundColor]="'primary'" style="width:100%">
       <mat-tab style="width: 50%; color: white" label="Game Props">
+        <ng-template matTabContent>
         <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" class="prop-section">
           <div class="away-team">
             <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{displayPropHtml2.name}} game props
@@ -1236,6 +1237,7 @@
 
           </div>
         </div>
+      </ng-template>
       </mat-tab>
       <mat-tab style="width: 50%; color: white" label="Player Props">
         <ng-template matTabContent>
