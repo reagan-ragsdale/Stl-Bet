@@ -3168,16 +3168,14 @@ export class PropScreenComponent implements OnInit {
   }
 
   async loadPlayerStatData(team1: number, team2: number){
-    let individualPlayers = this.playerPropData.map(e => e.playerName).filter((value, index,array) => array.indexOf(value) === index)
     
-    this.playerInfoAll = await PlayerInfoController.loadPlayerInfoBySport(this.selectedSport)
-    let playerStatsTest = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
-    console.log(playerStatsTest)
-    for(let player of individualPlayers){
+    //this.playerInfoAll = await PlayerInfoController.loadPlayerInfoBySport(this.selectedSport)
+    this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
+   /*  for(let player of individualPlayers){
       let playerInfo = this.playerInfoAll.filter(e => e.playerName == player)
       let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerInfo[0].playerId, 2024)
       this.playerStatsFinal = this.playerStatsFinal.concat(playerStats)
-    }
+    } */
     
   }
 
