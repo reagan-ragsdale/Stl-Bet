@@ -201,6 +201,9 @@ export class reusedFunctions {
     else{
       homeAway == 'home'
     }
+    console.log(teamName)
+    console.log(awayTeam)
+    console.log(homeAway)
 
     return homeAway
   }
