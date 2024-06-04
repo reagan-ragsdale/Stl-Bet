@@ -1394,7 +1394,7 @@ export class PropScreenComponent implements OnInit {
       this.playerPropDataFinal.push(propSpecificArray)
       //console.log(this.playerPropDataFinal)
     }
-    await this.loadPlayerStatData()
+    await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
     
     
 
@@ -3167,10 +3167,12 @@ export class PropScreenComponent implements OnInit {
     this.calculateSpreadPropChace(team1, team2, prop.point, type)
   }
 
-  async loadPlayerStatData(){
+  async loadPlayerStatData(team1: string, team2: string){
     let individualPlayers = this.playerPropData.map(e => e.playerName).filter((value, index,array) => array.indexOf(value) === index)
     
     this.playerInfoAll = await PlayerInfoController.loadPlayerInfoBySport(this.selectedSport)
+    let playerStatsTest = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
+    console.log(playerStatsTest)
     for(let player of individualPlayers){
       let playerInfo = this.playerInfoAll.filter(e => e.playerName == player)
       let playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(playerInfo[0].playerId, 2024)
