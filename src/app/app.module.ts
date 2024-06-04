@@ -44,6 +44,7 @@ import { TransformFromTimestampToMonthDayPipe } from "./customPipes/transformTim
 import { TransforFromFullTeamNameToAbvr } from './customPipes/transformFromFullTeamNameToAbvr.pip';
 import { TransformFromTimestampToTimePipe } from './customPipes/transformFromTimestampToTime.pipe';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [
@@ -100,7 +101,8 @@ import {MatMenuModule} from '@angular/material/menu';
         TransformFromTimestampToMonthDayPipe,
         TransforFromFullTeamNameToAbvr,
         TransformFromTimestampToTimePipe,
-        MatMenuModule
+        MatMenuModule,
+        MatProgressSpinnerModule
     ]
 })
 export class AppModule { 

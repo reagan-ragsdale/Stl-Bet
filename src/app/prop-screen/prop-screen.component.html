@@ -315,7 +315,10 @@
     <mat-tab  class="games-tabs" *ngFor="let game of games" label="{{game.game}}"></mat-tab>
   </mat-tab-group>
  -->
- <mat-progress-bar style="width:auto" mode="indeterminate" *ngIf="teamPropIsLoading"></mat-progress-bar>
+ <div *ngIf="teamPropIsLoading" style="height:100%; width: 100%;">
+  <mat-spinner [mode]="indeterminate" style="margin:auto;"></mat-spinner>
+ </div>
+ 
   <div class="prop-div" *ngIf="!teamPropIsLoading">
     
     <div style="display:flex; flex-direction: column; width: 100%; margin-top: 1rem;" >
