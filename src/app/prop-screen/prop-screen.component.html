@@ -1259,7 +1259,7 @@
               </mat-expansion-panel-header>
               <ng-template matExpansionPanelContent>
               <mat-accordion *ngFor="let player of prop" style="margin-bottom:.5rem;">
-                <mat-expansion-panel>
+                <mat-expansion-panel style="margin-bottom:.5rem;">
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                       {{player[0].playerName}}
@@ -1292,7 +1292,7 @@
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Record</h3>
-                                    <h3 style="margin:auto">{{playerStats.overOverall}}-{{playerStats.totalOverall}}</h3>
+                                    <h3 style="margin:auto">{{playerStats.overOverall}}-{{playerStats.totalOverall - playerStats.overOverall}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Win</h3>
@@ -1321,7 +1321,7 @@
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Record</h3>
                                     <h3 style="margin:auto">{{playerStats.overHomeAway}} -
-                                      {{playerStats.totalHomeAway}}</h3>
+                                      {{playerStats.totalHomeAway - playerStats.overHomeAway}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Win</h3>
@@ -1350,7 +1350,7 @@
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Record</h3>
                                     <h3 style="margin:auto">{{playerStats.overTeam}} -
-                                      {{playerStats.totalTeam}}</h3>
+                                      {{playerStats.totalTeam - playerStats.overTeam}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Win</h3>
