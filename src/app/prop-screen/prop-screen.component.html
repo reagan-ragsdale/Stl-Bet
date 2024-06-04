@@ -1298,12 +1298,20 @@
                                     <h3 style="margin:auto">Avg</h3>
                                     <h3 style="margin:auto">{{playerStats.averageOverall | number: '1.2-2'}}</h3>
                                   </div>
+                                  <div [ngClass]="'ml-stat'">
+                                    <h3 style="margin:auto">High</h3>
+                                    <h3 style="margin:auto">{{playerStats.highOverall}}</h3>
+                                  </div>
+                                  <div [ngClass]="'ml-stat'">
+                                    <h3 style="margin:auto">Low</h3>
+                                    <h3 style="margin:auto">{{playerStats.lowOverall}}</h3>
+                                  </div>
                                 </div>
                                 <div class="homeaway-stats"
                                   style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                                   <div
                                     style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                    <h3 style="margin:auto">Away</h3>
+                                    <h3 style="margin:auto">{{playerStats.homeAway}}</h3>
                                   </div>
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Record</h3>
@@ -1318,6 +1326,14 @@
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Avg</h3>
                                     <h3 style="margin:auto"> {{playerStats.averageHomeAway | number: '1.2-2'}}</h3>
+                                  </div>
+                                  <div [ngClass]="'ml-stat'">
+                                    <h3 style="margin:auto">High</h3>
+                                    <h3 style="margin:auto">{{playerStats.highHomeAway}}</h3>
+                                  </div>
+                                  <div [ngClass]="'ml-stat'">
+                                    <h3 style="margin:auto">Low</h3>
+                                    <h3 style="margin:auto">{{playerStats.lowHomeAway}}</h3>
                                   </div>
                                 </div>
                                 <div class="team-stats"
@@ -1338,6 +1354,14 @@
                                   <div [ngClass]="'ml-stat'">
                                     <h3 style="margin:auto">Avg</h3>
                                     <h3 style="margin:auto">{{playerStats.averageTeam | number: '1.2-2'}}</h3>
+                                  </div>
+                                  <div [ngClass]="'ml-stat'">
+                                    <h3 style="margin:auto">High</h3>
+                                    <h3 style="margin:auto">{{playerStats.highTeam}}</h3>
+                                  </div>
+                                  <div [ngClass]="'ml-stat'">
+                                    <h3 style="margin:auto">Low</h3>
+                                    <h3 style="margin:auto">{{playerStats.lowTeam}}</h3>
                                   </div>
                                 </div>
                               </div>
