@@ -1382,16 +1382,19 @@ export class PropScreenComponent implements OnInit {
     //need to go through each distinct prop and find the ones per name and then load those into the final array 
     
     for(let prop of uniquePlayerProps){
-      let propSpecificArray = []
+      let propSpecificArray: any[] = []
       let uniquePlayerNames = this.playerPropData.filter(e => e.marketKey == prop).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
       
       for(let player of uniquePlayerNames){
         let filteredPlayer = this.playerPropData.filter(e => e.playerName == player && e.marketKey == prop)
         //console.log(filteredPlayer)
         
-        propSpecificArray.push(filteredPlayer)
+        propSpecificArray = propSpecificArray.concat(filteredPlayer)
+        
       }
+      
       this.playerPropDataFinal.push(propSpecificArray)
+      
       //console.log(this.playerPropDataFinal)
     }
     await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
@@ -3166,9 +3169,35 @@ export class PropScreenComponent implements OnInit {
 
     this.calculateSpreadPropChace(team1, team2, prop.point, type)
   }
-
+  playerPropDataFinalNew: any[] = []
   async loadPlayerStatData(team1: number, team2: number){
     this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
+    //this.playerpropDataFinal is a 3 length array with 2 props for each player within it
+
+    //for each prop type ex: batter hits
+    for(let prop of this.playerPropDataFinal){
+      let playerPropNew: any[] = []
+      let propNew: any[] = []
+      //gets the unique players in that prop
+      let specifcPlayers = prop.map((e: { playerName: any; }) => e.playerName).filter((value: any, index: any, array: string | any[]) => array.indexOf(value) === index)
+      //for each player in that prop
+      for(let player of specifcPlayers){
+        //need to check get to see what team that player is on
+        let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == player)
+        if(playerFiltered[playerFiltered.length-1].teamName == team2){
+          playerPropNew[0].push(prop.filter((g: { playerName: any; }) => g.playerName == player))
+        }
+        else{
+          playerPropNew[1].push(prop.filter((g: { playerName: any; }) => g.playerName == player))
+        }
+        propNew.push(playerPropNew)
+      }
+      this.playerPropDataFinalNew.push(propNew)
+      console.log(this.playerPropDataFinalNew)
+      
+
+    }
+    
   }
 
     getPlayerStats(player: any, prop: number){
