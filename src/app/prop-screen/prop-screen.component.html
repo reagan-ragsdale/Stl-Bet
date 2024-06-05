@@ -1249,8 +1249,8 @@
         <div
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
           <mat-accordion *ngFor="let prop of playerPropDataFinalNew" style="width:90%; margin-bottom:.5rem;">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
+            <mat-expansion-panel (opened)="prop.isOpened = true" (closed)="prop.isOpened = false">
+              <mat-expansion-panel-header *ngStyle="{'background-color': prop.isOpened ? '#ebebeb' : 'white' }">
                 <mat-panel-title>
                   {{prop[0][0][0].marketKey}}:
                 </mat-panel-title>
