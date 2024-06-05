@@ -3208,7 +3208,7 @@ export class PropScreenComponent implements OnInit {
     
   }
 
-    getPlayerStats(player: any, prop: number){
+    getPlayerStats(player: any){
     let playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
     
     let teamName = ''
@@ -3249,7 +3249,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterHits < lowOverall){
             lowOverall = e.batterHits
           }
-          return e.batterHits > prop
+          return e.batterHits > player.point
         }).length
         overHomeAway = playerStats.filter(e => {
           if(e.batterHits > highHomeAway && (reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway)){
@@ -3258,7 +3258,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterHits < lowHomeAway && (reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway)){
             lowHomeAway = e.batterHits
           }
-          return e.batterHits > prop && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
+          return e.batterHits > player.point && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
         }).length
         overTeam = playerStats.filter(e => {
           if(e.batterHits > highTeam && e.teamAgainstName == teamAgainstName){
@@ -3267,7 +3267,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterHits < lowTeam && e.teamAgainstName == teamAgainstName){
             lowTeam = e.batterHits
           }
-          return e.batterHits > prop && e.teamAgainstName == teamAgainstName
+          return e.batterHits > player.point && e.teamAgainstName == teamAgainstName
         }).length
         let totalSum = 0
         playerStats.forEach(e => {
@@ -3303,7 +3303,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterHomeRuns < lowOverall){
             lowOverall = e.batterHomeRuns
           }
-          return e.batterHomeRuns > prop
+          return e.batterHomeRuns > player.point
         }).length
         overHomeAway = playerStats.filter(e => {
           if(e.batterHomeRuns > highHomeAway && (reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway)){
@@ -3312,7 +3312,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterHomeRuns < lowHomeAway && (reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway)){
             lowHomeAway = e.batterHomeRuns
           }
-          return e.batterHomeRuns > prop && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
+          return e.batterHomeRuns > player.point && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
         }).length
         overTeam = playerStats.filter(e => {
           if(e.batterHomeRuns > highTeam && e.teamAgainstName == teamAgainstName){
@@ -3321,7 +3321,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterHomeRuns < lowTeam && e.teamAgainstName == teamAgainstName){
             lowTeam = e.batterHomeRuns
           }
-          return e.batterHomeRuns > prop && e.teamAgainstName == teamAgainstName
+          return e.batterHomeRuns > player.point && e.teamAgainstName == teamAgainstName
         }).length
 
         let totalSum = 0
@@ -3360,7 +3360,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterTotalBases < lowOverall){
             lowOverall = e.batterTotalBases
           }
-          return e.batterHits > prop
+          return e.batterHits > player.point
         }).length
         overHomeAway = playerStats.filter(e => {
           if(e.batterTotalBases > highHomeAway && (reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway)){
@@ -3369,7 +3369,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterTotalBases < lowHomeAway && (reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway)){
             lowHomeAway = e.batterTotalBases
           }
-          return e.batterHits > prop && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
+          return e.batterHits > player.point && reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
         }).length
         overTeam = playerStats.filter(e => {
           if(e.batterTotalBases > highTeam && e.teamAgainstName == teamAgainstName){
@@ -3378,7 +3378,7 @@ export class PropScreenComponent implements OnInit {
           if(e.batterTotalBases < lowTeam && e.teamAgainstName == teamAgainstName){
             lowTeam = e.batterTotalBases
           }
-          return e.batterTotalBases > prop && e.teamAgainstName == teamAgainstName
+          return e.batterTotalBases > player.point && e.teamAgainstName == teamAgainstName
         }).length
 
         let totalSum = 0
