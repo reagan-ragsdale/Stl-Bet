@@ -1252,155 +1252,161 @@
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  {{prop[0][0].marketKey}}:
+                  {{prop[0][0][0].marketKey}}:
                 </mat-panel-title>
                 <mat-panel-description>
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <ng-template matExpansionPanelContent>
-              <mat-accordion *ngFor="let player of prop[0]" style="margin-bottom:.5rem;">
-                <mat-expansion-panel style="margin-bottom:.5rem;">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      {{player[0].playerName}} : {{player[0].point}} -- {{player[1].description}}
-                      {{player[1].price > 0 ? '+': ''}}{{player[1].price}} | {{player[0].description}}
-                      {{player[0].price > 0 ? '+': ''}}{{player[0].price}}
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <ng-template matExpansionPanelContent>
-                  <mat-card
-                    style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
-                    <mat-card-header>
-                      <mat-card-title>{{prop[0][0].marketKey}}: {{prop[0][0].point}} -- {{prop[0][1].description}}
-                        {{prop[0][1].price > 0 ? '+': ''}}{{prop[0][1].price}} | {{prop[0][0].description}}
-                        {{prop[0][0].price > 0 ? '+': ''}}{{prop[0][0].price}}</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content style="min-height:400px">
-                      <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
-                        (selectedIndexChange)="openChart($event)">
-                        <mat-tab style="color: white; display: flex; height: 100%;" label="Prop Stats">
-                          
-                          <ng-container *ngIf="getPlayerStats(player[0], prop[0][0].point) as playerStats">
-
-
-                            <div class="full-body" style="width:100%; height:100%; display: flex;">
-                              <div class="full-stats"
-                                style="width: 96%; display: flex; margin-right:auto; margin-left:auto; margin-top: 1rem; margin-bottom: 1rem; background-color: #ebebeb; border-radius: 10px; justify-content: space-evenly;">
-                                <div class="overall-stats"
-                                  style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
-                                  <div
-                                    style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                    <h3 style="margin:auto">Overall</h3>
+                <div style="display: flex; justify-content:space-evenly;">
+                  <div *ngFor="let homeAway of prop">
+                    <mat-accordion *ngFor="let player of homeAway" style="margin-bottom:.5rem;">
+                      <mat-expansion-panel style="margin-bottom:.5rem;">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            {{player[0].playerName}} : {{player[0].point}} -- {{player[1].description}}
+                            {{player[1].price > 0 ? '+': ''}}{{player[1].price}} | {{player[0].description}}
+                            {{player[0].price > 0 ? '+': ''}}{{player[0].price}}
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-template matExpansionPanelContent>
+                        <mat-card
+                          style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
+                          <mat-card-header>
+                            <mat-card-title>{{prop[0][0].marketKey}}: {{prop[0][0].point}} -- {{prop[0][1].description}}
+                              {{prop[0][1].price > 0 ? '+': ''}}{{prop[0][1].price}} | {{prop[0][0].description}}
+                              {{prop[0][0].price > 0 ? '+': ''}}{{prop[0][0].price}}</mat-card-title>
+                          </mat-card-header>
+                          <mat-card-content style="min-height:400px">
+                            <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" preserveContent
+                              (selectedIndexChange)="openChart($event)">
+                              <mat-tab style="color: white; display: flex; height: 100%;" label="Prop Stats">
+                                
+                                <ng-container *ngIf="getPlayerStats(player[0], prop[0][0].point) as playerStats">
+      
+      
+                                  <div class="full-body" style="width:100%; height:100%; display: flex;">
+                                    <div class="full-stats"
+                                      style="width: 96%; display: flex; margin-right:auto; margin-left:auto; margin-top: 1rem; margin-bottom: 1rem; background-color: #ebebeb; border-radius: 10px; justify-content: space-evenly;">
+                                      <div class="overall-stats"
+                                        style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
+                                        <div
+                                          style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                          <h3 style="margin:auto">Overall</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Record</h3>
+                                          <h3 style="margin:auto">{{playerStats.overOverall}}-{{playerStats.totalOverall - playerStats.overOverall}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Win</h3>
+                                          <h3 style="margin:auto">{{(playerStats.overOverall / playerStats.totalOverall) | percent:
+                                            '2.2-2'}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Avg</h3>
+                                          <h3 style="margin:auto">{{playerStats.averageOverall | number: '1.2-2'}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">High</h3>
+                                          <h3 style="margin:auto">{{playerStats.highOverall}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Low</h3>
+                                          <h3 style="margin:auto">{{playerStats.lowOverall}}</h3>
+                                        </div>
+                                      </div>
+                                      <div class="homeaway-stats"
+                                        style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
+                                        <div
+                                          style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                          <h3 style="margin:auto">{{playerStats.homeAway}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Record</h3>
+                                          <h3 style="margin:auto">{{playerStats.overHomeAway}} -
+                                            {{playerStats.totalHomeAway - playerStats.overHomeAway}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Win</h3>
+                                          <h3 style="margin:auto">{{(playerStats.overHomeAway / playerStats.totalHomeAway) |
+                                            percent: '2.2-2'}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Avg</h3>
+                                          <h3 style="margin:auto"> {{playerStats.averageHomeAway | number: '1.2-2'}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">High</h3>
+                                          <h3 style="margin:auto">{{playerStats.highHomeAway}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Low</h3>
+                                          <h3 style="margin:auto">{{playerStats.lowHomeAway}}</h3>
+                                        </div>
+                                      </div>
+                                      <div class="team-stats"
+                                        style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
+                                        <div
+                                          style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                          <h3 style="margin:auto">Team</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Record</h3>
+                                          <h3 style="margin:auto">{{playerStats.overTeam}} -
+                                            {{playerStats.totalTeam - playerStats.overTeam}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Win</h3>
+                                          <h3 style="margin:auto">{{playerStats.totalTeam == 0 ? 'NA' : ((playerStats.overTeam / playerStats.totalTeam) | percent: '2.2-2') }}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Avg</h3>
+                                          <h3 style="margin:auto">{{playerStats.averageTeam | number: '1.2-2'}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">High</h3>
+                                          <h3 style="margin:auto">{{playerStats.highTeam}}</h3>
+                                        </div>
+                                        <div [ngClass]="'ml-stat'">
+                                          <h3 style="margin:auto">Low</h3>
+                                          <h3 style="margin:auto">{{playerStats.lowTeam}}</h3>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Record</h3>
-                                    <h3 style="margin:auto">{{playerStats.overOverall}}-{{playerStats.totalOverall - playerStats.overOverall}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Win</h3>
-                                    <h3 style="margin:auto">{{(playerStats.overOverall / playerStats.totalOverall) | percent:
-                                      '2.2-2'}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Avg</h3>
-                                    <h3 style="margin:auto">{{playerStats.averageOverall | number: '1.2-2'}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">High</h3>
-                                    <h3 style="margin:auto">{{playerStats.highOverall}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Low</h3>
-                                    <h3 style="margin:auto">{{playerStats.lowOverall}}</h3>
-                                  </div>
-                                </div>
-                                <div class="homeaway-stats"
-                                  style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
-                                  <div
-                                    style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                    <h3 style="margin:auto">{{playerStats.homeAway}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Record</h3>
-                                    <h3 style="margin:auto">{{playerStats.overHomeAway}} -
-                                      {{playerStats.totalHomeAway - playerStats.overHomeAway}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Win</h3>
-                                    <h3 style="margin:auto">{{(playerStats.overHomeAway / playerStats.totalHomeAway) |
-                                      percent: '2.2-2'}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Avg</h3>
-                                    <h3 style="margin:auto"> {{playerStats.averageHomeAway | number: '1.2-2'}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">High</h3>
-                                    <h3 style="margin:auto">{{playerStats.highHomeAway}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Low</h3>
-                                    <h3 style="margin:auto">{{playerStats.lowHomeAway}}</h3>
-                                  </div>
-                                </div>
-                                <div class="team-stats"
-                                  style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
-                                  <div
-                                    style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                    <h3 style="margin:auto">Team</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Record</h3>
-                                    <h3 style="margin:auto">{{playerStats.overTeam}} -
-                                      {{playerStats.totalTeam - playerStats.overTeam}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Win</h3>
-                                    <h3 style="margin:auto">{{playerStats.totalTeam == 0 ? 'NA' : ((playerStats.overTeam / playerStats.totalTeam) | percent: '2.2-2') }}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Avg</h3>
-                                    <h3 style="margin:auto">{{playerStats.averageTeam | number: '1.2-2'}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">High</h3>
-                                    <h3 style="margin:auto">{{playerStats.highTeam}}</h3>
-                                  </div>
-                                  <div [ngClass]="'ml-stat'">
-                                    <h3 style="margin:auto">Low</h3>
-                                    <h3 style="margin:auto">{{playerStats.lowTeam}}</h3>
-                                  </div>
-                                </div>
-                              </div>
+                                </ng-container>
+                              </mat-tab>
+                              <mat-tab label="Prop Trend">
+                                <ng-template matTabContent>
+                                  <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{ chart
+                                    }}</canvas>
+                                </ng-template>
+      
+                              </mat-tab>
+                            </mat-tab-group>
+                            <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0;">Last 10 Games</h1>
+                            <div style="display:flex; justify-content:space-evenly; margin-left: 1rem;">
+                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'overall')}">
+                              </ng-container>
+                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'away')}">
+                              </ng-container>
+                              <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: returnGameLog('away','team')}">
+                              </ng-container>
                             </div>
-                          </ng-container>
-                        </mat-tab>
-                        <mat-tab label="Prop Trend">
-                          <ng-template matTabContent>
-                            <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{ chart
-                              }}</canvas>
-                          </ng-template>
-
-                        </mat-tab>
-                      </mat-tab-group>
-                      <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0;">Last 10 Games</h1>
-                      <div style="display:flex; justify-content:space-evenly; margin-left: 1rem;">
-                        <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
-                          [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'overall')}">
-                        </ng-container>
-                        <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
-                          [ngTemplateOutletContext]="{ $implicit: returnGameLog('away', 'away')}">
-                        </ng-container>
-                        <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
-                          [ngTemplateOutletContext]="{ $implicit: returnGameLog('away','team')}">
-                        </ng-container>
-                      </div>
-
-                    </mat-card-content>
-                  </mat-card>
-                </ng-template>
-                </mat-expansion-panel>
-              </mat-accordion>
+      
+                          </mat-card-content>
+                        </mat-card>
+                      </ng-template>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </div>
+                 
+                </div>
+              
             </ng-template>
             </mat-expansion-panel>
           </mat-accordion>
