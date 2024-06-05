@@ -3192,8 +3192,9 @@ export class PropScreenComponent implements OnInit {
           let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
           playerPropNew[1].push(playerSpecific)
         }
-        propNew.push(playerPropNew)
+        
       }
+      propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(propNew)
       console.log(this.playerPropDataFinalNew)
       
