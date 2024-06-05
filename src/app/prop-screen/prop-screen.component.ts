@@ -1397,7 +1397,7 @@ export class PropScreenComponent implements OnInit {
       
       //console.log(this.playerPropDataFinal)
     }
-    await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
+    
     
     
 
@@ -1470,7 +1470,7 @@ export class PropScreenComponent implements OnInit {
     this.team2SelectedSpreadPrice = spreadPrice
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
-
+    await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
     this.teamPropIsLoading = false
   }
 
