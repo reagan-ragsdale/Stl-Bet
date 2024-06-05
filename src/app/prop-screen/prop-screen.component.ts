@@ -3186,7 +3186,7 @@ export class PropScreenComponent implements OnInit {
       for(let player of specifcPlayers){
         //need to check get to see what team that player is on
         let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == player)
-        if(playerFiltered[playerFiltered.length-1].teamName == team2){
+        if(playerFiltered[playerFiltered.length-1].teamName == this.team2GameStats[0].teamName){
           let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
           playerAway.push(playerSpecific)
         }
