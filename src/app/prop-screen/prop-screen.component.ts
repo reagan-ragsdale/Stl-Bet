@@ -1349,6 +1349,7 @@ export class PropScreenComponent implements OnInit {
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
+    console.log(team1)
 
 
     if (this.selectedSport == "NBA") {
@@ -1387,21 +1388,19 @@ export class PropScreenComponent implements OnInit {
       
       for(let player of uniquePlayerNames){
         let filteredPlayer = this.playerPropData.filter(e => e.playerName == player && e.marketKey == prop)
-        //console.log(filteredPlayer)
         
         propSpecificArray = propSpecificArray.concat(filteredPlayer)
         
       }
       
       this.playerPropDataFinal.push(propSpecificArray)
-      
-      //console.log(this.playerPropDataFinal)
     }
     
     
     
 
-    //I need to get all of the player stat data for each player within the player props
+    //figure out a way to display the team props with ngfor just like the player props. 
+    //That means I need to refactor how the array gets populated
 
     name1 = team1[0].teamName;
     h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
@@ -3207,7 +3206,6 @@ export class PropScreenComponent implements OnInit {
       playerPropNew.push(playerAway, playerHome)
       //propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(playerPropNew)
-      console.log(this.playerPropDataFinalNew)
       
 
     }
