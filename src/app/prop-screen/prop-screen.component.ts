@@ -3178,6 +3178,8 @@ export class PropScreenComponent implements OnInit {
     for(let prop of this.playerPropDataFinal){
       let playerPropNew: any[] = []
       let propNew: any[] = []
+      let playerAway: any[] = []
+      let playerHome: any[] = []
       //gets the unique players in that prop
       let specifcPlayers = prop.map((e: { playerName: any; }) => e.playerName).filter((value: any, index: any, array: string | any[]) => array.indexOf(value) === index)
       //for each player in that prop
@@ -3186,14 +3188,15 @@ export class PropScreenComponent implements OnInit {
         let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == player)
         if(playerFiltered[playerFiltered.length-1].teamName == team2){
           let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
-          playerPropNew[0].push(playerSpecific)
+          playerAway.push(playerSpecific)
         }
         else{
           let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
-          playerPropNew[1].push(playerSpecific)
+          playerHome.push(playerSpecific)
         }
         
       }
+      playerPropNew.push(playerAway, playerHome)
       propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(propNew)
       console.log(this.playerPropDataFinalNew)
