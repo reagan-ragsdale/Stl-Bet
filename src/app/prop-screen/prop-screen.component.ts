@@ -3178,8 +3178,8 @@ export class PropScreenComponent implements OnInit {
     for(let prop of this.playerPropDataFinal){
       let playerPropNew: any[] = []
       let propNew: any[] = []
-      let playerAway: any[] = []
-      let playerHome: any[] = []
+      let playerAway: any = []
+      let playerHome: any = []
       //gets the unique players in that prop
       let specifcPlayers = prop.map((e: { playerName: any; }) => e.playerName).filter((value: any, index: any, array: string | any[]) => array.indexOf(value) === index)
       //for each player in that prop
@@ -3196,6 +3196,8 @@ export class PropScreenComponent implements OnInit {
         }
         
       }
+      playerAway.teamName = this.displayPropHtml2.name
+      playerHome.teamName = this.displayPropHtml1.name
       playerPropNew.push(playerAway, playerHome)
       //propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(playerPropNew)
