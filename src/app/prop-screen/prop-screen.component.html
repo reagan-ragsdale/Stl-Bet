@@ -1245,12 +1245,12 @@
       </mat-tab>
       <mat-tab style="width: 50%; color: white" label="Player Props">
         <ng-template matTabContent>
-
+<!-- (opened)="prop.isOpened = true" (closed)="prop.isOpened = false"   *ngStyle="prop.isOpened && {'background-color': '#ebebeb'}"-->
         <div
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
           <mat-accordion *ngFor="let prop of playerPropDataFinalNew" style="width:90%; margin-bottom:.5rem;">
-            <mat-expansion-panel (opened)="prop.isOpened = true" (closed)="prop.isOpened = false">
-              <mat-expansion-panel-header *ngStyle="prop.isOpened && {'background-color': '#ebebeb'}">
+            <mat-expansion-panel >
+              <mat-expansion-panel-header >
                 <mat-panel-title>
                   {{prop[0][0][0].marketKey}}:
                 </mat-panel-title>
