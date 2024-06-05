@@ -3185,10 +3185,12 @@ export class PropScreenComponent implements OnInit {
         //need to check get to see what team that player is on
         let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == player)
         if(playerFiltered[playerFiltered.length-1].teamName == team2){
-          playerPropNew[0].push(prop.filter((g: { playerName: any; }) => g.playerName == player))
+          let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
+          playerPropNew[0].push(playerSpecific)
         }
         else{
-          playerPropNew[1].push(prop.filter((g: { playerName: any; }) => g.playerName == player))
+          let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
+          playerPropNew[1].push(playerSpecific)
         }
         propNew.push(playerPropNew)
       }
