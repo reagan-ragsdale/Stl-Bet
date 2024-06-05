@@ -3197,8 +3197,8 @@ export class PropScreenComponent implements OnInit {
         
       }
       playerPropNew.push(playerAway, playerHome)
-      propNew.push(playerPropNew)
-      this.playerPropDataFinalNew.push(propNew)
+      //propNew.push(playerPropNew)
+      this.playerPropDataFinalNew.push(playerPropNew)
       console.log(this.playerPropDataFinalNew)
       
 
