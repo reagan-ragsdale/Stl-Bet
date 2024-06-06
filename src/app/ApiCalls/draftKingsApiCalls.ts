@@ -97,15 +97,9 @@ export class draftKingsApiController {
   }
 
   public static async getDatesAndGames(sport: string) {
-    var propString = ''
-    if(sport == "MLB"){
-      propString = "h2h,spreads,totals,h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings"
-    }
-    else(
-      propString = "h2h,spreads,totals"
-    )
+    
     const sportNew = this.convertSport(sport);
-    const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=" + propString + "&bookmakers=draftkings&oddsFormat=american";
+    const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=h2h,spreads,totals&bookmakers=draftkings&oddsFormat=american";
     const promise = await fetch(apiCall);
     const processedResponse = await promise.json();
     this.selectedSportsData = processedResponse;
@@ -303,6 +297,16 @@ export class draftKingsApiController {
   }
     
   */
+
+  static async getAlternateTeamProps(sport: string, bookId: string): Promise<DbGameBookData[]>{
+    const sportNew = this.convertSport(sport);
+    const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/events/" + bookId + "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings&bookmakers=draftkings&oddsFormat=american";
+    const promise = await fetch(apiCall);
+    const processedResponse = await promise.json();
+    this.selectedSportsData = processedResponse;
+    this.sportsBookData = await this.convertSportsDataToInterface()
+    return this.sportsBookData;
+  }
 
 
 

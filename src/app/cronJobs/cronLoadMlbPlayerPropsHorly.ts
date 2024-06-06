@@ -18,6 +18,10 @@ export const cronLoadMlbPlayer = async () => {
 
                 await PlayerPropController.addPlayerPropData(playerPropsFromDraftKings)
                 await PlayerPropController.updatePlayerSeqZero(playerPropsFromDraftKings)
+
+                const alternateTeamProps = await draftKingsApiController.getAlternateTeamProps('MLB', book)
+                await SportsBookController.addBookData(alternateTeamProps)
+                await SportsBookController.updateBookSeqZero(alternateTeamProps)
             }
         }
         catch (error: any) {

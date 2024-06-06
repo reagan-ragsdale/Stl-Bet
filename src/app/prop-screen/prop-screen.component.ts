@@ -1325,7 +1325,7 @@ export class PropScreenComponent implements OnInit {
       }
     });
   }
-
+  public teamPropFinnal: any = []
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
   async displayProp() {
@@ -1350,6 +1350,9 @@ export class PropScreenComponent implements OnInit {
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
     console.log(team1)
+
+    let distinctProps = tempProp.map(e => e.marketKey).filter((value,index,array) => array.indexOf(value) === index)
+   
 
 
     if (this.selectedSport == "NBA") {
