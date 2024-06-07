@@ -3189,7 +3189,7 @@ export class PropScreenComponent implements OnInit {
         for(let player of specifcPlayers){
           //need to check get to see what team that player is on
           try{
-            let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == player)
+            let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == this.playerNameSpanishConvert(player))
             if(playerFiltered[playerFiltered.length-1].teamName == this.team2GameStats[0].teamName){
               let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
               if(playerSpecific[0].description == "Over"){
@@ -3198,7 +3198,7 @@ export class PropScreenComponent implements OnInit {
               playerAway.push(playerSpecific)
             }
             else{
-              let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
+              let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == this.playerNameSpanishConvert(player))
               if(playerSpecific[0].description == "Over"){
                 playerSpecific = playerSpecific.reverse()
               }
@@ -3225,7 +3225,7 @@ export class PropScreenComponent implements OnInit {
 
     getPlayerStats(player: any){
       try{
-        var playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
+        var playerStats = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
     
         let teamName = ''
         let teamAgainstName = ''
@@ -5024,10 +5024,8 @@ export class PropScreenComponent implements OnInit {
     element.id = this.playerId
   }
 
-  playerNameSpanishConvert(list: DbMlbPlayerInfo[]): DbMlbPlayerInfo[] {
-    var newList = list;
-    for (let i = 0; i < newList.length; i++) {
-      var name = newList[i].playerName;
+  playerNameSpanishConvert(playerName: string): string {
+      var name = playerName;
       if (name.includes("á")) {
         name = name.replaceAll("á", "a")
       }
@@ -5046,9 +5044,9 @@ export class PropScreenComponent implements OnInit {
       if (name.includes("ú")) {
         name = name.replaceAll("ú", "u")
       }
-      newList[i].playerName = name
-    }
-    return newList
+      
+    
+    return name
   }
 
   async getMlbPlayerIds() {
