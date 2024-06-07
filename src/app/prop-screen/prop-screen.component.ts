@@ -3439,7 +3439,25 @@ export class PropScreenComponent implements OnInit {
     
       }catch(error: any){
         console.log(player.playerName)
-        return 0
+        return {
+          totalOverall: 0,
+          totalHomeAway: 0,
+          totalTeam: 0,
+          overOverall: 0,
+          overHomeAway: 0,
+          overTeam: 0,
+          averageOverall: 0,
+          averageHomeAway: 0,
+          averageTeam: 0,
+          homeAway: 0,
+          highOverall:0,
+          highHomeAway: 0,
+          highTeam: 0,
+          lowOverall: 0,
+          lowHomeAway: 0,
+          lowTeam: 0
+    
+        }
       }
     
       
