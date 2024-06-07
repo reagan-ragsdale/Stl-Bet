@@ -115,54 +115,60 @@ export class draftKingsApiController {
     //I want to check each individual prop to see what the seq is or if there is an entry at all 
     //becuase if in the big three there might nhot be a spread at first then if I look at the book id, 
     //there alreqady is something for that id and it will put the spread at a later one and not put in a zero seq
-    
-
-    for (let i = 0; i < this.selectedSportsData.length; i++) {
-      let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[i].id)
-      if (bookDb.length == 0) {
-        console.log("bookseq equals zero")
-        nextBookSeq = 0
-      }
-      else {
-        console.log("bookseq not zero")
-        console.log(bookDb[0].bookId)
-        nextBookSeq = bookDb[0].bookSeq + 1
-      }
-      for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
-        for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
-          let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData[i].bookmakers[j].markets[k].key)
-        if(selectedProp.length == 0){
+    try{
+      for (let i = 0; i < this.selectedSportsData.length; i++) {
+        let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[i].id)
+        if (bookDb.length == 0) {
+          console.log("bookseq equals zero")
           nextBookSeq = 0
         }
-        else{ 
-          let highestSeq = 0
-          selectedProp.forEach(e => {
-            if(highestSeq < e.bookSeq){
-              highestSeq = e.bookSeq
-            }
-          })
-          nextBookSeq = highestSeq + 1
+        else {
+          console.log("bookseq not zero")
+          console.log(bookDb[0].bookId)
+          nextBookSeq = bookDb[0].bookSeq + 1
         }
-          for (let m = 0; m < this.selectedSportsData[i].bookmakers[j].markets[k].outcomes.length; m++) {
-            tempData.push({
-              bookId: this.selectedSportsData[i].id,
-              sportKey: this.selectedSportsData[i].sport_key,
-              sportTitle: this.selectedSportsData[i].sport_title,
-              homeTeam: this.selectedSportsData[i].home_team,
-              awayTeam: this.selectedSportsData[i].away_team,
-              commenceTime: this.selectedSportsData[i].commence_time,
-              bookMaker: this.selectedSportsData[i].bookmakers[j].title,
-              marketKey: this.selectedSportsData[i].bookmakers[j].markets[k].key,
-              teamName: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name,
-              price: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
-              point: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
-              bookSeq: nextBookSeq
-            });
+        for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
+          for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
+            let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData[i].bookmakers[j].markets[k].key)
+          if(selectedProp.length == 0){
+            nextBookSeq = 0
+          }
+          else{ 
+            let highestSeq = 0
+            selectedProp.forEach(e => {
+              if(highestSeq < e.bookSeq){
+                highestSeq = e.bookSeq
+              }
+            })
+            nextBookSeq = highestSeq + 1
+          }
+            for (let m = 0; m < this.selectedSportsData[i].bookmakers[j].markets[k].outcomes.length; m++) {
+              tempData.push({
+                bookId: this.selectedSportsData[i].id,
+                sportKey: this.selectedSportsData[i].sport_key,
+                sportTitle: this.selectedSportsData[i].sport_title,
+                homeTeam: this.selectedSportsData[i].home_team,
+                awayTeam: this.selectedSportsData[i].away_team,
+                commenceTime: this.selectedSportsData[i].commence_time,
+                bookMaker: this.selectedSportsData[i].bookmakers[j].title,
+                marketKey: this.selectedSportsData[i].bookmakers[j].markets[k].key,
+                teamName: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name,
+                price: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
+                point: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
+                bookSeq: nextBookSeq
+              });
+            }
           }
         }
       }
+      return tempData;
+    }catch(error:any){
+      console.log("error message below")
+      console.log(error.message)
+      return tempData
     }
-    return tempData;
+
+    
   }
 
   static async convertSportsSinglePropDataToInterface(): Promise<DbGameBookData[]> {
