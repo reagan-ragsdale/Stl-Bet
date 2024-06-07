@@ -355,11 +355,10 @@
                 <mat-expansion-panel *ngFor="let prop of teamPropFinnal[0]">
                   <mat-expansion-panel-header>
                     <mat-panel-title>
-                      {{prop.length > 1 ? prop[0].marketKey : prop.marketKey}}:
+                      {{prop.length > 1 ? prop[0][0].marketKey : prop[0].marketKey}}:
                     </mat-panel-title>
                     <mat-panel-description>
-                      {{displayPropHtml2.h2h > 0
-                      ? "+" : " "}}{{displayPropHtml2.h2h}}
+                      {{prop.length > 1 ? prop[0][0].marketKey : prop[0].marketKey}}: {{prop.length > 1 ? '' : (prop[0].marketKey == 'h2h' ? (prop[0].price > 0 ? '+' : '') : (prop[0].point > 0 ? '+' : ''))}}{{prop.length > 1 ? prop[0][0].teamName : (prop[0].marketKey == 'h2h' ? prop[0].price : prop[0].point)}} {{prop.length > 1 ? prop[0][0].point : (prop[0].marketKey != 'h2h' ? prop[0].price : '')}}
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-card
