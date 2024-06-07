@@ -1337,11 +1337,25 @@ export class PropScreenComponent implements OnInit {
     let team1Final = []
     let team2Final = []
     for(let bet of listOfBets){
-      let filteredBet = team1Temp.filter(e => e.marketKey == bet)
+      var filteredBet = []
+      if(bet != 'totals'){
+        filteredBet = team1Temp.filter(e => e.marketKey == bet)
+      }
+      else if(bet == 'totals'){
+        filteredBet = team1Temp.filter(e => e[0].marketKey == bet)
+      }
+      
       if(filteredBet.length > 0){
         team1Final.push(filteredBet)
       }
-      filteredBet = team2Temp.filter(e => e.marketKey == bet)
+      
+      
+      if(bet != 'totals'){
+        filteredBet = team2Temp.filter(e => e.marketKey == bet)
+      }
+      else if(bet == 'totals'){
+        filteredBet = team2Temp.filter(e => e[0].marketKey == bet)
+      }
       if(filteredBet.length > 0){
         team2Final.push(filteredBet)
       }
