@@ -1420,10 +1420,9 @@ export class PropScreenComponent implements OnInit {
     }
     else {
       spreadPrice = 0
-    }console.log("here")
+    }
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
-    console.log("here2")
     this.selectedTotalAwayProp = totalPoint
     this.calculateNewTotalChance(totalPoint, 'away')
     this.homeAlternateSpreadstemp.forEach(e => {
@@ -1465,10 +1464,8 @@ export class PropScreenComponent implements OnInit {
     this.awayAlternateSpreads.push({point: spreadPoint, price: spreadPrice})
     this.awayAlternateSpreads = this.awayAlternateSpreads.sort(function (a, b) { return a.point - b.point })
     this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
-    console.log("here3")
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
-    console.log("here4")
     this.calculateNewTotalChance(totalPoint, 'home')
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertTimestampToTime(spreadPriceProp[0].commenceTime.toString()) });
     this.team2SelectedSpreadPoint = spreadPoint
@@ -3181,37 +3178,45 @@ export class PropScreenComponent implements OnInit {
 
     //for each prop type ex: batter hits
     for(let prop of this.playerPropDataFinal){
-      let playerPropNew: any[] = []
-      let propNew: any[] = []
-      let playerAway: any = []
-      let playerHome: any = []
-      //gets the unique players in that prop
-      let specifcPlayers = prop.map((e: { playerName: any; }) => e.playerName).filter((value: any, index: any, array: string | any[]) => array.indexOf(value) === index)
-      //for each player in that prop
-      for(let player of specifcPlayers){
-        //need to check get to see what team that player is on
-        let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == player)
-        if(playerFiltered[playerFiltered.length-1].teamName == this.team2GameStats[0].teamName){
-          let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
-          if(playerSpecific[0].description == "Over"){
-            playerSpecific = playerSpecific.reverse()
+      
+        let playerPropNew: any[] = []
+        let propNew: any[] = []
+        let playerAway: any = []
+        let playerHome: any = []
+        //gets the unique players in that prop
+        let specifcPlayers = prop.map((e: { playerName: any; }) => e.playerName).filter((value: any, index: any, array: string | any[]) => array.indexOf(value) === index)
+        //for each player in that prop
+        for(let player of specifcPlayers){
+          //need to check get to see what team that player is on
+          try{
+            let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == player)
+            if(playerFiltered[playerFiltered.length-1].teamName == this.team2GameStats[0].teamName){
+              let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
+              if(playerSpecific[0].description == "Over"){
+                playerSpecific = playerSpecific.reverse()
+              }
+              playerAway.push(playerSpecific)
+            }
+            else{
+              let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
+              if(playerSpecific[0].description == "Over"){
+                playerSpecific = playerSpecific.reverse()
+              }
+              playerHome.push(playerSpecific)
+            }
+          }catch(error:any){
+            console.log(player)
           }
-          playerAway.push(playerSpecific)
+          
+          
         }
-        else{
-          let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
-          if(playerSpecific[0].description == "Over"){
-            playerSpecific = playerSpecific.reverse()
-          }
-          playerHome.push(playerSpecific)
-        }
+        playerAway.teamName = this.displayPropHtml2.name
+        playerHome.teamName = this.displayPropHtml1.name
+        playerPropNew.push(playerAway, playerHome)
+        //propNew.push(playerPropNew)
+        this.playerPropDataFinalNew.push(playerPropNew)
         
-      }
-      playerAway.teamName = this.displayPropHtml2.name
-      playerHome.teamName = this.displayPropHtml1.name
-      playerPropNew.push(playerAway, playerHome)
-      //propNew.push(playerPropNew)
-      this.playerPropDataFinalNew.push(playerPropNew)
+      
       
 
     }
