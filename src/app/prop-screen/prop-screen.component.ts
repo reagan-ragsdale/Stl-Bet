@@ -1328,11 +1328,14 @@ export class PropScreenComponent implements OnInit {
 
     var team1 = tempProp.filter((e) => e.teamName == e.homeTeam)
     var team2 = tempProp.filter((e) => e.teamName == e.awayTeam)
+    let team1Temp = team1
+    let team2Temp = team2
     var overUnders = tempProp.filter(e => e.teamName == "Over" || e.teamName == "Under")
+    team1Temp.push(overUnders)
+    team2Temp.push(overUnders)
+    
 
-    let team1Final = [team1, overUnders]
-    let team2Final = [team2, overUnders]
-    this.teamPropFinnal.push(team2Final, team1Final)
+    this.teamPropFinnal.push(team2Temp, team1Temp)
     console.log(this.teamPropFinnal)
 
 
