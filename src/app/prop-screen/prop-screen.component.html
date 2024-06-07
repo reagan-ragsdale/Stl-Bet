@@ -8552,7 +8552,7 @@
     <div style="margin-top:0">
       <mat-accordion *ngIf="playerPropsClicked">
         <mat-expansion-panel *ngFor="let props of playerPropObjectArray" (opened)="props[0].isOpened = true"
-          (closed)="props[0].isOpened = false" (afterExpand)="computeStatsForAllPlayersInProp(props)">
+          (closed)="props[0].isOpened = false" >
           <mat-expansion-panel-header class="header-panel">
             <mat-panel-title>
               {{props[0].event | titlecase}}
