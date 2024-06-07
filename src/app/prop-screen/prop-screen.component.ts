@@ -1420,9 +1420,10 @@ export class PropScreenComponent implements OnInit {
     }
     else {
       spreadPrice = 0
-    }
+    }console.log("here")
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
+    console.log("here2")
     this.selectedTotalAwayProp = totalPoint
     this.calculateNewTotalChance(totalPoint, 'away')
     this.homeAlternateSpreadstemp.forEach(e => {
@@ -1464,8 +1465,10 @@ export class PropScreenComponent implements OnInit {
     this.awayAlternateSpreads.push({point: spreadPoint, price: spreadPrice})
     this.awayAlternateSpreads = this.awayAlternateSpreads.sort(function (a, b) { return a.point - b.point })
     this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
+    console.log("here3")
     totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
     totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
+    console.log("here4")
     this.calculateNewTotalChance(totalPoint, 'home')
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertTimestampToTime(spreadPriceProp[0].commenceTime.toString()) });
     this.team2SelectedSpreadPoint = spreadPoint
