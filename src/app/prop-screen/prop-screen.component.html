@@ -352,10 +352,10 @@
 
             <div style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly;">
               <mat-accordion style="width:90%">
-                <mat-expansion-panel>
+                <mat-expansion-panel *ngFor="let prop of teamPropFinnal">
                   <mat-expansion-panel-header>
                     <mat-panel-title>
-                      Moneyline:
+                      {{prop.length > 1 ? prop[0].marketKey : prop.marketKey}}:
                     </mat-panel-title>
                     <mat-panel-description>
                       {{displayPropHtml2.h2h > 0
