@@ -12,13 +12,12 @@ export const cronLoadMlbPlayer = async () => {
 
         try {
             let bookIdsForToday = await draftKingsApiController.getEventsBySport('baseball_mlb')
-
             for(let book of bookIdsForToday){
                 const playerPropsFromDraftKings = await draftKingsApiController.getPlayerProps('MLB', book);
 
                 await PlayerPropController.addPlayerPropData(playerPropsFromDraftKings)
                 await PlayerPropController.updatePlayerSeqZero(playerPropsFromDraftKings)
-
+                console.log("starting teams")
                 const alternateTeamProps = await draftKingsApiController.getAlternateTeamProps('MLB', book)
                 await SportsBookController.addBookData(alternateTeamProps)
                 await SportsBookController.updateBookSeqZero(alternateTeamProps)
