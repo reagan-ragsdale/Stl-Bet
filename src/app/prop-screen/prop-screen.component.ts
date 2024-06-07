@@ -1333,9 +1333,21 @@ export class PropScreenComponent implements OnInit {
     var overUnders = tempProp.filter(e => e.teamName == "Over" || e.teamName == "Under")
     team1Temp.push(overUnders)
     team2Temp.push(overUnders)
-    
+    const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings']
+    let team1Final = []
+    let team2Final = []
+    for(let bet of listOfBets){
+      let filteredBet = team1Temp.filter(e => e.marketKey == bet)
+      if(filteredBet.length > 0){
+        team1Final.push(filteredBet)
+      }
+      filteredBet = team2Temp.filter(e => e.marketKey == bet)
+      if(filteredBet.length > 0){
+        team2Final.push(filteredBet)
+      }
+    }
 
-    this.teamPropFinnal.push(team2Temp, team1Temp)
+    this.teamPropFinnal.push(team2Final, team1Final)
     console.log(this.teamPropFinnal)
 
 
