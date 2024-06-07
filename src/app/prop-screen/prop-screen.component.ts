@@ -3216,22 +3216,22 @@ export class PropScreenComponent implements OnInit {
   }
 
     getPlayerStats(player: any){
-    let playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
+      try{
+        var playerStats = this.playerStatsFinal.filter(e => e.playerName == player.playerName)
     
-    let teamName = ''
-    let teamAgainstName = ''
-    let homeAway = 'away'
-    if(playerStats[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
-      homeAway = 'home'
-      teamName = reusedFunctions.teamNamesToAbvr[player.homeTeam]
-      teamAgainstName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
-    }
-    else{
-      teamName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
-      teamAgainstName = reusedFunctions.teamNamesToAbvr[player.homeTeam] 
-    }
-    
-    let totalOverall = playerStats.length
+        let teamName = ''
+        let teamAgainstName = ''
+        let homeAway = 'away'
+        if(playerStats[0].teamName == reusedFunctions.teamNamesToAbvr[player.homeTeam]){
+          homeAway = 'home'
+          teamName = reusedFunctions.teamNamesToAbvr[player.homeTeam]
+          teamAgainstName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
+        }
+        else{
+          teamName = reusedFunctions.teamNamesToAbvr[player.awayTeam]
+          teamAgainstName = reusedFunctions.teamNamesToAbvr[player.homeTeam] 
+        }
+        let totalOverall = playerStats.length
     var totalHomeAway = 0
     var totalTeam = 0
     var overOverall = 0
@@ -3416,7 +3416,7 @@ export class PropScreenComponent implements OnInit {
         
     }
 
-    let returnObj = {
+    var returnObj = {
       totalOverall: totalOverall,
       totalHomeAway: totalHomeAway,
       totalTeam: totalTeam,
@@ -3435,8 +3435,15 @@ export class PropScreenComponent implements OnInit {
       lowTeam: lowTeam
 
     }
-
     return returnObj
+    
+      }catch(error: any){
+        console.log(player.playerName)
+        return 0
+      }
+    
+      
+    
     
 
     
