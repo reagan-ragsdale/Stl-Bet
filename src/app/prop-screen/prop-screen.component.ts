@@ -5049,7 +5049,7 @@ export class PropScreenComponent implements OnInit {
     return name
   }
 
-  async getMlbPlayerIds() {
+ /*  async getMlbPlayerIds() {
     const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBPlayerList';
     const options = {
       method: 'GET',
@@ -5069,7 +5069,7 @@ export class PropScreenComponent implements OnInit {
     }))
     this.playerInfoTemp = this.playerNameSpanishConvert(this.playerInfoTemp);
 
-  }
+  } */
 
   getMlbPlayerIdFromName(name: string): any {
     var player = this.mlbPlayerId.filter(x => x.Name == name);
