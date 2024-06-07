@@ -16,7 +16,6 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaAddPlayerInfoData(playerData: NbaPlayerInfoDb[]) {
     const taskRepo = remult.repo(NbaPlayerInfoDb)
-    console.log("Here in addPlayerInfoData")
 
     var dbToDelete = await taskRepo.find({ where: { playerId: { "!=": 0 } } })
     if (dbToDelete.length > 0) {
@@ -53,21 +52,18 @@ export class NbaController {
 
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerInfoFromName(name: string): Promise<NbaPlayerInfoDb[]> {
-    console.log("here in loadPlayerInfoFromName")
     const taskRepo = remult.repo(NbaPlayerInfoDb)
     return await taskRepo.find({ where: { playerName: name } })
   }
 
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerInfoFromTeamId(id: number): Promise<NbaPlayerInfoDb[]> {
-    console.log("here in nbaLoadPlayerInfoFromTeamId")
     const taskRepo = remult.repo(NbaPlayerInfoDb)
     return await taskRepo.find({ where: { teamId: id } })
   }
 
   @BackendMethod({ allowed: true })
   static async nbaLoadPlayerInfoFromPlayerNameAndTeamId(teamId: number, playerName: string): Promise<NbaPlayerInfoDb[]> {
-    console.log("here in nbaLoadPlayerInfoFromTeamId")
     const taskRepo = remult.repo(NbaPlayerInfoDb)
     return await taskRepo.find({ where: { teamId: teamId, playerName: playerName } })
   }
@@ -76,7 +72,6 @@ export class NbaController {
 
   @BackendMethod({ allowed: true })
   static async nbaLoadAllPlayerInfo(): Promise<NbaPlayerInfoDb[]> {
-    console.log("here in nbaLoadAllPlayerInfo")
     const taskRepo = remult.repo(NbaPlayerInfoDb)
     return await taskRepo.find({ where: { playerId: { "!=": 0 } } })
   }
@@ -89,7 +84,6 @@ export class NbaController {
   static async nbaAddPlayerGameStats2022(playerData: DbNbaGameStats[]) {
     const taskRepo2 = remult.repo(DbNbaGameStats)
 
-    console.log("Here in addPlayerGameStats2022")
 
     var dbToDelete = await taskRepo2.find({ where: { playerId: playerData[0].playerId, season: 2022 } })
     if (dbToDelete.length < 1) {
@@ -118,7 +112,6 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaAddPlayerGameStats2023(playerData: DbNbaGameStats[]) {
     const taskRepo2 = remult.repo(DbNbaGameStats)
-    console.log("Here in addPlayerGameStats2023")
 
     playerData.forEach((e) => {
       if (e.playerName.includes("ü")) {
@@ -197,7 +190,6 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaGetLogoFromTeamName(name: string): Promise<DbNbaTeamLogos[]> {
     const taskRepo = remult.repo(DbNbaTeamLogos)
-    console.log("Below is nbacontroller")
     return await taskRepo.find({ where: { teamName: name } })
   }
 
@@ -206,7 +198,6 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaSetPlayerStatAverage(stat: DbNbaPlayerStatAverages) {
     const taskRepo = remult.repo(DbNbaPlayerStatAverages)
-    console.log("here in nbaSetPlayerStatAverage")
 
     var playerStat = await taskRepo.find({where: {playerId: stat.playerId}})
     if(playerStat.length > 0){
@@ -254,7 +245,6 @@ export class NbaController {
   @BackendMethod({ allowed: true })
   static async nbaSetTeamStatAverage(stat: DbNbaTeamStatAverages) {
     const taskRepo = remult.repo(DbNbaTeamStatAverages)
-    console.log("here in nbaSetTeamStatAverage")
 
     var teamStat = await taskRepo.find({where: {teamId: stat.teamId}})
     if(teamStat.length > 0){

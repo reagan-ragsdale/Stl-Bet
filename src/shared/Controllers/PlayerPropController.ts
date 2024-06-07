@@ -57,7 +57,6 @@ export class PlayerPropController {
           //update the databasebookseqZero
           
           await taskRepo.save({...matchedProp, price: individualProp.price, point: individualProp.point})
-          console.log("after save")
         }
         
       }

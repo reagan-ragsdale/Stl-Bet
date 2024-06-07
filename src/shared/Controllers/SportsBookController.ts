@@ -12,12 +12,9 @@ export class SportsBookController {
   @BackendMethod({ allowed: true })
   static async addBookData(bookData: DbGameBookData[]) {
     try{
-      console.log("in add bookdata")
-      console.log(bookData.length)
       const taskRepo = remult.repo(DbGameBookData)
      //let bookDataTemp = bookData
       await taskRepo.insert(bookData)
-      console.log("added book data")
       /*
       let uniqueBookIds = bookDataTemp.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
       console.log(uniqueBookIds.length)
@@ -79,7 +76,6 @@ export class SportsBookController {
           //update the databasebookseqZero
           
           await taskRepo.save({...matchedProp, price: individualProp.price, point: individualProp.point})
-          console.log("after save")
         }
         
       }

@@ -46,7 +46,6 @@ export class NhlPlayerInfoController {
 
   @BackendMethod({ allowed: true })
   static async nhlLoadPlayerInfoFromName(name: string): Promise<DbNhlPlayerInfo[]> {
-    console.log("Here in nhl name")
     const taskRepo = remult.repo(DbNhlPlayerInfo)
     return await taskRepo.find({where: {playerName: name}})
   } 
