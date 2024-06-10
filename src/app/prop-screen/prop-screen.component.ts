@@ -3498,6 +3498,51 @@ export class PropScreenComponent implements OnInit {
 
   }
 
+  getTeamStats(team: DbGameBookData){
+    return{
+      recordOverall: 0,
+    }
+  }
+
+  public listOfTeamProps: {[key: string]: string} = {"h2h": "Moneyline", "spreads": "Spread", "totals": "Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings"}
+  public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings"]
+  displayPropTitle(prop: any): string {
+    let finalReturn = ''
+    if(prop[0].length > 1){
+      finalReturn = this.listOfTeamProps[prop[0][0].marketKey]
+    }
+    else{
+      finalReturn = this.listOfTeamProps[prop[0].marketKey]
+    }
+
+    return finalReturn
+  }
+
+  displayPropDescription(prop: any): string{
+    let finalReturn = ''
+
+    if(prop[0].length > 1){
+      let propOver = prop[0][0].price > 0 ? '+' : ''
+      let one = prop[0][0].teamName + " " + prop[0][0].point + " | " + propOver +  prop[0][0].price 
+      propOver = prop[0][1].price > 0 ? '+' : ''
+      let two = prop[0][1].teamName + " " + prop[0][1].point + " | " + propOver +  prop[0][1].price 
+      finalReturn = one + two
+      
+    }
+    else{
+      if(this.listOfMoneylines.includes(prop[0].marketKey)){
+        let overProp = prop[0].price > 0 ? '+' : ''
+        finalReturn = overProp + prop[0].price
+      }
+      else{
+        let overProp = prop[0].price > 0 ? '+' : ''
+        let overPoint = prop[0].point > 0 ? "+" : ''
+        finalReturn = overPoint + prop[0].point + " | " + overProp + prop[0].price
+      }
+    }
+    return finalReturn
+  }
+
 
   //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
   //because for a positive spread that means everything less than that number wins
