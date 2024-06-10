@@ -3526,7 +3526,7 @@ export class PropScreenComponent implements OnInit {
       let one = prop[0][0].teamName + " " + prop[0][0].point + " | " + propOver +  prop[0][0].price 
       propOver = prop[0][1].price > 0 ? '+' : ''
       let two = prop[0][1].teamName + " " + prop[0][1].point + " | " + propOver +  prop[0][1].price 
-      finalReturn = one + two
+      finalReturn = one + " " + two
       
     }
     else{
