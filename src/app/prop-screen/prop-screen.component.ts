@@ -3228,7 +3228,7 @@ export class PropScreenComponent implements OnInit {
             playerHome.push(playerSpecific)
           }
         } catch (error: any) {
-          console.log(error.mesage)
+          console.log(error.message)
           console.log(player)
         }
 
