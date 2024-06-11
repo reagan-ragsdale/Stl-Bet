@@ -190,7 +190,7 @@ export class PropScreenComponent implements OnInit {
   sports: any[] = [];
   playerProps: any;
 
-  team1GameStatsDtoNBA = {
+ /*  team1GameStatsDtoNBA = {
     gamesWon: 0,
     gamesLost: 0,
     gamesWonVsOpponent: 0,
@@ -1015,7 +1015,7 @@ export class PropScreenComponent implements OnInit {
     pointsAllowedEighthInningAway: 0,
     pointsAllowedNinthInningAway: 0
   }
-
+ */
   team1GameStatsDtoNHL = {}
   team2GameStatsDtoNHL = {}
 
@@ -1497,8 +1497,12 @@ export class PropScreenComponent implements OnInit {
     this.teamPropIsLoading = false
   }
 
+  public team1Wins: number = 0
+  public team1OverallGames: number = 0
+  public team2Wins: number = 0
+  public team2OverallGames:number = 0
   computeTeamsGameStats(team1: any[], team2: any[]) {
-    if (this.selectedSport == "NBA") {
+   /*  if (this.selectedSport == "NBA") {
       this.team1GameVsOpponentData = []
       this.team1GameStatsDtoNBA = {
         gamesWon: 0,
@@ -3176,7 +3180,12 @@ export class PropScreenComponent implements OnInit {
 
     else if (this.selectedSport == "NFL") {
 
-    }
+    } */
+    this.team1OverallGames = team1.length
+    this.team1Wins = team1.filter(e => e.result == 'W').length
+    this.team2OverallGames = team2.length
+    this.team2Wins = team2.filter(e => e.result == 'W').length
+
 
   }
 
@@ -3497,14 +3506,77 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  getTeamStats(team: DbGameBookData){
+  getTeamStats(team: DbGameBookData, teamName: string){
     console.log(team)
-    let propType = team.marketKey
-    
-    
-    return{
-      recordOverall: 0,
+    let propType = this.getPropType(team.marketKey)
+    let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
+    let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
+    let teamGameStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
+    let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
+
+    var finalTeam: any = {}
+
+    finalTeam.homeAway = homeAway
+    finalTeam.propType = propType
+    finalTeam.totalGames = teamGameStats.length
+    finalTeam.totalGamesHomeAway = teamGameStats.filter(e => e.homeOrAway == homeAway).length
+    finalTeam.totalGamesTeam = teamGameStats.filter(e => e.teamAgainstName == teamAgainstName).length
+    finalTeam.teamAgainstTotalGames = teamAgainstStats.length
+    finalTeam.teamAgainstGamesHomeAway = teamAgainstStats.filter(e => e.homeOrAway != homeAway).length
+    finalTeam.teamAgainstGamesTeam = teamAgainstStats.filter(e => e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+
+    if(propType == 'h2h'){
+      //need to get record, chance of winning and weighted chance
+  
+      finalTeam.totalWins = teamGameStats.filter(e => e.result == 'W').length
+      finalTeam.totalWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway == homeAway).length
+      finalTeam.totalWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == teamAgainstName).length
+
+      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W')
+      finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
+      finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+
+      
+
     }
+    else if(propType == 'spread'){
+      // need to get record, chance of winning, weighted chance, avg, high and low
+      finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
+      finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
+      finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
+
+      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
+      finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
+      finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+    }
+    else if(propType == 'total'){
+      // need to get record, chance of winning, weighted chance, avg, high and low
+      finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) > team.point).length
+      finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) > team.point) && e.homeOrAway == homeAway).length
+      finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) > team.point) && e.teamAgainstName == teamAgainstName).length
+
+      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) > team.point).length
+      finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) > team.point) && e.homeOrAway != homeAway).length
+      finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+      
+    }
+    
+    
+    return finalTeam
+  }
+
+  getPropType(prop: string): string {
+    let propType = ''
+    if (prop.includes('h2h')){
+      propType = 'h2h'
+    }
+    else if(prop.includes('spread')){
+      propType = 'spread'
+    }
+    else if(prop.includes('total')){
+      propType = 'total'
+    }
+    return propType
   }
 
   public listOfTeamProps: {[key: string]: string} = {"h2h": "Moneyline", "spreads": "Spread", "totals": "Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings"}
