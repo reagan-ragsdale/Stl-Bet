@@ -3569,7 +3569,7 @@ export class PropScreenComponent implements OnInit {
 
   changeOverUnder(team: any){
     team.totalWins = team.totalGames - team.totalWins
-    team.totalWinsHomeAway = team.totalGamesHomeAway - team.totalWineHomeAway
+    team.totalWinsHomeAway = team.totalGamesHomeAway - team.totalWinsHomeAway
     team.totalWinsTeam = team.totalGamesTeam - team.totalWinsTeam
     team.teamAgainstTotalWins = team.teamAgainstTotalGames - team.teamAgainstTotalWins
     team.teamAgainstWinsHomeAway = team.teamAgainstGamesHomeAway - team.teamAgainstWinsHomeAway
