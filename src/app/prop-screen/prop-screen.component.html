@@ -380,9 +380,9 @@
                                   style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                                   <h3 style="margin:auto">Overall</h3>
                                 </div>
-                                <div *ngIf="prop[0].point == 0" [ngClass]="'ml-stat'">
+                                <div  [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto">{{teamStats.totalWins}} - {{teamStats.totalGames}}</h3>
+                                  <h3 style="margin:auto">{{teamStats.totalWins}} - {{teamStats.totalGames - teamStats.totalWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -414,7 +414,7 @@
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto">{{teamStats.totalWinsHomeAway}} - {{teamStats.totalGamesHomeAway}}</h3>
+                                  <h3 style="margin:auto">{{teamStats.totalWinsHomeAway}} - {{teamStats.totalGamesHomeAway - teamStats.totalWinsHomeAway}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -446,7 +446,7 @@
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto">{{teamStats.totalWinsTeam}} - {{teamStats.totalGamesTeam}}</h3>
+                                  <h3 style="margin:auto">{{teamStats.totalWinsTeam}} - {{teamStats.totalGamesTeam - teamStats.totalWinsTeam}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -454,7 +454,7 @@
                                 </div>
                                 <div *ngIf="teamStats.propType != 'total'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Weighted</h3>
-                                  <h3 style="margin:auto">{{((teamStats.totalWinsTeam / teamStats.totalGamesTeam) * ((teamStats.teamAgainstGamesTeam- teamStats.teamAgainstWinsTeam) / teamStats.teamAgainstGamesTeam)) | percent: '2.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{((teamStats.totalWinsTeam / teamStats.totalGamesTeam) * ((teamStats.teamAgainstGamesTeam - teamStats.teamAgainstWinsTeam) / teamStats.teamAgainstGamesTeam)) | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="teamStats.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
