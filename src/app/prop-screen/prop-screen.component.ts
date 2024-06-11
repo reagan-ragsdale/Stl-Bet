@@ -1496,6 +1496,7 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
     this.teamPropIsLoading = false
+    console.log(this.team2GameStatsDtoMLB)
   }
 
   computeTeamsGameStats(team1: any[], team2: any[]) {
@@ -3227,6 +3228,7 @@ export class PropScreenComponent implements OnInit {
             playerHome.push(playerSpecific)
           }
         } catch (error: any) {
+          console.log(error.mesage)
           console.log(player)
         }
 
