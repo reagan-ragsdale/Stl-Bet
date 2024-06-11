@@ -1370,7 +1370,6 @@ export class PropScreenComponent implements OnInit {
     }
 
     this.teamPropFinnal.push(team2Final, team1Final)
-    console.log(this.teamPropFinnal)
 
 
     let distinctProps = tempProp.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
@@ -1383,7 +1382,6 @@ export class PropScreenComponent implements OnInit {
     }
     else if (this.selectedSport == "MLB") {
       this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
-      console.log(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
       this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
       this.team1GameStatsReversed = JSON.parse(JSON.stringify(this.team1GameStats))
       this.team1GameStatsReversed = this.team1GameStatsReversed.reverse()
@@ -1497,7 +1495,6 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
     this.teamPropIsLoading = false
-    //console.log(this.team2GameStatsDtoMLB)
   }
 
   computeTeamsGameStats(team1: any[], team2: any[]) {
@@ -3230,8 +3227,6 @@ export class PropScreenComponent implements OnInit {
           }
         } catch (error: any) {
           console.log(error.message)
-          console.log(player)
-          console.log(this.team2GameStats)
         }
 
 
@@ -3503,7 +3498,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   getTeamStats(team: DbGameBookData){
-    //console.log(team)
+    console.log(team)
     let propType = team.marketKey
     
     
