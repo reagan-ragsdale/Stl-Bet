@@ -393,7 +393,7 @@
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Weighted</h3>
                                   <h3 *ngIf="teamStats.propType != 'total'" style="margin:auto">{{((teamStats.totalWins / teamStats.totalGames) * ((teamStats.teamAgainstTotalGames - teamStats.teamAgainstTotalWins) / teamStats.teamAgainstTotalGames)) | percent: '2.2-2'}}</h3>
-                                  <h3 *ngIf="teamStats.propType == 'total'" style="margin:auto">{{((teamStats.totalWins / teamStats.totalGames) * (teamStats.teamAgainstWins / teamStats.teamAgainstTotalGames)) | percent: '2.2-2'}}</h3>
+                                  <h3 *ngIf="teamStats.propType == 'total'" style="margin:auto">{{((teamStats.totalWins / teamStats.totalGames) * (teamStats.teamAgainstTotalWins / teamStats.teamAgainstTotalGames)) | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="teamStats.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
