@@ -3574,6 +3574,7 @@ export class PropScreenComponent implements OnInit {
     team.teamAgainstTotalWins = team.teamAgainstTotalGames - team.teamAgainstTotalWins
     team.teamAgainstWinsHomeAway = team.teamAgainstGamesHomeAway - team.teamAgainstWinsHomeAway
     team.teamAgainstWinsTeam = team.teamAgainstGamesTeam - team.teamAgainstWinsTeam
+    console.log(team)
   }
 
   getPropType(prop: string): string {
