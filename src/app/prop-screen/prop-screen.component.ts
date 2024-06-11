@@ -3230,6 +3230,7 @@ export class PropScreenComponent implements OnInit {
         } catch (error: any) {
           console.log(error.message)
           console.log(player)
+          console.log(this.team2GameStats)
         }
 
 
