@@ -3567,6 +3567,10 @@ export class PropScreenComponent implements OnInit {
 
   }
 
+  changeOverUnder(team: any){
+    console.log(team)
+  }
+
   getPropType(prop: string): string {
     let propType = ''
     if (prop.includes('h2h')){
