@@ -3499,6 +3499,10 @@ export class PropScreenComponent implements OnInit {
   }
 
   getTeamStats(team: DbGameBookData){
+    console.log(team)
+    let propType = team.marketKey
+    
+    
     return{
       recordOverall: 0,
     }
