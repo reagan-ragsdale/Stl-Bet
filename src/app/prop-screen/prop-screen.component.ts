@@ -3568,7 +3568,12 @@ export class PropScreenComponent implements OnInit {
   }
 
   changeOverUnder(team: any){
-    console.log(team)
+    team.totalWins = team.totalGames - team.totalWins
+    team.totalWinsHomeAway = team.totalGamesHomeAway - team.totalWineHomeAway
+    team.totalWinsTeam = team.totalGamesTeam - team.totalWinsTeam
+    team.teamAgainstTotalWins = team.teamAgainstTotalGames - team.teamAgainstTotalWins
+    team.teamAgainstWinsHomeAway = team.teamAgainstGamesHomeAway - team.teamAgainstWinsHomeAway
+    team.teamAgainstWinsTeam = team.teamAgainstGamesTeam - team.teamAgainstWinsTeam
   }
 
   getPropType(prop: string): string {
