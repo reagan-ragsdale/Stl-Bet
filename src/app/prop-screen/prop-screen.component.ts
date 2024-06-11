@@ -3532,7 +3532,7 @@ export class PropScreenComponent implements OnInit {
       finalTeam.totalWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway == homeAway).length
       finalTeam.totalWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == teamAgainstName).length
 
-      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W')
+      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W').length
       finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
       finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
 
