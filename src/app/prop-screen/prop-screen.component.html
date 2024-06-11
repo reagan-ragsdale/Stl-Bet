@@ -371,7 +371,7 @@
                         (selectedIndexChange)="openChart($event)">
                         <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                           <ng-container *ngIf="getTeamStats(prop[0].length > 1 ? prop[0][0] : prop[0], team[0][0].teamName) as teamStats">
-                          <div class="full-body" style="width:100%; height:100%; display: flex;">
+                          <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
                             <mat-slide-toggle *ngIf="teamStats.propType == 'total'" [labelPosition]="'before'" [(ngModel)]="teamStats.overUnder" >Under</mat-slide-toggle>Over
                             <div class="full-stats"
                               style="width: 96%; display: flex; margin-right:auto; margin-left:auto; margin-top: 1rem; margin-bottom: 1rem; background-color: #ebebeb; border-radius: 10px; justify-content: space-evenly;">
@@ -383,12 +383,12 @@
                                 </div>
                                 <div  [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto" *ngIf="teamStats.propType != 'total' || teamStats.propType == 'total' && teamStats.overUnder == false">{{teamStats.totalWins}} - {{teamStats.totalGames - teamStats.totalWins}}</h3>
+                                  <h3 style="margin:auto" *ngIf="teamStats.propType != 'total' || (teamStats.propType == 'total' && teamStats.overUnder == false)">{{teamStats.totalWins}} - {{teamStats.totalGames - teamStats.totalWins}}</h3>
                                   <h3 style="margin:auto" *ngIf="teamStats.propType == 'total' && teamStats.overUnder == true">{{teamStats.totalGames - teamStats.totalWins}} - {{teamStats.totalWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
-                                  <h3 style="margin:auto" *ngIf="teamStats.propType != 'total' || teamStats.propType == 'total' && teamStats.overUnder == false">{{(teamStats.totalWins / teamStats.totalGames) | percent: '2.2-2'}}</h3>
+                                  <h3 style="margin:auto" *ngIf="teamStats.propType != 'total' || (teamStats.propType == 'total' && teamStats.overUnder == false)">{{(teamStats.totalWins / teamStats.totalGames) | percent: '2.2-2'}}</h3>
                                   <h3 style="margin:auto" *ngIf="teamStats.propType == 'total' && teamStats.overUnder == true">{{((teamStats.totalGames - teamStats.totalWins) / teamStats.totalGames) | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">

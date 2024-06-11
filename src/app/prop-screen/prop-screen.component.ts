@@ -3558,9 +3558,10 @@ export class PropScreenComponent implements OnInit {
       finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
       finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
       finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
-      finalTeam.overUnder = false
+      
     }
-    console.log(finalTeam)
+    finalTeam.overUnder = false
+    //console.log(finalTeam)
     
     return finalTeam
 
