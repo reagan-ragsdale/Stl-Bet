@@ -1309,7 +1309,7 @@ export class PropScreenComponent implements OnInit {
   public selectedTotalHomeProp: number = 0
   async displayProp() {
     this.teamPropIsLoading = true
-
+    this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
     var h2h = 0;
