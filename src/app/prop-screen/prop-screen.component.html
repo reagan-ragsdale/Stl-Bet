@@ -372,7 +372,7 @@
                         <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                           <ng-container *ngIf="getTeamStats(prop[0].length > 1 ? prop[0][0] : prop[0], team[0][0].teamName) as teamStats">
                           <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
-                            <mat-slide-toggle *ngIf="teamStats.propType == 'total'" [labelPosition]="'before'" [(ngModel)]="teamStats.overUnder" (ngModelChange)="changeOverUnder(teamStats)">Under</mat-slide-toggle>Over
+                            <mat-slide-toggle *ngIf="teamStats.propType == 'total'" [labelPosition]="'before'" [(ngModel)]="teamStats.overUnder" >{{teamStats.overUnder}}</mat-slide-toggle>Over
                             <div class="full-stats"
                               style="width: 96%; display: flex; margin-right:auto; margin-left:auto; margin-top: 1rem; margin-bottom: 1rem; background-color: #ebebeb; border-radius: 10px; justify-content: space-evenly;">
                               <div class="overall-stats"
