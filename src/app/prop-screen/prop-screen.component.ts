@@ -3509,6 +3509,8 @@ export class PropScreenComponent implements OnInit {
 
   getTeamStats(team: DbGameBookData, teamName: string){
     //console.log(team)
+
+    
     let propType = this.getPropType(team.marketKey)
     let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
     let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
@@ -3595,8 +3597,24 @@ export class PropScreenComponent implements OnInit {
     }
     finalTeam.overUnder = false
     //console.log(finalTeam)
-    
-    return finalTeam
+    var returnObj: any = {
+      homeAway: finalTeam.homeAway,
+      propType: finalTeam.propType,
+      totalGames: finalTeam.totalGames,
+      totalGamesHomeAway: finalTeam.totalGamesHomeAway,
+      totalGamesTeam: finalTeam.totalGamesTeam,
+      teamAgainstTotalGames: finalTeam.teamAgainstTotalGames,
+      teamAgainstGamesHomeAway: finalTeam.teamAgainstGamesHomeAway,
+      teamAgainstGamesTeam: finalTeam.teamAgainstGamesTeam,
+      totalWins: finalTeam.totalWins,
+      totalWinsHomeAway: finalTeam.totalWinsHomeAway,
+      totalWinsTeam: finalTeam.totalWinsTeam,
+      teamAgainstTotalWins: finalTeam.teamAgainstTotalWins,
+      teamAgainstWinsHomeAway: finalTeam.teamAgainstWinsHomeAway,
+      teamAgainstWinsTeam: finalTeam.teamAgainstWinsTeam,
+      overUnder: finalTeam.overUnder
+    }
+    return returnObj
 
   }
 
