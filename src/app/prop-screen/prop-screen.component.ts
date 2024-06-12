@@ -3539,6 +3539,7 @@ export class PropScreenComponent implements OnInit {
         finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
       }
       else if(team.marketKey == 'h2h_1st_3_innings'){
+        console.log("here")
         finalTeam.totalWins = teamGameStats.filter(e => ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning))).length
         finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway == homeAway).length
         finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == teamAgainstName).length
