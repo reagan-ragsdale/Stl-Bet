@@ -14,14 +14,7 @@ export class PlayerPropController {
 
   static async addPlayerPropData(playerData: DbPlayerPropData[]) {
     const taskRepo = remult.repo(DbPlayerPropData)
-    var d = new Date;
-
-    var dbToDelete = await taskRepo.find({ where: { sportTitle: playerData[0].sportTitle, bookId: playerData[0].bookId } })
-    if (dbToDelete.length > 0) {
-      for (const d of dbToDelete) {
-        await taskRepo.delete(d)
-      }
-    }
+    
 
     await taskRepo.insert(playerData)
 
