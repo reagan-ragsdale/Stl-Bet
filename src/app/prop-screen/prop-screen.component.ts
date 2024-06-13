@@ -3191,8 +3191,9 @@ export class PropScreenComponent implements OnInit {
   }
 
   setValuesToTeamPropFinal(){
+    console.log(this.teamPropFinnal)
     for(let team of this.teamPropFinnal){
-      console.log(team)
+      console.log(team[0][0].teamName)
       for(let prop of team){
         let returnProp = {}
         if(prop[0].length > 0){
@@ -3526,12 +3527,9 @@ export class PropScreenComponent implements OnInit {
   public returnObj: any = {}
 public count = 0
   getTeamStats(team: DbGameBookData, teamName: string){
-    if(this.count == 0){
 
       console.log(team)
       console.log(teamName)
-      this.count++
-    }
 
     
     let propType = this.getPropType(team.marketKey)
