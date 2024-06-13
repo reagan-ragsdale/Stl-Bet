@@ -1370,6 +1370,7 @@ export class PropScreenComponent implements OnInit {
     }
 
     this.teamPropFinnal.push(team2Final, team1Final)
+    this.setValuesToTeamPropFinal()
 
 
     let distinctProps = tempProp.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
@@ -3187,6 +3188,21 @@ export class PropScreenComponent implements OnInit {
     this.team2Wins = team2.filter(e => e.result == 'W').length
 
 
+  }
+
+  setValuesToTeamPropFinal(){
+    for(let team of this.teamPropFinnal){
+      for(let prop of team){
+        let returnProp = {}
+        if(prop[0].length > 0){
+          returnProp = this.getTeamStats(prop[0][0], team[0][0].teamName)
+        }
+        else{
+          returnProp = this.getTeamStats(prop[0], team[0][0].teamName)
+        }
+        prop.propVariables = returnProp
+      }
+    }
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: any, type: string) {
