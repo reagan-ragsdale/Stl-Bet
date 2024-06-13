@@ -1370,7 +1370,7 @@ export class PropScreenComponent implements OnInit {
     }
 
     this.teamPropFinnal.push(team2Final, team1Final)
-    this.setValuesToTeamPropFinal()
+    
 
 
     let distinctProps = tempProp.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
@@ -1400,6 +1400,7 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "NFL") {
 
     }
+    this.setValuesToTeamPropFinal()
 
     this.playerPropData = await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame)
     let uniquePlayerProps = this.playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
