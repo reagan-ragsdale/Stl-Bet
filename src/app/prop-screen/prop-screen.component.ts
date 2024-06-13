@@ -3524,9 +3524,14 @@ export class PropScreenComponent implements OnInit {
 
   }
   public returnObj: any = {}
-
+public count = 0
   getTeamStats(team: DbGameBookData, teamName: string){
-    //console.log(team)
+    if(this.count == 0){
+
+      console.log(team)
+      console.log(teamName)
+      this.count++
+    }
 
     
     let propType = this.getPropType(team.marketKey)
