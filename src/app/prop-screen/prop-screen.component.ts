@@ -3191,17 +3191,14 @@ export class PropScreenComponent implements OnInit {
   }
 
   setValuesToTeamPropFinal(){
-    console.log(this.teamPropFinnal)
     for(let team of this.teamPropFinnal){
-      console.log(team[0][0].teamName)
       for(let prop of team){
         let returnProp = {}
         if(prop[0].length > 1){
-          console.log(prop[0][0])
           returnProp = this.getTeamStats(prop[0][0], team[0][0].teamName)
         }
         else{
-          console.log(prop[0])
+          
           returnProp = this.getTeamStats(prop[0], team[0][0].teamName)
         }
         prop.propVariables = returnProp
@@ -3615,12 +3612,14 @@ try{
       finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
       
     }
+    finalTeam.overUnder = false
 }catch(error:any){
   console.log(team)
+  console.log(teamName)
 }
     
     
-    finalTeam.overUnder = false
+    
     //console.log(finalTeam)
     this.returnObj = {
       homeAway: finalTeam.homeAway,
