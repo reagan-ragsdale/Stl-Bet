@@ -3530,11 +3530,8 @@ export class PropScreenComponent implements OnInit {
 public count = 0
   getTeamStats(team: DbGameBookData, teamName: string){
 
-      console.log(team)
-      console.log(teamName)
-
-    
-    let propType = this.getPropType(team.marketKey)
+try{
+  let propType = this.getPropType(team.marketKey)
     let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
     let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
     let teamGameStats: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
@@ -3618,6 +3615,11 @@ public count = 0
       finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
       
     }
+}catch(error:any){
+  console.log(team)
+}
+    
+    
     finalTeam.overUnder = false
     //console.log(finalTeam)
     this.returnObj = {
