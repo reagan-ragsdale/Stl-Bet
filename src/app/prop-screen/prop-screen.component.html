@@ -386,12 +386,12 @@
                                 </div>
                                 <div  [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">{{prop.propVariables.totalWins}} - {{prop.propVariables.totalGames - prop.propVariables.totalWins}}</h3>
+                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || (prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false)">{{prop.propVariables.totalWins}} - {{prop.propVariables.totalGames - prop.propVariables.totalWins}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">{{prop.propVariables.totalGames - prop.propVariables.totalWins}} - {{prop.propVariables.totalWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
-                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">{{(prop.propVariables.totalWins / prop.propVariables.totalGames) | percent: '2.2-2'}}</h3>
+                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || (prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false)">{{(prop.propVariables.totalWins / prop.propVariables.totalGames) | percent: '2.2-2'}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">{{((prop.propVariables.totalGames - prop.propVariables.totalWins) / prop.propVariables.totalGames) | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
@@ -421,12 +421,12 @@
                                 </div>
                                 <div  [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">{{prop.propVariables.totalWinsHomeAway}} - {{prop.propVariables.totalGamesHomeAway - prop.propVariables.totalWinsHomeAway}}</h3>
+                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || (prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false)">{{prop.propVariables.totalWinsHomeAway}} - {{prop.propVariables.totalGamesHomeAway - prop.propVariables.totalWinsHomeAway}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">{{prop.propVariables.totalGamesHomeAway - prop.propVariables.totalWinsHomeAway}} - {{prop.propVariables.totalWinsHomeAway}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
-                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">{{(prop.propVariables.totalWinsHomeAway / prop.propVariables.totalGamesHomeAway) | percent: '2.2-2'}}</h3>
+                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || (prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false)">{{(prop.propVariables.totalWinsHomeAway / prop.propVariables.totalGamesHomeAway) | percent: '2.2-2'}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">{{((prop.propVariables.totalGamesHomeAway - prop.propVariables.totalWinsHomeAway) / prop.propVariables.totalGamesHomeAway) | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
@@ -456,12 +456,12 @@
                                 </div>
                                 <div  [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">{{prop.propVariables.totalWinsTeam}} - {{prop.propVariables.totalGamesTeam - prop.propVariables.totalWinsTeam}}</h3>
+                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || (prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false)">{{prop.propVariables.totalWinsTeam}} - {{prop.propVariables.totalGamesTeam - prop.propVariables.totalWinsTeam}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">{{prop.propVariables.totalGamesTeam - prop.propVariables.totalWinsTeam}} - {{prop.propVariables.totalWinsTeam}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
-                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">{{(prop.propVariables.totalWinsTeam / prop.propVariables.totalGamesTeam) | percent: '2.2-2'}}</h3>
+                                  <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total' || (prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false)">{{(prop.propVariables.totalWinsTeam / prop.propVariables.totalGamesTeam) | percent: '2.2-2'}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">{{((prop.propVariables.totalGamesTeam - prop.propVariables.totalWinsTeam) / prop.propVariables.totalGamesTeam) | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
