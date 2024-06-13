@@ -3529,11 +3529,15 @@ public count = 0
 
 try{
   let propType = this.getPropType(team.marketKey)
+  console.log("Here1")
     let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
+    console.log("Here2")
     let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
+    console.log("Here3")
     let teamGameStats: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
+    console.log("Here4")
     let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
-
+console.log("Here5")
     var finalTeam: any = {}
 
     finalTeam.homeAway = homeAway
@@ -3616,6 +3620,23 @@ try{
 }catch(error:any){
   console.log(team)
   console.log(teamName)
+  this.returnObj = {
+      homeAway: ' ',
+      propType: ' ',
+      totalGames: 0,
+      totalGamesHomeAway: 0,
+      totalGamesTeam: 0,
+      teamAgainstTotalGames: 0,
+      teamAgainstGamesHomeAway: 0,
+      teamAgainstGamesTeam: 0,
+      totalWins: 0,
+      totalWinsHomeAway: 0,
+      totalWinsTeam: 0,
+      teamAgainstTotalWins: 0,
+      teamAgainstWinsHomeAway: 0,
+      teamAgainstWinsTeam: 0,
+      overUnder: false
+    }
 }
     
     
