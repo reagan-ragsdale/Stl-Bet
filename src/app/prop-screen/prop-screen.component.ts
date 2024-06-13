@@ -3192,6 +3192,7 @@ export class PropScreenComponent implements OnInit {
 
   setValuesToTeamPropFinal(){
     for(let team of this.teamPropFinnal){
+      console.log(team)
       for(let prop of team){
         let returnProp = {}
         if(prop[0].length > 0){
