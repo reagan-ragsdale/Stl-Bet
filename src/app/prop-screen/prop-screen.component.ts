@@ -3506,6 +3506,7 @@ export class PropScreenComponent implements OnInit {
 
 
   }
+  public returnObj: any = {}
 
   getTeamStats(team: DbGameBookData, teamName: string){
     //console.log(team)
@@ -3597,7 +3598,7 @@ export class PropScreenComponent implements OnInit {
     }
     finalTeam.overUnder = false
     //console.log(finalTeam)
-    var returnObj: any = {
+    this.returnObj = {
       homeAway: finalTeam.homeAway,
       propType: finalTeam.propType,
       totalGames: finalTeam.totalGames,
@@ -3614,7 +3615,7 @@ export class PropScreenComponent implements OnInit {
       teamAgainstWinsTeam: finalTeam.teamAgainstWinsTeam,
       overUnder: finalTeam.overUnder
     }
-    return returnObj
+    return this.returnObj
 
   }
 
