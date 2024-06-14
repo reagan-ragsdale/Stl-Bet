@@ -3549,6 +3549,10 @@ try{
     finalTeam.teamAgainstGamesHomeAway = teamAgainstStats.filter(e => e.homeOrAway != homeAway).length
     finalTeam.teamAgainstGamesTeam = teamAgainstStats.filter(e => e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
     finalTeam.overUnder = false
+
+    finalTeam.averageOverall = 0
+    finalTeam.averageHomeAway = 0
+    finalTeam.averageTeam = 0;
     if(propType == 'h2h'){
       //need to get record, chance of winning and weighted chance
       
@@ -3598,6 +3602,27 @@ try{
       finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
       finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
       finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
+      let totalSpread = 0 
+      teamGameStats.forEach(e => {
+        totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
+      })
+      finalTeam.averageOverall = totalSpread / finalTeam.totalGames
+      totalSpread = 0 
+      teamGameStats.forEach(e => { 
+        if(e.homeOrAway == homeAway){
+          totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
+        }
+        
+      })
+      finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
+      totalSpread = 0 
+      teamGameStats.forEach(e => {
+        if(e.teamAgainstName == teamAgainstName){
+          totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
+        }
+        
+      })
+      finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
       finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
       finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
@@ -3608,6 +3633,28 @@ try{
       finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
       finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
       finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
+
+      let totalSpread = 0 
+      teamGameStats.forEach(e => {
+        totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
+      })
+      finalTeam.averageOverall = totalSpread / finalTeam.totalGames
+      totalSpread = 0 
+      teamGameStats.forEach(e => { 
+        if(e.homeOrAway == homeAway){
+          totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
+        }
+        
+      })
+      finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
+      totalSpread = 0 
+      teamGameStats.forEach(e => {
+        if(e.teamAgainstName == teamAgainstName){
+          totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
+        }
+        
+      })
+      finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
       finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
       finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
@@ -3629,7 +3676,10 @@ try{
       teamAgainstTotalWins: finalTeam.teamAgainstTotalWins,
       teamAgainstWinsHomeAway: finalTeam.teamAgainstWinsHomeAway,
       teamAgainstWinsTeam: finalTeam.teamAgainstWinsTeam,
-      overUnder: finalTeam.overUnder
+      overUnder: finalTeam.overUnder,
+      averageOverall: finalTeam.averageOverall,
+      averageHomeAway: finalTeam.averageHomeAway,
+      averageTeam: finalTeam.averageTeam
     }
     
 }catch(error:any){
@@ -3649,7 +3699,10 @@ try{
       teamAgainstTotalWins: 0,
       teamAgainstWinsHomeAway: 0,
       teamAgainstWinsTeam: 0,
-      overUnder: false
+      overUnder: false,
+      averageOverall: 0,
+      averageHomeAway: 0,
+      averageTeam: 0
     }
 }
     
