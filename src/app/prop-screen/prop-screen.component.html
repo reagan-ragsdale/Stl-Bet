@@ -387,7 +387,7 @@
                                 </div>
                                 <div  [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <!-- <h3 style="margin:auto" *ngIf="prop.propVaraibles.propType != 'total' || (prop.propVaraibles.propType == 'total' && prop.Variables.overUnder == false)">{{prop.propVariables.totalWins}} - {{prop.propVariables.totalGames - prop.propVariables.totalWins}}</h3> -->
+                                  <h3 style="margin:auto" *ngIf="prop.propVaraibles.propType != 'total' && (prop.propVaraibles.propType == 'total' && prop.Variables.overUnder == false)">{{prop.propVariables.totalWins}} - {{prop.propVariables.totalGames - prop.propVariables.totalWins}}</h3> 
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">{{prop.propVariables.totalGames - prop.propVariables.totalWins}} - {{prop.propVariables.totalWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
