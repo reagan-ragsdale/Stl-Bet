@@ -3203,7 +3203,7 @@ export class PropScreenComponent implements OnInit {
           
           returnProp = this.getTeamStats(prop[0], team[0][0].teamName)
         }
-        prop.propVariables = returnProp
+        prop[0].propVariables = returnProp
       }
     }
   }
