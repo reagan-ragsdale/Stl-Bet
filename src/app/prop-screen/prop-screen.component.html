@@ -402,15 +402,15 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.averageOverall}}</h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.averageOverall > 0 ? '+' : ''}}{{prop.propVariables.averageOverall | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
-                                  <h3 style="margin:auto"></h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.highOverall | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 style="margin:auto"></h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.lowOverall | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                               <div class="homeaway-stats"
@@ -437,15 +437,15 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.averageHomeAway}}</h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.averageHomeAway > 0 ? '+' : ''}}{{prop.propVariables.averageHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
-                                  <h3 style="margin:auto"></h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.highHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 style="margin:auto"></h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.lowHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                               <div class="team-stats"
@@ -472,15 +472,15 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.averageTeam}}</h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.averageTeam > 0 ? '+' : ''}}{{prop.propVariables.averageTeam | number: '1.2-2' }}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
-                                  <h3 style="margin:auto"></h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.lowTeam | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 style="margin:auto"></h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.lowTeam | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                             </div>

@@ -3553,6 +3553,12 @@ try{
     finalTeam.averageOverall = 0
     finalTeam.averageHomeAway = 0
     finalTeam.averageTeam = 0;
+    finalTeam.highOverall = 0;
+    finalTeam.highHomeAway = 0;
+    finalTeam.highTeam = 0;
+    finalTeam.lowOverall = 0;
+    finalTeam.lowHomeAway = 0;
+    finalTeam.lowTeam = 0;
     if(propType == 'h2h'){
       //need to get record, chance of winning and weighted chance
       
@@ -3602,6 +3608,11 @@ try{
       finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
       finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
       finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
+
+      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
+      finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
+      finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+    
       let totalSpread = 0 
       teamGameStats.forEach(e => {
         totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
@@ -3624,10 +3635,15 @@ try{
       })
       finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
-      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
-      finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
-      finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
-    }
+      finalTeam.highOverall = this.getSpreadHighLow(homeAway, 'overall', 'high')
+      finalTeam.highHomeAway = this.getSpreadHighLow(homeAway, homeAway, 'high')
+      finalTeam.highTeam = this.getSpreadHighLow(homeAway, 'team', 'high')
+
+      finalTeam.lowOverall = this.getSpreadHighLow(homeAway, 'overall', 'low')
+      finalTeam.lowHomeAway = this.getSpreadHighLow(homeAway, homeAway, 'low')
+      finalTeam.lowTeam = this.getSpreadHighLow(homeAway, 'team', 'low')
+
+      }
     else if(propType == 'total'){
       // need to get record, chance of winning, weighted chance, avg, high and low
       finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
@@ -3660,6 +3676,14 @@ try{
       finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
       finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
       
+
+      finalTeam.highOverall = this.getTotalHighLow(homeAway, 'overall', 'high')
+      finalTeam.highHomeAway = this.getTotalHighLow(homeAway, homeAway, 'high')
+      finalTeam.highTeam = this.getTotalHighLow(homeAway, 'team', 'high')
+
+      finalTeam.lowOverall = this.getTotalHighLow(homeAway, 'overall', 'low')
+      finalTeam.lowHomeAway = this.getTotalHighLow(homeAway, homeAway, 'low')
+      finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low')
     }
     this.returnObj = {
       homeAway: finalTeam.homeAway,
@@ -3679,7 +3703,14 @@ try{
       overUnder: finalTeam.overUnder,
       averageOverall: finalTeam.averageOverall,
       averageHomeAway: finalTeam.averageHomeAway,
-      averageTeam: finalTeam.averageTeam
+      averageTeam: finalTeam.averageTeam,
+      highOverall: finalTeam.highOverall,
+      highHomeAway: finalTeam.highHomeAway,
+      highTeam: finalTeam.highTeam,
+      lowOverall: finalTeam.lowOverall,
+      lowHomeAway: finalTeam.lowHomeAway,
+      lowTeam: finalTeam.lowTeam
+
     }
     
 }catch(error:any){
@@ -3702,7 +3733,14 @@ try{
       overUnder: false,
       averageOverall: 0,
       averageHomeAway: 0,
-      averageTeam: 0
+      averageTeam: 0,
+      highOverall: 0,
+      highHomeAway: 0,
+      highTeam: 0,
+      lowOverall: 0,
+      lowHomeAway: 0,
+      lowTeam: 0
+
     }
 }
     
@@ -3714,16 +3752,7 @@ try{
 
   }
 
-  changeOverUnder(team: any){
-    team.totalWins = team.totalGames - team.totalWins
-    team.totalWinsHomeAway = team.totalGamesHomeAway - team.totalWinsHomeAway
-    team.totalWinsTeam = team.totalGamesTeam - team.totalWinsTeam
-    team.teamAgainstTotalWins = team.teamAgainstTotalGames - team.teamAgainstTotalWins
-    team.teamAgainstWinsHomeAway = team.teamAgainstGamesHomeAway - team.teamAgainstWinsHomeAway
-    team.teamAgainstWinsTeam = team.teamAgainstGamesTeam - team.teamAgainstWinsTeam
-    console.log(team)
-  }
-
+  
   getPropType(prop: string): string {
     let propType = ''
     if (prop.includes('h2h')){
@@ -3844,7 +3873,7 @@ try{
 
   getSpreadHighLow(homeAway: string, type: string, highLow: string): number {
     let finalSpread = 0
-    if (homeAway == 'away') {
+    if (homeAway == 'Away') {
       if (highLow == 'high') {
         if (type == 'overall') {
           finalSpread = 1000
@@ -3854,7 +3883,7 @@ try{
             }
           })
         }
-        else if (type == 'away') {
+        else if (type == 'Away') {
           finalSpread = 1000
           this.team2GameStats.forEach(e => {
             if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.homeOrAway == 'Away') {
@@ -3880,7 +3909,7 @@ try{
             }
           })
         }
-        else if (type == 'away') {
+        else if (type == 'Away') {
           finalSpread = -1000
           this.team2GameStats.forEach(e => {
             if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread && e.homeOrAway == 'Away') {
@@ -3909,7 +3938,7 @@ try{
             }
           })
         }
-        else if (type == 'home') {
+        else if (type == 'Home') {
           finalSpread = 1000
           this.team1GameStats.forEach(e => {
             if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.homeOrAway == 'Home') {
@@ -3935,7 +3964,7 @@ try{
             }
           })
         }
-        else if (type == 'home') {
+        else if (type == 'Home') {
           finalSpread = -1000
           this.team1GameStats.forEach(e => {
             if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread && e.homeOrAway == 'Home') {
@@ -3968,7 +3997,7 @@ try{
 
   getTotalHighLow(homeAway: string, type: string, highLow: string): number {
     let finalTotal = 0
-    if (homeAway == 'away') {
+    if (homeAway == 'Away') {
       if (highLow == 'high') {
         if (type == 'overall') {
           finalTotal = 0
@@ -3978,7 +4007,7 @@ try{
             }
           })
         }
-        else if (type == 'away') {
+        else if (type == 'Away') {
           finalTotal = 0
           this.team2GameStats.forEach(e => {
             if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.homeOrAway == 'Away') {
@@ -4004,7 +4033,7 @@ try{
             }
           })
         }
-        else if (type == 'away') {
+        else if (type == 'Away') {
           finalTotal = 1000
           this.team2GameStats.forEach(e => {
             if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.homeOrAway == 'Away') {
@@ -4033,7 +4062,7 @@ try{
             }
           })
         }
-        else if (type == 'home') {
+        else if (type == 'Home') {
           finalTotal = 0
           this.team1GameStats.forEach(e => {
             if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.homeOrAway == 'Home') {
@@ -4059,7 +4088,7 @@ try{
             }
           })
         }
-        else if (type == 'home') {
+        else if (type == 'Home') {
           finalTotal = 1000
           this.team1GameStats.forEach(e => {
             if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.homeOrAway == 'Home') {
