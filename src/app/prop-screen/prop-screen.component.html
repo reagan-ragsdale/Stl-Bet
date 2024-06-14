@@ -372,8 +372,11 @@
                         <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                           <!-- <ng-template matTabContent> -->
                           <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
-                            
-                             <mat-slide-toggle *ngIf="prop.propVariables.propType == 'total'"  [(ngModel)]="prop.propVariables.overUnder">Under</mat-slide-toggle> 
+                            <div style="margin-left:1rem; display:flex;">
+                              <mat-slide-toggle *ngIf="prop.propVariables.propType == 'total'" [labelPosition]="'before'"  [(ngModel)]="prop.propVariables.overUnder">Under</mat-slide-toggle> 
+                              <h4>Over</h4>
+                            </div>
+                             
                             
                           
                             
