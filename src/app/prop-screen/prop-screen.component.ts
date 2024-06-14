@@ -3192,6 +3192,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   setValuesToTeamPropFinal(){
+    console.log(this.teamPropFinnal)
     for(let team of this.teamPropFinnal){
       for(let prop of team){
         let returnProp = {}
@@ -3530,15 +3531,13 @@ public count = 0
 
 try{
   let propType = this.getPropType(team.marketKey)
-  console.log("Here1")
     let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
-    console.log("Here2")
     let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
-    console.log("Here3")
+  
     let teamGameStats: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
-    console.log("Here4")
+   
     let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
-console.log("Here5")
+
     var finalTeam: any = {}
 
     finalTeam.homeAway = homeAway
@@ -3563,8 +3562,6 @@ console.log("Here5")
         finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
       }
       else if(team.marketKey == 'h2h_1st_3_innings'){
-        console.log("here")
-        console.log(teamGameStats)
         finalTeam.totalWins = teamGameStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)}).length
         finalTeam.totalWinsHomeAway = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway == homeAway}).length
         finalTeam.totalWinsTeam = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == teamAgainstName}).length
@@ -3636,8 +3633,7 @@ console.log("Here5")
     }
     
 }catch(error:any){
-  console.log(team)
-  console.log(teamName)
+  console.log(error.message)
   this.returnObj = {
       homeAway: ' ',
       propType: ' ',
