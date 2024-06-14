@@ -1400,7 +1400,6 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "NFL") {
 
     }
-    this.setValuesToTeamPropFinal()
 
     this.playerPropData = await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame)
     let uniquePlayerProps = this.playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
@@ -1495,6 +1494,7 @@ export class PropScreenComponent implements OnInit {
     this.team2SelectedSpreadPrice = spreadPrice
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
+    this.setValuesToTeamPropFinal()
     await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
     this.teamPropIsLoading = false
   }
@@ -3549,7 +3549,7 @@ console.log("Here5")
     finalTeam.teamAgainstTotalGames = teamAgainstStats.length
     finalTeam.teamAgainstGamesHomeAway = teamAgainstStats.filter(e => e.homeOrAway != homeAway).length
     finalTeam.teamAgainstGamesTeam = teamAgainstStats.filter(e => e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
-
+    finalTeam.overUnder = false
     if(propType == 'h2h'){
       //need to get record, chance of winning and weighted chance
       
@@ -3617,7 +3617,24 @@ console.log("Here5")
       finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
       
     }
-    finalTeam.overUnder = false
+    this.returnObj = {
+      homeAway: finalTeam.homeAway,
+      propType: finalTeam.propType,
+      totalGames: finalTeam.totalGames,
+      totalGamesHomeAway: finalTeam.totalGamesHomeAway,
+      totalGamesTeam: finalTeam.totalGamesTeam,
+      teamAgainstTotalGames: finalTeam.teamAgainstTotalGames,
+      teamAgainstGamesHomeAway: finalTeam.teamAgainstGamesHomeAway,
+      teamAgainstGamesTeam: finalTeam.teamAgainstGamesTeam,
+      totalWins: finalTeam.totalWins,
+      totalWinsHomeAway: finalTeam.totalWinsHomeAway,
+      totalWinsTeam: finalTeam.totalWinsTeam,
+      teamAgainstTotalWins: finalTeam.teamAgainstTotalWins,
+      teamAgainstWinsHomeAway: finalTeam.teamAgainstWinsHomeAway,
+      teamAgainstWinsTeam: finalTeam.teamAgainstWinsTeam,
+      overUnder: finalTeam.overUnder
+    }
+    
 }catch(error:any){
   console.log(team)
   console.log(teamName)
@@ -3643,23 +3660,7 @@ console.log("Here5")
     
     
     //console.log(finalTeam)
-    this.returnObj = {
-      homeAway: finalTeam.homeAway,
-      propType: finalTeam.propType,
-      totalGames: finalTeam.totalGames,
-      totalGamesHomeAway: finalTeam.totalGamesHomeAway,
-      totalGamesTeam: finalTeam.totalGamesTeam,
-      teamAgainstTotalGames: finalTeam.teamAgainstTotalGames,
-      teamAgainstGamesHomeAway: finalTeam.teamAgainstGamesHomeAway,
-      teamAgainstGamesTeam: finalTeam.teamAgainstGamesTeam,
-      totalWins: finalTeam.totalWins,
-      totalWinsHomeAway: finalTeam.totalWinsHomeAway,
-      totalWinsTeam: finalTeam.totalWinsTeam,
-      teamAgainstTotalWins: finalTeam.teamAgainstTotalWins,
-      teamAgainstWinsHomeAway: finalTeam.teamAgainstWinsHomeAway,
-      teamAgainstWinsTeam: finalTeam.teamAgainstWinsTeam,
-      overUnder: finalTeam.overUnder
-    }
+    
     return this.returnObj
 
   }
