@@ -406,11 +406,11 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.highOverall | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread' && prop.propVariables.highOverall > 0) ? '+' : ''}}{{prop.propVariables.highOverall | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.lowOverall | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread' && prop.propVariables.lowOverall > 0) ? '+' : ''}}{{prop.propVariables.lowOverall | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                               <div class="homeaway-stats"
@@ -441,11 +441,11 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.highHomeAway | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread' && prop.propVariables.highHomeAway > 0) ? '+' : ''}}{{prop.propVariables.highHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.lowHomeAway | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread' && prop.propVariables.lowHomeAway > 0) ? '+' : ''}}{{prop.propVariables.lowHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                               <div class="team-stats"
@@ -476,11 +476,11 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.lowTeam | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread' && prop.propVariables.highTeam > 0) ? '+' : ''}}{{prop.propVariables.highTeam | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.lowTeam | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread' && prop.propVariables.highTeam > 0) ? '+' : ''}}{{prop.propVariables.lowTeam | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                             </div>
