@@ -3535,8 +3535,9 @@ try{
     let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
   
     let teamGameStats: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
-   
+    let teamGameStatsReversed: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStatsReversed : this.team2GameStatsReversed
     let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
+    let teamAgainstStatsReversed = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStatsReversed : this.team1GameStatsReversed
 
     var finalTeam: any = {}
 
@@ -3559,6 +3560,43 @@ try{
     finalTeam.lowOverall = 0;
     finalTeam.lowHomeAway = 0;
     finalTeam.lowTeam = 0;
+
+    let tableTemp: any[] = []
+        teamGameStatsReversed.forEach(e => {tableTemp.push({
+          teamAgainstName: e.teamAgainstName,
+          gameDate: e.gameDate,
+          pointsScoredOverall: e.pointsScoredOverall,
+          pointsAllowedOverall: e.pointsAllowedOverall
+        })})
+        finalTeam.tableOverall = tableTemp
+        
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.homeOrAway == homeAway){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: e.pointsScoredOverall,
+              pointsAllowedOverall: e.pointsAllowedOverall
+            })
+          }
+          })
+        finalTeam.tableHomeAway = tableTemp
+
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.teamAgainstName == teamAgainstName){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: e.pointsScoredOverall,
+              pointsAllowedOverall: e.pointsAllowedOverall
+            })
+          }
+          })
+        finalTeam.tableTeam = tableTemp
+
+    
     if(propType == 'h2h'){
       //need to get record, chance of winning and weighted chance
       
@@ -3570,6 +3608,8 @@ try{
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W').length
         finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
         finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+
+        
       }
       else if(team.marketKey == 'h2h_1st_3_innings'){
         finalTeam.totalWins = teamGameStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)}).length
@@ -3579,6 +3619,42 @@ try{
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)}).length
         finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway != homeAway}).length
         finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
+      
+        let tableTemp: any[] = []
+        teamGameStatsReversed.forEach(e => {tableTemp.push({
+          teamAgainstName: e.teamAgainstName,
+          gameDate: e.gameDate,
+          pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
+          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)
+        })})
+        finalTeam.tableOverall = tableTemp
+        
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.homeOrAway == homeAway){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)
+            })
+          }
+          })
+        finalTeam.tableHomeAway = tableTemp
+
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.teamAgainstName == teamAgainstName){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)
+            })
+          }
+          })
+        finalTeam.tableTeam = tableTemp
+      
       }
       else if(team.marketKey == 'h2h_1st_5_innings'){
         finalTeam.totalWins = teamGameStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)}).length
@@ -3588,6 +3664,42 @@ try{
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)}).length
         finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.homeOrAway != homeAway}).length
         finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
+      
+        let tableTemp: any[] = []
+        teamGameStatsReversed.forEach(e => {tableTemp.push({
+          teamAgainstName: e.teamAgainstName,
+          gameDate: e.gameDate,
+          pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
+          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)
+        })})
+        finalTeam.tableOverall = tableTemp
+        
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.homeOrAway == homeAway){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)
+            })
+          }
+          })
+        finalTeam.tableHomeAway = tableTemp
+
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.teamAgainstName == teamAgainstName){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)
+            })
+          }
+          })
+        finalTeam.tableTeam = tableTemp
+      
       }
       else if(team.marketKey == 'h2h_1st_7_innings'){
         finalTeam.totalWins = teamGameStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)}).length
@@ -3597,6 +3709,42 @@ try{
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)}).length
         finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.homeOrAway != homeAway}).length
         finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
+      
+      
+        let tableTemp: any[] = []
+        teamGameStatsReversed.forEach(e => {tableTemp.push({
+          teamAgainstName: e.teamAgainstName,
+          gameDate: e.gameDate,
+          pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
+          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)
+        })})
+        finalTeam.tableOverall = tableTemp
+        
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.homeOrAway == homeAway){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)
+            })
+          }
+          })
+        finalTeam.tableHomeAway = tableTemp
+
+        tableTemp  = []
+        teamGameStatsReversed.forEach(e => {
+          if(e.teamAgainstName == teamAgainstName){
+            tableTemp.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)
+            })
+          }
+          })
+        finalTeam.tableTeam = tableTemp
       }
      
 
@@ -3709,7 +3857,10 @@ try{
       highTeam: finalTeam.highTeam,
       lowOverall: finalTeam.lowOverall,
       lowHomeAway: finalTeam.lowHomeAway,
-      lowTeam: finalTeam.lowTeam
+      lowTeam: finalTeam.lowTeam,
+      tableOverall: finalTeam.tableOverall,
+      tableHomeAway: finalTeam.tableHomeAway,
+      tableTeam: finalTeam.tableTeam
 
     }
     
@@ -3739,7 +3890,10 @@ try{
       highTeam: 0,
       lowOverall: 0,
       lowHomeAway: 0,
-      lowTeam: 0
+      lowTeam: 0,
+      tableOverall: [],
+      tableHomeAway: [],
+      tableTeam: []
 
     }
 }
