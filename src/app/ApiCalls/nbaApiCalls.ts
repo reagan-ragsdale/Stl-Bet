@@ -305,7 +305,7 @@ export class nbaApiController {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
+        'X-RapidAPI-Key': "" + process.env['nbaApiKey'],
         'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
       }
     };
@@ -321,7 +321,7 @@ export class nbaApiController {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
+        'X-RapidAPI-Key': "" + process.env['nbaApiKey'],
         'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
       }
     };
