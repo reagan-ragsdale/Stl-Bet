@@ -3858,9 +3858,9 @@ try{
       lowOverall: finalTeam.lowOverall,
       lowHomeAway: finalTeam.lowHomeAway,
       lowTeam: finalTeam.lowTeam,
-      tableOverall: finalTeam.tableOverall,
-      tableHomeAway: finalTeam.tableHomeAway,
-      tableTeam: finalTeam.tableTeam
+      tableOverall: finalTeam.tableOverall.slice(0, 10),
+      tableHomeAway: finalTeam.tableHomeAway.slice(0, 10),
+      tableTeam: finalTeam.tableTeam.slice(0, 10)
 
     }
     
