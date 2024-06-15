@@ -3223,7 +3223,7 @@ export class PropScreenComponent implements OnInit {
   async loadPlayerStatData(team1: number, team2: number) {
     this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
     //this.playerpropDataFinal is a 3 length array with 2 props for each player within it
-
+    console.log(this.playerPropDataFinal)
     //for each prop type ex: batter hits
     for (let prop of this.playerPropDataFinal) {
 
@@ -3240,6 +3240,7 @@ export class PropScreenComponent implements OnInit {
           let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == this.playerNameSpanishConvert(player))
           if (playerFiltered[playerFiltered.length - 1].teamName == this.team2GameStats[0].teamName) {
             let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
+            console.log(playerSpecific)
             if (playerSpecific[0].description == "Over") {
               playerSpecific = playerSpecific.reverse()
             }
