@@ -35,7 +35,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   playerStatsButtons: any[] = []
   teamStatsButtons: any[] = []
 
-  public gamesList: any[] = [{ name: "NBA", disabled: false, selected: true }, { name: "NHL", disabled: true, selected: false }, { name: "MLB", disabled: false, selected: false }, { name: "NFL", disabled: true, selected: false }];
+  public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: true, selected: false }, { name: "MLB", disabled: false, selected: true }, { name: "NFL", disabled: true, selected: false }];
   public selectedSport = ''
   public playerDataFinal: any[] = []
   public playerData: any[] = []
@@ -331,7 +331,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
 
   async ngOnInit() {
-    this.selectedSport = this.gamesList[0].name
+    this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
   }
 
