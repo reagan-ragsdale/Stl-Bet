@@ -69,6 +69,7 @@ import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
 
 export class PropScreenComponent implements OnInit {
 
+
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
     location.reload()
