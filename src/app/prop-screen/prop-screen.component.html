@@ -309,7 +309,7 @@
       </ng-container>
 
       <ng-container matColumnDef="Score">
-        <th mat-header-cell *matHeaderCellDef style="padding:0"> Prop </th>
+        <th mat-header-cell *matHeaderCellDef="let element" style="padding:0"> {{element.propName}} </th>
         <td mat-cell *matCellDef="let element" style="padding:0"> {{element.propNumber}}</td>
       </ng-container>
 

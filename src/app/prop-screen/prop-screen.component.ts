@@ -3373,7 +3373,8 @@ export class PropScreenComponent implements OnInit {
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               propNumber: e.batterHits,
-              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'H'
 
             })
             if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
@@ -3381,7 +3382,8 @@ export class PropScreenComponent implements OnInit {
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterHits,
-                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'H'
               })
             }
             if(e.teamAgainstName == teamAgainstName){
@@ -3389,7 +3391,8 @@ export class PropScreenComponent implements OnInit {
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterHits,
-                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+                propName: 'H'
               })
             }
             
@@ -3458,7 +3461,8 @@ export class PropScreenComponent implements OnInit {
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               propNumber: e.batterHomeRuns,
-              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'HR'
 
             })
             if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
@@ -3466,7 +3470,8 @@ export class PropScreenComponent implements OnInit {
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterHomeRuns,
-                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'HR'
               })
             }
             if(e.teamAgainstName == teamAgainstName){
@@ -3474,7 +3479,8 @@ export class PropScreenComponent implements OnInit {
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterHomeRuns,
-                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'HR'
               })
             }
             
@@ -3543,7 +3549,8 @@ export class PropScreenComponent implements OnInit {
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               propNumber: e.batterTotalBases,
-              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'TB'
 
             })
             if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
@@ -3551,7 +3558,8 @@ export class PropScreenComponent implements OnInit {
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterTotalBases,
-                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'TB'
               })
             }
             if(e.teamAgainstName == teamAgainstName){
@@ -3559,7 +3567,8 @@ export class PropScreenComponent implements OnInit {
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterTotalBases,
-                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
+              propName: 'TB'
               })
             }
             
