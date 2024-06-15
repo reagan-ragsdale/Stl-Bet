@@ -3192,7 +3192,6 @@ export class PropScreenComponent implements OnInit {
   }
 
   setValuesToTeamPropFinal(){
-    console.log(this.teamPropFinnal)
     for(let team of this.teamPropFinnal){
       for(let prop of team){
         let returnProp = {}
@@ -3244,6 +3243,7 @@ export class PropScreenComponent implements OnInit {
             if (playerSpecific[0].description == "Over") {
               playerSpecific = playerSpecific.reverse()
             }
+            playerSpecific[0].propVariables = this.getPlayerStats(playerSpecific[0])
             playerAway.push(playerSpecific)
           }
           else {
@@ -3251,6 +3251,7 @@ export class PropScreenComponent implements OnInit {
             if (playerSpecific[0].description == "Over") {
               playerSpecific = playerSpecific.reverse()
             }
+            playerSpecific[0].propVariables = this.getPlayerStats(playerSpecific[0])
             playerHome.push(playerSpecific)
           }
         } catch (error: any) {
@@ -3265,6 +3266,7 @@ export class PropScreenComponent implements OnInit {
       playerPropNew.push(playerAway, playerHome)
       //propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(playerPropNew)
+      console.log(this.playerPropDataFinalNew)
 
 
 
@@ -3272,10 +3274,12 @@ export class PropScreenComponent implements OnInit {
     }
 
   }
+  public playerStatObj: any = {}
 
   getPlayerStats(player: any) {
     try {
-      var playerStats = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
+      var playerStats: DBMlbPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
+      let playerStatsReversed: DBMlbPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
 
       let teamName = ''
       let teamAgainstName = ''
@@ -3304,6 +3308,9 @@ export class PropScreenComponent implements OnInit {
       var highTeam = 0
       var lowTeam = 100
       let overTeam = 0
+      let tableOverall: any[] = []
+      let tableHomeAway: any[] = []
+      let tableTeam: any[] = []
 
       if (this.selectedSport == 'MLB') {
         if (player.marketKey == 'batter_hits') {
@@ -3358,6 +3365,35 @@ export class PropScreenComponent implements OnInit {
             totalTeam++
           })
           averageTeam = totalSum / totalTeam
+
+          playerStatsReversed.forEach(e => {
+            tableOverall.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              propNumber: e.batterHits,
+              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+
+            })
+            if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
+              tableHomeAway.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                propNumber: e.batterHits,
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              })
+            }
+            if(e.teamAgainstName == teamAgainstName){
+              tableTeam.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                propNumber: e.batterHits,
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              })
+            }
+            
+            
+          })
+
 
         }
         else if (player.marketKey == 'batter_home_runs') {
@@ -3415,6 +3451,34 @@ export class PropScreenComponent implements OnInit {
           })
           averageTeam = totalSum / totalTeam
 
+          playerStatsReversed.forEach(e => {
+            tableOverall.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              propNumber: e.batterHomeRuns,
+              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+
+            })
+            if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
+              tableHomeAway.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                propNumber: e.batterHomeRuns,
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              })
+            }
+            if(e.teamAgainstName == teamAgainstName){
+              tableTeam.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                propNumber: e.batterHomeRuns,
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              })
+            }
+            
+            
+          })
+
 
         }
         else if (player.marketKey == 'batter_total_bases') {
@@ -3470,11 +3534,40 @@ export class PropScreenComponent implements OnInit {
             totalTeam++
           })
           averageTeam = totalSum / totalTeam
+
+
+          playerStatsReversed.forEach(e => {
+            tableOverall.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: e.gameDate,
+              propNumber: e.batterTotalBases,
+              homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+
+            })
+            if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
+              tableHomeAway.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                propNumber: e.batterTotalBases,
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              })
+            }
+            if(e.teamAgainstName == teamAgainstName){
+              tableTeam.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                propNumber: e.batterTotalBases,
+                homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName)
+              })
+            }
+            
+            
+          })
         }
 
       }
 
-      var returnObj = {
+      this.playerStatObj = {
         totalOverall: totalOverall,
         totalHomeAway: totalHomeAway,
         totalTeam: totalTeam,
@@ -3490,14 +3583,17 @@ export class PropScreenComponent implements OnInit {
         highTeam: highTeam,
         lowOverall: lowOverall,
         lowHomeAway: lowHomeAway,
-        lowTeam: lowTeam
+        lowTeam: lowTeam,
+        tableOverall: tableOverall.slice(0,10),
+        tableHomeAway: tableHomeAway.slice(0,10),
+        tableTeam: tableTeam.slice(0,10)
 
       }
-      return returnObj
+      
 
     } catch (error: any) {
       console.log(player.playerName)
-      return {
+      this.playerStatObj = {
         totalOverall: 0,
         totalHomeAway: 0,
         totalTeam: 0,
@@ -3513,10 +3609,13 @@ export class PropScreenComponent implements OnInit {
         highTeam: 0,
         lowOverall: 0,
         lowHomeAway: 0,
-        lowTeam: 0
-
+        lowTeam: 0,
+        tableOverall: [],
+        tableHomeAway: [],
+        tableTeam: []
       }
     }
+    return this.playerStatObj
 
 
 
