@@ -3240,7 +3240,7 @@ export class PropScreenComponent implements OnInit {
           let playerFiltered = this.playerStatsFinal.filter(f => f.playerName == this.playerNameSpanishConvert(player))
           if (playerFiltered[playerFiltered.length - 1].teamName == this.team2GameStats[0].teamName) {
             let playerSpecific = prop.filter((g: { playerName: any; }) => g.playerName == player)
-            console.log(playerSpecific)
+            //console.log(playerSpecific)
             if (playerSpecific[0].description == "Over") {
               playerSpecific = playerSpecific.reverse()
             }
@@ -3267,7 +3267,7 @@ export class PropScreenComponent implements OnInit {
       playerPropNew.push(playerAway, playerHome)
       //propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(playerPropNew)
-      console.log(this.playerPropDataFinalNew)
+      //console.log(this.playerPropDataFinalNew)
 
 
 
