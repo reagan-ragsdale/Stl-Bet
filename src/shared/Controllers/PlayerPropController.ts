@@ -27,7 +27,7 @@ export class PlayerPropController {
   @BackendMethod({ allowed: true })
   static async loadPlayerPropData(sport: string, bookId: string): Promise<DbPlayerPropData[]> {
     const taskRepo = remult.repo(DbPlayerPropData)
-    return await taskRepo.find({ where: { sportTitle: sport, bookId: bookId }, orderBy: { playerName: "asc" } })
+    return await taskRepo.find({ where: { sportTitle: sport, bookId: bookId, bookSeq: 0 }, orderBy: { playerName: "asc" } })
   }
 
   @BackendMethod({ allowed: true})
