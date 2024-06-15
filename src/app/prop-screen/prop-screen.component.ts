@@ -3223,7 +3223,7 @@ export class PropScreenComponent implements OnInit {
   async loadPlayerStatData(team1: number, team2: number) {
     this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
     //this.playerpropDataFinal is a 3 length array with 2 props for each player within it
-    console.log(this.playerPropDataFinal)
+    //console.log(this.playerPropDataFinal)
     //for each prop type ex: batter hits
     for (let prop of this.playerPropDataFinal) {
 
@@ -3267,7 +3267,7 @@ export class PropScreenComponent implements OnInit {
       playerPropNew.push(playerAway, playerHome)
       //propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(playerPropNew)
-      //console.log(this.playerPropDataFinalNew)
+      console.log(this.playerPropDataFinalNew)
 
 
 
