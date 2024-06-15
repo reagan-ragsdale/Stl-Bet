@@ -588,7 +588,7 @@
                               (selectedIndexChange)="openChart($event)">
                               <mat-tab style="color: white; display: flex; height: 100%;" label="Prop Stats">
       
-                                  <div class="full-body" style="width:100%; height:100%; display: flex;">
+                                  <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction: column;">
                                     <div style="margin-left:1rem; display:flex;">
                                       <mat-slide-toggle  [labelPosition]="'before'"  [(ngModel)]="player[0].propVariables.overUnder">Under</mat-slide-toggle> 
                                       <h4>Over</h4>
@@ -603,12 +603,13 @@
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Record</h3>
-                                          <h3 style="margin:auto">{{player[0].propVariables.overOverall}}-{{player[0].propVariables.totalOverall - player[0].propVariables.overOverall}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{player[0].propVariables.overOverall}}-{{player[0].propVariables.totalOverall - player[0].propVariables.overOverall}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{player[0].propVariables.totalOverall - player[0].propVariables.overOverall}}-{{player[0].propVariables.totalOverall}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Win</h3>
-                                          <h3 style="margin:auto">{{(player[0].propVariables.overOverall / player[0].propVariables.totalOverall) | percent:
-                                            '2.2-2'}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{(player[0].propVariables.overOverall / player[0].propVariables.totalOverall) | percent: '2.2-2'}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{((player[0].propVariables.totalOverall - player[0].propVariables.overOverall) / player[0].propVariables.totalOverall) | percent: '2.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Avg</h3>
@@ -631,13 +632,13 @@
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Record</h3>
-                                          <h3 style="margin:auto">{{player[0].propVariables.overHomeAway}} -
-                                            {{player[0].propVariables.totalHomeAway - player[0].propVariables.overHomeAway}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{player[0].propVariables.overHomeAway}} - {{player[0].propVariables.totalHomeAway - player[0].propVariables.overHomeAway}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{player[0].propVariables.totalHomeAway - player[0].propVariables.overHomeAway}} - {{player[0].propVariables.overHomeAway}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Win</h3>
-                                          <h3 style="margin:auto">{{(player[0].propVariables.overHomeAway / player[0].propVariables.totalHomeAway) |
-                                            percent: '2.2-2'}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{(player[0].propVariables.overHomeAway / player[0].propVariables.totalHomeAway) | percent: '2.2-2'}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{((player[0].propVariables.totalHomeAway - player[0].propVariables.overHomeAway) / player[0].propVariables.totalHomeAway) | percent: '2.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Avg</h3>
@@ -660,12 +661,13 @@
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Record</h3>
-                                          <h3 style="margin:auto">{{player[0].propVariables.overTeam}} -
-                                            {{player[0].propVariables.totalTeam - player[0].propVariables.overTeam}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{player[0].propVariables.overTeam}} - {{player[0].propVariables.totalTeam - player[0].propVariables.overTeam}}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{player[0].propVariables.totalTeam - player[0].propVariables.overTeam}} - {{player[0].propVariables.overTeam}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Win</h3>
-                                          <h3 style="margin:auto">{{player[0].propVariables.totalTeam == 0 ? 'NA' : ((player[0].propVariables.overTeam / player[0].propVariables.totalTeam) | percent: '2.2-2') }}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{player[0].propVariables.totalTeam == 0 ? 'NA' : ((player[0].propVariables.overTeam / player[0].propVariables.totalTeam) | percent: '2.2-2') }}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{player[0].propVariables.totalTeam == 0 ? 'NA' : (((player[0].propVariables.totalTeam - player[0].propVariables.overTeam) / player[0].propVariables.totalTeam) | percent: '2.2-2') }}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Avg</h3>
