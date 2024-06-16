@@ -219,4 +219,13 @@ export class reusedFunctions {
 
   }
 
+  static removeUnderScore(word: string): string {
+    let finalWord = word
+
+    finalWord = finalWord.replaceAll('_', ' ')
+    
+
+    return finalWord
+  }
+
 }

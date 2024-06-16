@@ -45,6 +45,7 @@ import { TransforFromFullTeamNameToAbvr } from './customPipes/transformFromFullT
 import { TransformFromTimestampToTimePipe } from './customPipes/transformFromTimestampToTime.pipe';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { RemoveUnderScore } from "./customPipes/removeUnderScore.pipe";
 
 @NgModule({
     declarations: [
@@ -102,7 +103,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
         TransforFromFullTeamNameToAbvr,
         TransformFromTimestampToTimePipe,
         MatMenuModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        RemoveUnderScore
     ]
 })
 export class AppModule { 

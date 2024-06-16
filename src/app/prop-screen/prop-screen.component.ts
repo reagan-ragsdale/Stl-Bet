@@ -43,7 +43,6 @@ import { Chart } from 'chart.js';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFullTeamNameToAbvr.pip';
 import { DbMlbTeamGameStats } from 'src/shared/dbTasks/DbMlbTeamGameStats';
-import { TransformFromTimestampToTimePipe } from '../customPipes/transformFromTimestampToTime.pipe';
 import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 import { filter } from 'compression';
 import { DBMlbPlayerGameStats } from '../../shared/dbTasks/DbMlbPlayerGameStats';

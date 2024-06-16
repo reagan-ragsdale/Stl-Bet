@@ -376,7 +376,7 @@
 
         <div *ngIf="selectedSport == 'MLB' && !teamPropIsLoading" class="prop-section">
           <div *ngFor="let team of teamPropFinnal" class="away-team">
-            <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{team[0][0].teamName}} game props
+            <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{team[0][0].teamName}} Game Props
             </h2>
 
             <div style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly;">
@@ -557,7 +557,7 @@
             <mat-expansion-panel >
               <mat-expansion-panel-header >
                 <mat-panel-title>
-                  {{prop[0][0][0].marketKey}}:
+                  {{prop[0][0][0].marketKey | removeUnderScore | titlecase}}:
                 </mat-panel-title>
                 <mat-panel-description>
                 </mat-panel-description>
