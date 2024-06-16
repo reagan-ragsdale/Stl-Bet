@@ -695,15 +695,22 @@
                             </mat-tab-group>
                             <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0;">Last 10 Games</h1>
                             <div style="display:flex; justify-content:space-evenly; margin-left: 1rem;">
-                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="playerGameLog"
+                              <div style="border-right: 1px solid black">
+                                <ng-container  [ngTemplateOutlet]="playerGameLog"
                                 [ngTemplateOutletContext]="{ $implicit: player[0].propVariables.tableOverall}">
-                              </ng-container>
-                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="playerGameLog"
+                                </ng-container>
+                              </div>
+                              <div style="border-right: 1px solid black">
+                                <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="playerGameLog"
                                 [ngTemplateOutletContext]="{ $implicit: player[0].propVariables.tableHomeAway}">
-                              </ng-container>
-                              <ng-container style="width:25%;" [ngTemplateOutlet]="playerGameLog"
+                                </ng-container>
+                              </div>
+                              <div>
+                                <ng-container style="width:25%;" [ngTemplateOutlet]="playerGameLog"
                                 [ngTemplateOutletContext]="{ $implicit: player[0].propVariables.tableTeam}">
-                              </ng-container>
+                               </ng-container>
+                              </div>
+                              
                             </div>
       
                           </mat-card-content>
