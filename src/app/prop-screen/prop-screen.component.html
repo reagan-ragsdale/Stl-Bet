@@ -732,11 +732,11 @@
                                 </div>
                               </div>
                               
-                              <div style="display: flex; flex-direction: column;">
+                              <div style="display: flex; flex-direction: column;width:33%">
                                 <div style="text-align: center;">
                                   {{player[0].propVariables.homeAway}}
                                 </div>
-                                <div style="border-right: 1px solid black;width:33%">
+                                <div style="border-right: 1px solid black;">
                                   <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="playerGameLog"
                                   [ngTemplateOutletContext]="{ $implicit: player[0].propVariables.tableHomeAway}">
                                   </ng-container>
