@@ -284,9 +284,9 @@
           {{element.pointsAllowedOverall}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true" style="width:auto; height:auto; font-size: medium"></tr>
+      <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true" style="width:auto; height:auto; font-size: medium; text-align:center"></tr>
       <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
-        style="height:auto; "></tr>
+        style="height:auto; text-align:center"></tr>
     </table>
   </div>
 
@@ -314,9 +314,9 @@
         <td mat-cell *matCellDef="let element" style="padding:0"> {{element.propNumber}}</td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true" style="width:auto; height:auto; font-size: medium"></tr>
+      <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true" style="width:auto; height:auto; font-size: medium; text-align:center"></tr>
       <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
-        style="height:auto;"></tr>
+        style="height:auto; text-align:center"></tr>
     </table>
   </div>
 
@@ -589,8 +589,8 @@
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <ng-template matExpansionPanelContent>
-                <div style="display: flex; justify-content:space-evenly;">
-                  <div *ngFor="let homeAway of prop" style="width:45%">
+                <div class="player-dropdown" >
+                  <div *ngFor="let homeAway of prop" class="team-dropdown" >
                     <h2 style="margin-left: auto; margin-right: auto;">{{homeAway.teamName}}</h2>
                     <mat-accordion *ngFor="let player of homeAway" style="margin-bottom:.5rem;">
                       <mat-expansion-panel style="margin-bottom:.5rem;">
@@ -601,7 +601,7 @@
                             {{player[0].price > 0 ? '+': ''}}{{player[0].price}}
                           </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <ng-template matExpansionPanelContent>
+                        <ng-template matExpansionPanelContent style="padding-right: .5rem; padding-left: .5rem;">
                         <mat-card
                           style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                           <mat-card-header>
