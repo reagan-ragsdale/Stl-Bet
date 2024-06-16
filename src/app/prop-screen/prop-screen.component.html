@@ -528,21 +528,39 @@
                       </mat-tab-group>
                       <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0;">Last 10 Games</h1>
                       <div style="display:flex; justify-content:space-between; gap: 5px; margin-top: 1rem;">
-                        <div style="width:33%; border-right: 1px solid black;">
-                          <ng-container  [ngTemplateOutlet]="gameLog"
-                          [ngTemplateOutletContext]="{ $implicit: prop.propVariables.tableOverall}">
-                        </ng-container>
+                        <div style="display:flex; flex-direction: column; width:33%">
+                          <div style="text-align: center;">
+                            Overall
+                          </div>
+                          <div style=" border-right: 1px solid black;">
+                            <ng-container  [ngTemplateOutlet]="gameLog"
+                            [ngTemplateOutletContext]="{ $implicit: prop.propVariables.tableOverall}">
+                          </ng-container>
+                          </div>
                         </div>
-                        <div style="width:33%; border-right: 1px solid black;">
-                          <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
-                          [ngTemplateOutletContext]="{ $implicit: prop.propVariables.tableHomeAway}">
-                        </ng-container>
+                        
+                        <div style="display: flex; flex-direction: column; width:33%">
+                          <div style="text-align: center;">
+                            {{prop.propVariables.homeAway}}
+                          </div>
+                          <div style="border-right: 1px solid black;">
+                            <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
+                            [ngTemplateOutletContext]="{ $implicit: prop.propVariables.tableHomeAway}">
+                          </ng-container>
+                          </div>
                         </div>
-                        <div style="width:33%; border-right: 1px solid black;">
-                          <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
-                          [ngTemplateOutletContext]="{ $implicit: prop.propVariables.tableTeam}">
-                        </ng-container>
+                       
+                        <div style="display:flex; flex-direction: column;width:33%; ">
+                          <div style="text-align: center;">
+                            Team
+                          </div>
+                          <div >
+                            <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
+                            [ngTemplateOutletContext]="{ $implicit: prop.propVariables.tableTeam}">
+                          </ng-container>
+                          </div>
                         </div>
+                        
                         
                       </div>
 
