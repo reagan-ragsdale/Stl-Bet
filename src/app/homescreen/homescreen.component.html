@@ -1,7 +1,5 @@
 <div class="outer-div" >
 
-  <!-- 
-  <div style=" height:93%; width: auto; display: flex; background-color: #31304d; "> -->
     <div class="game-list" >
         <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
         [ngClass]="game.selected ? 'button-selected': 'button-unselected'" (click)="onSportsListClick(game.name)"
@@ -185,8 +183,7 @@
       </div>
       
       <div class="upcoming-games">
-        <div class="games-body"
-          >
+        <div class="games-body">
           <h1 style="height: 10%; width: 100%; text-align: center; margin-top:1rem; color:#F0ECE5"> Upcoming Games</h1>
           <div
             style="width: 100%; display:flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem;">
@@ -203,39 +200,15 @@
                     </mat-card-title>
                 </mat-card-header>
                 <mat-card-content style="display:flex; flex-direction: column;">
-                  <div class="team-row">
+                  <div *ngIf="game[0]" class="team-row">
                     <a class="teamLink" (click)="onTeamClick(game[0][0].awayTeam)"><p class="team-name">{{game[0][0].awayTeam | transforFromFullTeamNameToAbvr}}</p></a><p *ngIf="game[0][0]" class="team-prop">{{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}</p><div *ngIf="game[0][1]" class="spread-prop" ><p>{{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}</p><p>{{game[0][1].price > 0 ? '+' : ''}}{{game[0][1].price}}</p></div><div *ngIf="game[2][0]" class="spread-prop" ><p>{{game[2][0].point}}</p><p>{{game[2][0].price > 0 ? '+' : ''}}{{game[2][0].price}}</p></div><span *ngIf="game[2][0]" style="margin-bottom: auto;
                     margin-top: auto;">O</span>
                   </div>
-                  <div class="team-row">
+                  <div *ngIf="game[1]" class="team-row">
                     <a class="teamLink" (click)="onTeamClick(game[0][0].homeTeam)"><p class="team-name">{{game[0][0].homeTeam | transforFromFullTeamNameToAbvr}}</p></a><p *ngIf="game[1][0]" class="team-prop">{{game[1][0].price > 0 ? '+' : ''}}{{game[1][0].price}}</p><div *ngIf="game[1][1]" class="spread-prop" ><p>{{game[1][1].point > 0 ? '+' : ''}}{{game[1][1].point}}</p><p>{{game[1][1].price > 0 ? '+' : ''}}{{game[1][1].price}}</p></div><div *ngIf="game[3][0]" class="spread-prop" ><p>{{game[3][0].point}}</p><p>{{game[3][0].price > 0 ? '+' : ''}}{{game[3][0].price}}</p></div><span *ngIf="game[3][0]" style="margin-bottom: auto;
                     margin-top: auto;">U</span>
                   </div>
-                  <!-- <div style="display: flex; width: inherit; margin-top: .5rem;">
-                    <div class="games-prop-block" style="width: 50%; align-self: center;">
-                      <a class="teamLink" (click)="onTeamClick(game[0][0].homeTeam)">{{game[0][0].homeTeam}}</a>
-                    </div>
-                    <div *ngIf="game[1][0]" class="games-prop-block" style="width: 16%; align-self: center; text-align: end; ">
-                      {{game[1][0].price > 0 ? '+' : ''}}{{game[1][0].price}}
-                    </div>
-                    <div *ngIf="game[1][1]" class="games-prop-block" style="display:flex; flex-direction: column; width: 16%; ">
-                      <div style=" width: auto; text-align: center;">
-                        {{game[1][1].point > 0 ? '+': ''}}{{game[1][1].point}}
-                      </div>
-                      <div style="width: auto; text-align: center;">
-                        {{game[1][1].price > 0 ? '+' : ''}}{{game[1][1].price}}
-                      </div>
-                    </div>
-                    <div *ngIf="game[3][0]" class="games-prop-block" style="display:flex; flex-direction: column; width: 16%">
-                      <div style=" width: auto; text-align: center;">
-                        {{game[3][0].point}}
-                      </div>
-                      <div style="width: auto; text-align: center;">
-                        {{game[3][0].price> 0 ? '+' : ''}}{{game[3][0].price}}
-                      </div>
-                    </div>
-                    U
-                  </div> -->
+                  
 
                   
 
@@ -249,6 +222,5 @@
 
 
     </div>
- <!--  </div> -->
 
 </div>
