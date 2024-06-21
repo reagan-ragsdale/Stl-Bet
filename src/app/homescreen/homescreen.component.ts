@@ -318,6 +318,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       }
       teamArrayFinal[0][0].commenceTime = reusedFunctions.convertCommenceTime(teamArrayFinal[0][0].commenceTime.toString() )
       this.gameDataAllFinal.push(teamArrayFinal)
+      console.log(this.gameDataAllFinal)
     })
     //let test = this.gameDataAllFinal[0][0][0].commenceTime.toString()
     //console.log(typeof(test))
