@@ -3454,7 +3454,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterHomeRuns
             totalTeam++
           })
-          averageTeam = totalSum / totalTeam
+          if(totalTeam == 0){
+            averageTeam = 0
+          }
+          else{
+            averageTeam = totalSum / totalTeam
+          }
+          
 
           playerStatsReversed.forEach(e => {
             tableOverall.push({
