@@ -67,7 +67,7 @@ export class MlbController {
   @BackendMethod({ allowed: true})
   static async mlbGetPlayerGameStatsByTeamAndSeason(team: number[], season: number): Promise<DBMlbPlayerGameStats[]>{
     const taskRepo = remult.repo(DBMlbPlayerGameStats)
-    return await taskRepo.find({where: {teamId : [team[0], team[1]], season: season}})
+    return await taskRepo.find({where: {teamId : [team[0], team[1]], season: season}, orderBy: {playerName: 'asc', gameDate: 'desc'}})
   }
   @BackendMethod({ allowed: true})
   static async mlbSetBlankPlayerGameStats(player: DbPlayerInfo, season: number){
