@@ -4007,7 +4007,7 @@ try{
       tableOverall: [],
       tableHomeAway: [],
       tableTeam: [],
-      teamAgainstName; ''
+      teamAgainstName: ''
 
     }
 }
