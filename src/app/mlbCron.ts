@@ -144,8 +144,8 @@ export const mlbCronFile = async () => {
             if (playerDbStats.length > 0) {
                 let playerAverage = MlbService.setPlayerGameAverages(playerDbStats)
                 await MlbController.mlbSetPlayerStatAverage(playerAverage)
-                //let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
-                //await MlbController.mlbSetPlayerStatTotals(playerTotals)
+                let playerTotals = MlbService.setPlayerGameTotals(playerDbStats)
+                await MlbController.mlbSetPlayerStatTotals(playerTotals)
             }
 
         }
