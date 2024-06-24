@@ -4249,6 +4249,9 @@ try{
       }
 
     }
+    if(finalSpread == 1000 || finalSpread == -1000){    
+      finalSpread = 0
+    }
     return finalSpread
   }
 
@@ -4372,6 +4375,10 @@ try{
         }
       }
 
+    }
+
+    if(finalTotal == 1000){    
+      finalTotal = 0
     }
     return finalTotal
   }
