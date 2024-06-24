@@ -693,8 +693,8 @@
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Win</h3>
-                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{player[0].propVariables.totalTeam == 0 ? 'NA' : ((player[0].propVariables.overTeam / player[0].propVariables.totalTeam) | percent: '2.2-2') }}</h3>
-                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{player[0].propVariables.totalTeam == 0 ? 'NA' : (((player[0].propVariables.totalTeam - player[0].propVariables.overTeam) / player[0].propVariables.totalTeam) | percent: '2.2-2') }}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == false">{{player[0].propVariables.totalTeam == 0 ? 0 : ((player[0].propVariables.overTeam / player[0].propVariables.totalTeam) | percent: '2.2-2') }}</h3>
+                                          <h3 style="margin:auto" *ngIf="player[0].propVariables.overUnder == true">{{player[0].propVariables.totalTeam == 0 ? 0 : (((player[0].propVariables.totalTeam - player[0].propVariables.overTeam) / player[0].propVariables.totalTeam) | percent: '2.2-2') }}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Avg</h3>
