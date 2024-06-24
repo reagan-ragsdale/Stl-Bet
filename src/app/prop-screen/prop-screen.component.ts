@@ -3972,7 +3972,8 @@ try{
       lowTeam: finalTeam.lowTeam,
       tableOverall: finalTeam.tableOverall.slice(0, 10),
       tableHomeAway: finalTeam.tableHomeAway.slice(0, 10),
-      tableTeam: finalTeam.tableTeam.slice(0, 10)
+      tableTeam: finalTeam.tableTeam.slice(0, 10),
+      teamAgainstName: teamAgainstName
 
     }
     
@@ -4005,7 +4006,8 @@ try{
       lowTeam: 0,
       tableOverall: [],
       tableHomeAway: [],
-      tableTeam: []
+      tableTeam: [],
+      teamAgainstName; ''
 
     }
 }
