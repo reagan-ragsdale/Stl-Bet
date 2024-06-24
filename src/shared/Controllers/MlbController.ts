@@ -190,5 +190,14 @@ export class MlbController {
     
   }
 
+  @BackendMethod({ allowed: true })
+  static async mlbGetPlayerStatTotals() {
+    const taskRepo = remult.repo(DBMlbPlayerGameStatTotals)
+
+    return await taskRepo.find({where: {totalGames:{ ">":10 }}, orderBy: {batterHomeRuns: 'desc'}})
+   
+    
+  }
+
   
 }

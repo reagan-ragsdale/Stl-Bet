@@ -205,7 +205,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
-      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5("homeRuns", 2024)
+      this.playerData = await MlbController.mlbGetPlayerStatTotals()
       this.playerStatsButtons = [
         {
           selected: true,
