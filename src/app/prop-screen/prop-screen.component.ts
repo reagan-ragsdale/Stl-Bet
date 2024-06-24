@@ -4012,7 +4012,7 @@ try{
     
     
     
-    //console.log(finalTeam)
+    console.log(this.returnObj)
     
     return this.returnObj
 
