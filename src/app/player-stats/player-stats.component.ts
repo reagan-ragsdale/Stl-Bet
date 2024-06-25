@@ -276,9 +276,9 @@ export class PlayerStatsComponent {
     console.log(sport)
     this.router.navigate([`/playerStats/${sport}/${id}`])
     
-    /* await this.getPlayerInfo()
+     //await this.getPlayerInfo()
     this.reDrawLineGraph()
-    this.formArray = []  */
+    this.formArray = []  
   }
 
   calculateMeanAndStd() {
