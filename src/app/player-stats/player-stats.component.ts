@@ -24,6 +24,7 @@ import { MatTable } from '@angular/material/table';
 import { DbNbaTeamLogos } from '../../shared/dbTasks/DbNbaTeamLogos';
 import { MlbController } from '../../shared/Controllers/MlbController';
 import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
+import { DbPlayerInfo } from 'src/shared/dbTasks/DbPlayerInfo';
 
 
 interface statSearch {
@@ -170,13 +171,17 @@ export class PlayerStatsComponent {
   public isNull: boolean = false
   public allSportPlayerList: any[] = []
 
+  public playerInfo: DbPlayerInfo[] = []
+  public selectedPlayer: any = []
+  public playerStats: any[] = []
+
 
   async loadData() {
     if (this.route.snapshot.paramMap.get('sport') != null && this.route.snapshot.paramMap.get('id') != null) {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
       this.playerId = this.route.snapshot.paramMap.get('id')
       await this.getPlayerInfo()
-      await this.getAllPlayerInfo()
+      //await this.getAllPlayerInfo()
       this.calculateMeanAndStd()
       this.createChart()
       this.createChart2()
@@ -202,6 +207,10 @@ export class PlayerStatsComponent {
   }
 
   async getPlayerInfo() {
+
+    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
+    this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)[0]
+
     this.playerSeasons = []
     if (this.selectedSport == "NBA") {
       this.selectedStatSearchNumber = 0
@@ -236,17 +245,21 @@ export class PlayerStatsComponent {
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
     }
     if(this.selectedSport == "MLB"){
-
+      
+      this.playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(this.selectedPlayer.playerId, 2024)
+      
     }
   }
 
-  async getAllPlayerInfo() {
+  /* async getAllPlayerInfo() {
     if (this.selectedSport == "NBA") {
       this.nbaAllPlayerInfo = await NbaController.nbaLoadAllPlayerInfo()
       this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName == this.searchName)
 
     }
-  }
+    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
+    
+  } */
 
   async loadNewPlayer(id: number, sport: string) {
     this.router.navigate([`/playerStats/${sport}/${id}`])
