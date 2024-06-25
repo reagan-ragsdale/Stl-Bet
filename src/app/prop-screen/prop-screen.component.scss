@@ -227,6 +227,11 @@ mat-mdc-tab-body-content{
   margin-right: auto; 
   margin-top: 5px;
 }
+.link-hover :hover{
+  color: #fb8501;
+  cursor: pointer;
+
+}
 
 .player-dropdown{
   display: flex; 

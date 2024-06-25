@@ -4391,6 +4391,12 @@ try{
     return finalTotal
   }
 
+  playerClicked(player: string){
+    let playerInfo = this.playerStatsFinal.filter(e => e.playerName == player)[0]
+    let playerId = playerInfo.playerId
+    this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
+  }
+
   calculateNewTotalChance(prop: number, homeAway: string) {
     if (this.selectedSport == 'MLB') {
       if (homeAway == 'away') {

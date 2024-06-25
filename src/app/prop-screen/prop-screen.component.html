@@ -597,7 +597,8 @@
                       <mat-expansion-panel style="margin-bottom:.5rem;">
                         <mat-expansion-panel-header>
                           <mat-panel-title>
-                            {{player[0].playerName}} : {{player[0].point}} -- {{player[1].description}}
+                            <a (click)="playerClicked(player[0].playerName)" class="link-hover" style="text-decoration: none;" >{{player[0].playerName}}</a>
+                              : {{player[0].point}} -- {{player[1].description}}
                             {{player[1].price > 0 ? '+': ''}}{{player[1].price}} | {{player[0].description}}
                             {{player[0].price > 0 ? '+': ''}}{{player[0].price}}
                           </mat-panel-title>
