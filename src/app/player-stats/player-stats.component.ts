@@ -178,7 +178,9 @@ export class PlayerStatsComponent {
 
   initialize(){
     this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
-      this.router.navigate([`/props/${this.selectedSport}/${this.playerId}`])
+      this.selectedSport = this.route.snapshot.paramMap.get('sport')
+      this.playerId = this.route.snapshot.paramMap.get('id')
+      this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
     })
   }
 
