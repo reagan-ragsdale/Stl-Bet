@@ -365,7 +365,7 @@ export class PlayerStatsComponent {
 
   createChart() {
     var arrayOFpoints: any[] = []
-
+    var dataPoint: string[] = []
     if(this.selectedSport == 'NBA'){
       var points: number[] = []
       var assists: number[] = []
@@ -374,7 +374,7 @@ export class PlayerStatsComponent {
       var threes: number[] = []
       var doubleDoubles: number[] = []
   
-      var dataPoint: string[] = []
+      
       var index = 1
       this.seasonArray.forEach((e) => {
         points.push(e.points)
@@ -395,7 +395,6 @@ export class PlayerStatsComponent {
       var totalBases: number[] = []
       var rbis: number[] = []
   
-      var dataPoint: string[] = []
       var index = 1
       this.playerStats.forEach((e) => {
         hits.push(e.batterHits)
