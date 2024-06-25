@@ -274,10 +274,12 @@ export class PlayerStatsComponent {
   loadNewPlayer(id: number, sport: string) {
     console.log(id)
     console.log(sport)
+    this.destroyGraphs()
+
     this.router.navigate([`/playerStats/${sport}/${id}`])
     
      //await this.getPlayerInfo()
-    this.reDrawLineGraph()
+    //this.reDrawLineGraph()
     this.formArray = []  
   }
 
@@ -846,6 +848,12 @@ export class PlayerStatsComponent {
     this.createChart()
     this.createChart2()
     this.createNormalDistChart()
+  }
+
+  destroyGraphs(){
+    this.chart.destroy()
+    this.chart2.destroy()
+    this.chart3.destroy()
   }
 
 
