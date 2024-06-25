@@ -263,10 +263,10 @@ export class PlayerStatsComponent {
 
   async loadNewPlayer(id: number, sport: string) {
     this.router.navigate([`/playerStats/${sport}/${id}`])
-    /* this.playerId = id
+    
     await this.getPlayerInfo()
     this.reDrawLineGraph()
-    this.formArray = [] */
+    this.formArray = [] 
   }
 
   calculateMeanAndStd() {
