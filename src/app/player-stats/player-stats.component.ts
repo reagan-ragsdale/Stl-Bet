@@ -176,11 +176,12 @@ export class PlayerStatsComponent {
   public playerStats: any[] = []
 
 
-  initialize(){
-    this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
+  async initialize(){
+    this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
       this.selectedSport = params.get('sport')
       this.playerId = params.get('id')
       this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
+      await this.loadData()
     })
   }
 
@@ -854,8 +855,8 @@ export class PlayerStatsComponent {
 
   async ngOnInit() {
     Chart.register(annotationPlugin);
-    this.initialize()
-    await this.loadData()
+    await this.initialize()
+    //await this.loadData()
     
   }
 
