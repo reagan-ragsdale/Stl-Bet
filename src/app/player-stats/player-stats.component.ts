@@ -176,7 +176,14 @@ export class PlayerStatsComponent {
   public playerStats: any[] = []
 
 
+  initialize(){
+    this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
+      this.router.navigate([`/props/${this.selectedSport}/${this.playerId}`])
+    })
+  }
+
   async loadData() {
+    
     if (this.route.snapshot.paramMap.get('sport') != null && this.route.snapshot.paramMap.get('id') != null) {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
       this.playerId = this.route.snapshot.paramMap.get('id')
@@ -845,6 +852,7 @@ export class PlayerStatsComponent {
 
   async ngOnInit() {
     Chart.register(annotationPlugin);
+    this.initialize()
     await this.loadData()
     
   }
