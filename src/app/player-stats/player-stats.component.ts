@@ -257,7 +257,7 @@ export class PlayerStatsComponent {
     if(this.selectedSport == "MLB"){
       
       this.playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(this.selectedPlayer.playerId, 2024)
-
+      
     }
   }
 
@@ -272,14 +272,8 @@ export class PlayerStatsComponent {
   } */
 
   loadNewPlayer(id: number, sport: string) {
-    console.log(id)
-    console.log(sport)
     this.destroyGraphs()
-
     this.router.navigate([`/playerStats/${sport}/${id}`])
-    
-     //await this.getPlayerInfo()
-    //this.reDrawLineGraph()
     this.formArray = []  
   }
 
@@ -370,27 +364,85 @@ export class PlayerStatsComponent {
 
 
   createChart() {
-    var points: number[] = []
-    var assists: number[] = []
-    var rebounds: number[] = []
-    var blocks: number[] = []
-    var threes: number[] = []
-    var doubleDoubles: number[] = []
+    var arrayOFpoints: any[] = []
 
-    var dataPoint: string[] = []
-    var index = 1
-    this.seasonArray.forEach((e) => {
-      points.push(e.points)
-      assists.push(e.assists)
-      rebounds.push(e.totReb)
-      blocks.push(e.blocks)
-      threes.push(e.tpm)
-      doubleDoubles.push(e.doubleDouble)
+    if(this.selectedSport == 'NBA'){
+      var points: number[] = []
+      var assists: number[] = []
+      var rebounds: number[] = []
+      var blocks: number[] = []
+      var threes: number[] = []
+      var doubleDoubles: number[] = []
+  
+      var dataPoint: string[] = []
+      var index = 1
+      this.seasonArray.forEach((e) => {
+        points.push(e.points)
+        assists.push(e.assists)
+        rebounds.push(e.totReb)
+        blocks.push(e.blocks)
+        threes.push(e.tpm)
+        doubleDoubles.push(e.doubleDouble)
+  
+        dataPoint.push(index.toString())
+        index++
+      })
+      arrayOFpoints = [points, assists, rebounds, blocks, threes, doubleDoubles]
+    }
+    else if(this.selectedSport == 'MLB'){
+      var hits: number[] = []
+      var homeRuns: number[] = []
+      var totalBases: number[] = []
+      var rbis: number[] = []
+  
+      var dataPoint: string[] = []
+      var index = 1
+      this.playerStats.forEach((e) => {
+        hits.push(e.batterHits)
+        homeRuns.push(e.batterHomeRuns)
+        totalBases.push(e.batterTotalBases)
+        rbis.push(e.batterRbis)
+  
+        dataPoint.push(index.toString())
+        index++
+      })
+      arrayOFpoints = [hits, homeRuns, totalBases, rbis]
 
-      dataPoint.push(index.toString())
-      index++
-    })
-    var arrayOFpoints = [points, assists, rebounds, blocks, threes, doubleDoubles]
+      this.fullDataset = [
+        {
+          label: "Hits",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: true,
+          dataName: 'hits'
+    
+        },
+        {
+          label: "Home Runs",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'homeRuns'
+        },
+        {
+          label: "Total Bases",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'totalBases'
+    
+        },
+        {
+          label: "Rbis",
+          data: [],
+          backgroundColor: 'yellow',
+          showLine: false,
+          dataName: 'rbis'
+    
+        }
+      ]
+    }
+    
 
     for (let i = 0; i < arrayOFpoints.length; i++) {
       this.fullDataset[i].data = arrayOFpoints[i]
