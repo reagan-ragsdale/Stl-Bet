@@ -21,53 +21,38 @@
 
 <div style="height: 100%;" *ngIf="!isNull">
 
+<div style="height:100%; display:flex; flex-direction:column" >
+  <div style="width:100%; display: flex; gap: 2rem; background-color:#3f51b5;">
+    <div style="display: flex; gap: .5rem; align-items: flex-start; color:white">
+      <h1 style="font-size: 200%; margin-top:auto; margin-bottom:auto;">{{selectedPlayer.playerName}}: </h1>
+      <h1 style="margin-top:auto; margin-bottom:auto;">{{selectedPlayer.teamName}}</h1>
+    </div>
 
-  <mat-grid-list cols="4" rowHeight="50px">
-
-    <mat-grid-tile colspan="4" style=" display: flex; gap: 2rem; background-color:#3f51b5;" >
-
-      <div style="display: flex; gap: .5rem; align-items: flex-start; color:white">
-        <h1 style="font-size: 200%; margin-top:auto; margin-bottom:auto;">{{selectedPlayer.playerName}}: </h1>
-        <h1 style="margin-top:auto; margin-bottom:auto;">{{selectedPlayer.teamName}}</h1>
-      </div>
-
-      <div style="display: flex; gap: 1rem; height:inherit; margin-left: 3rem; color:white;">
-        <h2 style="align-items: center; justify-content: center; margin-top:auto; margin-bottom:auto;">
-          Search Player</h2>
-        <form style="align-items: center;" class="example-form">
-          <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
-              (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
-                (onSelectionChange)="loadNewPlayer(player.playerId, player.sport)">
-                {{player.playerName}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </form>
-      </div>
-
-    </mat-grid-tile>
-
-  </mat-grid-list>
-
-
-  <mat-grid-list cols="3" rowHeight="50px">
-
-    <mat-grid-tile rowspan="8" colspan="1.5" style="min-width: 300px;">
+    <div style="display: flex; gap: 1rem; height:inherit; margin-left: 3rem; color:white;">
+      <h2 style="align-items: center; justify-content: center; margin-top:auto; margin-bottom:auto;">
+        Search Player</h2>
+      <form style="align-items: center;" class="example-form">
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
+            (ngModelChange)="filterSearch()" [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
+              (onSelectionChange)="loadNewPlayer(player.playerId, player.sport)">
+              {{player.playerName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div style="width: 100%; display:flex;">
+    <div style="width: 40%; ">
       <canvas id="lineChart">{{ chart }}</canvas>
-
-    </mat-grid-tile>
-
-
-    <mat-grid-tile rowspan="8" colspan="1.5" style="min-width: 300px;">
+    </div> 
+    <div style="width: 40%;">
       <canvas id="barChart">{{ chart2 }}</canvas>
-    </mat-grid-tile>
-
-
-    <mat-grid-tile rowspan="8" style="min-width: 300px;">
-
+    </div>
+    <div style="width:10%;">
       <span class="example-list-section">
         <mat-slide-toggle [(ngModel)]="isCombineStats" (ngModelChange)="reDrawLineGraph()">Combine
           Stats</mat-slide-toggle>
@@ -87,26 +72,13 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </mat-grid-tile>
-
-
-  </mat-grid-list>
-
-
-    
-
-  <mat-grid-list>
-
-
-
-    <mat-grid-tile rowspan="1" colspan="4" >
-      <h1> Stats</h1>
-    </mat-grid-tile>
-
-
-
-
-    <mat-grid-tile colspan="2" rowspan="{{(seasonArrayTable.length/2) + 1}}" >
+    </div>
+  </div>
+  <div style="display:flex;">
+    <div style="width:100%;">
+      <h1 style="text-align: center;"> Stats</h1>
+    </div>
+    <div style="width:50%">
       <table mat-table [dataSource]="seasonArrayTable" class="mat-elevation-z8" style="height: inherit;">
 
         <ng-container matColumnDef="Game">
@@ -159,46 +131,64 @@
           style="height:auto;"></tr>
         <tr mat-footer-row *matFooterRowDef="displayedColumns" style="border-top: 2px solid black;"></tr>
       </table>
-    </mat-grid-tile>
+    </div>
+    <div style="height: inherit; width: 100%; ">
+        <div
+          style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start;">
+          <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
+            <div style="display: flex; ">
+              <mat-form-field *ngFor="let forms of formArray" style="padding-left: 1rem; padding-top: 1rem; ">
+                <mat-label>Select</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
+                    value={{stat.dataName}}>{{stat.label}}</mat-option>
+                </mat-select>
+                <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
+                <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
+                  (click)="$event.stopPropagation()">Delete</button>
 
-    <mat-grid-tile rowspan="8" colspan="2">
-      <div style="height: inherit; width: 100%; ">
-        <mat-grid-list cols="4" rowHeight="10px">
-          <mat-grid-tile colspan="4" rowspan="15"
-            style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start;">
-            <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
-              <div style="display: flex; ">
-                <mat-form-field *ngFor="let forms of formArray" style="padding-left: 1rem; padding-top: 1rem; ">
-                  <mat-label>Select</mat-label>
-                  <mat-select>
-                    <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
-                      value={{stat.dataName}}>{{stat.label}}</mat-option>
-                  </mat-select>
-                  <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
-                  <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
-                    (click)="$event.stopPropagation()">Delete</button>
-
-                </mat-form-field>
-                <div style="display: flex; flex-direction: column; padding-top: 2rem; gap: 1rem;">
-                  <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
-                    (click)="addStatForm()">Add</button>
-                  <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
-                    (click)="clearSearch()">Clear</button>
-                  <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
-                    (click)="searchNumberSubmit()">Search</button>
-                </div>
-
+              </mat-form-field>
+              <div style="display: flex; flex-direction: column; padding-top: 2rem; gap: 1rem;">
+                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                  (click)="addStatForm()">Add</button>
+                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                  (click)="clearSearch()">Clear</button>
+                <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
+                  (click)="searchNumberSubmit()">Search</button>
               </div>
 
             </div>
 
+          </div>
 
 
 
-          </mat-grid-tile>
 
-        </mat-grid-list>
-      </div>
+        </div>
+
+    </div>
+    
+
+  </div>
+</div>
+  
+
+
+
+
+    
+
+  
+
+
+
+
+    <mat-grid-tile colspan="2" rowspan="{{(seasonArrayTable.length/2) + 1}}" >
+      
+    </mat-grid-tile>
+
+    <mat-grid-tile rowspan="8" colspan="2">
+     
 
 
     </mat-grid-tile>
