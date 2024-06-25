@@ -62,7 +62,7 @@ export class PlayerStatsComponent {
   public playerId: any = 0
   public selectedSport: any = ''
   public selectedStatSearchNumber: number = 0
-  public filteredSearch: any[] = []
+  public filteredSearch: DbPlayerInfo[] = []
   public searchName: string = ''
   playerAverage: number = 0
   playerStd: number = 0
@@ -247,7 +247,7 @@ export class PlayerStatsComponent {
     if(this.selectedSport == "MLB"){
       
       this.playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(this.selectedPlayer.playerId, 2024)
-      
+
     }
   }
 
@@ -309,7 +309,7 @@ export class PlayerStatsComponent {
       console.log(this.filteredSearch)
     }
     else{
-      this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredSearch = this.playerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
     }
     
   }

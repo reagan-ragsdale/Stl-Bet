@@ -24,15 +24,15 @@
 
   <mat-grid-list cols="4" rowHeight="50px">
 
-    <mat-grid-tile colspan="4" style=" display: flex; gap: 2rem;">
+    <mat-grid-tile colspan="4" style=" display: flex; gap: 2rem; background-color:#3f51b5;" >
 
-      <div style="display: flex; gap: 1rem; align-items: flex-start;">
-        <h1 style="font-size: 200%;">{{selectedPlayer.playerName}}: </h1>
-        <h1>{{selectedPlayer.teamName}}</h1>
+      <div style="display: flex; gap: .5rem; align-items: flex-start; color:white">
+        <h1 style="font-size: 200%; margin-top:auto; margin-bottom:auto;">{{selectedPlayer.playerName}}: </h1>
+        <h1 style="margin-top:auto; margin-bottom:auto;">{{selectedPlayer.teamName}}</h1>
       </div>
 
-      <div style="display: flex; gap: 1rem;">
-        <h2 style="align-items: center; justify-content: center; ">
+      <div style="display: flex; gap: 1rem; height:inherit; margin-left: 3rem; color:white;">
+        <h2 style="align-items: center; justify-content: center; margin-top:auto; margin-bottom:auto;">
           Search Player</h2>
         <form style="align-items: center;" class="example-form">
           <mat-form-field class="example-full-width">
