@@ -116,9 +116,11 @@ export class draftKingsApiController {
     //becuase if in the big three there might nhot be a spread at first then if I look at the book id, 
     //there alreqady is something for that id and it will put the spread at a later one and not put in a zero seq
     try{
-        
+          console.log(this.selectedSportsData.length)
         for(let i = 0; i < this.selectedSportsData.length; i++){
           let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[i].id)
+          console.log(this.selectedSportsData[i].id)
+          console.log(this.selectedSportsData[i].bookmakers.length)
           for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
             for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
               let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData[i].bookmakers[j].markets[k].key)
