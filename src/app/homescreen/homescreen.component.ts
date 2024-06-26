@@ -241,7 +241,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           dbName: "runsAllowed"
         }
       ]
-      this.gameData = await SportsBookController.loadSportBookByH2H(sport)
+      //this.gameData = await SportsBookController.loadSportBookByH2H(sport)
       //this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
 
 
@@ -254,7 +254,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       
       
       
-      this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
+      //this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
       this.playerAverageColumns = this.playerAverageColumnsMlb
     }
 

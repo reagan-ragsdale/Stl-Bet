@@ -354,6 +354,7 @@ export class PropScreenComponent implements OnInit {
       currentGame[0][0].selected = true;
 
     }
+    console.log(this.selectedSportGames)
     await this.onGameClick(this.selectedGame)
   }
 
