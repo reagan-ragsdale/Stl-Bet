@@ -11,6 +11,7 @@ export const cronSportsBookHourly = async () => {
     for (let sport of listOfActiveSports) {
         try {
             const gamesFromDraftKings = await draftKingsApiController.getDatesAndGames(sport);
+            console.log(gamesFromDraftKings)
 
             await SportsBookController.addBookData(gamesFromDraftKings);
             await SportsBookController.updateBookSeqZero(gamesFromDraftKings)
