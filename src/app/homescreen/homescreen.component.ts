@@ -261,6 +261,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   loadProps(change: any){
+    console.log(change)
     this.gameDataAll = change
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
