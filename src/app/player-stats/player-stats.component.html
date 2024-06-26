@@ -78,7 +78,7 @@
     <div style="width:100%;">
       <h1 style="text-align: center;"> Stats</h1>
     </div>
-    <div style="width: 100%; display:flex;">
+    <div style="width: 100%; display:flex; flex-direction:column;">
       <div style="width:50%; margin-left: 1rem;">
         <table mat-table [dataSource]="seasonArrayTable" class="mat-elevation-z8" style="height: inherit;">
   
@@ -133,7 +133,7 @@
           <tr mat-footer-row *matFooterRowDef="displayedColumns" style="border-top: 2px solid black;"></tr>
         </table>
       </div>
-      <div style="height: inherit; width: 100%; ">
+      <div style="height: inherit; width: 50%; ">
           <div
             style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start;">
             <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
