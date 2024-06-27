@@ -42,10 +42,10 @@ export const mlbCronFile = async () => {
     //test
     let gameDate = reusedFunctions.getPreviousDateYMD()
 
-    const date = '20240607'
+    const date = '20240609'
 
     try {
-            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
+            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(date)
             for (let game of listOfGamesToday) {
                 let gameInfo = await mlbApiController.getGameResults(game.gameID)
                 let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)

@@ -14,6 +14,7 @@ import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import { remult } from 'remult';
 import { DbMlbGameBookData } from 'src/shared/dbTasks/DbMlbGameBookData';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
+import { mlbCronFile } from '../mlbCron';
 
 @Component({
     selector: 'home-screen',
@@ -335,6 +336,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
+    await mlbCronFile()
   }
 
   ngOnDestroy(){
