@@ -238,10 +238,8 @@ mat-mdc-tab-body-content{
 .team-dropdown{
   width:45%;
 }
-.specific-class .mat-expansion-panel-body{
-  padding-left: .5rem !important;
-  padding-right: .5rem !important;
-}
+
+
 
   @media screen and (max-width: 974px) {
     .main-div{
@@ -292,6 +290,15 @@ mat-mdc-tab-body-content{
     }
     .team-dropdown{
       width:100%;
+    }
+    ::ng-deep .main-specific-class .mat-expansion-panel-body{
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+    
+    ::ng-deep .specific-class .mat-expansion-panel-body{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
    
