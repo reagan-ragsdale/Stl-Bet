@@ -102,12 +102,11 @@ export class draftKingsApiController {
     const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=h2h,spreads,totals&bookmakers=draftkings&oddsFormat=american";
     const promise = await fetch(apiCall);
     const processedResponse = await promise.json();
-    this.selectedSportsData = processedResponse;
-    this.sportsBookData = await this.convertSportsDataToInterfaceV1()
-    return this.sportsBookData;
+    return await this.convertSportsDataToInterfaceV1(processedResponse)
+    ;
   }
 
-  static async convertSportsDataToInterfaceV1(): Promise<DbGameBookData[]> {
+  static async convertSportsDataToInterfaceV1(selectedSportsData: any[]): Promise<DbGameBookData[]> {
     var tempData: DbGameBookData[] = [];
 
     let nextBookSeq = 0
@@ -116,14 +115,14 @@ export class draftKingsApiController {
     //becuase if in the big three there might nhot be a spread at first then if I look at the book id, 
     //there alreqady is something for that id and it will put the spread at a later one and not put in a zero seq
 
-    console.log(this.selectedSportsData.length)
-    for (let i = 0; i < this.selectedSportsData.length; i++) {
+    console.log(selectedSportsData.length)
+    for (let i = 0; i < selectedSportsData.length; i++) {
       try {
-        let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[i].id)
-        console.log(this.selectedSportsData[i].id)
-        for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
-          for (let k = 0; k < this.selectedSportsData[i].bookmakers[j].markets.length; k++) {
-            let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData[i].bookmakers[j].markets[k].key)
+        let bookDb = await SportsBookController.loadMaxBookSeqByBookId(selectedSportsData[i].id)
+        console.log(selectedSportsData[i].id)
+        for (let j = 0; j < selectedSportsData[i].bookmakers.length; j++) {
+          for (let k = 0; k < selectedSportsData[i].bookmakers[j].markets.length; k++) {
+            let selectedProp = bookDb.filter(e => e.marketKey == selectedSportsData[i].bookmakers[j].markets[k].key)
             if (selectedProp.length == 0) {
               nextBookSeq = 0
             }
@@ -136,19 +135,19 @@ export class draftKingsApiController {
               })
               nextBookSeq = highestSeq + 1
             }
-            for (let m = 0; m < this.selectedSportsData[i].bookmakers[j].markets[k].outcomes.length; m++) {
+            for (let m = 0; m < selectedSportsData[i].bookmakers[j].markets[k].outcomes.length; m++) {
               tempData.push({
-                bookId: this.selectedSportsData[i].id,
-                sportKey: this.selectedSportsData[i].sport_key,
-                sportTitle: this.selectedSportsData[i].sport_title,
-                homeTeam: this.selectedSportsData[i].home_team,
-                awayTeam: this.selectedSportsData[i].away_team,
-                commenceTime: this.selectedSportsData[i].commence_time,
-                bookMaker: this.selectedSportsData[i].bookmakers[j].title,
-                marketKey: this.selectedSportsData[i].bookmakers[j].markets[k].key,
-                teamName: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name,
-                price: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
-                point: this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
+                bookId: selectedSportsData[i].id,
+                sportKey: selectedSportsData[i].sport_key,
+                sportTitle: selectedSportsData[i].sport_title,
+                homeTeam: selectedSportsData[i].home_team,
+                awayTeam: selectedSportsData[i].away_team,
+                commenceTime: selectedSportsData[i].commence_time,
+                bookMaker: selectedSportsData[i].bookmakers[j].title,
+                marketKey: selectedSportsData[i].bookmakers[j].markets[k].key,
+                teamName: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name,
+                price: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
+                point: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
                 bookSeq: nextBookSeq
               });
             }
@@ -157,7 +156,7 @@ export class draftKingsApiController {
       } catch (error: any) {
         console.log("error message below")
         console.log(error.message)
-        console.log(this.selectedSportsData[i])
+        console.log(selectedSportsData[i])
         return tempData
       }
 
