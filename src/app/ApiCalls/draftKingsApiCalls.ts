@@ -115,9 +115,10 @@ export class draftKingsApiController {
     //I want to check each individual prop to see what the seq is or if there is an entry at all 
     //becuase if in the big three there might nhot be a spread at first then if I look at the book id, 
     //there alreqady is something for that id and it will put the spread at a later one and not put in a zero seq
-    try{
+    
           console.log(this.selectedSportsData.length)
         for(let i = 0; i < this.selectedSportsData.length; i++){
+          try{
           let bookDb = await SportsBookController.loadMaxBookSeqByBookId(this.selectedSportsData[i].id)
           console.log(this.selectedSportsData[i].id)
           for (let j = 0; j < this.selectedSportsData[i].bookmakers.length; j++) {
@@ -153,14 +154,15 @@ export class draftKingsApiController {
               }
             }
           }
+        }catch(error:any){
+          console.log("error message below")
+          console.log(error.message)
+          console.log(this.selectedSportsData[i])
+          return tempData
         }
         
       
       return tempData;
-    }catch(error:any){
-      console.log("error message below")
-      console.log(error.message)
-      return tempData
     }
 
     
