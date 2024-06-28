@@ -2542,7 +2542,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterHits
             totalTeam++
           })
-          averageTeam = totalSum / totalTeam
+          if(totalTeam == 0){
+            averageTeam = 0
+          }
+          else{
+            averageTeam = totalSum / totalTeam
+          }
+          
 
           playerStatsReversed.forEach(e => {
             tableOverall.push({
@@ -2704,7 +2710,13 @@ export class PropScreenComponent implements OnInit {
           playerStats.forEach(e => {
             totalSum += e.batterTotalBases
           })
-          averageOverall = totalSum / totalOverall
+          if(totalSum == 0){
+            averageOverall = 0
+          }
+          else{
+            averageOverall = totalSum / totalOverall
+          }
+          
           totalSum = 0
           let homeAwayGames = playerStats.filter(e => {
             return reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
@@ -2713,7 +2725,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterTotalBases
             totalHomeAway++
           })
-          averageHomeAway = totalSum / totalHomeAway
+          if(totalHomeAway == 0){
+            averageHomeAway = 0
+          }
+          else{
+            averageHomeAway = totalSum / totalHomeAway
+          }
+          
           totalSum = 0
           let teamGames = playerStats.filter(e => {
 
@@ -2723,7 +2741,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterTotalBases
             totalTeam++
           })
-          averageTeam = totalSum / totalTeam
+          if(totalTeam == 0){
+            averageTeam = 0
+          }
+          else{
+            averageTeam = totalSum / totalTeam
+          }
+          
 
 
           playerStatsReversed.forEach(e => {
@@ -2774,9 +2798,9 @@ export class PropScreenComponent implements OnInit {
         highOverall: highOverall,
         highHomeAway: highHomeAway,
         highTeam: highTeam,
-        lowOverall: lowOverall,
-        lowHomeAway: lowHomeAway,
-        lowTeam: lowTeam,
+        lowOverall: lowOverall == 100 ? 0 : lowOverall,
+        lowHomeAway: lowHomeAway == 100 ? 0 : lowHomeAway,
+        lowTeam: lowTeam == 100 ? 0 : lowTeam,
         tableOverall: tableOverall.slice(0,10),
         tableHomeAway: tableHomeAway.slice(0,10),
         tableTeam: tableTeam.slice(0,10),
