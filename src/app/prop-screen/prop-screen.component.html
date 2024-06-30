@@ -441,7 +441,7 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread' && prop.propVariables.lowOverall > 0) ? '+' : ''}}{{prop.propVariables.lowOverall | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{(prop.propVariables.propType == 'spread') ?  (prop.propVariables.lowOverall > 0 ? '+' : '') : ''}}{{prop.propVariables.lowOverall | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                               <div class="homeaway-stats"

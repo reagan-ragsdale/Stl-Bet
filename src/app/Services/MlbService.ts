@@ -608,41 +608,7 @@ export class MlbService {
                 teamStatsFinal.totalRbisAllowed += game.totalRbisAllowed
         }
 
-        teamStatsFinal.wins += teamStatsFinal.wins / teamDbStats.length,
-            teamStatsFinal.losses += teamStatsFinal.losses / teamDbStats.length,
-            teamStatsFinal.pointsScoredOverall += teamStatsFinal.pointsScoredOverall / teamDbStats.length,
-            teamStatsFinal.pointsScoredFirstInning += teamStatsFinal.pointsScoredFirstInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredSecondInning += teamStatsFinal.pointsScoredSecondInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredThirdInning += teamStatsFinal.pointsScoredThirdInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredFourthInning += teamStatsFinal.pointsScoredFourthInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredFifthInning += teamStatsFinal.pointsScoredFifthInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredSixthInning += teamStatsFinal.pointsScoredSixthInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredSeventhInning += teamStatsFinal.pointsScoredSeventhInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredEigthInning += teamStatsFinal.pointsScoredEigthInning / teamDbStats.length,
-            teamStatsFinal.pointsScoredNinthInning += teamStatsFinal.pointsScoredNinthInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedOverall += teamStatsFinal.pointsAllowedOverall / teamDbStats.length,
-            teamStatsFinal.pointsAllowedFirstInning += teamStatsFinal.pointsAllowedFirstInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedSecondInning += teamStatsFinal.pointsAllowedSecondInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedThirdInning += teamStatsFinal.pointsAllowedThirdInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedFourthInning += teamStatsFinal.pointsAllowedFourthInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedFifthInning += teamStatsFinal.pointsAllowedFifthInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedSixthInning += teamStatsFinal.pointsAllowedSixthInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedSeventhInning += teamStatsFinal.pointsAllowedSeventhInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedEigthInning += teamStatsFinal.pointsAllowedEigthInning / teamDbStats.length,
-            teamStatsFinal.pointsAllowedNinthInning += teamStatsFinal.pointsAllowedNinthInning / teamDbStats.length,
-            teamStatsFinal.totalHomeRunsScored += teamStatsFinal.totalHomeRunsScored / teamDbStats.length,
-            teamStatsFinal.totalHitsScored += teamStatsFinal.totalHitsScored / teamDbStats.length,
-            teamStatsFinal.totalFirstBaseScored += teamStatsFinal.totalFirstBaseScored / teamDbStats.length,
-            teamStatsFinal.totalSecondBaseScored += teamStatsFinal.totalSecondBaseScored / teamDbStats.length,
-            teamStatsFinal.totalThirdBaseScored += teamStatsFinal.totalThirdBaseScored / teamDbStats.length,
-            teamStatsFinal.totalRbisScored += teamStatsFinal.totalRbisScored / teamDbStats.length,
-            teamStatsFinal.totalHomeRunsAllowed += teamStatsFinal.totalHomeRunsAllowed / teamDbStats.length,
-            teamStatsFinal.totalHitsAllowed += teamStatsFinal.totalHitsAllowed / teamDbStats.length,
-            teamStatsFinal.totalFirstBaseAllowed += teamStatsFinal.totalFirstBaseAllowed / teamDbStats.length,
-            teamStatsFinal.totalSecondBaseAllowed += teamStatsFinal.totalSecondBaseAllowed / teamDbStats.length,
-            teamStatsFinal.totalThirdBaseAllowed += teamStatsFinal.totalThirdBaseAllowed / teamDbStats.length,
-            teamStatsFinal.totalRbisAllowed += teamStatsFinal.totalRbisAllowed / teamDbStats.length
-
+       
 
 
         return teamStatsFinal
