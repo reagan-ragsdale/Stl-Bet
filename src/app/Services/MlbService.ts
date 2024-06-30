@@ -204,6 +204,7 @@ export class MlbService {
     }
 
     static async mlbConvertTeamGameStatsFromApiToDb(gameStats: any): Promise<any[] | number> {
+        console.log(gameStats)
         if (gameStats.gameStatus != "Completed") {
             return 0
         }
