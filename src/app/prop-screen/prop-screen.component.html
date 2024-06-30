@@ -433,7 +433,7 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.averageOverall > 0 ? '+' : ''}}{{prop.propVariables.averageOverall | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{prop.propVariables.propType == 'spread' && prop.propVariables.averageOverall > 0 ? '+' : ''}}{{prop.propVariables.averageOverall | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
@@ -468,7 +468,7 @@
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
-                                  <h3 style="margin:auto">{{prop.propVariables.averageHomeAway > 0 ? '+' : ''}}{{prop.propVariables.averageHomeAway | number: '1.2-2'}}</h3>
+                                  <h3 style="margin:auto">{{ prop.propVariables.propType == 'spread' && prop.propVariables.averageHomeAway > 0 ? '+' : ''}}{{prop.propVariables.averageHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
