@@ -43,9 +43,11 @@ export const mlbCronFile = async () => {
     let gameDate = reusedFunctions.getPreviousDateYMD()
 
     const date = '20240609'
+    const dateArray: string[] = ['20240627', '20240628']
 
     try {
-            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
+        for(let date of dateArray){
+            let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(date)
             for (let game of listOfGamesToday) {
                 let gameInfo = await mlbApiController.getGameResults(game.gameID)
                 let teamsGameStats = await MlbService.mlbConvertTeamGameStatsFromApiToDb(gameInfo)
@@ -58,6 +60,8 @@ export const mlbCronFile = async () => {
 
                 }
             }
+        }
+            
 
         
     } catch (error: any) {
