@@ -218,6 +218,42 @@ export class PlayerStatsComponent {
 
   async getPlayerInfo() {
 
+    if(this.selectedSport == 'MLB'){
+      this.fullDataset = [
+        {
+          label: "Hits",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: true,
+          dataName: 'hits'
+    
+        },
+        {
+          label: "Home Runs",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'homeRuns'
+        },
+        {
+          label: "Total Bases",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'totalBases'
+    
+        },
+        {
+          label: "Rbis",
+          data: [],
+          backgroundColor: 'yellow',
+          showLine: false,
+          dataName: 'rbis'
+    
+        }
+      ]
+    }
+
     this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
     this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)[0]
 
@@ -407,39 +443,7 @@ export class PlayerStatsComponent {
       })
       
       arrayOFpoints = [hits, homeRuns, totalBases, rbis]
-      this.fullDataset = [
-        {
-          label: "Hits",
-          data: [],
-          backgroundColor: 'blue',
-          showLine: true,
-          dataName: 'hits'
-    
-        },
-        {
-          label: "Home Runs",
-          data: [],
-          backgroundColor: 'green',
-          showLine: false,
-          dataName: 'homeRuns'
-        },
-        {
-          label: "Total Bases",
-          data: [],
-          backgroundColor: 'red',
-          showLine: false,
-          dataName: 'totalBases'
-    
-        },
-        {
-          label: "Rbis",
-          data: [],
-          backgroundColor: 'yellow',
-          showLine: false,
-          dataName: 'rbis'
-    
-        }
-      ]
+      
     }
     
 
