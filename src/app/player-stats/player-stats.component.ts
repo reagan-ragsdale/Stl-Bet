@@ -194,7 +194,7 @@ export class PlayerStatsComponent {
       //await this.getAllPlayerInfo()
       this.calculateMeanAndStd()
       this.createChart()
-      this.createChart2()
+      //this.createChart2()
       this.createNormalDistChart()
     }
     else if (this.route.snapshot.paramMap.get('sport') == null && this.route.snapshot.paramMap.get('id') == null) {
@@ -899,10 +899,10 @@ export class PlayerStatsComponent {
 
   reDrawLineGraph() {
     this.chart.destroy()
-    this.chart2.destroy()
+    //this.chart2.destroy()
     this.chart3.destroy()
     this.createChart()
-    this.createChart2()
+    //this.createChart2()
     this.createNormalDistChart()
   }
 
