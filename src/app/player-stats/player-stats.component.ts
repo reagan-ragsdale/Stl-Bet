@@ -55,7 +55,7 @@ export class PlayerStatsComponent {
     location.reload()
   }
   myControl = new FormControl('');
-  public displayedColumns: any[] = ["Game", "Date", "Points", "Assists", "Rebounds", "Blocks", "Threes"]
+  //public displayedColumns: any[] = ["Game", "Date", "Points", "Assists", "Rebounds", "Blocks", "Threes"]
   //
 
   public playerName: string = ''
@@ -72,6 +72,22 @@ export class PlayerStatsComponent {
 
   public chart2: any;
   public chart3: any
+
+  public displayedColumns: any[] = [
+    {name: 'Game',
+      value: 'teamAgainstName'
+    }, 
+    {name: 'Date',
+      value: 'gameDate'},
+    {name: 'HR',
+      value: 'batterHomeRuns'},
+    {name: 'H',
+      value: 'batterHits'},
+    {name: 'TB',
+      value: 'batterTotalBases'},
+    {name: 'RBI',
+      value: 'batterRbis'}
+]
 
   public fullDataset: any[] = [
     {
@@ -205,21 +221,7 @@ export class PlayerStatsComponent {
     }
 
     if(this.selectedSport == 'MLB'){
-      this.displayedColumns = [
-        {name: 'Game',
-          value: 'teamAgainstName'
-        }, 
-        {name: 'Date',
-          value: 'gameDate'},
-        {name: 'HR',
-          value: 'batterHomeRuns'},
-        {name: 'H',
-          value: 'batterHits'},
-        {name: 'TB',
-          value: 'batterTotalBases'},
-        {name: 'RBI',
-          value: 'batterRbis'}
-    ]
+      
     }
 
 
