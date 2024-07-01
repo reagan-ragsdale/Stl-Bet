@@ -896,7 +896,7 @@ export class PlayerStatsComponent {
   reDrawLineGraph() {
     this.chart.destroy()
     //this.chart2.destroy()
-    this.chart3.destroy()
+    //this.chart3.destroy()
     this.createChart()
     //this.createChart2()
     //this.createNormalDistChart()
@@ -904,8 +904,8 @@ export class PlayerStatsComponent {
 
   destroyGraphs(){
     this.chart.destroy()
-    this.chart2.destroy()
-    this.chart3.destroy()
+    //this.chart2.destroy()
+    //this.chart3.destroy()
   }
 
 
