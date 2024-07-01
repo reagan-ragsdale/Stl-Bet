@@ -195,7 +195,7 @@ export class PlayerStatsComponent {
       this.calculateMeanAndStd()
       this.createChart()
       //this.createChart2()
-      this.createNormalDistChart()
+      //this.createNormalDistChart()
     }
     else if (this.route.snapshot.paramMap.get('sport') == null && this.route.snapshot.paramMap.get('id') == null) {
       this.selectedSport = "all"
@@ -445,7 +445,7 @@ export class PlayerStatsComponent {
 
     for (let i = 0; i < arrayOFpoints.length; i++) {
       this.fullDataset[i].data = []
-      console.log(this.fullDataset[i])
+      console.log(this.fullDataset)
       console.log(arrayOFpoints[i])
       this.fullDataset[i].data.push(arrayOFpoints[i])
       console.log(this.fullDataset[i])
@@ -903,7 +903,7 @@ export class PlayerStatsComponent {
     this.chart3.destroy()
     this.createChart()
     //this.createChart2()
-    this.createNormalDistChart()
+    //this.createNormalDistChart()
   }
 
   destroyGraphs(){
