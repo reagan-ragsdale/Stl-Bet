@@ -447,7 +447,7 @@ export class PlayerStatsComponent {
       this.fullDataset[i].data = []
       console.log(this.fullDataset)
       console.log(arrayOFpoints[i])
-      this.fullDataset[i].data.push(arrayOFpoints[i])
+      this.fullDataset[i].data = arrayOFpoints[i]
       console.log(this.fullDataset[i])
     }
 
