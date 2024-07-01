@@ -454,6 +454,7 @@ export class PlayerStatsComponent {
 
       }
     })
+    console.log(this.fullDataset)
     var finalDataSet: any[] = []
     var finalDataSetResult: any[] = []
     filteredDataSet.forEach((e) => {
