@@ -55,7 +55,7 @@ export class PlayerStatsComponent {
     location.reload()
   }
   myControl = new FormControl('');
-  public displayedColumns = ["Game", "Date", "Points", "Assists", "Rebounds", "Blocks", "Threes"]
+  public displayedColumns: any[] = ["Game", "Date", "Points", "Assists", "Rebounds", "Blocks", "Threes"]
   //
 
   public playerName: string = ''
@@ -204,6 +204,24 @@ export class PlayerStatsComponent {
       await this.getAllSportPlayers()
     }
 
+    if(this.selectedSport == 'MLB'){
+      this.displayedColumns = [
+        {name: 'Game',
+          value: 'teamAgainstName'
+        }, 
+        {name: 'Date',
+          value: 'gameDate'},
+        {name: 'HR',
+          value: 'batterHomeRuns'},
+        {name: 'H',
+          value: 'batterHits'},
+        {name: 'TB',
+          value: 'batterTotalBases'},
+        {name: 'RBI',
+          value: 'batterRbis'}
+    ]
+    }
+
 
 
 
@@ -293,6 +311,10 @@ export class PlayerStatsComponent {
     if(this.selectedSport == "MLB"){
       
       this.playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(this.selectedPlayer.playerId, 2024)
+
+      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.playerStats)
+      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
+      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
       
     }
   }
