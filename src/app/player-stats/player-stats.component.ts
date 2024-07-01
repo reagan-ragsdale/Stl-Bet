@@ -396,7 +396,6 @@ export class PlayerStatsComponent {
       var rbis: number[] = []
   
       var index = 1
-      console.log(this.playerStats)
       this.playerStats.forEach((e) => {
         hits.push(e.batterHits)
         homeRuns.push(e.batterHomeRuns)
@@ -408,7 +407,6 @@ export class PlayerStatsComponent {
       })
       
       arrayOFpoints = [hits, homeRuns, totalBases, rbis]
-      console.log(arrayOFpoints)
       this.fullDataset = [
         {
           label: "Hits",
@@ -446,6 +444,8 @@ export class PlayerStatsComponent {
     
 
     for (let i = 0; i < arrayOFpoints.length; i++) {
+      console.log(this.fullDataset[i])
+      console.log(arrayOFpoints[i])
       this.fullDataset[i].data = arrayOFpoints[i]
     }
 
@@ -456,7 +456,7 @@ export class PlayerStatsComponent {
 
       }
     })
-    console.log(this.fullDataset)
+    
     var finalDataSet: any[] = []
     var finalDataSetResult: any[] = []
     filteredDataSet.forEach((e) => {
