@@ -81,14 +81,16 @@
     <div style="width: 100%; display:flex;">
       <div style="width:50%; margin-left: 1rem;">
         <table mat-table [dataSource]="seasonArrayTable" class="mat-elevation-z8" style="height: inherit;">
-
-          <ng-container *ngFor="let col of displayedColumns" matColumnDef="{{col.name}}">
-            <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
-            <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
-              {{element[col.value]}}
-            </td>
-            <td mat-footer-cell *matFooterCellDef> Average </td>
-          </ng-container>
+          <div *ngFor="let col of displayedColumns">
+            <ng-container  matColumnDef="{{col.name}}">
+              <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
+              <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
+                {{element[col.value]}}
+              </td>
+              <td mat-footer-cell *matFooterCellDef> Average </td>
+            </ng-container>
+          </div>
+          
 
   <!-- 
           <ng-container matColumnDef="Game">
