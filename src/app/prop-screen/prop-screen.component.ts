@@ -2924,8 +2924,8 @@ try{
         finalTeam.totalWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == teamAgainstName).length
   
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W').length
-        finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
-        finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
+        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
 
         
       }
@@ -2935,8 +2935,8 @@ try{
         finalTeam.totalWinsTeam = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == teamAgainstName}).length
   
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)}).length
-        finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway != homeAway}).length
-        finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
+        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway != homeAway}).length
+        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
       
         let tableTemp: any[] = []
         teamGameStatsReversed.forEach(e => {tableTemp.push({
@@ -2980,8 +2980,8 @@ try{
         finalTeam.totalWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsScoredFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == teamAgainstName}).length
   
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)}).length
-        finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.homeOrAway != homeAway}).length
-        finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
+        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.homeOrAway != homeAway}).length
+        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
       
         let tableTemp: any[] = []
         teamGameStatsReversed.forEach(e => {tableTemp.push({
@@ -3025,8 +3025,8 @@ try{
         finalTeam.totalWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == teamAgainstName}).length
   
         finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)}).length
-        finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.homeOrAway != homeAway}).length
-        finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
+        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.homeOrAway != homeAway}).length
+        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
       
       
         let tableTemp: any[] = []
@@ -3076,8 +3076,8 @@ try{
       finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
 
       finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
-      finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
-      finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+      finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
+      finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
     
       let totalSpread = 0 
       teamGameStats.forEach(e => {
@@ -3139,8 +3139,8 @@ try{
       finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
       finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
-      finalTeam.teamAgainstWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
-      finalTeam.teamAgainstWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+      finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
+      finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
       
 
       finalTeam.highOverall = this.getTotalHighLow(homeAway, 'overall', 'high')
