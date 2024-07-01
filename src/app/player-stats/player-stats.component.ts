@@ -396,6 +396,7 @@ export class PlayerStatsComponent {
       var rbis: number[] = []
   
       var index = 1
+      console.log(this.playerStats)
       this.playerStats.forEach((e) => {
         hits.push(e.batterHits)
         homeRuns.push(e.batterHomeRuns)
