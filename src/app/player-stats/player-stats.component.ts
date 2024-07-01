@@ -444,9 +444,11 @@ export class PlayerStatsComponent {
     
 
     for (let i = 0; i < arrayOFpoints.length; i++) {
+      this.fullDataset[i].data = []
       console.log(this.fullDataset[i])
       console.log(arrayOFpoints[i])
       this.fullDataset[i].data = arrayOFpoints[i]
+      console.log(this.fullDataset[i])
     }
 
     var filteredDataSet: any[] = []
