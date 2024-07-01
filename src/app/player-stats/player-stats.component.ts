@@ -406,8 +406,9 @@ export class PlayerStatsComponent {
         dataPoint.push(index.toString())
         index++
       })
+      
       arrayOFpoints = [hits, homeRuns, totalBases, rbis]
-
+      console.log(arrayOFpoints)
       this.fullDataset = [
         {
           label: "Hits",
