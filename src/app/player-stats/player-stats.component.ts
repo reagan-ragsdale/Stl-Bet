@@ -27,6 +27,7 @@ import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoControl
 import { DbPlayerInfo } from 'src/shared/dbTasks/DbPlayerInfo';
 import { PlayerPropController } from 'src/shared/Controllers/PlayerPropController';
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
+import { reusedFunctions } from '../Services/reusedFunctions';
 
 
 interface statSearch {
@@ -365,6 +366,10 @@ public displayedColumnsValues: any[] = [
     this.destroyGraphs()
     this.router.navigate([`/playerStats/${sport}/${id}`])
     this.formArray = []  
+  }
+
+  loadFindHomeAwayFromGameId(gameId: string, teamName: string): string{
+    return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
   }
 
   calculateMeanAndStd() {
