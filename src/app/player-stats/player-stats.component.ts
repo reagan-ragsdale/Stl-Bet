@@ -318,6 +318,7 @@ public displayedColumnsValues: any[] = [
       this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer.playerId)
       let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
       allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e))) 
+      allSeasons.forEach(e => this.playerSeasons.push(e))
 
       this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.playerSeasonStats)
       this.nbaPlayerStatsInfo2023TableTemp.forEach(e => e.reverse())
