@@ -62,7 +62,9 @@ export class PlayerPropController {
     const taskRepo = remult.repo(DbPlayerPropData)
     let today = new Date();
     today.setHours(5,0,0,0);
-    return await taskRepo.find({ where: { playerName: playerName, sportTitle: sport, bookSeq: 0, commenceTime: {$gte: today.toDateString()} } })
+    let tomorrow = new Date();
+    tomorrow.setHours(29,0,0,0);
+    return await taskRepo.find({ where: { playerName: playerName, sportTitle: sport, bookSeq: 0, commenceTime: {$gte: today.toDateString(), $lte: tomorrow.toDateString()}, } })
   }
 
 }
