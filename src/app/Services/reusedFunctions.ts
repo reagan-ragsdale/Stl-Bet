@@ -198,9 +198,9 @@ export class reusedFunctions {
     if(potentialDoubleHeader != -1){
       teams = teams.slice(0, potentialDoubleHeader)
     }
-    console.log(teams)
+    //console.log(teams)
     let awayTeam = teams.slice(0, teams.indexOf('@'))
-    console.log(awayTeam)
+    //console.log(awayTeam)
     if(teamName == awayTeam){
       homeAway = 'away'
     }
