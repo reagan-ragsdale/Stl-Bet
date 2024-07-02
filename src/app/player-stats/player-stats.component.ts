@@ -192,6 +192,7 @@ public displayedColumnsValues: any[] = [
   public playerInfo: DbPlayerInfo[] = []
   public selectedPlayer: any = []
   public playerStats: any[] = []
+  public playerSeasonStats: any[] = []
 
 
   async initialize(){
@@ -314,12 +315,15 @@ public displayedColumnsValues: any[] = [
     }
     if(this.selectedSport == "MLB"){
       
-      this.playerStats = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(this.selectedPlayer.playerId, 2024)
+      this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer.playerId)
+      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e))) 
 
-      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.playerStats)
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
-      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.playerSeasonStats)
+      this.nbaPlayerStatsInfo2023TableTemp.forEach(e => e.reverse())
+      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
+      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.forEach((i: { isHighlighted: boolean; }) => i.isHighlighted = false))
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table[0]
       
     }
   }

@@ -74,6 +74,11 @@ export class MlbController {
     const taskRepo = remult.repo(DBMlbPlayerGameStats)
     await taskRepo.insert({playerId: player.playerId, playerName: player.playerName, season: season })
   }
+  @BackendMethod({ allowed: true})
+  static async mlbGetAllPlayerGameStatsByPlayerId(id: number): Promise<DBMlbPlayerGameStats[]>{
+    const taskRepo = remult.repo(DBMlbPlayerGameStats)
+    return await taskRepo.find({where: {playerId : id}})
+  }
   
 
   //team game stats
