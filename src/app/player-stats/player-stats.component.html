@@ -23,8 +23,8 @@
   <div style="height:100%; display:flex; flex-direction:column">
     <div class="top-bar" >
       <div class="player-name">
-        <h1 style="font-size: 200%; margin-top:auto; margin-bottom:auto;">{{selectedPlayer.playerName}}: </h1>
-        <h1 style="margin-top:auto; margin-bottom:auto;">{{selectedPlayer.teamName}}</h1>
+        <h1 class="player-name-name">{{selectedPlayer.playerName}}: </h1>
+        <h1 class="player-name-team">{{selectedPlayer.teamName}}</h1>
       </div>
 
       <div class="search-name" >
@@ -55,7 +55,7 @@
         <span class="example-list-section">
           <mat-slide-toggle [(ngModel)]="isCombineStats" (ngModelChange)="reDrawLineGraph()">Combine
             Stats</mat-slide-toggle>
-          <ul>
+          <ul class="stat-toggle-list">
             <li *ngFor="let box of fullDataset">
               <mat-checkbox [(ngModel)]="box.showLine" [color]="box.color" (ngModelChange)="reDrawLineGraph()">
                 {{box.label}}
@@ -109,7 +109,7 @@
                     (click)="$event.stopPropagation()">Delete</button>
 
                 </mat-form-field>
-                <div style="display: flex; flex-direction: column; padding-top: 2rem; gap: 1rem;">
+                <div class="search-buttons">
                   <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
                     (click)="addStatForm()">Add</button>
                   <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
