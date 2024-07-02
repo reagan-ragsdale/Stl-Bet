@@ -543,7 +543,7 @@ public displayedColumnsValues: any[] = [
         max = e
       }
     })
-    max = (max + (max / 2))
+    max = (max + 2)
     if (max.toString().includes(".")) {
       var maxNew = max.toString().split(".")
       max = parseInt(maxNew[0]) + 1
