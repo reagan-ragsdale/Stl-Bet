@@ -74,6 +74,10 @@
     padding-top: 2rem; 
     gap: 1rem;
   }
+  .search-form{
+    padding-left: 1rem; 
+    padding-top: 1rem;
+  }
   
 
   @media screen and (max-width: 970px) {
@@ -138,6 +142,9 @@
       padding-bottom: 5px;
       margin-top:auto;
       margin-bottom:auto;
+    }
+    .search-form{
+      width: 150px;
     }
     
   }

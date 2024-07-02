@@ -369,7 +369,6 @@ public displayedColumnsValues: any[] = [
   }
 
   loadFindHomeAwayFromGameId(gameId: string, teamName: string): string{
-    console.log(reusedFunctions.getHomeAwayFromGameId(gameId, teamName))
     return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
   }
 
