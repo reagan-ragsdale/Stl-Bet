@@ -369,6 +369,7 @@ public displayedColumnsValues: any[] = [
   }
 
   loadFindHomeAwayFromGameId(gameId: string, teamName: string): string{
+    console.log(reusedFunctions.getHomeAwayFromGameId(gameId, teamName))
     return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
   }
 
@@ -681,7 +682,7 @@ public displayedColumnsValues: any[] = [
         },
         scales: {
           y: {
-            min: -1,
+            min: 0,
             max: max
           }
         },
