@@ -22,6 +22,40 @@
     margin-left: auto; 
     color:white;
   }
+  .graph-body{
+    width: 100%; 
+    display:flex; 
+    margin-top:1rem; 
+    justify-content: space-around;
+  }
+  .line-chart{
+    width: 85%;
+  }
+  .chart-toggles{
+    width:12%; 
+    margin-top:2rem; 
+    border-left: 2px solid black; 
+    padding-left: 10px;
+  }
+  .stats-body{
+    display:flex; 
+    margin-top:1rem; 
+    border-top: 1px solid black; 
+    flex-direction:column;
+  }
+  .table-body{
+    width: 100%; 
+    display:flex; 
+    margin-bottom: 2rem;
+  }
+  .table{
+    width:50%; 
+    margin-left: 1rem;
+  }
+  .table-search{
+    height: inherit; 
+    width: 50%;
+  }
 
   @media screen and (max-width: 970px) {
     .charts {
@@ -46,4 +80,26 @@
     ::ng-deep .search-name .example-full-width{
       max-width: 135px;
     }
+    .graph-body{
+      flex-direction: column-reverse;
+    }
+    .line-chart{
+      width:96%;
+    }
+    .chart-toggles{
+      width:100%;
+      border-left: none; 
+      border-bottom: 2px solid black; 
+    }
+    .table-body{
+      flex-direction:column-reverse;
+    }
+    .table{
+      width:96%;
+    }
+    .table-search{
+      width: 100%;
+      height: 70px;
+    }
+    
   }
