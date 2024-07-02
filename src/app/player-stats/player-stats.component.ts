@@ -25,6 +25,8 @@ import { DbNbaTeamLogos } from '../../shared/dbTasks/DbNbaTeamLogos';
 import { MlbController } from '../../shared/Controllers/MlbController';
 import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
 import { DbPlayerInfo } from 'src/shared/dbTasks/DbPlayerInfo';
+import { PlayerPropController } from 'src/shared/Controllers/PlayerPropController';
+import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 
 
 interface statSearch {
@@ -194,6 +196,8 @@ public displayedColumnsValues: any[] = [
   public playerStats: any[] = []
   public playerSeasonStats: any[] = []
 
+  public playerProps: DbPlayerPropData[] = []
+
 
   async initialize(){
     this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
@@ -325,7 +329,24 @@ public displayedColumnsValues: any[] = [
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.forEach((i: { isHighlighted: boolean; }) => i.isHighlighted = false))
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table[0]
+
+
       
+    }
+
+    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport)
+    let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
+    if(numberOfBookIds.length > 1){
+      //add if there is more than one game that day
+    }
+    else{
+      let today = new Date();
+    today.setHours(5,0,0,0);
+    console.log(today)
+    today = new Date();
+    today.setHours(29,0,0,0);
+    console.log(today)
+
     }
   }
 
