@@ -649,7 +649,7 @@ public displayedColumnsValues: any[] = [
         },
         scales: {
           y: {
-            min: 0,
+            min: -1,
             max: max
           }
         },
