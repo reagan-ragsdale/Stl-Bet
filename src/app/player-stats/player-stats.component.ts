@@ -334,7 +334,7 @@ public displayedColumnsValues: any[] = [
       
     }
 
-    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport)
+    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
     let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
     if(numberOfBookIds.length > 1){
       //add if there is more than one game that day
