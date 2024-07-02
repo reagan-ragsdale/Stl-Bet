@@ -58,7 +58,7 @@ export class PlayerPropController {
   }
 
   @BackendMethod({ allowed: true })
-  static async loadCurrentPlayerPropData(sport: string, playerName: number): Promise<DbPlayerPropData[]> {
+  static async loadCurrentPlayerPropData(sport: string, playerName: string): Promise<DbPlayerPropData[]> {
     const taskRepo = remult.repo(DbPlayerPropData)
     let today = new Date();
     today.setHours(5,0,0,0);
