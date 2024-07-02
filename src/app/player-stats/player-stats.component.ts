@@ -247,7 +247,7 @@ public displayedColumnsValues: any[] = [
           data: [],
           backgroundColor: 'blue',
           showLine: true,
-          dataName: 'hits'
+          dataName: 'batterHits'
     
         },
         {
@@ -255,14 +255,14 @@ public displayedColumnsValues: any[] = [
           data: [],
           backgroundColor: 'green',
           showLine: false,
-          dataName: 'homeRuns'
+          dataName: 'batterHomeRuns'
         },
         {
           label: "Total Bases",
           data: [],
           backgroundColor: 'red',
           showLine: false,
-          dataName: 'totalBases'
+          dataName: 'batterTotalBases'
     
         },
         {
@@ -270,7 +270,7 @@ public displayedColumnsValues: any[] = [
           data: [],
           backgroundColor: 'yellow',
           showLine: false,
-          dataName: 'rbis'
+          dataName: 'batterRbis'
     
         }
       ]
