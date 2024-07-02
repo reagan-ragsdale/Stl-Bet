@@ -353,6 +353,8 @@ public displayedColumnsValues: any[] = [
     //for now we're going to make this just over and single stats
 
     // later we can add over or under and combined stats
+    console.log(this.formArray)
+    console.log(this.seasonArrayTable)
     for (let i = 0; i < this.seasonArrayTable.length; i++) {
       for (let j = 0; j < this.formArray.length; j++) {
 
