@@ -73,20 +73,22 @@ export class PlayerStatsComponent {
   public chart2: any;
   public chart3: any
 
-  public displayedColumns: any[] = [
-    {name: 'Game',
-      value: 'teamAgainstName'
-    }, 
-    {name: 'Date',
-      value: 'gameDate'},
-    {name: 'HR',
-      value: 'batterHomeRuns'},
-    {name: 'H',
-      value: 'batterHits'},
-    {name: 'TB',
-      value: 'batterTotalBases'},
-    {name: 'RBI',
-      value: 'batterRbis'}
+  public displayedColumns: string[] = ["Game", "Date", "HR", "H", "TB", "RBI"]
+
+public displayedColumnsValues: any[] = [
+  {name: 'Game',
+    value: 'teamAgainstName'
+  }, 
+  {name: 'Date',
+    value: 'gameDate'},
+  {name: 'HR',
+    value: 'batterHomeRuns'},
+  {name: 'H',
+    value: 'batterHits'},
+  {name: 'TB',
+    value: 'batterTotalBases'},
+  {name: 'RBI',
+    value: 'batterRbis'}
 ]
 
   public fullDataset: any[] = [
