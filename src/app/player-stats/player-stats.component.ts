@@ -330,7 +330,7 @@ public displayedColumnsValues: any[] = [
         return a - b;
       });
       allSeasons.forEach(e => this.playerSeasons.push(e))
-      this.seasonArray = this.playerStats.filter(e => e.season == allSeasonsFinal[0])
+      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[0])
 
       this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.seasonArray)
       this.nbaPlayerStatsInfo2023TableTemp.reverse()
@@ -487,7 +487,7 @@ public displayedColumnsValues: any[] = [
       var rbis: number[] = []
   
       var index = 1
-      this.playerStats.forEach((e) => {
+      this.seasonArray.forEach((e) => {
         hits.push(e.batterHits)
         homeRuns.push(e.batterHomeRuns)
         totalBases.push(e.batterTotalBases)
