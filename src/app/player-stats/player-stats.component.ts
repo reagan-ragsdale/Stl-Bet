@@ -325,11 +325,11 @@ public displayedColumnsValues: any[] = [
       allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e))) 
       let filter = 0
       let allSeasonsFinal: any[] = []
-      allSeasons.forEach(e => {if(e > filter){
-        filter = e;
-        allSeasonsFinal.push(e)
-      }})
-      allSeasonsFinal.forEach(e => this.playerSeasons.push(e))
+      
+      allSeasons.sort(function(a, b) {
+        return a - b;
+      });
+      allSeasons.forEach(e => this.playerSeasons.push(e))
       this.seasonArray = this.playerStats.filter(e => e.season == allSeasonsFinal[0])
 
       this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.seasonArray)
