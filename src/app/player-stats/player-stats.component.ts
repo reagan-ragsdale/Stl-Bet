@@ -328,7 +328,7 @@ public displayedColumnsValues: any[] = [
         return a - b;
       });
       allSeasons.forEach(e => this.playerSeasons.push(e))
-      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[0])
+      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
 
       this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
       this.nbaPlayerStatsInfo2023TableTemp.reverse()
