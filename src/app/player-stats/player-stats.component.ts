@@ -323,8 +323,6 @@ public displayedColumnsValues: any[] = [
       
       let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
       allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e))) 
-      let filter = 0
-      let allSeasonsFinal: any[] = []
       
       allSeasons.sort(function(a, b) {
         return a - b;
@@ -332,7 +330,7 @@ public displayedColumnsValues: any[] = [
       allSeasons.forEach(e => this.playerSeasons.push(e))
       this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[0])
 
-      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.seasonArray)
+      this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
       this.nbaPlayerStatsInfo2023TableTemp.reverse()
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
@@ -445,7 +443,8 @@ public displayedColumnsValues: any[] = [
   updateSeasonsDisplayed(season: number) {
     this.playerSeason = season
 
-    this.seasonArrayTable = this.playerStats.filter(e => e.season == this.playerSeason)
+    this.seasonArrayTable = JSON.parse(JSON.stringify(this.playerStats.filter(e => e.season == this.playerSeason)))
+    this.seasonArrayTable.reverse()
     this.seasonArray = this.playerStats.filter(e => e.season == this.playerSeason)
 
     this.seasonArrayTable.forEach((e) => e.isHighlighted = false)
