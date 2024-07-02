@@ -338,7 +338,7 @@ public displayedColumnsValues: any[] = [
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
 
-
+      console.log(this.playerSeasons)
       
     }
 
