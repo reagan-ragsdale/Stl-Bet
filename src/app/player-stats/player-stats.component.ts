@@ -298,7 +298,7 @@ public displayedColumnsValues: any[] = [
         this.playerSeasons.push("2022")
       }
       this.seasonArray = this.nbaPlayerStatsInfo2023
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+      
       this.teamInfo = await NbaController.nbaGetLogoFromTeamId(this.nbaPlayerInfo[0].teamId)
 
 
@@ -319,6 +319,7 @@ public displayedColumnsValues: any[] = [
       this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.playerStats)
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
       
     }
   }
