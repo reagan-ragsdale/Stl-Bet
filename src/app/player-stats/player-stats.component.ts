@@ -173,8 +173,8 @@ public displayedColumnsValues: any[] = [
   public nbaPlayerStatsInfo2023Table: any[] = []
   public nbaPlayerStatsInfo2022TableTemp: any[] = []
   public nbaPlayerStatsInfo2022Table: any[] = []
-  public playerSeasons: string[] = []
-  public playerSeason: string = '2023'
+  public playerSeasons: number[] = []
+  public playerSeason: number = 2024
   public teamInfo: DbNbaTeamLogos[] = []
 
   @ViewChild(MatTable)
@@ -286,7 +286,7 @@ public displayedColumnsValues: any[] = [
 
     this.playerSeasons = []
     if (this.selectedSport == "NBA") {
-      this.selectedStatSearchNumber = 0
+     /*  this.selectedStatSearchNumber = 0
       this.nbaPlayerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NBA",this.playerId)
       this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
@@ -304,7 +304,7 @@ public displayedColumnsValues: any[] = [
       }
       this.seasonArray = this.nbaPlayerStatsInfo2023
       
-      this.teamInfo = await NbaController.nbaGetLogoFromTeamId(this.nbaPlayerInfo[0].teamId)
+      this.teamInfo = await NbaController.nbaGetLogoFromTeamId(this.nbaPlayerInfo[0].teamId) */
 
 
 
@@ -320,6 +320,7 @@ public displayedColumnsValues: any[] = [
     if(this.selectedSport == "MLB"){
       
       this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer.playerId)
+      
       let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
       allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e))) 
       let filter = 0
@@ -329,12 +330,13 @@ public displayedColumnsValues: any[] = [
         allSeasonsFinal.push(e)
       }})
       allSeasonsFinal.forEach(e => this.playerSeasons.push(e))
+      this.seasonArray = this.playerStats.filter(e => e.season == allSeasonsFinal[0])
 
-      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.playerSeasonStats)
-      this.nbaPlayerStatsInfo2023TableTemp.forEach(e => e.reverse())
+      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.seasonArray)
+      this.nbaPlayerStatsInfo2023TableTemp.reverse()
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
-      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.forEach((i: { isHighlighted: boolean; }) => i.isHighlighted = false))
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table[0]
+      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
 
 
       
@@ -440,16 +442,13 @@ public displayedColumnsValues: any[] = [
     var num = this.seasonArrayTable.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
     return (num / this.seasonArrayTable.length).toFixed(2)
   }
-  updateSeasonsDisplayed(season: string) {
+  updateSeasonsDisplayed(season: number) {
     this.playerSeason = season
-    if (this.playerSeason == "2023") {
-      this.seasonArray = this.nbaPlayerStatsInfo2023
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
-    }
-    else if (this.playerSeason == "2022") {
-      this.seasonArray = this.nbaPlayerStatsInfo2022
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2022Table
-    }
+
+    this.seasonArrayTable = this.playerStats.filter(e => e.season == this.playerSeason)
+    this.seasonArray = this.playerStats.filter(e => e.season == this.playerSeason)
+
+    this.seasonArrayTable.forEach((e) => e.isHighlighted = false)
     this.table.renderRows()
     this.reDrawLineGraph()
   }
