@@ -1,9 +1,49 @@
 .demo-row-is-clicked {
     background-color:lightcoral;
   }
+  .top-bar{
+    width:100%; 
+    display: flex; 
+    gap: 2rem; 
+    background-color:#3f51b5; 
+    height:70px;
+  }
+  .player-name{
+    display: flex; 
+    gap: .5rem; 
+    align-items: flex-start; 
+    color:white; 
+    margin-left: 1rem;
+  }
+  .search-name{
+    display: flex; 
+    gap: 1rem; 
+    height:inherit; 
+    margin-left: auto; 
+    color:white;
+  }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 970px) {
     .charts {
       flex-direction: column;
+    }
+    .player-name{
+      width:33%;
+      
+    }
+    .player-name h1 {
+      font-size:120%;
+      text-wrap: nowrap;
+    }
+    .search-name{
+      width:66%;
+      
+    }
+    .search-name h2 {
+      font-size: 100%;
+      text-wrap:nowrap
+    }
+    ::ng-deep .search-name .example-full-width{
+      max-width: 135px;
     }
   }
