@@ -241,7 +241,7 @@ public displayedColumnsValues: any[] = [
 
   async loadData() {
     
-    if (this.route.snapshot.paramMap.get('sport') != null && this.route.snapshot.paramMap.get('id') != null) {
+    if (this.route.snapshot.paramMap.get('sport') != 'all') {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
       this.playerId = this.route.snapshot.paramMap.get('id')
       await this.getPlayerInfo()
@@ -251,9 +251,8 @@ public displayedColumnsValues: any[] = [
       //this.createChart2()
       //this.createNormalDistChart()
     }
-    else if (this.route.snapshot.paramMap.get('sport') == null && this.route.snapshot.paramMap.get('id') == null) {
-      this.selectedSport = "all"
-      this.playerId = 0
+    else if (this.route.snapshot.paramMap.get('sport') == 'all') {
+    
       this.isNull = true
       await this.getAllSportPlayers()
     }
