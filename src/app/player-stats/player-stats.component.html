@@ -28,8 +28,6 @@
       </div>
 
       <div class="search-name" >
-        <h2 style="align-items: center; justify-content: center; margin-top:auto; margin-bottom:auto;">
-          Search Player</h2>
         <form style="align-items: center; margin-right: 1rem; padding-top:6px;" class="example-form">
           <mat-form-field class="example-full-width">
             <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
@@ -54,8 +52,7 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="playerTotalStatColumns"></tr>
-        <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
-          *matRowDef="let row; columns: playerTotalStatColumns; " style="height:auto;">
+        <tr mat-row *matRowDef="let row; columns: playerTotalStatColumns; " style="height:auto;">
         </tr>
 
       </table>

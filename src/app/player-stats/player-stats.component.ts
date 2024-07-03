@@ -145,13 +145,10 @@ public displayedColumnsValues: any[] = [
     }
   ]
 
-  public playerTotalStatColumns: string[] = ['Player', 'Home Runs', 'Hits', 'Total Bases', 'Rbis', 'Runs']
+  public playerTotalStatColumns: string[] = ['Home Runs', 'Hits', 'Total Bases', 'Rbis', 'Runs']
 
   public playerTotalDataSet: any[] = [
-    {
-      name: 'Player',
-      data: 'playerName'
-    },
+    
     {
       name: 'Home Runs',
       data: 'batterHomeRuns'
