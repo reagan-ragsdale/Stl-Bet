@@ -1,8 +1,5 @@
 import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { nbaApiController } from '../ApiCalls/nbaApiCalls';
-import { nhlApiController } from '../ApiCalls/nhlApiCalls';
-import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import { NbaController } from 'src/shared/Controllers/NbaController';
 import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
 import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
@@ -51,8 +48,7 @@ export class TeamStatsComponent {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private nhlApiController: nhlApiController,
+    private route: ActivatedRoute
     //private draftKingsApiController: draftKingsApiController
   ) { }
 
