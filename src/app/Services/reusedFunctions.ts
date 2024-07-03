@@ -193,7 +193,7 @@ export class reusedFunctions {
   static getHomeAwayFromGameId(gameId: string, teamName: string):string{
     let homeAway = ''
     console.log(gameId)
-    let teams = gameId.slice(gameId.indexOf('_'))
+    let teams = gameId.slice(gameId.indexOf('_') + 1)
     console.log(teams)
     let potentialDoubleHeader = teams.indexOf('_')
     if(potentialDoubleHeader != -1){
@@ -201,7 +201,7 @@ export class reusedFunctions {
     }
     //console.log(teams)
     let awayTeam = teams.slice(0, teams.indexOf('@'))
-    //console.log(awayTeam)
+    console.log(awayTeam)
     if(teamName == awayTeam){
       homeAway = 'away'
     }
