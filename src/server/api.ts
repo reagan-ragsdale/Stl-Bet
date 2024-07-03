@@ -30,6 +30,9 @@ import { cronSportsBookHourly } from '../app/cronJobs/cronSportsBookLoadHourly';
 import { DBMlbPlayerGameStatTotals } from '../shared/dbTasks/DbMlbPlayerGameStatTotals';
 import { cronLoadMlbPlayer } from '../app/cronJobs/cronLoadMlbPlayerPropsHorly';
 import { repo } from 'remult';
+import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
+import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
+import { DbMlbTeamInfo } from '../shared/dbTasks/DBMlbTeamInfo';
 config()
 
 export const api = remultExpress({
@@ -46,7 +49,8 @@ export const api = remultExpress({
     DbNbaTeamLogos,
     DBMlbPlayerGameStats,
     DbPlayerInfo,
-    DBMlbPlayerGameStatTotals
+    DBMlbPlayerGameStatTotals,
+    DbMlbTeamInfo
   ],
   controllers: [
     MlbController,
@@ -55,7 +59,8 @@ export const api = remultExpress({
     NhlPlayerInfoController,
     NhlPlayerGameStatsController,
     NbaController,
-    PlayerInfoController
+    PlayerInfoController,
+    TeamInfoController
     
   ],
 

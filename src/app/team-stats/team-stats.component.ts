@@ -265,6 +265,7 @@ public displayedColumnsValues: any[] = [
   }
 
   async getAllSportPlayers(){
+    
     let players = await PlayerInfoController.loadActivePlayerInfoBySport('MLB')
     this.allSportPlayerList = players
     this.searchName = ""
