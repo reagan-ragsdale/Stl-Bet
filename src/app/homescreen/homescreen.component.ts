@@ -319,7 +319,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         
       }
       teamArrayFinal[0][0].commenceTime = reusedFunctions.convertCommenceTime(teamArrayFinal[0][0].commenceTime.toString() )
-      if(teamArrayFinal.length == 4){
+      if(teamArrayFinal[0].length == 2 && teamArrayFinal[1].length == 2 && teamArrayFinal[2].length == 1 && teamArrayFinal[3].length == 1){
         this.gameDataAllFinal.push(teamArrayFinal)
       }
       
