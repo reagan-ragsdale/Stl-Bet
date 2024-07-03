@@ -232,8 +232,8 @@ public displayedColumnsValues: any[] = [
 
   async initialize(){
     this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
-      this.selectedSport = params.get('sport')
-      this.playerId = params.get('id')
+      this.selectedSport = params.get('sport') == null ? 'all' : params.get('sport')
+      this.playerId = params.get('id') == null ? 0 : params.get('id')
       this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
       await this.loadData()
     })
@@ -268,7 +268,7 @@ public displayedColumnsValues: any[] = [
   }
 
   async getAllSportPlayers(){
-    let players = await PlayerInfoController.loadAllSportPlayerInfo()
+    let players = await PlayerInfoController.loadActivePlayerInfoBySport('MLB')
     this.allSportPlayerList = players
     this.searchName = ""
     this.filteredSearch = this.allSportPlayerList
