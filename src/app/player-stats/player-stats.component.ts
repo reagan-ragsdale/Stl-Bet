@@ -394,7 +394,9 @@ public displayedColumnsValues: any[] = [
   } */
 
   loadNewPlayer(id: number, sport: string) {
-    this.destroyGraphs()
+    if(this.selectedSport != 'all'){
+      this.destroyGraphs()
+    }
     this.router.navigate([`/playerStats/${sport}/${id}`])
     this.formArray = []  
   }
