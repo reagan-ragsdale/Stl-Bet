@@ -204,211 +204,217 @@ export class MlbService {
     }
 
     static async mlbConvertTeamGameStatsFromApiToDb(gameStats: any): Promise<any[] | number> {
-        console.log(gameStats)
-        if (gameStats.gameStatus != "Completed") {
+        try{
+            if (gameStats.gameStatus != "Completed") {
+                return 0
+            }
+            let gameHistory = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(this.mlbTeamIds[gameStats.away], 2024)
+            let listOfGameIds = gameHistory.map(g => g.gameId)
+            if(listOfGameIds.includes(gameStats.gameID)){
+                return 0;
+            }
+            let homeRunsAway = 0
+            let homeRunsHome = 0
+            let playerStats = gameStats.playerStats
+    
+            let index = 0
+            let newTeamStatData: any[] = []
+            for (let i in playerStats) {
+                newTeamStatData[index] = playerStats[i]
+                index++
+            }
+            for (let player of newTeamStatData) {
+                if (player.team == gameStats.away) {
+                    homeRunsAway += Number(player.Hitting.HR)
+                }
+                else {
+                    homeRunsHome += Number(player.Hitting.HR)
+                }
+            }
+    
+            var teamStatAway: DbMlbTeamGameStats = {
+                teamName: gameStats.away,
+                teamId: this.mlbTeamIds[gameStats.away],
+                teamAgainstName: gameStats.home,
+                teamAgainstId: this.mlbTeamIds[gameStats.home],
+                homeOrAway: "Away",
+                season: this.getSeason(gameStats.gameID),
+                gameId: gameStats.gameID,
+                gameDate: this.getGameDate(gameStats.gameID),
+                result: gameStats.awayResult,
+                pointsScoredOverall: gameStats.lineScore.away.R,
+                pointsScoredFirstInning: gameStats.lineScore.away.scoresByInning[1],
+                pointsScoredSecondInning: gameStats.lineScore.away.scoresByInning[2],
+                pointsScoredThirdInning: gameStats.lineScore.away.scoresByInning[3],
+                pointsScoredFourthInning: gameStats.lineScore.away.scoresByInning[4],
+                pointsScoredFifthInning: gameStats.lineScore.away.scoresByInning[5],
+                pointsScoredSixthInning: typeof(gameStats.lineScore.away.scoresByInning[6]) == 'number' ? gameStats.lineScore.away.scoresByInning[6]: 0,
+                pointsScoredSeventhInning: typeof(gameStats.lineScore.away.scoresByInning[7]) == 'number' ? gameStats.lineScore.away.scoresByInning[7] : 0,
+                pointsScoredEigthInning: typeof(gameStats.lineScore.away.scoresByInning[8]) == 'number' ? gameStats.lineScore.away.scoresByInning[8] : 0,
+                pointsScoredNinthInning: (gameStats.lineScore.away.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.away.scoresByInning[9]),
+                pointsAllowedOverall: gameStats.lineScore.home.R,
+                pointsAllowedFirstInning: typeof(gameStats.lineScore.home.scoresByInning[1]) == 'number' ? gameStats.lineScore.home.scoresByInning[1] : 0,
+                pointsAllowedSecondInning: typeof(gameStats.lineScore.home.scoresByInning[2]) == 'number' ? gameStats.lineScore.home.scoresByInning[2] : 0,
+                pointsAllowedThirdInning: typeof(gameStats.lineScore.home.scoresByInning[3]) == 'number' ? gameStats.lineScore.home.scoresByInning[3] : 0,
+                pointsAllowedFourthInning: typeof(gameStats.lineScore.home.scoresByInning[4]) == 'number' ? gameStats.lineScore.home.scoresByInning[4] : 0,
+                pointsAllowedFifthInning: typeof(gameStats.lineScore.home.scoresByInning[5]) == 'number' ? gameStats.lineScore.home.scoresByInning[5] : 0,
+                pointsAllowedSixthInning: typeof(gameStats.lineScore.home.scoresByInning[6]) == 'number' ? gameStats.lineScore.home.scoresByInning[6] : 0,
+                pointsAllowedSeventhInning: typeof(gameStats.lineScore.home.scoresByInning[7]) == 'number' ? gameStats.lineScore.home.scoresByInning[7] : 0,
+                pointsAllowedEigthInning: typeof(gameStats.lineScore.home.scoresByInning[8]) == 'number' ? gameStats.lineScore.home.scoresByInning[8] : 0,
+                pointsAllowedNinthInning: (gameStats.lineScore.home.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
+                totalHomeRunsScored: homeRunsAway,
+                totalHitsScored: gameStats.teamStats.away.Hitting.H,
+                totalFirstBaseScored: 0,
+                totalSecondBaseScored: gameStats.teamStats.away.Hitting['2B'],
+                totalThirdBaseScored: gameStats.teamStats.away.Hitting['3B'],
+                totalRbisScored: gameStats.teamStats.away.Hitting.RBI,
+                totalHomeRunsAllowed: homeRunsHome,
+                totalHitsAllowed: gameStats.teamStats.home.Hitting.H,
+                totalFirstBaseAllowed: 0,
+                totalSecondBaseAllowed: gameStats.teamStats.home.Hitting['2B'],
+                totalThirdBaseAllowed: gameStats.teamStats.home.Hitting['3B'],
+                totalRbisAllowed: gameStats.teamStats.home.Hitting.RBI
+            }
+    
+            var teamStatHome: DbMlbTeamGameStats = {
+                teamName: gameStats.home,
+                teamId: this.mlbTeamIds[gameStats.home],
+                teamAgainstName: gameStats.away,
+                teamAgainstId: this.mlbTeamIds[gameStats.away],
+                homeOrAway: "Home",
+                season: this.getSeason(gameStats.gameID),
+                gameId: gameStats.gameID,
+                gameDate: this.getGameDate(gameStats.gameID),
+                result: gameStats.homeResult,
+                pointsScoredOverall: gameStats.lineScore.home.R,
+                pointsScoredFirstInning: gameStats.lineScore.home.scoresByInning[1],
+                pointsScoredSecondInning: gameStats.lineScore.home.scoresByInning[2],
+                pointsScoredThirdInning: gameStats.lineScore.home.scoresByInning[3],
+                pointsScoredFourthInning: gameStats.lineScore.home.scoresByInning[4],
+                pointsScoredFifthInning: gameStats.lineScore.home.scoresByInning[5],
+                pointsScoredSixthInning: gameStats.lineScore.home.scoresByInning[6],
+                pointsScoredSeventhInning: gameStats.lineScore.home.scoresByInning[7],
+                pointsScoredEigthInning: gameStats.lineScore.home.scoresByInning[8],
+                pointsScoredNinthInning: (gameStats.lineScore.home.scoresByInning[9] = "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
+                pointsAllowedOverall: gameStats.lineScore.away.R,
+                pointsAllowedFirstInning: gameStats.lineScore.away.scoresByInning[1],
+                pointsAllowedSecondInning: gameStats.lineScore.away.scoresByInning[2],
+                pointsAllowedThirdInning: gameStats.lineScore.away.scoresByInning[3],
+                pointsAllowedFourthInning: gameStats.lineScore.away.scoresByInning[4],
+                pointsAllowedFifthInning: gameStats.lineScore.away.scoresByInning[5],
+                pointsAllowedSixthInning: gameStats.lineScore.away.scoresByInning[6],
+                pointsAllowedSeventhInning: gameStats.lineScore.away.scoresByInning[7],
+                pointsAllowedEigthInning: gameStats.lineScore.away.scoresByInning[8],
+                pointsAllowedNinthInning: (gameStats.lineScore.away.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.away.scoresByInning[9]),
+                totalHomeRunsScored: homeRunsHome,
+                totalHitsScored: gameStats.teamStats.home.Hitting.H,
+                totalFirstBaseScored: 0,
+                totalSecondBaseScored: gameStats.teamStats.home.Hitting['2B'],
+                totalThirdBaseScored: gameStats.teamStats.home.Hitting['3B'],
+                totalRbisScored: gameStats.teamStats.home.Hitting.RBI,
+                totalHomeRunsAllowed: homeRunsAway,
+                totalHitsAllowed: gameStats.teamStats.away.Hitting.H,
+                totalFirstBaseAllowed: 0,
+                totalSecondBaseAllowed: gameStats.teamStats.away.Hitting['2B'],
+                totalThirdBaseAllowed: gameStats.teamStats.away.Hitting['3B'],
+                totalRbisAllowed: gameStats.teamStats.away.Hitting.RBI
+            }
+    
+            var listOfPlayerGameStats: DBMlbPlayerGameStats[] = []
+            for (let player of newTeamStatData) {
+                let playerInfo = await MlbController.mlbGetPlayerInfoByPlayerId(player.playerID)
+                if(playerInfo.length == 0){
+                    continue
+                }
+                var playerName = playerInfo[0].playerName
+                if (playerName.includes("á")) {
+                    playerName = playerName.replaceAll("á", "a")
+                }
+                if (playerName.includes("Á")) {
+                    playerName = playerName.replaceAll("Á", "A")
+                }
+                if (playerName.includes("é")) {
+                    playerName = playerName.replaceAll("é", "e")
+                }
+                if (playerName.includes("É")) {
+                    playerName = playerName.replaceAll("É", "E")
+                }
+                if (playerName.includes("í")) {
+                    playerName = playerName.replaceAll("í", "i")
+                }
+                if (playerName.includes("Í")) {
+                    playerName = playerName.replaceAll("Í", "I")
+                }
+                if (playerName.includes("ñ")) {
+                    playerName = playerName.replaceAll("ñ", "n")
+                }
+                if (playerName.includes("Ñ")) {
+                    playerName = playerName.replaceAll("Ñ", "N")
+                }
+                if (playerName.includes("ó")) {
+                    playerName = playerName.replaceAll("ó", "o")
+                }
+                if (playerName.includes("Ó")) {
+                    playerName = playerName.replaceAll("Ó", "O")
+                }
+                if (playerName.includes("ú")) {
+                    playerName = playerName.replaceAll("ú", "u")
+                }
+                if (playerName.includes("Ú")) {
+                    playerName = playerName.replaceAll("Ú", "U")
+                }
+                if (playerName.includes("ü")) {
+                    playerName = playerName.replaceAll("ü", "u")
+                }
+                if (playerName.includes("Ü")) {
+                    playerName = playerName.replaceAll("Ü", "U")
+                }
+                console.log(player.Hitting.HR)
+    
+                listOfPlayerGameStats.push({
+                    playerId: player.playerID,
+                    playerName: playerName,
+                    teamName: player.team,
+                    teamId: MlbService.mlbTeamIds[player.team],
+                    teamAgainstName: this.getTeamAgainst(player.gameID, player.team),
+                    teamAgainstId: MlbService.mlbTeamIds[this.getTeamAgainst(player.gameID, player.team)],
+                    gameId: player.gameID,
+                    gameDate: this.getGameDate(player.gameID),
+                    season: this.getSeason(player.gameID),
+                    playerPosition: player.startingPosition,
+                    playerStarted: player.started ? "Y" : "N",
+                    batterAtBats: player.Hitting.AB,
+                    batterHomeRuns: player.Hitting.HR ? player.Hitting.HR : 0,
+                    batterHits: player.Hitting.H,
+                    batterTotalBases: player.Hitting.TB,
+                    batterRbis: player.Hitting.RBI,
+                    batterRunsScored: player.Hitting.R,
+                    batterHitsRunsRbis: (Number(player.Hitting.H) + Number(player.Hitting.R) + Number(player.Hitting.RBI)) ? Number(player.Hitting.H) + Number(player.Hitting.R) + Number(player.Hitting.RBI) : 0,
+                    batterDoubles: player.Hitting['2B'],
+                    batterTriples: player.Hitting['3B'],
+                    batterWalks: 0,
+                    //Number(player.Hitting.BB) + Number(player.Hitting.IBB),
+                    batterStrikeouts: player.Hitting.SO,
+                    batterStolenBases: player.BaseRunning.SB,
+                    pitcherStrikes: player.Pitching.Strikes,
+                    pitcherPitches: player.Pitching.Pitches,
+    
+                })
+    
+    
+            }
+            var finalArray: any[] = []
+            finalArray.push(teamStatAway)
+            finalArray.push(teamStatHome)
+            finalArray.push(listOfPlayerGameStats)
+    
+            return finalArray
+        }
+        catch(error:any){
+            console.log(error.message)
             return 0
         }
-        let gameHistory = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(this.mlbTeamIds[gameStats.away], 2024)
-        let listOfGameIds = gameHistory.map(g => g.gameId)
-        if(listOfGameIds.includes(gameStats.gameID)){
-            return 0;
-        }
-        let homeRunsAway = 0
-        let homeRunsHome = 0
-        let playerStats = gameStats.playerStats
-
-        let index = 0
-        let newTeamStatData: any[] = []
-        for (let i in playerStats) {
-            newTeamStatData[index] = playerStats[i]
-            index++
-        }
-        for (let player of newTeamStatData) {
-            if (player.team == gameStats.away) {
-                homeRunsAway += Number(player.Hitting.HR)
-            }
-            else {
-                homeRunsHome += Number(player.Hitting.HR)
-            }
-        }
-
-        var teamStatAway: DbMlbTeamGameStats = {
-            teamName: gameStats.away,
-            teamId: this.mlbTeamIds[gameStats.away],
-            teamAgainstName: gameStats.home,
-            teamAgainstId: this.mlbTeamIds[gameStats.home],
-            homeOrAway: "Away",
-            season: this.getSeason(gameStats.gameID),
-            gameId: gameStats.gameID,
-            gameDate: this.getGameDate(gameStats.gameID),
-            result: gameStats.awayResult,
-            pointsScoredOverall: gameStats.lineScore.away.R,
-            pointsScoredFirstInning: gameStats.lineScore.away.scoresByInning[1],
-            pointsScoredSecondInning: gameStats.lineScore.away.scoresByInning[2],
-            pointsScoredThirdInning: gameStats.lineScore.away.scoresByInning[3],
-            pointsScoredFourthInning: gameStats.lineScore.away.scoresByInning[4],
-            pointsScoredFifthInning: gameStats.lineScore.away.scoresByInning[5],
-            pointsScoredSixthInning: typeof(gameStats.lineScore.away.scoresByInning[6]) == 'number' ? gameStats.lineScore.away.scoresByInning[6]: 0,
-            pointsScoredSeventhInning: typeof(gameStats.lineScore.away.scoresByInning[7]) == 'number' ? gameStats.lineScore.away.scoresByInning[7] : 0,
-            pointsScoredEigthInning: typeof(gameStats.lineScore.away.scoresByInning[8]) == 'number' ? gameStats.lineScore.away.scoresByInning[8] : 0,
-            pointsScoredNinthInning: (gameStats.lineScore.away.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.away.scoresByInning[9]),
-            pointsAllowedOverall: gameStats.lineScore.home.R,
-            pointsAllowedFirstInning: typeof(gameStats.lineScore.home.scoresByInning[1]) == 'number' ? gameStats.lineScore.home.scoresByInning[1] : 0,
-            pointsAllowedSecondInning: typeof(gameStats.lineScore.home.scoresByInning[2]) == 'number' ? gameStats.lineScore.home.scoresByInning[2] : 0,
-            pointsAllowedThirdInning: typeof(gameStats.lineScore.home.scoresByInning[3]) == 'number' ? gameStats.lineScore.home.scoresByInning[3] : 0,
-            pointsAllowedFourthInning: typeof(gameStats.lineScore.home.scoresByInning[4]) == 'number' ? gameStats.lineScore.home.scoresByInning[4] : 0,
-            pointsAllowedFifthInning: typeof(gameStats.lineScore.home.scoresByInning[5]) == 'number' ? gameStats.lineScore.home.scoresByInning[5] : 0,
-            pointsAllowedSixthInning: typeof(gameStats.lineScore.home.scoresByInning[6]) == 'number' ? gameStats.lineScore.home.scoresByInning[6] : 0,
-            pointsAllowedSeventhInning: typeof(gameStats.lineScore.home.scoresByInning[7]) == 'number' ? gameStats.lineScore.home.scoresByInning[7] : 0,
-            pointsAllowedEigthInning: typeof(gameStats.lineScore.home.scoresByInning[8]) == 'number' ? gameStats.lineScore.home.scoresByInning[8] : 0,
-            pointsAllowedNinthInning: (gameStats.lineScore.home.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
-            totalHomeRunsScored: homeRunsAway,
-            totalHitsScored: gameStats.teamStats.away.Hitting.H,
-            totalFirstBaseScored: 0,
-            totalSecondBaseScored: gameStats.teamStats.away.Hitting['2B'],
-            totalThirdBaseScored: gameStats.teamStats.away.Hitting['3B'],
-            totalRbisScored: gameStats.teamStats.away.Hitting.RBI,
-            totalHomeRunsAllowed: homeRunsHome,
-            totalHitsAllowed: gameStats.teamStats.home.Hitting.H,
-            totalFirstBaseAllowed: 0,
-            totalSecondBaseAllowed: gameStats.teamStats.home.Hitting['2B'],
-            totalThirdBaseAllowed: gameStats.teamStats.home.Hitting['3B'],
-            totalRbisAllowed: gameStats.teamStats.home.Hitting.RBI
-        }
-
-        var teamStatHome: DbMlbTeamGameStats = {
-            teamName: gameStats.home,
-            teamId: this.mlbTeamIds[gameStats.home],
-            teamAgainstName: gameStats.away,
-            teamAgainstId: this.mlbTeamIds[gameStats.away],
-            homeOrAway: "Home",
-            season: this.getSeason(gameStats.gameID),
-            gameId: gameStats.gameID,
-            gameDate: this.getGameDate(gameStats.gameID),
-            result: gameStats.homeResult,
-            pointsScoredOverall: gameStats.lineScore.home.R,
-            pointsScoredFirstInning: gameStats.lineScore.home.scoresByInning[1],
-            pointsScoredSecondInning: gameStats.lineScore.home.scoresByInning[2],
-            pointsScoredThirdInning: gameStats.lineScore.home.scoresByInning[3],
-            pointsScoredFourthInning: gameStats.lineScore.home.scoresByInning[4],
-            pointsScoredFifthInning: gameStats.lineScore.home.scoresByInning[5],
-            pointsScoredSixthInning: gameStats.lineScore.home.scoresByInning[6],
-            pointsScoredSeventhInning: gameStats.lineScore.home.scoresByInning[7],
-            pointsScoredEigthInning: gameStats.lineScore.home.scoresByInning[8],
-            pointsScoredNinthInning: (gameStats.lineScore.home.scoresByInning[9] = "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
-            pointsAllowedOverall: gameStats.lineScore.away.R,
-            pointsAllowedFirstInning: gameStats.lineScore.away.scoresByInning[1],
-            pointsAllowedSecondInning: gameStats.lineScore.away.scoresByInning[2],
-            pointsAllowedThirdInning: gameStats.lineScore.away.scoresByInning[3],
-            pointsAllowedFourthInning: gameStats.lineScore.away.scoresByInning[4],
-            pointsAllowedFifthInning: gameStats.lineScore.away.scoresByInning[5],
-            pointsAllowedSixthInning: gameStats.lineScore.away.scoresByInning[6],
-            pointsAllowedSeventhInning: gameStats.lineScore.away.scoresByInning[7],
-            pointsAllowedEigthInning: gameStats.lineScore.away.scoresByInning[8],
-            pointsAllowedNinthInning: (gameStats.lineScore.away.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.away.scoresByInning[9]),
-            totalHomeRunsScored: homeRunsHome,
-            totalHitsScored: gameStats.teamStats.home.Hitting.H,
-            totalFirstBaseScored: 0,
-            totalSecondBaseScored: gameStats.teamStats.home.Hitting['2B'],
-            totalThirdBaseScored: gameStats.teamStats.home.Hitting['3B'],
-            totalRbisScored: gameStats.teamStats.home.Hitting.RBI,
-            totalHomeRunsAllowed: homeRunsAway,
-            totalHitsAllowed: gameStats.teamStats.away.Hitting.H,
-            totalFirstBaseAllowed: 0,
-            totalSecondBaseAllowed: gameStats.teamStats.away.Hitting['2B'],
-            totalThirdBaseAllowed: gameStats.teamStats.away.Hitting['3B'],
-            totalRbisAllowed: gameStats.teamStats.away.Hitting.RBI
-        }
-
-        var listOfPlayerGameStats: DBMlbPlayerGameStats[] = []
-        for (let player of newTeamStatData) {
-            let playerInfo = await MlbController.mlbGetPlayerInfoByPlayerId(player.playerID)
-            if(playerInfo.length == 0){
-                continue
-            }
-            var playerName = playerInfo[0].playerName
-            if (playerName.includes("á")) {
-                playerName = playerName.replaceAll("á", "a")
-            }
-            if (playerName.includes("Á")) {
-                playerName = playerName.replaceAll("Á", "A")
-            }
-            if (playerName.includes("é")) {
-                playerName = playerName.replaceAll("é", "e")
-            }
-            if (playerName.includes("É")) {
-                playerName = playerName.replaceAll("É", "E")
-            }
-            if (playerName.includes("í")) {
-                playerName = playerName.replaceAll("í", "i")
-            }
-            if (playerName.includes("Í")) {
-                playerName = playerName.replaceAll("Í", "I")
-            }
-            if (playerName.includes("ñ")) {
-                playerName = playerName.replaceAll("ñ", "n")
-            }
-            if (playerName.includes("Ñ")) {
-                playerName = playerName.replaceAll("Ñ", "N")
-            }
-            if (playerName.includes("ó")) {
-                playerName = playerName.replaceAll("ó", "o")
-            }
-            if (playerName.includes("Ó")) {
-                playerName = playerName.replaceAll("Ó", "O")
-            }
-            if (playerName.includes("ú")) {
-                playerName = playerName.replaceAll("ú", "u")
-            }
-            if (playerName.includes("Ú")) {
-                playerName = playerName.replaceAll("Ú", "U")
-            }
-            if (playerName.includes("ü")) {
-                playerName = playerName.replaceAll("ü", "u")
-            }
-            if (playerName.includes("Ü")) {
-                playerName = playerName.replaceAll("Ü", "U")
-            }
-            console.log(player.Hitting.HR)
-
-            listOfPlayerGameStats.push({
-                playerId: player.playerID,
-                playerName: playerName,
-                teamName: player.team,
-                teamId: MlbService.mlbTeamIds[player.team],
-                teamAgainstName: this.getTeamAgainst(player.gameID, player.team),
-                teamAgainstId: MlbService.mlbTeamIds[this.getTeamAgainst(player.gameID, player.team)],
-                gameId: player.gameID,
-                gameDate: this.getGameDate(player.gameID),
-                season: this.getSeason(player.gameID),
-                playerPosition: player.startingPosition,
-                playerStarted: player.started ? "Y" : "N",
-                batterAtBats: player.Hitting.AB,
-                batterHomeRuns: player.Hitting.HR ? player.Hitting.HR : 0,
-                batterHits: player.Hitting.H,
-                batterTotalBases: player.Hitting.TB,
-                batterRbis: player.Hitting.RBI,
-                batterRunsScored: player.Hitting.R,
-                batterHitsRunsRbis: (Number(player.Hitting.H) + Number(player.Hitting.R) + Number(player.Hitting.RBI)) ? Number(player.Hitting.H) + Number(player.Hitting.R) + Number(player.Hitting.RBI) : 0,
-                batterDoubles: player.Hitting['2B'],
-                batterTriples: player.Hitting['3B'],
-                batterWalks: 0,
-                //Number(player.Hitting.BB) + Number(player.Hitting.IBB),
-                batterStrikeouts: player.Hitting.SO,
-                batterStolenBases: player.BaseRunning.SB,
-                pitcherStrikes: player.Pitching.Strikes,
-                pitcherPitches: player.Pitching.Pitches,
-
-            })
-
-
-        }
-        var finalArray: any[] = []
-        finalArray.push(teamStatAway)
-        finalArray.push(teamStatHome)
-        finalArray.push(listOfPlayerGameStats)
-
-        return finalArray
+        
     }
 
 
