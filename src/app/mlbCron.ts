@@ -143,7 +143,7 @@ export const mlbCronFile = async () => {
         '20240702'
     ];
 
-    /* try {
+     try {
         //for(let date of dates){
             let listOfGamesToday = await mlbApiController.getMlbGamesScheduleByDate(gameDate)
             for (let game of listOfGamesToday) {
@@ -166,7 +166,7 @@ export const mlbCronFile = async () => {
 
     } catch (error: any) {
         console.log("Game stats: " + error.message)
-    } */
+    } 
 
 
 
