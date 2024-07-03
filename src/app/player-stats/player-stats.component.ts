@@ -445,8 +445,11 @@ public displayedColumnsValues: any[] = [
 
   filterSearch() {
     if(this.isNull){
-      this.filteredSearch = this.allSportPlayerList.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
-      console.log(this.filteredSearch)
+      if(this.searchName != ""){
+        this.filteredSearch = this.allSportPlayerList.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+        console.log(this.filteredSearch)
+      }
+      
     }
     else{
       this.filteredSearch = this.playerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
