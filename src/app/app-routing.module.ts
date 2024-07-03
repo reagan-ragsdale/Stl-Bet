@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'props/:sport/:game', component: PropScreenComponent},
   { path: 'playerStats', component: PlayerStatsComponent},
   { path: 'teamStats', component: TeamStatsComponent},
-  { path: 'teamStats/:team', component: TeamStatsComponent},
+  { path: 'teamStats/:team/:id', component: TeamStatsComponent},
 
   { path: 'playerStats/:sport/:id', component: PlayerStatsComponent},
 ];

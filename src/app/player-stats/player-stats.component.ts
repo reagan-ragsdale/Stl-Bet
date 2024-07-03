@@ -271,6 +271,7 @@ public displayedColumnsValues: any[] = [
     this.allSportPlayerList = players
     this.searchName = ""
     this.filteredSearch = this.allSportPlayerList
+    console.log(players)
   }
 
   async getPlayerInfo() {
