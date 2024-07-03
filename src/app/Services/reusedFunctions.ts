@@ -192,8 +192,9 @@ export class reusedFunctions {
 
   static getHomeAwayFromGameId(gameId: string, teamName: string):string{
     let homeAway = ''
-
+    console.log(gameId)
     let teams = gameId.slice(gameId.indexOf('_'))
+    console.log(teams)
     let potentialDoubleHeader = teams.indexOf('_')
     if(potentialDoubleHeader != -1){
       teams = teams.slice(0, potentialDoubleHeader)
