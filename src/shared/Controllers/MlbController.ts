@@ -204,5 +204,14 @@ export class MlbController {
     
   }
 
+  @BackendMethod({ allowed: true })
+  static async mlbSpecificGetPlayerStatTotals(playerId: number): Promise<DBMlbPlayerGameStatTotals[]>{
+    const taskRepo = remult.repo(DBMlbPlayerGameStatTotals)
+
+    return await taskRepo.find({where: {playerId: playerId, }})
+   
+    
+  }
+
   
 }

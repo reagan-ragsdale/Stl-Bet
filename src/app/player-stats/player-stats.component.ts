@@ -28,6 +28,7 @@ import { DbPlayerInfo } from 'src/shared/dbTasks/DbPlayerInfo';
 import { PlayerPropController } from 'src/shared/Controllers/PlayerPropController';
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 import { reusedFunctions } from '../Services/reusedFunctions';
+import { DBMlbPlayerGameStatTotals } from 'src/shared/dbTasks/DbMlbPlayerGameStatTotals';
 
 
 interface statSearch {
@@ -144,6 +145,37 @@ public displayedColumnsValues: any[] = [
     }
   ]
 
+  public playerTotalStatColumns: string[] = ['Player', 'Home Runs', 'Hits', 'Total Bases', 'Rbis', 'Runs']
+
+  public playerTotalDataSet: any[] = [
+    {
+      name: 'Player',
+      data: 'playerName'
+    },
+    {
+      name: 'Home Runs',
+      data: 'batterHomeRuns'
+    },
+    {
+      name: 'Hits',
+      data: 'batterHits'
+    },
+    {
+      name: 'Total Bases',
+      data: 'batterTotalBases'
+    },
+    {
+      name: 'Rbis',
+      data: 'batterRbis'
+    },
+    {
+      name: 'Runs',
+      data: 'batterRunsScored'
+    }
+
+
+  ]
+
   formArray: statSearch[] = [
 
   ]
@@ -198,6 +230,7 @@ public displayedColumnsValues: any[] = [
   public playerSeasonStats: any[] = []
 
   public playerProps: DbPlayerPropData[] = []
+  public playerTotalStats: DBMlbPlayerGameStatTotals[] = []
 
 
   async initialize(){
@@ -338,10 +371,12 @@ public displayedColumnsValues: any[] = [
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
 
       console.log(this.playerSeasons)
+      this.playerTotalStats = await MlbController.mlbSpecificGetPlayerStatTotals(this.playerId)
       
     }
 
     this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
+    
     let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
     if(numberOfBookIds.length > 1){
       //add if there is more than one game that day
