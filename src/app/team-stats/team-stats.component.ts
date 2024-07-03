@@ -236,7 +236,7 @@ public displayedColumnsValues: any[] = [
     this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
       this.selectedSport = params.get('team') == null ? 'all' : params.get('team')
       this.playerId = params.get('id') == null ? 0 : params.get('id')
-      this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
+      this.router.navigate([`/teamStats/${this.selectedSport}/${this.playerId}`])
       await this.loadData()
     })
   }
