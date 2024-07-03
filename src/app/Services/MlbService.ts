@@ -248,19 +248,19 @@ export class MlbService {
                 pointsScoredThirdInning: gameStats.lineScore.away.scoresByInning[3],
                 pointsScoredFourthInning: gameStats.lineScore.away.scoresByInning[4],
                 pointsScoredFifthInning: gameStats.lineScore.away.scoresByInning[5],
-                pointsScoredSixthInning: typeof(gameStats.lineScore.away.scoresByInning[6]) == 'number' ? gameStats.lineScore.away.scoresByInning[6]: 0,
-                pointsScoredSeventhInning: typeof(gameStats.lineScore.away.scoresByInning[7]) == 'number' ? gameStats.lineScore.away.scoresByInning[7] : 0,
-                pointsScoredEigthInning: typeof(gameStats.lineScore.away.scoresByInning[8]) == 'number' ? gameStats.lineScore.away.scoresByInning[8] : 0,
+                pointsScoredSixthInning: gameStats.lineScore.away.scoresByInning[6],
+                pointsScoredSeventhInning: gameStats.lineScore.away.scoresByInning[7],
+                pointsScoredEigthInning: gameStats.lineScore.away.scoresByInning[8],
                 pointsScoredNinthInning: (gameStats.lineScore.away.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.away.scoresByInning[9]),
                 pointsAllowedOverall: gameStats.lineScore.home.R,
-                pointsAllowedFirstInning: typeof(gameStats.lineScore.home.scoresByInning[1]) == 'number' ? gameStats.lineScore.home.scoresByInning[1] : 0,
-                pointsAllowedSecondInning: typeof(gameStats.lineScore.home.scoresByInning[2]) == 'number' ? gameStats.lineScore.home.scoresByInning[2] : 0,
-                pointsAllowedThirdInning: typeof(gameStats.lineScore.home.scoresByInning[3]) == 'number' ? gameStats.lineScore.home.scoresByInning[3] : 0,
-                pointsAllowedFourthInning: typeof(gameStats.lineScore.home.scoresByInning[4]) == 'number' ? gameStats.lineScore.home.scoresByInning[4] : 0,
-                pointsAllowedFifthInning: typeof(gameStats.lineScore.home.scoresByInning[5]) == 'number' ? gameStats.lineScore.home.scoresByInning[5] : 0,
-                pointsAllowedSixthInning: typeof(gameStats.lineScore.home.scoresByInning[6]) == 'number' ? gameStats.lineScore.home.scoresByInning[6] : 0,
-                pointsAllowedSeventhInning: typeof(gameStats.lineScore.home.scoresByInning[7]) == 'number' ? gameStats.lineScore.home.scoresByInning[7] : 0,
-                pointsAllowedEigthInning: typeof(gameStats.lineScore.home.scoresByInning[8]) == 'number' ? gameStats.lineScore.home.scoresByInning[8] : 0,
+                pointsAllowedFirstInning: gameStats.lineScore.home.scoresByInning[1],
+                pointsAllowedSecondInning: gameStats.lineScore.home.scoresByInning[2],
+                pointsAllowedThirdInning: gameStats.lineScore.home.scoresByInning[3],
+                pointsAllowedFourthInning: gameStats.lineScore.home.scoresByInning[4],
+                pointsAllowedFifthInning: gameStats.lineScore.home.scoresByInning[5],
+                pointsAllowedSixthInning: gameStats.lineScore.home.scoresByInning[6],
+                pointsAllowedSeventhInning: gameStats.lineScore.home.scoresByInning[7],
+                pointsAllowedEigthInning: gameStats.lineScore.home.scoresByInning[8],
                 pointsAllowedNinthInning: (gameStats.lineScore.home.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
                 totalHomeRunsScored: homeRunsAway,
                 totalHitsScored: gameStats.teamStats.away.Hitting.H,
@@ -369,7 +369,7 @@ export class MlbService {
                 if (playerName.includes("Ü")) {
                     playerName = playerName.replaceAll("Ü", "U")
                 }
-                console.log(player.Hitting.HR)
+                
     
                 listOfPlayerGameStats.push({
                     playerId: player.playerID,
