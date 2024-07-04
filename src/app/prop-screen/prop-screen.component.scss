@@ -56,6 +56,9 @@ mat-tab-label{
   mat-panel-description{
     gap: 60rem;
   }
+  .mat-expansion-panel-body{
+
+  }
 
 
   .player-table {
@@ -290,6 +293,10 @@ mat-mdc-tab-body-content{
     }
     .team-dropdown{
       width:100%;
+    }
+    ::ng-deep .mat-expansion-panel-body{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
     ::ng-deep .main-specific-class .mat-expansion-panel-body{
       padding-left: 0.5rem !important;
