@@ -307,5 +307,8 @@ mat-mdc-tab-body-content{
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
+    ::ng-deep .mat-card-content{
+      padding: 0 !important;
+    }
   }
    

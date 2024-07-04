@@ -267,20 +267,20 @@
     <table mat-table [dataSource]="gameStats">
       <ng-container matColumnDef="TeamAgainst">
         <th mat-header-cell *matHeaderCellDef style="padding:0"> Team </th>
-        <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;" style="padding:0">
+        <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;" style="padding:0; text-align: center;">
           {{element.homeOrAway == "Away"? "@": ""}}{{element.teamAgainstName}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Date">
         <th mat-header-cell *matHeaderCellDef style="padding:0"> Date </th>
-        <td mat-cell *matCellDef="let element" style="padding:0"> {{element.gameDate}}
+        <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.gameDate}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Score">
         <th mat-header-cell *matHeaderCellDef style="padding:0"> Score </th>
-        <td mat-cell *matCellDef="let element" style="padding:0"> {{element.pointsScoredOverall}} -
+        <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.pointsScoredOverall}} -
           {{element.pointsAllowedOverall}} </td>
       </ng-container>
 
@@ -381,7 +381,7 @@
             </h2>
 
             <div style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly;">
-              <mat-accordion style="width:90%">
+              <mat-accordion style="width:94%">
                 <mat-expansion-panel *ngFor="let prop of team">
                   <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -396,7 +396,7 @@
                     <mat-card-header>
                       <mat-card-title>{{displayPropTitle(prop)}} {{displayPropDescription(prop)}}</mat-card-title>
                     </mat-card-header>
-                    <mat-card-content style="min-height:400px">
+                    <mat-card-content style="min-height:400px; padding: 0;">
                       <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
                         (selectedIndexChange)="openChart($event)">
                         <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
@@ -527,7 +527,7 @@
 
                         </mat-tab>
                       </mat-tab-group>
-                      <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0;">Last 10 Games</h1>
+                      <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0; text-align:center">Last 10 Games</h1>
                       <div style="display:flex; justify-content:space-between; gap: 5px; margin-top: 1rem;">
                         <div style="display:flex; flex-direction: column; width:33%">
                           <div style="text-align: center;">
