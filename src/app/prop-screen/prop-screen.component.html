@@ -268,7 +268,7 @@
       <ng-container matColumnDef="TeamAgainst">
         <th mat-header-cell *matHeaderCellDef style="padding:0">Team </th>
         <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;" style="padding:0; text-align: center;">
-          {{loadFindHomeAwayFromGameId(element.gameId, element.teamName) == 'away' ? '@' : ''}}{{element.teamAgainstName}}
+          {{element.teamAgainstName}}
         </td>
       </ng-container>
 
