@@ -1,16 +1,22 @@
 import { Allow, BackendMethod, remult } from "remult"
 
-import { DbMlbTeamInfo } from "../dbTasks/DBMlbTeamInfo";
+import { DbTeamInfo } from "../dbTasks/DBTeamInfo";
 
 export class TeamInfoController {
 
     @BackendMethod({ allowed: true })
-  static async setTeamInfo(teamInfo: DbMlbTeamInfo[]) {
-    const taskRepo = remult.repo(DbMlbTeamInfo)
+  static async setTeamInfo(teamInfo: DbTeamInfo[]) {
+    const taskRepo = remult.repo(DbTeamInfo)
 
     
 
     await taskRepo.insert(teamInfo)
 
+  }
+
+  @BackendMethod({ allowed: true })
+  static async getTeamInfo(sport: string, teamId: number): Promise<DbTeamInfo[]> {
+    const taskRepo = remult.repo(DbTeamInfo)
+    return await taskRepo.find({where: {sport: sport, teamId: teamId}})
   }
 }

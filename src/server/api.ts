@@ -32,7 +32,7 @@ import { cronLoadMlbPlayer } from '../app/cronJobs/cronLoadMlbPlayerPropsHorly';
 import { repo } from 'remult';
 import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
-import { DbMlbTeamInfo } from '../shared/dbTasks/DBMlbTeamInfo';
+import { DbTeamInfo } from '../shared/dbTasks/DBTeamInfo';
 config()
 
 export const api = remultExpress({
@@ -50,7 +50,7 @@ export const api = remultExpress({
     DBMlbPlayerGameStats,
     DbPlayerInfo,
     DBMlbPlayerGameStatTotals,
-    DbMlbTeamInfo
+    DbTeamInfo
   ],
   controllers: [
     MlbController,

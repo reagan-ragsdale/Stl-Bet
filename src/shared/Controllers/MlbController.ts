@@ -94,6 +94,13 @@ export class MlbController {
     return await taskRepo.find({where: {teamId : id, season: season}, orderBy:{gameDate: 'asc'}})
     
   }
+  @BackendMethod({ allowed: true})
+  static async mlbGetAllTeamGameStatsByTeamId(id: number): Promise<DbMlbTeamGameStats[]>{
+    const taskRepo = remult.repo(DbMlbTeamGameStats)
+    return await taskRepo.find({where: {teamId : id}, orderBy:{gameDate: 'asc'}})
+    
+  }
+  
 
   //player stat averages
   @BackendMethod({ allowed: true })
@@ -152,6 +159,13 @@ export class MlbController {
     else{
       await taskRepo.insert(stat)
     }
+    
+  }
+  @BackendMethod({ allowed: true })
+  static async mlbGetSpecificTeamStatAverage(teamId: number): Promise<DbMlbTeamGameStatAverages[]> {
+    const taskRepo = remult.repo(DbMlbTeamGameStatAverages)
+
+    return await taskRepo.find({where: {teamId: teamId}})
     
   }
 

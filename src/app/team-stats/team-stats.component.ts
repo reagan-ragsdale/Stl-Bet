@@ -26,6 +26,9 @@ import { PlayerPropController } from 'src/shared/Controllers/PlayerPropControlle
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { DBMlbPlayerGameStatTotals } from 'src/shared/dbTasks/DbMlbPlayerGameStatTotals';
+import { DbTeamInfo } from 'src/shared/dbTasks/DBTeamInfo';
+import { TeamInfoController } from 'src/shared/Controllers/TeamInfoController';
+import { DbMlbTeamGameStatAverages } from 'src/shared/dbTasks/DbMlbTeamGameStatAverages';
 
 
 
@@ -60,11 +63,11 @@ export class TeamStatsComponent {
   //public displayedColumns: any[] = ["Game", "Date", "Points", "Assists", "Rebounds", "Blocks", "Threes"]
   //
 
-  public playerName: string = ''
-  public playerId: any = 0
+  public teamName: string = ''
+  public teamId: any = 0
   public selectedSport: any = ''
   public selectedStatSearchNumber: number = 0
-  public filteredSearch: DbPlayerInfo[] = []
+  public filteredSearch: DbTeamInfo[] = []
   public searchName: string = ''
   playerAverage: number = 0
   playerStd: number = 0
@@ -143,29 +146,29 @@ public displayedColumnsValues: any[] = [
     }
   ]
 
-  public playerTotalStatColumns: string[] = ['Home Runs', 'Hits', 'Total Bases', 'Rbis', 'Runs']
+  public teamTotalStatColumns: string[] = ['Home Runs', 'Hits', 'Points', 'Rbis']
 
-  public playerTotalDataSet: any[] = [
+  public teamTotalDataSet: any[] = [
     
     {
       name: 'Home Runs',
-      data: 'batterHomeRuns'
+      data: 'totalHomeRunsScored'
     },
     {
       name: 'Hits',
-      data: 'batterHits'
+      data: 'totalHitsScored'
     },
     {
-      name: 'Total Bases',
-      data: 'batterTotalBases'
+      name: 'Points',
+      data: 'pointsScoredOverall'
     },
     {
       name: 'Rbis',
-      data: 'batterRbis'
+      data: 'totalRbisScored'
     },
     {
       name: 'Runs',
-      data: 'batterRunsScored'
+      data: 'totalRunsScored'
     }
 
 
@@ -201,9 +204,8 @@ public displayedColumnsValues: any[] = [
   public nbaPlayerStatsInfo2023Table: any[] = []
   public nbaPlayerStatsInfo2022TableTemp: any[] = []
   public nbaPlayerStatsInfo2022Table: any[] = []
-  public playerSeasons: number[] = []
-  public playerSeason: number = 2024
-  public teamInfo: DbNbaTeamLogos[] = []
+  public teamSeasons: number[] = []
+  public teamSeason: number = 2024
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
@@ -219,20 +221,20 @@ public displayedColumnsValues: any[] = [
   public isNull: boolean = false
   public allSportPlayerList: any[] = []
 
-  public playerInfo: DbPlayerInfo[] = []
-  public selectedPlayer: any = []
-  public playerStats: any[] = []
-  public playerSeasonStats: any[] = []
+  public teamInfo: DbTeamInfo[] = []
+  public selectedTeam: any = []
+  public teamStats: any[] = []
+  public teamSeasonStats: any[] = []
 
-  public playerProps: DbPlayerPropData[] = []
-  public playerTotalStats: DBMlbPlayerGameStatTotals[] = []
+  public teamProps: DbPlayerPropData[] = []
+  public teamTotalStats: DbMlbTeamGameStatAverages[] = []
 
 
   async initialize(){
     this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
       this.selectedSport = params.get('team') == null ? 'all' : params.get('team')
-      this.playerId = params.get('id') == null ? 0 : params.get('id')
-      this.router.navigate([`/teamStats/${this.selectedSport}/${this.playerId}`])
+      this.teamId = params.get('id') == null ? 0 : params.get('id')
+      this.router.navigate([`/teamStats/${this.selectedSport}/${this.teamId}`])
       await this.loadData()
     })
   }
@@ -241,10 +243,10 @@ public displayedColumnsValues: any[] = [
     
     if (this.route.snapshot.paramMap.get('team') != 'all') {
       this.selectedSport = this.route.snapshot.paramMap.get('team')
-      this.playerId = this.route.snapshot.paramMap.get('id')
-      await this.getPlayerInfo()
+      this.teamId = this.route.snapshot.paramMap.get('id')
+      await this.getTeamInfo()
       //await this.getAllPlayerInfo()
-      this.calculateMeanAndStd()
+      //this.calculateMeanAndStd()
       this.createChart()
       //this.createChart2()
       //this.createNormalDistChart()
@@ -255,9 +257,6 @@ public displayedColumnsValues: any[] = [
       await this.getAllSportPlayers()
     }
 
-    if(this.selectedSport == 'MLB'){
-      
-    }
 
 
 
@@ -272,7 +271,7 @@ public displayedColumnsValues: any[] = [
     this.filteredSearch = this.allSportPlayerList
   }
 
-  async getPlayerInfo() {
+  async getTeamInfo() {
 
     if(this.selectedSport == 'MLB'){
       this.fullDataset = [
@@ -281,7 +280,7 @@ public displayedColumnsValues: any[] = [
           data: [],
           backgroundColor: 'blue',
           showLine: true,
-          dataName: 'batterHits'
+          dataName: 'totalHitsScored'
     
         },
         {
@@ -289,14 +288,14 @@ public displayedColumnsValues: any[] = [
           data: [],
           backgroundColor: 'green',
           showLine: false,
-          dataName: 'batterHomeRuns'
+          dataName: 'totalHomeRunsScored'
         },
         {
-          label: "Total Bases",
+          label: "Total Points",
           data: [],
           backgroundColor: 'red',
           showLine: false,
-          dataName: 'batterTotalBases'
+          dataName: 'totalPointsScored'
     
         },
         {
@@ -304,60 +303,37 @@ public displayedColumnsValues: any[] = [
           data: [],
           backgroundColor: 'yellow',
           showLine: false,
-          dataName: 'batterRbis'
+          dataName: 'totalRbisScored'
     
         }
       ]
     }
 
-    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
-    this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)[0]
+    this.teamInfo = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
+    this.selectedTeam = this.teamInfo.filter(e => e.teamId == this.teamId)[0]
 
-    this.playerSeasons = []
+    this.teamSeasons = []
     if (this.selectedSport == "NBA") {
-     /*  this.selectedStatSearchNumber = 0
-      this.nbaPlayerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NBA",this.playerId)
-      this.playerName = this.nbaPlayerInfo[0].playerName
-      this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
-      this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
-      this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.nbaPlayerStatsInfo2023)
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
-      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.nbaPlayerStatsInfo2022TableTemp = structuredClone(this.nbaPlayerStatsInfo2022)
-      this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2022TableTemp.reverse()
-      this.nbaPlayerStatsInfo2022Table.forEach((e) => e.isHighlighted = false)
-      this.searchName = this.playerName
-      this.playerSeasons.push("2023")
-      if (this.nbaPlayerStatsInfo2022.length > 1) {
-        this.playerSeasons.push("2022")
-      }
-      this.seasonArray = this.nbaPlayerStatsInfo2023
-      
-      this.teamInfo = await NbaController.nbaGetLogoFromTeamId(this.nbaPlayerInfo[0].teamId) */
-
+     
 
 
 
 
     }
     if (this.selectedSport == "NHL") {
-      this.nhlPlayerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL",this.playerId)
-      this.playerName = this.nbaPlayerInfo[0].playerName
-      this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
-      this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
     }
     if(this.selectedSport == "MLB"){
       
-      this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer.playerId)
+      this.teamStats = await MlbController.mlbGetAllTeamGameStatsByTeamId(this.selectedTeam.teamId)
       
-      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e))) 
+      let allSeasons = this.teamStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+      allSeasons.forEach(e => this.teamSeasonStats.push(this.teamStats.filter(i => i.season == e))) 
       
       allSeasons.sort(function(a, b) {
         return a - b;
       });
-      allSeasons.forEach(e => this.playerSeasons.push(e))
-      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
+      allSeasons.forEach(e => this.teamSeasons.push(e))
+      this.seasonArray = this.teamStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
 
       this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
       this.nbaPlayerStatsInfo2023TableTemp.reverse()
@@ -365,21 +341,21 @@ public displayedColumnsValues: any[] = [
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
 
-      console.log(this.playerSeasons)
-      this.playerTotalStats = await MlbController.mlbSpecificGetPlayerStatTotals(this.playerId)
+      console.log(this.teamSeasons)
+      this.teamTotalStats = await MlbController.mlbGetSpecificTeamStatAverage(this.teamId)
       
     }
 
-    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
+    //this.teamProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.teamStats[0].playerName)
     
-    let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
+    /* let numberOfBookIds = this.teamProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
     if(numberOfBookIds.length > 1){
       //add if there is more than one game that day
     }
     else{
       
 
-    }
+    } */
   }
 
   /* async getAllPlayerInfo() {
@@ -446,13 +422,13 @@ public displayedColumnsValues: any[] = [
       console.log(this.filteredSearch)
     }
     else{
-      this.filteredSearch = this.playerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredSearch = this.teamInfo.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
     }
     
   }
 
   setSearchEmpty() {
-    this.searchName = this.playerName
+    this.searchName = this.teamName
   }
 
   addStatForm() {
@@ -478,11 +454,11 @@ public displayedColumnsValues: any[] = [
     return (num / this.seasonArrayTable.length).toFixed(2)
   }
   updateSeasonsDisplayed(season: number) {
-    this.playerSeason = season
+    this.teamSeason = season
 
-    this.seasonArrayTable = JSON.parse(JSON.stringify(this.playerStats.filter(e => e.season == this.playerSeason)))
+    this.seasonArrayTable = JSON.parse(JSON.stringify(this.teamStats.filter(e => e.season == this.teamSeason)))
     this.seasonArrayTable.reverse()
-    this.seasonArray = this.playerStats.filter(e => e.season == this.playerSeason)
+    this.seasonArray = this.teamStats.filter(e => e.season == this.teamSeason)
 
     this.seasonArrayTable.forEach((e) => e.isHighlighted = false)
     this.table.renderRows()
@@ -519,21 +495,21 @@ public displayedColumnsValues: any[] = [
     else if(this.selectedSport == 'MLB'){
       var hits: number[] = []
       var homeRuns: number[] = []
-      var totalBases: number[] = []
+      var points: number[] = []
       var rbis: number[] = []
   
       var index = 1
       this.seasonArray.forEach((e) => {
-        hits.push(e.batterHits)
-        homeRuns.push(e.batterHomeRuns)
-        totalBases.push(e.batterTotalBases)
-        rbis.push(e.batterRbis)
+        hits.push(e.totalHitsScored)
+        homeRuns.push(e.totalHomeRunsScored)
+        points.push(e.totalPointsScored)
+        rbis.push(e.totalRbisScored)
   
         dataPoint.push(index.toString())
         index++
       })
       
-      arrayOFpoints = [hits, homeRuns, totalBases, rbis]
+      arrayOFpoints = [hits, homeRuns, points, rbis]
       
     }
     
