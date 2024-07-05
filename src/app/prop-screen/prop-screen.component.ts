@@ -2804,7 +2804,8 @@ export class PropScreenComponent implements OnInit {
         tableOverall: tableOverall.slice(0,10),
         tableHomeAway: tableHomeAway.slice(0,10),
         tableTeam: tableTeam.slice(0,10),
-        overUnder: overUnder
+        overUnder: overUnder,
+        teamAgainstName: teamAgainstName
 
       }
       
@@ -2831,7 +2832,8 @@ export class PropScreenComponent implements OnInit {
         tableOverall: [],
         tableHomeAway: [],
         tableTeam: [],
-        overUnder: false
+        overUnder: false,
+        teamAgainstName: ''
       }
     }
     return this.playerStatObj
@@ -3224,6 +3226,10 @@ try{
     
     return this.returnObj
 
+  }
+
+  loadFindHomeAwayFromGameId(gameId: string, teamName: string): string{
+    return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
   }
 
   
