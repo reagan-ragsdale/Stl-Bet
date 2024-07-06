@@ -266,20 +266,20 @@
   <div style="width:100%">
     <table mat-table [dataSource]="gameStats">
       <ng-container matColumnDef="TeamAgainst">
-        <th mat-header-cell *matHeaderCellDef style="padding:0">Team </th>
+        <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;">Team </th>
         <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;" style="padding:0; text-align: center;">
           {{element.teamAgainstName}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Date">
-        <th mat-header-cell *matHeaderCellDef style="padding:0"> Date </th>
+        <th mat-header-cell *matHeaderCellDef style="padding:0;text-align: center;"> Date </th>
         <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.gameDate}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Score">
-        <th mat-header-cell *matHeaderCellDef style="padding:0"> Score </th>
+        <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;"> Score </th>
         <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.pointsScoredOverall}} -
           {{element.pointsAllowedOverall}} </td>
       </ng-container>
@@ -297,21 +297,21 @@
   <div style="width:100%">
     <table mat-table [dataSource]="playerStats">
       <ng-container matColumnDef="TeamAgainst">
-        <th mat-header-cell *matHeaderCellDef style="padding:0">Team </th>
-        <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;" style="padding:0">
+        <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;">Team </th>
+        <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;" style="padding:0; text-align: center;">
           {{element.homeAway == "Away"? "@": ""}}{{element.teamAgainstName}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Date">
-        <th mat-header-cell *matHeaderCellDef style="padding:0"> Date </th>
-        <td mat-cell *matCellDef="let element" style="padding:0"> {{element.gameDate}}
+        <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;"> Date </th>
+        <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.gameDate}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Score">
-        <th mat-header-cell *matHeaderCellDef style="padding:0"> {{playerStats.length == 0 ? '' : playerStats[0].propName}}</th>
-        <td mat-cell *matCellDef="let element" style="padding:0"> {{element.propNumber}}</td>
+        <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;"> {{playerStats.length == 0 ? '' : playerStats[0].propName}}</th>
+        <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.propNumber}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true" style="width:auto; height:auto; font-size: medium; text-align:center"></tr>
@@ -686,7 +686,7 @@
                                         style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                                         <div
                                           style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                          <h3 style="margin:auto">{{prop.propVariables.teamAgainstName}}</h3>
+                                          <h3 style="margin:auto">{{player[0].propVariables.teamAgainstName}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Record</h3>
