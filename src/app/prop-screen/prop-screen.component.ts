@@ -2886,7 +2886,8 @@ try{
           teamAgainstName: e.teamAgainstName,
           gameDate: e.gameDate,
           pointsScoredOverall: e.pointsScoredOverall,
-          pointsAllowedOverall: e.pointsAllowedOverall
+          pointsAllowedOverall: e.pointsAllowedOverall,
+          homeAway: e.homeOrAway
         })})
         finalTeam.tableOverall = tableTemp
         
@@ -2897,7 +2898,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: e.pointsScoredOverall,
-              pointsAllowedOverall: e.pointsAllowedOverall
+              pointsAllowedOverall: e.pointsAllowedOverall,
+              homeAway: e.homeOrAway
             })
           }
           })
@@ -2910,7 +2912,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: e.pointsScoredOverall,
-              pointsAllowedOverall: e.pointsAllowedOverall
+              pointsAllowedOverall: e.pointsAllowedOverall,
+              homeAway: e.homeOrAway
             })
           }
           })
@@ -2945,7 +2948,8 @@ try{
           teamAgainstName: e.teamAgainstName,
           gameDate: e.gameDate,
           pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
-          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)
+          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
+          homeAway: e.homeOrAway
         })})
         finalTeam.tableOverall = tableTemp
         
@@ -2956,7 +2960,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
+              homeAway: e.homeOrAway
             })
           }
           })
@@ -2969,7 +2974,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
+              homeAway: e.homeOrAway
             })
           }
           })
@@ -2990,7 +2996,8 @@ try{
           teamAgainstName: e.teamAgainstName,
           gameDate: e.gameDate,
           pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
-          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)
+          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
+          homeAway: e.homeOrAway
         })})
         finalTeam.tableOverall = tableTemp
         
@@ -3001,7 +3008,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
+              homeAway: e.homeOrAway
             })
           }
           })
@@ -3014,7 +3022,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
+              homeAway: e.homeOrAway
             })
           }
           })
@@ -3036,7 +3045,8 @@ try{
           teamAgainstName: e.teamAgainstName,
           gameDate: e.gameDate,
           pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
-          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)
+          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
+          homeAway: e.homeOrAway
         })})
         finalTeam.tableOverall = tableTemp
         
@@ -3047,7 +3057,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
+              homeAway: e.homeOrAway
             })
           }
           })
@@ -3060,7 +3071,8 @@ try{
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)
+              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
+              homeAway: e.homeOrAway
             })
           }
           })
