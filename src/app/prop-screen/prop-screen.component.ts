@@ -3205,7 +3205,7 @@ export class PropScreenComponent implements OnInit {
         tableHomeAway: finalTeam.tableHomeAway.slice(0, 10),
         tableTeam: finalTeam.tableTeam.slice(0, 10),
         teamAgainstName: teamAgainstName,
-        markeyKey: marketKey
+        marketKey: marketKey
 
       }
 
