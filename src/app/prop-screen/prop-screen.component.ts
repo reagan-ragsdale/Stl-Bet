@@ -3257,6 +3257,7 @@ export class PropScreenComponent implements OnInit {
   //if either overall home/away or team win percentage is over a certain number then add it to it
   //
   getTeamBestBets() {
+    console.log(this.arrayOfTeamBets)
     for (let bet of this.arrayOfTeamBets) {
       if (bet.totalGames != 0 && bet.totalGamesHomeAway != 0 && bet.totalGamesTeam != 0) {
         if (((bet.totalWins / bet.totalGames) > .7) || ((bet.totalWinsHomeAway / bet.totalGamesHomeAway) > .7) || ((bet.totalWinsTeam / bet.totalGamesTeam) > .7)) {
@@ -3265,6 +3266,8 @@ export class PropScreenComponent implements OnInit {
       }
 
     }
+    console.log(this.teamBestBets)
+
   }
 
   loadFindHomeAwayFromGameId(gameId: string, teamName: string): string {
