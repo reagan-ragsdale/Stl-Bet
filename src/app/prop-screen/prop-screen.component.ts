@@ -190,7 +190,7 @@ export class PropScreenComponent implements OnInit {
   sports: any[] = [];
   playerProps: any;
 
- 
+
   team1GameStatsDtoNHL = {}
   team2GameStatsDtoNHL = {}
 
@@ -546,7 +546,7 @@ export class PropScreenComponent implements OnInit {
     }
 
     this.teamPropFinnal.push(team2Final, team1Final)
-    
+
 
 
     let distinctProps = tempProp.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
@@ -678,1687 +678,1687 @@ export class PropScreenComponent implements OnInit {
   public team1Wins: number = 0
   public team1OverallGames: number = 0
   public team2Wins: number = 0
-  public team2OverallGames:number = 0
+  public team2OverallGames: number = 0
   computeTeamsGameStats(team1: any[], team2: any[]) {
-   /*  if (this.selectedSport == "NBA") {
-      this.team1GameVsOpponentData = []
-      this.team1GameStatsDtoNBA = {
-        gamesWon: 0,
-        gamesLost: 0,
-        gamesWonVsOpponent: 0,
-        gamesLostVsOpponent: 0,
-        gamesWonHome: 0,
-        gamesLostHome: 0,
-        gamesWonAway: 0,
-        gamesLostAway: 0,
-        halfOneWon: 0,
-        halfOneLost: 0,
-        halfTwoWon: 0,
-        halfTwoLost: 0,
-        quarterOneWon: 0,
-        quarterOneLost: 0,
-        quarterTwoWon: 0,
-        quarterTwoLost: 0,
-        quarterThreeWon: 0,
-        quarterThreeLost: 0,
-        quarterFourWon: 0,
-        quarterFourLost: 0,
-        halfOneWonVsOpponent: 0,
-        halfOneLostVsOpponent: 0,
-        halfTwoWonVsOpponent: 0,
-        halfTwoLostVsOpponent: 0,
-        quarterOneWonVsOpponent: 0,
-        quarterOneLostVsOpponent: 0,
-        quarterTwoWonVsOpponent: 0,
-        quarterTwoLostVsOpponent: 0,
-        quarterThreeWonVsOpponent: 0,
-        quarterThreeLostVsOpponent: 0,
-        quarterFourWonVsOpponent: 0,
-        quarterFourLostVsOpponent: 0,
-        halfOneWonHome: 0,
-        halfOneLostHome: 0,
-        halfOneWonAway: 0,
-        halfOneLostAway: 0,
-        halfTwoWonHome: 0,
-        halfTwoLostHome: 0,
-        halfTwoWonAway: 0,
-        halfTwoLostAway: 0,
-        quarterOneWonHome: 0,
-        quarterOneLostHome: 0,
-        quarterOneWonAway: 0,
-        quarterOneLostAway: 0,
-        quarterTwoWonHome: 0,
-        quarterTwoLostHome: 0,
-        quarterTwoWonAway: 0,
-        quarterTwoLostAway: 0,
-        quarterThreeWonHome: 0,
-        quarterThreeLostHome: 0,
-        quarterThreeWonAway: 0,
-        quarterThreeLostAway: 0,
-        quarterFourWonHome: 0,
-        quarterFourLostHome: 0,
-        quarterFourWonAway: 0,
-        quarterFourLostAway: 0,
-        spreadGame: 0,
-        spreadFirstHalf: 0,
-        spreadSecondHalf: 0,
-        spreadFirstQuarter: 0,
-        spreadSecondQuarter: 0,
-        spreadThirdQuarter: 0,
-        spreadFourthQuarter: 0,
-        spreadVsOpponent: 0,
-        spreadFirstHalfVsOpponent: 0,
-        spreadSecondHalfVsOpponent: 0,
-        spreadFirstQuarterVsOpponent: 0,
-        spreadSecondQuarterVsOpponet: 0,
-        spreadThirdQuarterVsOpponent: 0,
-        spreadFourthQuarterVsOpponent: 0,
-        spreadHome: 0,
-        spreadHomeFirstHalf: 0,
-        spreadHomeSecondHalf: 0,
-        spreadHomeFirstQuarter: 0,
-        spreadHomeSecondQuarter: 0,
-        spreadHomeThirdQuarter: 0,
-        spreadHomeFourthQuarter: 0,
-        spreadAway: 0,
-        spreadAwayFirstHalf: 0,
-        spreadAwaySecondHalf: 0,
-        spreadAwayFirstQuarter: 0,
-        spreadAwaySecondQuarter: 0,
-        spreadAwayThirdQuarter: 0,
-        spreadAwayFourthQuarter: 0,
-        totalOverall: 0,
-        totalOverallFirstHalf: 0,
-        totalOverallSecondHalf: 0,
-        totalOverallFirstQuarter: 0,
-        totalOverallSecondQuarter: 0,
-        totalOverallThirdQuarter: 0,
-        totalOverallFourthQuarter: 0,
-        totalVsTeam: 0,
-        totalVsTeamFirstHalf: 0,
-        totalVsTeamSecondHalf: 0,
-        totalVsTeamFirstQuarter: 0,
-        totalVsTeamSecondQuarter: 0,
-        totalVsTeamThirdQuarter: 0,
-        totalVsTeamFourthQuarter: 0,
-        totalHome: 0,
-        totalHomeFirstHalf: 0,
-        totalHomeSecondHalf: 0,
-        totalHomeFirstQuarter: 0,
-        totalHomeSecondQuarter: 0,
-        totalHomeThirdQuarter: 0,
-        totalHomeFourthQuarter: 0,
-        totalAway: 0,
-        totalAwayFirstHalf: 0,
-        totalAwaySecondHalf: 0,
-        totalAwayFirstQuarter: 0,
-        totalAwaySecondQuarter: 0,
-        totalAwayThirdQuarter: 0,
-        totalAwayFourthQuarter: 0,
-        pointsScoredOverallGame: 0,
-        pointsScoredOverallFirstHalf: 0,
-        pointsScoredOverallSecondHalf: 0,
-        pointsScoredOverallFirstQuarter: 0,
-        pointsScoredOverallSecondQuarter: 0,
-        pointsScoredOverallThirdQuarter: 0,
-        pointsScoredOverallFourthQuarter: 0,
-        pointsScoredVsTeamGame: 0,
-        pointsScoredVsTeamFirstHalf: 0,
-        pointsScoredVsTeamSecondHalf: 0,
-        pointsScoredVsTeamFirstQuarter: 0,
-        pointsScoredVsTeamSecondQuarter: 0,
-        pointsScoredVsTeamThirdQuarter: 0,
-        pointsScoredVsTeamFourthQuarter: 0,
-        pointsScoredHomeGame: 0,
-        pointsScoredHomeFirstHalf: 0,
-        pointsScoredHomeSecondHalf: 0,
-        pointsScoredHomeFirstQuarter: 0,
-        pointsScoredHomeSecondQuarter: 0,
-        pointsScoredHomeThirdQuarter: 0,
-        pointsScoredHomeFourthQuarter: 0,
-        pointsScoredAwayGame: 0,
-        pointsScoredAwayFirstHalf: 0,
-        pointsScoredAwaySecondHalf: 0,
-        pointsScoredAwayFirstQuarter: 0,
-        pointsScoredAwaySecondQuarter: 0,
-        pointsScoredAwayThirdQuarter: 0,
-        pointsScoredAwayFourthQuarter: 0,
-        pointsAllowedOverallGame: 0,
-        pointsAllowedOverallFirstHalf: 0,
-        pointsAllowedOverallSecondHalf: 0,
-        pointsAllowedOverallFirstQuarter: 0,
-        pointsAllowedOverallSecondQuarter: 0,
-        pointsAllowedOverallThirdQuarter: 0,
-        pointsAllowedOverallFourthQuarter: 0,
-        pointsAllowedVsTeamGame: 0,
-        pointsAllowedVsTeamFirstHalf: 0,
-        pointsAllowedVsTeamSecondHalf: 0,
-        pointsAllowedVsTeamFirstQuarter: 0,
-        pointsAllowedVsTeamSecondQuarter: 0,
-        pointsAllowedVsTeamThirdQuarter: 0,
-        pointsAllowedVsTeamFourthQuarter: 0,
-        pointsAllowedHomeGame: 0,
-        pointsAllowedHomeFirstHalf: 0,
-        pointsAllowedHomeSecondHalf: 0,
-        pointsAllowedHomeFirstQuarter: 0,
-        pointsAllowedHomeSecondQuarter: 0,
-        pointsAllowedHomeThirdQuarter: 0,
-        pointsAllowedHomeFourthQuarter: 0,
-        pointsAllowedAwayGame: 0,
-        pointsAllowedAwayFirstHalf: 0,
-        pointsAllowedAwaySecondHalf: 0,
-        pointsAllowedAwayFirstQuarter: 0,
-        pointsAllowedAwaySecondQuarter: 0,
-        pointsAllowedAwayThirdQuarter: 0,
-        pointsAllowedAwayFourthQuarter: 0,
-      }
-      this.team2GameStatsDtoNBA = {
-        gamesWon: 0,
-        gamesLost: 0,
-        gamesWonVsOpponent: 0,
-        gamesLostVsOpponent: 0,
-        gamesWonHome: 0,
-        gamesLostHome: 0,
-        gamesWonAway: 0,
-        gamesLostAway: 0,
-        halfOneWon: 0,
-        halfOneLost: 0,
-        halfTwoWon: 0,
-        halfTwoLost: 0,
-        quarterOneWon: 0,
-        quarterOneLost: 0,
-        quarterTwoWon: 0,
-        quarterTwoLost: 0,
-        quarterThreeWon: 0,
-        quarterThreeLost: 0,
-        quarterFourWon: 0,
-        quarterFourLost: 0,
-        halfOneWonVsOpponent: 0,
-        halfOneLostVsOpponent: 0,
-        halfTwoWonVsOpponent: 0,
-        halfTwoLostVsOpponent: 0,
-        quarterOneWonVsOpponent: 0,
-        quarterOneLostVsOpponent: 0,
-        quarterTwoWonVsOpponent: 0,
-        quarterTwoLostVsOpponent: 0,
-        quarterThreeWonVsOpponent: 0,
-        quarterThreeLostVsOpponent: 0,
-        quarterFourWonVsOpponent: 0,
-        quarterFourLostVsOpponent: 0,
-        halfOneWonHome: 0,
-        halfOneLostHome: 0,
-        halfOneWonAway: 0,
-        halfOneLostAway: 0,
-        halfTwoWonHome: 0,
-        halfTwoLostHome: 0,
-        halfTwoWonAway: 0,
-        halfTwoLostAway: 0,
-        quarterOneWonHome: 0,
-        quarterOneLostHome: 0,
-        quarterOneWonAway: 0,
-        quarterOneLostAway: 0,
-        quarterTwoWonHome: 0,
-        quarterTwoLostHome: 0,
-        quarterTwoWonAway: 0,
-        quarterTwoLostAway: 0,
-        quarterThreeWonHome: 0,
-        quarterThreeLostHome: 0,
-        quarterThreeWonAway: 0,
-        quarterThreeLostAway: 0,
-        quarterFourWonHome: 0,
-        quarterFourLostHome: 0,
-        quarterFourWonAway: 0,
-        quarterFourLostAway: 0,
-        spreadGame: 0,
-        spreadFirstHalf: 0,
-        spreadSecondHalf: 0,
-        spreadFirstQuarter: 0,
-        spreadSecondQuarter: 0,
-        spreadThirdQuarter: 0,
-        spreadFourthQuarter: 0,
-        spreadVsOpponent: 0,
-        spreadFirstHalfVsOpponent: 0,
-        spreadSecondHalfVsOpponent: 0,
-        spreadFirstQuarterVsOpponent: 0,
-        spreadSecondQuarterVsOpponet: 0,
-        spreadThirdQuarterVsOpponent: 0,
-        spreadFourthQuarterVsOpponent: 0,
-        spreadHome: 0,
-        spreadHomeFirstHalf: 0,
-        spreadHomeSecondHalf: 0,
-        spreadHomeFirstQuarter: 0,
-        spreadHomeSecondQuarter: 0,
-        spreadHomeThirdQuarter: 0,
-        spreadHomeFourthQuarter: 0,
-        spreadAway: 0,
-        spreadAwayFirstHalf: 0,
-        spreadAwaySecondHalf: 0,
-        spreadAwayFirstQuarter: 0,
-        spreadAwaySecondQuarter: 0,
-        spreadAwayThirdQuarter: 0,
-        spreadAwayFourthQuarter: 0,
-        totalOverall: 0,
-        totalOverallFirstHalf: 0,
-        totalOverallSecondHalf: 0,
-        totalOverallFirstQuarter: 0,
-        totalOverallSecondQuarter: 0,
-        totalOverallThirdQuarter: 0,
-        totalOverallFourthQuarter: 0,
-        totalVsTeam: 0,
-        totalVsTeamFirstHalf: 0,
-        totalVsTeamSecondHalf: 0,
-        totalVsTeamFirstQuarter: 0,
-        totalVsTeamSecondQuarter: 0,
-        totalVsTeamThirdQuarter: 0,
-        totalVsTeamFourthQuarter: 0,
-        totalHome: 0,
-        totalHomeFirstHalf: 0,
-        totalHomeSecondHalf: 0,
-        totalHomeFirstQuarter: 0,
-        totalHomeSecondQuarter: 0,
-        totalHomeThirdQuarter: 0,
-        totalHomeFourthQuarter: 0,
-        totalAway: 0,
-        totalAwayFirstHalf: 0,
-        totalAwaySecondHalf: 0,
-        totalAwayFirstQuarter: 0,
-        totalAwaySecondQuarter: 0,
-        totalAwayThirdQuarter: 0,
-        totalAwayFourthQuarter: 0,
-        pointsScoredOverallGame: 0,
-        pointsScoredOverallFirstHalf: 0,
-        pointsScoredOverallSecondHalf: 0,
-        pointsScoredOverallFirstQuarter: 0,
-        pointsScoredOverallSecondQuarter: 0,
-        pointsScoredOverallThirdQuarter: 0,
-        pointsScoredOverallFourthQuarter: 0,
-        pointsScoredVsTeamGame: 0,
-        pointsScoredVsTeamFirstHalf: 0,
-        pointsScoredVsTeamSecondHalf: 0,
-        pointsScoredVsTeamFirstQuarter: 0,
-        pointsScoredVsTeamSecondQuarter: 0,
-        pointsScoredVsTeamThirdQuarter: 0,
-        pointsScoredVsTeamFourthQuarter: 0,
-        pointsScoredHomeGame: 0,
-        pointsScoredHomeFirstHalf: 0,
-        pointsScoredHomeSecondHalf: 0,
-        pointsScoredHomeFirstQuarter: 0,
-        pointsScoredHomeSecondQuarter: 0,
-        pointsScoredHomeThirdQuarter: 0,
-        pointsScoredHomeFourthQuarter: 0,
-        pointsScoredAwayGame: 0,
-        pointsScoredAwayFirstHalf: 0,
-        pointsScoredAwaySecondHalf: 0,
-        pointsScoredAwayFirstQuarter: 0,
-        pointsScoredAwaySecondQuarter: 0,
-        pointsScoredAwayThirdQuarter: 0,
-        pointsScoredAwayFourthQuarter: 0,
-        pointsAllowedOverallGame: 0,
-        pointsAllowedOverallFirstHalf: 0,
-        pointsAllowedOverallSecondHalf: 0,
-        pointsAllowedOverallFirstQuarter: 0,
-        pointsAllowedOverallSecondQuarter: 0,
-        pointsAllowedOverallThirdQuarter: 0,
-        pointsAllowedOverallFourthQuarter: 0,
-        pointsAllowedVsTeamGame: 0,
-        pointsAllowedVsTeamFirstHalf: 0,
-        pointsAllowedVsTeamSecondHalf: 0,
-        pointsAllowedVsTeamFirstQuarter: 0,
-        pointsAllowedVsTeamSecondQuarter: 0,
-        pointsAllowedVsTeamThirdQuarter: 0,
-        pointsAllowedVsTeamFourthQuarter: 0,
-        pointsAllowedHomeGame: 0,
-        pointsAllowedHomeFirstHalf: 0,
-        pointsAllowedHomeSecondHalf: 0,
-        pointsAllowedHomeFirstQuarter: 0,
-        pointsAllowedHomeSecondQuarter: 0,
-        pointsAllowedHomeThirdQuarter: 0,
-        pointsAllowedHomeFourthQuarter: 0,
-        pointsAllowedAwayGame: 0,
-        pointsAllowedAwayFirstHalf: 0,
-        pointsAllowedAwaySecondHalf: 0,
-        pointsAllowedAwayFirstQuarter: 0,
-        pointsAllowedAwaySecondQuarter: 0,
-        pointsAllowedAwayThirdQuarter: 0,
-        pointsAllowedAwayFourthQuarter: 0,
-      }
-      var i
-      team1.forEach(e => {
-        e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWon += 1 : this.team1GameStatsDtoNBA.gamesLost += 1
-        e.teamAgainstId == team2[0].teamId ? (e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWonVsOpponent += 1 : this.team1GameStatsDtoNBA.gamesLostVsOpponent += 1) : i = 0;
-        e.homeOrAway == "Home" ? (e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWonHome += 1 : this.team1GameStatsDtoNBA.gamesLostHome += 1) : (e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWonAway += 1 : this.team1GameStatsDtoNBA.gamesLostAway += 1);
-        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWon += 1 : this.team1GameStatsDtoNBA.quarterOneLost += 1;
-        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWon += 1 : this.team1GameStatsDtoNBA.quarterTwoLost += 1;
-        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWon += 1 : this.team1GameStatsDtoNBA.quarterThreeLost += 1;
-        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWon += 1 : this.team1GameStatsDtoNBA.quarterFourLost += 1;
-        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWon += 1 : this.team1GameStatsDtoNBA.halfOneLost += 1;
-        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWon += 1 : this.team1GameStatsDtoNBA.halfTwoLost += 1;
-        this.team1GameStatsDtoNBA.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall);
-        this.team1GameStatsDtoNBA.spreadFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-        this.team1GameStatsDtoNBA.spreadSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-        this.team1GameStatsDtoNBA.spreadFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-        this.team1GameStatsDtoNBA.spreadSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-        this.team1GameStatsDtoNBA.spreadThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-        this.team1GameStatsDtoNBA.spreadFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-        this.team1GameStatsDtoNBA.totalOverall += e.pointsScoredOverall + e.pointsAllowedOverall;
-        this.team1GameStatsDtoNBA.totalOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-        this.team1GameStatsDtoNBA.totalOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-        this.team1GameStatsDtoNBA.totalOverallFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-        this.team1GameStatsDtoNBA.totalOverallSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-        this.team1GameStatsDtoNBA.totalOverallThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-        this.team1GameStatsDtoNBA.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team1GameStatsDtoNBA.pointsScoredOverallGame += e.pointsScoredOverall
-        this.team1GameStatsDtoNBA.pointsScoredOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-        this.team1GameStatsDtoNBA.pointsScoredOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team1GameStatsDtoNBA.pointsScoredOverallFirstQuarter += e.pointsScoredFirstQuarter
-        this.team1GameStatsDtoNBA.pointsScoredOverallSecondQuarter += e.pointsScoredSecondQuarter
-        this.team1GameStatsDtoNBA.pointsScoredOverallThirdQuarter += e.pointsScoredThirdQuarter
-        this.team1GameStatsDtoNBA.pointsScoredOverallFourthQuarter += e.pointsScoredFourthQuarter
-        this.team1GameStatsDtoNBA.pointsAllowedOverallGame += e.pointsAllowedOverall
-        this.team1GameStatsDtoNBA.pointsAllowedOverallFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-        this.team1GameStatsDtoNBA.pointsAllowedOverallSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team1GameStatsDtoNBA.pointsAllowedOverallFirstQuarter += e.pointsAllowedFirstQuarter
-        this.team1GameStatsDtoNBA.pointsAllowedOverallSecondQuarter += e.pointsAllowedSecondQuarter
-        this.team1GameStatsDtoNBA.pointsAllowedOverallThirdQuarter += e.pointsAllowedThirdQuarter
-        this.team1GameStatsDtoNBA.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
-
-        if (e.teamAgainstId == team2[0].teamId) {
-          if (e.homeOrAway == "Home") {
-            this.team1GameVsOpponentData.push({ data: e, homeOrAway: "home" })
-          }
-          else {
-            this.team1GameVsOpponentData.push({ data: e, homeOrAway: "away" })
-          }
-
-          e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterOneLostVsOpponent += 1;
-          e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterTwoLostVsOpponent += 1;
-          e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterThreeLostVsOpponent += 1;
-          e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterFourLostVsOpponent += 1;
-          (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWonVsOpponent += 1 : this.team1GameStatsDtoNBA.halfOneLostVsOpponent += 1;
-          (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWonVsOpponent += 1 : this.team1GameStatsDtoNBA.halfTwoLostVsOpponent += 1;
-          this.team1GameStatsDtoNBA.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall);
-          this.team1GameStatsDtoNBA.spreadFirstHalfVsOpponent += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-          this.team1GameStatsDtoNBA.spreadSecondHalfVsOpponent += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-          this.team1GameStatsDtoNBA.spreadFirstQuarterVsOpponent += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-          this.team1GameStatsDtoNBA.spreadSecondQuarterVsOpponet += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-          this.team1GameStatsDtoNBA.spreadThirdQuarterVsOpponent += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-          this.team1GameStatsDtoNBA.spreadFourthQuarterVsOpponent += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-          this.team1GameStatsDtoNBA.totalVsTeam += e.pointsScoredOverall + e.pointsAllowedOverall;
-          this.team1GameStatsDtoNBA.totalVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-          this.team1GameStatsDtoNBA.totalVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-          this.team1GameStatsDtoNBA.totalVsTeamFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-          this.team1GameStatsDtoNBA.totalVsTeamSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-          this.team1GameStatsDtoNBA.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-          this.team1GameStatsDtoNBA.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-          this.team1GameStatsDtoNBA.pointsScoredVsTeamGame += e.pointsScoredOverall
-          this.team1GameStatsDtoNBA.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-          this.team1GameStatsDtoNBA.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-          this.team1GameStatsDtoNBA.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
-          this.team1GameStatsDtoNBA.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
-          this.team1GameStatsDtoNBA.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
-          this.team1GameStatsDtoNBA.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedVsTeamGame += e.pointsAllowedOverall
-          this.team1GameStatsDtoNBA.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
-        }
-        if (e.homeOrAway == "Home") {
-          e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWonHome += 1 : this.team1GameStatsDtoNBA.quarterOneLostHome += 1;
-          e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWonHome += 1 : this.team1GameStatsDtoNBA.quarterTwoLostHome += 1;
-          e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWonHome += 1 : this.team1GameStatsDtoNBA.quarterThreeLostHome += 1;
-          e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWonHome += 1 : this.team1GameStatsDtoNBA.quarterFourLostHome += 1;
-          (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWonHome += 1 : this.team1GameStatsDtoNBA.halfOneLostHome += 1;
-          (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWonHome += 1 : this.team1GameStatsDtoNBA.halfTwoLostHome += 1;
-          this.team1GameStatsDtoNBA.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall);
-          this.team1GameStatsDtoNBA.spreadHomeFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-          this.team1GameStatsDtoNBA.spreadHomeSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-          this.team1GameStatsDtoNBA.spreadHomeFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-          this.team1GameStatsDtoNBA.spreadHomeSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-          this.team1GameStatsDtoNBA.spreadHomeThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-          this.team1GameStatsDtoNBA.spreadHomeFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-          this.team1GameStatsDtoNBA.totalHome += e.pointsScoredOverall + e.pointsAllowedOverall;
-          this.team1GameStatsDtoNBA.totalHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-          this.team1GameStatsDtoNBA.totalHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-          this.team1GameStatsDtoNBA.totalHomeFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-          this.team1GameStatsDtoNBA.totalHomeSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-          this.team1GameStatsDtoNBA.totalHomeThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-          this.team1GameStatsDtoNBA.totalHomeFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-          this.team1GameStatsDtoNBA.pointsScoredHomeGame += e.pointsScoredOverall
-          this.team1GameStatsDtoNBA.pointsScoredHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-          this.team1GameStatsDtoNBA.pointsScoredHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-          this.team1GameStatsDtoNBA.pointsScoredHomeFirstQuarter += e.pointsScoredFirstQuarter
-          this.team1GameStatsDtoNBA.pointsScoredHomeSecondQuarter += e.pointsScoredSecondQuarter
-          this.team1GameStatsDtoNBA.pointsScoredHomeThirdQuarter += e.pointsScoredThirdQuarter
-          this.team1GameStatsDtoNBA.pointsScoredHomeFourthQuarter += e.pointsScoredFourthQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedHomeGame += e.pointsAllowedOverall
-          this.team1GameStatsDtoNBA.pointsAllowedHomeFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedHomeSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedHomeFirstQuarter += e.pointsAllowedFirstQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
-
-        }
-        else if (e.homeOrAway == "Away") {
-          e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWonAway += 1 : this.team1GameStatsDtoNBA.quarterOneLostAway += 1;
-          e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWonAway += 1 : this.team1GameStatsDtoNBA.quarterTwoLostAway += 1;
-          e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWonAway += 1 : this.team1GameStatsDtoNBA.quarterThreeLostAway += 1;
-          e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWonAway += 1 : this.team1GameStatsDtoNBA.quarterFourLostAway += 1;
-          (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWonAway += 1 : this.team1GameStatsDtoNBA.halfOneLostAway += 1;
-          (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWonAway += 1 : this.team1GameStatsDtoNBA.halfTwoLostAway += 1;
-          this.team1GameStatsDtoNBA.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall);
-          this.team1GameStatsDtoNBA.spreadAwayFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-          this.team1GameStatsDtoNBA.spreadAwaySecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-          this.team1GameStatsDtoNBA.spreadAwayFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-          this.team1GameStatsDtoNBA.spreadAwaySecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-          this.team1GameStatsDtoNBA.spreadAwayThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-          this.team1GameStatsDtoNBA.spreadAwayFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-          this.team1GameStatsDtoNBA.totalAway += e.pointsScoredOverall + e.pointsAllowedOverall;
-          this.team1GameStatsDtoNBA.totalAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-          this.team1GameStatsDtoNBA.totalAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-          this.team1GameStatsDtoNBA.totalAwayFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-          this.team1GameStatsDtoNBA.totalAwaySecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-          this.team1GameStatsDtoNBA.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-          this.team1GameStatsDtoNBA.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-          this.team1GameStatsDtoNBA.pointsScoredAwayGame += e.pointsScoredOverall
-          this.team1GameStatsDtoNBA.pointsScoredAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-          this.team1GameStatsDtoNBA.pointsScoredAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-          this.team1GameStatsDtoNBA.pointsScoredAwayFirstQuarter += e.pointsScoredFirstQuarter
-          this.team1GameStatsDtoNBA.pointsScoredAwaySecondQuarter += e.pointsScoredSecondQuarter
-          this.team1GameStatsDtoNBA.pointsScoredAwayThirdQuarter += e.pointsScoredThirdQuarter
-          this.team1GameStatsDtoNBA.pointsScoredAwayFourthQuarter += e.pointsScoredFourthQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedAwayGame += e.pointsAllowedOverall
-          this.team1GameStatsDtoNBA.pointsAllowedAwayFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedAwaySecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedAwayFirstQuarter += e.pointsAllowedFirstQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedAwaySecondQuarter += e.pointsAllowedSecondQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedAwayThirdQuarter += e.pointsAllowedThirdQuarter
-          this.team1GameStatsDtoNBA.pointsAllowedAwayFourthQuarter += e.pointsAllowedFourthQuarter
-        }
-
-
-      })
-
-      team2.forEach(e => {
-        e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWon += 1 : this.team2GameStatsDtoNBA.gamesLost += 1
-        e.teamAgainstId == team1[0].teamId ? (e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWonVsOpponent += 1 : this.team2GameStatsDtoNBA.gamesLostVsOpponent += 1) : i = 0;
-        e.homeOrAway == "Home" ? (e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWonHome += 1 : this.team2GameStatsDtoNBA.gamesLostHome += 1) : (e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWonAway += 1 : this.team2GameStatsDtoNBA.gamesLostAway += 1);
-        e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWon += 1 : this.team2GameStatsDtoNBA.quarterOneLost += 1;
-        e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWon += 1 : this.team2GameStatsDtoNBA.quarterTwoLost += 1;
-        e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWon += 1 : this.team2GameStatsDtoNBA.quarterThreeLost += 1;
-        e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWon += 1 : this.team2GameStatsDtoNBA.quarterFourLost += 1;
-        (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWon += 1 : this.team2GameStatsDtoNBA.halfOneLost += 1;
-        (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWon += 1 : this.team2GameStatsDtoNBA.halfTwoLost += 1;
-        this.team2GameStatsDtoNBA.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall);
-        this.team2GameStatsDtoNBA.spreadFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-        this.team2GameStatsDtoNBA.spreadSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-        this.team2GameStatsDtoNBA.spreadFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-        this.team2GameStatsDtoNBA.spreadSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-        this.team2GameStatsDtoNBA.spreadThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-        this.team2GameStatsDtoNBA.spreadFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-        this.team2GameStatsDtoNBA.totalOverall += e.pointsScoredOverall + e.pointsAllowedOverall;
-        this.team2GameStatsDtoNBA.totalOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-        this.team2GameStatsDtoNBA.totalOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-        this.team2GameStatsDtoNBA.totalOverallFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-        this.team2GameStatsDtoNBA.totalOverallSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-        this.team2GameStatsDtoNBA.totalOverallThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-        this.team2GameStatsDtoNBA.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-        this.team2GameStatsDtoNBA.pointsScoredOverallGame += e.pointsScoredOverall
-        this.team2GameStatsDtoNBA.pointsScoredOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-        this.team2GameStatsDtoNBA.pointsScoredOverallFirstQuarter += e.pointsScoredFirstQuarter
-        this.team2GameStatsDtoNBA.pointsScoredOverallSecondQuarter += e.pointsScoredSecondQuarter
-        this.team2GameStatsDtoNBA.pointsScoredOverallThirdQuarter += e.pointsScoredThirdQuarter
-        this.team2GameStatsDtoNBA.pointsScoredOverallFourthQuarter += e.pointsScoredFourthQuarter
-        this.team2GameStatsDtoNBA.pointsAllowedOverallGame += e.pointsAllowedOverall
-        this.team2GameStatsDtoNBA.pointsAllowedOverallFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-        this.team2GameStatsDtoNBA.pointsAllowedOverallSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-        this.team2GameStatsDtoNBA.pointsAllowedOverallFirstQuarter += e.pointsAllowedFirstQuarter
-        this.team2GameStatsDtoNBA.pointsAllowedOverallSecondQuarter += e.pointsAllowedSecondQuarter
-        this.team2GameStatsDtoNBA.pointsAllowedOverallThirdQuarter += e.pointsAllowedThirdQuarter
-        this.team2GameStatsDtoNBA.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
-        if (e.teamAgainstId == team1[0].teamId) {
-          e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterOneLostVsOpponent += 1;
-          e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterTwoLostVsOpponent += 1;
-          e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterThreeLostVsOpponent += 1;
-          e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterFourLostVsOpponent += 1;
-          (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWonVsOpponent += 1 : this.team2GameStatsDtoNBA.halfOneLostVsOpponent += 1;
-          (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWonVsOpponent += 1 : this.team2GameStatsDtoNBA.halfTwoLostVsOpponent += 1;
-          this.team2GameStatsDtoNBA.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall);
-          this.team2GameStatsDtoNBA.spreadFirstHalfVsOpponent += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-          this.team2GameStatsDtoNBA.spreadSecondHalfVsOpponent += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-          this.team2GameStatsDtoNBA.spreadFirstQuarterVsOpponent += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-          this.team2GameStatsDtoNBA.spreadSecondQuarterVsOpponet += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-          this.team2GameStatsDtoNBA.spreadThirdQuarterVsOpponent += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-          this.team2GameStatsDtoNBA.spreadFourthQuarterVsOpponent += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-          this.team2GameStatsDtoNBA.totalVsTeam += e.pointsScoredOverall + e.pointsAllowedOverall;
-          this.team2GameStatsDtoNBA.totalVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-          this.team2GameStatsDtoNBA.totalVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-          this.team2GameStatsDtoNBA.totalVsTeamFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-          this.team2GameStatsDtoNBA.totalVsTeamSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-          this.team2GameStatsDtoNBA.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-          this.team2GameStatsDtoNBA.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-          this.team2GameStatsDtoNBA.pointsScoredVsTeamGame += e.pointsScoredOverall
-          this.team2GameStatsDtoNBA.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-          this.team2GameStatsDtoNBA.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-          this.team2GameStatsDtoNBA.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
-          this.team2GameStatsDtoNBA.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
-          this.team2GameStatsDtoNBA.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
-          this.team2GameStatsDtoNBA.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedVsTeamGame += e.pointsAllowedOverall
-          this.team2GameStatsDtoNBA.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
-        }
-        if (e.homeOrAway == "Home") {
-          e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWonHome += 1 : this.team2GameStatsDtoNBA.quarterOneLostHome += 1;
-          e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWonHome += 1 : this.team2GameStatsDtoNBA.quarterTwoLostHome += 1;
-          e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWonHome += 1 : this.team2GameStatsDtoNBA.quarterThreeLostHome += 1;
-          e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWonHome += 1 : this.team2GameStatsDtoNBA.quarterFourLostHome += 1;
-          (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWonHome += 1 : this.team2GameStatsDtoNBA.halfOneLostHome += 1;
-          (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWonHome += 1 : this.team2GameStatsDtoNBA.halfTwoLostHome += 1;
-          this.team2GameStatsDtoNBA.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall);
-          this.team2GameStatsDtoNBA.spreadHomeFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-          this.team2GameStatsDtoNBA.spreadHomeSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-          this.team2GameStatsDtoNBA.spreadHomeFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-          this.team2GameStatsDtoNBA.spreadHomeSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-          this.team2GameStatsDtoNBA.spreadHomeThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-          this.team2GameStatsDtoNBA.spreadHomeFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-          this.team2GameStatsDtoNBA.totalHome += e.pointsScoredOverall + e.pointsAllowedOverall;
-          this.team2GameStatsDtoNBA.totalHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-          this.team2GameStatsDtoNBA.totalHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-          this.team2GameStatsDtoNBA.totalHomeFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-          this.team2GameStatsDtoNBA.totalHomeSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-          this.team2GameStatsDtoNBA.totalHomeThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-          this.team2GameStatsDtoNBA.totalHomeFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-          this.team2GameStatsDtoNBA.pointsScoredHomeGame += e.pointsScoredOverall
-          this.team2GameStatsDtoNBA.pointsScoredHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-          this.team2GameStatsDtoNBA.pointsScoredHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-          this.team2GameStatsDtoNBA.pointsScoredHomeFirstQuarter += e.pointsScoredFirstQuarter
-          this.team2GameStatsDtoNBA.pointsScoredHomeSecondQuarter += e.pointsScoredSecondQuarter
-          this.team2GameStatsDtoNBA.pointsScoredHomeThirdQuarter += e.pointsScoredThirdQuarter
-          this.team2GameStatsDtoNBA.pointsScoredHomeFourthQuarter += e.pointsScoredFourthQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedHomeGame += e.pointsAllowedOverall
-          this.team2GameStatsDtoNBA.pointsAllowedHomeFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedHomeSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedHomeFirstQuarter += e.pointsAllowedFirstQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
-
-        }
-        else if (e.homeOrAway == "Away") {
-          e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWonAway += 1 : this.team2GameStatsDtoNBA.quarterOneLostAway += 1;
-          e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWonAway += 1 : this.team2GameStatsDtoNBA.quarterTwoLostAway += 1;
-          e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWonAway += 1 : this.team2GameStatsDtoNBA.quarterThreeLostAway += 1;
-          e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWonAway += 1 : this.team2GameStatsDtoNBA.quarterFourLostAway += 1;
-          (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWonAway += 1 : this.team2GameStatsDtoNBA.halfOneLostAway += 1;
-          (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWonAway += 1 : this.team2GameStatsDtoNBA.halfTwoLostAway += 1;
-          this.team2GameStatsDtoNBA.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall);
-          this.team2GameStatsDtoNBA.spreadAwayFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
-          this.team2GameStatsDtoNBA.spreadAwaySecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
-          this.team2GameStatsDtoNBA.spreadAwayFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
-          this.team2GameStatsDtoNBA.spreadAwaySecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
-          this.team2GameStatsDtoNBA.spreadAwayThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
-          this.team2GameStatsDtoNBA.spreadAwayFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
-          this.team2GameStatsDtoNBA.totalAway += e.pointsScoredOverall + e.pointsAllowedOverall;
-          this.team2GameStatsDtoNBA.totalAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
-          this.team2GameStatsDtoNBA.totalAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
-          this.team2GameStatsDtoNBA.totalAwayFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
-          this.team2GameStatsDtoNBA.totalAwaySecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
-          this.team2GameStatsDtoNBA.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
-          this.team2GameStatsDtoNBA.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
-          this.team2GameStatsDtoNBA.pointsScoredAwayGame += e.pointsScoredOverall
-          this.team2GameStatsDtoNBA.pointsScoredAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
-          this.team2GameStatsDtoNBA.pointsScoredAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
-          this.team2GameStatsDtoNBA.pointsScoredAwayFirstQuarter += e.pointsScoredFirstQuarter
-          this.team2GameStatsDtoNBA.pointsScoredAwaySecondQuarter += e.pointsScoredSecondQuarter
-          this.team2GameStatsDtoNBA.pointsScoredAwayThirdQuarter += e.pointsScoredThirdQuarter
-          this.team2GameStatsDtoNBA.pointsScoredAwayFourthQuarter += e.pointsScoredFourthQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedAwayGame += e.pointsAllowedOverall
-          this.team2GameStatsDtoNBA.pointsAllowedAwayFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedAwaySecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedAwayFirstQuarter += e.pointsAllowedFirstQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedAwaySecondQuarter += e.pointsAllowedSecondQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedAwayThirdQuarter += e.pointsAllowedThirdQuarter
-          this.team2GameStatsDtoNBA.pointsAllowedAwayFourthQuarter += e.pointsAllowedFourthQuarter
-        }
-      })
-
-    }
-
-    else if (this.selectedSport == "MLB") {
-      var team1New: DbMlbTeamGameStats[] = team1
-      var team2New: DbMlbTeamGameStats[] = team2
-      this.team1GameStatsDtoMLB = {
-        gamesWon: 0,
-        gamesLost: 0,
-        gamesWonVsOpponent: 0,
-        gamesLostVsOpponent: 0,
-        gamesWonHome: 0,
-        gamesLostHome: 0,
-        gamesWonAway: 0,
-        gamesLostAway: 0,
-        inningOneWon: 0,
-        inningOneLost: 0,
-        inningTwoWon: 0,
-        inningTwoLost: 0,
-        inningThreeWon: 0,
-        inningThreeLost: 0,
-        inningFourWon: 0,
-        inningFourLost: 0,
-        inningFiveWon: 0,
-        inningFiveLost: 0,
-        inningSixWon: 0,
-        inningSixLost: 0,
-        inningSevenWon: 0,
-        inningSevenLost: 0,
-        inningEightWon: 0,
-        inningEightLost: 0,
-        inningNineWon: 0,
-        inningNineLost: 0,
-        inningOneWonVsOpponent: 0,
-        inningOneLostVsOpponent: 0,
-        inningTwoWonVsOpponent: 0,
-        inningTwoLostVsOpponent: 0,
-        inningThreeWonVsOpponent: 0,
-        inningThreeLostVsOpponent: 0,
-        inningFourWonVsOpponent: 0,
-        inningFourLostVsOpponent: 0,
-        inningFiveWonVsOpponent: 0,
-        inningFiveLostVsOpponent: 0,
-        inningSixWonVsOpponent: 0,
-        inningSixLostVsOpponent: 0,
-        inningSevenWonVsOpponent: 0,
-        inningSevenLostVsOpponent: 0,
-        inningEightWonVsOpponent: 0,
-        inningEightLostVsOpponent: 0,
-        inningNineWonVsOpponent: 0,
-        inningNineLostVsOpponent: 0,
-        inningOneWonHome: 0,
-        inningOneLostHome: 0,
-        inningTwoWonHome: 0,
-        inningTwoLostHome: 0,
-        inningThreeWonHome: 0,
-        inningThreeLostHome: 0,
-        inningFourWonHome: 0,
-        inningFourLostHome: 0,
-        inningFiveWonHome: 0,
-        inningFiveLostHome: 0,
-        inningSixWonHome: 0,
-        inningSixLostHome: 0,
-        inningSevenWonHome: 0,
-        inningSevenLostHome: 0,
-        inningEightWonHome: 0,
-        inningEightLostHome: 0,
-        inningNineWonHome: 0,
-        inningNineLostHome: 0,
-        inningOneWonAway: 0,
-        inningOneLostAway: 0,
-        inningTwoWonAway: 0,
-        inningTwoLostAway: 0,
-        inningThreeWonAway: 0,
-        inningThreeLostAway: 0,
-        inningFourWonAway: 0,
-        inningFourLostAway: 0,
-        inningFiveWonAway: 0,
-        inningFiveLostAway: 0,
-        inningSixWonAway: 0,
-        inningSixLostAway: 0,
-        inningSevenWonAway: 0,
-        inningSevenLostAway: 0,
-        inningEightWonAway: 0,
-        inningEightLostAway: 0,
-        inningNineWonAway: 0,
-        inningNineLostAway: 0,
-        spreadGame: 0,
-        spreadFirstInning: 0,
-        spreadSecondInning: 0,
-        spreadThirdInning: 0,
-        spreadFourthInning: 0,
-        spreadFifthInning: 0,
-        spreadSixthInning: 0,
-        spreadSeventhInning: 0,
-        spreadEighthInning: 0,
-        spreadNinthInning: 0,
-        spreadVsOpponent: 0,
-        spreadFirstInningVsOpponent: 0,
-        spreadSecondInningVsOpponent: 0,
-        spreadThirdInningVsOpponent: 0,
-        spreadFourthInningVsOpponent: 0,
-        spreadFifthInningVsOpponent: 0,
-        spreadSixthInningVsOpponent: 0,
-        spreadSeventhInningVsOpponent: 0,
-        spreadEighthInningVsOpponent: 0,
-        spreadNinthInningVsOpponent: 0,
-        spreadHome: 0,
-        spreadFirstInningHome: 0,
-        spreadSecondInningHome: 0,
-        spreadThirdInningHome: 0,
-        spreadFourthInningHome: 0,
-        spreadFifthInningHome: 0,
-        spreadSixthInningHome: 0,
-        spreadSeventhInningHome: 0,
-        spreadEighthInningHome: 0,
-        spreadNinthInningHome: 0,
-        spreadAway: 0,
-        spreadFirstInningAway: 0,
-        spreadSecondInningAway: 0,
-        spreadThirdInningAway: 0,
-        spreadFourthInningAway: 0,
-        spreadFifthInningAway: 0,
-        spreadSixthInningAway: 0,
-        spreadSeventhInningAway: 0,
-        spreadEighthInningAway: 0,
-        spreadNinthInningAway: 0,
-        totalOverall: 0,
-        totalFirstInning: 0,
-        totalSecondInning: 0,
-        totalThirdInning: 0,
-        totalFourthInning: 0,
-        totalFifthInning: 0,
-        totalSixthInning: 0,
-        totalSeventhInning: 0,
-        totalEighthInning: 0,
-        totalNinthInning: 0,
-        totalVsTeam: 0,
-        totalFirstInningVsOpponent: 0,
-        totalSecondInningVsOpponent: 0,
-        totalThirdInningVsOpponent: 0,
-        totalFourthInningVsOpponent: 0,
-        totalFifthInningVsOpponent: 0,
-        totalSixthInningVsOpponent: 0,
-        totalSeventhInningVsOpponent: 0,
-        totalEighthInningVsOpponent: 0,
-        totalNinthInningVsOpponent: 0,
-        totalHome: 0,
-        totalFirstInningHome: 0,
-        totalSecondInningHome: 0,
-        totalThirdInningHome: 0,
-        totalFourthInningHome: 0,
-        totalFifthInningHome: 0,
-        totalSixthInningHome: 0,
-        totalSeventhInningHome: 0,
-        totalEighthInningHome: 0,
-        totalNinthInningHome: 0,
-        totalAway: 0,
-        totalFirstInningAway: 0,
-        totalSecondInningAway: 0,
-        totalThirdInningAway: 0,
-        totalFourthInningAway: 0,
-        totalFifthInningAway: 0,
-        totalSixthInningAway: 0,
-        totalSeventhInningAway: 0,
-        totalEighthInningAway: 0,
-        totalNinthInningAway: 0,
-        pointsScoredOverallGame: 0,
-        pointsScoredOverallFirstInning: 0,
-        pointsScoredOverallSecondInning: 0,
-        pointsScoredOverallThirdInning: 0,
-        pointsScoredOverallFourthInning: 0,
-        pointsScoredOverallFifthInning: 0,
-        pointsScoredOverallSixthInning: 0,
-        pointsScoredOverallSeventhInning: 0,
-        pointsScoredOverallEighthInning: 0,
-        pointsScoredOverallNinthInning: 0,
-        pointsScoredVsTeamGame: 0,
-        pointsScoredFirstInningVsOpponent: 0,
-        pointsScoredSecondInningVsOpponent: 0,
-        pointsScoredThirdInningVsOpponent: 0,
-        pointsScoredFourthInningVsOpponent: 0,
-        pointsScoredFifthInningVsOpponent: 0,
-        pointsScoredSixthInningVsOpponent: 0,
-        pointsScoredSeventhInningVsOpponent: 0,
-        pointsScoredEighthInningVsOpponent: 0,
-        pointsScoredNinthInningVsOpponent: 0,
-        pointsScoredHomeGame: 0,
-        pointsScoredFirstInningHome: 0,
-        pointsScoredSecondInningHome: 0,
-        pointsScoredThirdInningHome: 0,
-        pointsScoredFourthInningHome: 0,
-        pointsScoredFifthInningHome: 0,
-        pointsScoredSixthInningHome: 0,
-        pointsScoredSeventhInningHome: 0,
-        pointsScoredEighthInningHome: 0,
-        pointsScoredNinthInningHome: 0,
-        pointsScoredAwayGame: 0,
-        pointsScoredFirstInningAway: 0,
-        pointsScoredSecondInningAway: 0,
-        pointsScoredThirdInningAway: 0,
-        pointsScoredFourthInningAway: 0,
-        pointsScoredFifthInningAway: 0,
-        pointsScoredSixthInningAway: 0,
-        pointsScoredSeventhInningAway: 0,
-        pointsScoredEighthInningAway: 0,
-        pointsScoredNinthInningAway: 0,
-        pointsAllowedOverallGame: 0,
-        pointsAllowedOverallFirstInning: 0,
-        pointsAllowedOverallSecondInning: 0,
-        pointsAllowedOverallThirdInning: 0,
-        pointsAllowedOverallFourthInning: 0,
-        pointsAllowedOverallFifthInning: 0,
-        pointsAllowedOverallSixthInning: 0,
-        pointsAllowedOverallSeventhInning: 0,
-        pointsAllowedOverallEighthInning: 0,
-        pointsAllowedOverallNinthInning: 0,
-        pointsAllowedVsTeamGame: 0,
-        pointsAllowedFirstInningVsOpponent: 0,
-        pointsAllowedSecondInningVsOpponent: 0,
-        pointsAllowedThirdInningVsOpponent: 0,
-        pointsAllowedFourthInningVsOpponent: 0,
-        pointsAllowedFifthInningVsOpponent: 0,
-        pointsAllowedSixthInningVsOpponent: 0,
-        pointsAllowedSeventhInningVsOpponent: 0,
-        pointsAllowedEighthInningVsOpponent: 0,
-        pointsAllowedNinthInningVsOpponent: 0,
-        pointsAllowedHomeGame: 0,
-        pointsAllowedFirstInningHome: 0,
-        pointsAllowedSecondInningHome: 0,
-        pointsAllowedThirdInningHome: 0,
-        pointsAllowedFourthInningHome: 0,
-        pointsAllowedFifthInningHome: 0,
-        pointsAllowedSixthInningHome: 0,
-        pointsAllowedSeventhInningHome: 0,
-        pointsAllowedEighthInningHome: 0,
-        pointsAllowedNinthInningHome: 0,
-        pointsAllowedAwayGame: 0,
-        pointsAllowedFirstInningAway: 0,
-        pointsAllowedSecondInningAway: 0,
-        pointsAllowedThirdInningAway: 0,
-        pointsAllowedFourthInningAway: 0,
-        pointsAllowedFifthInningAway: 0,
-        pointsAllowedSixthInningAway: 0,
-        pointsAllowedSeventhInningAway: 0,
-        pointsAllowedEighthInningAway: 0,
-        pointsAllowedNinthInningAway: 0
-      }
-
-      this.team2GameStatsDtoMLB = {
-        gamesWon: 0,
-        gamesLost: 0,
-        gamesWonVsOpponent: 0,
-        gamesLostVsOpponent: 0,
-        gamesWonHome: 0,
-        gamesLostHome: 0,
-        gamesWonAway: 0,
-        gamesLostAway: 0,
-        inningOneWon: 0,
-        inningOneLost: 0,
-        inningTwoWon: 0,
-        inningTwoLost: 0,
-        inningThreeWon: 0,
-        inningThreeLost: 0,
-        inningFourWon: 0,
-        inningFourLost: 0,
-        inningFiveWon: 0,
-        inningFiveLost: 0,
-        inningSixWon: 0,
-        inningSixLost: 0,
-        inningSevenWon: 0,
-        inningSevenLost: 0,
-        inningEightWon: 0,
-        inningEightLost: 0,
-        inningNineWon: 0,
-        inningNineLost: 0,
-        inningOneWonVsOpponent: 0,
-        inningOneLostVsOpponent: 0,
-        inningTwoWonVsOpponent: 0,
-        inningTwoLostVsOpponent: 0,
-        inningThreeWonVsOpponent: 0,
-        inningThreeLostVsOpponent: 0,
-        inningFourWonVsOpponent: 0,
-        inningFourLostVsOpponent: 0,
-        inningFiveWonVsOpponent: 0,
-        inningFiveLostVsOpponent: 0,
-        inningSixWonVsOpponent: 0,
-        inningSixLostVsOpponent: 0,
-        inningSevenWonVsOpponent: 0,
-        inningSevenLostVsOpponent: 0,
-        inningEightWonVsOpponent: 0,
-        inningEightLostVsOpponent: 0,
-        inningNineWonVsOpponent: 0,
-        inningNineLostVsOpponent: 0,
-        inningOneWonHome: 0,
-        inningOneLostHome: 0,
-        inningTwoWonHome: 0,
-        inningTwoLostHome: 0,
-        inningThreeWonHome: 0,
-        inningThreeLostHome: 0,
-        inningFourWonHome: 0,
-        inningFourLostHome: 0,
-        inningFiveWonHome: 0,
-        inningFiveLostHome: 0,
-        inningSixWonHome: 0,
-        inningSixLostHome: 0,
-        inningSevenWonHome: 0,
-        inningSevenLostHome: 0,
-        inningEightWonHome: 0,
-        inningEightLostHome: 0,
-        inningNineWonHome: 0,
-        inningNineLostHome: 0,
-        inningOneWonAway: 0,
-        inningOneLostAway: 0,
-        inningTwoWonAway: 0,
-        inningTwoLostAway: 0,
-        inningThreeWonAway: 0,
-        inningThreeLostAway: 0,
-        inningFourWonAway: 0,
-        inningFourLostAway: 0,
-        inningFiveWonAway: 0,
-        inningFiveLostAway: 0,
-        inningSixWonAway: 0,
-        inningSixLostAway: 0,
-        inningSevenWonAway: 0,
-        inningSevenLostAway: 0,
-        inningEightWonAway: 0,
-        inningEightLostAway: 0,
-        inningNineWonAway: 0,
-        inningNineLostAway: 0,
-        spreadGame: 0,
-        spreadFirstInning: 0,
-        spreadSecondInning: 0,
-        spreadThirdInning: 0,
-        spreadFourthInning: 0,
-        spreadFifthInning: 0,
-        spreadSixthInning: 0,
-        spreadSeventhInning: 0,
-        spreadEighthInning: 0,
-        spreadNinthInning: 0,
-        spreadVsOpponent: 0,
-        spreadFirstInningVsOpponent: 0,
-        spreadSecondInningVsOpponent: 0,
-        spreadThirdInningVsOpponent: 0,
-        spreadFourthInningVsOpponent: 0,
-        spreadFifthInningVsOpponent: 0,
-        spreadSixthInningVsOpponent: 0,
-        spreadSeventhInningVsOpponent: 0,
-        spreadEighthInningVsOpponent: 0,
-        spreadNinthInningVsOpponent: 0,
-        spreadHome: 0,
-        spreadFirstInningHome: 0,
-        spreadSecondInningHome: 0,
-        spreadThirdInningHome: 0,
-        spreadFourthInningHome: 0,
-        spreadFifthInningHome: 0,
-        spreadSixthInningHome: 0,
-        spreadSeventhInningHome: 0,
-        spreadEighthInningHome: 0,
-        spreadNinthInningHome: 0,
-        spreadAway: 0,
-        spreadFirstInningAway: 0,
-        spreadSecondInningAway: 0,
-        spreadThirdInningAway: 0,
-        spreadFourthInningAway: 0,
-        spreadFifthInningAway: 0,
-        spreadSixthInningAway: 0,
-        spreadSeventhInningAway: 0,
-        spreadEighthInningAway: 0,
-        spreadNinthInningAway: 0,
-        totalOverall: 0,
-        totalFirstInning: 0,
-        totalSecondInning: 0,
-        totalThirdInning: 0,
-        totalFourthInning: 0,
-        totalFifthInning: 0,
-        totalSixthInning: 0,
-        totalSeventhInning: 0,
-        totalEighthInning: 0,
-        totalNinthInning: 0,
-        totalVsTeam: 0,
-        totalFirstInningVsOpponent: 0,
-        totalSecondInningVsOpponent: 0,
-        totalThirdInningVsOpponent: 0,
-        totalFourthInningVsOpponent: 0,
-        totalFifthInningVsOpponent: 0,
-        totalSixthInningVsOpponent: 0,
-        totalSeventhInningVsOpponent: 0,
-        totalEighthInningVsOpponent: 0,
-        totalNinthInningVsOpponent: 0,
-        totalHome: 0,
-        totalFirstInningHome: 0,
-        totalSecondInningHome: 0,
-        totalThirdInningHome: 0,
-        totalFourthInningHome: 0,
-        totalFifthInningHome: 0,
-        totalSixthInningHome: 0,
-        totalSeventhInningHome: 0,
-        totalEighthInningHome: 0,
-        totalNinthInningHome: 0,
-        totalAway: 0,
-        totalFirstInningAway: 0,
-        totalSecondInningAway: 0,
-        totalThirdInningAway: 0,
-        totalFourthInningAway: 0,
-        totalFifthInningAway: 0,
-        totalSixthInningAway: 0,
-        totalSeventhInningAway: 0,
-        totalEighthInningAway: 0,
-        totalNinthInningAway: 0,
-        pointsScoredOverallGame: 0,
-        pointsScoredOverallFirstInning: 0,
-        pointsScoredOverallSecondInning: 0,
-        pointsScoredOverallThirdInning: 0,
-        pointsScoredOverallFourthInning: 0,
-        pointsScoredOverallFifthInning: 0,
-        pointsScoredOverallSixthInning: 0,
-        pointsScoredOverallSeventhInning: 0,
-        pointsScoredOverallEighthInning: 0,
-        pointsScoredOverallNinthInning: 0,
-        pointsScoredVsTeamGame: 0,
-        pointsScoredFirstInningVsOpponent: 0,
-        pointsScoredSecondInningVsOpponent: 0,
-        pointsScoredThirdInningVsOpponent: 0,
-        pointsScoredFourthInningVsOpponent: 0,
-        pointsScoredFifthInningVsOpponent: 0,
-        pointsScoredSixthInningVsOpponent: 0,
-        pointsScoredSeventhInningVsOpponent: 0,
-        pointsScoredEighthInningVsOpponent: 0,
-        pointsScoredNinthInningVsOpponent: 0,
-        pointsScoredHomeGame: 0,
-        pointsScoredFirstInningHome: 0,
-        pointsScoredSecondInningHome: 0,
-        pointsScoredThirdInningHome: 0,
-        pointsScoredFourthInningHome: 0,
-        pointsScoredFifthInningHome: 0,
-        pointsScoredSixthInningHome: 0,
-        pointsScoredSeventhInningHome: 0,
-        pointsScoredEighthInningHome: 0,
-        pointsScoredNinthInningHome: 0,
-        pointsScoredAwayGame: 0,
-        pointsScoredFirstInningAway: 0,
-        pointsScoredSecondInningAway: 0,
-        pointsScoredThirdInningAway: 0,
-        pointsScoredFourthInningAway: 0,
-        pointsScoredFifthInningAway: 0,
-        pointsScoredSixthInningAway: 0,
-        pointsScoredSeventhInningAway: 0,
-        pointsScoredEighthInningAway: 0,
-        pointsScoredNinthInningAway: 0,
-        pointsAllowedOverallGame: 0,
-        pointsAllowedOverallFirstInning: 0,
-        pointsAllowedOverallSecondInning: 0,
-        pointsAllowedOverallThirdInning: 0,
-        pointsAllowedOverallFourthInning: 0,
-        pointsAllowedOverallFifthInning: 0,
-        pointsAllowedOverallSixthInning: 0,
-        pointsAllowedOverallSeventhInning: 0,
-        pointsAllowedOverallEighthInning: 0,
-        pointsAllowedOverallNinthInning: 0,
-        pointsAllowedVsTeamGame: 0,
-        pointsAllowedFirstInningVsOpponent: 0,
-        pointsAllowedSecondInningVsOpponent: 0,
-        pointsAllowedThirdInningVsOpponent: 0,
-        pointsAllowedFourthInningVsOpponent: 0,
-        pointsAllowedFifthInningVsOpponent: 0,
-        pointsAllowedSixthInningVsOpponent: 0,
-        pointsAllowedSeventhInningVsOpponent: 0,
-        pointsAllowedEighthInningVsOpponent: 0,
-        pointsAllowedNinthInningVsOpponent: 0,
-        pointsAllowedHomeGame: 0,
-        pointsAllowedFirstInningHome: 0,
-        pointsAllowedSecondInningHome: 0,
-        pointsAllowedThirdInningHome: 0,
-        pointsAllowedFourthInningHome: 0,
-        pointsAllowedFifthInningHome: 0,
-        pointsAllowedSixthInningHome: 0,
-        pointsAllowedSeventhInningHome: 0,
-        pointsAllowedEighthInningHome: 0,
-        pointsAllowedNinthInningHome: 0,
-        pointsAllowedAwayGame: 0,
-        pointsAllowedFirstInningAway: 0,
-        pointsAllowedSecondInningAway: 0,
-        pointsAllowedThirdInningAway: 0,
-        pointsAllowedFourthInningAway: 0,
-        pointsAllowedFifthInningAway: 0,
-        pointsAllowedSixthInningAway: 0,
-        pointsAllowedSeventhInningAway: 0,
-        pointsAllowedEighthInningAway: 0,
-        pointsAllowedNinthInningAway: 0
-      }
-      team1New.forEach(e => {
-        //overall stats - inning spread total points scored and allowed
-        e.result == "W" ? this.team1GameStatsDtoMLB.gamesWon += 1 : this.team1GameStatsDtoMLB.gamesLost += 1;
-
-        //result by inning
-        e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWon += 1 : this.team1GameStatsDtoMLB.inningOneLost += 1;
-        e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWon += 1 : this.team1GameStatsDtoMLB.inningTwoLost += 1;
-        e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWon += 1 : this.team1GameStatsDtoMLB.inningThreeLost += 1;
-        e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWon += 1 : this.team1GameStatsDtoMLB.inningFourLost += 1;
-        e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWon += 1 : this.team1GameStatsDtoMLB.inningFiveLost += 1;
-        e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWon += 1 : this.team1GameStatsDtoMLB.inningSixLost += 1;
-        e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWon += 1 : this.team1GameStatsDtoMLB.inningSevenLost += 1;
-        e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWon += 1 : this.team1GameStatsDtoMLB.inningEightLost += 1;
-        e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWon += 1 : this.team1GameStatsDtoMLB.inningNineLost += 1;
-
-        //spread 
-        this.team1GameStatsDtoMLB.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall)
-        this.team1GameStatsDtoMLB.spreadFirstInning += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-        this.team1GameStatsDtoMLB.spreadSecondInning += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-        this.team1GameStatsDtoMLB.spreadThirdInning += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-        this.team1GameStatsDtoMLB.spreadFourthInning += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-        this.team1GameStatsDtoMLB.spreadFifthInning += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-        this.team1GameStatsDtoMLB.spreadSixthInning += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-        this.team1GameStatsDtoMLB.spreadSeventhInning += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-        this.team1GameStatsDtoMLB.spreadEighthInning += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-        this.team1GameStatsDtoMLB.spreadNinthInning += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-
-        //total
-        this.team1GameStatsDtoMLB.totalOverall += (e.pointsScoredOverall + e.pointsAllowedOverall)
-        this.team1GameStatsDtoMLB.totalFirstInning += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-        this.team1GameStatsDtoMLB.totalSecondInning += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-        this.team1GameStatsDtoMLB.totalThirdInning += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-        this.team1GameStatsDtoMLB.totalFourthInning += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-        this.team1GameStatsDtoMLB.totalFifthInning += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-        this.team1GameStatsDtoMLB.totalSixthInning += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-        this.team1GameStatsDtoMLB.totalSeventhInning += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-        this.team1GameStatsDtoMLB.totalEighthInning += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-        this.team1GameStatsDtoMLB.totalNinthInning += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-
-        //points scored
-        this.team1GameStatsDtoMLB.pointsScoredOverallGame += e.pointsScoredOverall
-        this.team1GameStatsDtoMLB.pointsScoredOverallFirstInning += e.pointsScoredFirstInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallSecondInning += e.pointsScoredSecondInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallThirdInning += e.pointsScoredThirdInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallFourthInning += e.pointsScoredFourthInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallFifthInning += e.pointsScoredFifthInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallSixthInning += e.pointsScoredSixthInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallSeventhInning += e.pointsScoredSeventhInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallEighthInning += e.pointsScoredEigthInning
-        this.team1GameStatsDtoMLB.pointsScoredOverallNinthInning += e.pointsScoredNinthInning
-
-        //points allowed
-        this.team1GameStatsDtoMLB.pointsAllowedOverallGame += e.pointsAllowedOverall
-        this.team1GameStatsDtoMLB.pointsAllowedOverallFirstInning += e.pointsAllowedFirstInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallSecondInning += e.pointsAllowedSecondInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallThirdInning += e.pointsAllowedThirdInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallFourthInning += e.pointsAllowedFourthInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallFifthInning += e.pointsAllowedFifthInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallSixthInning += e.pointsAllowedSixthInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallSeventhInning += e.pointsAllowedSeventhInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallEighthInning += e.pointsAllowedEigthInning
-        this.team1GameStatsDtoMLB.pointsAllowedOverallNinthInning += e.pointsAllowedNinthInning
-
-        if (e.homeOrAway == "Home") {
-          e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonHome += 1 : this.team1GameStatsDtoMLB.gamesLostHome += 1;
-
-          //result by inning
-          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonHome += 1 : this.team1GameStatsDtoMLB.inningOneLostHome += 1;
-          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonHome += 1 : this.team1GameStatsDtoMLB.inningTwoLostHome += 1;
-          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonHome += 1 : this.team1GameStatsDtoMLB.inningThreeLostHome += 1;
-          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonHome += 1 : this.team1GameStatsDtoMLB.inningFourLostHome += 1;
-          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonHome += 1 : this.team1GameStatsDtoMLB.inningFiveLostHome += 1;
-          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonHome += 1 : this.team1GameStatsDtoMLB.inningSixLostHome += 1;
-          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonHome += 1 : this.team1GameStatsDtoMLB.inningSevenLostHome += 1;
-          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonHome += 1 : this.team1GameStatsDtoMLB.inningEightLostHome += 1;
-          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonHome += 1 : this.team1GameStatsDtoMLB.inningNineLostHome += 1;
-
-          //spread 
-          this.team1GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
-          this.team1GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-          this.team1GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-          this.team1GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-          this.team1GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-          this.team1GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-          this.team1GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-          this.team1GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-          this.team1GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-          this.team1GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-
-          //total
-          this.team1GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
-          this.team1GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-          this.team1GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-          this.team1GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-          this.team1GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-          this.team1GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-          this.team1GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-          this.team1GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-          this.team1GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-          this.team1GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-
-          //points scored
-          this.team1GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
-          this.team1GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
-          this.team1GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
-          this.team1GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
-          this.team1GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
-          this.team1GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
-          this.team1GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
-          this.team1GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
-          this.team1GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
-          this.team1GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
-
-          //points allowed
-          this.team1GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
-          this.team1GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
-          this.team1GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
-          this.team1GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
-          this.team1GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
-          this.team1GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
-          this.team1GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
-          this.team1GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
-          this.team1GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
-          this.team1GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
-
-        }
-        else if (e.homeOrAway == "Away") {
-          e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonAway += 1 : this.team1GameStatsDtoMLB.gamesLostAway += 1;
-
-          //result by inning
-          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonAway += 1 : this.team1GameStatsDtoMLB.inningOneLostAway += 1;
-          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonAway += 1 : this.team1GameStatsDtoMLB.inningTwoLostAway += 1;
-          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonAway += 1 : this.team1GameStatsDtoMLB.inningThreeLostAway += 1;
-          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonAway += 1 : this.team1GameStatsDtoMLB.inningFourLostAway += 1;
-          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonAway += 1 : this.team1GameStatsDtoMLB.inningFiveLostAway += 1;
-          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonAway += 1 : this.team1GameStatsDtoMLB.inningSixLostAway += 1;
-          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonAway += 1 : this.team1GameStatsDtoMLB.inningSevenLostAway += 1;
-          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonAway += 1 : this.team1GameStatsDtoMLB.inningEightLostAway += 1;
-          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonAway += 1 : this.team1GameStatsDtoMLB.inningNineLostAway += 1;
-
-          //spread 
-          this.team1GameStatsDtoMLB.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall)
-          this.team1GameStatsDtoMLB.spreadFirstInningAway += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-          this.team1GameStatsDtoMLB.spreadSecondInningAway += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-          this.team1GameStatsDtoMLB.spreadThirdInningAway += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-          this.team1GameStatsDtoMLB.spreadFourthInningAway += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-          this.team1GameStatsDtoMLB.spreadFifthInningAway += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-          this.team1GameStatsDtoMLB.spreadSixthInningAway += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-          this.team1GameStatsDtoMLB.spreadSeventhInningAway += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-          this.team1GameStatsDtoMLB.spreadEighthInningAway += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-          this.team1GameStatsDtoMLB.spreadNinthInningAway += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-
-          //total
-          this.team1GameStatsDtoMLB.totalAway += (e.pointsScoredOverall + e.pointsAllowedOverall)
-          this.team1GameStatsDtoMLB.totalFirstInningAway += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-          this.team1GameStatsDtoMLB.totalSecondInningAway += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-          this.team1GameStatsDtoMLB.totalThirdInningAway += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-          this.team1GameStatsDtoMLB.totalFourthInningAway += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-          this.team1GameStatsDtoMLB.totalFifthInningAway += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-          this.team1GameStatsDtoMLB.totalSixthInningAway += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-          this.team1GameStatsDtoMLB.totalSeventhInningAway += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-          this.team1GameStatsDtoMLB.totalEighthInningAway += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-          this.team1GameStatsDtoMLB.totalNinthInningAway += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-
-          //points scored
-          this.team1GameStatsDtoMLB.pointsScoredAwayGame += e.pointsScoredOverall
-          this.team1GameStatsDtoMLB.pointsScoredFirstInningAway += e.pointsScoredFirstInning
-          this.team1GameStatsDtoMLB.pointsScoredSecondInningAway += e.pointsScoredSecondInning
-          this.team1GameStatsDtoMLB.pointsScoredThirdInningAway += e.pointsScoredThirdInning
-          this.team1GameStatsDtoMLB.pointsScoredFourthInningAway += e.pointsScoredFourthInning
-          this.team1GameStatsDtoMLB.pointsScoredFifthInningAway += e.pointsScoredFifthInning
-          this.team1GameStatsDtoMLB.pointsScoredSixthInningAway += e.pointsScoredSixthInning
-          this.team1GameStatsDtoMLB.pointsScoredSeventhInningAway += e.pointsScoredSeventhInning
-          this.team1GameStatsDtoMLB.pointsScoredEighthInningAway += e.pointsScoredEigthInning
-          this.team1GameStatsDtoMLB.pointsScoredNinthInningAway += e.pointsScoredNinthInning
-
-          //points allowed
-          this.team1GameStatsDtoMLB.pointsAllowedAwayGame += e.pointsAllowedOverall
-          this.team1GameStatsDtoMLB.pointsAllowedFirstInningAway += e.pointsAllowedFirstInning
-          this.team1GameStatsDtoMLB.pointsAllowedSecondInningAway += e.pointsAllowedSecondInning
-          this.team1GameStatsDtoMLB.pointsAllowedThirdInningAway += e.pointsAllowedThirdInning
-          this.team1GameStatsDtoMLB.pointsAllowedFourthInningAway += e.pointsAllowedFourthInning
-          this.team1GameStatsDtoMLB.pointsAllowedFifthInningAway += e.pointsAllowedFifthInning
-          this.team1GameStatsDtoMLB.pointsAllowedSixthInningAway += e.pointsAllowedSixthInning
-          this.team1GameStatsDtoMLB.pointsAllowedSeventhInningAway += e.pointsAllowedSeventhInning
-          this.team1GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
-          this.team1GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
-        }
-        if (e.teamAgainstId == team2New[0].teamId) {
-          e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team1GameStatsDtoMLB.gamesLostVsOpponent += 1;
-
-          //result by inning
-          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningOneLostVsOpponent += 1;
-          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningTwoLostVsOpponent += 1;
-          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningThreeLostVsOpponent += 1;
-          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningFourLostVsOpponent += 1;
-          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningFiveLostVsOpponent += 1;
-          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningSixLostVsOpponent += 1;
-          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningSevenLostVsOpponent += 1;
-          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningEightLostVsOpponent += 1;
-          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningNineLostVsOpponent += 1;
-
-          //spread 
-          this.team1GameStatsDtoMLB.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall)
-          this.team1GameStatsDtoMLB.spreadFirstInningVsOpponent += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-          this.team1GameStatsDtoMLB.spreadSecondInningVsOpponent += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-          this.team1GameStatsDtoMLB.spreadThirdInningVsOpponent += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-          this.team1GameStatsDtoMLB.spreadFourthInningVsOpponent += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-          this.team1GameStatsDtoMLB.spreadFifthInningVsOpponent += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-          this.team1GameStatsDtoMLB.spreadSixthInningVsOpponent += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-          this.team1GameStatsDtoMLB.spreadSeventhInningVsOpponent += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-          this.team1GameStatsDtoMLB.spreadEighthInningVsOpponent += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-          this.team1GameStatsDtoMLB.spreadNinthInningVsOpponent += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-
-          //total
-          this.team1GameStatsDtoMLB.totalVsTeam += (e.pointsScoredOverall + e.pointsAllowedOverall)
-          this.team1GameStatsDtoMLB.totalFirstInningVsOpponent += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-          this.team1GameStatsDtoMLB.totalSecondInningVsOpponent += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-          this.team1GameStatsDtoMLB.totalThirdInningVsOpponent += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-          this.team1GameStatsDtoMLB.totalFourthInningVsOpponent += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-          this.team1GameStatsDtoMLB.totalFifthInningVsOpponent += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-          this.team1GameStatsDtoMLB.totalSixthInningVsOpponent += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-          this.team1GameStatsDtoMLB.totalSeventhInningVsOpponent += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-          this.team1GameStatsDtoMLB.totalEighthInningVsOpponent += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-          this.team1GameStatsDtoMLB.totalNinthInningVsOpponent += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-
-          //points scored
-          this.team1GameStatsDtoMLB.pointsScoredVsTeamGame += e.pointsScoredOverall
-          this.team1GameStatsDtoMLB.pointsScoredFirstInningVsOpponent += e.pointsScoredFirstInning
-          this.team1GameStatsDtoMLB.pointsScoredSecondInningVsOpponent += e.pointsScoredSecondInning
-          this.team1GameStatsDtoMLB.pointsScoredThirdInningVsOpponent += e.pointsScoredThirdInning
-          this.team1GameStatsDtoMLB.pointsScoredFourthInningVsOpponent += e.pointsScoredFourthInning
-          this.team1GameStatsDtoMLB.pointsScoredFifthInningVsOpponent += e.pointsScoredFifthInning
-          this.team1GameStatsDtoMLB.pointsScoredSixthInningVsOpponent += e.pointsScoredSixthInning
-          this.team1GameStatsDtoMLB.pointsScoredSeventhInningVsOpponent += e.pointsScoredSeventhInning
-          this.team1GameStatsDtoMLB.pointsScoredEighthInningVsOpponent += e.pointsScoredEigthInning
-          this.team1GameStatsDtoMLB.pointsScoredNinthInningVsOpponent += e.pointsScoredNinthInning
-
-          //points allowed
-          this.team1GameStatsDtoMLB.pointsAllowedVsTeamGame += e.pointsAllowedOverall
-          this.team1GameStatsDtoMLB.pointsAllowedFirstInningVsOpponent += e.pointsAllowedFirstInning
-          this.team1GameStatsDtoMLB.pointsAllowedSecondInningVsOpponent += e.pointsAllowedSecondInning
-          this.team1GameStatsDtoMLB.pointsAllowedThirdInningVsOpponent += e.pointsAllowedThirdInning
-          this.team1GameStatsDtoMLB.pointsAllowedFourthInningVsOpponent += e.pointsAllowedFourthInning
-          this.team1GameStatsDtoMLB.pointsAllowedFifthInningVsOpponent += e.pointsAllowedFifthInning
-          this.team1GameStatsDtoMLB.pointsAllowedSixthInningVsOpponent += e.pointsAllowedSixthInning
-          this.team1GameStatsDtoMLB.pointsAllowedSeventhInningVsOpponent += e.pointsAllowedSeventhInning
-          this.team1GameStatsDtoMLB.pointsAllowedEighthInningVsOpponent += e.pointsAllowedEigthInning
-          this.team1GameStatsDtoMLB.pointsAllowedNinthInningVsOpponent += e.pointsAllowedNinthInning
-        }
-        let totalFor = []
-        let totalOverall = 0;
-        totalFor = team1New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint })
-        totalOverall = team1New.length
-        this.homeSpreadOverallChance = (totalFor.length / totalOverall)
-
-        totalFor = team1New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && e.homeOrAway == "Home") })
-        totalOverall = team1New.filter(e => e.homeOrAway == "Home").length
-        this.homeSpreadHomeChance = (totalFor.length / totalOverall)
-
-        totalFor = team1New.filter(e => {
-          return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && (e.teamAgainstId == team2New[0].teamId))
-        })
-        totalOverall = team1New.filter(e => e.teamAgainstId == team2New[0].teamId).length
-
-        this.homeSpreadTeamChance = (totalFor.length / totalOverall)
-      })
-
-      team2New.forEach(e => {
-        //overall stats - inning spread total points scored and allowed
-        e.result == "W" ? this.team2GameStatsDtoMLB.gamesWon += 1 : this.team2GameStatsDtoMLB.gamesLost += 1;
-
-        //result by inning
-        e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWon += 1 : this.team2GameStatsDtoMLB.inningOneLost += 1;
-        e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWon += 1 : this.team2GameStatsDtoMLB.inningTwoLost += 1;
-        e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWon += 1 : this.team2GameStatsDtoMLB.inningThreeLost += 1;
-        e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWon += 1 : this.team2GameStatsDtoMLB.inningFourLost += 1;
-        e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWon += 1 : this.team2GameStatsDtoMLB.inningFiveLost += 1;
-        e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWon += 1 : this.team2GameStatsDtoMLB.inningSixLost += 1;
-        e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWon += 1 : this.team2GameStatsDtoMLB.inningSevenLost += 1;
-        e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWon += 1 : this.team2GameStatsDtoMLB.inningEightLost += 1;
-        e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWon += 1 : this.team2GameStatsDtoMLB.inningNineLost += 1;
-
-        //spread
-        this.team2GameStatsDtoMLB.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall)
-        this.team2GameStatsDtoMLB.spreadFirstInning += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-        this.team2GameStatsDtoMLB.spreadSecondInning += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-        this.team2GameStatsDtoMLB.spreadThirdInning += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-        this.team2GameStatsDtoMLB.spreadFourthInning += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-        this.team2GameStatsDtoMLB.spreadFifthInning += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-        this.team2GameStatsDtoMLB.spreadSixthInning += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-        this.team2GameStatsDtoMLB.spreadSeventhInning += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-        this.team2GameStatsDtoMLB.spreadEighthInning += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-        this.team2GameStatsDtoMLB.spreadNinthInning += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-        //tota2
-        this.team2GameStatsDtoMLB.totalOverall += (e.pointsScoredOverall + e.pointsAllowedOverall)
-        this.team2GameStatsDtoMLB.totalFirstInning += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-        this.team2GameStatsDtoMLB.totalSecondInning += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-        this.team2GameStatsDtoMLB.totalThirdInning += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-        this.team2GameStatsDtoMLB.totalFourthInning += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-        this.team2GameStatsDtoMLB.totalFifthInning += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-        this.team2GameStatsDtoMLB.totalSixthInning += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-        this.team2GameStatsDtoMLB.totalSeventhInning += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-        this.team2GameStatsDtoMLB.totalEighthInning += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-        this.team2GameStatsDtoMLB.totalNinthInning += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-        //points 2cored
-        this.team2GameStatsDtoMLB.pointsScoredOverallGame += e.pointsScoredOverall
-        this.team2GameStatsDtoMLB.pointsScoredOverallFirstInning += e.pointsScoredFirstInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallSecondInning += e.pointsScoredSecondInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallThirdInning += e.pointsScoredThirdInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallFourthInning += e.pointsScoredFourthInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallFifthInning += e.pointsScoredFifthInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallSixthInning += e.pointsScoredSixthInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallSeventhInning += e.pointsScoredSeventhInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallEighthInning += e.pointsScoredEigthInning
-        this.team2GameStatsDtoMLB.pointsScoredOverallNinthInning += e.pointsScoredNinthInning
-        //points 2llowed
-        this.team2GameStatsDtoMLB.pointsAllowedOverallGame += e.pointsAllowedOverall
-        this.team2GameStatsDtoMLB.pointsAllowedOverallFirstInning += e.pointsAllowedFirstInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallSecondInning += e.pointsAllowedSecondInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallThirdInning += e.pointsAllowedThirdInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallFourthInning += e.pointsAllowedFourthInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallFifthInning += e.pointsAllowedFifthInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallSixthInning += e.pointsAllowedSixthInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallSeventhInning += e.pointsAllowedSeventhInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallEighthInning += e.pointsAllowedEigthInning
-        this.team2GameStatsDtoMLB.pointsAllowedOverallNinthInning += e.pointsAllowedNinthInning
-
-        if (e.homeOrAway == "Home") {
-          e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonHome += 1 : this.team2GameStatsDtoMLB.gamesLostHome += 1;
-
-          //result by inning
-          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonHome += 1 : this.team2GameStatsDtoMLB.inningOneLostHome += 1;
-          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonHome += 1 : this.team2GameStatsDtoMLB.inningTwoLostHome += 1;
-          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonHome += 1 : this.team2GameStatsDtoMLB.inningThreeLostHome += 1;
-          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonHome += 1 : this.team2GameStatsDtoMLB.inningFourLostHome += 1;
-          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonHome += 1 : this.team2GameStatsDtoMLB.inningFiveLostHome += 1;
-          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonHome += 1 : this.team2GameStatsDtoMLB.inningSixLostHome += 1;
-          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonHome += 1 : this.team2GameStatsDtoMLB.inningSevenLostHome += 1;
-          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonHome += 1 : this.team2GameStatsDtoMLB.inningEightLostHome += 1;
-          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonHome += 1 : this.team2GameStatsDtoMLB.inningNineLostHome += 1;
-          //spread
-          this.team2GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
-          this.team2GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-          this.team2GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-          this.team2GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-          this.team2GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-          this.team2GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-          this.team2GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-          this.team2GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-          this.team2GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-          this.team2GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-          //tota2
-          this.team2GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
-          this.team2GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-          this.team2GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-          this.team2GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-          this.team2GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-          this.team2GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-          this.team2GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-          this.team2GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-          this.team2GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-          this.team2GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-          //points 2cored
-          this.team2GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
-          this.team2GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
-          this.team2GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
-          this.team2GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
-          this.team2GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
-          this.team2GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
-          this.team2GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
-          this.team2GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
-          this.team2GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
-          this.team2GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
-          //points 2llowed
-          this.team2GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
-          this.team2GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
-          this.team2GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
-          this.team2GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
-          this.team2GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
-          this.team2GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
-          this.team2GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
-          this.team2GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
-          this.team2GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
-          this.team2GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
-
-        }
-        else if (e.homeOrAway == "Away") {
-          e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonAway += 1 : this.team2GameStatsDtoMLB.gamesLostAway += 1;
-
-          //result by inning
-          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonAway += 1 : this.team2GameStatsDtoMLB.inningOneLostAway += 1;
-          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonAway += 1 : this.team2GameStatsDtoMLB.inningTwoLostAway += 1;
-          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonAway += 1 : this.team2GameStatsDtoMLB.inningThreeLostAway += 1;
-          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonAway += 1 : this.team2GameStatsDtoMLB.inningFourLostAway += 1;
-          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonAway += 1 : this.team2GameStatsDtoMLB.inningFiveLostAway += 1;
-          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonAway += 1 : this.team2GameStatsDtoMLB.inningSixLostAway += 1;
-          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonAway += 1 : this.team2GameStatsDtoMLB.inningSevenLostAway += 1;
-          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonAway += 1 : this.team2GameStatsDtoMLB.inningEightLostAway += 1;
-          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonAway += 1 : this.team2GameStatsDtoMLB.inningNineLostAway += 1;
-
-          //spread 
-          this.team2GameStatsDtoMLB.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall)
-          this.team2GameStatsDtoMLB.spreadFirstInningAway += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-          this.team2GameStatsDtoMLB.spreadSecondInningAway += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-          this.team2GameStatsDtoMLB.spreadThirdInningAway += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-          this.team2GameStatsDtoMLB.spreadFourthInningAway += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-          this.team2GameStatsDtoMLB.spreadFifthInningAway += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-          this.team2GameStatsDtoMLB.spreadSixthInningAway += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-          this.team2GameStatsDtoMLB.spreadSeventhInningAway += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-          this.team2GameStatsDtoMLB.spreadEighthInningAway += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-          this.team2GameStatsDtoMLB.spreadNinthInningAway += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-
-          //tota2
-          this.team2GameStatsDtoMLB.totalAway += (e.pointsScoredOverall + e.pointsAllowedOverall)
-          this.team2GameStatsDtoMLB.totalFirstInningAway += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-          this.team2GameStatsDtoMLB.totalSecondInningAway += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-          this.team2GameStatsDtoMLB.totalThirdInningAway += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-          this.team2GameStatsDtoMLB.totalFourthInningAway += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-          this.team2GameStatsDtoMLB.totalFifthInningAway += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-          this.team2GameStatsDtoMLB.totalSixthInningAway += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-          this.team2GameStatsDtoMLB.totalSeventhInningAway += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-          this.team2GameStatsDtoMLB.totalEighthInningAway += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-          this.team2GameStatsDtoMLB.totalNinthInningAway += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-
-          //points 2cored
-          this.team2GameStatsDtoMLB.pointsScoredAwayGame += e.pointsScoredOverall
-          this.team2GameStatsDtoMLB.pointsScoredFirstInningAway += e.pointsScoredFirstInning
-          this.team2GameStatsDtoMLB.pointsScoredSecondInningAway += e.pointsScoredSecondInning
-          this.team2GameStatsDtoMLB.pointsScoredThirdInningAway += e.pointsScoredThirdInning
-          this.team2GameStatsDtoMLB.pointsScoredFourthInningAway += e.pointsScoredFourthInning
-          this.team2GameStatsDtoMLB.pointsScoredFifthInningAway += e.pointsScoredFifthInning
-          this.team2GameStatsDtoMLB.pointsScoredSixthInningAway += e.pointsScoredSixthInning
-          this.team2GameStatsDtoMLB.pointsScoredSeventhInningAway += e.pointsScoredSeventhInning
-          this.team2GameStatsDtoMLB.pointsScoredEighthInningAway += e.pointsScoredEigthInning
-          this.team2GameStatsDtoMLB.pointsScoredNinthInningAway += e.pointsScoredNinthInning
-
-          //points 2llowed
-          this.team2GameStatsDtoMLB.pointsAllowedAwayGame += e.pointsAllowedOverall
-          this.team2GameStatsDtoMLB.pointsAllowedFirstInningAway += e.pointsAllowedFirstInning
-          this.team2GameStatsDtoMLB.pointsAllowedSecondInningAway += e.pointsAllowedSecondInning
-          this.team2GameStatsDtoMLB.pointsAllowedThirdInningAway += e.pointsAllowedThirdInning
-          this.team2GameStatsDtoMLB.pointsAllowedFourthInningAway += e.pointsAllowedFourthInning
-          this.team2GameStatsDtoMLB.pointsAllowedFifthInningAway += e.pointsAllowedFifthInning
-          this.team2GameStatsDtoMLB.pointsAllowedSixthInningAway += e.pointsAllowedSixthInning
-          this.team2GameStatsDtoMLB.pointsAllowedSeventhInningAway += e.pointsAllowedSeventhInning
-          this.team2GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
-          this.team2GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
-        }
-
-        if (e.teamAgainstId == team1New[0].teamId) {
-          e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
-
-          //result by inning
-          e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningOneLostVsOpponent += 1;
-          e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningTwoLostVsOpponent += 1;
-          e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningThreeLostVsOpponent += 1;
-          e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningFourLostVsOpponent += 1;
-          e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningFiveLostVsOpponent += 1;
-          e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningSixLostVsOpponent += 1;
-          e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningSevenLostVsOpponent += 1;
-          e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningEightLostVsOpponent += 1;
-          e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningNineLostVsOpponent += 1;
-
-          //spread 
-          this.team2GameStatsDtoMLB.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall)
-          this.team2GameStatsDtoMLB.spreadFirstInningVsOpponent += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
-          this.team2GameStatsDtoMLB.spreadSecondInningVsOpponent += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
-          this.team2GameStatsDtoMLB.spreadThirdInningVsOpponent += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
-          this.team2GameStatsDtoMLB.spreadFourthInningVsOpponent += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
-          this.team2GameStatsDtoMLB.spreadFifthInningVsOpponent += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
-          this.team2GameStatsDtoMLB.spreadSixthInningVsOpponent += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
-          this.team2GameStatsDtoMLB.spreadSeventhInningVsOpponent += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
-          this.team2GameStatsDtoMLB.spreadEighthInningVsOpponent += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
-          this.team2GameStatsDtoMLB.spreadNinthInningVsOpponent += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
-
-          //tota2
-          this.team2GameStatsDtoMLB.totalVsTeam += (e.pointsScoredOverall + e.pointsAllowedOverall)
-          this.team2GameStatsDtoMLB.totalFirstInningVsOpponent += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
-          this.team2GameStatsDtoMLB.totalSecondInningVsOpponent += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
-          this.team2GameStatsDtoMLB.totalThirdInningVsOpponent += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
-          this.team2GameStatsDtoMLB.totalFourthInningVsOpponent += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
-          this.team2GameStatsDtoMLB.totalFifthInningVsOpponent += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
-          this.team2GameStatsDtoMLB.totalSixthInningVsOpponent += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
-          this.team2GameStatsDtoMLB.totalSeventhInningVsOpponent += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
-          this.team2GameStatsDtoMLB.totalEighthInningVsOpponent += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
-          this.team2GameStatsDtoMLB.totalNinthInningVsOpponent += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
-
-          //points 2cored
-          this.team2GameStatsDtoMLB.pointsScoredVsTeamGame += e.pointsScoredOverall
-          this.team2GameStatsDtoMLB.pointsScoredFirstInningVsOpponent += e.pointsScoredFirstInning
-          this.team2GameStatsDtoMLB.pointsScoredSecondInningVsOpponent += e.pointsScoredSecondInning
-          this.team2GameStatsDtoMLB.pointsScoredThirdInningVsOpponent += e.pointsScoredThirdInning
-          this.team2GameStatsDtoMLB.pointsScoredFourthInningVsOpponent += e.pointsScoredFourthInning
-          this.team2GameStatsDtoMLB.pointsScoredFifthInningVsOpponent += e.pointsScoredFifthInning
-          this.team2GameStatsDtoMLB.pointsScoredSixthInningVsOpponent += e.pointsScoredSixthInning
-          this.team2GameStatsDtoMLB.pointsScoredSeventhInningVsOpponent += e.pointsScoredSeventhInning
-          this.team2GameStatsDtoMLB.pointsScoredEighthInningVsOpponent += e.pointsScoredEigthInning
-          this.team2GameStatsDtoMLB.pointsScoredNinthInningVsOpponent += e.pointsScoredNinthInning
-
-          //points 2llowed
-          this.team2GameStatsDtoMLB.pointsAllowedVsTeamGame += e.pointsAllowedOverall
-          this.team2GameStatsDtoMLB.pointsAllowedFirstInningVsOpponent += e.pointsAllowedFirstInning
-          this.team2GameStatsDtoMLB.pointsAllowedSecondInningVsOpponent += e.pointsAllowedSecondInning
-          this.team2GameStatsDtoMLB.pointsAllowedThirdInningVsOpponent += e.pointsAllowedThirdInning
-          this.team2GameStatsDtoMLB.pointsAllowedFourthInningVsOpponent += e.pointsAllowedFourthInning
-          this.team2GameStatsDtoMLB.pointsAllowedFifthInningVsOpponent += e.pointsAllowedFifthInning
-          this.team2GameStatsDtoMLB.pointsAllowedSixthInningVsOpponent += e.pointsAllowedSixthInning
-          this.team2GameStatsDtoMLB.pointsAllowedSeventhInningVsOpponent += e.pointsAllowedSeventhInning
-          this.team2GameStatsDtoMLB.pointsAllowedEighthInningVsOpponent += e.pointsAllowedEigthInning
-          this.team2GameStatsDtoMLB.pointsAllowedNinthInningVsOpponent += e.pointsAllowedNinthInning
-        }
-
-      })
-      let totalFor = []
-      let totalOverall = 0;
-      totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint })
-      totalOverall = team2New.length
-      this.awaySpreadOverallChance = (totalFor.length / totalOverall)
-
-      totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away") })
-      totalOverall = team2New.filter(e => e.homeOrAway == "Away").length
-      this.awaySpreadAwayChance = (totalFor.length / totalOverall)
-
-      totalFor = team2New.filter(e => {
-        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && (e.teamAgainstId == team1New[0].teamId))
-      })
-      totalOverall = team2New.filter(e => e.teamAgainstId == team1New[0].teamId).length
-
-      this.awaySpreadTeamChance = (totalFor.length / totalOverall)
-    }
-
-    else if (this.selectedSport == "NHL") {
-
-    }
-
-    else if (this.selectedSport == "NFL") {
-
-    } */
+    /*  if (this.selectedSport == "NBA") {
+       this.team1GameVsOpponentData = []
+       this.team1GameStatsDtoNBA = {
+         gamesWon: 0,
+         gamesLost: 0,
+         gamesWonVsOpponent: 0,
+         gamesLostVsOpponent: 0,
+         gamesWonHome: 0,
+         gamesLostHome: 0,
+         gamesWonAway: 0,
+         gamesLostAway: 0,
+         halfOneWon: 0,
+         halfOneLost: 0,
+         halfTwoWon: 0,
+         halfTwoLost: 0,
+         quarterOneWon: 0,
+         quarterOneLost: 0,
+         quarterTwoWon: 0,
+         quarterTwoLost: 0,
+         quarterThreeWon: 0,
+         quarterThreeLost: 0,
+         quarterFourWon: 0,
+         quarterFourLost: 0,
+         halfOneWonVsOpponent: 0,
+         halfOneLostVsOpponent: 0,
+         halfTwoWonVsOpponent: 0,
+         halfTwoLostVsOpponent: 0,
+         quarterOneWonVsOpponent: 0,
+         quarterOneLostVsOpponent: 0,
+         quarterTwoWonVsOpponent: 0,
+         quarterTwoLostVsOpponent: 0,
+         quarterThreeWonVsOpponent: 0,
+         quarterThreeLostVsOpponent: 0,
+         quarterFourWonVsOpponent: 0,
+         quarterFourLostVsOpponent: 0,
+         halfOneWonHome: 0,
+         halfOneLostHome: 0,
+         halfOneWonAway: 0,
+         halfOneLostAway: 0,
+         halfTwoWonHome: 0,
+         halfTwoLostHome: 0,
+         halfTwoWonAway: 0,
+         halfTwoLostAway: 0,
+         quarterOneWonHome: 0,
+         quarterOneLostHome: 0,
+         quarterOneWonAway: 0,
+         quarterOneLostAway: 0,
+         quarterTwoWonHome: 0,
+         quarterTwoLostHome: 0,
+         quarterTwoWonAway: 0,
+         quarterTwoLostAway: 0,
+         quarterThreeWonHome: 0,
+         quarterThreeLostHome: 0,
+         quarterThreeWonAway: 0,
+         quarterThreeLostAway: 0,
+         quarterFourWonHome: 0,
+         quarterFourLostHome: 0,
+         quarterFourWonAway: 0,
+         quarterFourLostAway: 0,
+         spreadGame: 0,
+         spreadFirstHalf: 0,
+         spreadSecondHalf: 0,
+         spreadFirstQuarter: 0,
+         spreadSecondQuarter: 0,
+         spreadThirdQuarter: 0,
+         spreadFourthQuarter: 0,
+         spreadVsOpponent: 0,
+         spreadFirstHalfVsOpponent: 0,
+         spreadSecondHalfVsOpponent: 0,
+         spreadFirstQuarterVsOpponent: 0,
+         spreadSecondQuarterVsOpponet: 0,
+         spreadThirdQuarterVsOpponent: 0,
+         spreadFourthQuarterVsOpponent: 0,
+         spreadHome: 0,
+         spreadHomeFirstHalf: 0,
+         spreadHomeSecondHalf: 0,
+         spreadHomeFirstQuarter: 0,
+         spreadHomeSecondQuarter: 0,
+         spreadHomeThirdQuarter: 0,
+         spreadHomeFourthQuarter: 0,
+         spreadAway: 0,
+         spreadAwayFirstHalf: 0,
+         spreadAwaySecondHalf: 0,
+         spreadAwayFirstQuarter: 0,
+         spreadAwaySecondQuarter: 0,
+         spreadAwayThirdQuarter: 0,
+         spreadAwayFourthQuarter: 0,
+         totalOverall: 0,
+         totalOverallFirstHalf: 0,
+         totalOverallSecondHalf: 0,
+         totalOverallFirstQuarter: 0,
+         totalOverallSecondQuarter: 0,
+         totalOverallThirdQuarter: 0,
+         totalOverallFourthQuarter: 0,
+         totalVsTeam: 0,
+         totalVsTeamFirstHalf: 0,
+         totalVsTeamSecondHalf: 0,
+         totalVsTeamFirstQuarter: 0,
+         totalVsTeamSecondQuarter: 0,
+         totalVsTeamThirdQuarter: 0,
+         totalVsTeamFourthQuarter: 0,
+         totalHome: 0,
+         totalHomeFirstHalf: 0,
+         totalHomeSecondHalf: 0,
+         totalHomeFirstQuarter: 0,
+         totalHomeSecondQuarter: 0,
+         totalHomeThirdQuarter: 0,
+         totalHomeFourthQuarter: 0,
+         totalAway: 0,
+         totalAwayFirstHalf: 0,
+         totalAwaySecondHalf: 0,
+         totalAwayFirstQuarter: 0,
+         totalAwaySecondQuarter: 0,
+         totalAwayThirdQuarter: 0,
+         totalAwayFourthQuarter: 0,
+         pointsScoredOverallGame: 0,
+         pointsScoredOverallFirstHalf: 0,
+         pointsScoredOverallSecondHalf: 0,
+         pointsScoredOverallFirstQuarter: 0,
+         pointsScoredOverallSecondQuarter: 0,
+         pointsScoredOverallThirdQuarter: 0,
+         pointsScoredOverallFourthQuarter: 0,
+         pointsScoredVsTeamGame: 0,
+         pointsScoredVsTeamFirstHalf: 0,
+         pointsScoredVsTeamSecondHalf: 0,
+         pointsScoredVsTeamFirstQuarter: 0,
+         pointsScoredVsTeamSecondQuarter: 0,
+         pointsScoredVsTeamThirdQuarter: 0,
+         pointsScoredVsTeamFourthQuarter: 0,
+         pointsScoredHomeGame: 0,
+         pointsScoredHomeFirstHalf: 0,
+         pointsScoredHomeSecondHalf: 0,
+         pointsScoredHomeFirstQuarter: 0,
+         pointsScoredHomeSecondQuarter: 0,
+         pointsScoredHomeThirdQuarter: 0,
+         pointsScoredHomeFourthQuarter: 0,
+         pointsScoredAwayGame: 0,
+         pointsScoredAwayFirstHalf: 0,
+         pointsScoredAwaySecondHalf: 0,
+         pointsScoredAwayFirstQuarter: 0,
+         pointsScoredAwaySecondQuarter: 0,
+         pointsScoredAwayThirdQuarter: 0,
+         pointsScoredAwayFourthQuarter: 0,
+         pointsAllowedOverallGame: 0,
+         pointsAllowedOverallFirstHalf: 0,
+         pointsAllowedOverallSecondHalf: 0,
+         pointsAllowedOverallFirstQuarter: 0,
+         pointsAllowedOverallSecondQuarter: 0,
+         pointsAllowedOverallThirdQuarter: 0,
+         pointsAllowedOverallFourthQuarter: 0,
+         pointsAllowedVsTeamGame: 0,
+         pointsAllowedVsTeamFirstHalf: 0,
+         pointsAllowedVsTeamSecondHalf: 0,
+         pointsAllowedVsTeamFirstQuarter: 0,
+         pointsAllowedVsTeamSecondQuarter: 0,
+         pointsAllowedVsTeamThirdQuarter: 0,
+         pointsAllowedVsTeamFourthQuarter: 0,
+         pointsAllowedHomeGame: 0,
+         pointsAllowedHomeFirstHalf: 0,
+         pointsAllowedHomeSecondHalf: 0,
+         pointsAllowedHomeFirstQuarter: 0,
+         pointsAllowedHomeSecondQuarter: 0,
+         pointsAllowedHomeThirdQuarter: 0,
+         pointsAllowedHomeFourthQuarter: 0,
+         pointsAllowedAwayGame: 0,
+         pointsAllowedAwayFirstHalf: 0,
+         pointsAllowedAwaySecondHalf: 0,
+         pointsAllowedAwayFirstQuarter: 0,
+         pointsAllowedAwaySecondQuarter: 0,
+         pointsAllowedAwayThirdQuarter: 0,
+         pointsAllowedAwayFourthQuarter: 0,
+       }
+       this.team2GameStatsDtoNBA = {
+         gamesWon: 0,
+         gamesLost: 0,
+         gamesWonVsOpponent: 0,
+         gamesLostVsOpponent: 0,
+         gamesWonHome: 0,
+         gamesLostHome: 0,
+         gamesWonAway: 0,
+         gamesLostAway: 0,
+         halfOneWon: 0,
+         halfOneLost: 0,
+         halfTwoWon: 0,
+         halfTwoLost: 0,
+         quarterOneWon: 0,
+         quarterOneLost: 0,
+         quarterTwoWon: 0,
+         quarterTwoLost: 0,
+         quarterThreeWon: 0,
+         quarterThreeLost: 0,
+         quarterFourWon: 0,
+         quarterFourLost: 0,
+         halfOneWonVsOpponent: 0,
+         halfOneLostVsOpponent: 0,
+         halfTwoWonVsOpponent: 0,
+         halfTwoLostVsOpponent: 0,
+         quarterOneWonVsOpponent: 0,
+         quarterOneLostVsOpponent: 0,
+         quarterTwoWonVsOpponent: 0,
+         quarterTwoLostVsOpponent: 0,
+         quarterThreeWonVsOpponent: 0,
+         quarterThreeLostVsOpponent: 0,
+         quarterFourWonVsOpponent: 0,
+         quarterFourLostVsOpponent: 0,
+         halfOneWonHome: 0,
+         halfOneLostHome: 0,
+         halfOneWonAway: 0,
+         halfOneLostAway: 0,
+         halfTwoWonHome: 0,
+         halfTwoLostHome: 0,
+         halfTwoWonAway: 0,
+         halfTwoLostAway: 0,
+         quarterOneWonHome: 0,
+         quarterOneLostHome: 0,
+         quarterOneWonAway: 0,
+         quarterOneLostAway: 0,
+         quarterTwoWonHome: 0,
+         quarterTwoLostHome: 0,
+         quarterTwoWonAway: 0,
+         quarterTwoLostAway: 0,
+         quarterThreeWonHome: 0,
+         quarterThreeLostHome: 0,
+         quarterThreeWonAway: 0,
+         quarterThreeLostAway: 0,
+         quarterFourWonHome: 0,
+         quarterFourLostHome: 0,
+         quarterFourWonAway: 0,
+         quarterFourLostAway: 0,
+         spreadGame: 0,
+         spreadFirstHalf: 0,
+         spreadSecondHalf: 0,
+         spreadFirstQuarter: 0,
+         spreadSecondQuarter: 0,
+         spreadThirdQuarter: 0,
+         spreadFourthQuarter: 0,
+         spreadVsOpponent: 0,
+         spreadFirstHalfVsOpponent: 0,
+         spreadSecondHalfVsOpponent: 0,
+         spreadFirstQuarterVsOpponent: 0,
+         spreadSecondQuarterVsOpponet: 0,
+         spreadThirdQuarterVsOpponent: 0,
+         spreadFourthQuarterVsOpponent: 0,
+         spreadHome: 0,
+         spreadHomeFirstHalf: 0,
+         spreadHomeSecondHalf: 0,
+         spreadHomeFirstQuarter: 0,
+         spreadHomeSecondQuarter: 0,
+         spreadHomeThirdQuarter: 0,
+         spreadHomeFourthQuarter: 0,
+         spreadAway: 0,
+         spreadAwayFirstHalf: 0,
+         spreadAwaySecondHalf: 0,
+         spreadAwayFirstQuarter: 0,
+         spreadAwaySecondQuarter: 0,
+         spreadAwayThirdQuarter: 0,
+         spreadAwayFourthQuarter: 0,
+         totalOverall: 0,
+         totalOverallFirstHalf: 0,
+         totalOverallSecondHalf: 0,
+         totalOverallFirstQuarter: 0,
+         totalOverallSecondQuarter: 0,
+         totalOverallThirdQuarter: 0,
+         totalOverallFourthQuarter: 0,
+         totalVsTeam: 0,
+         totalVsTeamFirstHalf: 0,
+         totalVsTeamSecondHalf: 0,
+         totalVsTeamFirstQuarter: 0,
+         totalVsTeamSecondQuarter: 0,
+         totalVsTeamThirdQuarter: 0,
+         totalVsTeamFourthQuarter: 0,
+         totalHome: 0,
+         totalHomeFirstHalf: 0,
+         totalHomeSecondHalf: 0,
+         totalHomeFirstQuarter: 0,
+         totalHomeSecondQuarter: 0,
+         totalHomeThirdQuarter: 0,
+         totalHomeFourthQuarter: 0,
+         totalAway: 0,
+         totalAwayFirstHalf: 0,
+         totalAwaySecondHalf: 0,
+         totalAwayFirstQuarter: 0,
+         totalAwaySecondQuarter: 0,
+         totalAwayThirdQuarter: 0,
+         totalAwayFourthQuarter: 0,
+         pointsScoredOverallGame: 0,
+         pointsScoredOverallFirstHalf: 0,
+         pointsScoredOverallSecondHalf: 0,
+         pointsScoredOverallFirstQuarter: 0,
+         pointsScoredOverallSecondQuarter: 0,
+         pointsScoredOverallThirdQuarter: 0,
+         pointsScoredOverallFourthQuarter: 0,
+         pointsScoredVsTeamGame: 0,
+         pointsScoredVsTeamFirstHalf: 0,
+         pointsScoredVsTeamSecondHalf: 0,
+         pointsScoredVsTeamFirstQuarter: 0,
+         pointsScoredVsTeamSecondQuarter: 0,
+         pointsScoredVsTeamThirdQuarter: 0,
+         pointsScoredVsTeamFourthQuarter: 0,
+         pointsScoredHomeGame: 0,
+         pointsScoredHomeFirstHalf: 0,
+         pointsScoredHomeSecondHalf: 0,
+         pointsScoredHomeFirstQuarter: 0,
+         pointsScoredHomeSecondQuarter: 0,
+         pointsScoredHomeThirdQuarter: 0,
+         pointsScoredHomeFourthQuarter: 0,
+         pointsScoredAwayGame: 0,
+         pointsScoredAwayFirstHalf: 0,
+         pointsScoredAwaySecondHalf: 0,
+         pointsScoredAwayFirstQuarter: 0,
+         pointsScoredAwaySecondQuarter: 0,
+         pointsScoredAwayThirdQuarter: 0,
+         pointsScoredAwayFourthQuarter: 0,
+         pointsAllowedOverallGame: 0,
+         pointsAllowedOverallFirstHalf: 0,
+         pointsAllowedOverallSecondHalf: 0,
+         pointsAllowedOverallFirstQuarter: 0,
+         pointsAllowedOverallSecondQuarter: 0,
+         pointsAllowedOverallThirdQuarter: 0,
+         pointsAllowedOverallFourthQuarter: 0,
+         pointsAllowedVsTeamGame: 0,
+         pointsAllowedVsTeamFirstHalf: 0,
+         pointsAllowedVsTeamSecondHalf: 0,
+         pointsAllowedVsTeamFirstQuarter: 0,
+         pointsAllowedVsTeamSecondQuarter: 0,
+         pointsAllowedVsTeamThirdQuarter: 0,
+         pointsAllowedVsTeamFourthQuarter: 0,
+         pointsAllowedHomeGame: 0,
+         pointsAllowedHomeFirstHalf: 0,
+         pointsAllowedHomeSecondHalf: 0,
+         pointsAllowedHomeFirstQuarter: 0,
+         pointsAllowedHomeSecondQuarter: 0,
+         pointsAllowedHomeThirdQuarter: 0,
+         pointsAllowedHomeFourthQuarter: 0,
+         pointsAllowedAwayGame: 0,
+         pointsAllowedAwayFirstHalf: 0,
+         pointsAllowedAwaySecondHalf: 0,
+         pointsAllowedAwayFirstQuarter: 0,
+         pointsAllowedAwaySecondQuarter: 0,
+         pointsAllowedAwayThirdQuarter: 0,
+         pointsAllowedAwayFourthQuarter: 0,
+       }
+       var i
+       team1.forEach(e => {
+         e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWon += 1 : this.team1GameStatsDtoNBA.gamesLost += 1
+         e.teamAgainstId == team2[0].teamId ? (e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWonVsOpponent += 1 : this.team1GameStatsDtoNBA.gamesLostVsOpponent += 1) : i = 0;
+         e.homeOrAway == "Home" ? (e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWonHome += 1 : this.team1GameStatsDtoNBA.gamesLostHome += 1) : (e.result == "Win" ? this.team1GameStatsDtoNBA.gamesWonAway += 1 : this.team1GameStatsDtoNBA.gamesLostAway += 1);
+         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWon += 1 : this.team1GameStatsDtoNBA.quarterOneLost += 1;
+         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWon += 1 : this.team1GameStatsDtoNBA.quarterTwoLost += 1;
+         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWon += 1 : this.team1GameStatsDtoNBA.quarterThreeLost += 1;
+         e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWon += 1 : this.team1GameStatsDtoNBA.quarterFourLost += 1;
+         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWon += 1 : this.team1GameStatsDtoNBA.halfOneLost += 1;
+         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWon += 1 : this.team1GameStatsDtoNBA.halfTwoLost += 1;
+         this.team1GameStatsDtoNBA.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall);
+         this.team1GameStatsDtoNBA.spreadFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+         this.team1GameStatsDtoNBA.spreadSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+         this.team1GameStatsDtoNBA.spreadFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+         this.team1GameStatsDtoNBA.spreadSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+         this.team1GameStatsDtoNBA.spreadThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+         this.team1GameStatsDtoNBA.spreadFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+         this.team1GameStatsDtoNBA.totalOverall += e.pointsScoredOverall + e.pointsAllowedOverall;
+         this.team1GameStatsDtoNBA.totalOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+         this.team1GameStatsDtoNBA.totalOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+         this.team1GameStatsDtoNBA.totalOverallFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+         this.team1GameStatsDtoNBA.totalOverallSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+         this.team1GameStatsDtoNBA.totalOverallThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+         this.team1GameStatsDtoNBA.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+         this.team1GameStatsDtoNBA.pointsScoredOverallGame += e.pointsScoredOverall
+         this.team1GameStatsDtoNBA.pointsScoredOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+         this.team1GameStatsDtoNBA.pointsScoredOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+         this.team1GameStatsDtoNBA.pointsScoredOverallFirstQuarter += e.pointsScoredFirstQuarter
+         this.team1GameStatsDtoNBA.pointsScoredOverallSecondQuarter += e.pointsScoredSecondQuarter
+         this.team1GameStatsDtoNBA.pointsScoredOverallThirdQuarter += e.pointsScoredThirdQuarter
+         this.team1GameStatsDtoNBA.pointsScoredOverallFourthQuarter += e.pointsScoredFourthQuarter
+         this.team1GameStatsDtoNBA.pointsAllowedOverallGame += e.pointsAllowedOverall
+         this.team1GameStatsDtoNBA.pointsAllowedOverallFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+         this.team1GameStatsDtoNBA.pointsAllowedOverallSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+         this.team1GameStatsDtoNBA.pointsAllowedOverallFirstQuarter += e.pointsAllowedFirstQuarter
+         this.team1GameStatsDtoNBA.pointsAllowedOverallSecondQuarter += e.pointsAllowedSecondQuarter
+         this.team1GameStatsDtoNBA.pointsAllowedOverallThirdQuarter += e.pointsAllowedThirdQuarter
+         this.team1GameStatsDtoNBA.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
+ 
+         if (e.teamAgainstId == team2[0].teamId) {
+           if (e.homeOrAway == "Home") {
+             this.team1GameVsOpponentData.push({ data: e, homeOrAway: "home" })
+           }
+           else {
+             this.team1GameVsOpponentData.push({ data: e, homeOrAway: "away" })
+           }
+ 
+           e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterOneLostVsOpponent += 1;
+           e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterTwoLostVsOpponent += 1;
+           e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterThreeLostVsOpponent += 1;
+           e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWonVsOpponent += 1 : this.team1GameStatsDtoNBA.quarterFourLostVsOpponent += 1;
+           (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWonVsOpponent += 1 : this.team1GameStatsDtoNBA.halfOneLostVsOpponent += 1;
+           (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWonVsOpponent += 1 : this.team1GameStatsDtoNBA.halfTwoLostVsOpponent += 1;
+           this.team1GameStatsDtoNBA.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall);
+           this.team1GameStatsDtoNBA.spreadFirstHalfVsOpponent += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+           this.team1GameStatsDtoNBA.spreadSecondHalfVsOpponent += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+           this.team1GameStatsDtoNBA.spreadFirstQuarterVsOpponent += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+           this.team1GameStatsDtoNBA.spreadSecondQuarterVsOpponet += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+           this.team1GameStatsDtoNBA.spreadThirdQuarterVsOpponent += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+           this.team1GameStatsDtoNBA.spreadFourthQuarterVsOpponent += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+           this.team1GameStatsDtoNBA.totalVsTeam += e.pointsScoredOverall + e.pointsAllowedOverall;
+           this.team1GameStatsDtoNBA.totalVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+           this.team1GameStatsDtoNBA.totalVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+           this.team1GameStatsDtoNBA.totalVsTeamFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+           this.team1GameStatsDtoNBA.totalVsTeamSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+           this.team1GameStatsDtoNBA.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+           this.team1GameStatsDtoNBA.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+           this.team1GameStatsDtoNBA.pointsScoredVsTeamGame += e.pointsScoredOverall
+           this.team1GameStatsDtoNBA.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+           this.team1GameStatsDtoNBA.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+           this.team1GameStatsDtoNBA.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
+           this.team1GameStatsDtoNBA.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
+           this.team1GameStatsDtoNBA.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
+           this.team1GameStatsDtoNBA.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedVsTeamGame += e.pointsAllowedOverall
+           this.team1GameStatsDtoNBA.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
+         }
+         if (e.homeOrAway == "Home") {
+           e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWonHome += 1 : this.team1GameStatsDtoNBA.quarterOneLostHome += 1;
+           e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWonHome += 1 : this.team1GameStatsDtoNBA.quarterTwoLostHome += 1;
+           e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWonHome += 1 : this.team1GameStatsDtoNBA.quarterThreeLostHome += 1;
+           e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWonHome += 1 : this.team1GameStatsDtoNBA.quarterFourLostHome += 1;
+           (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWonHome += 1 : this.team1GameStatsDtoNBA.halfOneLostHome += 1;
+           (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWonHome += 1 : this.team1GameStatsDtoNBA.halfTwoLostHome += 1;
+           this.team1GameStatsDtoNBA.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall);
+           this.team1GameStatsDtoNBA.spreadHomeFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+           this.team1GameStatsDtoNBA.spreadHomeSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+           this.team1GameStatsDtoNBA.spreadHomeFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+           this.team1GameStatsDtoNBA.spreadHomeSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+           this.team1GameStatsDtoNBA.spreadHomeThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+           this.team1GameStatsDtoNBA.spreadHomeFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+           this.team1GameStatsDtoNBA.totalHome += e.pointsScoredOverall + e.pointsAllowedOverall;
+           this.team1GameStatsDtoNBA.totalHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+           this.team1GameStatsDtoNBA.totalHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+           this.team1GameStatsDtoNBA.totalHomeFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+           this.team1GameStatsDtoNBA.totalHomeSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+           this.team1GameStatsDtoNBA.totalHomeThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+           this.team1GameStatsDtoNBA.totalHomeFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+           this.team1GameStatsDtoNBA.pointsScoredHomeGame += e.pointsScoredOverall
+           this.team1GameStatsDtoNBA.pointsScoredHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+           this.team1GameStatsDtoNBA.pointsScoredHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+           this.team1GameStatsDtoNBA.pointsScoredHomeFirstQuarter += e.pointsScoredFirstQuarter
+           this.team1GameStatsDtoNBA.pointsScoredHomeSecondQuarter += e.pointsScoredSecondQuarter
+           this.team1GameStatsDtoNBA.pointsScoredHomeThirdQuarter += e.pointsScoredThirdQuarter
+           this.team1GameStatsDtoNBA.pointsScoredHomeFourthQuarter += e.pointsScoredFourthQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedHomeGame += e.pointsAllowedOverall
+           this.team1GameStatsDtoNBA.pointsAllowedHomeFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedHomeSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedHomeFirstQuarter += e.pointsAllowedFirstQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
+ 
+         }
+         else if (e.homeOrAway == "Away") {
+           e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team1GameStatsDtoNBA.quarterOneWonAway += 1 : this.team1GameStatsDtoNBA.quarterOneLostAway += 1;
+           e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team1GameStatsDtoNBA.quarterTwoWonAway += 1 : this.team1GameStatsDtoNBA.quarterTwoLostAway += 1;
+           e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team1GameStatsDtoNBA.quarterThreeWonAway += 1 : this.team1GameStatsDtoNBA.quarterThreeLostAway += 1;
+           e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team1GameStatsDtoNBA.quarterFourWonAway += 1 : this.team1GameStatsDtoNBA.quarterFourLostAway += 1;
+           (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team1GameStatsDtoNBA.halfOneWonAway += 1 : this.team1GameStatsDtoNBA.halfOneLostAway += 1;
+           (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team1GameStatsDtoNBA.halfTwoWonAway += 1 : this.team1GameStatsDtoNBA.halfTwoLostAway += 1;
+           this.team1GameStatsDtoNBA.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall);
+           this.team1GameStatsDtoNBA.spreadAwayFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+           this.team1GameStatsDtoNBA.spreadAwaySecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+           this.team1GameStatsDtoNBA.spreadAwayFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+           this.team1GameStatsDtoNBA.spreadAwaySecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+           this.team1GameStatsDtoNBA.spreadAwayThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+           this.team1GameStatsDtoNBA.spreadAwayFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+           this.team1GameStatsDtoNBA.totalAway += e.pointsScoredOverall + e.pointsAllowedOverall;
+           this.team1GameStatsDtoNBA.totalAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+           this.team1GameStatsDtoNBA.totalAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+           this.team1GameStatsDtoNBA.totalAwayFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+           this.team1GameStatsDtoNBA.totalAwaySecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+           this.team1GameStatsDtoNBA.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+           this.team1GameStatsDtoNBA.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+           this.team1GameStatsDtoNBA.pointsScoredAwayGame += e.pointsScoredOverall
+           this.team1GameStatsDtoNBA.pointsScoredAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+           this.team1GameStatsDtoNBA.pointsScoredAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+           this.team1GameStatsDtoNBA.pointsScoredAwayFirstQuarter += e.pointsScoredFirstQuarter
+           this.team1GameStatsDtoNBA.pointsScoredAwaySecondQuarter += e.pointsScoredSecondQuarter
+           this.team1GameStatsDtoNBA.pointsScoredAwayThirdQuarter += e.pointsScoredThirdQuarter
+           this.team1GameStatsDtoNBA.pointsScoredAwayFourthQuarter += e.pointsScoredFourthQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedAwayGame += e.pointsAllowedOverall
+           this.team1GameStatsDtoNBA.pointsAllowedAwayFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedAwaySecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedAwayFirstQuarter += e.pointsAllowedFirstQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedAwaySecondQuarter += e.pointsAllowedSecondQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedAwayThirdQuarter += e.pointsAllowedThirdQuarter
+           this.team1GameStatsDtoNBA.pointsAllowedAwayFourthQuarter += e.pointsAllowedFourthQuarter
+         }
+ 
+ 
+       })
+ 
+       team2.forEach(e => {
+         e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWon += 1 : this.team2GameStatsDtoNBA.gamesLost += 1
+         e.teamAgainstId == team1[0].teamId ? (e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWonVsOpponent += 1 : this.team2GameStatsDtoNBA.gamesLostVsOpponent += 1) : i = 0;
+         e.homeOrAway == "Home" ? (e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWonHome += 1 : this.team2GameStatsDtoNBA.gamesLostHome += 1) : (e.result == "Win" ? this.team2GameStatsDtoNBA.gamesWonAway += 1 : this.team2GameStatsDtoNBA.gamesLostAway += 1);
+         e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWon += 1 : this.team2GameStatsDtoNBA.quarterOneLost += 1;
+         e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWon += 1 : this.team2GameStatsDtoNBA.quarterTwoLost += 1;
+         e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWon += 1 : this.team2GameStatsDtoNBA.quarterThreeLost += 1;
+         e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWon += 1 : this.team2GameStatsDtoNBA.quarterFourLost += 1;
+         (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWon += 1 : this.team2GameStatsDtoNBA.halfOneLost += 1;
+         (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWon += 1 : this.team2GameStatsDtoNBA.halfTwoLost += 1;
+         this.team2GameStatsDtoNBA.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall);
+         this.team2GameStatsDtoNBA.spreadFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+         this.team2GameStatsDtoNBA.spreadSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+         this.team2GameStatsDtoNBA.spreadFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+         this.team2GameStatsDtoNBA.spreadSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+         this.team2GameStatsDtoNBA.spreadThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+         this.team2GameStatsDtoNBA.spreadFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+         this.team2GameStatsDtoNBA.totalOverall += e.pointsScoredOverall + e.pointsAllowedOverall;
+         this.team2GameStatsDtoNBA.totalOverallFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+         this.team2GameStatsDtoNBA.totalOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+         this.team2GameStatsDtoNBA.totalOverallFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+         this.team2GameStatsDtoNBA.totalOverallSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+         this.team2GameStatsDtoNBA.totalOverallThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+         this.team2GameStatsDtoNBA.totalOverallFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+         this.team2GameStatsDtoNBA.pointsScoredOverallGame += e.pointsScoredOverall
+         this.team2GameStatsDtoNBA.pointsScoredOverallSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+         this.team2GameStatsDtoNBA.pointsScoredOverallFirstQuarter += e.pointsScoredFirstQuarter
+         this.team2GameStatsDtoNBA.pointsScoredOverallSecondQuarter += e.pointsScoredSecondQuarter
+         this.team2GameStatsDtoNBA.pointsScoredOverallThirdQuarter += e.pointsScoredThirdQuarter
+         this.team2GameStatsDtoNBA.pointsScoredOverallFourthQuarter += e.pointsScoredFourthQuarter
+         this.team2GameStatsDtoNBA.pointsAllowedOverallGame += e.pointsAllowedOverall
+         this.team2GameStatsDtoNBA.pointsAllowedOverallFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+         this.team2GameStatsDtoNBA.pointsAllowedOverallSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+         this.team2GameStatsDtoNBA.pointsAllowedOverallFirstQuarter += e.pointsAllowedFirstQuarter
+         this.team2GameStatsDtoNBA.pointsAllowedOverallSecondQuarter += e.pointsAllowedSecondQuarter
+         this.team2GameStatsDtoNBA.pointsAllowedOverallThirdQuarter += e.pointsAllowedThirdQuarter
+         this.team2GameStatsDtoNBA.pointsAllowedOverallFourthQuarter += e.pointsAllowedFourthQuarter
+         if (e.teamAgainstId == team1[0].teamId) {
+           e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterOneLostVsOpponent += 1;
+           e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterTwoLostVsOpponent += 1;
+           e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterThreeLostVsOpponent += 1;
+           e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWonVsOpponent += 1 : this.team2GameStatsDtoNBA.quarterFourLostVsOpponent += 1;
+           (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWonVsOpponent += 1 : this.team2GameStatsDtoNBA.halfOneLostVsOpponent += 1;
+           (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWonVsOpponent += 1 : this.team2GameStatsDtoNBA.halfTwoLostVsOpponent += 1;
+           this.team2GameStatsDtoNBA.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall);
+           this.team2GameStatsDtoNBA.spreadFirstHalfVsOpponent += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+           this.team2GameStatsDtoNBA.spreadSecondHalfVsOpponent += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+           this.team2GameStatsDtoNBA.spreadFirstQuarterVsOpponent += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+           this.team2GameStatsDtoNBA.spreadSecondQuarterVsOpponet += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+           this.team2GameStatsDtoNBA.spreadThirdQuarterVsOpponent += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+           this.team2GameStatsDtoNBA.spreadFourthQuarterVsOpponent += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+           this.team2GameStatsDtoNBA.totalVsTeam += e.pointsScoredOverall + e.pointsAllowedOverall;
+           this.team2GameStatsDtoNBA.totalVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+           this.team2GameStatsDtoNBA.totalVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+           this.team2GameStatsDtoNBA.totalVsTeamFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+           this.team2GameStatsDtoNBA.totalVsTeamSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+           this.team2GameStatsDtoNBA.totalVsTeamThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+           this.team2GameStatsDtoNBA.totalVsTeamFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+           this.team2GameStatsDtoNBA.pointsScoredVsTeamGame += e.pointsScoredOverall
+           this.team2GameStatsDtoNBA.pointsScoredVsTeamFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+           this.team2GameStatsDtoNBA.pointsScoredVsTeamSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+           this.team2GameStatsDtoNBA.pointsScoredVsTeamFirstQuarter += e.pointsScoredFirstQuarter
+           this.team2GameStatsDtoNBA.pointsScoredVsTeamSecondQuarter += e.pointsScoredSecondQuarter
+           this.team2GameStatsDtoNBA.pointsScoredVsTeamThirdQuarter += e.pointsScoredThirdQuarter
+           this.team2GameStatsDtoNBA.pointsScoredVsTeamFourthQuarter += e.pointsScoredFourthQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedVsTeamGame += e.pointsAllowedOverall
+           this.team2GameStatsDtoNBA.pointsAllowedVsTeamFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedVsTeamSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedVsTeamFirstQuarter += e.pointsAllowedFirstQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedVsTeamSecondQuarter += e.pointsAllowedSecondQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedVsTeamThirdQuarter += e.pointsAllowedThirdQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedVsTeamFourthQuarter += e.pointsAllowedFourthQuarter
+         }
+         if (e.homeOrAway == "Home") {
+           e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWonHome += 1 : this.team2GameStatsDtoNBA.quarterOneLostHome += 1;
+           e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWonHome += 1 : this.team2GameStatsDtoNBA.quarterTwoLostHome += 1;
+           e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWonHome += 1 : this.team2GameStatsDtoNBA.quarterThreeLostHome += 1;
+           e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWonHome += 1 : this.team2GameStatsDtoNBA.quarterFourLostHome += 1;
+           (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWonHome += 1 : this.team2GameStatsDtoNBA.halfOneLostHome += 1;
+           (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWonHome += 1 : this.team2GameStatsDtoNBA.halfTwoLostHome += 1;
+           this.team2GameStatsDtoNBA.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall);
+           this.team2GameStatsDtoNBA.spreadHomeFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+           this.team2GameStatsDtoNBA.spreadHomeSecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+           this.team2GameStatsDtoNBA.spreadHomeFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+           this.team2GameStatsDtoNBA.spreadHomeSecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+           this.team2GameStatsDtoNBA.spreadHomeThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+           this.team2GameStatsDtoNBA.spreadHomeFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+           this.team2GameStatsDtoNBA.totalHome += e.pointsScoredOverall + e.pointsAllowedOverall;
+           this.team2GameStatsDtoNBA.totalHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+           this.team2GameStatsDtoNBA.totalHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+           this.team2GameStatsDtoNBA.totalHomeFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+           this.team2GameStatsDtoNBA.totalHomeSecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+           this.team2GameStatsDtoNBA.totalHomeThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+           this.team2GameStatsDtoNBA.totalHomeFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+           this.team2GameStatsDtoNBA.pointsScoredHomeGame += e.pointsScoredOverall
+           this.team2GameStatsDtoNBA.pointsScoredHomeFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+           this.team2GameStatsDtoNBA.pointsScoredHomeSecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+           this.team2GameStatsDtoNBA.pointsScoredHomeFirstQuarter += e.pointsScoredFirstQuarter
+           this.team2GameStatsDtoNBA.pointsScoredHomeSecondQuarter += e.pointsScoredSecondQuarter
+           this.team2GameStatsDtoNBA.pointsScoredHomeThirdQuarter += e.pointsScoredThirdQuarter
+           this.team2GameStatsDtoNBA.pointsScoredHomeFourthQuarter += e.pointsScoredFourthQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedHomeGame += e.pointsAllowedOverall
+           this.team2GameStatsDtoNBA.pointsAllowedHomeFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedHomeSecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedHomeFirstQuarter += e.pointsAllowedFirstQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedHomeSecondQuarter += e.pointsAllowedSecondQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedHomeThirdQuarter += e.pointsAllowedThirdQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedHomeFourthQuarter += e.pointsAllowedFourthQuarter
+ 
+         }
+         else if (e.homeOrAway == "Away") {
+           e.pointsScoredFirstQuarter > e.pointsAllowedFirstQuarter ? this.team2GameStatsDtoNBA.quarterOneWonAway += 1 : this.team2GameStatsDtoNBA.quarterOneLostAway += 1;
+           e.pointsScoredSecondQuarter > e.pointsAllowedSecondQuarter ? this.team2GameStatsDtoNBA.quarterTwoWonAway += 1 : this.team2GameStatsDtoNBA.quarterTwoLostAway += 1;
+           e.pointsScoredThirdQuarter > e.pointsAllowedThirdQuarter ? this.team2GameStatsDtoNBA.quarterThreeWonAway += 1 : this.team2GameStatsDtoNBA.quarterThreeLostAway += 1;
+           e.pointsScoredFourthQuarter > e.pointsAllowedFourthQuarter ? this.team2GameStatsDtoNBA.quarterFourWonAway += 1 : this.team2GameStatsDtoNBA.quarterFourLostAway += 1;
+           (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) > (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) ? this.team2GameStatsDtoNBA.halfOneWonAway += 1 : this.team2GameStatsDtoNBA.halfOneLostAway += 1;
+           (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) > (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) ? this.team2GameStatsDtoNBA.halfTwoWonAway += 1 : this.team2GameStatsDtoNBA.halfTwoLostAway += 1;
+           this.team2GameStatsDtoNBA.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall);
+           this.team2GameStatsDtoNBA.spreadAwayFirstHalf += (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter);
+           this.team2GameStatsDtoNBA.spreadAwaySecondHalf += (e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter) - (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter);
+           this.team2GameStatsDtoNBA.spreadAwayFirstQuarter += e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter;
+           this.team2GameStatsDtoNBA.spreadAwaySecondQuarter += e.pointsAllowedSecondQuarter - e.pointsScoredSecondQuarter;
+           this.team2GameStatsDtoNBA.spreadAwayThirdQuarter += e.pointsAllowedThirdQuarter - e.pointsScoredThirdQuarter;
+           this.team2GameStatsDtoNBA.spreadAwayFourthQuarter += e.pointsAllowedFourthQuarter - e.pointsScoredFourthQuarter;
+           this.team2GameStatsDtoNBA.totalAway += e.pointsScoredOverall + e.pointsAllowedOverall;
+           this.team2GameStatsDtoNBA.totalAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter + e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter;
+           this.team2GameStatsDtoNBA.totalAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter + e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter;
+           this.team2GameStatsDtoNBA.totalAwayFirstQuarter += e.pointsScoredFirstQuarter + e.pointsAllowedFirstQuarter;
+           this.team2GameStatsDtoNBA.totalAwaySecondQuarter += e.pointsScoredSecondQuarter + e.pointsAllowedSecondQuarter;
+           this.team2GameStatsDtoNBA.totalAwayThirdQuarter += e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter;
+           this.team2GameStatsDtoNBA.totalAwayFourthQuarter += e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter;
+           this.team2GameStatsDtoNBA.pointsScoredAwayGame += e.pointsScoredOverall
+           this.team2GameStatsDtoNBA.pointsScoredAwayFirstHalf += e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter
+           this.team2GameStatsDtoNBA.pointsScoredAwaySecondHalf += e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter
+           this.team2GameStatsDtoNBA.pointsScoredAwayFirstQuarter += e.pointsScoredFirstQuarter
+           this.team2GameStatsDtoNBA.pointsScoredAwaySecondQuarter += e.pointsScoredSecondQuarter
+           this.team2GameStatsDtoNBA.pointsScoredAwayThirdQuarter += e.pointsScoredThirdQuarter
+           this.team2GameStatsDtoNBA.pointsScoredAwayFourthQuarter += e.pointsScoredFourthQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedAwayGame += e.pointsAllowedOverall
+           this.team2GameStatsDtoNBA.pointsAllowedAwayFirstHalf += e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedAwaySecondHalf += e.pointsAllowedThirdQuarter + e.pointsAllowedFourthQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedAwayFirstQuarter += e.pointsAllowedFirstQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedAwaySecondQuarter += e.pointsAllowedSecondQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedAwayThirdQuarter += e.pointsAllowedThirdQuarter
+           this.team2GameStatsDtoNBA.pointsAllowedAwayFourthQuarter += e.pointsAllowedFourthQuarter
+         }
+       })
+ 
+     }
+ 
+     else if (this.selectedSport == "MLB") {
+       var team1New: DbMlbTeamGameStats[] = team1
+       var team2New: DbMlbTeamGameStats[] = team2
+       this.team1GameStatsDtoMLB = {
+         gamesWon: 0,
+         gamesLost: 0,
+         gamesWonVsOpponent: 0,
+         gamesLostVsOpponent: 0,
+         gamesWonHome: 0,
+         gamesLostHome: 0,
+         gamesWonAway: 0,
+         gamesLostAway: 0,
+         inningOneWon: 0,
+         inningOneLost: 0,
+         inningTwoWon: 0,
+         inningTwoLost: 0,
+         inningThreeWon: 0,
+         inningThreeLost: 0,
+         inningFourWon: 0,
+         inningFourLost: 0,
+         inningFiveWon: 0,
+         inningFiveLost: 0,
+         inningSixWon: 0,
+         inningSixLost: 0,
+         inningSevenWon: 0,
+         inningSevenLost: 0,
+         inningEightWon: 0,
+         inningEightLost: 0,
+         inningNineWon: 0,
+         inningNineLost: 0,
+         inningOneWonVsOpponent: 0,
+         inningOneLostVsOpponent: 0,
+         inningTwoWonVsOpponent: 0,
+         inningTwoLostVsOpponent: 0,
+         inningThreeWonVsOpponent: 0,
+         inningThreeLostVsOpponent: 0,
+         inningFourWonVsOpponent: 0,
+         inningFourLostVsOpponent: 0,
+         inningFiveWonVsOpponent: 0,
+         inningFiveLostVsOpponent: 0,
+         inningSixWonVsOpponent: 0,
+         inningSixLostVsOpponent: 0,
+         inningSevenWonVsOpponent: 0,
+         inningSevenLostVsOpponent: 0,
+         inningEightWonVsOpponent: 0,
+         inningEightLostVsOpponent: 0,
+         inningNineWonVsOpponent: 0,
+         inningNineLostVsOpponent: 0,
+         inningOneWonHome: 0,
+         inningOneLostHome: 0,
+         inningTwoWonHome: 0,
+         inningTwoLostHome: 0,
+         inningThreeWonHome: 0,
+         inningThreeLostHome: 0,
+         inningFourWonHome: 0,
+         inningFourLostHome: 0,
+         inningFiveWonHome: 0,
+         inningFiveLostHome: 0,
+         inningSixWonHome: 0,
+         inningSixLostHome: 0,
+         inningSevenWonHome: 0,
+         inningSevenLostHome: 0,
+         inningEightWonHome: 0,
+         inningEightLostHome: 0,
+         inningNineWonHome: 0,
+         inningNineLostHome: 0,
+         inningOneWonAway: 0,
+         inningOneLostAway: 0,
+         inningTwoWonAway: 0,
+         inningTwoLostAway: 0,
+         inningThreeWonAway: 0,
+         inningThreeLostAway: 0,
+         inningFourWonAway: 0,
+         inningFourLostAway: 0,
+         inningFiveWonAway: 0,
+         inningFiveLostAway: 0,
+         inningSixWonAway: 0,
+         inningSixLostAway: 0,
+         inningSevenWonAway: 0,
+         inningSevenLostAway: 0,
+         inningEightWonAway: 0,
+         inningEightLostAway: 0,
+         inningNineWonAway: 0,
+         inningNineLostAway: 0,
+         spreadGame: 0,
+         spreadFirstInning: 0,
+         spreadSecondInning: 0,
+         spreadThirdInning: 0,
+         spreadFourthInning: 0,
+         spreadFifthInning: 0,
+         spreadSixthInning: 0,
+         spreadSeventhInning: 0,
+         spreadEighthInning: 0,
+         spreadNinthInning: 0,
+         spreadVsOpponent: 0,
+         spreadFirstInningVsOpponent: 0,
+         spreadSecondInningVsOpponent: 0,
+         spreadThirdInningVsOpponent: 0,
+         spreadFourthInningVsOpponent: 0,
+         spreadFifthInningVsOpponent: 0,
+         spreadSixthInningVsOpponent: 0,
+         spreadSeventhInningVsOpponent: 0,
+         spreadEighthInningVsOpponent: 0,
+         spreadNinthInningVsOpponent: 0,
+         spreadHome: 0,
+         spreadFirstInningHome: 0,
+         spreadSecondInningHome: 0,
+         spreadThirdInningHome: 0,
+         spreadFourthInningHome: 0,
+         spreadFifthInningHome: 0,
+         spreadSixthInningHome: 0,
+         spreadSeventhInningHome: 0,
+         spreadEighthInningHome: 0,
+         spreadNinthInningHome: 0,
+         spreadAway: 0,
+         spreadFirstInningAway: 0,
+         spreadSecondInningAway: 0,
+         spreadThirdInningAway: 0,
+         spreadFourthInningAway: 0,
+         spreadFifthInningAway: 0,
+         spreadSixthInningAway: 0,
+         spreadSeventhInningAway: 0,
+         spreadEighthInningAway: 0,
+         spreadNinthInningAway: 0,
+         totalOverall: 0,
+         totalFirstInning: 0,
+         totalSecondInning: 0,
+         totalThirdInning: 0,
+         totalFourthInning: 0,
+         totalFifthInning: 0,
+         totalSixthInning: 0,
+         totalSeventhInning: 0,
+         totalEighthInning: 0,
+         totalNinthInning: 0,
+         totalVsTeam: 0,
+         totalFirstInningVsOpponent: 0,
+         totalSecondInningVsOpponent: 0,
+         totalThirdInningVsOpponent: 0,
+         totalFourthInningVsOpponent: 0,
+         totalFifthInningVsOpponent: 0,
+         totalSixthInningVsOpponent: 0,
+         totalSeventhInningVsOpponent: 0,
+         totalEighthInningVsOpponent: 0,
+         totalNinthInningVsOpponent: 0,
+         totalHome: 0,
+         totalFirstInningHome: 0,
+         totalSecondInningHome: 0,
+         totalThirdInningHome: 0,
+         totalFourthInningHome: 0,
+         totalFifthInningHome: 0,
+         totalSixthInningHome: 0,
+         totalSeventhInningHome: 0,
+         totalEighthInningHome: 0,
+         totalNinthInningHome: 0,
+         totalAway: 0,
+         totalFirstInningAway: 0,
+         totalSecondInningAway: 0,
+         totalThirdInningAway: 0,
+         totalFourthInningAway: 0,
+         totalFifthInningAway: 0,
+         totalSixthInningAway: 0,
+         totalSeventhInningAway: 0,
+         totalEighthInningAway: 0,
+         totalNinthInningAway: 0,
+         pointsScoredOverallGame: 0,
+         pointsScoredOverallFirstInning: 0,
+         pointsScoredOverallSecondInning: 0,
+         pointsScoredOverallThirdInning: 0,
+         pointsScoredOverallFourthInning: 0,
+         pointsScoredOverallFifthInning: 0,
+         pointsScoredOverallSixthInning: 0,
+         pointsScoredOverallSeventhInning: 0,
+         pointsScoredOverallEighthInning: 0,
+         pointsScoredOverallNinthInning: 0,
+         pointsScoredVsTeamGame: 0,
+         pointsScoredFirstInningVsOpponent: 0,
+         pointsScoredSecondInningVsOpponent: 0,
+         pointsScoredThirdInningVsOpponent: 0,
+         pointsScoredFourthInningVsOpponent: 0,
+         pointsScoredFifthInningVsOpponent: 0,
+         pointsScoredSixthInningVsOpponent: 0,
+         pointsScoredSeventhInningVsOpponent: 0,
+         pointsScoredEighthInningVsOpponent: 0,
+         pointsScoredNinthInningVsOpponent: 0,
+         pointsScoredHomeGame: 0,
+         pointsScoredFirstInningHome: 0,
+         pointsScoredSecondInningHome: 0,
+         pointsScoredThirdInningHome: 0,
+         pointsScoredFourthInningHome: 0,
+         pointsScoredFifthInningHome: 0,
+         pointsScoredSixthInningHome: 0,
+         pointsScoredSeventhInningHome: 0,
+         pointsScoredEighthInningHome: 0,
+         pointsScoredNinthInningHome: 0,
+         pointsScoredAwayGame: 0,
+         pointsScoredFirstInningAway: 0,
+         pointsScoredSecondInningAway: 0,
+         pointsScoredThirdInningAway: 0,
+         pointsScoredFourthInningAway: 0,
+         pointsScoredFifthInningAway: 0,
+         pointsScoredSixthInningAway: 0,
+         pointsScoredSeventhInningAway: 0,
+         pointsScoredEighthInningAway: 0,
+         pointsScoredNinthInningAway: 0,
+         pointsAllowedOverallGame: 0,
+         pointsAllowedOverallFirstInning: 0,
+         pointsAllowedOverallSecondInning: 0,
+         pointsAllowedOverallThirdInning: 0,
+         pointsAllowedOverallFourthInning: 0,
+         pointsAllowedOverallFifthInning: 0,
+         pointsAllowedOverallSixthInning: 0,
+         pointsAllowedOverallSeventhInning: 0,
+         pointsAllowedOverallEighthInning: 0,
+         pointsAllowedOverallNinthInning: 0,
+         pointsAllowedVsTeamGame: 0,
+         pointsAllowedFirstInningVsOpponent: 0,
+         pointsAllowedSecondInningVsOpponent: 0,
+         pointsAllowedThirdInningVsOpponent: 0,
+         pointsAllowedFourthInningVsOpponent: 0,
+         pointsAllowedFifthInningVsOpponent: 0,
+         pointsAllowedSixthInningVsOpponent: 0,
+         pointsAllowedSeventhInningVsOpponent: 0,
+         pointsAllowedEighthInningVsOpponent: 0,
+         pointsAllowedNinthInningVsOpponent: 0,
+         pointsAllowedHomeGame: 0,
+         pointsAllowedFirstInningHome: 0,
+         pointsAllowedSecondInningHome: 0,
+         pointsAllowedThirdInningHome: 0,
+         pointsAllowedFourthInningHome: 0,
+         pointsAllowedFifthInningHome: 0,
+         pointsAllowedSixthInningHome: 0,
+         pointsAllowedSeventhInningHome: 0,
+         pointsAllowedEighthInningHome: 0,
+         pointsAllowedNinthInningHome: 0,
+         pointsAllowedAwayGame: 0,
+         pointsAllowedFirstInningAway: 0,
+         pointsAllowedSecondInningAway: 0,
+         pointsAllowedThirdInningAway: 0,
+         pointsAllowedFourthInningAway: 0,
+         pointsAllowedFifthInningAway: 0,
+         pointsAllowedSixthInningAway: 0,
+         pointsAllowedSeventhInningAway: 0,
+         pointsAllowedEighthInningAway: 0,
+         pointsAllowedNinthInningAway: 0
+       }
+ 
+       this.team2GameStatsDtoMLB = {
+         gamesWon: 0,
+         gamesLost: 0,
+         gamesWonVsOpponent: 0,
+         gamesLostVsOpponent: 0,
+         gamesWonHome: 0,
+         gamesLostHome: 0,
+         gamesWonAway: 0,
+         gamesLostAway: 0,
+         inningOneWon: 0,
+         inningOneLost: 0,
+         inningTwoWon: 0,
+         inningTwoLost: 0,
+         inningThreeWon: 0,
+         inningThreeLost: 0,
+         inningFourWon: 0,
+         inningFourLost: 0,
+         inningFiveWon: 0,
+         inningFiveLost: 0,
+         inningSixWon: 0,
+         inningSixLost: 0,
+         inningSevenWon: 0,
+         inningSevenLost: 0,
+         inningEightWon: 0,
+         inningEightLost: 0,
+         inningNineWon: 0,
+         inningNineLost: 0,
+         inningOneWonVsOpponent: 0,
+         inningOneLostVsOpponent: 0,
+         inningTwoWonVsOpponent: 0,
+         inningTwoLostVsOpponent: 0,
+         inningThreeWonVsOpponent: 0,
+         inningThreeLostVsOpponent: 0,
+         inningFourWonVsOpponent: 0,
+         inningFourLostVsOpponent: 0,
+         inningFiveWonVsOpponent: 0,
+         inningFiveLostVsOpponent: 0,
+         inningSixWonVsOpponent: 0,
+         inningSixLostVsOpponent: 0,
+         inningSevenWonVsOpponent: 0,
+         inningSevenLostVsOpponent: 0,
+         inningEightWonVsOpponent: 0,
+         inningEightLostVsOpponent: 0,
+         inningNineWonVsOpponent: 0,
+         inningNineLostVsOpponent: 0,
+         inningOneWonHome: 0,
+         inningOneLostHome: 0,
+         inningTwoWonHome: 0,
+         inningTwoLostHome: 0,
+         inningThreeWonHome: 0,
+         inningThreeLostHome: 0,
+         inningFourWonHome: 0,
+         inningFourLostHome: 0,
+         inningFiveWonHome: 0,
+         inningFiveLostHome: 0,
+         inningSixWonHome: 0,
+         inningSixLostHome: 0,
+         inningSevenWonHome: 0,
+         inningSevenLostHome: 0,
+         inningEightWonHome: 0,
+         inningEightLostHome: 0,
+         inningNineWonHome: 0,
+         inningNineLostHome: 0,
+         inningOneWonAway: 0,
+         inningOneLostAway: 0,
+         inningTwoWonAway: 0,
+         inningTwoLostAway: 0,
+         inningThreeWonAway: 0,
+         inningThreeLostAway: 0,
+         inningFourWonAway: 0,
+         inningFourLostAway: 0,
+         inningFiveWonAway: 0,
+         inningFiveLostAway: 0,
+         inningSixWonAway: 0,
+         inningSixLostAway: 0,
+         inningSevenWonAway: 0,
+         inningSevenLostAway: 0,
+         inningEightWonAway: 0,
+         inningEightLostAway: 0,
+         inningNineWonAway: 0,
+         inningNineLostAway: 0,
+         spreadGame: 0,
+         spreadFirstInning: 0,
+         spreadSecondInning: 0,
+         spreadThirdInning: 0,
+         spreadFourthInning: 0,
+         spreadFifthInning: 0,
+         spreadSixthInning: 0,
+         spreadSeventhInning: 0,
+         spreadEighthInning: 0,
+         spreadNinthInning: 0,
+         spreadVsOpponent: 0,
+         spreadFirstInningVsOpponent: 0,
+         spreadSecondInningVsOpponent: 0,
+         spreadThirdInningVsOpponent: 0,
+         spreadFourthInningVsOpponent: 0,
+         spreadFifthInningVsOpponent: 0,
+         spreadSixthInningVsOpponent: 0,
+         spreadSeventhInningVsOpponent: 0,
+         spreadEighthInningVsOpponent: 0,
+         spreadNinthInningVsOpponent: 0,
+         spreadHome: 0,
+         spreadFirstInningHome: 0,
+         spreadSecondInningHome: 0,
+         spreadThirdInningHome: 0,
+         spreadFourthInningHome: 0,
+         spreadFifthInningHome: 0,
+         spreadSixthInningHome: 0,
+         spreadSeventhInningHome: 0,
+         spreadEighthInningHome: 0,
+         spreadNinthInningHome: 0,
+         spreadAway: 0,
+         spreadFirstInningAway: 0,
+         spreadSecondInningAway: 0,
+         spreadThirdInningAway: 0,
+         spreadFourthInningAway: 0,
+         spreadFifthInningAway: 0,
+         spreadSixthInningAway: 0,
+         spreadSeventhInningAway: 0,
+         spreadEighthInningAway: 0,
+         spreadNinthInningAway: 0,
+         totalOverall: 0,
+         totalFirstInning: 0,
+         totalSecondInning: 0,
+         totalThirdInning: 0,
+         totalFourthInning: 0,
+         totalFifthInning: 0,
+         totalSixthInning: 0,
+         totalSeventhInning: 0,
+         totalEighthInning: 0,
+         totalNinthInning: 0,
+         totalVsTeam: 0,
+         totalFirstInningVsOpponent: 0,
+         totalSecondInningVsOpponent: 0,
+         totalThirdInningVsOpponent: 0,
+         totalFourthInningVsOpponent: 0,
+         totalFifthInningVsOpponent: 0,
+         totalSixthInningVsOpponent: 0,
+         totalSeventhInningVsOpponent: 0,
+         totalEighthInningVsOpponent: 0,
+         totalNinthInningVsOpponent: 0,
+         totalHome: 0,
+         totalFirstInningHome: 0,
+         totalSecondInningHome: 0,
+         totalThirdInningHome: 0,
+         totalFourthInningHome: 0,
+         totalFifthInningHome: 0,
+         totalSixthInningHome: 0,
+         totalSeventhInningHome: 0,
+         totalEighthInningHome: 0,
+         totalNinthInningHome: 0,
+         totalAway: 0,
+         totalFirstInningAway: 0,
+         totalSecondInningAway: 0,
+         totalThirdInningAway: 0,
+         totalFourthInningAway: 0,
+         totalFifthInningAway: 0,
+         totalSixthInningAway: 0,
+         totalSeventhInningAway: 0,
+         totalEighthInningAway: 0,
+         totalNinthInningAway: 0,
+         pointsScoredOverallGame: 0,
+         pointsScoredOverallFirstInning: 0,
+         pointsScoredOverallSecondInning: 0,
+         pointsScoredOverallThirdInning: 0,
+         pointsScoredOverallFourthInning: 0,
+         pointsScoredOverallFifthInning: 0,
+         pointsScoredOverallSixthInning: 0,
+         pointsScoredOverallSeventhInning: 0,
+         pointsScoredOverallEighthInning: 0,
+         pointsScoredOverallNinthInning: 0,
+         pointsScoredVsTeamGame: 0,
+         pointsScoredFirstInningVsOpponent: 0,
+         pointsScoredSecondInningVsOpponent: 0,
+         pointsScoredThirdInningVsOpponent: 0,
+         pointsScoredFourthInningVsOpponent: 0,
+         pointsScoredFifthInningVsOpponent: 0,
+         pointsScoredSixthInningVsOpponent: 0,
+         pointsScoredSeventhInningVsOpponent: 0,
+         pointsScoredEighthInningVsOpponent: 0,
+         pointsScoredNinthInningVsOpponent: 0,
+         pointsScoredHomeGame: 0,
+         pointsScoredFirstInningHome: 0,
+         pointsScoredSecondInningHome: 0,
+         pointsScoredThirdInningHome: 0,
+         pointsScoredFourthInningHome: 0,
+         pointsScoredFifthInningHome: 0,
+         pointsScoredSixthInningHome: 0,
+         pointsScoredSeventhInningHome: 0,
+         pointsScoredEighthInningHome: 0,
+         pointsScoredNinthInningHome: 0,
+         pointsScoredAwayGame: 0,
+         pointsScoredFirstInningAway: 0,
+         pointsScoredSecondInningAway: 0,
+         pointsScoredThirdInningAway: 0,
+         pointsScoredFourthInningAway: 0,
+         pointsScoredFifthInningAway: 0,
+         pointsScoredSixthInningAway: 0,
+         pointsScoredSeventhInningAway: 0,
+         pointsScoredEighthInningAway: 0,
+         pointsScoredNinthInningAway: 0,
+         pointsAllowedOverallGame: 0,
+         pointsAllowedOverallFirstInning: 0,
+         pointsAllowedOverallSecondInning: 0,
+         pointsAllowedOverallThirdInning: 0,
+         pointsAllowedOverallFourthInning: 0,
+         pointsAllowedOverallFifthInning: 0,
+         pointsAllowedOverallSixthInning: 0,
+         pointsAllowedOverallSeventhInning: 0,
+         pointsAllowedOverallEighthInning: 0,
+         pointsAllowedOverallNinthInning: 0,
+         pointsAllowedVsTeamGame: 0,
+         pointsAllowedFirstInningVsOpponent: 0,
+         pointsAllowedSecondInningVsOpponent: 0,
+         pointsAllowedThirdInningVsOpponent: 0,
+         pointsAllowedFourthInningVsOpponent: 0,
+         pointsAllowedFifthInningVsOpponent: 0,
+         pointsAllowedSixthInningVsOpponent: 0,
+         pointsAllowedSeventhInningVsOpponent: 0,
+         pointsAllowedEighthInningVsOpponent: 0,
+         pointsAllowedNinthInningVsOpponent: 0,
+         pointsAllowedHomeGame: 0,
+         pointsAllowedFirstInningHome: 0,
+         pointsAllowedSecondInningHome: 0,
+         pointsAllowedThirdInningHome: 0,
+         pointsAllowedFourthInningHome: 0,
+         pointsAllowedFifthInningHome: 0,
+         pointsAllowedSixthInningHome: 0,
+         pointsAllowedSeventhInningHome: 0,
+         pointsAllowedEighthInningHome: 0,
+         pointsAllowedNinthInningHome: 0,
+         pointsAllowedAwayGame: 0,
+         pointsAllowedFirstInningAway: 0,
+         pointsAllowedSecondInningAway: 0,
+         pointsAllowedThirdInningAway: 0,
+         pointsAllowedFourthInningAway: 0,
+         pointsAllowedFifthInningAway: 0,
+         pointsAllowedSixthInningAway: 0,
+         pointsAllowedSeventhInningAway: 0,
+         pointsAllowedEighthInningAway: 0,
+         pointsAllowedNinthInningAway: 0
+       }
+       team1New.forEach(e => {
+         //overall stats - inning spread total points scored and allowed
+         e.result == "W" ? this.team1GameStatsDtoMLB.gamesWon += 1 : this.team1GameStatsDtoMLB.gamesLost += 1;
+ 
+         //result by inning
+         e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWon += 1 : this.team1GameStatsDtoMLB.inningOneLost += 1;
+         e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWon += 1 : this.team1GameStatsDtoMLB.inningTwoLost += 1;
+         e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWon += 1 : this.team1GameStatsDtoMLB.inningThreeLost += 1;
+         e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWon += 1 : this.team1GameStatsDtoMLB.inningFourLost += 1;
+         e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWon += 1 : this.team1GameStatsDtoMLB.inningFiveLost += 1;
+         e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWon += 1 : this.team1GameStatsDtoMLB.inningSixLost += 1;
+         e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWon += 1 : this.team1GameStatsDtoMLB.inningSevenLost += 1;
+         e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWon += 1 : this.team1GameStatsDtoMLB.inningEightLost += 1;
+         e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWon += 1 : this.team1GameStatsDtoMLB.inningNineLost += 1;
+ 
+         //spread 
+         this.team1GameStatsDtoMLB.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall)
+         this.team1GameStatsDtoMLB.spreadFirstInning += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+         this.team1GameStatsDtoMLB.spreadSecondInning += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+         this.team1GameStatsDtoMLB.spreadThirdInning += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+         this.team1GameStatsDtoMLB.spreadFourthInning += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+         this.team1GameStatsDtoMLB.spreadFifthInning += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+         this.team1GameStatsDtoMLB.spreadSixthInning += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+         this.team1GameStatsDtoMLB.spreadSeventhInning += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+         this.team1GameStatsDtoMLB.spreadEighthInning += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+         this.team1GameStatsDtoMLB.spreadNinthInning += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+ 
+         //total
+         this.team1GameStatsDtoMLB.totalOverall += (e.pointsScoredOverall + e.pointsAllowedOverall)
+         this.team1GameStatsDtoMLB.totalFirstInning += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+         this.team1GameStatsDtoMLB.totalSecondInning += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+         this.team1GameStatsDtoMLB.totalThirdInning += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+         this.team1GameStatsDtoMLB.totalFourthInning += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+         this.team1GameStatsDtoMLB.totalFifthInning += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+         this.team1GameStatsDtoMLB.totalSixthInning += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+         this.team1GameStatsDtoMLB.totalSeventhInning += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+         this.team1GameStatsDtoMLB.totalEighthInning += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+         this.team1GameStatsDtoMLB.totalNinthInning += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+ 
+         //points scored
+         this.team1GameStatsDtoMLB.pointsScoredOverallGame += e.pointsScoredOverall
+         this.team1GameStatsDtoMLB.pointsScoredOverallFirstInning += e.pointsScoredFirstInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallSecondInning += e.pointsScoredSecondInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallThirdInning += e.pointsScoredThirdInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallFourthInning += e.pointsScoredFourthInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallFifthInning += e.pointsScoredFifthInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallSixthInning += e.pointsScoredSixthInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallSeventhInning += e.pointsScoredSeventhInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallEighthInning += e.pointsScoredEigthInning
+         this.team1GameStatsDtoMLB.pointsScoredOverallNinthInning += e.pointsScoredNinthInning
+ 
+         //points allowed
+         this.team1GameStatsDtoMLB.pointsAllowedOverallGame += e.pointsAllowedOverall
+         this.team1GameStatsDtoMLB.pointsAllowedOverallFirstInning += e.pointsAllowedFirstInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallSecondInning += e.pointsAllowedSecondInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallThirdInning += e.pointsAllowedThirdInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallFourthInning += e.pointsAllowedFourthInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallFifthInning += e.pointsAllowedFifthInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallSixthInning += e.pointsAllowedSixthInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallSeventhInning += e.pointsAllowedSeventhInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallEighthInning += e.pointsAllowedEigthInning
+         this.team1GameStatsDtoMLB.pointsAllowedOverallNinthInning += e.pointsAllowedNinthInning
+ 
+         if (e.homeOrAway == "Home") {
+           e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonHome += 1 : this.team1GameStatsDtoMLB.gamesLostHome += 1;
+ 
+           //result by inning
+           e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonHome += 1 : this.team1GameStatsDtoMLB.inningOneLostHome += 1;
+           e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonHome += 1 : this.team1GameStatsDtoMLB.inningTwoLostHome += 1;
+           e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonHome += 1 : this.team1GameStatsDtoMLB.inningThreeLostHome += 1;
+           e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonHome += 1 : this.team1GameStatsDtoMLB.inningFourLostHome += 1;
+           e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonHome += 1 : this.team1GameStatsDtoMLB.inningFiveLostHome += 1;
+           e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonHome += 1 : this.team1GameStatsDtoMLB.inningSixLostHome += 1;
+           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonHome += 1 : this.team1GameStatsDtoMLB.inningSevenLostHome += 1;
+           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonHome += 1 : this.team1GameStatsDtoMLB.inningEightLostHome += 1;
+           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonHome += 1 : this.team1GameStatsDtoMLB.inningNineLostHome += 1;
+ 
+           //spread 
+           this.team1GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
+           this.team1GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+           this.team1GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+           this.team1GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+           this.team1GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+           this.team1GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+           this.team1GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+           this.team1GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+           this.team1GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+           this.team1GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+ 
+           //total
+           this.team1GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
+           this.team1GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+           this.team1GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+           this.team1GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+           this.team1GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+           this.team1GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+           this.team1GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+           this.team1GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+           this.team1GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+           this.team1GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+ 
+           //points scored
+           this.team1GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
+           this.team1GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
+           this.team1GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
+           this.team1GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
+           this.team1GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
+           this.team1GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
+           this.team1GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
+           this.team1GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
+           this.team1GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
+           this.team1GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
+ 
+           //points allowed
+           this.team1GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
+           this.team1GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
+           this.team1GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
+           this.team1GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
+           this.team1GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
+           this.team1GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
+           this.team1GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
+           this.team1GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
+           this.team1GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
+           this.team1GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
+ 
+         }
+         else if (e.homeOrAway == "Away") {
+           e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonAway += 1 : this.team1GameStatsDtoMLB.gamesLostAway += 1;
+ 
+           //result by inning
+           e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonAway += 1 : this.team1GameStatsDtoMLB.inningOneLostAway += 1;
+           e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonAway += 1 : this.team1GameStatsDtoMLB.inningTwoLostAway += 1;
+           e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonAway += 1 : this.team1GameStatsDtoMLB.inningThreeLostAway += 1;
+           e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonAway += 1 : this.team1GameStatsDtoMLB.inningFourLostAway += 1;
+           e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonAway += 1 : this.team1GameStatsDtoMLB.inningFiveLostAway += 1;
+           e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonAway += 1 : this.team1GameStatsDtoMLB.inningSixLostAway += 1;
+           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonAway += 1 : this.team1GameStatsDtoMLB.inningSevenLostAway += 1;
+           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonAway += 1 : this.team1GameStatsDtoMLB.inningEightLostAway += 1;
+           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonAway += 1 : this.team1GameStatsDtoMLB.inningNineLostAway += 1;
+ 
+           //spread 
+           this.team1GameStatsDtoMLB.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall)
+           this.team1GameStatsDtoMLB.spreadFirstInningAway += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+           this.team1GameStatsDtoMLB.spreadSecondInningAway += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+           this.team1GameStatsDtoMLB.spreadThirdInningAway += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+           this.team1GameStatsDtoMLB.spreadFourthInningAway += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+           this.team1GameStatsDtoMLB.spreadFifthInningAway += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+           this.team1GameStatsDtoMLB.spreadSixthInningAway += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+           this.team1GameStatsDtoMLB.spreadSeventhInningAway += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+           this.team1GameStatsDtoMLB.spreadEighthInningAway += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+           this.team1GameStatsDtoMLB.spreadNinthInningAway += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+ 
+           //total
+           this.team1GameStatsDtoMLB.totalAway += (e.pointsScoredOverall + e.pointsAllowedOverall)
+           this.team1GameStatsDtoMLB.totalFirstInningAway += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+           this.team1GameStatsDtoMLB.totalSecondInningAway += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+           this.team1GameStatsDtoMLB.totalThirdInningAway += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+           this.team1GameStatsDtoMLB.totalFourthInningAway += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+           this.team1GameStatsDtoMLB.totalFifthInningAway += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+           this.team1GameStatsDtoMLB.totalSixthInningAway += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+           this.team1GameStatsDtoMLB.totalSeventhInningAway += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+           this.team1GameStatsDtoMLB.totalEighthInningAway += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+           this.team1GameStatsDtoMLB.totalNinthInningAway += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+ 
+           //points scored
+           this.team1GameStatsDtoMLB.pointsScoredAwayGame += e.pointsScoredOverall
+           this.team1GameStatsDtoMLB.pointsScoredFirstInningAway += e.pointsScoredFirstInning
+           this.team1GameStatsDtoMLB.pointsScoredSecondInningAway += e.pointsScoredSecondInning
+           this.team1GameStatsDtoMLB.pointsScoredThirdInningAway += e.pointsScoredThirdInning
+           this.team1GameStatsDtoMLB.pointsScoredFourthInningAway += e.pointsScoredFourthInning
+           this.team1GameStatsDtoMLB.pointsScoredFifthInningAway += e.pointsScoredFifthInning
+           this.team1GameStatsDtoMLB.pointsScoredSixthInningAway += e.pointsScoredSixthInning
+           this.team1GameStatsDtoMLB.pointsScoredSeventhInningAway += e.pointsScoredSeventhInning
+           this.team1GameStatsDtoMLB.pointsScoredEighthInningAway += e.pointsScoredEigthInning
+           this.team1GameStatsDtoMLB.pointsScoredNinthInningAway += e.pointsScoredNinthInning
+ 
+           //points allowed
+           this.team1GameStatsDtoMLB.pointsAllowedAwayGame += e.pointsAllowedOverall
+           this.team1GameStatsDtoMLB.pointsAllowedFirstInningAway += e.pointsAllowedFirstInning
+           this.team1GameStatsDtoMLB.pointsAllowedSecondInningAway += e.pointsAllowedSecondInning
+           this.team1GameStatsDtoMLB.pointsAllowedThirdInningAway += e.pointsAllowedThirdInning
+           this.team1GameStatsDtoMLB.pointsAllowedFourthInningAway += e.pointsAllowedFourthInning
+           this.team1GameStatsDtoMLB.pointsAllowedFifthInningAway += e.pointsAllowedFifthInning
+           this.team1GameStatsDtoMLB.pointsAllowedSixthInningAway += e.pointsAllowedSixthInning
+           this.team1GameStatsDtoMLB.pointsAllowedSeventhInningAway += e.pointsAllowedSeventhInning
+           this.team1GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
+           this.team1GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
+         }
+         if (e.teamAgainstId == team2New[0].teamId) {
+           e.result == "W" ? this.team1GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team1GameStatsDtoMLB.gamesLostVsOpponent += 1;
+ 
+           //result by inning
+           e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team1GameStatsDtoMLB.inningOneWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningOneLostVsOpponent += 1;
+           e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team1GameStatsDtoMLB.inningTwoWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningTwoLostVsOpponent += 1;
+           e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team1GameStatsDtoMLB.inningThreeWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningThreeLostVsOpponent += 1;
+           e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team1GameStatsDtoMLB.inningFourWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningFourLostVsOpponent += 1;
+           e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team1GameStatsDtoMLB.inningFiveWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningFiveLostVsOpponent += 1;
+           e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team1GameStatsDtoMLB.inningSixWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningSixLostVsOpponent += 1;
+           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team1GameStatsDtoMLB.inningSevenWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningSevenLostVsOpponent += 1;
+           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team1GameStatsDtoMLB.inningEightWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningEightLostVsOpponent += 1;
+           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team1GameStatsDtoMLB.inningNineWonVsOpponent += 1 : this.team1GameStatsDtoMLB.inningNineLostVsOpponent += 1;
+ 
+           //spread 
+           this.team1GameStatsDtoMLB.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall)
+           this.team1GameStatsDtoMLB.spreadFirstInningVsOpponent += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+           this.team1GameStatsDtoMLB.spreadSecondInningVsOpponent += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+           this.team1GameStatsDtoMLB.spreadThirdInningVsOpponent += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+           this.team1GameStatsDtoMLB.spreadFourthInningVsOpponent += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+           this.team1GameStatsDtoMLB.spreadFifthInningVsOpponent += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+           this.team1GameStatsDtoMLB.spreadSixthInningVsOpponent += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+           this.team1GameStatsDtoMLB.spreadSeventhInningVsOpponent += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+           this.team1GameStatsDtoMLB.spreadEighthInningVsOpponent += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+           this.team1GameStatsDtoMLB.spreadNinthInningVsOpponent += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+ 
+           //total
+           this.team1GameStatsDtoMLB.totalVsTeam += (e.pointsScoredOverall + e.pointsAllowedOverall)
+           this.team1GameStatsDtoMLB.totalFirstInningVsOpponent += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+           this.team1GameStatsDtoMLB.totalSecondInningVsOpponent += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+           this.team1GameStatsDtoMLB.totalThirdInningVsOpponent += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+           this.team1GameStatsDtoMLB.totalFourthInningVsOpponent += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+           this.team1GameStatsDtoMLB.totalFifthInningVsOpponent += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+           this.team1GameStatsDtoMLB.totalSixthInningVsOpponent += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+           this.team1GameStatsDtoMLB.totalSeventhInningVsOpponent += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+           this.team1GameStatsDtoMLB.totalEighthInningVsOpponent += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+           this.team1GameStatsDtoMLB.totalNinthInningVsOpponent += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+ 
+           //points scored
+           this.team1GameStatsDtoMLB.pointsScoredVsTeamGame += e.pointsScoredOverall
+           this.team1GameStatsDtoMLB.pointsScoredFirstInningVsOpponent += e.pointsScoredFirstInning
+           this.team1GameStatsDtoMLB.pointsScoredSecondInningVsOpponent += e.pointsScoredSecondInning
+           this.team1GameStatsDtoMLB.pointsScoredThirdInningVsOpponent += e.pointsScoredThirdInning
+           this.team1GameStatsDtoMLB.pointsScoredFourthInningVsOpponent += e.pointsScoredFourthInning
+           this.team1GameStatsDtoMLB.pointsScoredFifthInningVsOpponent += e.pointsScoredFifthInning
+           this.team1GameStatsDtoMLB.pointsScoredSixthInningVsOpponent += e.pointsScoredSixthInning
+           this.team1GameStatsDtoMLB.pointsScoredSeventhInningVsOpponent += e.pointsScoredSeventhInning
+           this.team1GameStatsDtoMLB.pointsScoredEighthInningVsOpponent += e.pointsScoredEigthInning
+           this.team1GameStatsDtoMLB.pointsScoredNinthInningVsOpponent += e.pointsScoredNinthInning
+ 
+           //points allowed
+           this.team1GameStatsDtoMLB.pointsAllowedVsTeamGame += e.pointsAllowedOverall
+           this.team1GameStatsDtoMLB.pointsAllowedFirstInningVsOpponent += e.pointsAllowedFirstInning
+           this.team1GameStatsDtoMLB.pointsAllowedSecondInningVsOpponent += e.pointsAllowedSecondInning
+           this.team1GameStatsDtoMLB.pointsAllowedThirdInningVsOpponent += e.pointsAllowedThirdInning
+           this.team1GameStatsDtoMLB.pointsAllowedFourthInningVsOpponent += e.pointsAllowedFourthInning
+           this.team1GameStatsDtoMLB.pointsAllowedFifthInningVsOpponent += e.pointsAllowedFifthInning
+           this.team1GameStatsDtoMLB.pointsAllowedSixthInningVsOpponent += e.pointsAllowedSixthInning
+           this.team1GameStatsDtoMLB.pointsAllowedSeventhInningVsOpponent += e.pointsAllowedSeventhInning
+           this.team1GameStatsDtoMLB.pointsAllowedEighthInningVsOpponent += e.pointsAllowedEigthInning
+           this.team1GameStatsDtoMLB.pointsAllowedNinthInningVsOpponent += e.pointsAllowedNinthInning
+         }
+         let totalFor = []
+         let totalOverall = 0;
+         totalFor = team1New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint })
+         totalOverall = team1New.length
+         this.homeSpreadOverallChance = (totalFor.length / totalOverall)
+ 
+         totalFor = team1New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && e.homeOrAway == "Home") })
+         totalOverall = team1New.filter(e => e.homeOrAway == "Home").length
+         this.homeSpreadHomeChance = (totalFor.length / totalOverall)
+ 
+         totalFor = team1New.filter(e => {
+           return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team1SelectedSpreadPoint) && (e.teamAgainstId == team2New[0].teamId))
+         })
+         totalOverall = team1New.filter(e => e.teamAgainstId == team2New[0].teamId).length
+ 
+         this.homeSpreadTeamChance = (totalFor.length / totalOverall)
+       })
+ 
+       team2New.forEach(e => {
+         //overall stats - inning spread total points scored and allowed
+         e.result == "W" ? this.team2GameStatsDtoMLB.gamesWon += 1 : this.team2GameStatsDtoMLB.gamesLost += 1;
+ 
+         //result by inning
+         e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWon += 1 : this.team2GameStatsDtoMLB.inningOneLost += 1;
+         e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWon += 1 : this.team2GameStatsDtoMLB.inningTwoLost += 1;
+         e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWon += 1 : this.team2GameStatsDtoMLB.inningThreeLost += 1;
+         e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWon += 1 : this.team2GameStatsDtoMLB.inningFourLost += 1;
+         e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWon += 1 : this.team2GameStatsDtoMLB.inningFiveLost += 1;
+         e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWon += 1 : this.team2GameStatsDtoMLB.inningSixLost += 1;
+         e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWon += 1 : this.team2GameStatsDtoMLB.inningSevenLost += 1;
+         e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWon += 1 : this.team2GameStatsDtoMLB.inningEightLost += 1;
+         e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWon += 1 : this.team2GameStatsDtoMLB.inningNineLost += 1;
+ 
+         //spread
+         this.team2GameStatsDtoMLB.spreadGame += (e.pointsAllowedOverall - e.pointsScoredOverall)
+         this.team2GameStatsDtoMLB.spreadFirstInning += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+         this.team2GameStatsDtoMLB.spreadSecondInning += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+         this.team2GameStatsDtoMLB.spreadThirdInning += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+         this.team2GameStatsDtoMLB.spreadFourthInning += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+         this.team2GameStatsDtoMLB.spreadFifthInning += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+         this.team2GameStatsDtoMLB.spreadSixthInning += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+         this.team2GameStatsDtoMLB.spreadSeventhInning += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+         this.team2GameStatsDtoMLB.spreadEighthInning += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+         this.team2GameStatsDtoMLB.spreadNinthInning += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+         //tota2
+         this.team2GameStatsDtoMLB.totalOverall += (e.pointsScoredOverall + e.pointsAllowedOverall)
+         this.team2GameStatsDtoMLB.totalFirstInning += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+         this.team2GameStatsDtoMLB.totalSecondInning += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+         this.team2GameStatsDtoMLB.totalThirdInning += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+         this.team2GameStatsDtoMLB.totalFourthInning += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+         this.team2GameStatsDtoMLB.totalFifthInning += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+         this.team2GameStatsDtoMLB.totalSixthInning += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+         this.team2GameStatsDtoMLB.totalSeventhInning += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+         this.team2GameStatsDtoMLB.totalEighthInning += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+         this.team2GameStatsDtoMLB.totalNinthInning += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+         //points 2cored
+         this.team2GameStatsDtoMLB.pointsScoredOverallGame += e.pointsScoredOverall
+         this.team2GameStatsDtoMLB.pointsScoredOverallFirstInning += e.pointsScoredFirstInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallSecondInning += e.pointsScoredSecondInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallThirdInning += e.pointsScoredThirdInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallFourthInning += e.pointsScoredFourthInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallFifthInning += e.pointsScoredFifthInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallSixthInning += e.pointsScoredSixthInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallSeventhInning += e.pointsScoredSeventhInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallEighthInning += e.pointsScoredEigthInning
+         this.team2GameStatsDtoMLB.pointsScoredOverallNinthInning += e.pointsScoredNinthInning
+         //points 2llowed
+         this.team2GameStatsDtoMLB.pointsAllowedOverallGame += e.pointsAllowedOverall
+         this.team2GameStatsDtoMLB.pointsAllowedOverallFirstInning += e.pointsAllowedFirstInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallSecondInning += e.pointsAllowedSecondInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallThirdInning += e.pointsAllowedThirdInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallFourthInning += e.pointsAllowedFourthInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallFifthInning += e.pointsAllowedFifthInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallSixthInning += e.pointsAllowedSixthInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallSeventhInning += e.pointsAllowedSeventhInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallEighthInning += e.pointsAllowedEigthInning
+         this.team2GameStatsDtoMLB.pointsAllowedOverallNinthInning += e.pointsAllowedNinthInning
+ 
+         if (e.homeOrAway == "Home") {
+           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonHome += 1 : this.team2GameStatsDtoMLB.gamesLostHome += 1;
+ 
+           //result by inning
+           e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonHome += 1 : this.team2GameStatsDtoMLB.inningOneLostHome += 1;
+           e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonHome += 1 : this.team2GameStatsDtoMLB.inningTwoLostHome += 1;
+           e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonHome += 1 : this.team2GameStatsDtoMLB.inningThreeLostHome += 1;
+           e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonHome += 1 : this.team2GameStatsDtoMLB.inningFourLostHome += 1;
+           e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonHome += 1 : this.team2GameStatsDtoMLB.inningFiveLostHome += 1;
+           e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonHome += 1 : this.team2GameStatsDtoMLB.inningSixLostHome += 1;
+           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonHome += 1 : this.team2GameStatsDtoMLB.inningSevenLostHome += 1;
+           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonHome += 1 : this.team2GameStatsDtoMLB.inningEightLostHome += 1;
+           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonHome += 1 : this.team2GameStatsDtoMLB.inningNineLostHome += 1;
+           //spread
+           this.team2GameStatsDtoMLB.spreadHome += (e.pointsAllowedOverall - e.pointsScoredOverall)
+           this.team2GameStatsDtoMLB.spreadFirstInningHome += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+           this.team2GameStatsDtoMLB.spreadSecondInningHome += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+           this.team2GameStatsDtoMLB.spreadThirdInningHome += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+           this.team2GameStatsDtoMLB.spreadFourthInningHome += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+           this.team2GameStatsDtoMLB.spreadFifthInningHome += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+           this.team2GameStatsDtoMLB.spreadSixthInningHome += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+           this.team2GameStatsDtoMLB.spreadSeventhInningHome += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+           this.team2GameStatsDtoMLB.spreadEighthInningHome += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+           this.team2GameStatsDtoMLB.spreadNinthInningHome += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+           //tota2
+           this.team2GameStatsDtoMLB.totalHome += (e.pointsScoredOverall + e.pointsAllowedOverall)
+           this.team2GameStatsDtoMLB.totalFirstInningHome += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+           this.team2GameStatsDtoMLB.totalSecondInningHome += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+           this.team2GameStatsDtoMLB.totalThirdInningHome += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+           this.team2GameStatsDtoMLB.totalFourthInningHome += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+           this.team2GameStatsDtoMLB.totalFifthInningHome += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+           this.team2GameStatsDtoMLB.totalSixthInningHome += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+           this.team2GameStatsDtoMLB.totalSeventhInningHome += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+           this.team2GameStatsDtoMLB.totalEighthInningHome += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+           this.team2GameStatsDtoMLB.totalNinthInningHome += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+           //points 2cored
+           this.team2GameStatsDtoMLB.pointsScoredHomeGame += e.pointsScoredOverall
+           this.team2GameStatsDtoMLB.pointsScoredFirstInningHome += e.pointsScoredFirstInning
+           this.team2GameStatsDtoMLB.pointsScoredSecondInningHome += e.pointsScoredSecondInning
+           this.team2GameStatsDtoMLB.pointsScoredThirdInningHome += e.pointsScoredThirdInning
+           this.team2GameStatsDtoMLB.pointsScoredFourthInningHome += e.pointsScoredFourthInning
+           this.team2GameStatsDtoMLB.pointsScoredFifthInningHome += e.pointsScoredFifthInning
+           this.team2GameStatsDtoMLB.pointsScoredSixthInningHome += e.pointsScoredSixthInning
+           this.team2GameStatsDtoMLB.pointsScoredSeventhInningHome += e.pointsScoredSeventhInning
+           this.team2GameStatsDtoMLB.pointsScoredEighthInningHome += e.pointsScoredEigthInning
+           this.team2GameStatsDtoMLB.pointsScoredNinthInningHome += e.pointsScoredNinthInning
+           //points 2llowed
+           this.team2GameStatsDtoMLB.pointsAllowedHomeGame += e.pointsAllowedOverall
+           this.team2GameStatsDtoMLB.pointsAllowedFirstInningHome += e.pointsAllowedFirstInning
+           this.team2GameStatsDtoMLB.pointsAllowedSecondInningHome += e.pointsAllowedSecondInning
+           this.team2GameStatsDtoMLB.pointsAllowedThirdInningHome += e.pointsAllowedThirdInning
+           this.team2GameStatsDtoMLB.pointsAllowedFourthInningHome += e.pointsAllowedFourthInning
+           this.team2GameStatsDtoMLB.pointsAllowedFifthInningHome += e.pointsAllowedFifthInning
+           this.team2GameStatsDtoMLB.pointsAllowedSixthInningHome += e.pointsAllowedSixthInning
+           this.team2GameStatsDtoMLB.pointsAllowedSeventhInningHome += e.pointsAllowedSeventhInning
+           this.team2GameStatsDtoMLB.pointsAllowedEighthInningHome += e.pointsAllowedEigthInning
+           this.team2GameStatsDtoMLB.pointsAllowedNinthInningHome += e.pointsAllowedNinthInning
+ 
+         }
+         else if (e.homeOrAway == "Away") {
+           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonAway += 1 : this.team2GameStatsDtoMLB.gamesLostAway += 1;
+ 
+           //result by inning
+           e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonAway += 1 : this.team2GameStatsDtoMLB.inningOneLostAway += 1;
+           e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonAway += 1 : this.team2GameStatsDtoMLB.inningTwoLostAway += 1;
+           e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonAway += 1 : this.team2GameStatsDtoMLB.inningThreeLostAway += 1;
+           e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonAway += 1 : this.team2GameStatsDtoMLB.inningFourLostAway += 1;
+           e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonAway += 1 : this.team2GameStatsDtoMLB.inningFiveLostAway += 1;
+           e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonAway += 1 : this.team2GameStatsDtoMLB.inningSixLostAway += 1;
+           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonAway += 1 : this.team2GameStatsDtoMLB.inningSevenLostAway += 1;
+           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonAway += 1 : this.team2GameStatsDtoMLB.inningEightLostAway += 1;
+           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonAway += 1 : this.team2GameStatsDtoMLB.inningNineLostAway += 1;
+ 
+           //spread 
+           this.team2GameStatsDtoMLB.spreadAway += (e.pointsAllowedOverall - e.pointsScoredOverall)
+           this.team2GameStatsDtoMLB.spreadFirstInningAway += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+           this.team2GameStatsDtoMLB.spreadSecondInningAway += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+           this.team2GameStatsDtoMLB.spreadThirdInningAway += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+           this.team2GameStatsDtoMLB.spreadFourthInningAway += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+           this.team2GameStatsDtoMLB.spreadFifthInningAway += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+           this.team2GameStatsDtoMLB.spreadSixthInningAway += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+           this.team2GameStatsDtoMLB.spreadSeventhInningAway += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+           this.team2GameStatsDtoMLB.spreadEighthInningAway += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+           this.team2GameStatsDtoMLB.spreadNinthInningAway += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+ 
+           //tota2
+           this.team2GameStatsDtoMLB.totalAway += (e.pointsScoredOverall + e.pointsAllowedOverall)
+           this.team2GameStatsDtoMLB.totalFirstInningAway += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+           this.team2GameStatsDtoMLB.totalSecondInningAway += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+           this.team2GameStatsDtoMLB.totalThirdInningAway += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+           this.team2GameStatsDtoMLB.totalFourthInningAway += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+           this.team2GameStatsDtoMLB.totalFifthInningAway += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+           this.team2GameStatsDtoMLB.totalSixthInningAway += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+           this.team2GameStatsDtoMLB.totalSeventhInningAway += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+           this.team2GameStatsDtoMLB.totalEighthInningAway += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+           this.team2GameStatsDtoMLB.totalNinthInningAway += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+ 
+           //points 2cored
+           this.team2GameStatsDtoMLB.pointsScoredAwayGame += e.pointsScoredOverall
+           this.team2GameStatsDtoMLB.pointsScoredFirstInningAway += e.pointsScoredFirstInning
+           this.team2GameStatsDtoMLB.pointsScoredSecondInningAway += e.pointsScoredSecondInning
+           this.team2GameStatsDtoMLB.pointsScoredThirdInningAway += e.pointsScoredThirdInning
+           this.team2GameStatsDtoMLB.pointsScoredFourthInningAway += e.pointsScoredFourthInning
+           this.team2GameStatsDtoMLB.pointsScoredFifthInningAway += e.pointsScoredFifthInning
+           this.team2GameStatsDtoMLB.pointsScoredSixthInningAway += e.pointsScoredSixthInning
+           this.team2GameStatsDtoMLB.pointsScoredSeventhInningAway += e.pointsScoredSeventhInning
+           this.team2GameStatsDtoMLB.pointsScoredEighthInningAway += e.pointsScoredEigthInning
+           this.team2GameStatsDtoMLB.pointsScoredNinthInningAway += e.pointsScoredNinthInning
+ 
+           //points 2llowed
+           this.team2GameStatsDtoMLB.pointsAllowedAwayGame += e.pointsAllowedOverall
+           this.team2GameStatsDtoMLB.pointsAllowedFirstInningAway += e.pointsAllowedFirstInning
+           this.team2GameStatsDtoMLB.pointsAllowedSecondInningAway += e.pointsAllowedSecondInning
+           this.team2GameStatsDtoMLB.pointsAllowedThirdInningAway += e.pointsAllowedThirdInning
+           this.team2GameStatsDtoMLB.pointsAllowedFourthInningAway += e.pointsAllowedFourthInning
+           this.team2GameStatsDtoMLB.pointsAllowedFifthInningAway += e.pointsAllowedFifthInning
+           this.team2GameStatsDtoMLB.pointsAllowedSixthInningAway += e.pointsAllowedSixthInning
+           this.team2GameStatsDtoMLB.pointsAllowedSeventhInningAway += e.pointsAllowedSeventhInning
+           this.team2GameStatsDtoMLB.pointsAllowedEighthInningAway += e.pointsAllowedEigthInning
+           this.team2GameStatsDtoMLB.pointsAllowedNinthInningAway += e.pointsAllowedNinthInning
+         }
+ 
+         if (e.teamAgainstId == team1New[0].teamId) {
+           e.result == "W" ? this.team2GameStatsDtoMLB.gamesWonVsOpponent += 1 : this.team2GameStatsDtoMLB.gamesLostVsOpponent += 1;
+ 
+           //result by inning
+           e.pointsScoredFirstInning > e.pointsAllowedFirstInning ? this.team2GameStatsDtoMLB.inningOneWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningOneLostVsOpponent += 1;
+           e.pointsScoredSecondInning > e.pointsAllowedSecondInning ? this.team2GameStatsDtoMLB.inningTwoWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningTwoLostVsOpponent += 1;
+           e.pointsScoredThirdInning > e.pointsAllowedThirdInning ? this.team2GameStatsDtoMLB.inningThreeWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningThreeLostVsOpponent += 1;
+           e.pointsScoredFourthInning > e.pointsAllowedFourthInning ? this.team2GameStatsDtoMLB.inningFourWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningFourLostVsOpponent += 1;
+           e.pointsScoredFifthInning > e.pointsAllowedFifthInning ? this.team2GameStatsDtoMLB.inningFiveWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningFiveLostVsOpponent += 1;
+           e.pointsScoredSixthInning > e.pointsAllowedSixthInning ? this.team2GameStatsDtoMLB.inningSixWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningSixLostVsOpponent += 1;
+           e.pointsScoredSeventhInning > e.pointsAllowedSeventhInning ? this.team2GameStatsDtoMLB.inningSevenWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningSevenLostVsOpponent += 1;
+           e.pointsScoredEigthInning > e.pointsAllowedEigthInning ? this.team2GameStatsDtoMLB.inningEightWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningEightLostVsOpponent += 1;
+           e.pointsScoredNinthInning > e.pointsAllowedNinthInning ? this.team2GameStatsDtoMLB.inningNineWonVsOpponent += 1 : this.team2GameStatsDtoMLB.inningNineLostVsOpponent += 1;
+ 
+           //spread 
+           this.team2GameStatsDtoMLB.spreadVsOpponent += (e.pointsAllowedOverall - e.pointsScoredOverall)
+           this.team2GameStatsDtoMLB.spreadFirstInningVsOpponent += (e.pointsAllowedFirstInning - e.pointsScoredFirstInning)
+           this.team2GameStatsDtoMLB.spreadSecondInningVsOpponent += (e.pointsAllowedSecondInning - e.pointsScoredSecondInning)
+           this.team2GameStatsDtoMLB.spreadThirdInningVsOpponent += (e.pointsAllowedThirdInning - e.pointsScoredThirdInning)
+           this.team2GameStatsDtoMLB.spreadFourthInningVsOpponent += (e.pointsAllowedFourthInning - e.pointsScoredFourthInning)
+           this.team2GameStatsDtoMLB.spreadFifthInningVsOpponent += (e.pointsAllowedFifthInning - e.pointsScoredFifthInning)
+           this.team2GameStatsDtoMLB.spreadSixthInningVsOpponent += (e.pointsAllowedSixthInning - e.pointsScoredSixthInning)
+           this.team2GameStatsDtoMLB.spreadSeventhInningVsOpponent += (e.pointsAllowedSeventhInning - e.pointsScoredSeventhInning)
+           this.team2GameStatsDtoMLB.spreadEighthInningVsOpponent += (e.pointsAllowedEigthInning - e.pointsScoredEigthInning)
+           this.team2GameStatsDtoMLB.spreadNinthInningVsOpponent += (e.pointsAllowedNinthInning - e.pointsScoredNinthInning)
+ 
+           //tota2
+           this.team2GameStatsDtoMLB.totalVsTeam += (e.pointsScoredOverall + e.pointsAllowedOverall)
+           this.team2GameStatsDtoMLB.totalFirstInningVsOpponent += e.pointsScoredFirstInning + e.pointsAllowedFirstInning
+           this.team2GameStatsDtoMLB.totalSecondInningVsOpponent += e.pointsScoredSecondInning + e.pointsAllowedSecondInning
+           this.team2GameStatsDtoMLB.totalThirdInningVsOpponent += e.pointsScoredThirdInning + e.pointsAllowedThirdInning
+           this.team2GameStatsDtoMLB.totalFourthInningVsOpponent += e.pointsScoredFourthInning + e.pointsAllowedFourthInning
+           this.team2GameStatsDtoMLB.totalFifthInningVsOpponent += e.pointsScoredFifthInning + e.pointsAllowedFifthInning
+           this.team2GameStatsDtoMLB.totalSixthInningVsOpponent += e.pointsScoredSixthInning + e.pointsAllowedSixthInning
+           this.team2GameStatsDtoMLB.totalSeventhInningVsOpponent += e.pointsScoredSeventhInning + e.pointsAllowedSeventhInning
+           this.team2GameStatsDtoMLB.totalEighthInningVsOpponent += e.pointsScoredEigthInning + e.pointsAllowedEigthInning
+           this.team2GameStatsDtoMLB.totalNinthInningVsOpponent += e.pointsScoredNinthInning + e.pointsAllowedNinthInning
+ 
+           //points 2cored
+           this.team2GameStatsDtoMLB.pointsScoredVsTeamGame += e.pointsScoredOverall
+           this.team2GameStatsDtoMLB.pointsScoredFirstInningVsOpponent += e.pointsScoredFirstInning
+           this.team2GameStatsDtoMLB.pointsScoredSecondInningVsOpponent += e.pointsScoredSecondInning
+           this.team2GameStatsDtoMLB.pointsScoredThirdInningVsOpponent += e.pointsScoredThirdInning
+           this.team2GameStatsDtoMLB.pointsScoredFourthInningVsOpponent += e.pointsScoredFourthInning
+           this.team2GameStatsDtoMLB.pointsScoredFifthInningVsOpponent += e.pointsScoredFifthInning
+           this.team2GameStatsDtoMLB.pointsScoredSixthInningVsOpponent += e.pointsScoredSixthInning
+           this.team2GameStatsDtoMLB.pointsScoredSeventhInningVsOpponent += e.pointsScoredSeventhInning
+           this.team2GameStatsDtoMLB.pointsScoredEighthInningVsOpponent += e.pointsScoredEigthInning
+           this.team2GameStatsDtoMLB.pointsScoredNinthInningVsOpponent += e.pointsScoredNinthInning
+ 
+           //points 2llowed
+           this.team2GameStatsDtoMLB.pointsAllowedVsTeamGame += e.pointsAllowedOverall
+           this.team2GameStatsDtoMLB.pointsAllowedFirstInningVsOpponent += e.pointsAllowedFirstInning
+           this.team2GameStatsDtoMLB.pointsAllowedSecondInningVsOpponent += e.pointsAllowedSecondInning
+           this.team2GameStatsDtoMLB.pointsAllowedThirdInningVsOpponent += e.pointsAllowedThirdInning
+           this.team2GameStatsDtoMLB.pointsAllowedFourthInningVsOpponent += e.pointsAllowedFourthInning
+           this.team2GameStatsDtoMLB.pointsAllowedFifthInningVsOpponent += e.pointsAllowedFifthInning
+           this.team2GameStatsDtoMLB.pointsAllowedSixthInningVsOpponent += e.pointsAllowedSixthInning
+           this.team2GameStatsDtoMLB.pointsAllowedSeventhInningVsOpponent += e.pointsAllowedSeventhInning
+           this.team2GameStatsDtoMLB.pointsAllowedEighthInningVsOpponent += e.pointsAllowedEigthInning
+           this.team2GameStatsDtoMLB.pointsAllowedNinthInningVsOpponent += e.pointsAllowedNinthInning
+         }
+ 
+       })
+       let totalFor = []
+       let totalOverall = 0;
+       totalFor = team2New.filter(e => { return (e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint })
+       totalOverall = team2New.length
+       this.awaySpreadOverallChance = (totalFor.length / totalOverall)
+ 
+       totalFor = team2New.filter(e => { return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && e.homeOrAway == "Away") })
+       totalOverall = team2New.filter(e => e.homeOrAway == "Away").length
+       this.awaySpreadAwayChance = (totalFor.length / totalOverall)
+ 
+       totalFor = team2New.filter(e => {
+         return (((e.pointsAllowedOverall - e.pointsScoredOverall) < this.team2SelectedSpreadPoint) && (e.teamAgainstId == team1New[0].teamId))
+       })
+       totalOverall = team2New.filter(e => e.teamAgainstId == team1New[0].teamId).length
+ 
+       this.awaySpreadTeamChance = (totalFor.length / totalOverall)
+     }
+ 
+     else if (this.selectedSport == "NHL") {
+ 
+     }
+ 
+     else if (this.selectedSport == "NFL") {
+ 
+     } */
     this.team1OverallGames = team1.length
     this.team1Wins = team1.filter(e => e.result == 'W').length
     this.team2OverallGames = team2.length
@@ -2367,20 +2367,21 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  setValuesToTeamPropFinal(){
-    for(let team of this.teamPropFinnal){
-      for(let prop of team){
+  setValuesToTeamPropFinal() {
+    for (let team of this.teamPropFinnal) {
+      for (let prop of team) {
         let returnProp = {}
-        if(prop[0].length > 1){
+        if (prop[0].length > 1) {
           returnProp = this.getTeamStats(prop[0][0], team[0][0].teamName)
         }
-        else{
-          
+        else {
+
           returnProp = this.getTeamStats(prop[0], team[0][0].teamName)
         }
         prop.propVariables = returnProp
       }
     }
+    this.getTeamBestBets()
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: any, type: string) {
@@ -2542,13 +2543,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterHits
             totalTeam++
           })
-          if(totalTeam == 0){
+          if (totalTeam == 0) {
             averageTeam = 0
           }
-          else{
+          else {
             averageTeam = totalSum / totalTeam
           }
-          
+
 
           playerStatsReversed.forEach(e => {
             tableOverall.push({
@@ -2559,16 +2560,16 @@ export class PropScreenComponent implements OnInit {
               propName: 'H'
 
             })
-            if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
+            if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
               tableHomeAway.push({
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterHits,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
-              propName: 'H'
+                propName: 'H'
               })
             }
-            if(e.teamAgainstName == teamAgainstName){
+            if (e.teamAgainstName == teamAgainstName) {
               tableTeam.push({
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
@@ -2577,8 +2578,8 @@ export class PropScreenComponent implements OnInit {
                 propName: 'H'
               })
             }
-            
-            
+
+
           })
 
 
@@ -2636,13 +2637,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterHomeRuns
             totalTeam++
           })
-          if(totalTeam == 0){
+          if (totalTeam == 0) {
             averageTeam = 0
           }
-          else{
+          else {
             averageTeam = totalSum / totalTeam
           }
-          
+
 
           playerStatsReversed.forEach(e => {
             tableOverall.push({
@@ -2653,26 +2654,26 @@ export class PropScreenComponent implements OnInit {
               propName: 'HR'
 
             })
-            if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
+            if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
               tableHomeAway.push({
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterHomeRuns,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
-              propName: 'HR'
+                propName: 'HR'
               })
             }
-            if(e.teamAgainstName == teamAgainstName){
+            if (e.teamAgainstName == teamAgainstName) {
               tableTeam.push({
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterHomeRuns,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
-              propName: 'HR'
+                propName: 'HR'
               })
             }
-            
-            
+
+
           })
 
 
@@ -2710,13 +2711,13 @@ export class PropScreenComponent implements OnInit {
           playerStats.forEach(e => {
             totalSum += e.batterTotalBases
           })
-          if(totalSum == 0){
+          if (totalSum == 0) {
             averageOverall = 0
           }
-          else{
+          else {
             averageOverall = totalSum / totalOverall
           }
-          
+
           totalSum = 0
           let homeAwayGames = playerStats.filter(e => {
             return reusedFunctions.getHomeAwayFromGameId(e.gameId, teamName) == homeAway
@@ -2725,13 +2726,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterTotalBases
             totalHomeAway++
           })
-          if(totalHomeAway == 0){
+          if (totalHomeAway == 0) {
             averageHomeAway = 0
           }
-          else{
+          else {
             averageHomeAway = totalSum / totalHomeAway
           }
-          
+
           totalSum = 0
           let teamGames = playerStats.filter(e => {
 
@@ -2741,13 +2742,13 @@ export class PropScreenComponent implements OnInit {
             totalSum += f.batterTotalBases
             totalTeam++
           })
-          if(totalTeam == 0){
+          if (totalTeam == 0) {
             averageTeam = 0
           }
-          else{
+          else {
             averageTeam = totalSum / totalTeam
           }
-          
+
 
 
           playerStatsReversed.forEach(e => {
@@ -2759,26 +2760,26 @@ export class PropScreenComponent implements OnInit {
               propName: 'TB'
 
             })
-            if(reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway){
+            if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
               tableHomeAway.push({
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterTotalBases,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
-              propName: 'TB'
+                propName: 'TB'
               })
             }
-            if(e.teamAgainstName == teamAgainstName){
+            if (e.teamAgainstName == teamAgainstName) {
               tableTeam.push({
                 teamAgainstName: e.teamAgainstName,
                 gameDate: e.gameDate,
                 propNumber: e.batterTotalBases,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
-              propName: 'TB'
+                propName: 'TB'
               })
             }
-            
-            
+
+
           })
         }
 
@@ -2801,14 +2802,14 @@ export class PropScreenComponent implements OnInit {
         lowOverall: lowOverall == 100 ? 0 : lowOverall,
         lowHomeAway: lowHomeAway == 100 ? 0 : lowHomeAway,
         lowTeam: lowTeam == 100 ? 0 : lowTeam,
-        tableOverall: tableOverall.slice(0,10),
-        tableHomeAway: tableHomeAway.slice(0,10),
-        tableTeam: tableTeam.slice(0,10),
+        tableOverall: tableOverall.slice(0, 10),
+        tableHomeAway: tableHomeAway.slice(0, 10),
+        tableTeam: tableTeam.slice(0, 10),
         overUnder: overUnder,
         teamAgainstName: teamAgainstName
 
       }
-      
+
 
     } catch (error: any) {
       console.log(player.playerName)
@@ -2846,118 +2847,109 @@ export class PropScreenComponent implements OnInit {
 
   }
   public returnObj: any = {}
-public count = 0
-public arrayOfTeamBets: any[] = [];
-  getTeamStats(team: DbGameBookData, teamName: string){
+  public count = 0
+  public arrayOfTeamBets: any[] = [];
+  getTeamStats(team: DbGameBookData, teamName: string) {
 
-try{
-  let marketKey = team.marketKey
-  let propType = this.getPropType(team.marketKey)
-    let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
-    let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
-  
-    let teamGameStats: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
-    let teamGameStatsReversed: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStatsReversed : this.team2GameStatsReversed
-    let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
-    let teamAgainstStatsReversed = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStatsReversed : this.team1GameStatsReversed
+    try {
+      let marketKey = team.marketKey
+      let propType = this.getPropType(team.marketKey)
+      let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
+      let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
 
-    var finalTeam: any = {}
+      let teamGameStats: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
+      let teamGameStatsReversed: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStatsReversed : this.team2GameStatsReversed
+      let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
+      let teamAgainstStatsReversed = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStatsReversed : this.team1GameStatsReversed
 
-    finalTeam.homeAway = homeAway
-    finalTeam.propType = propType
-    finalTeam.totalGames = teamGameStats.length
-    finalTeam.totalGamesHomeAway = teamGameStats.filter(e => e.homeOrAway == homeAway).length
-    finalTeam.totalGamesTeam = teamGameStats.filter(e => e.teamAgainstName == teamAgainstName).length
-    finalTeam.teamAgainstTotalGames = teamAgainstStats.length
-    finalTeam.teamAgainstGamesHomeAway = teamAgainstStats.filter(e => e.homeOrAway != homeAway).length
-    finalTeam.teamAgainstGamesTeam = teamAgainstStats.filter(e => e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
-    finalTeam.overUnder = false
+      var finalTeam: any = {}
 
-    finalTeam.averageOverall = 0
-    finalTeam.averageHomeAway = 0
-    finalTeam.averageTeam = 0;
-    finalTeam.highOverall = 0;
-    finalTeam.highHomeAway = 0;
-    finalTeam.highTeam = 0;
-    finalTeam.lowOverall = 0;
-    finalTeam.lowHomeAway = 0;
-    finalTeam.lowTeam = 0;
+      finalTeam.homeAway = homeAway
+      finalTeam.propType = propType
+      finalTeam.totalGames = teamGameStats.length
+      finalTeam.totalGamesHomeAway = teamGameStats.filter(e => e.homeOrAway == homeAway).length
+      finalTeam.totalGamesTeam = teamGameStats.filter(e => e.teamAgainstName == teamAgainstName).length
+      finalTeam.teamAgainstTotalGames = teamAgainstStats.length
+      finalTeam.teamAgainstGamesHomeAway = teamAgainstStats.filter(e => e.homeOrAway != homeAway).length
+      finalTeam.teamAgainstGamesTeam = teamAgainstStats.filter(e => e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+      finalTeam.overUnder = false
 
-    let tableTemp: any[] = []
-        teamGameStatsReversed.forEach(e => {tableTemp.push({
+      finalTeam.averageOverall = 0
+      finalTeam.averageHomeAway = 0
+      finalTeam.averageTeam = 0;
+      finalTeam.highOverall = 0;
+      finalTeam.highHomeAway = 0;
+      finalTeam.highTeam = 0;
+      finalTeam.lowOverall = 0;
+      finalTeam.lowHomeAway = 0;
+      finalTeam.lowTeam = 0;
+
+      let tableTemp: any[] = []
+      teamGameStatsReversed.forEach(e => {
+        tableTemp.push({
           teamAgainstName: e.teamAgainstName,
           gameDate: e.gameDate,
           pointsScoredOverall: e.pointsScoredOverall,
           pointsAllowedOverall: e.pointsAllowedOverall,
           homeAway: e.homeOrAway
-        })})
-        finalTeam.tableOverall = tableTemp
-        
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.homeOrAway == homeAway){
-            tableTemp.push({
-              teamAgainstName: e.teamAgainstName,
-              gameDate: e.gameDate,
-              pointsScoredOverall: e.pointsScoredOverall,
-              pointsAllowedOverall: e.pointsAllowedOverall,
-              homeAway: e.homeOrAway
-            })
-          }
+        })
+      })
+      finalTeam.tableOverall = tableTemp
+
+      tableTemp = []
+      teamGameStatsReversed.forEach(e => {
+        if (e.homeOrAway == homeAway) {
+          tableTemp.push({
+            teamAgainstName: e.teamAgainstName,
+            gameDate: e.gameDate,
+            pointsScoredOverall: e.pointsScoredOverall,
+            pointsAllowedOverall: e.pointsAllowedOverall,
+            homeAway: e.homeOrAway
           })
-        finalTeam.tableHomeAway = tableTemp
+        }
+      })
+      finalTeam.tableHomeAway = tableTemp
 
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.teamAgainstName == teamAgainstName){
-            tableTemp.push({
-              teamAgainstName: e.teamAgainstName,
-              gameDate: e.gameDate,
-              pointsScoredOverall: e.pointsScoredOverall,
-              pointsAllowedOverall: e.pointsAllowedOverall,
-              homeAway: e.homeOrAway
-            })
-          }
+      tableTemp = []
+      teamGameStatsReversed.forEach(e => {
+        if (e.teamAgainstName == teamAgainstName) {
+          tableTemp.push({
+            teamAgainstName: e.teamAgainstName,
+            gameDate: e.gameDate,
+            pointsScoredOverall: e.pointsScoredOverall,
+            pointsAllowedOverall: e.pointsAllowedOverall,
+            homeAway: e.homeOrAway
           })
-        finalTeam.tableTeam = tableTemp
+        }
+      })
+      finalTeam.tableTeam = tableTemp
 
-    
-    if(propType == 'h2h'){
-      //need to get record, chance of winning and weighted chance
-      
-      if(team.marketKey == 'h2h'){
-        finalTeam.totalWins = teamGameStats.filter(e => e.result == 'W').length
-        finalTeam.totalWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway == homeAway).length
-        finalTeam.totalWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == teamAgainstName).length
-  
-        finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W').length
-        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
-        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
 
-        
-      }
-      else if(team.marketKey == 'h2h_1st_3_innings'){
-        finalTeam.totalWins = teamGameStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)}).length
-        finalTeam.totalWinsHomeAway = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway == homeAway}).length
-        finalTeam.totalWinsTeam = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == teamAgainstName}).length
-  
-        finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)}).length
-        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway != homeAway}).length
-        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
-      
-        let tableTemp: any[] = []
-        teamGameStatsReversed.forEach(e => {tableTemp.push({
-          teamAgainstName: e.teamAgainstName,
-          gameDate: e.gameDate,
-          pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
-          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
-          homeAway: e.homeOrAway
-        })})
-        finalTeam.tableOverall = tableTemp
-        
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.homeOrAway == homeAway){
+      if (propType == 'h2h') {
+        //need to get record, chance of winning and weighted chance
+
+        if (team.marketKey == 'h2h') {
+          finalTeam.totalWins = teamGameStats.filter(e => e.result == 'W').length
+          finalTeam.totalWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway == homeAway).length
+          finalTeam.totalWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == teamAgainstName).length
+
+          finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W').length
+          finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
+          finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => e.result == 'W' && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+
+
+        }
+        else if (team.marketKey == 'h2h_1st_3_innings') {
+          finalTeam.totalWins = teamGameStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning) }).length
+          finalTeam.totalWinsHomeAway = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway == homeAway }).length
+          finalTeam.totalWinsTeam = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == teamAgainstName }).length
+
+          finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning) }).length
+          finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.homeOrAway != homeAway }).length
+          finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName] }).length
+
+          let tableTemp: any[] = []
+          teamGameStatsReversed.forEach(e => {
             tableTemp.push({
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
@@ -2965,47 +2957,49 @@ try{
               pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
               homeAway: e.homeOrAway
             })
-          }
           })
-        finalTeam.tableHomeAway = tableTemp
+          finalTeam.tableOverall = tableTemp
 
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.teamAgainstName == teamAgainstName){
-            tableTemp.push({
-              teamAgainstName: e.teamAgainstName,
-              gameDate: e.gameDate,
-              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
-              homeAway: e.homeOrAway
-            })
-          }
+          tableTemp = []
+          teamGameStatsReversed.forEach(e => {
+            if (e.homeOrAway == homeAway) {
+              tableTemp.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
+                pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
+                homeAway: e.homeOrAway
+              })
+            }
           })
-        finalTeam.tableTeam = tableTemp
-      
-      }
-      else if(team.marketKey == 'h2h_1st_5_innings'){
-        finalTeam.totalWins = teamGameStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)}).length
-        finalTeam.totalWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.homeOrAway == homeAway}).length
-        finalTeam.totalWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsScoredFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == teamAgainstName}).length
-  
-        finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)}).length
-        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.homeOrAway != homeAway}).length
-        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
-      
-        let tableTemp: any[] = []
-        teamGameStatsReversed.forEach(e => {tableTemp.push({
-          teamAgainstName: e.teamAgainstName,
-          gameDate: e.gameDate,
-          pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
-          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
-          homeAway: e.homeOrAway
-        })})
-        finalTeam.tableOverall = tableTemp
-        
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.homeOrAway == homeAway){
+          finalTeam.tableHomeAway = tableTemp
+
+          tableTemp = []
+          teamGameStatsReversed.forEach(e => {
+            if (e.teamAgainstName == teamAgainstName) {
+              tableTemp.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning),
+                pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning),
+                homeAway: e.homeOrAway
+              })
+            }
+          })
+          finalTeam.tableTeam = tableTemp
+
+        }
+        else if (team.marketKey == 'h2h_1st_5_innings') {
+          finalTeam.totalWins = teamGameStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning) }).length
+          finalTeam.totalWinsHomeAway = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.homeOrAway == homeAway }).length
+          finalTeam.totalWinsTeam = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsScoredFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == teamAgainstName }).length
+
+          finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning) }).length
+          finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.homeOrAway != homeAway }).length
+          finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName] }).length
+
+          let tableTemp: any[] = []
+          teamGameStatsReversed.forEach(e => {
             tableTemp.push({
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
@@ -3013,62 +3007,50 @@ try{
               pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
               homeAway: e.homeOrAway
             })
-          }
           })
-        finalTeam.tableHomeAway = tableTemp
+          finalTeam.tableOverall = tableTemp
 
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.teamAgainstName == teamAgainstName){
-            tableTemp.push({
-              teamAgainstName: e.teamAgainstName,
-              gameDate: e.gameDate,
-              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
-              homeAway: e.homeOrAway
-            })
-          }
+          tableTemp = []
+          teamGameStatsReversed.forEach(e => {
+            if (e.homeOrAway == homeAway) {
+              tableTemp.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
+                pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
+                homeAway: e.homeOrAway
+              })
+            }
           })
-        finalTeam.tableTeam = tableTemp
-      
-      }
-      else if(team.marketKey == 'h2h_1st_7_innings'){
-        finalTeam.totalWins = teamGameStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)}).length
-        finalTeam.totalWinsHomeAway = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.homeOrAway == homeAway}).length
-        finalTeam.totalWinsTeam = teamGameStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == teamAgainstName}).length
-  
-        finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return(e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)}).length
-        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.homeOrAway != homeAway}).length
-        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning+ e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]}).length
-      
-      
-        let tableTemp: any[] = []
-        teamGameStatsReversed.forEach(e => {tableTemp.push({
-          teamAgainstName: e.teamAgainstName,
-          gameDate: e.gameDate,
-          pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
-          pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
-          homeAway: e.homeOrAway
-        })})
-        finalTeam.tableOverall = tableTemp
-        
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.homeOrAway == homeAway){
-            tableTemp.push({
-              teamAgainstName: e.teamAgainstName,
-              gameDate: e.gameDate,
-              pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
-              pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
-              homeAway: e.homeOrAway
-            })
-          }
-          })
-        finalTeam.tableHomeAway = tableTemp
+          finalTeam.tableHomeAway = tableTemp
 
-        tableTemp  = []
-        teamGameStatsReversed.forEach(e => {
-          if(e.teamAgainstName == teamAgainstName){
+          tableTemp = []
+          teamGameStatsReversed.forEach(e => {
+            if (e.teamAgainstName == teamAgainstName) {
+              tableTemp.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning),
+                pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning),
+                homeAway: e.homeOrAway
+              })
+            }
+          })
+          finalTeam.tableTeam = tableTemp
+
+        }
+        else if (team.marketKey == 'h2h_1st_7_innings') {
+          finalTeam.totalWins = teamGameStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning) }).length
+          finalTeam.totalWinsHomeAway = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.homeOrAway == homeAway }).length
+          finalTeam.totalWinsTeam = teamGameStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == teamAgainstName }).length
+
+          finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => { return (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning) }).length
+          finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.homeOrAway != homeAway }).length
+          finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => { return ((e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning) > (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning)) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName] }).length
+
+
+          let tableTemp: any[] = []
+          teamGameStatsReversed.forEach(e => {
             tableTemp.push({
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
@@ -3076,168 +3058,195 @@ try{
               pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
               homeAway: e.homeOrAway
             })
-          }
           })
-        finalTeam.tableTeam = tableTemp
-      }
-     
+          finalTeam.tableOverall = tableTemp
 
-      
+          tableTemp = []
+          teamGameStatsReversed.forEach(e => {
+            if (e.homeOrAway == homeAway) {
+              tableTemp.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
+                pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
+                homeAway: e.homeOrAway
+              })
+            }
+          })
+          finalTeam.tableHomeAway = tableTemp
 
-    }
-    else if(propType == 'spread'){
-      // need to get record, chance of winning, weighted chance, avg, high and low
-      finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
-      finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
-      finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
-
-      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
-      finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
-      finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
-    
-      let totalSpread = 0 
-      teamGameStats.forEach(e => {
-        totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
-      })
-      finalTeam.averageOverall = totalSpread / finalTeam.totalGames
-      totalSpread = 0 
-      teamGameStats.forEach(e => { 
-        if(e.homeOrAway == homeAway){
-          totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
+          tableTemp = []
+          teamGameStatsReversed.forEach(e => {
+            if (e.teamAgainstName == teamAgainstName) {
+              tableTemp.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                pointsScoredOverall: (e.pointsScoredFirstInning + e.pointsScoredSecondInning + e.pointsScoredThirdInning + e.pointsScoredFourthInning + e.pointsScoredFifthInning + e.pointsScoredSixthInning + e.pointsScoredSeventhInning),
+                pointsAllowedOverall: (e.pointsAllowedFirstInning + e.pointsAllowedSecondInning + e.pointsAllowedThirdInning + e.pointsAllowedFourthInning + e.pointsAllowedFifthInning + e.pointsAllowedSixthInning + e.pointsAllowedSeventhInning),
+                homeAway: e.homeOrAway
+              })
+            }
+          })
+          finalTeam.tableTeam = tableTemp
         }
-        
-      })
-      finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
-      totalSpread = 0 
-      teamGameStats.forEach(e => {
-        if(e.teamAgainstName == teamAgainstName){
-          totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
-        }
-        
-      })
-      finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
-      finalTeam.highOverall = this.getSpreadHighLow(homeAway, 'overall', 'high')
-      finalTeam.highHomeAway = this.getSpreadHighLow(homeAway, homeAway, 'high')
-      finalTeam.highTeam = this.getSpreadHighLow(homeAway, 'team', 'high')
 
-      finalTeam.lowOverall = this.getSpreadHighLow(homeAway, 'overall', 'low')
-      finalTeam.lowHomeAway = this.getSpreadHighLow(homeAway, homeAway, 'low')
-      finalTeam.lowTeam = this.getSpreadHighLow(homeAway, 'team', 'low')
+
 
       }
-    else if(propType == 'total'){
-      // need to get record, chance of winning, weighted chance, avg, high and low
-      finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
-      finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
-      finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
+      else if (propType == 'spread') {
+        // need to get record, chance of winning, weighted chance, avg, high and low
+        finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
+        finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
+        finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
 
-      let totalSpread = 0 
-      teamGameStats.forEach(e => {
-        totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
-      })
-      finalTeam.averageOverall = totalSpread / finalTeam.totalGames
-      totalSpread = 0 
-      teamGameStats.forEach(e => { 
-        if(e.homeOrAway == homeAway){
+        finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
+        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
+        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+
+        let totalSpread = 0
+        teamGameStats.forEach(e => {
+          totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
+        })
+        finalTeam.averageOverall = totalSpread / finalTeam.totalGames
+        totalSpread = 0
+        teamGameStats.forEach(e => {
+          if (e.homeOrAway == homeAway) {
+            totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
+          }
+
+        })
+        finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
+        totalSpread = 0
+        teamGameStats.forEach(e => {
+          if (e.teamAgainstName == teamAgainstName) {
+            totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
+          }
+
+        })
+        finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
+
+        finalTeam.highOverall = this.getSpreadHighLow(homeAway, 'overall', 'high')
+        finalTeam.highHomeAway = this.getSpreadHighLow(homeAway, homeAway, 'high')
+        finalTeam.highTeam = this.getSpreadHighLow(homeAway, 'team', 'high')
+
+        finalTeam.lowOverall = this.getSpreadHighLow(homeAway, 'overall', 'low')
+        finalTeam.lowHomeAway = this.getSpreadHighLow(homeAway, homeAway, 'low')
+        finalTeam.lowTeam = this.getSpreadHighLow(homeAway, 'team', 'low')
+
+      }
+      else if (propType == 'total') {
+        // need to get record, chance of winning, weighted chance, avg, high and low
+        finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
+        finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
+        finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
+
+        let totalSpread = 0
+        teamGameStats.forEach(e => {
           totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
-        }
-        
-      })
-      finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
-      totalSpread = 0 
-      teamGameStats.forEach(e => {
-        if(e.teamAgainstName == teamAgainstName){
-          totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
-        }
-        
-      })
-      finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
+        })
+        finalTeam.averageOverall = totalSpread / finalTeam.totalGames
+        totalSpread = 0
+        teamGameStats.forEach(e => {
+          if (e.homeOrAway == homeAway) {
+            totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
+          }
 
-      finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
-      finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
-      finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
-      
+        })
+        finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
+        totalSpread = 0
+        teamGameStats.forEach(e => {
+          if (e.teamAgainstName == teamAgainstName) {
+            totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
+          }
 
-      finalTeam.highOverall = this.getTotalHighLow(homeAway, 'overall', 'high')
-      finalTeam.highHomeAway = this.getTotalHighLow(homeAway, homeAway, 'high')
-      finalTeam.highTeam = this.getTotalHighLow(homeAway, 'team', 'high')
+        })
+        finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
-      finalTeam.lowOverall = this.getTotalHighLow(homeAway, 'overall', 'low')
-      finalTeam.lowHomeAway = this.getTotalHighLow(homeAway, homeAway, 'low')
-      finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low')
+        finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
+        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
+        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+
+
+        finalTeam.highOverall = this.getTotalHighLow(homeAway, 'overall', 'high')
+        finalTeam.highHomeAway = this.getTotalHighLow(homeAway, homeAway, 'high')
+        finalTeam.highTeam = this.getTotalHighLow(homeAway, 'team', 'high')
+
+        finalTeam.lowOverall = this.getTotalHighLow(homeAway, 'overall', 'low')
+        finalTeam.lowHomeAway = this.getTotalHighLow(homeAway, homeAway, 'low')
+        finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low')
+      }
+      this.returnObj = {
+        homeAway: finalTeam.homeAway,
+        propType: finalTeam.propType,
+        totalGames: finalTeam.totalGames,
+        totalGamesHomeAway: finalTeam.totalGamesHomeAway,
+        totalGamesTeam: finalTeam.totalGamesTeam,
+        teamAgainstTotalGames: finalTeam.teamAgainstTotalGames,
+        teamAgainstGamesHomeAway: finalTeam.teamAgainstGamesHomeAway,
+        teamAgainstGamesTeam: finalTeam.teamAgainstGamesTeam,
+        totalWins: finalTeam.totalWins,
+        totalWinsHomeAway: finalTeam.totalWinsHomeAway,
+        totalWinsTeam: finalTeam.totalWinsTeam,
+        teamAgainstTotalWins: finalTeam.teamAgainstTotalWins,
+        teamAgainstWinsHomeAway: finalTeam.teamAgainstWinsHomeAway,
+        teamAgainstWinsTeam: finalTeam.teamAgainstWinsTeam,
+        overUnder: finalTeam.overUnder,
+        averageOverall: finalTeam.averageOverall,
+        averageHomeAway: finalTeam.averageHomeAway,
+        averageTeam: finalTeam.averageTeam,
+        highOverall: finalTeam.highOverall,
+        highHomeAway: finalTeam.highHomeAway,
+        highTeam: finalTeam.highTeam,
+        lowOverall: finalTeam.lowOverall,
+        lowHomeAway: finalTeam.lowHomeAway,
+        lowTeam: finalTeam.lowTeam,
+        tableOverall: finalTeam.tableOverall.slice(0, 10),
+        tableHomeAway: finalTeam.tableHomeAway.slice(0, 10),
+        tableTeam: finalTeam.tableTeam.slice(0, 10),
+        teamAgainstName: teamAgainstName,
+        markeyKey: marketKey
+
+      }
+
+    } catch (error: any) {
+      console.log(error.message)
+      this.returnObj = {
+        homeAway: ' ',
+        propType: ' ',
+        totalGames: 0,
+        totalGamesHomeAway: 0,
+        totalGamesTeam: 0,
+        teamAgainstTotalGames: 0,
+        teamAgainstGamesHomeAway: 0,
+        teamAgainstGamesTeam: 0,
+        totalWins: 0,
+        totalWinsHomeAway: 0,
+        totalWinsTeam: 0,
+        teamAgainstTotalWins: 0,
+        teamAgainstWinsHomeAway: 0,
+        teamAgainstWinsTeam: 0,
+        overUnder: false,
+        averageOverall: 0,
+        averageHomeAway: 0,
+        averageTeam: 0,
+        highOverall: 0,
+        highHomeAway: 0,
+        highTeam: 0,
+        lowOverall: 0,
+        lowHomeAway: 0,
+        lowTeam: 0,
+        tableOverall: [],
+        tableHomeAway: [],
+        tableTeam: [],
+        teamAgainstName: '',
+        marketKey: ''
+
+      }
     }
-    this.returnObj = {
-      homeAway: finalTeam.homeAway,
-      propType: finalTeam.propType,
-      totalGames: finalTeam.totalGames,
-      totalGamesHomeAway: finalTeam.totalGamesHomeAway,
-      totalGamesTeam: finalTeam.totalGamesTeam,
-      teamAgainstTotalGames: finalTeam.teamAgainstTotalGames,
-      teamAgainstGamesHomeAway: finalTeam.teamAgainstGamesHomeAway,
-      teamAgainstGamesTeam: finalTeam.teamAgainstGamesTeam,
-      totalWins: finalTeam.totalWins,
-      totalWinsHomeAway: finalTeam.totalWinsHomeAway,
-      totalWinsTeam: finalTeam.totalWinsTeam,
-      teamAgainstTotalWins: finalTeam.teamAgainstTotalWins,
-      teamAgainstWinsHomeAway: finalTeam.teamAgainstWinsHomeAway,
-      teamAgainstWinsTeam: finalTeam.teamAgainstWinsTeam,
-      overUnder: finalTeam.overUnder,
-      averageOverall: finalTeam.averageOverall,
-      averageHomeAway: finalTeam.averageHomeAway,
-      averageTeam: finalTeam.averageTeam,
-      highOverall: finalTeam.highOverall,
-      highHomeAway: finalTeam.highHomeAway,
-      highTeam: finalTeam.highTeam,
-      lowOverall: finalTeam.lowOverall,
-      lowHomeAway: finalTeam.lowHomeAway,
-      lowTeam: finalTeam.lowTeam,
-      tableOverall: finalTeam.tableOverall.slice(0, 10),
-      tableHomeAway: finalTeam.tableHomeAway.slice(0, 10),
-      tableTeam: finalTeam.tableTeam.slice(0, 10),
-      teamAgainstName: teamAgainstName,
-      markeyKey: marketKey
 
-    }
-    
-}catch(error:any){
-  console.log(error.message)
-  this.returnObj = {
-      homeAway: ' ',
-      propType: ' ',
-      totalGames: 0,
-      totalGamesHomeAway: 0,
-      totalGamesTeam: 0,
-      teamAgainstTotalGames: 0,
-      teamAgainstGamesHomeAway: 0,
-      teamAgainstGamesTeam: 0,
-      totalWins: 0,
-      totalWinsHomeAway: 0,
-      totalWinsTeam: 0,
-      teamAgainstTotalWins: 0,
-      teamAgainstWinsHomeAway: 0,
-      teamAgainstWinsTeam: 0,
-      overUnder: false,
-      averageOverall: 0,
-      averageHomeAway: 0,
-      averageTeam: 0,
-      highOverall: 0,
-      highHomeAway: 0,
-      highTeam: 0,
-      lowOverall: 0,
-      lowHomeAway: 0,
-      lowTeam: 0,
-      tableOverall: [],
-      tableHomeAway: [],
-      tableTeam: [],
-      teamAgainstName: '',
-      marketKey: ''
 
-    }
-}
-    
-    
-    
+
     console.log(this.returnObj)
     this.arrayOfTeamBets.push(this.returnObj)
     return this.returnObj
@@ -3247,67 +3256,67 @@ try{
   //how to find best bets
   //if either overall home/away or team win percentage is over a certain number then add it to it
   //
-  getTeamBestBets(){
-    for(let bet of this.arrayOfTeamBets){
-      if(bet.totalGames != 0 && bet.totalGamesHomeAway != 0 && bet.totalGamesTeam != 0){
-        if(((bet.totalWins / bet.totalGames) > .7) || ((bet.totalWinsHomeAway / bet.totalGamesHomeAway) > .7) || ((bet.totalWinsTeam / bet.totalGamesTeam) > .7)){
+  getTeamBestBets() {
+    for (let bet of this.arrayOfTeamBets) {
+      if (bet.totalGames != 0 && bet.totalGamesHomeAway != 0 && bet.totalGamesTeam != 0) {
+        if (((bet.totalWins / bet.totalGames) > .7) || ((bet.totalWinsHomeAway / bet.totalGamesHomeAway) > .7) || ((bet.totalWinsTeam / bet.totalGamesTeam) > .7)) {
           this.teamBestBets.push(bet)
         }
       }
-      
+
     }
   }
 
-  loadFindHomeAwayFromGameId(gameId: string, teamName: string): string{
+  loadFindHomeAwayFromGameId(gameId: string, teamName: string): string {
     return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
   }
 
-  
+
   getPropType(prop: string): string {
     let propType = ''
-    if (prop.includes('h2h')){
+    if (prop.includes('h2h')) {
       propType = 'h2h'
     }
-    else if(prop.includes('spread')){
+    else if (prop.includes('spread')) {
       propType = 'spread'
     }
-    else if(prop.includes('total')){
+    else if (prop.includes('total')) {
       propType = 'total'
     }
     return propType
   }
 
-  public listOfTeamProps: {[key: string]: string} = {"h2h": "Moneyline", "spreads": "Spread", "totals": "Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings"}
+  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings" }
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings"]
   displayPropTitle(prop: any): string {
     let finalReturn = ''
-    if(prop[0].length > 1){
+    if (prop[0].length > 1) {
       finalReturn = this.listOfTeamProps[prop[0][0].marketKey]
     }
-    else{
+    else {
       finalReturn = this.listOfTeamProps[prop[0].marketKey]
     }
 
     return finalReturn
   }
 
-  displayPropDescription(prop: any): string{
+  displayPropDescription(prop: any): string {
     let finalReturn = ''
 
-    if(prop[0].length > 1){
+    if (prop[0].length > 1) {
       let propOver = prop[0][0].price > 0 ? '+' : ''
-      let one = prop[0][0].teamName + " " + prop[0][0].point + " | " + propOver +  prop[0][0].price 
+      let one = prop[0][0].teamName + " " + prop[0][0].point + " | " + propOver + prop[0][0].price
       propOver = prop[0][1].price > 0 ? '+' : ''
-      let two = prop[0][1].teamName + " " + prop[0][1].point + " | " + propOver +  prop[0][1].price 
+      let two = prop[0][1].teamName + " " + prop[0][1].point + " | " + propOver + prop[0][1].price
       finalReturn = one + " " + two
-      
+
     }
-    else{
-      if(this.listOfMoneylines.includes(prop[0].marketKey)){
+    else {
+      if (this.listOfMoneylines.includes(prop[0].marketKey)) {
         let overProp = prop[0].price > 0 ? '+' : ''
         finalReturn = overProp + prop[0].price
       }
-      else{
+      else {
         let overProp = prop[0].price > 0 ? '+' : ''
         let overPoint = prop[0].point > 0 ? "+" : ''
         finalReturn = overPoint + prop[0].point + " | " + overProp + prop[0].price
@@ -3493,7 +3502,7 @@ try{
       }
 
     }
-    if(finalSpread == 1000 || finalSpread == -1000){    
+    if (finalSpread == 1000 || finalSpread == -1000) {
       finalSpread = 0
     }
     return finalSpread
@@ -3621,13 +3630,13 @@ try{
 
     }
 
-    if(finalTotal == 1000){    
+    if (finalTotal == 1000) {
       finalTotal = 0
     }
     return finalTotal
   }
 
-  playerClicked(player: string){
+  playerClicked(player: string) {
     let playerInfo = this.playerStatsFinal.filter(e => e.playerName == player)[0]
     let playerId = playerInfo.playerId
     this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
