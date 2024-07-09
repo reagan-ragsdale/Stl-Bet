@@ -354,7 +354,6 @@ export class PropScreenComponent implements OnInit {
       currentGame[0][0].selected = true;
 
     }
-    console.log(this.selectedSportGames)
     await this.onGameClick(this.selectedGame)
   }
 
@@ -2368,6 +2367,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   setValuesToTeamPropFinal() {
+   
     for (let team of this.teamPropFinnal) {
       for (let prop of team) {
         let returnProp = {}
@@ -2444,7 +2444,6 @@ export class PropScreenComponent implements OnInit {
       playerPropNew.push(playerAway, playerHome)
       //propNew.push(playerPropNew)
       this.playerPropDataFinalNew.push(playerPropNew)
-      console.log(this.playerPropDataFinalNew)
 
 
 
@@ -2862,6 +2861,7 @@ export class PropScreenComponent implements OnInit {
       let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
       let teamAgainstStatsReversed = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStatsReversed : this.team1GameStatsReversed
 
+      
       var finalTeam: any = {}
 
       finalTeam.homeAway = homeAway
@@ -3177,6 +3177,7 @@ export class PropScreenComponent implements OnInit {
         finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low')
       }
       this.returnObj = {
+        teamName: teamName,
         homeAway: finalTeam.homeAway,
         propType: finalTeam.propType,
         totalGames: finalTeam.totalGames,
@@ -3212,6 +3213,7 @@ export class PropScreenComponent implements OnInit {
     } catch (error: any) {
       console.log(error.message)
       this.returnObj = {
+        teamName: '',
         homeAway: ' ',
         propType: ' ',
         totalGames: 0,
@@ -3247,7 +3249,6 @@ export class PropScreenComponent implements OnInit {
 
 
 
-    console.log(this.returnObj)
     this.arrayOfTeamBets.push(this.returnObj)
     return this.returnObj
 
@@ -3257,7 +3258,7 @@ export class PropScreenComponent implements OnInit {
   //if either overall home/away or team win percentage is over a certain number then add it to it
   //
   getTeamBestBets() {
-    console.log(this.arrayOfTeamBets)
+    console.log(this.teamPropFinnal)
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHOmeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
