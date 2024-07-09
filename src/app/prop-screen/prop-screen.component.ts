@@ -2851,6 +2851,7 @@ public arrayOfTeamBets: any[] = [];
   getTeamStats(team: DbGameBookData, teamName: string){
 
 try{
+  let marketKey = team.marketKey
   let propType = this.getPropType(team.marketKey)
     let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
     let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
@@ -3194,7 +3195,8 @@ try{
       tableOverall: finalTeam.tableOverall.slice(0, 10),
       tableHomeAway: finalTeam.tableHomeAway.slice(0, 10),
       tableTeam: finalTeam.tableTeam.slice(0, 10),
-      teamAgainstName: teamAgainstName
+      teamAgainstName: teamAgainstName,
+      markeyKey: marketKey
 
     }
     
@@ -3228,7 +3230,8 @@ try{
       tableOverall: [],
       tableHomeAway: [],
       tableTeam: [],
-      teamAgainstName: ''
+      teamAgainstName: '',
+      marketKey: ''
 
     }
 }

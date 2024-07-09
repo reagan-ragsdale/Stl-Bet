@@ -575,7 +575,9 @@
           <div *ngIf="teamBestBets.length > 0" class="team-best-bets" style="width: 100%;display: flex; flex-direction: column; ">
             <h2 style="text-align: center;">Best Bets</h2>
             <div class="team-best-bets-body" style="width:100%; display:flex; justify-content: space-around;">
-              <div *ngFor="let bet of teamBestBets"></div>
+              <div *ngFor="let bet of teamBestBets">
+                <h3>{{bet.teamName}} | {{bet.marketKey}}</h3>
+              </div>
             </div>
           </div>
         </div>
