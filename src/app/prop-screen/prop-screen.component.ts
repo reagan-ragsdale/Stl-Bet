@@ -3259,11 +3259,13 @@ export class PropScreenComponent implements OnInit {
   getTeamBestBets() {
     console.log(this.arrayOfTeamBets)
     for (let bet of this.arrayOfTeamBets) {
-      if (bet.totalGames != 0 && bet.totalGamesHomeAway != 0 && bet.totalGamesTeam != 0) {
-        if (((bet.totalWins / bet.totalGames) > .7) || ((bet.totalWinsHomeAway / bet.totalGamesHomeAway) > .7) || ((bet.totalWinsTeam / bet.totalGamesTeam) > .7)) {
+      let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
+      let homeAwayWin = bet.totalGamesHOmeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
+      let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
+      if ((overallWin > .7) || (teamWin > .7) || (homeAwayWin > .7)) {
           this.teamBestBets.push(bet)
-        }
       }
+      
 
     }
     console.log(this.teamBestBets)
