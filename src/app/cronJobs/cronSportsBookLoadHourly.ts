@@ -27,6 +27,11 @@ export const cronSportsBookHourly = async () => {
         catch (error: any) {
             console.log(error.message)
         }
+        try{
+            
+        }catch(error: any){
+            console.log(error.message)
+        }
     }
 
 }

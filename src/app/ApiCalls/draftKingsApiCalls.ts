@@ -202,7 +202,7 @@ export class draftKingsApiController {
               awayTeam: this.selectedSportsData.away_team,
               commenceTime: this.selectedSportsData.commence_time,
               bookMaker: this.selectedSportsData.bookmakers[j].title,
-              marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
+              marketKey: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].key + " " + this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : this.selectedSportsData.bookmakers[j].markets[k].key,
               teamName: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name,
               price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
               point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
@@ -358,7 +358,7 @@ export class draftKingsApiController {
   static async getAlternateTeamProps(sport: string, bookId: string): Promise<DbGameBookData[]> {
     const sportNew = this.convertSport(sport);
     try {
-      const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/events/" + bookId + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings&bookmakers=draftkings&oddsFormat=american";
+      const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/events/" + bookId + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings,team_totals&bookmakers=draftkings&oddsFormat=american";
       const promise = await fetch(apiCall);
       const processedResponse = await promise.json();
       this.selectedSportsData = processedResponse;
