@@ -203,7 +203,7 @@ export class draftKingsApiController {
               commenceTime: this.selectedSportsData.commence_time,
               bookMaker: this.selectedSportsData.bookmakers[j].title,
               marketKey: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].key + " " + this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : this.selectedSportsData.bookmakers[j].markets[k].key,
-              teamName: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name,
+              teamName: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description : this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name,
               price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
               point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
               bookSeq: nextBookSeq
