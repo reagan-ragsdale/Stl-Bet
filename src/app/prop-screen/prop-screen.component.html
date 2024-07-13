@@ -683,7 +683,7 @@
           <div *ngIf="teamBestBets.length > 0" class="team-best-bets"
             style="width: 100%;display: flex; flex-direction: column; ">
             <h2 style="text-align: center; color: white; margin-top:1rem;">Best Bets</h2>
-            <div class="team-best-bets-body" style="width:100%; display:flex; justify-content: space-around;">
+            <div class="team-best-bets-body" style="width:100%; display:flex; gap:1rem; margin-left:1rem; margin-right:1rem; flex-wrap:wrap;">
               <div *ngFor="let bet of teamBestBets">
                 <mat-card
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
