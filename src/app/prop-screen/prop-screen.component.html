@@ -268,20 +268,20 @@
       <ng-container matColumnDef="TeamAgainst">
         <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;">Team </th>
         <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;"
-          style="padding:0; text-align: center;">
+          style="padding-left:5px; padding-right:5px; text-align: center;">
           {{element.homeAway == 'Away' ? '@' : ''}}{{element.teamAgainstName}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Date">
         <th mat-header-cell *matHeaderCellDef style="padding:0;text-align: center;"> Date </th>
-        <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.gameDate}}
+        <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;"> {{element.gameDate}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Score">
         <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;"> Score </th>
-        <td mat-cell *matCellDef="let element" style="padding:0; text-align: center;"> {{element.pointsScoredOverall}} -
+        <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;"> {{element.pointsScoredOverall}} -
           {{element.pointsAllowedOverall}} </td>
       </ng-container>
 
@@ -698,7 +698,7 @@
                         <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
                           <div class="full-stats"
                             style="width: 96%; display: flex; margin-right:auto; margin-left:auto; margin-top: 1rem; margin-bottom: 1rem; background-color: #ebebeb; border-radius: 10px; justify-content: space-evenly;">
-                            <div class="overall-stats"
+                            <div class="overall-stats" [ngStyle]="{'backgroundColor': bet.overallHighlight == true ? 'green' : ''}"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                               <div
                                 style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
@@ -748,7 +748,7 @@
                                   ''}}{{bet.lowOverall | number: '1.2-2'}}</h3>
                               </div>
                             </div>
-                            <div class="homeaway-stats"
+                            <div class="homeaway-stats" [ngStyle]="{'backgroundColor': bet.homeAwayHighlight == true ? 'green' : ''}"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                               <div
                                 style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
@@ -801,7 +801,7 @@
                                   ''}}{{bet.lowHomeAway | number: '1.2-2'}}</h3>
                               </div>
                             </div>
-                            <div class="team-stats"
+                            <div class="team-stats" [ngStyle]="{'backgroundColor': bet.teamHighlight == true ? 'green' : ''}"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                               <div
                                 style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
