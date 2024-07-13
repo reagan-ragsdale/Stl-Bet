@@ -311,5 +311,8 @@ mat-mdc-tab-body-content{
     ::ng-deep .mat-card-content{
       padding: 0 !important;
     }
+    .team-best-bets-body{
+      flex-direction:column;
+    }
   }
    
