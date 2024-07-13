@@ -3228,14 +3228,14 @@ export class PropScreenComponent implements OnInit {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
-      if ((overallWin > .55) || (teamWin > .55) || (homeAwayWin > .55)) {
-        if(overallWin > .55){
+      if ((overallWin > .75) || (teamWin > .75) || (homeAwayWin > .75)) {
+        if(overallWin > .75){
           bet.overallHighlight = true
         }
-        if(homeAwayWin > .55){
+        if(homeAwayWin > .75){
           bet.homeAwayHighlight = true
         }
-        if(teamWin > .55){
+        if(teamWin > .75){
           bet.teamHighlight = true
         }
           this.teamBestBets.push(bet)
