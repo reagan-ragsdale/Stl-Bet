@@ -275,13 +275,15 @@
 
       <ng-container matColumnDef="Date">
         <th mat-header-cell *matHeaderCellDef style="padding:0;text-align: center;"> Date </th>
-        <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;"> {{element.gameDate}}
+        <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;">
+          {{element.gameDate}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Score">
         <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;"> Score </th>
-        <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;"> {{element.pointsScoredOverall}} -
+        <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;">
+          {{element.pointsScoredOverall}} -
           {{element.pointsAllowedOverall}} </td>
       </ng-container>
 
@@ -683,12 +685,20 @@
           <div *ngIf="teamBestBets.length > 0" class="team-best-bets"
             style="width: 100%;display: flex; flex-direction: column; ">
             <h2 style="text-align: center; color: white; margin-top:1rem;">Best Bets</h2>
-            <div class="team-best-bets-body" style="width:100%; display:flex; gap:1rem; margin-left:1rem; margin-right:1rem; flex-wrap:wrap;">
+            <div style="margin-top:1rem; margin-bottom:1rem;">
+              <h3 style="color: white;"> Find bets with chance of winning over:</h3>
+              <mat-slider class="example-margin"  [max]="99" [min]="51">
+                <input matSliderThumb (ngModelChange)="calculateNewBestBet()" [(ngModel)]="sliderValue" #slider>
+              </mat-slider>
+            </div>
+            <div class="team-best-bets-body"
+              style="width:100%; display:flex; gap:1rem; margin-left:1rem; margin-right:1rem; flex-wrap:wrap;">
               <div *ngFor="let bet of teamBestBets">
                 <mat-card
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                   <mat-card-header>
-                    <mat-card-title>{{bet.teamName + " | "}}{{displayIndividualPropTitle(bet.marketKey)}}</mat-card-title>
+                    <mat-card-title>{{bet.teamName + " |
+                      "}}{{displayIndividualPropTitle(bet.marketKey)}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content style="min-height:400px; padding: 0;">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
@@ -698,7 +708,8 @@
                         <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
                           <div class="full-stats"
                             style="width: 96%; display: flex; margin-right:auto; margin-left:auto; margin-top: 1rem; margin-bottom: 1rem; background-color: #ebebeb; border-radius: 10px; justify-content: space-evenly;">
-                            <div class="overall-stats" [ngStyle]="{'backgroundColor': bet.overallHighlight == true ? 'green' : ''}"
+                            <div class="overall-stats"
+                              [ngStyle]="{'backgroundColor': bet.overallHighlight == true ? 'green' : ''}"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                               <div
                                 style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
@@ -748,7 +759,8 @@
                                   ''}}{{bet.lowOverall | number: '1.2-2'}}</h3>
                               </div>
                             </div>
-                            <div class="homeaway-stats" [ngStyle]="{'backgroundColor': bet.homeAwayHighlight == true ? 'green' : ''}"
+                            <div class="homeaway-stats"
+                              [ngStyle]="{'backgroundColor': bet.homeAwayHighlight == true ? 'green' : ''}"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                               <div
                                 style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
@@ -801,7 +813,8 @@
                                   ''}}{{bet.lowHomeAway | number: '1.2-2'}}</h3>
                               </div>
                             </div>
-                            <div class="team-stats" [ngStyle]="{'backgroundColor': bet.teamHighlight == true ? 'green' : ''}"
+                            <div class="team-stats"
+                              [ngStyle]="{'backgroundColor': bet.teamHighlight == true ? 'green' : ''}"
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                               <div
                                 style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">

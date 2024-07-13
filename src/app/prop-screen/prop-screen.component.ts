@@ -3223,32 +3223,33 @@ export class PropScreenComponent implements OnInit {
   //how to find best bets
   //if either overall home/away or team win percentage is over a certain number then add it to it
   //
+  sliderValue: number = 80;
   getTeamBestBets() {
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
-      if ((overallWin > .75) || (teamWin > .75) || (homeAwayWin > .75)) {
-        if(overallWin > .75){
+      if ((overallWin > .80) || (teamWin > .80) || (homeAwayWin > .80)) {
+        if(overallWin > .80){
           bet.overallHighlight = true
         }
-        if(homeAwayWin > .75){
+        if(homeAwayWin > .80){
           bet.homeAwayHighlight = true
         }
-        if(teamWin > .75){
+        if(teamWin > .80){
           bet.teamHighlight = true
         }
           this.teamBestBets.push(bet)
       }
       else if(bet.propType == 'total'){
-        if((overallWin < .3) || (teamWin < .3) || (homeAwayWin < .3)){
-          if(overallWin < .3){
+        if((overallWin < .2) || (teamWin < .2) || (homeAwayWin < .2)){
+          if(overallWin < .2){
             bet.overallHighlight = true
           }
-          if(homeAwayWin < .3){
+          if(homeAwayWin < .2){
             bet.homeAwayHighlight = true
           }
-          if(teamWin < .3){
+          if(teamWin < .2){
             bet.teamHighlight = true
           }
           bet.overUnder = true
@@ -3262,6 +3263,46 @@ export class PropScreenComponent implements OnInit {
 
     }
 
+  }
+  calculateNewBestBet(){
+    this.teamBestBets = []
+    for (let bet of this.arrayOfTeamBets) {
+      let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
+      let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
+      let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
+      if ((overallWin > (this.sliderValue/100)) || (teamWin > (this.sliderValue/100)) || (homeAwayWin > (this.sliderValue/100))) {
+        if(overallWin > (this.sliderValue/100)){
+          bet.overallHighlight = true
+        }
+        if(homeAwayWin > (this.sliderValue/100)){
+          bet.homeAwayHighlight = true
+        }
+        if(teamWin > (this.sliderValue/100)){
+          bet.teamHighlight = true
+        }
+          this.teamBestBets.push(bet)
+      }
+      else if(bet.propType == 'total'){
+        if((overallWin < (1-(this.sliderValue/100))) || (teamWin < (1-(this.sliderValue/100))) || (homeAwayWin < (1-(this.sliderValue/100)))){
+          if(overallWin < (1-(this.sliderValue/100))){
+            bet.overallHighlight = true
+          }
+          if(homeAwayWin < (1-(this.sliderValue/100))){
+            bet.homeAwayHighlight = true
+          }
+          if(teamWin < (1-(this.sliderValue/100))){
+            bet.teamHighlight = true
+          }
+          bet.overUnder = true
+          this.teamBestBets.push(bet)
+        }
+      }
+
+      
+      
+      
+
+    }
   }
 
   loadFindHomeAwayFromGameId(gameId: string, teamName: string): string {
