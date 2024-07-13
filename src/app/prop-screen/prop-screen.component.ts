@@ -3264,14 +3264,34 @@ export class PropScreenComponent implements OnInit {
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
       if ((overallWin > .7) || (teamWin > .7) || (homeAwayWin > .7)) {
+        if(overallWin > .7){
+          bet.overallHighlight = true
+        }
+        if(homeAwayWin > .7){
+          bet.homeAwayHighlight = true
+        }
+        if(teamWin > .7){
+          bet.teamHighlight = true
+        }
           this.teamBestBets.push(bet)
       }
       else if(bet.propType == 'total'){
         if((overallWin < .3) || (teamWin < .3) || (homeAwayWin < .3)){
+          if(overallWin < .3){
+            bet.overallHighlight = true
+          }
+          if(homeAwayWin < .3){
+            bet.homeAwayHighlight = true
+          }
+          if(teamWin < .3){
+            bet.teamHighlight = true
+          }
           bet.overUnder = true
           this.teamBestBets.push(bet)
         }
       }
+
+      
       
       
 
@@ -3299,7 +3319,7 @@ export class PropScreenComponent implements OnInit {
     return propType
   }
 
-  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings" }
+  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Game Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings" }
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings"]
   displayPropTitle(prop: any): string {
     let finalReturn = ''
