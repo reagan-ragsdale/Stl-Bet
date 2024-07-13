@@ -3274,12 +3274,15 @@ export class PropScreenComponent implements OnInit {
         if(overallWin > (this.sliderValue/100)){
           bet.overallHighlight = true
         }
+        else{bet.overallHighlight = false}
         if(homeAwayWin > (this.sliderValue/100)){
           bet.homeAwayHighlight = true
         }
+        else{bet.homeAwayHighlight = false}
         if(teamWin > (this.sliderValue/100)){
           bet.teamHighlight = true
         }
+        else{bet.teamHighlight = false}
           this.teamBestBets.push(bet)
       }
       else if(bet.propType == 'total'){
@@ -3287,12 +3290,15 @@ export class PropScreenComponent implements OnInit {
           if(overallWin < (1-(this.sliderValue/100))){
             bet.overallHighlight = true
           }
+          else{bet.overallHighlight = false}
           if(homeAwayWin < (1-(this.sliderValue/100))){
             bet.homeAwayHighlight = true
           }
+          else{bet.homeAwayHighlight = false}
           if(teamWin < (1-(this.sliderValue/100))){
             bet.teamHighlight = true
           }
+          else{bet.teamHighlight = false}
           bet.overUnder = true
           this.teamBestBets.push(bet)
         }
