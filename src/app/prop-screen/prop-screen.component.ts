@@ -2860,7 +2860,7 @@ export class PropScreenComponent implements OnInit {
       let teamGameStatsReversed: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStatsReversed : this.team2GameStatsReversed
       let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
       let teamAgainstStatsReversed = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStatsReversed : this.team1GameStatsReversed
-
+      let teamNameNew = MlbService.mlbTeamNameToAbvr[teamName]
       
       var finalTeam: any = {}
 
@@ -3177,7 +3177,7 @@ export class PropScreenComponent implements OnInit {
         finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low')
       }
       this.returnObj = {
-        teamName: teamName,
+        teamName: teamNameNew,
         homeAway: finalTeam.homeAway,
         propType: finalTeam.propType,
         totalGames: finalTeam.totalGames,
@@ -3261,11 +3261,18 @@ export class PropScreenComponent implements OnInit {
     console.log(this.teamPropFinnal)
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
-      let homeAwayWin = bet.totalGamesHOmeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
+      let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
       if ((overallWin > .7) || (teamWin > .7) || (homeAwayWin > .7)) {
           this.teamBestBets.push(bet)
       }
+      else if(bet.propType == 'total'){
+        if((overallWin < .3) || (teamWin < .3) || (homeAwayWin < .3)){
+          bet.overUnder = true
+          this.teamBestBets.push(bet)
+        }
+      }
+      
       
 
     }
@@ -3304,6 +3311,9 @@ export class PropScreenComponent implements OnInit {
     }
 
     return finalReturn
+  }
+  displayIndividualPropTitle(prop: string): string {
+    return this.listOfTeamProps[prop]
   }
 
   displayPropDescription(prop: any): string {
