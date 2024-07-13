@@ -357,18 +357,7 @@ export class PropScreenComponent implements OnInit {
     await this.onGameClick(this.selectedGame)
   }
 
-  /* public trimSports(sports: any) {
-    //need to figure out a way to order the sports but for now just show the main ones
-
-    sports.forEach((sport: { title: string; }) => {
-      this.listOfSupportedSports.forEach(s => {
-        if (sport.title == s) {
-          this.sportsNew.push(sport);
-        }
-      })
-    });
-    this.selectedSport = this.sportsNew[0].title;
-  } */
+  
 
   setSelectedDate(date: string) {
     this.selectedDate = date;
@@ -383,34 +372,10 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  /* async onSportClick(sport: any) {
-    this.selectedDate = ''
-    this.setSelectedSport(sport.tab.textLabel);
-    //await this.checkSportPlayerInfoDb();
-    //await this.checkPlayerInfoDb();
-    this.sportsBookDataFinal = await SportsBookController.loadSportBook(this.selectedSport)
-    //await this.checkSportsBookDb();
-
-    this.updateDates();
-
-
-
-
-  } */
-  /* onDateClick(date: any) {
-    this.setSelectedDate(date.tab.textLabel);
-    this.updateGames();
-  } */
+ 
   async onGameClick(game: string) {
     this.setSelectedGame(game);
-    /* this.router.navigate(
-      [], 
-      {
-        relativeTo: this.route,
-        queryParams:  this.selectedGame,
-        queryParamsHandling: 'merge'
-      }
-    ); */
+    
     this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     this.selectedSportGamesFinal.forEach(e => e[0].selected = false)
     let selectedGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
@@ -486,6 +451,7 @@ export class PropScreenComponent implements OnInit {
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
+    console.log(tempProp)
     var name1 = '';
     var h2h = 0;
     var spreadPoint = 0;
@@ -3258,7 +3224,6 @@ export class PropScreenComponent implements OnInit {
   //if either overall home/away or team win percentage is over a certain number then add it to it
   //
   getTeamBestBets() {
-    console.log(this.teamPropFinnal)
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
@@ -3296,7 +3261,6 @@ export class PropScreenComponent implements OnInit {
       
 
     }
-    console.log(this.teamBestBets)
 
   }
 
