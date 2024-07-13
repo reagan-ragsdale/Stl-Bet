@@ -685,9 +685,9 @@
           <div  class="team-best-bets"
             style="width: 100%;display: flex; flex-direction: column; ">
             <h2 style="text-align: center; color: white; margin-top:1rem;">Best Bets</h2>
-            <div style="margin-top:1rem; margin-bottom:1rem;">
-              <h3 style="color: white;"> Find bets with chance of winning over: {{sliderValue}}%</h3>
-              <mat-slider class="example-margin"   [max]="99" [min]="51">
+            <div style="margin-top:1rem; margin-bottom:1rem; margin-left:auto; margin-right:auto;">
+              <h3 style="color: white; margin-bottom:0;"> Find bets with chance of winning over: {{sliderValue}}%</h3>
+              <mat-slider class="example-margin"  [color]="'warn'" [max]="99" [min]="51">
                 <input matSliderThumb (ngModelChange)="calculateNewBestBet()" [(ngModel)]="sliderValue" #slider>
               </mat-slider>
             </div>
