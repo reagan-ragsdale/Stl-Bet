@@ -682,17 +682,16 @@
             </div>
 
           </div>
-          <div  class="team-best-bets"
-            style="width: 100%;display: flex; flex-direction: column; ">
+          <div class="team-best-bets" style="width: 100%;display: flex; flex-direction: column; ">
             <h2 style="text-align: center; color: white; margin-top:1rem;">Best Bets</h2>
             <div style="margin-top:1rem; margin-bottom:1rem; margin-left:auto; margin-right:auto;">
               <h3 style="color: white; margin-bottom:0;"> Find bets with chance of winning over: {{sliderValue}}%</h3>
-              <mat-slider class="example-margin"  [color]="'warn'" [max]="99" [min]="51">
+              <mat-slider class="example-margin" [color]="'warn'" [max]="99" [min]="51" style="width:100%;">
                 <input matSliderThumb (ngModelChange)="calculateNewBestBet()" [(ngModel)]="sliderValue" #slider>
               </mat-slider>
             </div>
             <div class="team-best-bets-body"
-              style="width:100%; display:flex; gap:1rem; margin-left:1rem; margin-right:1rem; flex-wrap:wrap;">
+              style="width:100%; display:flex; gap:1rem; margin-left:auto; margin-right:auto; flex-wrap:wrap; justify-content: space-evenly;">
               <div *ngFor="let bet of teamBestBets">
                 <mat-card
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
@@ -880,43 +879,53 @@
 
                       </mat-tab>
                     </mat-tab-group>
-                    <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0; text-align:center">Last 10 Games</h1>
-                    <div style="display:flex; justify-content:space-between; gap: 5px; margin-top: 1rem;">
-                      <div style="display:flex; flex-direction: column; width:33%">
-                        <div style="text-align: center;">
-                          Overall
-                        </div>
-                        <div style=" border-right: 1px solid black;">
-                          <ng-container [ngTemplateOutlet]="gameLog"
-                            [ngTemplateOutletContext]="{ $implicit: bet.tableOverall}">
-                          </ng-container>
-                        </div>
-                      </div>
+                    <mat-accordion style="width:94%">
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Last 10 Games:
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0; text-align:center">Last 10 Games
+                        </h1>
+                        <div style="display:flex; justify-content:space-between; gap: 5px; margin-top: 1rem;">
+                          <div style="display:flex; flex-direction: column; width:33%">
+                            <div style="text-align: center;">
+                              Overall
+                            </div>
+                            <div style=" border-right: 1px solid black;">
+                              <ng-container [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: bet.tableOverall}">
+                              </ng-container>
+                            </div>
+                          </div>
 
-                      <div style="display: flex; flex-direction: column; width:33%">
-                        <div style="text-align: center;">
-                          {{bet.homeAway}}
-                        </div>
-                        <div style="border-right: 1px solid black;">
-                          <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
-                            [ngTemplateOutletContext]="{ $implicit: bet.tableHomeAway}">
-                          </ng-container>
-                        </div>
-                      </div>
+                          <div style="display: flex; flex-direction: column; width:33%">
+                            <div style="text-align: center;">
+                              {{bet.homeAway}}
+                            </div>
+                            <div style="border-right: 1px solid black;">
+                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: bet.tableHomeAway}">
+                              </ng-container>
+                            </div>
+                          </div>
 
-                      <div style="display:flex; flex-direction: column;width:33%; ">
-                        <div style="text-align: center;">
-                          vs {{bet.teamAgainstName}}
-                        </div>
-                        <div>
-                          <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
-                            [ngTemplateOutletContext]="{ $implicit: bet.tableTeam}">
-                          </ng-container>
-                        </div>
-                      </div>
+                          <div style="display:flex; flex-direction: column;width:33%; ">
+                            <div style="text-align: center;">
+                              vs {{bet.teamAgainstName}}
+                            </div>
+                            <div>
+                              <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: bet.tableTeam}">
+                              </ng-container>
+                            </div>
+                          </div>
 
 
-                    </div>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
 
                   </mat-card-content>
                 </mat-card>
