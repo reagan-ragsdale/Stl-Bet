@@ -11,8 +11,8 @@ import { DbMlbTeamGameStats } from "../../shared/dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "../../shared/dbTasks/DbMlbPlayerGameStatAverages"
 import { DbMlbTeamGameStatAverages } from "../../shared/dbTasks/DbMlbTeamGameStatAverages"
 import { DBMlbPlayerGameStatTotals } from "../../shared/dbTasks/DbMlbPlayerGameStatTotals"
-import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo"
-import { TeamInfoController } from "src/shared/Controllers/TeamInfoController"
+import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo"
+import { TeamInfoController } from "../../shared/Controllers/TeamInfoController"
 
 
 

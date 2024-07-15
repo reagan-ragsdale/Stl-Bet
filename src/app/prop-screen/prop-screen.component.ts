@@ -48,7 +48,6 @@ import { filter } from 'compression';
 import { DBMlbPlayerGameStats } from '../../shared/dbTasks/DbMlbPlayerGameStats';
 import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
 import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
-import { TeamInfoController } from 'src/shared/Controllers/TeamInfoController';
 
 @Component({
   selector: 'app-prop-screen',
