@@ -787,7 +787,7 @@ export class MlbService {
             teamInfo.push({
                 teamId: i,
                 teamNameAbvr: this.mlbIdToTeam[i],
-                teamNameFull: this.mlbTeamName[i],
+                teamNameFull: this.mlbTeamName[i - 1],
                 sport: 'MLB'
             })
         }
