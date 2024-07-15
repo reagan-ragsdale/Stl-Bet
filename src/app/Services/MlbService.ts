@@ -12,6 +12,7 @@ import { DBMlbPlayerGameStatAverages } from "../../shared/dbTasks/DbMlbPlayerGam
 import { DbMlbTeamGameStatAverages } from "../../shared/dbTasks/DbMlbTeamGameStatAverages"
 import { DBMlbPlayerGameStatTotals } from "../../shared/dbTasks/DbMlbPlayerGameStatTotals"
 import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo"
+import { TeamInfoController } from "src/shared/Controllers/TeamInfoController"
 
 
 
@@ -780,9 +781,8 @@ export class MlbService {
         return seasonFinal
     }
 
-    static setTeamInfo(){
+    static async setTeamInfo(){
         let teamInfo: DbTeamInfo[] = []
-        let singleTeam: DbTeamInfo
         for(let i = 1; i < 31; i++){
             teamInfo.push({
                 teamId: i,
@@ -791,6 +791,7 @@ export class MlbService {
                 sport: 'MLB'
             })
         }
+        await TeamInfoController.setTeamInfo(teamInfo)
     }
 
 

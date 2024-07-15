@@ -302,7 +302,7 @@ export class PropScreenComponent implements OnInit {
 
 
   async initializeSport() {
-    await TeamInfoController.setTeamInfo()
+    await MlbService.setTeamInfo()
     if (this.route.snapshot.paramMap.get('sport') != null) {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
     }
