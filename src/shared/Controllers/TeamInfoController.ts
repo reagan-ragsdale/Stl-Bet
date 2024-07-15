@@ -19,4 +19,9 @@ export class TeamInfoController {
     const taskRepo = remult.repo(DbTeamInfo)
     return await taskRepo.find({where: {sport: sport, teamId: teamId}})
   }
+  @BackendMethod({ allowed: true })
+  static async getAllTeamInfo(sport: string): Promise<DbTeamInfo[]> {
+    const taskRepo = remult.repo(DbTeamInfo)
+    return await taskRepo.find({where: {sport: sport}})
+  }
 }

@@ -26,9 +26,9 @@ import { PlayerPropController } from 'src/shared/Controllers/PlayerPropControlle
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { DBMlbPlayerGameStatTotals } from 'src/shared/dbTasks/DbMlbPlayerGameStatTotals';
-import { DbTeamInfo } from 'src/shared/dbTasks/DBTeamInfo';
-import { TeamInfoController } from 'src/shared/Controllers/TeamInfoController';
-import { DbMlbTeamGameStatAverages } from 'src/shared/dbTasks/DbMlbTeamGameStatAverages';
+import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
+import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
+import { DbMlbTeamGameStatAverages } from '../../shared/dbTasks/DbMlbTeamGameStatAverages';
 
 
 
@@ -219,7 +219,7 @@ public displayedColumnsValues: any[] = [
 
   //all
   public isNull: boolean = false
-  public allSportPlayerList: any[] = []
+  public allSportTeamList: any[] = []
 
   public teamInfo: DbTeamInfo[] = []
   public selectedTeam: any = []
@@ -265,10 +265,10 @@ public displayedColumnsValues: any[] = [
 
   async getAllSportPlayers(){
     
-    let players = await PlayerInfoController.loadActivePlayerInfoBySport('MLB')
-    this.allSportPlayerList = players
+    let teams = await TeamInfoController.getAllTeamInfo('MLB')
+    this.allSportTeamList = teams
     this.searchName = ""
-    this.filteredSearch = this.allSportPlayerList
+    this.filteredSearch = this.allSportTeamList
   }
 
   async getTeamInfo() {
@@ -371,7 +371,7 @@ public displayedColumnsValues: any[] = [
     if(this.selectedSport != 'all'){
       this.destroyGraphs()
     }
-    this.router.navigate([`/playerStats/${sport}/${id}`])
+    this.router.navigate([`/teamStats/${sport}/${id}`])
     this.formArray = []  
   }
 
@@ -417,7 +417,7 @@ public displayedColumnsValues: any[] = [
 
   filterSearch() {
     if(this.isNull){
-      this.filteredSearch = this.allSportPlayerList.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredSearch = this.allSportTeamList.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
       console.log(this.filteredSearch)
     }
     else{
