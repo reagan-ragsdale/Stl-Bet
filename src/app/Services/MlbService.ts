@@ -11,6 +11,7 @@ import { DbMlbTeamGameStats } from "../../shared/dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "../../shared/dbTasks/DbMlbPlayerGameStatAverages"
 import { DbMlbTeamGameStatAverages } from "../../shared/dbTasks/DbMlbTeamGameStatAverages"
 import { DBMlbPlayerGameStatTotals } from "../../shared/dbTasks/DbMlbPlayerGameStatTotals"
+import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo"
 
 
 
@@ -20,6 +21,7 @@ export class MlbService {
     static mlbTeamIds: { [key: string]: number } = { "ARI": 1, "ATL": 2, "BAL": 3, "BOS": 4, "CHC": 5, "CHW": 6, "CIN": 7, "CLE": 8, "COL": 9, "DET": 10, "HOU": 11, "KC": 12, "LAA": 13, "LAD": 14, "MIA": 15, "MIL": 16, "MIN": 17, "NYM": 18, "NYY": 19, "OAK": 20, "PHI": 21, "PIT": 22, "SD": 23, "SF": 24, "SEA": 25, "STL": 26, "TB": 27, "TEX": 28, "TOR": 29, "WAS": 30 }
     static mlbIdToTeam: { [key: number]: string } = { 1: "ARI", 2: "ATL", 3: "BAL", 4: "BOS", 5: "CHC", 6: "CHW", 7: "CIN", 8: "CLE", 9: "COL", 10: "DET", 11: "HOU", 12: "KC", 13: "LAA", 14: "LAD", 15: "MIA", 16: "MIL", 17: "MIN", 18: "NYM", 19: "NYY", 20: "OAK", 21: "PHI", 22: "PIT", 23: "SD", 24: "SF", 25: "SEA", 26: "STL", 27: "TB", 28: "TEX", 29: "TOR", 30: "WAS" }
     static mlbTeamNameToAbvr: {[key: string]: string} = { "Arizona Diamondbacks": "ARI", "Atlanta Braves": "ATL", "Baltimore Orioles": "BAL", "Boston Red Sox": "BOS", "Chicago Cubs": "CHC", "Chicago White Sox": "CHW", "Cincinnati Reds": "CIN", "Cleveland Guardians": "CLE", "Colorado Rockies": "COL", "Detroit Tigers": "DET", "Houston Astros": "HOU", "Kansas City Royals": "KC", "Los Angeles Angels": "LAA", "Los Angeles Dodgers": "LAD", "Miami Marlins": "MIA", "Milwaukee Brewers": "MIL", "Minnesota Twins": "MIN", "New York Mets": "NYM", "New York Yankees": "NYY", "Oakland Athletics": "OAK", "Philadelphia Phillies": "PHI", "Pittsburgh Pirates": "PIT", "San Diego Padres": "SD", "San Francisco Giants": "SF", "Seattle Mariners": "SEA", "St. Louis Cardinals": "STL", "Tampa Bay Rays": "TB", "Texas Rangers": "TEX", "Toronto Blue Jays": "TOR", "Washington Nationals": "WAS" }
+    static mlbTeamName = [ "Arizona Diamondbacks", "Atlanta Braves", "Baltimore Orioles", "Boston Red Sox", "Chicago Cubs", "Chicago White Sox", "Cincinnati Reds", "Cleveland Guardians", "Colorado Rockies", "Detroit Tigers", "Houston Astros", "Kansas City Royals", "Los Angeles Angels", "Los Angeles Dodgers", "Miami Marlins", "Milwaukee Brewers", "Minnesota Twins", "New York Mets", "New York Yankees", "Oakland Athletics", "Philadelphia Phillies", "Pittsburgh Pirates", "San Diego Padres", "San Francisco Giants", "Seattle Mariners", "St. Louis Cardinals", "Tampa Bay Rays", "Texas Rangers", "Toronto Blue Jays", "Washington Nationals" ]
     static mlbConvertPlayerInfoFromApiToDb(playerInfo: any[]): DbPlayerInfo[] {
         var playerList: DbPlayerInfo[] = []
 
@@ -776,6 +778,19 @@ export class MlbService {
         let seasonFinal: any = ""
         seasonFinal = parseInt(gameId.slice(0, 4))
         return seasonFinal
+    }
+
+    static setTeamInfo(){
+        let teamInfo: DbTeamInfo[] = []
+        let singleTeam: DbTeamInfo
+        for(let i = 1; i < 31; i++){
+            teamInfo.push({
+                teamId: i,
+                teamNameAbvr: this.mlbIdToTeam[i],
+                teamNameFull: this.mlbTeamName[i],
+                sport: 'MLB'
+            })
+        }
     }
 
 

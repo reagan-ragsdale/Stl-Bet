@@ -48,6 +48,7 @@ import { filter } from 'compression';
 import { DBMlbPlayerGameStats } from '../../shared/dbTasks/DbMlbPlayerGameStats';
 import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
 import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
+import { TeamInfoController } from 'src/shared/Controllers/TeamInfoController';
 
 @Component({
   selector: 'app-prop-screen',
@@ -300,7 +301,8 @@ export class PropScreenComponent implements OnInit {
   nbaPlayerStatData2023Final: DbNbaGameStats[] = []
 
 
-  initializeSport(): void {
+  async initializeSport() {
+    await TeamInfoController.setTeamInfo()
     if (this.route.snapshot.paramMap.get('sport') != null) {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
     }
