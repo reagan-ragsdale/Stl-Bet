@@ -15,6 +15,7 @@ import { remult } from 'remult';
 import { DbMlbGameBookData } from 'src/shared/dbTasks/DbMlbGameBookData';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 import { mlbCronFile } from '../mlbCron';
+import { MlbService } from '../Services/MlbService';
 
 @Component({
     selector: 'home-screen',
@@ -68,8 +69,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   onTeamClick(team: string){
-    let teamName = reusedFunctions.addDash(team)
-    this.router.navigate([`/teamStats/${teamName}`])
+    let teamId = MlbService.mlbTeamIds[team]
+    this.router.navigate([`/teamStats/${team}/${teamId}`])
   }
 
   playerStatsClicked(playerId: number) {
