@@ -78,7 +78,7 @@ export class TeamStatsComponent {
   public chart2: any;
   public chart3: any
 
-  public displayedColumns: string[] = ["Game", "Date", "HR", "H", "TB", "RBI"]
+  public displayedColumns: string[] = ["Game", "Date", "HR", "H", "RBI"]
 
 public displayedColumnsValues: any[] = [
   {name: 'Game',
@@ -87,13 +87,11 @@ public displayedColumnsValues: any[] = [
   {name: 'Date',
     value: 'gameDate'},
   {name: 'HR',
-    value: 'batterHomeRuns'},
+    value: 'totalHomeRunsScored'},
   {name: 'H',
-    value: 'batterHits'},
-  {name: 'TB',
-    value: 'batterTotalBases'},
+    value: 'totalHitsScored'},
   {name: 'RBI',
-    value: 'batterRbis'}
+    value: 'totalRbisScored'}
 ]
 
   public fullDataset: any[] = [
