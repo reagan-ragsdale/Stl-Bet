@@ -70,7 +70,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   onTeamClick(team: string){
     let teamId = MlbService.mlbTeamIds[team]
-    this.router.navigate([`/teamStats/${team}/${teamId}`])
+    this.router.navigate([`/teamStats/MLB/${teamId}`])
   }
 
   playerStatsClicked(playerId: number) {
