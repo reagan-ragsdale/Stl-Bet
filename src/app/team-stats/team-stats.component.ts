@@ -324,6 +324,7 @@ public displayedColumnsValues: any[] = [
     if(this.selectedSport == "MLB"){
       
       this.teamStats = await MlbController.mlbGetAllTeamGameStatsByTeamId(this.teamInfo[0].teamId)
+      console.log(this.teamStats)
       
       let allSeasons = this.teamStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
       allSeasons.forEach(e => this.teamSeasonStats.push(this.teamStats.filter(i => i.season == e))) 
