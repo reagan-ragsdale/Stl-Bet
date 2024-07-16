@@ -44,7 +44,7 @@ interface statSearch {
 @Component({
   selector: 'app-team-stats',
   templateUrl: './team-stats.component.html',
-  styleUrls: ['./team-stats.component.sass']
+  styleUrls: ['./team-stats.component.scss']
 })
 export class TeamStatsComponent {
   
