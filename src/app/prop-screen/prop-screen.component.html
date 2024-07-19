@@ -690,6 +690,9 @@
                 <input matSliderThumb (ngModelChange)="calculateNewBestBet()" [(ngModel)]="sliderValue" #slider>
               </mat-slider>
             </div>
+            <div *ngIf="teamBestBets.length == 0" style="width:100%; margin-left: auto; margin-right: auto;">
+              <h3 style="color:white">No bets with chance above {{sliderValue}}%</h3>
+            </div>
             <div class="team-best-bets-body"
               style="width:100%; display:flex; gap:1rem; margin-left:auto; margin-right:auto; flex-wrap:wrap; justify-content: space-evenly;">
               <div *ngFor="let bet of teamBestBets">
