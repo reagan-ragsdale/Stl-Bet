@@ -82,6 +82,18 @@
   .player-total-stats{
     width:100%;
   }
+  .player-props{
+    width:100%; 
+    justify-content: space-evenly; 
+    display:flex;
+  }
+  .player-prop-body{
+    width:300px; 
+    background-color: darkslateblue; 
+    display:flex; 
+    gap:10px; 
+    color:white;
+  }
   
 
   @media screen and (max-width: 970px) {
@@ -149,6 +161,15 @@
     }
     .search-form{
       width: 150px;
+    }
+    .player-props{
+      flex-direction: column;
+      gap:10px;
+    }
+    .player-prop-body{
+      width:96%;
+      margin-left:auto;
+      margin-right:auto;
     }
     
   }
