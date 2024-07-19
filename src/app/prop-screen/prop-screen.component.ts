@@ -474,9 +474,10 @@ export class PropScreenComponent implements OnInit {
     let team1Temp = team1
     let team2Temp = team2
     var overUnders = tempProp.filter(e => e.teamName == "Over" || e.teamName == "Under")
+
     team1Temp.push(overUnders)
     team2Temp.push(overUnders)
-    const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings']
+    const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings', "team_totals Over", "team_totals Under"]
     let team1Final = []
     let team2Final = []
     for (let bet of listOfBets) {
@@ -513,7 +514,7 @@ export class PropScreenComponent implements OnInit {
     }
 
     this.teamPropFinnal.push(team2Final, team1Final)
-
+    console.log(this.teamPropFinnal)
 
 
     let distinctProps = tempProp.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
@@ -1659,7 +1660,7 @@ export class PropScreenComponent implements OnInit {
     return propType
   }
 
-  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Game Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings" }
+  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Game Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings", "team_totals Over": "Team Total", "team_totals Under": "Team Total" }
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings"]
   displayPropTitle(prop: any): string {
     let finalReturn = ''
