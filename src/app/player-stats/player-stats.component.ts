@@ -24,11 +24,11 @@ import { MatTable } from '@angular/material/table';
 import { DbNbaTeamLogos } from '../../shared/dbTasks/DbNbaTeamLogos';
 import { MlbController } from '../../shared/Controllers/MlbController';
 import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
-import { DbPlayerInfo } from 'src/shared/dbTasks/DbPlayerInfo';
+import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
 import { PlayerPropController } from 'src/shared/Controllers/PlayerPropController';
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 import { reusedFunctions } from '../Services/reusedFunctions';
-import { DBMlbPlayerGameStatTotals } from 'src/shared/dbTasks/DbMlbPlayerGameStatTotals';
+import { DBMlbPlayerGameStatTotals } from '../../shared/dbTasks/DbMlbPlayerGameStatTotals';
 
 
 interface statSearch {
@@ -274,6 +274,7 @@ public displayedColumnsValues: any[] = [
     console.log(players)
   }
 
+  playerPropArray: any[] = []
   async getPlayerInfo() {
 
     if(this.selectedSport == 'MLB'){
@@ -379,9 +380,13 @@ public displayedColumnsValues: any[] = [
       //add if there is more than one game that day
     }
     else{
-      
-
+      let numberOfProps = this.playerProps.map(x => x.marketKey).filter((value, index, array) => array.indexOf(value) === index)
+      for(let prop of numberOfProps){
+        let filteredProp = this.playerProps.filter(e => e.marketKey == prop)
+        this.playerPropArray.push(filteredProp)
+      }
     }
+    console.log(this.playerPropArray)
   }
 
   /* async getAllPlayerInfo() {
