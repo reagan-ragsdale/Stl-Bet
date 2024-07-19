@@ -143,12 +143,12 @@
         </div>
 
       </div>
-      <div style="width:100%; display: flex; flex-direction: column;">
+      <div style="width:100%; display: flex; flex-direction: column; margin-bottom:2rem;">
         <div style="margin-left: auto; margin-right: auto;">
           <h2>Player Props</h2>
         </div>
         <div style="width:100%; justify-content: space-evenly; display:flex;">
-          <div *ngFor="let prop of playerPropArray" style="width:300px; background-color: darkslateblue; display:flex; gap:10px;">
+          <div *ngFor="let prop of playerPropArray" style="width:300px; background-color: darkslateblue; display:flex; gap:10px; color:white;">
             <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[0].marketKey | removeUnderScore | titlecase}}</h3>
             <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].point}}</h4>
             <div style="display:flex; flex-direction: column;">
