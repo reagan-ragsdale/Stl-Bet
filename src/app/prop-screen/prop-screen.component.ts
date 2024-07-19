@@ -477,6 +477,17 @@ export class PropScreenComponent implements OnInit {
 
     team1Temp.push(overUnders)
     team2Temp.push(overUnders)
+
+    var team1Totals = team1Temp.filter(e => e.marketKey.includes('team_totals'))
+    var team2Totals = team2Temp.filter(e => e.marketKey.includes('team_totals'))
+
+    
+    team1Temp = team1Temp.filter(e => e.marketKey != 'team_totals Over' || e.marketKey != 'team_totals Under')
+    team2Temp = team2Temp.filter(e => e.marketKey != 'team_totals Over' || e.marketKey != 'team_totals Under')
+
+    team1Temp.push(team1Totals)
+    team2Temp.push(team2Totals)
+    
     const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings', "team_totals Over", "team_totals Under"]
     let team1Final = []
     let team2Final = []
