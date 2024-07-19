@@ -94,6 +94,18 @@
     gap:10px; 
     color:white;
   }
+  .prop-point{
+    margin-top:auto; 
+    margin-bottom: auto; 
+  }
+  .prop-one{
+    display:flex; 
+    flex-direction: column;
+  }
+  .prop-two{
+    display:flex; 
+    flex-direction: column;
+  }
   
 
   @media screen and (max-width: 970px) {
@@ -170,6 +182,16 @@
       width:96%;
       margin-left:auto;
       margin-right:auto;
+    }
+    .prop-point{
+      margin-left:1rem;
+    }
+    .prop-one{
+      margin-left:auto;
+    }
+    .prop-two{
+      margin-left:1rem;
+      margin-right:1rem;
     }
     
   }

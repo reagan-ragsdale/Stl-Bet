@@ -149,13 +149,13 @@
         </div>
         <div class="player-props">
           <div class="player-prop-body" *ngFor="let prop of playerPropArray">
-            <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[0].marketKey | removeUnderScore | titlecase}}</h3>
-            <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].point}}</h4>
-            <div style="display:flex; flex-direction: column;">
+            <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[0].marketKey | removeUnderScore | titlecase}}:</h3>
+            <h4 class="prop-point">{{prop[0].point}}</h4>
+            <div class="prop-one">
               <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].description}}</h4>
               <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].price}}</h4>
             </div>
-            <div style="display:flex; flex-direction: column;">
+            <div class="prop-two">
               <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[1].description}}</h4>
               <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[1].price}}</h4>
             </div>
