@@ -180,7 +180,10 @@ export class draftKingsApiController {
 
       for (let j = 0; j < this.selectedSportsData.bookmakers.length; j++) {
         for (let k = 0; k < this.selectedSportsData.bookmakers[j].markets.length; k++) {
-          let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData.bookmakers[j].markets[k].key)
+          
+          for (let m = 0; m < this.selectedSportsData.bookmakers[j].markets[k].outcomes.length; m++) {
+            let propName = this.selectedSportsData.bookmakers[j].markets[k].key == 'team_totals' ? this.selectedSportsData.bookmakers[j].markets[k].key + " " + this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : this.selectedSportsData.bookmakers[j].markets[k].key
+          let selectedProp = bookDb.filter(e => e.marketKey == propName)
           if (selectedProp.length == 0) {
             nextBookSeq = 0
           }
@@ -193,7 +196,6 @@ export class draftKingsApiController {
             })
             nextBookSeq = highestSeq + 1
           }
-          for (let m = 0; m < this.selectedSportsData.bookmakers[j].markets[k].outcomes.length; m++) {
             tempData.push({
               bookId: this.selectedSportsData.id == '' ? console.log(this.selectedSportsData) : this.selectedSportsData.id,
               sportKey: this.selectedSportsData.sport_key,
