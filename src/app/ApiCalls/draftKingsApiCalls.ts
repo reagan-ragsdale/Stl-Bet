@@ -31,7 +31,7 @@ export class draftKingsApiController {
     var urlNew = '';
     var playerProps = '';
     if (sport === "MLB") {
-      playerProps = "batter_home_runs,batter_hits,batter_total_bases"
+      playerProps = "batter_home_runs,batter_hits,batter_total_bases,batter_rbis,batter_runs_scored,batter_hits_runs_rbis"
 
     }
     if (sport === "NHL") {
