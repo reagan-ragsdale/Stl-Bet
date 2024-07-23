@@ -744,9 +744,10 @@ export class PropScreenComponent implements OnInit {
           console.log(error.message)
           console.log(player)
         }
-        this.getPlayerBestBets()
+        
 
       }
+      this.getPlayerBestBets()
       playerAway.teamName = this.displayPropHtml2.name
       playerHome.teamName = this.displayPropHtml1.name
       playerPropNew.push(playerAway, playerHome)
