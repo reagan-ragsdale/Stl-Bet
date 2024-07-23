@@ -474,27 +474,25 @@ export class PropScreenComponent implements OnInit {
     let team2Temp = team2
     var overUnders = tempProp.filter(e => e.teamName == "Over" || e.teamName == "Under")
 
-    console.log(team1Temp)
+    
     var team1Totals = team1Temp.filter(e => e.marketKey.toString().includes('team_totals'))
     var team2Totals = team2Temp.filter(e => e.marketKey.toString().includes('team_totals'))
-    console.log(team1Totals)
+    
 
     team1Temp = team1Temp.filter(e => e.marketKey != 'team_totals Over' && e.marketKey != 'team_totals Under')
     team2Temp = team2Temp.filter(e => e.marketKey != 'team_totals Over' && e.marketKey != 'team_totals Under')
-    console.log(team1Temp)
+    
     team1Temp.push(overUnders)
     team2Temp.push(overUnders)
 
     team1Temp.push(team1Totals)
     team2Temp.push(team2Totals)
-    console.log(team1Temp)
     const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings', "team_totals Over"]
     let team1Final = []
     let team2Final = []
     for (let bet of listOfBets) {
       var filteredBet = []
       filteredBet = team1Temp.filter(e => {
-        console.log(e)
         if (e.length > 1) {
           if (e[0].marketKey == bet || e[1].marketKey == bet) {
             
@@ -527,7 +525,6 @@ export class PropScreenComponent implements OnInit {
     }
 
     this.teamPropFinnal.push(team2Final, team1Final)
-    console.log(this.teamPropFinnal)
 
 
     let distinctProps = tempProp.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
@@ -2017,6 +2014,7 @@ export class PropScreenComponent implements OnInit {
   //
   sliderValuePlayer: number = 80;
   getPlayerBestBets() {
+    console.log(this.arrayOfPlayerBets)
     for (let bet of this.arrayOfPlayerBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
