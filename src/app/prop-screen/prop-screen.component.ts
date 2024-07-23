@@ -688,6 +688,7 @@ export class PropScreenComponent implements OnInit {
       }
     }
     this.getTeamBestBets()
+    this.getPlayerBestBets()
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: any, type: string) {
