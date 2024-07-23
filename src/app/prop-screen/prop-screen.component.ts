@@ -493,8 +493,10 @@ export class PropScreenComponent implements OnInit {
     for (let bet of listOfBets) {
       var filteredBet = []
       filteredBet = team1Temp.filter(e => {
+        console.log(e)
         if (e.length > 1) {
           if (e[0].marketKey == bet || e[1].marketKey == bet) {
+            
             return e
           }
         }
