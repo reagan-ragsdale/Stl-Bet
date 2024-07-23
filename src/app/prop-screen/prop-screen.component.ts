@@ -688,7 +688,7 @@ export class PropScreenComponent implements OnInit {
       }
     }
     this.getTeamBestBets()
-    this.getPlayerBestBets()
+    
   }
 
   loadNewSpreadProp(team1: any[], team2: any[], prop: any, type: string) {
@@ -739,11 +739,12 @@ export class PropScreenComponent implements OnInit {
             playerSpecific[0].propVariables = this.getPlayerStats(playerSpecific[0])
             playerHome.push(playerSpecific)
           }
+          
         } catch (error: any) {
           console.log(error.message)
           console.log(player)
         }
-
+        this.getPlayerBestBets()
 
       }
       playerAway.teamName = this.displayPropHtml2.name
