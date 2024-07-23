@@ -494,7 +494,7 @@ export class PropScreenComponent implements OnInit {
       var filteredBet = []
       filteredBet = team1Temp.filter(e => {
         if (e.length > 1) {
-          if (e[0].marketKey == bet) {
+          if (e[0].marketKey == bet || e[1].marketKey == bet) {
             return e
           }
         }
