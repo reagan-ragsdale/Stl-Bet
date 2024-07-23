@@ -761,7 +761,7 @@ export class PropScreenComponent implements OnInit {
 
   }
   public playerStatObj: any = {}
-
+  public arrayOfPlayerBets: any[] = [];
   getPlayerStats(player: any) {
     try {
       var playerStats: DBMlbPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
@@ -1457,6 +1457,8 @@ export class PropScreenComponent implements OnInit {
         teamAgainstName: ''
       }
     }
+
+    this.arrayOfPlayerBets.push(this.playerStatObj)
     return this.playerStatObj
 
 
@@ -1963,7 +1965,7 @@ export class PropScreenComponent implements OnInit {
     }
 
   }
-  calculateNewBestBet(){
+  calculateNewBestBetTeam(){
     this.teamBestBets = []
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
@@ -1995,6 +1997,98 @@ export class PropScreenComponent implements OnInit {
           }
           else{bet.homeAwayHighlight = false}
           if(teamWin < (1-(this.sliderValue/100))){
+            bet.teamHighlight = true
+          }
+          else{bet.teamHighlight = false}
+          bet.overUnder = true
+          this.teamBestBets.push(bet)
+        }
+      }
+
+      
+      
+      
+
+    }
+  }
+  public playerBestBets: any[] = []
+  //how to find best bets
+  //if either overall home/away or team win percentage is over a certain number then add it to it
+  //
+  sliderValuePlayer: number = 80;
+  getPlayerBestBets() {
+    for (let bet of this.arrayOfPlayerBets) {
+      let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
+      let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
+      let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
+      if ((overallWin > .80) || (teamWin > .80) || (homeAwayWin > .80)) {
+        if(overallWin > .80){
+          bet.overallHighlight = true
+        }
+        if(homeAwayWin > .80){
+          bet.homeAwayHighlight = true
+        }
+        if(teamWin > .80){
+          bet.teamHighlight = true
+        }
+          this.playerBestBets.push(bet)
+      }
+      else if(bet.propType == 'total'){
+        if((overallWin < .2) || (teamWin < .2) || (homeAwayWin < .2)){
+          if(overallWin < .2){
+            bet.overallHighlight = true
+          }
+          if(homeAwayWin < .2){
+            bet.homeAwayHighlight = true
+          }
+          if(teamWin < .2){
+            bet.teamHighlight = true
+          }
+          bet.overUnder = true
+          this.playerBestBets.push(bet)
+        }
+      }
+
+      
+      
+      
+
+    }
+
+  }
+  calculateNewBestBetPlayer(){
+
+    this.playerBestBets = []
+    for (let bet of this.arrayOfPlayerBets) {
+      let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
+      let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
+      let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
+      if ((overallWin > (this.sliderValuePlayer/100)) || (teamWin > (this.sliderValuePlayer/100)) || (homeAwayWin > (this.sliderValuePlayer/100))) {
+        if(overallWin > (this.sliderValuePlayer/100)){
+          bet.overallHighlight = true
+        }
+        else{bet.overallHighlight = false}
+        if(homeAwayWin > (this.sliderValuePlayer/100)){
+          bet.homeAwayHighlight = true
+        }
+        else{bet.homeAwayHighlight = false}
+        if(teamWin > (this.sliderValuePlayer/100)){
+          bet.teamHighlight = true
+        }
+        else{bet.teamHighlight = false}
+          this.teamBestBets.push(bet)
+      }
+      else if(bet.propType == 'total'){
+        if((overallWin < (1-(this.sliderValuePlayer/100))) || (teamWin < (1-(this.sliderValuePlayer/100))) || (homeAwayWin < (1-(this.sliderValuePlayer/100)))){
+          if(overallWin < (1-(this.sliderValuePlayer/100))){
+            bet.overallHighlight = true
+          }
+          else{bet.overallHighlight = false}
+          if(homeAwayWin < (1-(this.sliderValuePlayer/100))){
+            bet.homeAwayHighlight = true
+          }
+          else{bet.homeAwayHighlight = false}
+          if(teamWin < (1-(this.sliderValuePlayer/100))){
             bet.teamHighlight = true
           }
           else{bet.teamHighlight = false}

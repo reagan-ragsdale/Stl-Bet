@@ -687,7 +687,7 @@
             <div style="margin-top:1rem; margin-bottom:1rem; margin-left:auto; margin-right:auto;">
               <h3 style="color: white; margin-bottom:0;"> Find bets with chance of winning over: {{sliderValue}}%</h3>
               <mat-slider class="example-margin" [color]="'warn'" [max]="99" [min]="51" style="width:100%;">
-                <input matSliderThumb (ngModelChange)="calculateNewBestBet()" [(ngModel)]="sliderValue" #slider>
+                <input matSliderThumb (ngModelChange)="calculateNewBestBetTeam()" [(ngModel)]="sliderValue" #slider>
               </mat-slider>
             </div>
             <div *ngIf="teamBestBets.length == 0" style="width:100%; margin-left: auto; margin-right: auto;">
@@ -1177,6 +1177,259 @@
                 </ng-template>
               </mat-expansion-panel>
             </mat-accordion>
+          </div>
+          <div class="team-best-bets" style="width: 100%;display: flex; flex-direction: column; ">
+            <h2 style="text-align: center; color: white; margin-top:1rem;">Best Bets</h2>
+            <div style="margin-top:1rem; margin-bottom:1rem; margin-left:auto; margin-right:auto;">
+              <h3 style="color: white; margin-bottom:0;"> Find bets with chance of winning over: {{sliderValuePlayer}}%</h3>
+              <mat-slider class="example-margin" [color]="'warn'" [max]="99" [min]="51" style="width:100%;">
+                <input matSliderThumb (ngModelChange)="calculateNewBestBetPlayer()" [(ngModel)]="sliderValuePlayer" #slider>
+              </mat-slider>
+            </div>
+            <div *ngIf="playerBestBets.length == 0" style="width:100%; margin-left: auto; margin-right: auto;">
+              <h3 style="color:white; text-align:center">No bets with chance above {{sliderValuePlayer}}%</h3>
+            </div>
+            <div class="team-best-bets-body"
+              style="width:100%; display:flex; gap:1rem; margin-left:auto; margin-right:auto; flex-wrap:wrap; justify-content: space-evenly;">
+              <div *ngFor="let bet of playerBestBets">
+                <mat-card
+                  style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
+                  <mat-card-header>
+                    <mat-card-title>{{bet.teamName
+                      }} | {{displayIndividualPropTitle(bet.marketKey)}}</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content style="min-height:400px; padding: 0;">
+                    <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
+                      (selectedIndexChange)="openChart($event)">
+                      <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
+                        <!-- <ng-template matTabContent> -->
+                        <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
+                          <div class="full-stats"
+                            style="width: 96%; display: flex; margin-right:auto; margin-left:auto; margin-top: 1rem; margin-bottom: 1rem; background-color: #ebebeb; border-radius: 10px; justify-content: space-evenly;">
+                            <div class="overall-stats"
+                              [ngStyle]="{'backgroundColor': bet.overallHighlight == true ? 'green' : ''}"
+                              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
+                              <div
+                                style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                <h3 style="margin:auto">Overall</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Record</h3>
+                                <h3 style="margin:auto"
+                                  *ngIf="bet.propType != 'total' || (bet.propType == 'total' && bet.overUnder == false)">
+                                  {{bet.totalWins}} - {{bet.totalGames - bet.totalWins}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{bet.totalGames - bet.totalWins}} - {{bet.totalWins}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Win</h3>
+                                <h3 style="margin:auto"
+                                  *ngIf="bet.propType != 'total' || (bet.propType == 'total' && bet.overUnder == false)">
+                                  {{(bet.totalWins / bet.totalGames) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{((bet.totalGames - bet.totalWins) / bet.totalGames) | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType != 'total'">{{((bet.totalWins /
+                                  bet.totalGames) * ((bet.teamAgainstTotalGames - bet.teamAgainstTotalWins) /
+                                  bet.teamAgainstTotalGames)) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == false">
+                                  {{((bet.totalWins / bet.totalGames) * (bet.teamAgainstTotalWins /
+                                  bet.teamAgainstTotalGames)) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{(((bet.totalGames - bet.totalWins) / bet.totalGames) * ((bet.teamAgainstTotalGames -
+                                  bet.teamAgainstTotalWins) / bet.teamAgainstTotalGames)) | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Avg</h3>
+                                <h3 style="margin:auto">{{bet.propType == 'spread' && bet.averageOverall > 0 ? '+' :
+                                  ''}}{{bet.averageOverall | number: '1.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">High</h3>
+                                <h3 style="margin:auto">{{(bet.propType == 'spread' && bet.highOverall > 0) ? '+' :
+                                  ''}}{{bet.highOverall | number: '1.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Low</h3>
+                                <h3 style="margin:auto">{{(bet.propType == 'spread') ? (bet.lowOverall > 0 ? '+' : '') :
+                                  ''}}{{bet.lowOverall | number: '1.2-2'}}</h3>
+                              </div>
+                            </div>
+                            <div class="homeaway-stats"
+                              [ngStyle]="{'backgroundColor': bet.homeAwayHighlight == true ? 'green' : ''}"
+                              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
+                              <div
+                                style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                <h3 style="margin:auto">{{bet.homeAway}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Record</h3>
+                                <h3 style="margin:auto"
+                                  *ngIf="bet.propType != 'total' || (bet.propType == 'total' && bet.overUnder == false)">
+                                  {{bet.totalWinsHomeAway}} - {{bet.totalGamesHomeAway - bet.totalWinsHomeAway}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{bet.totalGamesHomeAway - bet.totalWinsHomeAway}} - {{bet.totalWinsHomeAway}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Win</h3>
+                                <h3 style="margin:auto"
+                                  *ngIf="bet.propType != 'total' || (bet.propType == 'total' && bet.overUnder == false)">
+                                  {{(bet.totalWinsHomeAway / bet.totalGamesHomeAway) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{((bet.totalGamesHomeAway - bet.totalWinsHomeAway) / bet.totalGamesHomeAway) |
+                                  percent: '2.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType != 'total'">{{((bet.totalWinsHomeAway /
+                                  bet.totalGamesHomeAway) * ((bet.teamAgainstGamesHomeAway -
+                                  bet.teamAgainstWinsHomeAway) / bet.teamAgainstGamesHomeAway)) | percent: '2.2-2'}}
+                                </h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == false">
+                                  {{((bet.totalWinsHomeAway / bet.totalGamesHomeAway) * (bet.teamAgainstWinsHomeAway /
+                                  bet.teamAgainstGamesHomeAway)) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{(((bet.totalGamesHomeAway - bet.totalWinsHomeAway) / bet.totalGamesHomeAway) *
+                                  ((bet.teamAgainstGamesHomeAway - bet.teamAgainstWinsHomeAway) /
+                                  bet.teamAgainstGamesHomeAway)) | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Avg</h3>
+                                <h3 style="margin:auto">{{ bet.propType == 'spread' && bet.averageHomeAway > 0 ? '+' :
+                                  ''}}{{bet.averageHomeAway | number: '1.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">High</h3>
+                                <h3 style="margin:auto">{{(bet.propType == 'spread' && bet.highHomeAway > 0) ? '+' :
+                                  ''}}{{bet.highHomeAway | number: '1.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Low</h3>
+                                <h3 style="margin:auto">{{(bet.propType == 'spread' && bet.lowHomeAway > 0) ? '+' :
+                                  ''}}{{bet.lowHomeAway | number: '1.2-2'}}</h3>
+                              </div>
+                            </div>
+                            <div class="team-stats"
+                              [ngStyle]="{'backgroundColor': bet.teamHighlight == true ? 'green' : ''}"
+                              style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
+                              <div
+                                style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
+                                <h3 style="margin:auto">Vs {{bet.teamAgainstName}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Record</h3>
+                                <h3 style="margin:auto"
+                                  *ngIf="bet.propType != 'total' || (bet.propType == 'total' && bet.overUnder == false)">
+                                  {{bet.totalWinsTeam}} - {{bet.totalGamesTeam - bet.totalWinsTeam}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{bet.totalGamesTeam - bet.totalWinsTeam}} - {{bet.totalWinsTeam}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Win</h3>
+                                <h3 style="margin:auto"
+                                  *ngIf="bet.propType != 'total' || (bet.propType == 'total' && bet.overUnder == false)">
+                                  {{(bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)) | percent:
+                                  '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{(bet.totalGamesTeam == 0 ? 0 : ((bet.totalGamesTeam - bet.totalWinsTeam) /
+                                  bet.totalGamesTeam)) | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Weighted</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType != 'total'">{{(bet.totalGamesTeam == 0 ? 0
+                                  :((bet.totalWinsTeam / bet.totalGamesTeam) * ((bet.teamAgainstGamesTeam -
+                                  bet.teamAgainstWinsTeam) / bet.teamAgainstGamesTeam))) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == false">
+                                  {{(bet.totalGamesTeam == 0 ? 0 : ((bet.totalWinsTeam / bet.totalGamesTeam) *
+                                  (bet.teamAgainstWinsTeam / bet.teamAgainstGamesTeam))) | percent: '2.2-2'}}</h3>
+                                <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
+                                  {{(bet.totalGamesTeam == 0 ? 0 : (((bet.totalGamesTeam - bet.totalWinsTeam) /
+                                  bet.totalGamesTeam) * ((bet.teamAgainstGamesTeam - bet.teamAgainstWinsTeam) /
+                                  bet.teamAgainstGamesTeam))) | percent: '2.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Avg</h3>
+                                <h3 style="margin:auto">{{bet.propType == 'spread' && bet.averageTeam > 0 ? '+' :
+                                  ''}}{{(bet.totalGamesTeam == 0 ? 0 : bet.averageTeam) | number: '1.2-2' }}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">High</h3>
+                                <h3 style="margin:auto">{{(bet.propType == 'spread' && bet.highTeam > 0) ? '+' :
+                                  ''}}{{bet.highTeam | number: '1.2-2'}}</h3>
+                              </div>
+                              <div *ngIf="bet.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <h3 style="margin:auto">Low</h3>
+                                <h3 style="margin:auto">{{(bet.propType == 'spread' && bet.lowTeam > 0) ? '+' :
+                                  ''}}{{bet.lowTeam | number: '1.2-2'}}</h3>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- </ng-template> -->
+                      </mat-tab>
+
+                      <mat-tab label="Prop Trend" [disabled]="true">
+                        <ng-template matTabContent>
+                          <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{ chart
+                            }}</canvas>
+                        </ng-template>
+
+                      </mat-tab>
+                    </mat-tab-group>
+                    <mat-accordion style="width:100%">
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Last 10 Games:
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <h1 style="margin-top:1rem; font-weight:bold; margin-bottom:0; text-align:center">Last 10 Games
+                        </h1>
+                        <div style="display:flex; justify-content:space-between; gap: 5px; margin-top: 1rem;">
+                          <div style="display:flex; flex-direction: column; width:33%">
+                            <div style="text-align: center;">
+                              Overall
+                            </div>
+                            <div style=" border-right: 1px solid black;">
+                              <ng-container [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: bet.tableOverall}">
+                              </ng-container>
+                            </div>
+                          </div>
+
+                          <div style="display: flex; flex-direction: column; width:33%">
+                            <div style="text-align: center;">
+                              {{bet.homeAway}}
+                            </div>
+                            <div style="border-right: 1px solid black;">
+                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: bet.tableHomeAway}">
+                              </ng-container>
+                            </div>
+                          </div>
+
+                          <div style="display:flex; flex-direction: column;width:33%; ">
+                            <div style="text-align: center;">
+                              vs {{bet.teamAgainstName}}
+                            </div>
+                            <div>
+                              <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
+                                [ngTemplateOutletContext]="{ $implicit: bet.tableTeam}">
+                              </ng-container>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
           </div>
         </ng-template>
       </mat-tab>
