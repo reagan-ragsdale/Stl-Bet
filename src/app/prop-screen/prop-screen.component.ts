@@ -475,11 +475,13 @@ export class PropScreenComponent implements OnInit {
     let team2Temp = team2
     var overUnders = tempProp.filter(e => e.teamName == "Over" || e.teamName == "Under")
 
+    var team1Totals = team1Temp.filter(e => e.marketKey.toString().includes('team_totals'))
+    var team2Totals = team2Temp.filter(e => e.marketKey.toString().includes('team_totals'))
+    
     team1Temp.push(overUnders)
     team2Temp.push(overUnders)
 
-    var team1Totals = team1Temp.filter(e => e.marketKey.toString().includes('team_totals'))
-    var team2Totals = team2Temp.filter(e => e.marketKey.toString().includes('team_totals'))
+    
 
     
     team1Temp = team1Temp.filter(e => e.marketKey != 'team_totals Over' || e.marketKey != 'team_totals Under')
