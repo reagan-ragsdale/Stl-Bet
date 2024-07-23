@@ -2018,9 +2018,9 @@ export class PropScreenComponent implements OnInit {
   getPlayerBestBets() {
     console.log(this.arrayOfPlayerBets)
     for (let bet of this.arrayOfPlayerBets) {
-      let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
-      let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
-      let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
+      let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
+      let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
+      let teamWin = bet.totalTeam == 0 ? 0 : (bet.overTeam / bet.totalTeam)
       if ((overallWin > .80) || (teamWin > .80) || (homeAwayWin > .80)) {
         if(overallWin > .80){
           bet.overallHighlight = true
@@ -2060,9 +2060,9 @@ export class PropScreenComponent implements OnInit {
 
     this.playerBestBets = []
     for (let bet of this.arrayOfPlayerBets) {
-      let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
-      let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
-      let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
+      let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
+      let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
+      let teamWin = bet.totalTeam == 0 ? 0 : (bet.overTeam / bet.totalTeam)
       if ((overallWin > (this.sliderValuePlayer/100)) || (teamWin > (this.sliderValuePlayer/100)) || (homeAwayWin > (this.sliderValuePlayer/100))) {
         if(overallWin > (this.sliderValuePlayer/100)){
           bet.overallHighlight = true
