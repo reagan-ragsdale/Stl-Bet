@@ -487,7 +487,7 @@ export class PropScreenComponent implements OnInit {
     team1Temp.push(team1Totals)
     team2Temp.push(team2Totals)
     console.log(team1Temp)
-    const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings', "team_totals Over", "team_totals Under"]
+    const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings', "team_totals Over"]
     let team1Final = []
     let team2Final = []
     for (let bet of listOfBets) {
