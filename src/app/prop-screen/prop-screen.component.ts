@@ -453,7 +453,6 @@ export class PropScreenComponent implements OnInit {
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
-    console.log(tempProp)
     var name1 = '';
     var h2h = 0;
     var spreadPoint = 0;
@@ -475,18 +474,19 @@ export class PropScreenComponent implements OnInit {
     let team2Temp = team2
     var overUnders = tempProp.filter(e => e.teamName == "Over" || e.teamName == "Under")
 
+    console.log(team1Temp)
     var team1Totals = team1Temp.filter(e => e.marketKey.toString().includes('team_totals'))
     var team2Totals = team2Temp.filter(e => e.marketKey.toString().includes('team_totals'))
-
+    console.log(team1Totals)
     team1Temp = team1Temp.filter(e => e.marketKey != 'team_totals Over' || e.marketKey != 'team_totals Under')
     team2Temp = team2Temp.filter(e => e.marketKey != 'team_totals Over' || e.marketKey != 'team_totals Under')
-
+    console.log(team1Temp)
     team1Temp.push(overUnders)
     team2Temp.push(overUnders)
-    
+
     team1Temp.push(team1Totals)
     team2Temp.push(team2Totals)
-
+    console.log(team1Temp)
     const listOfBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings', "team_totals Over", "team_totals Under"]
     let team1Final = []
     let team2Final = []
