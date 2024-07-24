@@ -391,12 +391,12 @@
                 <mat-accordion style="width:94%">
                   <mat-expansion-panel *ngFor="let prop of team">
                     <mat-expansion-panel-header>
-                      <mat-panel-title>
+                      <mat-panel-title style="max-width:15%;">
                         {{displayPropTitle(prop)}}:
                       </mat-panel-title>
-                      <mat-panel-description>
+                      <mat-panel-description style="display:flex; gap:1rem;">
                         {{displayPropDescription(prop)}}
-                        <button style="margin-right:1rem; margin-left: auto;"  mat-raised-button>Parlay</button>
+                        <button [color]="'primary'" style="margin-right:1rem; margin-left: auto; width:auto;"  mat-raised-button>Parlay</button>
                       </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-card
