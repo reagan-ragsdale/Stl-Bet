@@ -766,7 +766,10 @@ export class PropScreenComponent implements OnInit {
     try {
       var playerStats: DBMlbPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
       let playerStatsReversed: DBMlbPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
-
+      let playerName = playerStats[0].playerName
+      let marketKey = player.marketKey
+      let propPoint = player.point
+      let propPrice = player.price
       let teamName = ''
       let teamAgainstName = ''
       let homeAway = 'away'
@@ -1426,7 +1429,11 @@ export class PropScreenComponent implements OnInit {
         tableHomeAway: tableHomeAway.slice(0, 10),
         tableTeam: tableTeam.slice(0, 10),
         overUnder: overUnder,
-        teamAgainstName: teamAgainstName
+        teamAgainstName: teamAgainstName,
+        marketKey: marketKey,
+        propPoint: propPoint,
+        propPrice: propPrice,
+        playerName : playerName
 
       }
 
@@ -1454,7 +1461,11 @@ export class PropScreenComponent implements OnInit {
         tableHomeAway: [],
         tableTeam: [],
         overUnder: false,
-        teamAgainstName: ''
+        teamAgainstName: '',
+        propType: '',
+        propPoint: 0,
+        propPrice: 0,
+        playerName: ''
       }
     }
 
@@ -1476,6 +1487,8 @@ export class PropScreenComponent implements OnInit {
     try {
       let marketKey = team.marketKey
       let propType = this.getPropType(team.marketKey)
+      let propPoint = team.point
+      let propPrice = team.price
       let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
       let teamAgainstName = teamName == team.homeTeam ? MlbService.mlbTeamNameToAbvr[team.awayTeam] : MlbService.mlbTeamNameToAbvr[team.homeTeam]
 
@@ -1847,6 +1860,8 @@ export class PropScreenComponent implements OnInit {
         teamName: teamNameNew,
         homeAway: finalTeam.homeAway,
         propType: finalTeam.propType,
+        propPoint: propPoint,
+        propPrice: propPrice,
         totalGames: finalTeam.totalGames,
         totalGamesHomeAway: finalTeam.totalGamesHomeAway,
         totalGamesTeam: finalTeam.totalGamesTeam,
@@ -1883,6 +1898,8 @@ export class PropScreenComponent implements OnInit {
         teamName: '',
         homeAway: ' ',
         propType: ' ',
+        propPoint: 0,
+        propPrice: 0,
         totalGames: 0,
         totalGamesHomeAway: 0,
         totalGamesTeam: 0,
