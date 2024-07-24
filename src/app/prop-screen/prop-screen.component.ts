@@ -2040,27 +2040,27 @@ export class PropScreenComponent implements OnInit {
       let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
       let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
       let teamWin = bet.totalTeam == 0 ? 0 : (bet.overTeam / bet.totalTeam)
-      if ((overallWin > .80) || (teamWin > .80) || (homeAwayWin > .80)) {
-        if(overallWin > .80){
+      if ((overallWin > (this.sliderValuePlayer/100)) || (teamWin > (this.sliderValuePlayer/100)) || (homeAwayWin > (this.sliderValuePlayer/100))) {
+        if(overallWin > (this.sliderValuePlayer/100)){
           bet.overallHighlight = true
         }
-        if(homeAwayWin > .80){
+        if(homeAwayWin > (this.sliderValuePlayer/100)){
           bet.homeAwayHighlight = true
         }
-        if(teamWin > .80){
+        if(teamWin > (this.sliderValuePlayer/100)){
           bet.teamHighlight = true
         }
           this.playerBestBets.push(bet)
       }
       else if(bet.propType == 'total'){
-        if((overallWin < .2) || (teamWin < .2) || (homeAwayWin < .2)){
-          if(overallWin < .2){
+        if((overallWin < (1-(this.sliderValuePlayer/100))) || (teamWin < (1-(this.sliderValuePlayer/100))) || (homeAwayWin < (1-(this.sliderValuePlayer/100)))){
+          if(overallWin < (1-(this.sliderValuePlayer/100))){
             bet.overallHighlight = true
           }
-          if(homeAwayWin < .2){
+          if(homeAwayWin < (1-(this.sliderValuePlayer/100))){
             bet.homeAwayHighlight = true
           }
-          if(teamWin < .2){
+          if(teamWin < (1-(this.sliderValuePlayer/100))){
             bet.teamHighlight = true
           }
           bet.overUnder = true

@@ -699,8 +699,8 @@
                 <mat-card
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                   <mat-card-header>
-                    <mat-card-title>{{bet.teamName
-                      }} | {{displayIndividualPropTitle(bet.marketKey)}} | {{bet.propType == 'spread' ? (bet.propPoint > 0 ? ('+' + bet.propPoint): bet.propPoint): (bet.propType == 'total' ? (bet.overUnder == false ? 'Under' : 'Over') : '')}}</mat-card-title>
+                    <mat-card-title><a class="team-name" (click)="onTeamClick(bet.TeamName)" >{{bet.teamName
+                    }}</a> | {{displayIndividualPropTitle(bet.marketKey)}} | {{bet.propType == 'spread' ? (bet.propPoint > 0 ? ('+' + bet.propPoint): bet.propPoint): (bet.propType == 'total' ? (bet.overUnder == false ? 'Under | ' + bet.propPoint  : 'Over | ' + bet.propPoint) : '')}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content style="min-height:400px; padding: 0;">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
@@ -1195,8 +1195,8 @@
                 <mat-card
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                   <mat-card-header>
-                    <mat-card-title>{{bet.playerName
-                      }} | {{bet.marketKey | removeUnderScore | titlecase}} | {{bet.propPoint}} | {{bet.overUnder == false ? 'Under' : "Over"}}</mat-card-title>
+                    <mat-card-title><a class="team-name" (click)="playerClicked(bet.playerName)" >{{bet.playerName
+                    }}</a> | {{bet.marketKey | removeUnderScore | titlecase}} | {{bet.propPoint}} | {{bet.overUnder == false ? 'Under' : "Over"}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content style="min-height:400px; padding: 0;">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
