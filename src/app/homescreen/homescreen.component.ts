@@ -69,6 +69,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   onTeamClick(team: string){
+    if(team.length > 3){
+      team = MlbService.mlbTeamNameToAbvr[team]
+    }
     let teamId = MlbService.mlbTeamIds[team]
     this.router.navigate([`/teamStats/MLB/${teamId}`])
   }
