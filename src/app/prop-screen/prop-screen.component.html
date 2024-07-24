@@ -1345,7 +1345,7 @@
                               Overall
                             </div>
                             <div style=" border-right: 1px solid black;">
-                              <ng-container [ngTemplateOutlet]="gameLog"
+                              <ng-container [ngTemplateOutlet]="playerGameLog"
                                 [ngTemplateOutletContext]="{ $implicit: bet.tableOverall}">
                               </ng-container>
                             </div>
@@ -1356,7 +1356,7 @@
                               {{bet.homeAway}}
                             </div>
                             <div style="border-right: 1px solid black;">
-                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="gameLog"
+                              <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="playerGameLog"
                                 [ngTemplateOutletContext]="{ $implicit: bet.tableHomeAway}">
                               </ng-container>
                             </div>
@@ -1367,7 +1367,7 @@
                               vs {{bet.teamAgainstName}}
                             </div>
                             <div>
-                              <ng-container style="width:25%;" [ngTemplateOutlet]="gameLog"
+                              <ng-container style="width:25%;" [ngTemplateOutlet]="playerGameLog"
                                 [ngTemplateOutletContext]="{ $implicit: bet.tableTeam}">
                               </ng-container>
                             </div>

@@ -2033,7 +2033,7 @@ export class PropScreenComponent implements OnInit {
   //how to find best bets
   //if either overall home/away or team win percentage is over a certain number then add it to it
   //
-  sliderValuePlayer: number = 80;
+  sliderValuePlayer: number = 90;
   getPlayerBestBets() {
     console.log(this.arrayOfPlayerBets)
     for (let bet of this.arrayOfPlayerBets) {
