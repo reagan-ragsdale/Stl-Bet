@@ -1195,7 +1195,7 @@
                 <mat-card
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                   <mat-card-header>
-                    <mat-card-title><a class="name-link"  (click)="playerClicked(bet.playerName)" >{{bet.playerName
+                    <mat-card-title class="name-link"><a class="name-link"  (click)="playerClicked(bet.playerName)" >{{bet.playerName
                     }}</a> | {{bet.marketKey | removeUnderScore | titlecase}} | {{bet.propPoint}} | {{bet.overUnder == false ? 'Under' : "Over"}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content style="min-height:400px; padding: 0;">
