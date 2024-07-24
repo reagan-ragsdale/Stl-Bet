@@ -747,7 +747,7 @@ export class PropScreenComponent implements OnInit {
         
 
       }
-      this.getPlayerBestBets()
+      
       playerAway.teamName = this.displayPropHtml2.name
       playerHome.teamName = this.displayPropHtml1.name
       playerPropNew.push(playerAway, playerHome)
@@ -758,6 +758,7 @@ export class PropScreenComponent implements OnInit {
 
 
     }
+    this.getPlayerBestBets()
 
   }
   public playerStatObj: any = {}

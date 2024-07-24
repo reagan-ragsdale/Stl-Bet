@@ -1196,7 +1196,7 @@
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                   <mat-card-header>
                     <mat-card-title>{{bet.playerName
-                      }} | {{bet.marketKey | removeUnderScore | titlecase}} | {{bet.propPoint}} - {{bet.overUnder == false ? 'Under' : "Over"}}</mat-card-title>
+                      }} | {{bet.marketKey | removeUnderScore | titlecase}} | {{bet.propPoint}} | {{bet.overUnder == false ? 'Under' : "Over"}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content style="min-height:400px; padding: 0;">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
@@ -1247,7 +1247,7 @@
                               style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                               <div
                                 style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                <h3 style="margin:auto">{{bet.homeAway}}</h3>
+                                <h3 style="margin:auto">{{bet.homeAway | titlecase}}</h3>
                               </div>
                               <div [ngClass]="'ml-stat'">
                                 <h3 style="margin:auto">Record</h3>
