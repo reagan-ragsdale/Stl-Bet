@@ -8,28 +8,7 @@ import { PlayerProp } from 'src/app/player-prop';
 })
 export class PropCheckoutComponent {
  @Input()
-  prop: PlayerProp[] = [{
-    name: '',
-    id: '',
-    description: '',
-    price: '',
-    point: '',
-    event: '',
-    isDisabled: false,
-    percentTotal: '',
-    percentTeam: '',
-    avgTotal: '',
-    avgTeam: '',
-    team1: '',
-    team2: '',
-    isOpened: false,
-    teamAgainst: '',
-    averageDifferential: '',
-    gamesPlayed: "",
-    gamesPlayedvsTeam: "",
-    average2022: "",
-    average2022vsTeam: ""
-  }];
+  prop: any[] = []
 @Input() exit: boolean= true;
 @Output() length = new EventEmitter<PlayerProp[]>();
 @Output() exitSend = new EventEmitter<boolean>();

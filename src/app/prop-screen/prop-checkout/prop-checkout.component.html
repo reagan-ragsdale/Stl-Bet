@@ -1,24 +1,11 @@
-<mat-card>
-    <mat-card-header class="card-header">
-      <mat-card-title>Prop Checkout</mat-card-title>
-    </mat-card-header>
-    <mat-divider class="card-header"></mat-divider>
-    <mat-card-content *ngFor="let p of prop; let i = index" class="team-prop-display">
-      <h2>{{p.description}}</h2>
-      <h2>{{p.name}}</h2>
-      <h2>{{p.point}}</h2>
-      <h2>{{p.price}}</h2>
-      <h2>{{p.percentTotal}}</h2>
-      <h2>{{p.percentTeam}}</h2>
-      <button mat-mini-fab color="warn" (click)="remove(p)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-card-content>
-    <mat-card-actions align="start" class="container-class">
-      <!-- <span>Show bets with probability over: </span>
-      <mat-slider min="0" max="100" step="1" showTickMarks discrete>
-        <input matSliderThumb>
-      </mat-slider> -->
-      <button  mat-raised-button color="primary" (click)="exitModal()">Exit</button>
-    </mat-card-actions>
-  </mat-card>
+<mat-accordion style="width:100%">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Parlay Picks
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    
+       
+  </mat-expansion-panel>
+</mat-accordion>

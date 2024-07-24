@@ -396,7 +396,7 @@
                       </mat-panel-title>
                       <mat-panel-description style="display:flex; gap:1rem;">
                         {{displayPropDescription(prop)}}
-                        <button [color]="'primary'" style="margin-right:1rem; margin-left: auto; width:auto;"  mat-raised-button>Parlay</button>
+                        <button [color]="'primary'" (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)" style="margin-right:1rem; margin-left: auto; width:auto;"  mat-raised-button>Parlay</button>
                       </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-card
@@ -1396,6 +1396,6 @@
 
 
 
-  <app-prop-checkout [prop]="checkoutArray" (exitSend)="isExit($any($event))" (length)="getArrayLength($event)"
-    *ngIf="checkoutArray.length > 0 && exit"></app-prop-checkout>
+  <app-prop-checkout [prop]="propParlays" (exitSend)="isExit($any($event))" (length)="getArrayLength($event)"
+    *ngIf="propParlays.length > 0 && exit"></app-prop-checkout>
 </div>
