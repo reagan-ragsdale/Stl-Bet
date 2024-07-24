@@ -307,6 +307,7 @@ public displayedColumnsValues: any[] = [
       ]
     }
 
+    this.allSportTeamList = await TeamInfoController.getAllTeamInfo('MLB')
     this.teamInfo = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
 
     this.teamSeasons = []
@@ -416,11 +417,11 @@ public displayedColumnsValues: any[] = [
 
   filterSearch() {
     if(this.isNull){
-      this.filteredSearch = this.allSportTeamList.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
       console.log(this.filteredSearch)
     }
     else{
-      this.filteredSearch = this.teamInfo.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
     }
     
   }
