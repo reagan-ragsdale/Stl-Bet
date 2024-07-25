@@ -123,10 +123,10 @@ export class PropCheckoutComponent implements OnChanges {
                 didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
               }
               else if (prop.propVariables.marketKey == 'totals') {
-                didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > game.propVariables.propPoint) ? true : false);
+                didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
               }
               else if (prop.propVariables.marketKey == 'team_totals Over') {
-                didParlayHappen.push((game.pointsScoredOverall > game.propVariables.propPoint) ? true : false);
+                didParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
               }
 
             }
