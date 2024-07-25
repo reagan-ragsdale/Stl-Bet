@@ -2125,8 +2125,10 @@ export class PropScreenComponent implements OnInit {
     return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
   }
   propParlays: any[] = []
+  finalPropParlays: any[] = []
   addPropToParlay(prop:any){
     this.propParlays.push(prop)
+    this.finalPropParlays = this.propParlays
   }
 
 

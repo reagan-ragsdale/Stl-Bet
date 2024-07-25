@@ -1396,6 +1396,6 @@
 
 
 
-  <app-prop-checkout [listOfProps]="propParlays" (exitSend)="isExit($any($event))" (length)="getArrayLength($event)"
-    *ngIf="propParlays.length > 0 && exit"></app-prop-checkout>
+  <app-prop-checkout [listOfProps]="finalPropParlays" (exitSend)="isExit($any($event))" (length)="getArrayLength($event)"
+    *ngIf="finalPropParlays.length > 0 && exit"></app-prop-checkout>
 </div>
