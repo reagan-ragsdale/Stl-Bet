@@ -701,7 +701,7 @@
                   style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                   <mat-card-header>
                     <mat-card-title><a style="text-decoration: none; " (click)="onTeamClick(bet.teamName)" >{{bet.teamName
-                    }}</a> | {{bet.marketKey}} | {{bet.propType == 'spread' ? (bet.propPoint > 0 ? ('+' + bet.propPoint): bet.propPoint): (bet.propType == 'total' ? (bet.overUnder == false ? 'Under | ' + bet.propPoint  : 'Over | ' + bet.propPoint) : '')}}</mat-card-title>
+                    }}</a> | {{bet.convertedMarketKey}} | {{bet.propType == 'spread' ? (bet.propPoint > 0 ? ('+' + bet.propPoint): bet.propPoint): (bet.propType == 'total' ? (bet.overUnder == false ? 'Under | ' + bet.propPoint  : 'Over | ' + bet.propPoint) : '')}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content style="min-height:400px; padding: 0;">
                     <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"

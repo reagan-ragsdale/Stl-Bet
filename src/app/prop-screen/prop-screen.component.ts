@@ -1889,7 +1889,8 @@ export class PropScreenComponent implements OnInit {
         tableHomeAway: finalTeam.tableHomeAway.slice(0, 10),
         tableTeam: finalTeam.tableTeam.slice(0, 10),
         teamAgainstName: teamAgainstName,
-        marketKey: this.displayIndividualPropTitle(marketKey)
+        marketKey: marketKey,
+        convertedMarketKey: this.displayIndividualPropTitle(marketKey)
 
       }
 
@@ -1927,7 +1928,8 @@ export class PropScreenComponent implements OnInit {
         tableHomeAway: [],
         tableTeam: [],
         teamAgainstName: '',
-        marketKey: ''
+        marketKey: '',
+        convertedMarketKey: ''
 
       }
     }
