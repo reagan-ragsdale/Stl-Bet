@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { PlayerProp } from 'src/app/player-prop';
 
 @Component({
@@ -6,74 +6,173 @@ import { PlayerProp } from 'src/app/player-prop';
   templateUrl: './prop-checkout.component.html',
   styleUrls: ['./prop-checkout.component.scss']
 })
-export class PropCheckoutComponent implements OnChanges{
-  
- @Input()
+export class PropCheckoutComponent implements OnChanges {
+
+  @Input()
   listOfProps: any[] = []
-@Input() exit: boolean= true;
-@Output() length = new EventEmitter<any[]>();
-@Output() exitSend = new EventEmitter<boolean>();
+  @Input() exit: boolean = true;
+  @Output() length = new EventEmitter<any[]>();
+  @Output() exitSend = new EventEmitter<boolean>();
   value = 80;
-  
-  display(){
+
+  display() {
     console.log(this.listOfProps)
   }
 
-  
-  
-  remove(p: any){
+
+
+  remove(p: any) {
     p.isDisabled = false;
     delete p.stats;
     this.listOfProps = this.listOfProps.filter(item => item != p);
     this.length.emit(this.listOfProps)
   }
-  exitModal(){
-    
+  exitModal() {
+
     this.exit = false;
     this.exitSend.emit(this.exit);
   }
 
-  ngInit(){
+  ngInit() {
     this.display()
   }
 
   overallProbability: number = 0
-  calculateOverallProbability(){
-    if(this.listOfProps.length == 1){
+  calculateOverallProbability() {
+    if (this.listOfProps.length == 1) {
       this.overallProbability = this.listOfProps[0].propVariables.propPrice
     }
-    else if(this.listOfProps.length > 1){
+    else if (this.listOfProps.length > 1) {
       //(100 / (150 + 100)) * 100
       let finalProb: number = 1;
-      for(let prop of this.listOfProps){
-        if(prop.propVariables.propPrice > 0){
+      for (let prop of this.listOfProps) {
+        if (prop.propVariables.propPrice > 0) {
           finalProb = finalProb * (100 / (prop.propVariables.propPrice + 100))
         }
-        else if(prop.propVariables.propPrice < 0){
+        else if (prop.propVariables.propPrice < 0) {
           //(300/(300+100)) * 100
           finalProb = finalProb * ((prop.propVariables.propPrice * -1) / ((prop.propVariables.propPrice * -1) + 100))
         }
-        
+
       }
       //positive odds
-      if(finalProb < .5){
-      //(100 / (10 / 100)) - 100
-      this.overallProbability = ((100 / ((finalProb * 100)/100)) -100)
+      if (finalProb < .5) {
+        //(100 / (10 / 100)) - 100
+        this.overallProbability = ((100 / ((finalProb * 100) / 100)) - 100)
       }
       //negative odds
-      else{
+      else {
         //(60 / (1 - (60/100))) * -1
-        this.overallProbability = ((finalProb *100)/ (1 - ((finalProb * 100)/100))) * -1
+        this.overallProbability = ((finalProb * 100) / (1 - ((finalProb * 100) / 100))) * -1
       }
-      
-      
+
+
     }
   }
   overallChance: number = 0
   sameGameChance: number = 0
-  displayPropChance(){
+  displayPropChance() {
+    //an array is going to come in. It could have different team and player stat arrays
+    //how to know how to calculate the same game chance of all the props happening
+    // loop through each item in the array and check to see if there are both teams stats or players from both teams
+    // if both teams are present then you have to only search for the games where both teams have played each other
+    //if only one team is present and a player then you search through the players games and see if it matches
+    //ex: player and team prop
+    // loop through each game in the player stat and see if it meets the prop, 
+    //then find the matching game id in the team stat and see if the game prop is correct,
+    //if there is more than one player then reference that game in the players game stats and check
+
+    //find the number of teams in the parlay array
+    if (this.listOfProps.length > 1) {
+      let teams: string[] = []
+      for (let prop of this.listOfProps) {
+        if (teams.includes(prop.propVariables.teamName)) {
+          continue;
+        }
+        else { teams.push(prop.propVariables.teamName) }
+      }
+
+      //if only one team
+      if (teams.length == 1) {
+        //need to find if there is a player prop, if there is only one prop then just that overall win chance
+        // if one player and one team, then loop through player stats and then grab the game within that loop
+        // if multiple player then loop through the player with the least amount of games and grab the other players and team
+        let players = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Player')
+        let statArray: any[] = []
+        //if there are no players then just take the first team stats
+        if (players.length == 0) {
+          statArray = this.listOfProps[0].stats
+          //begin looping through the stat array and for each game loop through all the props in the listOFProps array to check those
+          let totalWins: number = 0;
+          for (let game of statArray) {
+            let didParlayHappen: boolean[] = [];
+            for (let prop of this.listOfProps) {
+              if (prop.propVariables.marketKey == 'h2h') {
+                didParlayHappen.push(game.result == 'W' ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'spreads') {
+                didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'totals') {
+                didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > game.propVariables.propPoint) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'team_totals') {
+                didParlayHappen.push((game.pointsScoredOverall > game.propVariables.propPoint) ? true : false);
+              }
+
+            }
+            if (!didParlayHappen.includes(false)) {
+              totalWins += 1;
+            }
+          }
+          this.sameGameChance = (totalWins / statArray.length)
+        }
+
+        else if (players.length == 1) {
+          statArray = players[0].stats
+        }
+        else if (players.length > 1) {
+          for (let player of players) {
+            if (statArray.length == 0) {
+              statArray = player.stats
+            }
+            else if (player.stats.length < statArray.length) {
+              statArray = player.stats
+            }
+          }
+        }
+
+        //now we have a stat array of either team or player
+
+      }
+      //if more than one team
+      else {
+
+      }
+    }
+    else {
+      if (this.listOfProps[0].propVariables.playerOrTeam == 'Player') {
+        this.sameGameChance = (this.listOfProps[0].propVariables.overOverall / this.listOfProps[0].propVariables.totalOverall)
+      }
+      else {
+        this.sameGameChance = (this.listOfProps[0].propVariables.totalWins / this.listOfProps[0].propVariables.totalGames)
+      }
+    }
+
+
+
+
     let propOverall: number = 1;
-    for(let prop of this.listOfProps){
+    for (let prop of this.listOfProps) {
       propOverall = propOverall * (prop.propVariables.totalWins / prop.propVariables.totalGames)
     }
     this.overallChance = propOverall

@@ -1435,7 +1435,8 @@ export class PropScreenComponent implements OnInit {
         propPoint: propPoint,
         propPrice: propPrice,
         playerName : playerName,
-        playerOrTeam: 'Player'
+        playerOrTeam: 'Player',
+        teamName: teamName
 
       }
 
@@ -1468,7 +1469,8 @@ export class PropScreenComponent implements OnInit {
         propPoint: 0,
         propPrice: 0,
         playerName: '',
-        playerOrTeam: ''
+        playerOrTeam: '',
+        teamName: ''
       }
     }
 
