@@ -157,37 +157,64 @@ export class PropCheckoutComponent implements OnChanges {
       //if more than one team
       else {
         let statArray: any[] = []
-        
+
         let players = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Player')
 
         //just the two teams
-        if(players.length == 0){
+        if (players.length == 0) {
           statArray = this.listOfProps[0].filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName)
           let totalWins: number = 0;
-          for(let game of statArray){
+          for (let game of statArray) {
             let didParlayHappen: boolean[] = [];
             for (let prop of this.listOfProps) {
-              if (prop.propVariables.marketKey == 'h2h') {
-                didParlayHappen.push(game.result == 'W' ? true : false);
+              //need to check which team the prop is from 
+              if (prop.propVariables.teamName == game.teamName) {
+                if (prop.propVariables.marketKey == 'h2h') {
+                  didParlayHappen.push(game.result == 'W' ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
+                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
+                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
+                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'spreads') {
+                  didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'totals') {
+                  didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > game.propVariables.propPoint) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'team_totals Over') {
+                  didParlayHappen.push((game.pointsScoredOverall > game.propVariables.propPoint) ? true : false);
+                }
               }
-              else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
-                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
+              else if (prop.propVariables.teamName == game.teamAgainstName) {
+                if (prop.propVariables.marketKey == 'h2h') {
+                  didParlayHappen.push(game.result == 'L' ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
+                  didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning)) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
+                  didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning)) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
+                  didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning)) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'spreads') {
+                  didParlayHappen.push(((game.pointsScoredOverall - game.pointsAllowedOverall) < prop.propVariables.propPoint) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'totals') {
+                  didParlayHappen.push(((game.pointsAllowedOverall + game.pointsScoredOverall) > game.propVariables.propPoint) ? true : false);
+                }
+                else if (prop.propVariables.marketKey == 'team_totals Over') {
+                  didParlayHappen.push((game.pointsAllowedOverall > game.propVariables.propPoint) ? true : false);
+                }
               }
-              else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
-                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
-              }
-              else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
-                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
-              }
-              else if (prop.propVariables.marketKey == 'spreads') {
-                didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
-              }
-              else if (prop.propVariables.marketKey == 'totals') {
-                didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > game.propVariables.propPoint) ? true : false);
-              }
-              else if (prop.propVariables.marketKey == 'team_totals') {
-                didParlayHappen.push((game.pointsScoredOverall > game.propVariables.propPoint) ? true : false);
-              }
+
 
             }
             if (!didParlayHappen.includes(false)) {
@@ -196,10 +223,10 @@ export class PropCheckoutComponent implements OnChanges {
           }
           this.sameGameChance = totalWins / statArray.length
         }
-        else if(players.length == 1){
-          
+        else if (players.length == 1) {
+
         }
-        else if(players.length > 1){
+        else if (players.length > 1) {
 
         }
       }
