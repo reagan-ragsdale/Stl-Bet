@@ -5,7 +5,10 @@
         Parlay Picks
       </mat-panel-title>
     </mat-expansion-panel-header>
-    
+    <div *ngFor="let prop of listOfProps" style="display:flex;">
+      <div>{{prop.playerName}}</div>
+
+    </div>
        
   </mat-expansion-panel>
 </mat-accordion>

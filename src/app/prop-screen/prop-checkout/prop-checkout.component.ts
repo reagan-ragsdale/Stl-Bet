@@ -8,20 +8,21 @@ import { PlayerProp } from 'src/app/player-prop';
 })
 export class PropCheckoutComponent {
  @Input()
-  prop: any[] = []
+  listOfProps: any[] = []
 @Input() exit: boolean= true;
 @Output() length = new EventEmitter<PlayerProp[]>();
 @Output() exitSend = new EventEmitter<boolean>();
   value = 80;
-display(){
-    console.log(this.prop)
+  
+  display(){
+    console.log(this.listOfProps)
   }
 
   
   remove(p: any){
     p.isDisabled = false;
-    this.prop = this.prop.filter(item => item != p);
-    this.length.emit(this.prop)
+    this.listOfProps = this.listOfProps.filter(item => item != p);
+    this.length.emit(this.listOfProps)
   }
   exitModal(){
     
