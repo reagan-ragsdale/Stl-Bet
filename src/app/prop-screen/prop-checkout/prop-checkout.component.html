@@ -12,6 +12,7 @@
       <h4 *ngIf="prop.propVariables.propType == 'total'">{{prop.propVariables.overUnder == false ? 'Under' : 'Over'}}</h4>
       <h4 *ngIf="prop.propVariables.propType != 'h2h'">{{prop.propVariables.propType == 'spread' ? (prop.propVariables.propPoint > 0 ? '+' : '') : ''}}{{prop.propVariables.propPoint}}</h4>
       <h4>{{prop.propVariables.propPrice}}</h4>
+      <button [color]="'primary'" (click)="$event.stopPropagation()" (click)="remove(prop)" style="margin-right:1rem; margin-left: auto; width:auto;"  mat-raised-button>X</button>
     </div>
   </ng-template>
   </mat-expansion-panel>
