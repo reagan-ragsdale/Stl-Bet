@@ -14,14 +14,14 @@
       <h4 style="margin-top:auto; margin-bottom:auto;">{{prop.propVariables.propPrice}}</h4>
       <button [color]="'primary'" (click)="$event.stopPropagation()" (click)="remove(prop)" style="margin-right:1rem; margin-left: auto; min-width:auto;"  mat-raised-button>X</button>
     </div>
-    <div style="display: flex; margin-top:1px solid black;">
+    <div style="display: flex;margin-top:1rem; border-top:1px solid black;">
       <div style="display:flex; flex-direction: column;">
         <h4>Overall Chance</h4>
         <h4>{{overallChance}}</h4>
       </div>
       <div style="display:flex; flex-direction: column;">
         <h4>Same Game Chance</h4>
-        <h4>{{sameGameChance}}</h4>
+        <h4>{{sameGameChance | number: '1.0-2'}}</h4>
       </div>
     </div>
     
