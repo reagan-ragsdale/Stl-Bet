@@ -19,6 +19,7 @@ export class PropCheckoutComponent {
   }
 
   
+  
   remove(p: any){
     p.isDisabled = false;
     this.listOfProps = this.listOfProps.filter(item => item != p);
@@ -28,5 +29,9 @@ export class PropCheckoutComponent {
     
     this.exit = false;
     this.exitSend.emit(this.exit);
+  }
+
+  ngInit(){
+    this.display()
   }
 }
