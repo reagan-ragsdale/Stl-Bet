@@ -163,7 +163,7 @@ export class PropCheckoutComponent implements OnChanges {
         //just the two teams
         if (players.length == 0) {
           console.log(this.listOfProps)
-          statArray = this.listOfProps[0].filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName)
+          statArray = this.listOfProps[0].stats.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName)
           console.log(statArray)
           let totalWins: number = 0;
           for (let game of statArray) {
