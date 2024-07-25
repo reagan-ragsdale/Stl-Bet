@@ -7,8 +7,11 @@
     </mat-expansion-panel-header>
     <ng-template matExpansionPanelContent>
     <div *ngFor="let prop of listOfProps" style="display:flex;">
-      <div style="width:100%;">{{prop.propVariables.teamName}}</div>
-
+      <h4>{{prop.propVariables.teamName}}</h4>
+      <h4>{{prop.propVariables.marketKey}}</h4>
+      <h4 *ngIf="prop.propVariables.propType == 'total'">{{prop.propVariables.overUnder == false ? 'Under' : 'Over'}}</h4>
+      <h4>{{prop.propVariables.propType == 'spread' ? (prop.propVariables.propPoint > 0 ? '+' : '') : ''}}{{prop.propVariables.propPoint}}</h4>
+      <h4>{{prop.propVariables.propPrice}}</h4>
     </div>
   </ng-template>
   </mat-expansion-panel>
