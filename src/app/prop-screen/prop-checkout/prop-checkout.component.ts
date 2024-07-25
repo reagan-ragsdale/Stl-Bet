@@ -36,8 +36,40 @@ export class PropCheckoutComponent implements OnChanges{
     this.display()
   }
 
+  overallProbability: number = 0
+  calculateOverallProbability(){
+    if(this.listOfProps.length == 1){
+      this.overallProbability = this.listOfProps[0].propVariables.propPrice
+    }
+    else if(this.listOfProps.length > 1){
+      //(100 / (150 + 100)) * 100
+      let finalProb: number = 1;
+      for(let prop of this.listOfProps){
+        if(prop.propVariables.propPrice > 0){
+          finalProb = finalProb * (100 / (prop.propVariables.propPrice + 100))
+        }
+        else if(prop.propVariables.propPrice < 0){
+          //(300/(300+100)) * 100
+          finalProb = finalProb * ((prop.propVariables.propPrice * -1) / ((prop.propVariables.propPrice * -1) + 100))
+        }
+        
+      }
+      //positive odds
+      if(finalProb < .5){
+      //(100 / (10 / 100)) - 100
+      this.overallProbability = ((100 / ((finalProb * 100)/100)) -100)
+      }
+      //negative odds
+      else{
+        //(60 / (1 - (60/100))) * -1
+        this.overallProbability = ((finalProb *100)/ (1 - ((finalProb * 100)/100))) * -1
+      }
+      
+      
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-    console.log(this.listOfProps)
+    this.calculateOverallProbability()
   }
 }
