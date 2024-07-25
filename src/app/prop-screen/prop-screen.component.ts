@@ -2129,6 +2129,7 @@ export class PropScreenComponent implements OnInit {
   propParlays: any[] = []
   finalPropParlays: any[] = []
   addPropToParlay(prop:any){
+    prop.isDisabled = true
     this.finalPropParlays.push(prop)
     this.finalPropParlays = this.finalPropParlays.slice()
   }

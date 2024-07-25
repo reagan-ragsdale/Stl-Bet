@@ -14,6 +14,7 @@
       <h4 style="margin-top:auto; margin-bottom:auto;">{{prop.propVariables.propPrice}}</h4>
       <button [color]="'primary'" (click)="$event.stopPropagation()" (click)="remove(prop)" style="margin-right:1rem; margin-left: auto; min-width:auto;"  mat-raised-button>X</button>
     </div>
+    <button [color]="'primary'" (click)="$event.stopPropagation()" (click)="openPropChance()" style="margin-right:1rem; margin-left: auto; min-width:auto;"  mat-raised-button>X</button>
   </ng-template>
   </mat-expansion-panel>
 </mat-accordion>

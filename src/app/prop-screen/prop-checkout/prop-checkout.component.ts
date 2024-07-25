@@ -69,6 +69,10 @@ export class PropCheckoutComponent implements OnChanges{
     }
   }
 
+  openPropChance(){
+    
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.calculateOverallProbability()
   }
