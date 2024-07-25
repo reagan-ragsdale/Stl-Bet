@@ -23,6 +23,7 @@ export class PropCheckoutComponent implements OnChanges{
   
   remove(p: any){
     p.isDisabled = false;
+    delete p.stats;
     this.listOfProps = this.listOfProps.filter(item => item != p);
     this.length.emit(this.listOfProps)
   }
@@ -68,12 +69,18 @@ export class PropCheckoutComponent implements OnChanges{
       
     }
   }
-
-  openPropChance(){
-    
+  overallChance: number = 0
+  sameGameChance: number = 0
+  displayPropChance(){
+    let propOverall: number = 1;
+    for(let prop of this.listOfProps){
+      propOverall = propOverall * (prop.propVariables.totalWins / prop.propVariables.totalGames)
+    }
+    this.overallChance = propOverall
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.calculateOverallProbability()
+    this.displayPropChance()
   }
 }

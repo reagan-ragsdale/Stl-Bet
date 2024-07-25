@@ -1434,7 +1434,8 @@ export class PropScreenComponent implements OnInit {
         marketKey: marketKey,
         propPoint: propPoint,
         propPrice: propPrice,
-        playerName : playerName
+        playerName : playerName,
+        playerOrTeam: 'Player'
 
       }
 
@@ -1466,7 +1467,8 @@ export class PropScreenComponent implements OnInit {
         propType: '',
         propPoint: 0,
         propPrice: 0,
-        playerName: ''
+        playerName: '',
+        playerOrTeam: ''
       }
     }
 
@@ -1890,7 +1892,8 @@ export class PropScreenComponent implements OnInit {
         tableTeam: finalTeam.tableTeam.slice(0, 10),
         teamAgainstName: teamAgainstName,
         marketKey: marketKey,
-        convertedMarketKey: this.displayIndividualPropTitle(marketKey)
+        convertedMarketKey: this.displayIndividualPropTitle(marketKey),
+        playerOrTeam: 'Team'
 
       }
 
@@ -1929,7 +1932,8 @@ export class PropScreenComponent implements OnInit {
         tableTeam: [],
         teamAgainstName: '',
         marketKey: '',
-        convertedMarketKey: ''
+        convertedMarketKey: '',
+        playerOrTeam: ''
 
       }
     }
@@ -2130,8 +2134,16 @@ export class PropScreenComponent implements OnInit {
   finalPropParlays: any[] = []
   addPropToParlay(prop:any){
     prop.isDisabled = true
+    let isPlayer = prop.propVariables.playerOrTeam == 'Player' ? true : false
+    if(isPlayer){
+      prop.stats = this.playerStatsFinal.filter(e => e.playerName == prop.propVariables.playerName)
+    }
+    else{
+      prop.stats = prop.propVariables.homeAway == 'Home' ? this.team1GameStats : this.team2GameStats;
+    }
     this.finalPropParlays.push(prop)
     this.finalPropParlays = this.finalPropParlays.slice()
+    
   }
 
 
