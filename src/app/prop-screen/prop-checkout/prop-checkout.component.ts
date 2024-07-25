@@ -163,10 +163,12 @@ export class PropCheckoutComponent implements OnChanges {
         //just the two teams
         if (players.length == 0) {
           statArray = this.listOfProps[0].filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName)
+          console.log(statArray)
           let totalWins: number = 0;
           for (let game of statArray) {
             let didParlayHappen: boolean[] = [];
             for (let prop of this.listOfProps) {
+              console.log(prop)
               //need to check which team the prop is from 
               if (prop.propVariables.teamName == game.teamName) {
                 if (prop.propVariables.marketKey == 'h2h') {
