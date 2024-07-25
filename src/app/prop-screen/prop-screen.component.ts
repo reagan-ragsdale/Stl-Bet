@@ -2035,7 +2035,6 @@ export class PropScreenComponent implements OnInit {
   //
   sliderValuePlayer: number = 90;
   getPlayerBestBets() {
-    console.log(this.arrayOfPlayerBets)
     for (let bet of this.arrayOfPlayerBets) {
       let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
       let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
@@ -2128,7 +2127,6 @@ export class PropScreenComponent implements OnInit {
   propParlays: any[] = []
   addPropToParlay(prop:any){
     this.propParlays.push(prop)
-    console.log(this.propParlays)
   }
 
 

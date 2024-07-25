@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import { PlayerProp } from 'src/app/player-prop';
 
 @Component({
@@ -6,7 +6,8 @@ import { PlayerProp } from 'src/app/player-prop';
   templateUrl: './prop-checkout.component.html',
   styleUrls: ['./prop-checkout.component.scss']
 })
-export class PropCheckoutComponent {
+export class PropCheckoutComponent implements OnChanges{
+  
  @Input()
   listOfProps: any[] = []
 @Input() exit: boolean= true;
@@ -33,5 +34,9 @@ export class PropCheckoutComponent {
 
   ngInit(){
     this.display()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
   }
 }
