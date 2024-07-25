@@ -38,5 +38,6 @@ export class PropCheckoutComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
+    console.log(this.listOfProps)
   }
 }
