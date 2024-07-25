@@ -11,7 +11,7 @@ export class PropCheckoutComponent implements OnChanges{
  @Input()
   listOfProps: any[] = []
 @Input() exit: boolean= true;
-@Output() length = new EventEmitter<PlayerProp[]>();
+@Output() length = new EventEmitter<any[]>();
 @Output() exitSend = new EventEmitter<boolean>();
   value = 80;
   
