@@ -2128,6 +2128,7 @@ export class PropScreenComponent implements OnInit {
   propParlays: any[] = []
   addPropToParlay(prop:any){
     this.propParlays.push(prop)
+    console.log(this.propParlays)
   }
 
 
