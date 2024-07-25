@@ -415,7 +415,7 @@ export class PropScreenComponent implements OnInit {
     this.checkoutArray = [];
   }
   getArrayLength(event: any) {
-    this.propParlays = event;
+    this.finalPropParlays = event;
   }
 
   findBestBetsFromEvent(event: any) {
