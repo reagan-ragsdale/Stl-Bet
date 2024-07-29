@@ -1,21 +1,20 @@
 
 import express, { Router } from "express"
-import type { UserInfo } from "remult"
-
-const validUsers: UserInfo[] = [
-  { id: "1", name: "Jane", roles: ["admin"] },
-  { id: "2", name: "Steve" }
-]
+import  { repo } from "remult"
+import { DbUsers } from "../shared/dbTasks/DbUsers"
+import { api } from "./api"
 
 export const auth = Router()
 
 auth.use(express.json())
+auth.use(api.withRemult)
 
-auth.post("/api/signIn", (req, res) => {
-  const user = validUsers.find(user => user.name === req.body.username)
+auth.post("/api/signIn", async(req, res) => {
+  const user = await repo(DbUsers).findFirst({userName: req.body.userName})
   if (user) {
-    req.session!["user"] = user
-    res.json(user)
+    const result = {userName: user.userName, userPass: user.userPass}
+    req.session!["user"] = result
+    res.json(result)
   } else {
     res.status(404).json("Invalid user, try 'Steve' or 'Jane'")
   }

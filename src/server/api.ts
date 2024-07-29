@@ -33,6 +33,8 @@ import { repo } from 'remult';
 import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
 import { DbTeamInfo } from '../shared/dbTasks/DBTeamInfo';
+import { DbUsers } from '../shared/dbTasks/DbUsers';
+
 config()
 
 export const api = remultExpress({
@@ -50,7 +52,8 @@ export const api = remultExpress({
     DBMlbPlayerGameStats,
     DbPlayerInfo,
     DBMlbPlayerGameStatTotals,
-    DbTeamInfo
+    DbTeamInfo,
+    DbUsers
   ],
   controllers: [
     MlbController,
@@ -63,6 +66,7 @@ export const api = remultExpress({
     TeamInfoController
     
   ],
+  getUser: (req) => req.session!["user"],
 
   admin: true,
   dataProvider:
