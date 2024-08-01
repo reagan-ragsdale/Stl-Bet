@@ -1,17 +1,26 @@
-import { Allow, Entity, Fields, Validators } from "remult"
+import { Allow, Entity, Fields, remult, Validators } from "remult"
 
 @Entity("DbUsers", {
-  allowApiCrud: true
+    allowApiCrud: true
 })
 export class DbUsers {
 
-  @Fields.string()
-  userName = ""
+    @Fields.cuid()
+    id? = ''
 
-  @Fields.string()
-  userPass = ""
+    @Fields.string()
+    userName = ""
 
-  @Fields.createdAt()
-  createdAt?: Date
+    @Fields.string({ includeInApi: false })
+    userPass = ""
+
+    
+
+    @Fields.createdAt()
+    createdAt?: Date
+
+
+    
 
 }
+export const userRepo = remult.repo(DbUsers)

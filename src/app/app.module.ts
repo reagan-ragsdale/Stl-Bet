@@ -46,6 +46,8 @@ import { TransformFromTimestampToTimePipe } from './customPipes/transformFromTim
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RemoveUnderScore } from "./customPipes/removeUnderScore.pipe";
+import { LoginScreenComponent } from './login-screen/login-screen.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
     declarations: [
@@ -56,6 +58,7 @@ import { RemoveUnderScore } from "./customPipes/removeUnderScore.pipe";
         PlayerStatsComponent,
         WelcomeScreenComponent,
         TeamStatsComponent,
+        LoginScreenComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -104,7 +107,8 @@ import { RemoveUnderScore } from "./customPipes/removeUnderScore.pipe";
         TransformFromTimestampToTimePipe,
         MatMenuModule,
         MatProgressSpinnerModule,
-        RemoveUnderScore
+        RemoveUnderScore,
+        MatButtonToggleModule
     ]
 })
 export class AppModule { 

@@ -1,4 +1,60 @@
 <div style="padding: auto;  width: 100%; height:calc(100vh - 100px); display:flex;">
     <button mat-raised-button color="primary" style="margin:auto;" routerLink="/sports">Get Started</button>
+    <div style="margin:auto; border: 1px solid black;">
+        <mat-button-toggle-group [(ngModel)]="loginSignUp" aria-label="Font Style">
+            <mat-button-toggle value="Login">Login</mat-button-toggle>
+            <mat-button-toggle value="Sign Up">Sign Up</mat-button-toggle>
+        </mat-button-toggle-group>
+        <h1 style="text-align: center;">{{loginSignUp}}</h1>
+
+        <form *ngIf="loginSignUp=='Sign Up'" class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [formControl]="passwordFormControl">
+                <mat-error *ngIf="passwordFormControl.hasError('minLength') && !emailFormControl.hasError('required')">
+                    Password must be at least 8 characters
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+                
+            </mat-form-field>
+            <button mat-raised-button color="primary" style="margin:auto;" (click)="signUp()">Login</button>
+        </form>
+        <form *ngIf="loginSignUp=='Login'" class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [formControl]="passwordFormControl">
+                <mat-error *ngIf="passwordFormControl.hasError('minLength') && !emailFormControl.hasError('required')">
+                    Password must be at least 8 characters
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" style="margin:auto;" >Login</button>
+        </form>
+    </div>
+
 
 </div>

@@ -34,6 +34,7 @@ import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
 import { DbTeamInfo } from '../shared/dbTasks/DBTeamInfo';
 import { DbUsers } from '../shared/dbTasks/DbUsers';
+import { hash } from "bcrypt";
 
 config()
 
@@ -67,6 +68,8 @@ export const api = remultExpress({
     
   ],
   getUser: (req) => req.session!["user"],
+
+  
 
   admin: true,
   dataProvider:
