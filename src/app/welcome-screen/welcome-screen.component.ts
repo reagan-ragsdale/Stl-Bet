@@ -31,9 +31,9 @@ export class WelcomeScreenComponent {
 	}
 
   async signUp(){
-    if(this.emailFormControl != null && this.passwordFormControl != null && this.emailFormControl != undefined && this.passwordFormControl != undefined){
+    
       await UsersController.signUp(this.emailFormControl.toString(), this.passwordFormControl.toString())
-    }
+    
    
   }
 

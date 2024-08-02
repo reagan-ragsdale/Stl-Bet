@@ -67,7 +67,6 @@ export const api = remultExpress({
     TeamInfoController
     
   ],
-  getUser: (req) => req.session!["user"],
 
   
 
