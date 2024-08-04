@@ -34,6 +34,9 @@ import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
 import { DbTeamInfo } from '../shared/dbTasks/DBTeamInfo';
 import { DbUsers } from '../shared/dbTasks/DbUsers';
+import '../server/passGenerator';
+import { UsersController } from '../shared/Controllers/UsersController';
+import { initRequest } from './server-session';
 
 config()
 
@@ -63,7 +66,8 @@ export const api = remultExpress({
     NhlPlayerGameStatsController,
     NbaController,
     PlayerInfoController,
-    TeamInfoController
+    TeamInfoController,
+    UsersController
     
   ],
 
@@ -76,6 +80,7 @@ export const api = remultExpress({
         caseInsensitiveIdentifiers: true,
         connectionString: process.env['DATABASE_URL']
       }) : undefined
+  , initRequest
   , initApi: async () => {
 
         //test

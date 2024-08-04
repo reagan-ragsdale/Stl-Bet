@@ -14,7 +14,7 @@ import { UsersController } from '../../shared/Controllers/UsersController';
   styleUrls: ['./welcome-screen.component.scss']
 })
 export class WelcomeScreenComponent {
-  constructor(private router: Router, private http: HttpClient) { 
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   loginSignUp: string = 'Sign Up';
@@ -22,30 +22,36 @@ export class WelcomeScreenComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
-  
- 
+
+
   private modalService = inject(NgbModal);
 
   openVerticallyCentered(content: TemplateRef<any>) {
-		this.modalService.open(content, { centered: true });
-	}
-
-  async signUp(){
-    
-      await UsersController.signUp(this.emailFormControl.toString(), this.passwordFormControl.toString())
-    
-   
+    this.modalService.open(content, { centered: true });
   }
 
-  
+  async signUp() {
+    remult.user = await UsersController.signUp(this.emailFormControl.value!, this.passwordFormControl.value!)
+  }
+  async login() {
+    remult.user = await UsersController.login(this.emailFormControl.value!, this.passwordFormControl.value!)
+  }
+  async logout() {
+    await UsersController.logout()
+    remult.user = undefined;
+  }
+
+
 
   signInUsername = '';
   signInPassword = ''
   remult = remult;
 
-  
 
-  ngOnInit() {
+
+  async ngOnInit() {
+
   }
+
 
 }

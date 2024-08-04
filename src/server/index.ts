@@ -52,6 +52,7 @@ app.use(api);
 // In angular 16, the `index.html` file is in the `remult-angular-todo` folder, and not in the `remult-angular-todo/browser` folder
 app.use(express.static(path.join(__dirname, '../remult-angular-todo')));
 app.get('/*', (req, res) => {
+  
   res.sendFile(path.join(__dirname, '../remult-angular-todo', 'index.html'));
 });
 

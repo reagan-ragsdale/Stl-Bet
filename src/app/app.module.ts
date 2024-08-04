@@ -1,4 +1,4 @@
-import { NgModule, NgZone  } from '@angular/core';
+import { APP_INITIALIZER, NgModule, NgZone  } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,6 +48,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RemoveUnderScore } from "./customPipes/removeUnderScore.pipe";
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { UsersController } from 'src/shared/Controllers/UsersController';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         TeamStatsComponent,
         LoginScreenComponent,
     ],
-    providers: [],
+    providers: [
+      { provide: APP_INITIALIZER, useFactory: initApp, multi: true },
+    ],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
@@ -115,4 +118,11 @@ export class AppModule {
   constructor(zone: NgZone) {
     remult.apiClient.wrapMessageHandling = handler => zone.run(() => handler())
   }
+}
+
+export function initApp() {
+  const loadCurrentUserBeforeAppStarts = async () => {
+    remult.user = await UsersController.currentUser()
+  }
+  return loadCurrentUserBeforeAppStarts
 }
