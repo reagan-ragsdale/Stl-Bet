@@ -673,7 +673,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   setValuesToTeamPropFinal() {
-   
+   this.arrayOfTeamBets = []
     for (let team of this.teamPropFinnal) {
       for (let prop of team) {
         let returnProp = {}
@@ -706,6 +706,7 @@ export class PropScreenComponent implements OnInit {
   playerPropDataFinalNew: any[] = []
   async loadPlayerStatData(team1: number, team2: number) {
     this.playerPropDataFinalNew = [];
+    this.arrayOfPlayerBets = [];
     this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
     //this.playerpropDataFinal is a 3 length array with 2 props for each player within it
     //console.log(this.playerPropDataFinal)
@@ -765,6 +766,7 @@ export class PropScreenComponent implements OnInit {
   public playerStatObj: any = {}
   public arrayOfPlayerBets: any[] = [];
   getPlayerStats(player: any) {
+
     try {
       var playerStats: DBMlbPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
       let playerStatsReversed: DBMlbPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
@@ -1953,6 +1955,7 @@ export class PropScreenComponent implements OnInit {
   //
   sliderValue: number = 80;
   getTeamBestBets() {
+    this.teamBestBets = []
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
@@ -2044,6 +2047,7 @@ export class PropScreenComponent implements OnInit {
   //
   sliderValuePlayer: number = 90;
   getPlayerBestBets() {
+    this.playerBestBets = [];
     for (let bet of this.arrayOfPlayerBets) {
       let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
       let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
