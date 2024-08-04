@@ -1,7 +1,7 @@
 import { Allow, BackendMethod, remult } from "remult"
 
 import { DbUsers, userRepo } from "../dbTasks/DbUsers";
-import { getCurrentUser, setSessionUser } from "src/server/server-session";
+import { getCurrentUser, setSessionUser } from "../../server/server-session";
 
 
 
