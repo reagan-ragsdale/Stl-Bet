@@ -560,7 +560,7 @@ export class PropScreenComponent implements OnInit {
 
     //the player prop data brings back every single prop and each of those props has two entries per person if its over or under
     //need to go through each distinct prop and find the ones per name and then load those into the final array 
-
+    this.playerPropDataFinal = [];
     for (let prop of uniquePlayerProps) {
       let propSpecificArray: any[] = []
       let uniquePlayerNames = this.playerPropData.filter(e => e.marketKey == prop).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
@@ -705,6 +705,7 @@ export class PropScreenComponent implements OnInit {
   }
   playerPropDataFinalNew: any[] = []
   async loadPlayerStatData(team1: number, team2: number) {
+    this.playerPropDataFinalNew = [];
     this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
     //this.playerpropDataFinal is a 3 length array with 2 props for each player within it
     //console.log(this.playerPropDataFinal)
