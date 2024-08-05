@@ -516,6 +516,9 @@ public displayedColumnsValues: any[] = [
   deleteformArray(form: statSearch) {
     this.formArray = this.formArray.filter((e) => e != form)
     this.searchNumberSubmit()
+    if(this.formArray.length ==0){
+      this.isSearched = false;
+    }
   }
 
   getTotalCost(stat: string) {
