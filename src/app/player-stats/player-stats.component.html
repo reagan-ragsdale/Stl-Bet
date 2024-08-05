@@ -134,7 +134,7 @@
               </div>
 
             </div>
-            <div class="search-results" style="display:flex;">
+            <div *ngIf="isSearched" class="search-results" style="display:flex;">
               <div style="display: flex; flex-direction: column;">
                 <h2>Record</h2>
                 <div>{{totalNumberHighlighted}} - {{seasonArrayTable.length}}</div>

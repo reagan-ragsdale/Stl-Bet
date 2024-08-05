@@ -423,7 +423,9 @@ public displayedColumnsValues: any[] = [
     this.playerStd = summedData
   }
   totalNumberHighlighted: number = 0;
+  isSearched: boolean = false;
   searchNumberSubmit() {
+    this.isSearched = true;
     //for now we're going to make this just over and single stats
     this.totalNumberHighlighted = 0;
     // later we can add over or under and combined stats
