@@ -21,13 +21,13 @@
 <div style="height: 100%; width:100%;" class="main-body" *ngIf="!isNull">
 
   <div style="height:100%; display:flex; flex-direction:column">
-    <div class="top-bar" >
+    <div class="top-bar">
       <div class="player-name">
         <h1 class="player-name-name">{{selectedPlayer.playerName}}: </h1>
         <h1 class="player-name-team">{{selectedPlayer.teamName}}</h1>
       </div>
 
-      <div class="search-name" >
+      <div class="search-name">
         <form style="align-items: center; margin-right: 1rem; padding-top:6px; margin-left:auto" class="example-form">
           <mat-form-field class="example-full-width">
             <input type="text" placeholder="Search Player Name" aria-label="Number" matInput [(ngModel)]="searchName"
@@ -64,7 +64,7 @@
       <!-- <div style="width: 40%;">
        <canvas id="barChart">{{ chart2 }}</canvas> 
       </div> -->
-      <div class="chart-toggles" >
+      <div class="chart-toggles">
         <span class="example-list-section">
           <mat-slide-toggle [(ngModel)]="isCombineStats" (ngModelChange)="reDrawLineGraph()">Combine
             Stats</mat-slide-toggle>
@@ -86,18 +86,19 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="stats-body" >
+    <div class="stats-body">
       <div style="width:100%;">
         <h1 style="text-align: center;"> Stats</h1>
       </div>
       <div class="table-body">
-        <div class="table" >
+        <div class="table">
           <table mat-table [dataSource]="seasonArrayTable" class="mat-elevation-z8" style="height: inherit;">
 
             <ng-container *ngFor="let col of displayedColumnsValues" matColumnDef="{{col.name}}">
               <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
               <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
-                {{col.name == 'Game' ? (loadFindHomeAwayFromGameId(element.gameId, element.teamName) == 'away' ? '@' : '') : ''}}{{element[col.value]}}
+                {{col.name == 'Game' ? (loadFindHomeAwayFromGameId(element.gameId, element.teamName) == 'away' ? '@' :
+                '') : ''}}{{element[col.value]}}
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -108,26 +109,32 @@
           </table>
         </div>
         <div class="table-search">
-          <div style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start; flex-direction: column;">
+          <div
+            style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start; flex-direction: column;">
             <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
               <div style="display: flex; flex-wrap:wrap;">
-                <mat-form-field *ngFor="let forms of formArray" class="search-form" >
-                  <mat-label>Select</mat-label>
-                  <mat-select>
-                    <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
-                      value={{stat.dataName}}>{{stat.label}}</mat-option>
-                  </mat-select>
+                <div *ngFor="let forms of formArray" class="search-form">
+                  <mat-form-field >
+                    <mat-label>Select</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
+                        value={{stat.dataName}}>{{stat.label}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                   <div style="display:flex; margin-top: .5rem;">
                     <h5 style="margin-bottom:auto; margin-right: 5px;">Under</h5>
-                    <mat-slide-toggle
-                      [(ngModel)]="forms.overUnder" (ngModelChange)="$event.stopPropagation()"></mat-slide-toggle>
+                    <mat-slide-toggle [(ngModel)]="forms.overUnder"
+                      (ngModelChange)="$event.stopPropagation()"></mat-slide-toggle>
                     <h5 style="margin-bottom:auto; margin-right: 5px;">Over</h5>
                   </div>
-                  <input matInput type="number" min="0.5" step="1" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
+                  <input matInput type="number" min="0.5" step="1" [(ngModel)]="forms.number"
+                    (click)="$event.stopPropagation()">
                   <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
                     (click)="$event.stopPropagation()">Delete</button>
 
-                </mat-form-field>
+
+                </div>
+
                 <div class="search-buttons">
                   <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
                     (click)="addStatForm()">Add</button>
@@ -149,7 +156,7 @@
                 <h2>Chance</h2>
                 <div>{{(totalNumberHighlighted / seasonArrayTable.length) | percent: '2.2-2'}}</div>
               </div>
-              
+
             </div>
 
 
@@ -166,7 +173,8 @@
         </div>
         <div class="player-props">
           <div class="player-prop-body" *ngFor="let prop of playerPropArray">
-            <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[0].marketKey | removeUnderScore | titlecase}}:</h3>
+            <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[0].marketKey | removeUnderScore |
+              titlecase}}:</h3>
             <h4 class="prop-point">{{prop[0].point}}</h4>
             <div class="prop-one">
               <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].description}}</h4>
