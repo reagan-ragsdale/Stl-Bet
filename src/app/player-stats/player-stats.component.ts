@@ -430,35 +430,39 @@ public displayedColumnsValues: any[] = [
     //for now we're going to make this just over and single stats
     this.totalNumberHighlighted = 0;
     // later we can add over or under and combined stats
-    for (let i = 0; i < this.seasonArrayTable.length; i++) {
-      for (let j = 0; j < this.formArray.length; j++) {
-
-        if(this.formArray[j].overUnder){
-          if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
-            this.seasonArrayTable[i].isHighlighted = true
+    if(this.formArray.length > 0){
+      for (let i = 0; i < this.seasonArrayTable.length; i++) {
+        for (let j = 0; j < this.formArray.length; j++) {
+  
+          if(this.formArray[j].overUnder){
+            if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
+              this.seasonArrayTable[i].isHighlighted = true
+            }
+            else {
+              this.seasonArrayTable[i].isHighlighted = false
+              break
+            }
           }
-          else {
-            this.seasonArrayTable[i].isHighlighted = false
-            break
+          else{
+            if (this.seasonArrayTable[i][this.formArray[j].dataName] < this.formArray[j].number) {
+              this.seasonArrayTable[i].isHighlighted = true
+            }
+            else {
+              this.seasonArrayTable[i].isHighlighted = false
+              break
+            }
           }
+          
         }
-        else{
-          if (this.seasonArrayTable[i][this.formArray[j].dataName] < this.formArray[j].number) {
-            this.seasonArrayTable[i].isHighlighted = true
-          }
-          else {
-            this.seasonArrayTable[i].isHighlighted = false
-            break
-          }
+      }
+      for(let game of this.seasonArrayTable){
+        if(game.isHighlighted){
+          this.totalNumberHighlighted++;
         }
-        
       }
     }
-    for(let game of this.seasonArrayTable){
-      if(game.isHighlighted){
-        this.totalNumberHighlighted++;
-      }
-    }
+    
+    
     
 
   }
@@ -488,13 +492,16 @@ public displayedColumnsValues: any[] = [
   }
 
   addStatForm() {
-    this.formArray.push({
-      stat: "",
-      dataName: '',
-      number: 0.5,
-      overUnder: false,
-      id: this.formArray.length
-    })
+    if(this.formArray.length < this.fullDataset.length){
+      this.formArray.push({
+        stat: "",
+        dataName: '',
+        number: 0.5,
+        overUnder: false,
+        id: this.formArray.length
+      })
+    }
+    
   }
   updateForm(form: statSearch, stat: any) {
     let changedForm = this.formArray.filter((e) => e.id == form.id)[0]
@@ -508,6 +515,7 @@ public displayedColumnsValues: any[] = [
 
   deleteformArray(form: statSearch) {
     this.formArray = this.formArray.filter((e) => e != form)
+    this.searchNumberSubmit()
   }
 
   getTotalCost(stat: string) {
