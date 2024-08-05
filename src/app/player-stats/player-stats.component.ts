@@ -422,10 +422,10 @@ public displayedColumnsValues: any[] = [
     summedData = Math.sqrt(summedData)
     this.playerStd = summedData
   }
-
+  totalNumberHighlighted: number = 0;
   searchNumberSubmit() {
     //for now we're going to make this just over and single stats
-
+    this.totalNumberHighlighted = 0;
     // later we can add over or under and combined stats
     for (let i = 0; i < this.seasonArrayTable.length; i++) {
       for (let j = 0; j < this.formArray.length; j++) {
@@ -439,6 +439,12 @@ public displayedColumnsValues: any[] = [
         }
       }
     }
+    for(let game of this.seasonArrayTable){
+      if(game.isHighlighted){
+        this.totalNumberHighlighted++;
+      }
+    }
+    
 
   }
 

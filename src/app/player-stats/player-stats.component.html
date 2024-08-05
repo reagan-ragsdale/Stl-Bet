@@ -134,6 +134,17 @@
               </div>
 
             </div>
+            <div class="search-results" style="display:flex;">
+              <div style="display: flex; flex-direction: column;">
+                <h2>Record</h2>
+                <div>{{totalNumberHighlighted}} - {{seasonArrayTable.length}}</div>
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <h2>Chance</h2>
+                <div>{{totalNumberHighlighted / seasonArrayTable.length}}</div>
+              </div>
+              
+            </div>
 
 
 
@@ -153,11 +164,11 @@
             <h4 class="prop-point">{{prop[0].point}}</h4>
             <div class="prop-one">
               <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].description}}</h4>
-              <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].price}}</h4>
+              <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].price > 0 ? '+' : ''}}{{prop[0].price}}</h4>
             </div>
             <div class="prop-two">
               <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[1].description}}</h4>
-              <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[1].price}}</h4>
+              <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[1].price > 0 ? '+' : ''}}{{prop[1].price}}</h4>
             </div>
           </div>
 
