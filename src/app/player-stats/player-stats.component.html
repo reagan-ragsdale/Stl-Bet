@@ -118,10 +118,10 @@
                       value={{stat.dataName}}>{{stat.label}}</mat-option>
                   </mat-select>
                   <div style="margin-left:1rem; display:flex; margin-top: .5rem;">
-                    <h4 style="margin-bottom:auto; margin-right: 5px;">Under</h4>
+                    <h5 style="margin-bottom:auto; margin-right: 5px;">Under</h5>
                     <mat-slide-toggle
                       [(ngModel)]="forms.overUnder"></mat-slide-toggle>
-                    <h4 style="margin-bottom:auto; margin-right: 5px;">Over</h4>
+                    <h5 style="margin-bottom:auto; margin-right: 5px;">Over</h5>
                   </div>
                   <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
                   <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"

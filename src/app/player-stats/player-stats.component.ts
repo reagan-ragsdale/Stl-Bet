@@ -35,7 +35,7 @@ interface statSearch {
   stat: string;
   dataName: string;
   number: number;
-  overUnder: string;
+  overUnder: boolean;
   id: number
 }
 
@@ -433,7 +433,7 @@ public displayedColumnsValues: any[] = [
     for (let i = 0; i < this.seasonArrayTable.length; i++) {
       for (let j = 0; j < this.formArray.length; j++) {
 
-        if(this.formArray[j].overUnder == 'Over'){
+        if(this.formArray[j].overUnder){
           if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
             this.seasonArrayTable[i].isHighlighted = true
           }
@@ -492,7 +492,7 @@ public displayedColumnsValues: any[] = [
       stat: "",
       dataName: '',
       number: 0,
-      overUnder: 'Under',
+      overUnder: false,
       id: this.formArray.length
     })
   }
@@ -501,7 +501,7 @@ public displayedColumnsValues: any[] = [
     changedForm.stat = stat.label
     changedForm.dataName = stat.dataName
   }
-  updateFormOverUnder(form:statSearch, overUnder: string){
+  updateFormOverUnder(form:statSearch, overUnder: boolean){
     let changedForm = this.formArray.filter((e) => e.id == form.id)[0]
     changedForm.overUnder = overUnder
   }
