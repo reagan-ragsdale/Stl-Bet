@@ -117,13 +117,12 @@
                     <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
                       value={{stat.dataName}}>{{stat.label}}</mat-option>
                   </mat-select>
-                  <mat-label>Over/Under</mat-label>
-                  <mat-select>
-                    <mat-option  (onSelectionChange)="updateFormOverUnder(forms, 'Under')"
-                      value='Under'>Under</mat-option>
-                      <mat-option  (onSelectionChange)="updateFormOverUnder(forms, 'Over')"
-                      value='Over'>Over</mat-option>
-                  </mat-select>
+                  <div style="margin-left:1rem; display:flex; margin-top: .5rem;">
+                    <h4 style="margin-bottom:auto; margin-right: 5px;">Under</h4>
+                    <mat-slide-toggle
+                      [(ngModel)]="forms.overUnder"></mat-slide-toggle>
+                    <h4 style="margin-bottom:auto; margin-right: 5px;">Over</h4>
+                  </div>
                   <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
                   <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
                     (click)="$event.stopPropagation()">Delete</button>
