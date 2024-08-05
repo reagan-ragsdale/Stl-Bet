@@ -35,6 +35,7 @@ interface statSearch {
   stat: string;
   dataName: string;
   number: number;
+  overUnder: string;
   id: number
 }
 
@@ -432,13 +433,25 @@ public displayedColumnsValues: any[] = [
     for (let i = 0; i < this.seasonArrayTable.length; i++) {
       for (let j = 0; j < this.formArray.length; j++) {
 
-        if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
-          this.seasonArrayTable[i].isHighlighted = true
+        if(this.formArray[j].overUnder == 'Over'){
+          if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
+            this.seasonArrayTable[i].isHighlighted = true
+          }
+          else {
+            this.seasonArrayTable[i].isHighlighted = false
+            break
+          }
         }
-        else {
-          this.seasonArrayTable[i].isHighlighted = false
-          break
+        else{
+          if (this.seasonArrayTable[i][this.formArray[j].dataName] < this.formArray[j].number) {
+            this.seasonArrayTable[i].isHighlighted = true
+          }
+          else {
+            this.seasonArrayTable[i].isHighlighted = false
+            break
+          }
         }
+        
       }
     }
     for(let game of this.seasonArrayTable){
@@ -479,6 +492,7 @@ public displayedColumnsValues: any[] = [
       stat: "",
       dataName: '',
       number: 0,
+      overUnder: 'Under',
       id: this.formArray.length
     })
   }
@@ -486,6 +500,10 @@ public displayedColumnsValues: any[] = [
     let changedForm = this.formArray.filter((e) => e.id == form.id)[0]
     changedForm.stat = stat.label
     changedForm.dataName = stat.dataName
+  }
+  updateFormOverUnder(form:statSearch, overUnder: string){
+    let changedForm = this.formArray.filter((e) => e.id == form.id)[0]
+    changedForm.overUnder = overUnder
   }
 
   deleteformArray(form: statSearch) {
