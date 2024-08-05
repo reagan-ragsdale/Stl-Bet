@@ -123,8 +123,7 @@
                   </mat-form-field>
                   <div style="display:flex; margin-left: 0.5rem; margin-top:-1rem; margin-bottom:0.5rem;width:inherit;">
                     <h5 style="margin-bottom:auto; margin-right: 5px;">Under</h5>
-                    <mat-slide-toggle [(ngModel)]="forms.overUnder"
-                      (ngModelChange)="$event.stopPropagation()"></mat-slide-toggle>
+                    <mat-slide-toggle [(ngModel)]="forms.overUnder"></mat-slide-toggle>
                     <h5 style="margin-bottom:auto; margin-right: 5px;">Over</h5>
                   </div>
                   <input matInput type="number" min="0.5" step="1" [(ngModel)]="forms.number" style="width:inherit;"
