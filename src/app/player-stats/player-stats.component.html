@@ -134,14 +134,14 @@
               </div>
 
             </div>
-            <div *ngIf="isSearched" class="search-results" style="display:flex;">
+            <div *ngIf="isSearched" class="search-results" style="display:flex; gap:1rem;">
               <div style="display: flex; flex-direction: column;">
                 <h2>Record</h2>
                 <div>{{totalNumberHighlighted}} - {{seasonArrayTable.length}}</div>
               </div>
               <div style="display: flex; flex-direction: column;">
                 <h2>Chance</h2>
-                <div>{{(totalNumberHighlighted / seasonArrayTable.length) | percent: '2:2-2'}}</div>
+                <div>{{(totalNumberHighlighted / seasonArrayTable.length) | percent: '2.2-2'}}</div>
               </div>
               
             </div>
