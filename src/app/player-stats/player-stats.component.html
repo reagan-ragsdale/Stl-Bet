@@ -117,10 +117,10 @@
                     <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
                       value={{stat.dataName}}>{{stat.label}}</mat-option>
                   </mat-select>
-                  <div style="margin-left:1rem; display:flex; margin-top: .5rem;">
+                  <div style="display:flex; margin-top: .5rem;">
                     <h5 style="margin-bottom:auto; margin-right: 5px;">Under</h5>
                     <mat-slide-toggle
-                      [(ngModel)]="forms.overUnder"></mat-slide-toggle>
+                      [(ngModel)]="forms.overUnder" (ngModelChange)="$event.stopPropagation()"></mat-slide-toggle>
                     <h5 style="margin-bottom:auto; margin-right: 5px;">Over</h5>
                   </div>
                   <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
@@ -140,7 +140,7 @@
               </div>
 
             </div>
-            <div *ngIf="isSearched" class="search-results" style="display:flex; gap:1rem;">
+            <div *ngIf="isSearched" class="search-results" style="display:flex; gap:1rem; margin-left:1rem;">
               <div style="display: flex; flex-direction: column;">
                 <h2>Record</h2>
                 <div>{{totalNumberHighlighted}} - {{seasonArrayTable.length}}</div>
