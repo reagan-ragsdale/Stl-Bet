@@ -123,7 +123,7 @@
                       [(ngModel)]="forms.overUnder" (ngModelChange)="$event.stopPropagation()"></mat-slide-toggle>
                     <h5 style="margin-bottom:auto; margin-right: 5px;">Over</h5>
                   </div>
-                  <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
+                  <input matInput type="number" min="0.5" step="1" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
                   <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
                     (click)="$event.stopPropagation()">Delete</button>
 

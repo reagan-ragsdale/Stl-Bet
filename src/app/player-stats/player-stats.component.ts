@@ -491,7 +491,7 @@ public displayedColumnsValues: any[] = [
     this.formArray.push({
       stat: "",
       dataName: '',
-      number: 0,
+      number: 0.5,
       overUnder: false,
       id: this.formArray.length
     })
