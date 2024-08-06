@@ -719,7 +719,7 @@ export class MlbService {
             pointsScoredSixthInning: gameStats.lineScore.home.scoresByInning[6],
             pointsScoredSeventhInning: gameStats.lineScore.home.scoresByInning[7],
             pointsScoredEigthInning: gameStats.lineScore.home.scoresByInning[8],
-            pointsScoredNinthInning: (gameStats.lineScore.home.scoresByInning[9] = "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
+            pointsScoredNinthInning: (gameStats.lineScore.home.scoresByInning[9] == "x" ? 0 : gameStats.lineScore.home.scoresByInning[9]),
             pointsAllowedOverall: gameStats.lineScore.away.R,
             pointsAllowedFirstInning: gameStats.lineScore.away.scoresByInning[1],
             pointsAllowedSecondInning: gameStats.lineScore.away.scoresByInning[2],
