@@ -37,6 +37,7 @@ import { DbUsers } from '../shared/dbTasks/DbUsers';
 import '../server/passGenerator';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { initRequest } from './server-session';
+import { nflApiController } from 'src/app/ApiCalls/nflApiCalls';
 
 config()
 
@@ -92,6 +93,8 @@ export const api = remultExpress({
 
     cron.schedule('0 */2 * * *', () => cronSportsBookHourly())
     cron.schedule('0 */2 * * *', () => cronLoadMlbPlayer())
+    let teamInfo = await nflApiController.loadNflTeamINfo()
+    await TeamInfoController.setTeamInfo(teamInfo)
   }
 });
 

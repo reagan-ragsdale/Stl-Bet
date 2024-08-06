@@ -345,9 +345,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
-    //await nflApiController.getGameSummary(401437954)
-    let teamInfo = await nflApiController.loadNflTeamINfo()
-    await TeamInfoController.setTeamInfo(teamInfo)
+    
   }
 
   ngOnDestroy(){
