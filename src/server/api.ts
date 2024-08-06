@@ -37,7 +37,7 @@ import { DbUsers } from '../shared/dbTasks/DbUsers';
 import '../server/passGenerator';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { initRequest } from './server-session';
-import { nflApiController } from 'src/app/ApiCalls/nflApiCalls';
+import { nflApiController } from '../app/ApiCalls/nflApiCalls';
 
 config()
 
