@@ -16,7 +16,6 @@ export class PropCheckoutComponent implements OnChanges {
   value = 80;
 
   display() {
-    console.log(this.listOfProps)
   }
 
 

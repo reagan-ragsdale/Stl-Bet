@@ -16,15 +16,23 @@ export class NflService{
     static convertTeamInfoToDb(teamInfo: any): DbTeamInfo[]{
         let finalTeamInfo: DbTeamInfo[] = []
 
-        for(let team of teamInfo.teams){
+        for(let team of teamInfo){
             finalTeamInfo.push({
-                teamId: team.id,
-                teamNameAbvr: team.abbreviation,
-                teamNameFull: team.displayName,
+                teamId: team.teamID,
+                teamNameAbvr: team.teamAbv,
+                teamNameFull: team.teamCity + " " + team.teamName,
                 sport: 'NFL'
             })
         }
 
         return finalTeamInfo
+    }
+
+    static convertGameIdsToArray(gameIds: any): number[]{
+       let finalGameIds: number[] = []
+        for(let gameId of gameIds.events){
+            finalGameIds.push(gameId.id)
+        }
+        return finalGameIds
     }
 }

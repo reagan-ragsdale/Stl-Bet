@@ -1,9 +1,10 @@
 //import { DbNflPlayerInfo } from '../../shared/dbTasks/DbNflPlayerInfo';
 //import { NflService } from '../Services/NflService';
+import { MlbService } from '../Services/MlbService';
 import { NflService } from '../Services/NflService';
 import { reusedFunctions } from '../Services/reusedFunctions';
 
-export class nflApiController{
+export class nflApiController {
 
 
 
@@ -18,35 +19,51 @@ export class nflApiController{
     static async getGameSummary(gameId: number) {
         const url = 'https://nfl-api-data.p.rapidapi.com/nfl-gamesummary?id=401437954';
         const options = {
-	        method: 'GET',
-	        headers: {
-		        'x-rapidapi-key': '' + process.env['nflApiKey'],
-		        'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
-	        }
-            
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': '' + process.env['nflApiKey'],
+                'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
+            }
+
         };
-	    const response = await fetch(url, options);
-	    const result = await response.json();
-        console.log(result)
+        const response = await fetch(url, options);
+        const result = await response.json();
+        return NflService.convertGameSummaryToDb(result)
 
-
-        //return NflService.convertGameSummaryToDb(processedResponse)
-    
     }
 
-    static async loadNflTeamINfo(){
-        const url = 'https://nfl-api-data.p.rapidapi.com/nfl-team-list';
+    static async loadNflTeamINfo() {
+        const url = 'https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLTeams?rosters=false&schedules=false&topPerformers=false&teamStats=false&teamStatsSeason=2023';
         const options = {
-	            method: 'GET',
-	            headers: {
-		            'x-rapidapi-key': '' + process.env['nflApiKey'],
-		            'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
-	            }
-            };
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': '' + process.env['nflApiKey'],
+                'x-rapidapi-host': 'tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com'
+            }
+        };
 
-	        const response = await fetch(url, options);
-	        const result = await response.json();
-            return NflService.convertTeamInfoToDb(result)
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const processedResponse = result.body;
+        return NflService.convertTeamInfoToDb(processedResponse)
     }
+
+    static async loadAllNflGameIds(year: number) {
+        const url = `https://nfl-api-data.p.rapidapi.com/nfl-events?year=${year}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': '' + process.env['nflApiKey'],
+                'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
+            }
+        };
+
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+        return NflService.convertGameIdsToArray(result)
+    }
+
 
 }
