@@ -1,4 +1,4 @@
-import { NflController } from "src/shared/Controllers/NflController";
+import { NflController } from "../../shared/Controllers/NflController";
 import { nflApiController } from "../ApiCalls/nflApiCalls";
 
 
