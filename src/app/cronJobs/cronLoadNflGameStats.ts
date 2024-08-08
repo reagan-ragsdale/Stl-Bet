@@ -10,6 +10,7 @@ export const cronLoadNflGameStats = async () => {
 
         //find the ones that don't intersect
         let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
+        console.log(newGameIds)
 
         for(let game of newGameIds){
             let gameStats = await nflApiController.getGameSummary(game)
