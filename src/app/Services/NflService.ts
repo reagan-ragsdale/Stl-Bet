@@ -6,6 +6,7 @@ import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
 export class NflService {
 
     static async convertGameSummaryToDb(gameSummary: any): Promise<any[]> {
+        console.log(gameSummary)
         let finalReturn: any[] = []
 
         let teamStats: DBNflTeamGameStats[] = []
