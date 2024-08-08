@@ -92,9 +92,6 @@ export class DBNflPlayerGameStats {
     longReception = 0
 
     @Fields.number()
-    fumbles = 0
-
-    @Fields.number()
     totalTackles = 0
 
     @Fields.number()
