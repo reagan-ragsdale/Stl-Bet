@@ -31,41 +31,29 @@ export class DBNflPlayerGameStats {
     @Fields.integer()
     season = 0
 
-    @Fields.string()
-    playerPosition = ""
-
-    @Fields.string()
-    playerStarted = ""
+    @Fields.number()
+    qbCompletions = 0
 
     @Fields.number()
-    completions = 0
+    qbPassingAttempts = 0
 
     @Fields.number()
-    passingAttempts = 0
+    qbPassingYards = 0
 
     @Fields.number()
-    passingYards = 0
-
-    @Fields.number()
-    completionPct = 0
-
-    @Fields.number()
-    yardsPerPassAttempt = 0
+    qbYardsPerPassAttempt = 0
     
     @Fields.number()
-    passingTouchdowns = 0
+    qbPassingTouchdowns = 0
 
     @Fields.number()
-    interceptions = 0
+    qbInterceptions = 0
 
     @Fields.number()
-    longPassing = 0
+    qbsacks = 0
 
     @Fields.number()
-    sacks = 0
-
-    @Fields.number()
-    QBRating = 0
+    qBRating = 0
 
     @Fields.number()
     adjQBR = 0
@@ -106,6 +94,11 @@ export class DBNflPlayerGameStats {
     @Fields.number()
     fumbles = 0
 
+    @Fields.number()
+    totalTackles = 0
+
+    @Fields.number()
+    sacks = 0
 
     @Fields.createdAt()
     createdAt?: Date

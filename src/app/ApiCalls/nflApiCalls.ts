@@ -16,19 +16,21 @@ export class nflApiController {
     //call the player info endpoint to get active player list and add to ploayer info
 
 
-    static async getGameSummary(gameId: number) {
-        const url = 'https://nfl-api-data.p.rapidapi.com/nfl-gamesummary?id=401437954';
+    static async getGameSummary(gameId: string) {
+        const url = `https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLBoxScore?gameID=${gameId}%40BUF&playByPlay=false&fantasyPoints=false&twoPointConversions=2&passYards=.04&passAttempts=0&passTD=4&passCompletions=0&passInterceptions=-2&pointsPerReception=.5&carries=.2&rushYards=.1&rushTD=6&fumbles=-2&receivingYards=.1&receivingTD=6&targets=0&defTD=6&fgMade=3&fgMissed=-3&xpMade=1&xpMissed=-1`;
         const options = {
             method: 'GET',
             headers: {
                 'x-rapidapi-key': '' + process.env['nflApiKey'],
-                'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
+                'x-rapidapi-host': 'tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com'
             }
-
         };
+
+
         const response = await fetch(url, options);
         const result = await response.json();
-        return NflService.convertGameSummaryToDb(result)
+        const processedResponse = result.body;
+        return NflService.convertGameSummaryToDb(processedResponse)
 
     }
 
@@ -50,19 +52,20 @@ export class nflApiController {
     }
 
     static async loadAllNflGameIds(year: number) {
-        const url = `https://nfl-api-data.p.rapidapi.com/nfl-events?year=${year}`;
+        const url = `https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLGamesForWeek?week=all&seasonType=reg&season=${year}`;
         const options = {
             method: 'GET',
             headers: {
                 'x-rapidapi-key': '' + process.env['nflApiKey'],
-                'x-rapidapi-host': 'nfl-api-data.p.rapidapi.com'
+                'x-rapidapi-host': 'tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com'
             }
         };
 
 
         const response = await fetch(url, options);
         const result = await response.json();
-        return NflService.convertGameIdsToArray(result)
+        const processedResponse = result.body;
+        return NflService.convertGameIdsToArray(processedResponse)
     }
 
 

@@ -38,6 +38,10 @@ import '../server/passGenerator';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { initRequest } from './server-session';
 import { nflApiController } from '../app/ApiCalls/nflApiCalls';
+import { DBNflTeamGameStats } from '../shared/dbTasks/DbNflTeamGameStats';
+import { DBNflPlayerGameStats } from '../shared/dbTasks/DbNflPlayerGameStats';
+import { NflController } from '../shared/Controllers/NflController';
+import { cronLoadNflGameStats } from '../app/cronJobs/cronLoadNflGameStats';
 
 config()
 
@@ -57,7 +61,9 @@ export const api = remultExpress({
     DbPlayerInfo,
     DBMlbPlayerGameStatTotals,
     DbTeamInfo,
-    DbUsers
+    DbUsers,
+    DBNflTeamGameStats,
+    DBNflPlayerGameStats
   ],
   controllers: [
     MlbController,
@@ -68,7 +74,8 @@ export const api = remultExpress({
     NbaController,
     PlayerInfoController,
     TeamInfoController,
-    UsersController
+    UsersController,
+    NflController
     
   ],
 
@@ -93,8 +100,7 @@ export const api = remultExpress({
 
     cron.schedule('0 */2 * * *', () => cronSportsBookHourly())
     cron.schedule('0 */2 * * *', () => cronLoadMlbPlayer())
-    let teams = await nflApiController.loadNflTeamINfo();
-    await TeamInfoController.setTeamInfo(teams)
+    cron.schedule('35 16 * * *', () => cronLoadNflGameStats())
   }
 });
 
