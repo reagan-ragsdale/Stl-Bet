@@ -70,6 +70,9 @@ export class PropCheckoutComponent implements OnChanges {
   }
   overallChance: number = 0
   sameGameChance: number = 0
+  teamSameGameChance: number = 0
+
+  isSameGameTeam: boolean = false;
   displayPropChance() {
     //an array is going to come in. It could have different team and player stat arrays
     //how to know how to calculate the same game chance of all the props happening
@@ -99,41 +102,74 @@ export class PropCheckoutComponent implements OnChanges {
         let players = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Player')
         let statArray: any[] = []
         //if there are no players then just take the first team stats
+        this.isSameGameTeam = true;
         if (players.length == 0) {
           statArray = this.listOfProps[0].stats
           //begin looping through the stat array and for each game loop through all the props in the listOFProps array to check those
           let totalWins: number = 0;
+          let totalTeamWins: number = 0;
+          let teamTotals: number = 0;
           for (let game of statArray) {
+            
             let didParlayHappen: boolean[] = [];
+            let didSameTeamParlayHappen: boolean[] = [];
             for (let prop of this.listOfProps) {
+              if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                teamTotals += 1;
+              }
               if (prop.propVariables.marketKey == 'h2h') {
                 didParlayHappen.push(game.result == 'W' ? true : false);
+                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                  didSameTeamParlayHappen.push(game.result == 'W' ? true : false)
+                }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
+                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                  didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false)
+                }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
+                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                  didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false)
+                }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
+                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                  didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false)
+                }
               }
               else if (prop.propVariables.marketKey == 'spreads') {
                 didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
+                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                  didSameTeamParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false)
+                }
               }
               else if (prop.propVariables.marketKey == 'totals') {
                 didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
+                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                  didSameTeamParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false)
+                }
               }
               else if (prop.propVariables.marketKey == 'team_totals Over') {
                 didParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
+                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                  didSameTeamParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false)
+                }
               }
 
             }
             if (!didParlayHappen.includes(false)) {
               totalWins += 1;
             }
+            if(!didSameTeamParlayHappen.includes(false)){
+              totalTeamWins += 1;
+            }
           }
           this.sameGameChance = (totalWins / statArray.length)
+          this.teamSameGameChance = (totalTeamWins / teamTotals)
         }
 
         else if (players.length == 1) {
@@ -155,6 +191,7 @@ export class PropCheckoutComponent implements OnChanges {
       }
       //if more than one team
       else {
+        this.isSameGameTeam = false;
         let statArray: any[] = []
 
         let players = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Player')
