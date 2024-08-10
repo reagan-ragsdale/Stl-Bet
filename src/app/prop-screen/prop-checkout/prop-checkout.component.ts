@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 import { PlayerProp } from 'src/app/player-prop';
 
 @Component({
@@ -110,13 +111,13 @@ export class PropCheckoutComponent implements OnChanges {
           let totalTeamWins: number = 0;
           let teamTotals: number = 0;
           for (let game of statArray) {
-            
+            if(game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName){
+              teamTotals += 1;
+            }
             let didParlayHappen: boolean[] = [];
             let didSameTeamParlayHappen: boolean[] = [];
             for (let prop of this.listOfProps) {
-              if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                teamTotals += 1;
-              }
+              
               if (prop.propVariables.marketKey == 'h2h') {
                 didParlayHappen.push(game.result == 'W' ? true : false);
                 if(game.teamAgainstName == prop.propVariables.teamAgainstName){
@@ -276,6 +277,7 @@ export class PropCheckoutComponent implements OnChanges {
       }
       else {
         this.sameGameChance = (this.listOfProps[0].propVariables.totalWins / this.listOfProps[0].propVariables.totalGames)
+        this.isSameGameTeam = false;
       }
     }
 
