@@ -112,6 +112,7 @@ export class PropCheckoutComponent implements OnChanges {
           let teamTotals: number = 0;
           for (let game of statArray) {
             if(game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName){
+              console.log("here in team totals += 1")
               teamTotals += 1;
             }
             let didParlayHappen: boolean[] = [];
@@ -122,6 +123,7 @@ export class PropCheckoutComponent implements OnChanges {
                 didParlayHappen.push(game.result == 'W' ? true : false);
                 if(game.teamAgainstName == prop.propVariables.teamAgainstName){
                   didSameTeamParlayHappen.push(game.result == 'W' ? true : false)
+                  console.log("here in h2h7")
                 }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
@@ -140,6 +142,7 @@ export class PropCheckoutComponent implements OnChanges {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
                 if(game.teamAgainstName == prop.propVariables.teamAgainstName){
                   didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false)
+                  console.log("here in h2h7")
                 }
               }
               else if (prop.propVariables.marketKey == 'spreads') {
@@ -162,6 +165,7 @@ export class PropCheckoutComponent implements OnChanges {
               }
 
             }
+            console.log(didSameTeamParlayHappen)
             if (!didParlayHappen.includes(false)) {
               totalWins += 1;
             }
@@ -169,6 +173,8 @@ export class PropCheckoutComponent implements OnChanges {
               totalTeamWins += 1;
             }
           }
+          console.log(totalWins)
+          console.log(teamTotals)
           this.sameGameChance = (totalWins / statArray.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
         }
