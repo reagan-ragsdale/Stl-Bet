@@ -123,7 +123,7 @@ export class PropCheckoutComponent implements OnChanges {
                 didParlayHappen.push(game.result == 'W' ? true : false);
                 if(game.teamAgainstName == prop.propVariables.teamAgainstName){
                   didSameTeamParlayHappen.push(game.result == 'W' ? true : false)
-                  console.log("here in h2h7")
+                  console.log("here in h2h")
                 }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
@@ -169,12 +169,13 @@ export class PropCheckoutComponent implements OnChanges {
             if (!didParlayHappen.includes(false)) {
               totalWins += 1;
             }
-            if(!didSameTeamParlayHappen.includes(false)){
-              totalTeamWins += 1;
+            if(didSameTeamParlayHappen.length > 0){
+              if(!didSameTeamParlayHappen.includes(false)){
+                totalTeamWins += 1;
+              }
             }
+            
           }
-          console.log(totalWins)
-          console.log(teamTotals)
           this.sameGameChance = (totalWins / statArray.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
         }
