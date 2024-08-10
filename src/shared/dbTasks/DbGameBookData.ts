@@ -65,7 +65,7 @@ export class DbGameBookData {
   static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
     //SqlDatabase.LogToConsole = true
     let today = new Date();
-    today.setHours(5,0,0,0);
+    today.setHours(0,0,0,0);
     return {
       bookSeq: 0,
       sportTitle: sport,
