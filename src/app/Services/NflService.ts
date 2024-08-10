@@ -47,6 +47,7 @@ export class NflService {
             totalPassingYardsAllowed: gameSummary.teamStats.home.passingYards
 
         });
+        console.log("pushed team one")
         teamStats.push({
             teamName: gameSummary.teamStats.home.teamAbv,
             teamId: gameSummary.teamStats.home.teamID,
@@ -83,7 +84,9 @@ export class NflService {
             totalPassingYardsAllowed: gameSummary.teamStats.away.passingYards
 
         })
+        console.log("pushed team two")
         finalReturn.push(teamStats);
+        
 
         let playerStats: DBNflPlayerGameStats[] = []
         let index = 0
@@ -126,7 +129,9 @@ export class NflService {
                 totalTackles: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'totalTackles') ? player.Defense.totalTackles : 0) : 0,
                 sacks: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'sacks') ? player.Defense.sacks : 0 ) : 0,
             })
+            console.log("pushed:" + player)
         }
+        
         finalReturn.push(playerStats)
 
         return finalReturn

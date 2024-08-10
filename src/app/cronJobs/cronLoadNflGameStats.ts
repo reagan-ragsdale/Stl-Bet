@@ -13,9 +13,15 @@ export const cronLoadNflGameStats = async () => {
         console.log(newGameIds)
 
         for(let game of newGameIds){
-            let gameStats = await nflApiController.getGameSummary(game)
-            await NflController.addTeamGameStats(gameStats[0])
-            await NflController.addPlayerGameStats(gameStats[1])
+            try{
+                let gameStats = await nflApiController.getGameSummary(game)
+                await NflController.addTeamGameStats(gameStats[0])
+                await NflController.addPlayerGameStats(gameStats[1])
+            }
+            catch(error:any){
+                console.log(error.message)
+            }
+            
 
         } 
 
