@@ -90,10 +90,9 @@ export class PropCheckoutComponent implements OnChanges {
     if (this.listOfProps.length > 1) {
       let teams: string[] = []
       for (let prop of this.listOfProps) {
-        if (teams.includes(prop.propVariables.teamName)) {
-          continue;
+        if (!teams.includes(prop.propVariables.teamName)) {
+          teams.push(prop.propVariables.teamName)
         }
-        else { teams.push(prop.propVariables.teamName) }
       }
 
       //if only one team
@@ -106,6 +105,7 @@ export class PropCheckoutComponent implements OnChanges {
         if(players.length > 0){
           distinctPlayers = players.map(e => e.propVariables.playerName).filter((value,index,array) => array.indexOf(value) === index)
         }
+        console.log(distinctPlayers)
         
         let numberOfTeamProps = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Team')
         let statArray: any[] = []
@@ -188,6 +188,7 @@ export class PropCheckoutComponent implements OnChanges {
         }
 
         else if (distinctPlayers.length == 1) {
+          console.log("here")
           //need to get all the players game and the same games for that team
           statArray = players[0].stats
           if(numberOfTeamProps.length == 0){
