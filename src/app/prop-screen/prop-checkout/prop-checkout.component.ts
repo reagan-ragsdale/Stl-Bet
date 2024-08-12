@@ -402,12 +402,11 @@ export class PropCheckoutComponent implements OnChanges {
           for (let game of listOfCommonGameIds) {
             for (let newGame of commonGameIds) {
               if (game == newGame) {
-                start = true;
+                count++
             }
             }
           
-          count++;
-          if (count > 1 && start == true) {
+          if (count > 1) {
             commonGameIds.push(game);
           }
           start = false;
