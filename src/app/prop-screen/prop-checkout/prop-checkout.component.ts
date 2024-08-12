@@ -195,6 +195,9 @@ export class PropCheckoutComponent implements OnChanges {
             let totalTeamWins: number = 0;
             let teamTotals: number = 0;
             for(let game of statArray){
+              if(game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName){
+                teamTotals += 1;
+              }
               let didParlayHappen: boolean[] = [];
               let didSameTeamParlayHappen: boolean[] = [];
               for(let prop of this.listOfProps){
@@ -296,6 +299,7 @@ export class PropCheckoutComponent implements OnChanges {
                   }
                 }
               }
+              
               if (!didParlayHappen.includes(false)) {
                 totalWins += 1;
               }
