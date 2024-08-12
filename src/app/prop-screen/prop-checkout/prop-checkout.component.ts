@@ -382,32 +382,56 @@ export class PropCheckoutComponent implements OnChanges {
               statArray = player.stats
             }
           }
-          
+          let listOfCommonGameIds: any[] = []
+          let gameArrays: any[] = []
+          for(let player of distinctPlayers){
+            let filteredPlayer = players.filter(e => e.propVariables.playerName == player)
+            gameArrays.push(filteredPlayer[0].stats.map((e: { gameId: any; })=> e.gameId).filter((array: string | any[], value: any, index: any) => array.indexOf(value) == index))
+          }
+          for(let player of gameArrays){
+            listOfCommonGameIds = listOfCommonGameIds.concat(player)
+          }
+          let commonGameIds = listOfCommonGameIds.filter((array,value,index) => array.indexOf(value) === index)
+         
+          console.log(commonGameIds)
+
           for(let game of statArray){
             let didParlayHappen: boolean[] = [];
             let didSameTeamParlayHappen: boolean[] = [];
             for(let prop of this.listOfProps){
               //need to find same games between the two players
               if(prop.propVariables.playerOrTeam == 'Player'){
-                if(prop.propVariables.marketKey == 'batter_total_bases'){
+                let filteredGame = []
+                if(prop.propVariables.playerName != game.playerName){
+                  filteredGame = prop.stats.filter((e: { gameId: any; }) => e.gameId == game.gameId)
+                }
+                else{
+                  filteredGame = game
+                }
+                if(filteredGame.length > 0){
+                  if(prop.propVariables.marketKey == 'batter_total_bases'){
                   
 
+                  }
+                  else if(prop.propVariables.marketKey == 'batter_home_runs'){
+  
+                  }
+                  else if(prop.propVariables.marketKey == 'batter_hits_runs_rbis'){
+                    
+                  }
+                  else if(prop.propVariables.marketKey == 'batter_hits'){
+                    
+                  }
+                  else if(prop.propVariables.marketKey == 'batter_runs_scored'){
+                    
+                  }
+                  else if(prop.propVariables.marketKey == 'batter_rbis'){
+                    
+                  }
                 }
-                else if(prop.propVariables.marketKey == 'batter_home_runs'){
-
+                else{
                 }
-                else if(prop.propVariables.marketKey == 'batter_hits_runs_rbis'){
-                  
-                }
-                else if(prop.propVariables.marketKey == 'batter_hits'){
-                  
-                }
-                else if(prop.propVariables.marketKey == 'batter_runs_scored'){
-                  
-                }
-                else if(prop.propVariables.marketKey == 'batter_rbis'){
-                  
-                }
+                
               }
               else if(prop.propVariables.playerOrTeam == 'Team'){
                 if (prop.propVariables.marketKey == 'h2h') {
