@@ -502,7 +502,13 @@ export class PropCheckoutComponent implements OnChanges {
 
     let propOverall: number = 1;
     for (let prop of this.listOfProps) {
-      propOverall = propOverall * (prop.propVariables.totalWins / prop.propVariables.totalGames)
+      if(prop.propVariables.playerOrTeam == 'Player'){
+        propOverall = propOverall * (prop.propVariables.overOverall / prop.propVariables.totalOverall)
+      }
+      else{
+        propOverall = propOverall * (prop.propVariables.totalWins / prop.propVariables.totalGames)
+      }
+      
     }
     this.overallChance = propOverall
   }
