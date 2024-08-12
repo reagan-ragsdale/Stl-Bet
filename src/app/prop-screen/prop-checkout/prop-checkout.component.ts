@@ -75,6 +75,7 @@ export class PropCheckoutComponent implements OnChanges {
 
   isSameGameTeam: boolean = false;
   displayPropChance() {
+    console.log(this.listOfProps)
     //an array is going to come in. It could have different team and player stat arrays
     //how to know how to calculate the same game chance of all the props happening
     // loop through each item in the array and check to see if there are both teams stats or players from both teams
