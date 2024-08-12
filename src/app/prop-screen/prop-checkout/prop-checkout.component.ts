@@ -403,10 +403,10 @@ export class PropCheckoutComponent implements OnChanges {
             for (let newGame of commonGameIds) {
               if (game == newGame) {
                 count++
-            }
+              }
             }
           
-          if (count > 1) {
+          if (count >= gameArrays.length - 1) {
             commonGameIds.push(game);
           }
           start = false;
