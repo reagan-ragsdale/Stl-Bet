@@ -388,11 +388,13 @@ export class PropCheckoutComponent implements OnChanges {
             let filteredPlayer = players.filter(e => e.propVariables.playerName == player)
             gameArrays.push(filteredPlayer[0].stats.map((e: { gameId: any; })=> e.gameId).filter((array: string | any[], value: any, index: any) => array.indexOf(value) == index))
           }
+          console.log("gameArrays below")
+          console.log(gameArrays)
           for(let player of gameArrays){
             listOfCommonGameIds = listOfCommonGameIds.concat(player)
           }
           let commonGameIds = listOfCommonGameIds.filter((array,value,index) => array.indexOf(value) === index)
-         
+         console.log("common game ids below")
           console.log(commonGameIds)
 
           for(let game of statArray){
