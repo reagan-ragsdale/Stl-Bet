@@ -407,7 +407,7 @@ export class PropCheckoutComponent implements OnChanges {
             }
           
           count++;
-          if (count == 1 && start == true) {
+          if (count > 1 && start == true) {
             commonGameIds.push(game);
           }
           start = false;
