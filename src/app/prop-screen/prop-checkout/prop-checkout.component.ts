@@ -395,6 +395,7 @@ export class PropCheckoutComponent implements OnChanges {
           for(let player of gameArrays){
             listOfCommonGameIds = listOfCommonGameIds.concat(player)
           }
+          console.log(listOfCommonGameIds)
           let commonGameIds = listOfCommonGameIds.filter((array,value,index) => array.indexOf(value) === index)
          console.log("common game ids below")
           console.log(commonGameIds)
