@@ -397,7 +397,7 @@ export class PropCheckoutComponent implements OnChanges {
           }
           console.log(listOfCommonGameIds)
           let commonGameIds: any[] = []
-          var hashTable: any{} = {}
+          var hashTable: any = {}
           var duplicate = [];
           listOfCommonGameIds.forEach((item) => {
             if (hashTable[item]) {
