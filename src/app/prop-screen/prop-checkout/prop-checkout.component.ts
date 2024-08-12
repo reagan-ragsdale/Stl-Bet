@@ -95,7 +95,7 @@ export class PropCheckoutComponent implements OnChanges {
 
     //find the number of teams in the parlay array
     if (this.listOfProps.length > 1) {
-      
+
 
       let teams: string[] = []
       for (let prop of this.listOfProps) {
@@ -111,11 +111,11 @@ export class PropCheckoutComponent implements OnChanges {
         // if multiple player then loop through the player with the least amount of games and grab the other players and team
         let players = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Player')
         let distinctPlayers = []
-        if(players.length > 0){
-          distinctPlayers = players.map(e => e.propVariables.playerName).filter((value,index,array) => array.indexOf(value) === index)
+        if (players.length > 0) {
+          distinctPlayers = players.map(e => e.propVariables.playerName).filter((value, index, array) => array.indexOf(value) === index)
         }
         console.log(distinctPlayers)
-        
+
         let numberOfTeamProps = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Team')
         let statArray: any[] = []
         //if there are no players then just take the first team stats
@@ -127,55 +127,55 @@ export class PropCheckoutComponent implements OnChanges {
           let totalTeamWins: number = 0;
           let teamTotals: number = 0;
           for (let game of statArray) {
-            if(game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName){
+            if (game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName) {
               console.log("here in team totals += 1")
               teamTotals += 1;
             }
             let didParlayHappen: boolean[] = [];
             let didSameTeamParlayHappen: boolean[] = [];
             for (let prop of this.listOfProps) {
-              
+
               if (prop.propVariables.marketKey == 'h2h') {
                 didParlayHappen.push(game.result == 'W' ? true : false);
-                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(game.result == 'W' ? true : false)
                   console.log("here in h2h")
                 }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
-                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false)
                 }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
-                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false)
                 }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
-                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false)
                   console.log("here in h2h7")
                 }
               }
               else if (prop.propVariables.marketKey == 'spreads') {
                 didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
-                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false)
                 }
               }
               else if (prop.propVariables.marketKey == 'totals') {
                 didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
-                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false)
                 }
               }
               else if (prop.propVariables.marketKey == 'team_totals Over') {
                 didParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
-                if(game.teamAgainstName == prop.propVariables.teamAgainstName){
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false)
                 }
               }
@@ -185,12 +185,12 @@ export class PropCheckoutComponent implements OnChanges {
             if (!didParlayHappen.includes(false)) {
               totalWins += 1;
             }
-            if(didSameTeamParlayHappen.length > 0){
-              if(!didSameTeamParlayHappen.includes(false)){
+            if (didSameTeamParlayHappen.length > 0) {
+              if (!didSameTeamParlayHappen.includes(false)) {
                 totalTeamWins += 1;
               }
             }
-            
+
           }
           this.sameGameChance = (totalWins / statArray.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
@@ -200,178 +200,178 @@ export class PropCheckoutComponent implements OnChanges {
           console.log("here")
           //need to get all the players game and the same games for that team
           statArray = players[0].stats
-            //just loop through that player
-            let totalWins: number = 0;
-            let totalTeamWins: number = 0;
-            let teamTotals: number = 0;
-            for(let game of statArray){
-              if(game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName){
-                teamTotals += 1;
-              }
-              let didParlayHappen: boolean[] = [];
-              let didSameTeamParlayHappen: boolean[] = [];
-              for(let prop of this.listOfProps){
-                if(prop.propVariables.playerOrTeam == 'Player'){
-                  if(prop.propVariables.marketKey == 'batter_total_bases'){
-                    if(prop.propVariables.overUnder == false){
-                      didParlayHappen.push((game.batterTotalBases < prop.propVariables.propPoint) ? true : false)
-                    }
-                    else{
-                      didParlayHappen.push((game.batterTotalBases > prop.propVariables.propPoint) ? true : false)
-                    }
-                    if(prop.propVariables.teamAgainstName == game.teamAgainstName){
-                      if(prop.propVariables.overUnder == false){
-                        didSameTeamParlayHappen.push((game.batterTotalBases < prop.propVariables.propPoint) ? true : false)
-                      }
-                      else{
-                        didSameTeamParlayHappen.push((game.batterTotalBases > prop.propVariables.propPoint) ? true : false)
-                      }
-                    }
-  
+          //just loop through that player
+          let totalWins: number = 0;
+          let totalTeamWins: number = 0;
+          let teamTotals: number = 0;
+          for (let game of statArray) {
+            if (game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName) {
+              teamTotals += 1;
+            }
+            let didParlayHappen: boolean[] = [];
+            let didSameTeamParlayHappen: boolean[] = [];
+            for (let prop of this.listOfProps) {
+              if (prop.propVariables.playerOrTeam == 'Player') {
+                if (prop.propVariables.marketKey == 'batter_total_bases') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.batterTotalBases < prop.propVariables.propPoint) ? true : false)
                   }
-                  else if(prop.propVariables.marketKey == 'batter_home_runs'){
-                    if(prop.propVariables.overUnder == false){
+                  else {
+                    didParlayHappen.push((game.batterTotalBases > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
+                      didSameTeamParlayHappen.push((game.batterTotalBases < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didSameTeamParlayHappen.push((game.batterTotalBases > prop.propVariables.propPoint) ? true : false)
+                    }
+                  }
+
+                }
+                else if (prop.propVariables.marketKey == 'batter_home_runs') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.batterHomeRuns < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.batterHomeRuns > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
                       didParlayHappen.push((game.batterHomeRuns < prop.propVariables.propPoint) ? true : false)
                     }
-                    else{
+                    else {
                       didParlayHappen.push((game.batterHomeRuns > prop.propVariables.propPoint) ? true : false)
                     }
-                    if(prop.propVariables.teamAgainstName == game.teamAgainstName){
-                      if(prop.propVariables.overUnder == false){
-                        didParlayHappen.push((game.batterHomeRuns < prop.propVariables.propPoint) ? true : false)
-                      }
-                      else{
-                        didParlayHappen.push((game.batterHomeRuns > prop.propVariables.propPoint) ? true : false)
-                      }
-                    }
                   }
-                  else if(prop.propVariables.marketKey == 'batter_hits_runs_rbis'){
-                    if(prop.propVariables.overUnder == false){
+                }
+                else if (prop.propVariables.marketKey == 'batter_hits_runs_rbis') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.batterHitsRunsRbis < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.batterHitsRunsRbis > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
                       didParlayHappen.push((game.batterHitsRunsRbis < prop.propVariables.propPoint) ? true : false)
                     }
-                    else{
+                    else {
                       didParlayHappen.push((game.batterHitsRunsRbis > prop.propVariables.propPoint) ? true : false)
                     }
-                    if(prop.propVariables.teamAgainstName == game.teamAgainstName){
-                      if(prop.propVariables.overUnder == false){
-                        didParlayHappen.push((game.batterHitsRunsRbis < prop.propVariables.propPoint) ? true : false)
-                      }
-                      else{
-                        didParlayHappen.push((game.batterHitsRunsRbis > prop.propVariables.propPoint) ? true : false)
-                      }
-                    }
                   }
-                  else if(prop.propVariables.marketKey == 'batter_hits'){
-                    if(prop.propVariables.overUnder == false){
+                }
+                else if (prop.propVariables.marketKey == 'batter_hits') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.batterHits < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.batterHits > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
                       didParlayHappen.push((game.batterHits < prop.propVariables.propPoint) ? true : false)
                     }
-                    else{
+                    else {
                       didParlayHappen.push((game.batterHits > prop.propVariables.propPoint) ? true : false)
                     }
-                    if(prop.propVariables.teamAgainstName == game.teamAgainstName){
-                      if(prop.propVariables.overUnder == false){
-                        didParlayHappen.push((game.batterHits < prop.propVariables.propPoint) ? true : false)
-                      }
-                      else{
-                        didParlayHappen.push((game.batterHits > prop.propVariables.propPoint) ? true : false)
-                      }
-                    }
                   }
-                  else if(prop.propVariables.marketKey == 'batter_runs_scored'){
-                    if(prop.propVariables.overUnder == false){
+                }
+                else if (prop.propVariables.marketKey == 'batter_runs_scored') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.batterRunsScored < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.batterRunsScored > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
                       didParlayHappen.push((game.batterRunsScored < prop.propVariables.propPoint) ? true : false)
                     }
-                    else{
+                    else {
                       didParlayHappen.push((game.batterRunsScored > prop.propVariables.propPoint) ? true : false)
                     }
-                    if(prop.propVariables.teamAgainstName == game.teamAgainstName){
-                      if(prop.propVariables.overUnder == false){
-                        didParlayHappen.push((game.batterRunsScored < prop.propVariables.propPoint) ? true : false)
-                      }
-                      else{
-                        didParlayHappen.push((game.batterRunsScored > prop.propVariables.propPoint) ? true : false)
-                      }
-                    }
                   }
-                  else if(prop.propVariables.marketKey == 'batter_rbis'){
-                    if(prop.propVariables.overUnder == false){
+                }
+                else if (prop.propVariables.marketKey == 'batter_rbis') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.batterRbis < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.batterRbis > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
                       didParlayHappen.push((game.batterRbis < prop.propVariables.propPoint) ? true : false)
                     }
-                    else{
+                    else {
                       didParlayHappen.push((game.batterRbis > prop.propVariables.propPoint) ? true : false)
                     }
-                    if(prop.propVariables.teamAgainstName == game.teamAgainstName){
-                      if(prop.propVariables.overUnder == false){
-                        didParlayHappen.push((game.batterRbis < prop.propVariables.propPoint) ? true : false)
-                      }
-                      else{
-                        didParlayHappen.push((game.batterRbis > prop.propVariables.propPoint) ? true : false)
-                      }
-                    }
                   }
                 }
-                else{
-                  let gameFiltered = prop.stats.filter((e: { gameId: any; }) => e.gameId == game.gameId)[0]
-                  if (prop.propVariables.marketKey == 'h2h') {
-                    didParlayHappen.push(gameFiltered.result == 'W' ? true : false);
-                    if(gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName){
-                      didSameTeamParlayHappen.push(gameFiltered.result == 'W' ? true : false)
-                      console.log("here in h2h")
-                    }
-                  }
-                  else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
-                    didParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning)) ? true : false);
-                    if(gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName){
-                      didSameTeamParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning)) ? true : false)
-                    }
-                  }
-                  else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
-                    didParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning)) ? true : false);
-                    if(gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName){
-                      didSameTeamParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning)) ? true : false)
-                    }
-                  }
-                  else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
-                    didParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning + gameFiltered.pointsScoredSixthInning + gameFiltered.pointsScoredSeventhInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning + gameFiltered.pointsAllowedSixthInning + gameFiltered.pointsAllowedSeventhInning)) ? true : false);
-                    if(gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName){
-                      didSameTeamParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning + gameFiltered.pointsScoredSixthInning + gameFiltered.pointsScoredSeventhInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning + gameFiltered.pointsAllowedSixthInning + gameFiltered.pointsAllowedSeventhInning)) ? true : false)
-                      console.log("here in h2h7")
-                    }
-                  }
-                  else if (prop.propVariables.marketKey == 'spreads') {
-                    didParlayHappen.push(((gameFiltered.pointsAllowedOverall - gameFiltered.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
-                    if(gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName){
-                      didSameTeamParlayHappen.push(((gameFiltered.pointsAllowedOverall - gameFiltered.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false)
-                    }
-                  }
-                  else if (prop.propVariables.marketKey == 'totals') {
-                    didParlayHappen.push(((gameFiltered.pointsScoredOverall + gameFiltered.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
-                    if(gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName){
-                      didSameTeamParlayHappen.push(((gameFiltered.pointsScoredOverall + gameFiltered.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false)
-                    }
-                  }
-                  else if (prop.propVariables.marketKey == 'team_totals Over') {
-                    didParlayHappen.push((gameFiltered.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
-                    if(gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName){
-                      didSameTeamParlayHappen.push((gameFiltered.pointsScoredOverall > prop.propVariables.propPoint) ? true : false)
-                    }
-                  }
-                }
-                
               }
-              
-              if (!didParlayHappen.includes(false)) {
-                totalWins += 1;
-              }
-              if(didSameTeamParlayHappen.length > 0){
-                if(!didSameTeamParlayHappen.includes(false)){
-                  totalTeamWins += 1;
+              else {
+                let gameFiltered = prop.stats.filter((e: { gameId: any; }) => e.gameId == game.gameId)[0]
+                if (prop.propVariables.marketKey == 'h2h') {
+                  didParlayHappen.push(gameFiltered.result == 'W' ? true : false);
+                  if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
+                    didSameTeamParlayHappen.push(gameFiltered.result == 'W' ? true : false)
+                    console.log("here in h2h")
+                  }
                 }
+                else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
+                  didParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning)) ? true : false);
+                  if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
+                    didSameTeamParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning)) ? true : false)
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
+                  didParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning)) ? true : false);
+                  if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
+                    didSameTeamParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning)) ? true : false)
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
+                  didParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning + gameFiltered.pointsScoredSixthInning + gameFiltered.pointsScoredSeventhInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning + gameFiltered.pointsAllowedSixthInning + gameFiltered.pointsAllowedSeventhInning)) ? true : false);
+                  if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
+                    didSameTeamParlayHappen.push(((gameFiltered.pointsScoredFirstInning + gameFiltered.pointsScoredSecondInning + gameFiltered.pointsScoredThirdInning + gameFiltered.pointsScoredFourthInning + gameFiltered.pointsScoredFifthInning + gameFiltered.pointsScoredSixthInning + gameFiltered.pointsScoredSeventhInning) > (gameFiltered.pointsAllowedFirstInning + gameFiltered.pointsAllowedSecondInning + gameFiltered.pointsAllowedThirdInning + gameFiltered.pointsAllowedFourthInning + gameFiltered.pointsAllowedFifthInning + gameFiltered.pointsAllowedSixthInning + gameFiltered.pointsAllowedSeventhInning)) ? true : false)
+                    console.log("here in h2h7")
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'spreads') {
+                  didParlayHappen.push(((gameFiltered.pointsAllowedOverall - gameFiltered.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
+                  if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
+                    didSameTeamParlayHappen.push(((gameFiltered.pointsAllowedOverall - gameFiltered.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false)
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'totals') {
+                  didParlayHappen.push(((gameFiltered.pointsScoredOverall + gameFiltered.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
+                  if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
+                    didSameTeamParlayHappen.push(((gameFiltered.pointsScoredOverall + gameFiltered.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false)
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'team_totals Over') {
+                  didParlayHappen.push((gameFiltered.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
+                  if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
+                    didSameTeamParlayHappen.push((gameFiltered.pointsScoredOverall > prop.propVariables.propPoint) ? true : false)
+                  }
+                }
+              }
+
+            }
+
+            if (!didParlayHappen.includes(false)) {
+              totalWins += 1;
+            }
+            if (didSameTeamParlayHappen.length > 0) {
+              if (!didSameTeamParlayHappen.includes(false)) {
+                totalTeamWins += 1;
               }
             }
-            this.sameGameChance = (totalWins / statArray.length)
-            this.teamSameGameChance = (totalTeamWins / teamTotals)
-          
+          }
+          this.sameGameChance = (totalWins / statArray.length)
+          this.teamSameGameChance = (totalTeamWins / teamTotals)
+
         }
         else if (distinctPlayers.length > 1) {
           for (let player of players) {
@@ -384,7 +384,7 @@ export class PropCheckoutComponent implements OnChanges {
           }
           let listOfCommonGameIds: any[] = []
           let gameArrays: any[] = []
-          for(let player of distinctPlayers){
+          for (let player of distinctPlayers) {
             let filteredPlayer = players.filter(e => e.propVariables.playerName == player)
             console.log(filteredPlayer)
             let gameIds = filteredPlayer[0].stats.map((e: { gameId: any; }) => e.gameId)
@@ -392,214 +392,228 @@ export class PropCheckoutComponent implements OnChanges {
           }
           console.log("gameArrays below")
           console.log(gameArrays)
-          for(let player of gameArrays){
+          for (let player of gameArrays) {
             listOfCommonGameIds = listOfCommonGameIds.concat(player)
           }
           console.log(listOfCommonGameIds)
-          let commonGameIds = listOfCommonGameIds.filter((array,value,index) => array.indexOf(value) === index)
-         console.log("common game ids below")
-          console.log(commonGameIds)
+          let commonGameIds: any[] = []
+          let start = false;
+          let count = 0;
+          for (let game of listOfCommonGameIds) {
+            for (let newGame of commonGameIds) {
+              start = true;
+            }
+          
+          count++;
+          if (count == 1 && start == false) {
+            commonGameIds.push(game);
+          }
+          start = false;
+          count = 0;
+        }
+        console.log("common game ids below")
+        console.log(commonGameIds)
 
-          for(let game of statArray){
-            let didParlayHappen: boolean[] = [];
-            let didSameTeamParlayHappen: boolean[] = [];
-            for(let prop of this.listOfProps){
-              //need to find same games between the two players
-              if(prop.propVariables.playerOrTeam == 'Player'){
-                let filteredGame = []
-                if(prop.propVariables.playerName != game.playerName){
-                  filteredGame = prop.stats.filter((e: { gameId: any; }) => e.gameId == game.gameId)
-                }
-                else{
-                  filteredGame = game
-                }
-                if(filteredGame.length > 0){
-                  if(prop.propVariables.marketKey == 'batter_total_bases'){
-                  
-
-                  }
-                  else if(prop.propVariables.marketKey == 'batter_home_runs'){
-  
-                  }
-                  else if(prop.propVariables.marketKey == 'batter_hits_runs_rbis'){
-                    
-                  }
-                  else if(prop.propVariables.marketKey == 'batter_hits'){
-                    
-                  }
-                  else if(prop.propVariables.marketKey == 'batter_runs_scored'){
-                    
-                  }
-                  else if(prop.propVariables.marketKey == 'batter_rbis'){
-                    
-                  }
-                }
-                else{
-                }
-                
+        for (let game of statArray) {
+          let didParlayHappen: boolean[] = [];
+          let didSameTeamParlayHappen: boolean[] = [];
+          for (let prop of this.listOfProps) {
+            //need to find same games between the two players
+            if (prop.propVariables.playerOrTeam == 'Player') {
+              let filteredGame = []
+              if (prop.propVariables.playerName != game.playerName) {
+                filteredGame = prop.stats.filter((e: { gameId: any; }) => e.gameId == game.gameId)
               }
-              else if(prop.propVariables.playerOrTeam == 'Team'){
-                if (prop.propVariables.marketKey == 'h2h') {
-                  didParlayHappen.push(game.result == 'W' ? true : false);
-                  if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                    didSameTeamParlayHappen.push(game.result == 'W' ? true : false)
-                    console.log("here in h2h")
-                  }
+              else {
+                filteredGame = game
+              }
+              if (filteredGame.length > 0) {
+                if (prop.propVariables.marketKey == 'batter_total_bases') {
+
+
                 }
-                else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
-                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
-                  if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                    didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false)
-                  }
+                else if (prop.propVariables.marketKey == 'batter_home_runs') {
+
                 }
-                else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
-                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
-                  if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                    didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false)
-                  }
+                else if (prop.propVariables.marketKey == 'batter_hits_runs_rbis') {
+
                 }
-                else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
-                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
-                  if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                    didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false)
-                    console.log("here in h2h7")
-                  }
+                else if (prop.propVariables.marketKey == 'batter_hits') {
+
                 }
-                else if (prop.propVariables.marketKey == 'spreads') {
-                  didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
-                  if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                    didSameTeamParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false)
-                  }
+                else if (prop.propVariables.marketKey == 'batter_runs_scored') {
+
                 }
-                else if (prop.propVariables.marketKey == 'totals') {
-                  didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
-                  if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                    didSameTeamParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false)
-                  }
+                else if (prop.propVariables.marketKey == 'batter_rbis') {
+
                 }
-                else if (prop.propVariables.marketKey == 'team_totals Over') {
-                  didParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
-                  if(game.teamAgainstName == prop.propVariables.teamAgainstName){
-                    didSameTeamParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false)
-                  }
+              }
+              else {
+              }
+
+            }
+            else if (prop.propVariables.playerOrTeam == 'Team') {
+              if (prop.propVariables.marketKey == 'h2h') {
+                didParlayHappen.push(game.result == 'W' ? true : false);
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
+                  didSameTeamParlayHappen.push(game.result == 'W' ? true : false)
+                  console.log("here in h2h")
+                }
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
+                  didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false)
+                }
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
+                  didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false)
+                }
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
+                  didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false)
+                  console.log("here in h2h7")
+                }
+              }
+              else if (prop.propVariables.marketKey == 'spreads') {
+                didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
+                  didSameTeamParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false)
+                }
+              }
+              else if (prop.propVariables.marketKey == 'totals') {
+                didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
+                  didSameTeamParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false)
+                }
+              }
+              else if (prop.propVariables.marketKey == 'team_totals Over') {
+                didParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
+                if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
+                  didSameTeamParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false)
                 }
               }
             }
           }
         }
-
-        //now we have a stat array of either team or player
-
       }
-      //if more than one team
-      else {
-        this.isSameGameTeam = false;
-        let statArray: any[] = []
 
-        let players = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Player')
+      //now we have a stat array of either team or player
 
-        //just the two teams
-        if (players.length == 0) {
-          console.log(this.listOfProps)
-          statArray = this.listOfProps[0].stats.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName)
-          console.log(statArray)
-          let totalWins: number = 0;
-          for (let game of statArray) {
-            let didParlayHappen: boolean[] = [];
-            for (let prop of this.listOfProps) {
-              console.log(prop)
-              //need to check which team the prop is from 
-              if (prop.propVariables.teamName == game.teamName) {
-                if (prop.propVariables.marketKey == 'h2h') {
-                  didParlayHappen.push(game.result == 'W' ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
-                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
-                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
-                  didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'spreads') {
-                  didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'totals') {
-                  didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'team_totals Over') {
-                  didParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
-                }
-              }
-              else if (prop.propVariables.teamName == game.teamAgainstName) {
-                if (prop.propVariables.marketKey == 'h2h') {
-                  didParlayHappen.push(game.result == 'L' ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
-                  didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning)) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
-                  didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning)) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
-                  didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning)) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'spreads') {
-                  didParlayHappen.push(((game.pointsScoredOverall - game.pointsAllowedOverall) < prop.propVariables.propPoint) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'totals') {
-                  didParlayHappen.push(((game.pointsAllowedOverall + game.pointsScoredOverall) > prop.propVariables.propPoint) ? true : false);
-                }
-                else if (prop.propVariables.marketKey == 'team_totals Over') {
-                  didParlayHappen.push((game.pointsAllowedOverall > prop.propVariables.propPoint) ? true : false);
-                }
-              }
-
-
-            }
-            if (!didParlayHappen.includes(false)) {
-              totalWins += 1;
-            }
-          }
-          this.sameGameChance = totalWins / statArray.length
-        }
-        else if (players.length == 1) {
-
-        }
-        else if (players.length > 1) {
-
-        }
-      }
     }
+    //if more than one team
     else {
-      if (this.listOfProps[0].propVariables.playerOrTeam == 'Player') {
-        this.sameGameChance = (this.listOfProps[0].propVariables.overOverall / this.listOfProps[0].propVariables.totalOverall)
+      this.isSameGameTeam = false;
+      let statArray: any[] = []
+
+      let players = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Player')
+
+      //just the two teams
+      if (players.length == 0) {
+        console.log(this.listOfProps)
+        statArray = this.listOfProps[0].stats.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName)
+        console.log(statArray)
+        let totalWins: number = 0;
+        for (let game of statArray) {
+          let didParlayHappen: boolean[] = [];
+          for (let prop of this.listOfProps) {
+            console.log(prop)
+            //need to check which team the prop is from 
+            if (prop.propVariables.teamName == game.teamName) {
+              if (prop.propVariables.marketKey == 'h2h') {
+                didParlayHappen.push(game.result == 'W' ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
+                didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'spreads') {
+                didParlayHappen.push(((game.pointsAllowedOverall - game.pointsScoredOverall) < prop.propVariables.propPoint) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'totals') {
+                didParlayHappen.push(((game.pointsScoredOverall + game.pointsAllowedOverall) > prop.propVariables.propPoint) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'team_totals Over') {
+                didParlayHappen.push((game.pointsScoredOverall > prop.propVariables.propPoint) ? true : false);
+              }
+            }
+            else if (prop.propVariables.teamName == game.teamAgainstName) {
+              if (prop.propVariables.marketKey == 'h2h') {
+                didParlayHappen.push(game.result == 'L' ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
+                didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_5_innings') {
+                didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'h2h_1st_7_innings') {
+                didParlayHappen.push(((game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning) > (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning)) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'spreads') {
+                didParlayHappen.push(((game.pointsScoredOverall - game.pointsAllowedOverall) < prop.propVariables.propPoint) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'totals') {
+                didParlayHappen.push(((game.pointsAllowedOverall + game.pointsScoredOverall) > prop.propVariables.propPoint) ? true : false);
+              }
+              else if (prop.propVariables.marketKey == 'team_totals Over') {
+                didParlayHappen.push((game.pointsAllowedOverall > prop.propVariables.propPoint) ? true : false);
+              }
+            }
+
+
+          }
+          if (!didParlayHappen.includes(false)) {
+            totalWins += 1;
+          }
+        }
+        this.sameGameChance = totalWins / statArray.length
       }
-      else {
-        this.sameGameChance = (this.listOfProps[0].propVariables.totalWins / this.listOfProps[0].propVariables.totalGames)
-        this.isSameGameTeam = false;
+      else if (players.length == 1) {
+
+      }
+      else if (players.length > 1) {
+
       }
     }
+  }
+    else {
+  if (this.listOfProps[0].propVariables.playerOrTeam == 'Player') {
+    this.sameGameChance = (this.listOfProps[0].propVariables.overOverall / this.listOfProps[0].propVariables.totalOverall)
+  }
+  else {
+    this.sameGameChance = (this.listOfProps[0].propVariables.totalWins / this.listOfProps[0].propVariables.totalGames)
+    this.isSameGameTeam = false;
+  }
+}
 
 
 
 
-    let propOverall: number = 1;
-    for (let prop of this.listOfProps) {
-      if(prop.propVariables.playerOrTeam == 'Player'){
-        propOverall = propOverall * (prop.propVariables.overOverall / prop.propVariables.totalOverall)
-      }
-      else{
-        propOverall = propOverall * (prop.propVariables.totalWins / prop.propVariables.totalGames)
-      }
-      
-    }
-    this.overallChance = propOverall
+let propOverall: number = 1;
+for (let prop of this.listOfProps) {
+  if (prop.propVariables.playerOrTeam == 'Player') {
+    propOverall = propOverall * (prop.propVariables.overOverall / prop.propVariables.totalOverall)
+  }
+  else {
+    propOverall = propOverall * (prop.propVariables.totalWins / prop.propVariables.totalGames)
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.calculateOverallProbability()
+}
+this.overallChance = propOverall
+  }
+
+ngOnChanges(changes: SimpleChanges): void {
+  this.calculateOverallProbability()
     this.displayPropChance()
-  }
+}
 }
