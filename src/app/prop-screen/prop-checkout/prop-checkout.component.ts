@@ -387,7 +387,7 @@ export class PropCheckoutComponent implements OnChanges {
           for(let player of distinctPlayers){
             let filteredPlayer = players.filter(e => e.propVariables.playerName == player)
             console.log(filteredPlayer)
-            let gameIds = filteredPlayer[0].stats.map((e: { gameId: any; })=> e.gameId).filter((array: string | any[], value: any, index: any) => array.indexOf(value) == index)
+            let gameIds = filteredPlayer[0].stats.map((e: { gameId: any; }) => e.gameId)
             gameArrays.push(gameIds)
           }
           console.log("gameArrays below")
