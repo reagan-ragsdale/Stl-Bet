@@ -423,6 +423,7 @@ export class PropCheckoutComponent implements OnChanges {
             for (let prop of this.listOfProps) {
               //need to find same games between the two players
               let filteredGame = prop.stats.filter((e: { gameId: any; }) => e.gameId == game)
+              console.log(filteredGame)
               if (prop.propVariables.playerOrTeam == 'Player') {
                 if (prop.propVariables.marketKey == 'batter_total_bases') {
                   if(prop.propVariables.overUnder == false){
@@ -587,6 +588,8 @@ export class PropCheckoutComponent implements OnChanges {
                 }
               }
             }
+            console.log(didParlayHappen)
+            console.log(didSameTeamParlayHappen)
             if(teamPlay == true){
               teamTotals += 1;
             }
@@ -599,7 +602,7 @@ export class PropCheckoutComponent implements OnChanges {
               }
             }
           }
-          this.sameGameChance = (totalWins / statArray.length)
+          this.sameGameChance = (totalWins / commonGameIds.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
         }
 
