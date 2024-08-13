@@ -238,10 +238,10 @@ export class PropCheckoutComponent implements OnChanges {
                   }
                   if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((game.batterHomeRuns < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterHomeRuns < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((game.batterHomeRuns > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterHomeRuns > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                 }
@@ -254,10 +254,10 @@ export class PropCheckoutComponent implements OnChanges {
                   }
                   if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((game.batterHitsRunsRbis < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterHitsRunsRbis < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((game.batterHitsRunsRbis > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterHitsRunsRbis > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                 }
@@ -270,10 +270,10 @@ export class PropCheckoutComponent implements OnChanges {
                   }
                   if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((game.batterHits < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterHits < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((game.batterHits > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterHits > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                 }
@@ -286,10 +286,10 @@ export class PropCheckoutComponent implements OnChanges {
                   }
                   if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((game.batterRunsScored < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterRunsScored < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((game.batterRunsScored > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterRunsScored > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                 }
@@ -302,10 +302,10 @@ export class PropCheckoutComponent implements OnChanges {
                   }
                   if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((game.batterRbis < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterRbis < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((game.batterRbis > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((game.batterRbis > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                 }
@@ -435,10 +435,10 @@ export class PropCheckoutComponent implements OnChanges {
                   if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
                     teamPlay = true
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((filteredGame.batterTotalBases < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterTotalBases < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((filteredGame.batterTotalBases > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterTotalBases > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                   
@@ -454,10 +454,10 @@ export class PropCheckoutComponent implements OnChanges {
                   if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
                     teamPlay = true
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((filteredGame.batterHomeRuns < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterHomeRuns < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((filteredGame.batterHomeRuns > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterHomeRuns > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                   
@@ -472,10 +472,10 @@ export class PropCheckoutComponent implements OnChanges {
                   if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
                     teamPlay = true
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((filteredGame.batterHitsRunsRbis < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterHitsRunsRbis < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((filteredGame.batterHitsRunsRbis > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterHitsRunsRbis > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                   
@@ -490,10 +490,10 @@ export class PropCheckoutComponent implements OnChanges {
                   if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
                     teamPlay = true
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((filteredGame.batterHits < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterHits < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((filteredGame.batterHits > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterHits > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                   
@@ -508,10 +508,10 @@ export class PropCheckoutComponent implements OnChanges {
                   if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
                     teamPlay = true
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((filteredGame.batterRunsScored < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterRunsScored < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((filteredGame.batterRunsScored > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterRunsScored > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                   
@@ -526,10 +526,10 @@ export class PropCheckoutComponent implements OnChanges {
                   if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
                     teamPlay = true
                     if (prop.propVariables.overUnder == false) {
-                      didParlayHappen.push((filteredGame.batterRbis < prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterRbis < prop.propVariables.propPoint) ? true : false)
                     }
                     else {
-                      didParlayHappen.push((filteredGame.batterRbis > prop.propVariables.propPoint) ? true : false)
+                      didSameTeamParlayHappen.push((filteredGame.batterRbis > prop.propVariables.propPoint) ? true : false)
                     }
                   }
                   
