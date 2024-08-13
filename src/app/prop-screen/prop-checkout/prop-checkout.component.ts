@@ -395,7 +395,6 @@ export class PropCheckoutComponent implements OnChanges {
           for (let player of gameArrays) {
             listOfCommonGameIds = listOfCommonGameIds.concat(player)
           }
-          console.log(listOfCommonGameIds)
           let commonGameIds: any[] = []
           var hashTable: any = {}
           var duplicate = [];
@@ -411,24 +410,22 @@ export class PropCheckoutComponent implements OnChanges {
           })
           let newCommonGameIds = []
           for(let game of gameArrays[0]){
-            let value = false;
+            let value = [];
             for(let i = 1; i < gameArrays.length; i++){
               if(gameArrays[i].includes(game)){
-                value = true;
+                value.push(true);
               }
               else{
-                value = false;
+                value.push(false);
               }
             }
-            if(value == true){
+            if(!value.includes(false)){
               newCommonGameIds.push(game)
             }
           }
           console.log("new common game ids below")
           console.log(newCommonGameIds)
           
-          console.log("common game ids below")
-          console.log(commonGameIds)
 
           //above has common game ids for both players
           let totalWins: number = 0;
