@@ -434,7 +434,7 @@ export class PropCheckoutComponent implements OnChanges {
           let totalWins: number = 0;
           let totalTeamWins: number = 0;
           let teamTotals: number = 0;
-          for (let game of commonGameIds) {
+          for (let game of newCommonGameIds) {
             let didParlayHappen: boolean[] = [];
             let didSameTeamParlayHappen: boolean[] = [];
             let teamPlay = false;
@@ -620,7 +620,7 @@ export class PropCheckoutComponent implements OnChanges {
               }
             }
           }
-          this.sameGameChance = (totalWins / commonGameIds.length)
+          this.sameGameChance = (totalWins / newCommonGameIds.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
         }
 
