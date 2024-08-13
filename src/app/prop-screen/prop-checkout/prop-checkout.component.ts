@@ -799,7 +799,30 @@ export class PropCheckoutComponent implements OnChanges {
           this.sameGameChance = totalWins / listOfGameIds.length
         }
         else if (players.length > 1) {
-
+          let distinctPlayers = players.map(e => e.propVariables.playerName).filter((value, index, array) => array.indexOf(value) === index)
+          let listOfGames = []
+          for(let player of distinctPlayers){
+            let filteredPlayer = players.filter(e => e.playerName == player)[0]
+            let games = filteredPlayer.stats.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == filteredPlayer.propVariables.teamAgainstName)
+            listOfGames.push(games.map((e: { gameId: any; }) => e.gameId))
+          }
+          let newCommonGameIds = []
+          for(let game of listOfGames[0]){
+            let value = [];
+            for(let i = 1; i < listOfGames.length; i++){
+              if(listOfGames[i].includes(game)){
+                value.push(true);
+              }
+              else{
+                value.push(false);
+              }
+            }
+            if(!value.includes(false)){
+              newCommonGameIds.push(game)
+            }
+          }
+          console.log(newCommonGameIds)
+          
         }
       }
     }
