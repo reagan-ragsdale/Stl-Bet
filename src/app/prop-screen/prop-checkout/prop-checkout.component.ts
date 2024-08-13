@@ -422,7 +422,7 @@ export class PropCheckoutComponent implements OnChanges {
             let teamPlay = false;
             for (let prop of this.listOfProps) {
               //need to find same games between the two players
-              let filteredGame = prop.stats.filter((e: { gameId: any; }) => e.gameId == game)
+              let filteredGame = prop.stats.filter((e: { gameId: any; }) => e.gameId == game)[0]
               console.log(filteredGame)
               if (prop.propVariables.playerOrTeam == 'Player') {
                 if (prop.propVariables.marketKey == 'batter_total_bases') {
@@ -518,7 +518,7 @@ export class PropCheckoutComponent implements OnChanges {
                 }
                 else if (prop.propVariables.marketKey == 'batter_rbis') {
                   if(prop.propVariables.overUnder == false){
-                    didParlayHappen.push(filteredGame.batterRbis < prop.propVariables.propPoint ? true : false)
+                    didParlayHappen.push((filteredGame.batterRbis < prop.propVariables.propPoint) ? true : false)
                   }
                   else{
                     didParlayHappen.push(filteredGame.batterRbis > prop.propVariables.propPoint ? true : false)
