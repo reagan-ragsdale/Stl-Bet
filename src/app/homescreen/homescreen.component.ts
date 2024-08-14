@@ -212,7 +212,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
-      this.playerData = await MlbController.mlbGetPlayerStatTotals()
+      let result = await Promise.all([MlbController.mlbGetPlayerStatTotals(), MlbController.mlbGetTeamStatAverageTop5("wins", 2024)])
+      this.playerData = result[0]
+      this.teamData = result[1]
+      //this.playerData = await MlbController.mlbGetPlayerStatTotals()
       this.playerStatsButtons = [
         {
           selected: true,
@@ -230,7 +233,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           dbName: "hits"
         },
       ]
-      this.teamData = await MlbController.mlbGetTeamStatAverageTop5("wins", 2024)
+      //this.teamData = await MlbController.mlbGetTeamStatAverageTop5("wins", 2024)
       this.teamStatsButtons = [
         {
           selected: true,
@@ -248,10 +251,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           dbName: "runsAllowed"
         }
       ]
-      //this.gameData = await SportsBookController.loadSportBookByH2H(sport)
-      //this.gameDataAll = await SportsBookController.loadAllSportFilterByMAxBookSeqBigThree(sport)
-
-
 
        this.unsubscribe = taskRepo
       .liveQuery({
@@ -268,7 +267,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   loadProps(change: any){
-    console.log(change)
     this.gameDataAll = change
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
@@ -329,14 +327,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         this.gameDataAllFinal.push(teamArrayFinal)
       }
       
-      console.log(this.gameDataAllFinal)
     })
-    //let test = this.gameDataAllFinal[0][0][0].commenceTime.toString()
-    //console.log(typeof(test))
   }
 
   teamClicked(teamName: string) {
-    //console.log(teamName)
   }
 
   
