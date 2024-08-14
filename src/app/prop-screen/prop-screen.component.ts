@@ -365,7 +365,7 @@ export class PropScreenComponent implements OnInit {
     return this.sportsToTitle[sport];
   }
 
-
+  static sendEmail: (errorMessage: string) => void;
 
   listOfTeams: DbTeamInfo[] = []
   public teamPropFinnal: any = []
