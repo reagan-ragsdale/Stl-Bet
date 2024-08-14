@@ -4,9 +4,7 @@ import { draftKingsApiController } from "./ApiCalls/draftKingsApiCalls"
 import { SportsBookController } from "../shared/Controllers/SportsBookController"
 import { MlbController } from "../shared/Controllers/MlbController"
 import { MlbService } from "./Services/MlbService"
-import { ArrayOfDates } from "./array-of-dates"
 import { DbGameBookData } from "../shared/dbTasks/DbGameBookData"
-import { SportsNameToId } from "./sports-name-to-id"
 import { reusedFunctions } from "./Services/reusedFunctions"
 import { mlbApiController } from "./ApiCalls/mlbApiCalls"
 import { DBMlbPlayerGameStats } from "../shared/dbTasks/DbMlbPlayerGameStats"
@@ -16,7 +14,7 @@ import { DbMlbTeamGameStats } from "src/shared/dbTasks/DbMlbTeamGameStats"
 
 
 
-const arrayOfDates: ArrayOfDates = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
+const arrayOfDates: {[key:number]: number} = { 1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
 
 export const mlbCronFile = async () => {
     await loadMlbData()
