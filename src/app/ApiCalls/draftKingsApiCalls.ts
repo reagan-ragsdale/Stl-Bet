@@ -1,7 +1,6 @@
 
 
 
-import { SportsTitleToName } from '../sports-titel-to-name';
 import { DbPlayerPropData } from '../../shared/dbTasks/DbPlayerPropData';
 import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
@@ -18,7 +17,7 @@ export class draftKingsApiController {
   static selectedSportsData: any;
   static sportsBookData: DbGameBookData[] = []
 
-  static sportsToTitle: SportsTitleToName = {
+  static sportsToTitle: {[key:string]:string} = {
     NBA: "basketball_nba",
     NFL: "americanfootball_nfl",
     MLB: "baseball_mlb",
