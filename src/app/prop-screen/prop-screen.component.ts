@@ -42,6 +42,7 @@ import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoControl
 import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
+import { emailer } from '../../server/emailService';
 
 @Component({
   selector: 'app-prop-screen',
@@ -371,6 +372,7 @@ export class PropScreenComponent implements OnInit {
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
   async displayProp() {
+    await emailer("Hello this is a test");
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);

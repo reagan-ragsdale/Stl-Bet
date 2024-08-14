@@ -1,7 +1,7 @@
 //import { env} from "src/env"
 import nodemailer from 'nodemailer';
 
-async function sendEmail() {
+const emailer = async (errorMessage: string) => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -15,7 +15,7 @@ async function sendEmail() {
       from: process.env['errorEmail'],
       to: process.env['errorEmail'],
       subject: 'Error',
-      text: 'Test'
+      text: errorMessage
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -25,4 +25,4 @@ async function sendEmail() {
   }
 }
 
-sendEmail();
+export {emailer}
