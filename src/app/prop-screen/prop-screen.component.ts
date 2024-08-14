@@ -650,7 +650,7 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     this.setValuesToTeamPropFinal()
     await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
-    this.teamPropIsLoading = false
+    
   }
 
   public team1Wins: number = 0
@@ -2087,7 +2087,7 @@ export class PropScreenComponent implements OnInit {
       
 
     }
-    this.playerPropIsLoading = false;
+    this.teamPropIsLoading = false
 
   }
   calculateNewBestBetPlayer(){
