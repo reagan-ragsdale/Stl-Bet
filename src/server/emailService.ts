@@ -1,20 +1,20 @@
 //import { env} from "src/env"
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 async function sendEmail() {
   try {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: 'stlbetcode@gmail.com',
-        pass: 'Betstl2210'
+        user: process.env['errorEmail'],
+        pass: process.env['errorEmailPass']
       }
     });
 
     const mailOptions = {
-      from: 'stlbet@gmail.com',
-      to: 'stlbet@example.com',
-      subject: 'Crash',
+      from: process.env['errorEmail'],
+      to: process.env['errorEmail'],
+      subject: 'Error',
       text: 'Test'
     };
 
