@@ -352,7 +352,7 @@
     <mat-tab  class="games-tabs" *ngFor="let game of games" label="{{game.game}}"></mat-tab>
   </mat-tab-group>
  -->
-  <div *ngIf="teamPropIsLoading" style="height:100%; width: 100%; background-color: white;">
+  <div *ngIf="teamPropIsLoading || playerPropIsLoading" style="height:100%; width: 100%; background-color: white;">
     <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
   </div>
 
@@ -941,7 +941,7 @@
       <mat-tab style="width: 50%; color: white" label="Player Props">
         <ng-template matTabContent>
 
-          <div
+          <div *ngIf="!playerPropIsLoading"
             style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
             <mat-accordion *ngFor="let prop of playerPropDataFinalNew" class="main-specific-class"
               style="width:90%; margin-bottom:.5rem;">

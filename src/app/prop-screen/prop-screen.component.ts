@@ -703,8 +703,10 @@ export class PropScreenComponent implements OnInit {
 
     this.calculateSpreadPropChace(team1, team2, prop.point, type)
   }
+  playerPropIsLoading: boolean = false;
   playerPropDataFinalNew: any[] = []
   async loadPlayerStatData(team1: number, team2: number) {
+    this.playerPropIsLoading = true;
     this.playerPropDataFinalNew = [];
     this.arrayOfPlayerBets = [];
     this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
@@ -2085,6 +2087,7 @@ export class PropScreenComponent implements OnInit {
       
 
     }
+    this.playerPropIsLoading = false;
 
   }
   calculateNewBestBetPlayer(){
