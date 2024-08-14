@@ -215,7 +215,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       let result = await Promise.all([MlbController.mlbGetPlayerStatTotals(), MlbController.mlbGetTeamStatAverageTop5("wins", 2024)])
       this.playerData = result[0]
       this.teamData = result[1]
-      //this.playerData = await MlbController.mlbGetPlayerStatTotals()
       this.playerStatsButtons = [
         {
           selected: true,
@@ -233,7 +232,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           dbName: "hits"
         },
       ]
-      //this.teamData = await MlbController.mlbGetTeamStatAverageTop5("wins", 2024)
       this.teamStatsButtons = [
         {
           selected: true,
@@ -257,10 +255,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
       .subscribe(info => this.loadProps(info.items)) 
-      
-      
-      
-      //this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
       this.playerAverageColumns = this.playerAverageColumnsMlb
     }
 

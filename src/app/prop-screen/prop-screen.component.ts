@@ -248,22 +248,12 @@ export class PropScreenComponent implements OnInit {
     {
       name: '',
       abvr: '',
-      h2h: 0,
-      spreadPoint: 0,
-      spreadPrice: 0,
-      totalPoint: 0,
-      totalPrice: 0,
       commenceTime: ''
     };
   public displayPropHtml2 =
     {
       name: '',
       abvr: '',
-      h2h: 0,
-      spreadPoint: 0,
-      spreadPrice: 0,
-      totalPoint: 0,
-      totalPrice: 0,
       commenceTime: ''
     };
 
@@ -307,9 +297,6 @@ export class PropScreenComponent implements OnInit {
       this.selectedSport = this.route.snapshot.paramMap.get('sport')
     }
     if (this.route.snapshot.paramMap.get('game') != null) {
-
-      //this.selectedGame = this.route.params.subscribe((newPathParams) => console.log(newPathParams));
-      //this.selectedGame = this.route.snapshot.paramMap.get('game')
       this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
         this.selectedGame = params.get("game")
         this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
@@ -358,30 +345,14 @@ export class PropScreenComponent implements OnInit {
     }
     await this.onGameClick(this.selectedGame)
   }
-
-  
-
-  setSelectedDate(date: string) {
-    this.selectedDate = date;
-  }
-  setSelectedSport(sport: string) {
-    this.selectedSport = sport;
-  }
-  setSelectedGame(game: string) {
-    this.selectedGame = game
-  }
-
-
-
-
  
   async onGameClick(game: string) {
-    this.setSelectedGame(game);
+    this.selectedGame = game;
     
     this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     this.selectedSportGamesFinal.forEach(e => e[0].selected = false)
-    let selectedGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
-    selectedGame[0][0].selected = true
+    let selectedGameClicked = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
+    selectedGameClicked[0][0].selected = true
 
 
     this.playerPropsClicked = false;
@@ -395,9 +366,7 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  //adding items to checkout
-  addPropToChechout(event: any) {
-  }
+  
   addItemToCheckout(event: any) {
     event.isDisabled = true;
     //var bestBets = this.findBestBetsFromEvent(event);
@@ -436,8 +405,6 @@ export class PropScreenComponent implements OnInit {
   }
 
 
-  testFunc(event: any) {
-  }
 
   convertSport(sport: any) {
     return this.sportsToTitle[sport];
@@ -454,13 +421,6 @@ export class PropScreenComponent implements OnInit {
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
-    var h2h = 0;
-    var spreadPoint = 0;
-    var spreadPrice = 0;
-    var totalPoint = 0;
-    var totalPrice = 0
-    var teamInfo: any[] = []
-    var logo = ''
     this.team1GameStats = []
     this.team2GameStats = []
     this.team1GameStatsReversed = []
@@ -527,7 +487,6 @@ export class PropScreenComponent implements OnInit {
     this.teamPropFinnal.push(team2Final, team1Final)
 
 
-    let distinctProps = tempProp.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
 
 
 
@@ -558,8 +517,6 @@ export class PropScreenComponent implements OnInit {
     this.playerPropData = await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame)
     let uniquePlayerProps = this.playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
 
-    //the player prop data brings back every single prop and each of those props has two entries per person if its over or under
-    //need to go through each distinct prop and find the ones per name and then load those into the final array 
     this.playerPropDataFinal = [];
     for (let prop of uniquePlayerProps) {
       let propSpecificArray: any[] = []
@@ -575,77 +532,23 @@ export class PropScreenComponent implements OnInit {
       this.playerPropDataFinal.push(propSpecificArray)
     }
 
-
-
-
-    //figure out a way to display the team props with ngfor just like the player props. 
-    //That means I need to refactor how the array gets populated
     this.listOfTeams = await TeamInfoController.getAllTeamInfo(this.selectedSport)
     name1 = team1[0].teamName;
-    h2h = team1.filter((e) => e.marketKey == "h2h")[0].price;
-    let spreadProp = team1.filter((e) => e.marketKey == "spreads")
-    if (spreadProp.length > 0) {
-      spreadPoint = spreadProp[0].point
-    }
-    else {
-      spreadPoint = 0
-    }
-    let spreadPriceProp = team1.filter((e) => e.marketKey == "spreads")
-    if (spreadPriceProp.length > 0) {
-      spreadPrice = spreadPriceProp[0].price
-    }
-    else {
-      spreadPrice = 0
-    }
-    totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].point;
-    totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Over")[0].price;
-    this.selectedTotalAwayProp = totalPoint
-    this.calculateNewTotalChance(totalPoint, 'away')
-    this.homeAlternateSpreadstemp.forEach(e => {
-      this.homeAlternateSpreads.push({ point: e.point, price: e.price })
-    })
-    this.homeAlternateSpreads.push({ point: spreadPoint, price: spreadPrice })
-    this.homeAlternateSpreads = this.homeAlternateSpreads.sort(function (a, b) { return a.point - b.point })
-    this.homeAlternateSpreads = this.homeAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
-    this.team1SelectedSpreadPoint = spreadPoint
-    this.team1SelectedSpreadPrice = spreadPrice
+    
     let abvr = ''
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.displayPropHtml1 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertTimestampToTime(spreadPriceProp[0].commenceTime.toString()) });
+    this.displayPropHtml1 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertTimestampToTime(team1[0].commenceTime.toString()) });
 
     name1 = team2[0].teamName;
-    h2h = team2.filter((e) => e.marketKey == "h2h")[0].price;
-    spreadProp = team2.filter((e) => e.marketKey == "spreads")
-    if (spreadProp.length > 0) {
-      spreadPoint = spreadProp[0].point
-    }
-    else {
-      spreadPoint = 0
-    }
-    spreadPriceProp = team2.filter((e) => e.marketKey == "spreads")
-    if (spreadPriceProp.length > 0) {
-      spreadPrice = spreadPriceProp[0].price
-    }
-    else {
-      spreadPrice = 0
-    }
+    
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.awayAlternateSpreadstemp.forEach(e => {
-      this.awayAlternateSpreads.push({ point: e.point, price: e.price })
-    })
-    this.awayAlternateSpreads.push({ point: spreadPoint, price: spreadPrice })
-    this.awayAlternateSpreads = this.awayAlternateSpreads.sort(function (a, b) { return a.point - b.point })
-    this.awayAlternateSpreads = this.awayAlternateSpreads.filter((value, index, array) => array.indexOf(value) === index)
-    totalPoint = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].point;
-    totalPrice = tempProp.filter((e) => e.marketKey == "totals" && e.teamName == "Under")[0].price;
-    this.calculateNewTotalChance(totalPoint, 'home')
-    this.displayPropHtml2 = ({ name: name1, abvr: abvr, h2h: h2h, spreadPoint: spreadPoint, spreadPrice: spreadPrice, totalPoint: totalPoint, totalPrice: totalPrice, commenceTime: reusedFunctions.convertTimestampToTime(spreadPriceProp[0].commenceTime.toString()) });
-    this.team2SelectedSpreadPoint = spreadPoint
-    this.team2SelectedSpreadPrice = spreadPrice
+    
+    this.displayPropHtml2 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertTimestampToTime(team2[0].commenceTime.toString()) });
+    
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     this.setValuesToTeamPropFinal()
