@@ -1,18 +1,12 @@
 import { Component, HostListener, OnInit, TemplateRef, ViewChild, ViewEncapsulation, afterRender, inject } from '@angular/core';
-import { SportsTitleToName } from '../sports-titel-to-name';
-import { SelectedSportsData } from '../selected-sports-data';
-import { GameId } from '../game-id';
-import { PropData } from '../prop-data';
-import { PlayerProp } from '../player-prop';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MlbPlayerid } from '../mlb-playerid';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 
 import { DbMlbPlayerInfo } from 'src/shared/dbTasks/DbMlbPlayerInfo';
 import { MlbController } from 'src/shared/Controllers/MlbController';
-import { ISportsBook } from '../isports-book';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
@@ -24,13 +18,11 @@ import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGa
 import { nbaApiController } from '../ApiCalls/nbaApiCalls';
 import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
 import { NbaController } from 'src/shared/Controllers/NbaController';
-import { SportsNameToId } from '../sports-name-to-id';
 import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import annotationPlugin from 'chartjs-plugin-annotation';
 
-import { ArrayOfDates } from '../array-of-dates';
 
 
 import { ActivatedRoute, Route, Router } from '@angular/router';
@@ -83,7 +75,6 @@ export class PropScreenComponent implements OnInit {
    propDialog!: TemplateRef<any>; */
 
   private modalService = inject(NgbModal);
-  expandedElement: PlayerProp[] | null | undefined;
 
 
   public playerPropsClicked = false;
@@ -156,17 +147,10 @@ export class PropScreenComponent implements OnInit {
 
   date = new Date();
 
-  //API strings
-  pre_initial_prop = "https://api.the-odds-api.com/v4/sports/";
-  post_initial_prop = "/odds/?apiKey=5ab6923d5aa0ae822b05168709bb910c&regions=us&markets=h2h,spreads,totals&bookmakers=draftkings&oddsFormat=american";
 
-  pre_get_games = "https://api.the-odds-api.com/v4/sports/";
-  post_get_games = "/scores?apiKey=5ab6923d5aa0ae822b05168709bb910c";
 
   displayedColumns: string[] = ['name', 'description', 'point', 'price', 'detailedStats'];
   displayedColumnsTeamGames: string[] = ['game', 'date', 'result'];
-  displayedTeamAgainstColums: string[] = ["date", "result", "q1Points"];
-  displayedTeamAgainstColums2: string[] = ["q2Points", "q3Points", "q4Points"];
 
 
 
@@ -212,37 +196,8 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  playerPropsArray: PlayerProp[] = [{
-    name: '',
-    id: '',
-    description: '',
-    price: '',
-    point: '',
-    event: '',
-    isDisabled: false,
-    percentTotal: '',
-    percentTeam: '',
-    avgTotal: '',
-    avgTeam: '',
-    team1: '',
-    team2: '',
-    isOpened: false,
-    teamAgainst: '',
-    averageDifferential: '',
-    gamesPlayed: "",
-    gamesPlayedvsTeam: "",
-    average2022: "",
-    average2022vsTeam: ""
-  }];
-  mlbPlayerId: MlbPlayerid[] = [{
-    Name: '',
-    Id: '',
-    teamName: '',
-    teamId: ''
-  }]
+  
   playerPropObjectArray: any[] = [];
-  public dates: string[] = [];
-  public games: GameId[] = [];
 
   public displayPropHtml1 =
     {
@@ -259,7 +214,7 @@ export class PropScreenComponent implements OnInit {
 
   public selectedTab: number = 0;
   listOfSupportedSports: string[] = ["NBA"];
-  sportsToTitle: SportsTitleToName = {
+  sportsToTitle: { [key: string]: string; } = {
     NBA: "basketball_nba",
     NFL: "americanfootball_nfl",
     MLB: "baseball_mlb",
@@ -273,7 +228,6 @@ export class PropScreenComponent implements OnInit {
 
   playerInfoTemp: DbMlbPlayerInfo[] = []
   playerInfoFinal: DbMlbPlayerInfo[] = []
-  gamePropData: ISportsBook[] = []
   sportsBookData: DbGameBookData[] = []
   sportsBookDataFinal: DbGameBookData[] = []
   //playerPropData: DbPlayerPropData[] = []
@@ -594,18 +548,7 @@ export class PropScreenComponent implements OnInit {
     
   }
 
-  loadNewSpreadProp(team1: any[], team2: any[], prop: any, type: string) {
-    if (type == 'away') {
-      this.team2SelectedSpreadPoint = prop.point
-      this.team2SelectedSpreadPrice = prop.price
-    }
-    else if (type == 'home') {
-      this.team1SelectedSpreadPoint = prop.point
-      this.team1SelectedSpreadPrice = prop.price
-    }
-
-    this.calculateSpreadPropChace(team1, team2, prop.point, type)
-  }
+  
   playerPropIsLoading: boolean = false;
   playerPropDataFinalNew: any[] = []
   async loadPlayerStatData(team1: number, team2: number) {
@@ -2127,69 +2070,9 @@ export class PropScreenComponent implements OnInit {
   }
 
 
-  //when the prop is positive then we want to check each game and see if the points allowed minue the points scored is less than the prop
-  //because for a positive spread that means everything less than that number wins
-  //when the prop is negative then we want t
-  public team2SelectedSpreadPoint: number = 0
-  public team2SelectedSpreadPrice: number = 0
-  public team1SelectedSpreadPoint: number = 0
-  public team1SelectedSpreadPrice: number = 0
-  public awaySpreadOverallChance: number = 0
-  public awaySpreadAwayChance: number = 0
-  public awaySpreadTeamChance: number = 0
-  public homeSpreadOverallChance: number = 0
-  public homeSpreadHomeChance: number = 0
-  public homeSpreadTeamChance: number = 0
-  calculateSpreadPropChace(teamStats: any[], teamAgainstStats: any[], prop: number, type: string) {
-
-    let totalFor: any[] = [];
-    let totalOverall: number = 0;
-    if (type == 'away') {
-      totalFor = teamStats.filter(e => {
-        return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop);
-      })
-      totalOverall = teamStats.length
-      this.awaySpreadOverallChance = (totalFor.length / totalOverall)
 
 
-      totalFor = teamStats.filter(e => {
-        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Away")
-      })
-      totalOverall = teamStats.filter(e => e.homeOrAway == "Away").length
-      this.awaySpreadAwayChance = (totalFor.length / totalOverall)
 
-      totalFor = teamStats.filter(e => {
-        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && (e.teamAgainstId == teamAgainstStats[0].teamId))
-      })
-      totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
-      this.awaySpreadTeamChance = (totalFor.length / totalOverall)
-
-    }
-    else if (type == 'home') {
-
-      totalFor = teamStats.filter(e => {
-        return ((e.pointsAllowedOverall - e.pointsScoredOverall) < prop)
-      })
-      totalOverall = teamStats.length
-      this.homeSpreadOverallChance = (totalFor.length / totalOverall)
-
-
-      totalFor = teamStats.filter(e => {
-        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.homeOrAway == "Home")
-      })
-      totalOverall = teamStats.filter(e => e.homeOrAway == "Home").length
-      this.homeSpreadHomeChance = (totalFor.length / totalOverall)
-
-      totalFor = teamStats.filter(e => {
-        return (((e.pointsAllowedOverall - e.pointsScoredOverall) < prop) && e.teamAgainstId == teamAgainstStats[0].teamId)
-      })
-      totalOverall = teamStats.filter(e => e.teamAgainstId == teamAgainstStats[0].teamId).length
-      this.homeSpreadTeamChance = (totalFor.length / totalOverall)
-
-
-    }
-
-  }
 
   getSpreadHighLow(homeAway: string, type: string, highLow: string): number {
     let finalSpread = 0
@@ -2559,306 +2442,15 @@ export class PropScreenComponent implements OnInit {
     this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
   }
 
-  calculateNewTotalChance(prop: number, homeAway: string) {
-    if (this.selectedSport == 'MLB') {
-      if (homeAway == 'away') {
-        if (this.overTrueUnderFalseAway == true) {
-          let totalFor = this.team2GameStats.filter(e => { return (e.pointsScoredOverall + e.pointsAllowedOverall) > prop })
-          let totalOverall = this.team2GameStats.length
-          this.totalAwayOverallChance = totalFor.length / totalOverall
+  
 
-          totalFor = this.team2GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.homeOrAway == 'Away' })
-          totalOverall = this.team2GameStats.filter(e => { return e.homeOrAway == 'Away' }).length
-          this.totalAwayAwayChance = totalFor.length / totalOverall
-
-          totalFor = this.team2GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.teamAgainstId == this.team1GameStats[0].teamId })
-          totalOverall = this.team2GameStats.filter(e => { return e.teamAgainstId == this.team1GameStats[0].teamId }).length
-          this.totalAwayTeamChance = totalFor.length / totalOverall
-
-
-        }
-        else if (this.overTrueUnderFalseAway == false) {
-          let totalFor = this.team2GameStats.filter(e => { return (e.pointsScoredOverall + e.pointsAllowedOverall) < prop })
-          let totalOverall = this.team2GameStats.length
-          if (totalOverall == 0) {
-            this.totalAwayOverallChance = 0
-          }
-          else { this.totalAwayOverallChance = totalFor.length / totalOverall }
-
-          totalFor = this.team2GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.homeOrAway == 'Away' })
-          totalOverall = this.team2GameStats.filter(e => { return e.homeOrAway == 'Away' }).length
-          if (totalOverall == 0) {
-            this.totalAwayAwayChance = 0
-          }
-          else { this.totalAwayAwayChance = totalFor.length / totalOverall }
-
-          totalFor = this.team2GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.teamAgainstId == this.team1GameStats[0].teamId })
-          totalOverall = this.team2GameStats.filter(e => { return e.teamAgainstId == this.team1GameStats[0].teamId }).length
-          if (totalOverall == 0) {
-            this.totalAwayTeamChance = 0
-          }
-          else { this.totalAwayTeamChance = totalFor.length / totalOverall }
-        }
-
-      }
-      else if (homeAway == 'home') {
-        if (this.overTrueUnderFalseHome == true) {
-          let totalFor = this.team1GameStats.filter(e => { return (e.pointsScoredOverall + e.pointsAllowedOverall) > prop })
-          let totalOverall = this.team1GameStats.length
-          if (totalOverall == 0) {
-            this.totalHomeOverallChance = 0
-          }
-          else { this.totalHomeOverallChance = totalFor.length / totalOverall }
-
-          totalFor = this.team1GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.homeOrAway == 'Away' })
-          totalOverall = this.team1GameStats.filter(e => { return e.homeOrAway == 'Away' }).length
-          if (totalOverall == 0) {
-            this.totalHomeHomeChance = 0
-          }
-          else { this.totalHomeHomeChance = totalFor.length / totalOverall }
-
-          totalFor = this.team1GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) > prop) && e.teamAgainstId == this.team2GameStats[0].teamId })
-          totalOverall = this.team1GameStats.filter(e => { return e.teamAgainstId == this.team2GameStats[0].teamId }).length
-          if (totalOverall == 0) {
-            this.totalHomeTeamChance = 0
-          }
-          else { this.totalHomeTeamChance = totalFor.length / totalOverall }
-        }
-        else if (this.overTrueUnderFalseHome == false) {
-          let totalFor = this.team1GameStats.filter(e => { return (e.pointsScoredOverall + e.pointsAllowedOverall) < prop })
-          let totalOverall = this.team1GameStats.length
-          if (totalOverall == 0) {
-            this.totalHomeOverallChance = 0
-          }
-          else { this.totalHomeOverallChance = totalFor.length / totalOverall }
-
-          totalFor = this.team1GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.homeOrAway == 'Away' })
-          totalOverall = this.team1GameStats.filter(e => { return e.homeOrAway == 'Away' }).length
-          if (totalOverall == 0) {
-            this.totalHomeHomeChance = 0
-          }
-          else { this.totalHomeHomeChance = totalFor.length / totalOverall }
-
-
-          totalFor = this.team1GameStats.filter(e => { return ((e.pointsScoredOverall + e.pointsAllowedOverall) < prop) && e.teamAgainstId == this.team2GameStats[0].teamId })
-          totalOverall = this.team1GameStats.filter(e => { return e.teamAgainstId == this.team2GameStats[0].teamId }).length
-          if (totalOverall == 0) {
-            this.totalHomeTeamChance = 0
-          }
-          else { this.totalHomeTeamChance = totalFor.length / totalOverall }
-        }
-      }
-    }
-  }
-
-  returnGameLog(homeAway: string, type: string): any[] {
-    let finalArray = []
-    if (homeAway == 'away') {
-      if (type == 'overall') {
-        finalArray = this.team2GameStatsReversed.slice(0, 10)
-      }
-      else if (type == 'away') {
-        finalArray = this.team2GameStatsReversed.filter(e => e.homeOrAway == 'Away').slice(0, 10)
-      }
-      else if (type == 'team') {
-        finalArray = this.team2GameStatsReversed.filter(e => e.teamAgainstId == this.team1GameStats[0].teamId).slice(0, 10)
-      }
-    }
-    else {
-      if (type == 'overall') {
-        finalArray = this.team1GameStatsReversed.slice(0, 10)
-      }
-      else if (type == 'home') {
-        finalArray = this.team1GameStatsReversed.filter(e => e.homeOrAway == 'Home').slice(0, 10)
-      }
-      else if (type == 'team') {
-        finalArray = this.team1GameStatsReversed.filter(e => e.teamAgainstId == this.team2GameStats[0].teamId).slice(0, 10)
-      }
-    }
-    return finalArray
-  }
+  
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
 
 
-  onSpreadModal() {
-
-  }
-  onTotalModal() {
-
-  }
-
-  moneylineGameToggled() {
-    this.moneylineGameClicked = true;
-    this.moneylineHalfClicked = false;
-    this.moneylineQuarterClicked = false;
-
-  }
-  moneylineHalfToggled() {
-    this.moneylineGameClicked = false;
-    this.moneylineHalfClicked = true;
-    this.moneylineQuarterClicked = false;
-  }
-  moneylineQuarterToggled() {
-    this.moneylineGameClicked = false;
-    this.moneylineHalfClicked = false;
-    this.moneylineQuarterClicked = true;
-  }
-  spreadGameToggled() {
-    this.spreadGameClicked = true;
-    this.spreadHalfClicked = false;
-    this.spreadQuarterClicked = false;
-
-  }
-  spreadHalfToggled() {
-    this.spreadGameClicked = false;
-    this.spreadHalfClicked = true;
-    this.spreadQuarterClicked = false;
-  }
-  spreadQuarterToggled() {
-    this.spreadGameClicked = false;
-    this.spreadHalfClicked = false;
-    this.spreadQuarterClicked = true;
-  }
-
-  totalGameToggled() {
-    this.totalGameClicked = true;
-    this.totalHalfClicked = false;
-    this.totalQuarterClicked = false;
-
-  }
-  totalHalfToggled() {
-    this.totalGameClicked = false;
-    this.totalHalfClicked = true;
-    this.totalQuarterClicked = false;
-  }
-  totalQuarterToggled() {
-    this.totalGameClicked = false;
-    this.totalHalfClicked = false;
-    this.totalQuarterClicked = true;
-  }
-
-  pointsScoredGameToggled() {
-    this.pointsScoredGameClicked = true;
-    this.pointsScoredHalfClicked = false;
-    this.pointsScoredQuarterClicked = false;
-
-  }
-
-  pointsScoredHalfToggled() {
-    this.pointsScoredGameClicked = false;
-    this.pointsScoredHalfClicked = true;
-    this.pointsScoredQuarterClicked = false;
-  }
-
-  pointsScoredQuarterToggled() {
-    this.pointsScoredGameClicked = false;
-    this.pointsScoredHalfClicked = false;
-    this.pointsScoredQuarterClicked = true;
-  }
-
-  pointsAllowedGameToggled() {
-    this.pointsAllowedGameClicked = true;
-    this.pointsAllowedHalfClicked = false;
-    this.pointsAllowedQuarterClicked = false;
-  }
-  pointsAllowedHalfToggled() {
-    this.pointsAllowedGameClicked = false;
-    this.pointsAllowedHalfClicked = true;
-    this.pointsAllowedQuarterClicked = false;
-  }
-  pointsAllowedQuarterToggled() {
-    this.pointsAllowedGameClicked = false;
-    this.pointsAllowedHalfClicked = false;
-    this.pointsAllowedQuarterClicked = true;
-  }
-
-
-  moneyline2GameToggled() {
-    this.moneyline2GameClicked = true;
-    this.moneyline2HalfClicked = false;
-    this.moneyline2QuarterClicked = false;
-
-
-  }
-  moneyline2HalfToggled() {
-    this.moneyline2GameClicked = false;
-    this.moneyline2HalfClicked = true;
-    this.moneyline2QuarterClicked = false;
-  }
-  moneyline2QuarterToggled() {
-    this.moneyline2GameClicked = false;
-    this.moneyline2HalfClicked = false;
-    this.moneyline2QuarterClicked = true;
-  }
-  spread2GameToggled() {
-    this.spread2GameClicked = true;
-    this.spread2HalfClicked = false;
-    this.spread2QuarterClicked = false;
-
-
-  }
-  spread2HalfToggled() {
-    this.spread2GameClicked = false;
-    this.spread2HalfClicked = true;
-    this.spread2QuarterClicked = false;
-  }
-  spread2QuarterToggled() {
-    this.spread2GameClicked = false;
-    this.spread2HalfClicked = false;
-    this.spread2QuarterClicked = true;
-  }
-
-  total2GameToggled() {
-    this.total2GameClicked = true;
-    this.total2HalfClicked = false;
-    this.total2QuarterClicked = false;
-
-  }
-  total2HalfToggled() {
-    this.total2GameClicked = false;
-    this.total2HalfClicked = true;
-    this.total2QuarterClicked = false;
-  }
-  total2QuarterToggled() {
-    this.total2GameClicked = false;
-    this.total2HalfClicked = false;
-    this.total2QuarterClicked = true;
-  }
-  pointsScored2GameToggled() {
-    this.pointsScored2GameClicked = true;
-    this.pointsScored2HalfClicked = false;
-    this.pointsScored2QuarterClicked = false;
-
-  }
-
-  pointsScored2HalfToggled() {
-    this.pointsScored2GameClicked = false;
-    this.pointsScored2HalfClicked = true;
-    this.pointsScored2QuarterClicked = false;
-  }
-
-  pointsScored2QuarterToggled() {
-    this.pointsScored2GameClicked = false;
-    this.pointsScored2HalfClicked = false;
-    this.pointsScored2QuarterClicked = true;
-  }
-
-  pointsAllowed2GameToggled() {
-    this.pointsAllowed2GameClicked = true;
-    this.pointsAllowed2HalfClicked = false;
-    this.pointsAllowed2QuarterClicked = false;
-  }
-  pointsAllowed2HalfToggled() {
-    this.pointsAllowed2GameClicked = false;
-    this.pointsAllowed2HalfClicked = true;
-    this.pointsAllowed2QuarterClicked = false;
-  }
-  pointsAllowed2QuarterToggled() {
-    this.pointsAllowed2GameClicked = false;
-    this.pointsAllowed2HalfClicked = false;
-    this.pointsAllowed2QuarterClicked = true;
-  }
+  
+ 
 
   /* async propTrend(teamName: string, prop: string, homeAway: string, content: TemplateRef<any>) {
     
@@ -3221,73 +2813,6 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  splitGameString(game: string): string[] {
-    var bothGames: string[] = []
-    var temp = ''
-    var vsIndex = 0;
-    vsIndex = game.indexOf("vs")
-    bothGames.push(game.slice(0, vsIndex - 1))
-    bothGames.push(game.slice(vsIndex + 3, game.length))
-    return bothGames
-  }
-
-
-
-
-
-
-
-
-
-
-  //API calls
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  removeUnderscoreFromPlayerProp(prop: string): string {
-    prop = prop.replaceAll("_", " ");
-    return prop;
-  }
-
-
-
-
-
-
-  //add a button that can find the highest prop percentages out of the selected prop
-
-
-  //Find a player stat api and create an interface and array of objects that stores the data for each player connected to team that way it can be easily accessed when needed to reference the stats
-
-  public playerAverageForSeason: any = 0;
-  public playerAverageVsTeam: any = 0;
-  public playerPercentForSeason: any = 0;
-  public playerPercentVsTeam: any = 0;
-  public teamAgainst: string = '';
-  public gamesPlayed: any = 0
-  public gamesPlayedVsTeam: any = 0
-  public playerId: any = 0
-  public average2022: any = 0
-  public average2022vsTeam: any = 0;
-  public differential: any = 0;
-  tempPlayerStatData: any[] = [{}];
-
-
-
-
-
-
 
 
   playerNameSpanishConvert(playerName: string): string {
@@ -3315,72 +2840,13 @@ export class PropScreenComponent implements OnInit {
     return name
   }
 
-  /*  async getMlbPlayerIds() {
-     const url = 'https://tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com/getMLBPlayerList';
-     const options = {
-       method: 'GET',
-       headers: {
-         'X-RapidAPI-Key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
-         'X-RapidAPI-Host': 'tank01-mlb-live-in-game-real-time-statistics.p.rapidapi.com'
-       }
-     };
-     const response = await fetch(url, options);
-     const result = await response.json();
-     let temp = result.body
-     temp.forEach((e: { playerID: any; longName: any; team: any; teamID: any; }) => this.playerInfoTemp.push({
-       playerId: e.playerID,
-       playerName: e.longName,
-       teamName: e.team,
-       teamId: e.teamID
-     }))
-     this.playerInfoTemp = this.playerNameSpanishConvert(this.playerInfoTemp);
- 
-   } */
+  
 
-  getMlbPlayerIdFromName(name: string): any {
-    var player = this.mlbPlayerId.filter(x => x.Name == name);
-    return player[0].Id;
-  }
-  getTeamName(team: string): string {
-    team = this.insertUnderscore(team);
-    return reusedFunctions.arrayOfMLBTeams[team];
-  }
-  insertUnderscore(team: string): string {
-    team = team.replaceAll(' ', '_');
-    if (team.includes(".")) {
-      team = team.replaceAll('.', '');
-    }
-    return team;
-  }
+  
+  
+  
 
-  getDate(): string {
-    var d = new Date();
-    var year = d.getFullYear().toString();
-    var month = (d.getMonth() + 1).toString();
-    if (month.length == 1) {
-      month = "0" + month;
-    }
-    var day = d.getDate().toString();
-    if (day.length == 1) {
-      day = "0" + day;
-    }
-    var fullDate = day + "/" + month + "/" + year;
-    return fullDate
-  }
-  getMonthAndDay(): string {
-    var d = new Date();
-    var year = d.getFullYear().toString();
-    var month = (d.getMonth() + 1).toString();
-    if (month.length == 1) {
-      month = "0" + month;
-    }
-    var day = d.getDate().toString();
-    if (day.length == 1) {
-      day = "0" + day;
-    }
-    var fullDate = month + "/" + day;
-    return fullDate
-  }
+  
 
 
   ngOnChanges() {

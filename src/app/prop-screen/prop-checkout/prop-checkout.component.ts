@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
-import { PlayerProp } from 'src/app/player-prop';
 
 @Component({
   selector: 'app-prop-checkout',
