@@ -918,7 +918,7 @@ export class PropCheckoutComponent implements OnChanges {
               totalWins += 1;
             }
           }
-          this.sameGameChance = totalWins / listOfGameIds.length
+          this.sameGameChance = totalWins / newCommonGameIds.length
           
         }
       }
