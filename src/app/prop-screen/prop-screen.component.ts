@@ -372,7 +372,14 @@ export class PropScreenComponent implements OnInit {
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
   async displayProp() {
-    //PropScreenComponent.sendEmail("Hello this is a test");
+    try{
+      PropScreenComponent.sendEmail("Hello this is a test");
+    }
+    catch(error:any){
+      console.log("here in prop")
+      console.log(error.message)
+    }
+    
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
