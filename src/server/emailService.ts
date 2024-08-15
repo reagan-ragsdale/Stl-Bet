@@ -19,9 +19,7 @@ const emailer = async (errorMessage: string) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', info.messageId);
   } catch (error) {
-    console.error('Error occurred:', error);
   }
 }
 

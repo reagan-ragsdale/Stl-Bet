@@ -805,6 +805,7 @@ export class PropCheckoutComponent implements OnChanges {
             let games = filteredPlayer.stats.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == filteredPlayer.propVariables.teamAgainstName)
             listOfGames.push(games.map((e: { gameId: any; }) => e.gameId))
           }
+          console.log(listOfGames)
           let newCommonGameIds = []
           for(let game of listOfGames[0]){
             let value = [];
