@@ -821,6 +821,7 @@ export class PropCheckoutComponent implements OnChanges {
               newCommonGameIds.push(game)
             }
           }
+          console.log("common game ids below")
           console.log(newCommonGameIds)
           
         }
