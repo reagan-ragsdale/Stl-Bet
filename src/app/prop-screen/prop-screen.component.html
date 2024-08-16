@@ -1394,18 +1394,16 @@
         </div>
       </mat-tab>
       <mat-tab label="Live Props">
-       <!--  <div style="width:100%; display:flex;">
+         <div style="width:100%; display:flex;">
           <div *ngFor="let team of liveProps" style="width:50%;">
             <div style="width:90%; margin-left: auto; margin-right: auto; display:flex;">
               <h3>Chance of winning when: </h3>
-              <mat-form-field class="example-full-width">
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let stat of liveMoneylineStats" [value]="stat"
-                    (onSelectionChange)="calcNewLiveProp(stat, team)">
-                    {{stat}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
+              <mat-form-field style="width:auto;">
+                    <mat-select>
+                      <mat-option *ngFor="let stat of liveMoneylineStats" (onSelectionChange)="calcNewLiveProp(stat, team)"
+                        value={{stat}}>{{stat}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
               <h3 >By</h3>
               <input matInput type="number" min="0.5" step="1" [(ngModel)]="team.number" style="width:inherit;"
                 (click)="$event.stopPropagation()">
@@ -1417,7 +1415,7 @@
 
             </div>
           </div>
-        </div> -->
+        </div> 
       </mat-tab>
     </mat-tab-group>
 
