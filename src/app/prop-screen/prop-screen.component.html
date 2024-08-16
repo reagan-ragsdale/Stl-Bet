@@ -382,7 +382,7 @@
       </div>
     </div>
 
-    <mat-tab-group [backgroundColor]="'primary'" style="width:100%" animationDuration="0ms" disablePagination="true">
+    <mat-tab-group [backgroundColor]="'primary'" style="width:100%" animationDuration="0ms" disablePagination="true" preserveContent="true">
       <mat-tab style="color: white" label="Game Props">
 
         <div *ngIf="!teamPropIsLoading" class="prop-section">
@@ -1393,22 +1393,22 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Live Props">
+      <mat-tab label="Live Props" >
          <div style="width:100%; display:flex;">
-          <div *ngFor="let team of liveProps" style="width:50%;">
+          <!-- <div *ngFor="let team of liveProps" style="width:50%;"> -->
             <div style="width:100%; display: flex; flex-direction: column;">
               <div style="width:90%; margin-left: auto; margin-right: auto; display:flex;">
                 <h3>Chance of winning when: </h3>
                 <mat-form-field style="min-width:auto;">
                       <mat-select>
-                        <mat-option *ngFor="let stat of liveMoneylineStats" (onSelectionChange)="calcNewLiveProp(stat, team)"
+                        <mat-option *ngFor="let stat of liveMoneylineStats"
                           value={{stat}}>{{stat}}</mat-option>
                       </mat-select>
                   </mat-form-field>
               </div>
               <div class="chart-container">
                 <canvas  id="MyChart" >{{ barChart }}</canvas>
-          </div>
+          <!-- </div> -->
             </div>
             
           </div>
