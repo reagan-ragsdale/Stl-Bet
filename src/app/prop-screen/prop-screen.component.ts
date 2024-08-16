@@ -2448,7 +2448,7 @@ export class PropScreenComponent implements OnInit {
     return finalTotal
   }
 
-  liveMoneylineStats = ['Winning', 'Winning by', 'Scoring']
+  liveMoneylineStats = ['Winning After', 'Winning by X after', 'Scoring']
   liveProps: any[] = []
   calcLiveProps(){
     let team1New: any = this.team1GameStats.slice()
@@ -2463,6 +2463,85 @@ export class PropScreenComponent implements OnInit {
 
   calcNewLiveProp(stat: string, team: any){
     
+  }
+
+  
+  public barChart: any;
+  barData: any[] = [];
+  /* getChartData(){
+    
+    
+  } */
+  createBarChart(){
+    for(let i = 1; i < 9; i++){
+      let totalInningChance = 0;
+      for(let game of this.team1GameStats){
+        let totalWins = 0
+        if(i == 1){
+          if((game.pointsScoredFirstInning > game.pointsAllowedFirstInning) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        else if(i == 2){
+          if(((game.pointsScoredFirstInning + game.pointsScoredSecondInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning)) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        else if(i == 3){
+          if(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        else if(i == 4){
+          if(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning)) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        else if(i == 5){
+          if(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        else if(i == 6){
+          if(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning)) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        else if(i == 7){
+          if(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        else if(i == 8){
+          if(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning)) && game.result == 'W'){
+            totalWins++;
+          }
+        }
+        
+        totalInningChance = totalWins/this.team1GameStats.length
+      }
+      this.barData.push(totalInningChance * 100)
+    }
+  
+    this.barChart = new Chart("MyChart", {
+      type: 'bar', //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: ['1', '2', '3','4',
+								 '5', '6', '7','8', '9'], 
+	       datasets: [
+          {
+            label: "Sales",
+            data: this.barData,
+            backgroundColor: 'blue'
+          } 
+        ]
+      },
+      options: {
+        aspectRatio:2.5
+      }
+      
+    });
   }
 
 
@@ -2890,6 +2969,7 @@ export class PropScreenComponent implements OnInit {
     Chart.register(annotationPlugin);
     this.initializeSport()
     this.getGames()
+    this.createBarChart();
   }
 
   detailedStatsClicked(element: any) {
