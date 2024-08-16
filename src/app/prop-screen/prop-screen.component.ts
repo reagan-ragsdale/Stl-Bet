@@ -271,6 +271,7 @@ export class PropScreenComponent implements OnInit {
         let teamArray: any[] = []
         distinctTeams.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
+          
           console.log(allOfTeam)
           teamArray.push(allOfTeam)
         })
