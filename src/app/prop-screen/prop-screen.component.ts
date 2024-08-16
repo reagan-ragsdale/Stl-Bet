@@ -519,7 +519,7 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     this.setValuesToTeamPropFinal()
     await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
-    
+    this.calcLiveProps()
   }
 
   public team1Wins: number = 0
@@ -2447,6 +2447,24 @@ export class PropScreenComponent implements OnInit {
     }
     return finalTotal
   }
+
+  liveMoneylineStats = ['Winning', 'Winning by', 'Scoring']
+  liveProps: any[] = []
+  calcLiveProps(){
+    let team1New: any = this.team1GameStats.slice()
+    let team2New: any = this.team2GameStats.slice()
+
+    team1New.number = 0;
+    team1New.inning = 1;
+    team2New.number = 0;
+    team2New.inning = 1;
+    this.liveProps.push(this.team1GameStats, this.team2GameStats)
+  }
+
+  calcNewLiveProp(stat: string, team: any){
+    
+  }
+
 
   playerClicked(player: string) {
     let playerInfo = this.playerStatsFinal.filter(e => e.playerName == player)[0]
