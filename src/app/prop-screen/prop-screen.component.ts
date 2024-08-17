@@ -2545,7 +2545,9 @@ export class PropScreenComponent implements OnInit {
   }
 
   onTabChange(event: any){
-    console.log(event)
+    if(event.index == 2){
+      this.createBarChart()
+    }
   }
 
   playerClicked(player: string) {
@@ -2972,7 +2974,7 @@ export class PropScreenComponent implements OnInit {
     Chart.register(annotationPlugin);
     this.initializeSport()
     this.getGames()
-    this.createBarChart();
+    //this.createBarChart();
   }
 
   detailedStatsClicked(element: any) {
