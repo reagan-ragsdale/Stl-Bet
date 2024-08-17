@@ -1139,7 +1139,7 @@
               <div style="width:90%; margin-left: auto; margin-right: auto; display:flex;">
                 <h3>Chance of winning when: </h3>
                 <mat-form-field style="min-width:auto;">
-                      <mat-select>
+                      <mat-select [(ngModel)]="selectedDropDown">
                         <mat-option *ngFor="let stat of liveMoneylineStats"
                           value={{stat}}>{{stat}}</mat-option>
                       </mat-select>

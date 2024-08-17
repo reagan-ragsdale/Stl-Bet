@@ -2469,6 +2469,8 @@ export class PropScreenComponent implements OnInit {
   public barChart0: any;
   public barChart1: any;
   barData: any[] = [];
+
+  selectedDropDown: string = this.liveMoneylineStats[0]
   /* getChartData(){
     
     
@@ -2547,10 +2549,10 @@ export class PropScreenComponent implements OnInit {
 
       data: {// values on X-Axis
         labels: ['1', '2', '3','4',
-								 '5', '6', '7','8', '9'], 
+								 '5', '6', '7','8'], 
 	       datasets: [
           {
-            label: "Sales",
+            label: "Win Chance",
             data: this.barData[0],
             backgroundColor: 'blue'
           } 
@@ -2566,10 +2568,10 @@ export class PropScreenComponent implements OnInit {
 
       data: {// values on X-Axis
         labels: ['1', '2', '3','4',
-								 '5', '6', '7','8', '9'], 
+								 '5', '6', '7','8'], 
 	       datasets: [
           {
-            label: "Sales",
+            label: "Win Chance",
             data: this.barData[1],
             backgroundColor: 'blue'
           } 
