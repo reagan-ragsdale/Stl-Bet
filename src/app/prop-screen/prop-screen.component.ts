@@ -2475,8 +2475,9 @@ export class PropScreenComponent implements OnInit {
   createBarChart(){
     for(let i = 1; i < 9; i++){
       let totalInningChance = 0;
+      let totalWins = 0
       for(let game of this.team1GameStats){
-        let totalWins = 0
+        
         if(i == 1){
           if((game.pointsScoredFirstInning > game.pointsAllowedFirstInning) && game.result == 'W'){
             totalWins++;
@@ -2518,8 +2519,9 @@ export class PropScreenComponent implements OnInit {
           }
         }
         
-        totalInningChance = totalWins/this.team1GameStats.length
+        //totalInningChance = totalWins/this.team1GameStats.length
       }
+      totalInningChance = totalWins/this.team1GameStats.length
       this.barData.push(totalInningChance * 100)
     }
   console.log(this.barData)
