@@ -1133,8 +1133,8 @@
       </mat-tab>
       <mat-tab label="Live Props" >
         <ng-template matTabContent>
-         <div style="width:100%; display:flex;">
-          <!-- <div *ngFor="let team of liveProps" style="width:50%;"> -->
+         <div style="width:100%; display:flex; ">
+          <div *ngFor="let team of liveProps; let i = index;" style="width:50%;"> 
             <div style="width:100%; display: flex; flex-direction: column;">
               <div style="width:90%; margin-left: auto; margin-right: auto; display:flex;">
                 <h3>Chance of winning when: </h3>
@@ -1145,9 +1145,9 @@
                       </mat-select>
                   </mat-form-field>
               </div>
-              <div class="chart-container">
-                <canvas  id="MyChart" >{{ barChart }}</canvas>
-          <!-- </div> -->
+              <div class="chart-container" style="background-color: #ebebeb;">
+                <canvas  id="MyChart + i" >{{ barChart }}</canvas>
+           </div>
             </div>
             
           </div>
