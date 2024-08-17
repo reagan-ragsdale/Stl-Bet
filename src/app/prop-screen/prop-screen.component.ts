@@ -2544,6 +2544,9 @@ export class PropScreenComponent implements OnInit {
     });
   }
 
+  onTabChange(event: any){
+    console.log(event)
+  }
 
   playerClicked(player: string) {
     let playerInfo = this.playerStatsFinal.filter(e => e.playerName == player)[0]

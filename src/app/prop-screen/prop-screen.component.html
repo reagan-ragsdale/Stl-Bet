@@ -382,7 +382,7 @@
       </div>
     </div>
 
-    <mat-tab-group [backgroundColor]="'primary'" style="width:100%" animationDuration="0ms" disablePagination="true" preserveContent="true">
+    <mat-tab-group [backgroundColor]="'primary'" style="width:100%" animationDuration="0ms" disablePagination="true" preserveContent="true" (selectedTabChange)="onTabChange($event)">
       <mat-tab style="color: white" label="Game Props">
 
         <div *ngIf="!teamPropIsLoading" class="prop-section">
