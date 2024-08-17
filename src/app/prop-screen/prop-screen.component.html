@@ -1146,7 +1146,7 @@
                   </mat-form-field>
               </div>
               <div class="chart-container" style="background-color: #ebebeb;">
-                <canvas  id="MyChart + i" >{{ barChart }}</canvas>
+                <canvas  [attr.id]="'MyChart' + i" >{{ barChart }}</canvas>
            </div>
             </div>
             
