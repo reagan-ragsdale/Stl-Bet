@@ -2461,7 +2461,8 @@ export class PropScreenComponent implements OnInit {
     this.liveProps.push(this.team1GameStats, this.team2GameStats)
   }
 
-  calcNewLiveProp(stat: string, team: any){
+  calcNewLiveProp(event: any){
+    console.log(event)
     
   }
 
@@ -2479,7 +2480,7 @@ export class PropScreenComponent implements OnInit {
     
     for(let team of this.liveProps){
       let barChartFinal: any[] = []
-      let teamStats: DbMlbTeamGameStats[] = team
+      let teamStats: DbMlbTeamGameStats[] = team.slice()
       console.log(teamStats)
       for(let i = 1; i < 9; i++){
         let totalInningChance = 0;

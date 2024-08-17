@@ -1137,9 +1137,9 @@
           <div *ngFor="let team of liveProps; let i = index;" style="width:48%; margin-left:auto; margin-right:auto;"> 
             <div style="width:100%; display: flex; flex-direction: column;">
               <div style="width:90%; margin-left: auto; margin-right: auto; display:flex;">
-                <h3 style="align-self:center;">Chance of winning when: </h3>
+                <h3 style="align-self:center; color:white; margin-right:1rem;">Chance of winning when: </h3>
                 <mat-form-field style="min-width:auto;">
-                      <mat-select [value]="selectedDropDown">
+                      <mat-select [value]="selectedDropDown" (selectionChange)="calcNewLiveProp($event)">
                         <mat-option *ngFor="let stat of liveMoneylineStats"
                           value={{stat}}>{{stat}}</mat-option>
                       </mat-select>
