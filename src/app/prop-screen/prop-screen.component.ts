@@ -2522,7 +2522,7 @@ export class PropScreenComponent implements OnInit {
       }
       this.barData.push(totalInningChance * 100)
     }
-  
+  console.log(this.barData)
     this.barChart = new Chart("MyChart", {
       type: 'bar', //this denotes tha type of chart
 
