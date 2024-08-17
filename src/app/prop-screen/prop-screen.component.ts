@@ -2474,9 +2474,11 @@ export class PropScreenComponent implements OnInit {
     
   } */
   createBarChart(){
-    let barChartFinal: any[] = []
+    
     for(let team of this.liveProps){
+      let barChartFinal: any[] = []
       let teamStats: DbMlbTeamGameStats[] = team
+      console.log(teamStats)
       for(let i = 1; i < 9; i++){
         let totalInningChance = 0;
         let totalGames = 0
