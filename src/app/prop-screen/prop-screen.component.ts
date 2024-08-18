@@ -42,7 +42,7 @@ import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoControl
 import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
-import { ErrorEmailController } from '../../shared/Controllers/errorEmailController';
+import { ErrorEmailController } from '../../shared/Controllers/ErrorEmailController';
 
 @Component({
   selector: 'app-prop-screen',

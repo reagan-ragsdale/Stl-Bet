@@ -42,7 +42,7 @@ import { DBNflTeamGameStats } from '../shared/dbTasks/DbNflTeamGameStats';
 import { DBNflPlayerGameStats } from '../shared/dbTasks/DbNflPlayerGameStats';
 import { NflController } from '../shared/Controllers/NflController';
 import { cronLoadNflGameStats } from '../app/cronJobs/cronLoadNflGameStats';
-import { ErrorEmailController } from '../shared/Controllers/errorEmailController';
+import { ErrorEmailController } from '../shared/Controllers/ErrorEmailController';
 
 config()
 
