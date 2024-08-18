@@ -1,7 +1,7 @@
 //import { env} from "src/env"
 import nodemailer from 'nodemailer';
 
-const emailer = async (errorMessage: string) => {
+export const emailer = async (errorMessage: string) => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -23,4 +23,3 @@ const emailer = async (errorMessage: string) => {
   }
 }
 
-export {emailer}

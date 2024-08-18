@@ -2,6 +2,7 @@ import { Allow, BackendMethod, remult } from "remult"
 
 import { DbUsers, userRepo } from "../dbTasks/DbUsers";
 import { getCurrentUser, setSessionUser } from "../../server/server-session";
+import type { generate, verify } from 'password-hash'
 
 
 
@@ -10,8 +11,8 @@ export class UsersController {
 
   static writeToLog: (textToWrite: string) => void;
 
-  static generate = (x: string) => x;
-  static verify = (pass: string, hash: string) => false
+  static generate: typeof generate;
+  static verify: typeof verify;
 
   @BackendMethod({ allowed: true })
   static async signUp(username: string, password: string) {

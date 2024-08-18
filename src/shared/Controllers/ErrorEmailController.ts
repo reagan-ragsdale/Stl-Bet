@@ -1,4 +1,8 @@
 import { Allow, BackendMethod, remult } from "remult"
+import type { emailer } from "../../server/emailService"
+
+
+
 
 
 
@@ -6,10 +10,11 @@ import { Allow, BackendMethod, remult } from "remult"
 export class ErrorEmailController {
 
 
-  static sendEmail: (message: string) => void
+  static sendEmail: typeof emailer
 
   @BackendMethod({ allowed: true })
   static async sendEmailError(error: string) {
+    console.error(error)
     ErrorEmailController.sendEmail(error)
 
   }

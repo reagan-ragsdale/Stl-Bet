@@ -34,7 +34,7 @@ import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
 import { DbTeamInfo } from '../shared/dbTasks/DBTeamInfo';
 import { DbUsers } from '../shared/dbTasks/DbUsers';
-import '../server/passGenerator';
+
 import { UsersController } from '../shared/Controllers/UsersController';
 import { initRequest } from './server-session';
 import { nflApiController } from '../app/ApiCalls/nflApiCalls';
@@ -43,8 +43,14 @@ import { DBNflPlayerGameStats } from '../shared/dbTasks/DbNflPlayerGameStats';
 import { NflController } from '../shared/Controllers/NflController';
 import { cronLoadNflGameStats } from '../app/cronJobs/cronLoadNflGameStats';
 import { ErrorEmailController } from '../shared/Controllers/ErrorEmailController';
+import { generate, verify } from 'password-hash'
+import { emailer } from './emailService';
 
 config()
+UsersController.generate =generate;
+UsersController.verify = verify
+ErrorEmailController.sendEmail = emailer;
+
 
 export const api = remultExpress({
   entities: [
@@ -78,10 +84,10 @@ export const api = remultExpress({
     UsersController,
     NflController,
     ErrorEmailController
-    
+
   ],
 
-  
+
 
   admin: true,
   dataProvider:
@@ -93,7 +99,7 @@ export const api = remultExpress({
   , initRequest
   , initApi: async () => {
 
-        //test
+    //test
     //9:15am
     //cron.schedule('30 15 * * *', () => cronTestFile())
     //1:33pm
@@ -104,7 +110,7 @@ export const api = remultExpress({
     cron.schedule('0 */2 * * *', () => cronLoadMlbPlayer())
     cron.schedule('25 14 * * *', () => cronLoadNflGameStats())
   }
-  
+
 });
 
 
