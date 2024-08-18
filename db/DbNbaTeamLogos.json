@@ -1,0 +1,60 @@
+[
+    {
+        "id": "1",
+        "teamName": "Charlotte Hornets",
+        "teamId": 2,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    },
+    {
+        "id": "2",
+        "teamName": "Miami Heat",
+        "teamId": 3,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    },
+    {
+        "id": "3",
+        "teamName": "Atlanta Hawks",
+        "teamId": 3,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    },
+    {
+        "id": "5",
+        "teamName": "Denver Nuggets",
+        "teamId": 3,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    },
+    {
+        "id": "6",
+        "teamName": "Detroit Pistons",
+        "teamId": 10,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    },
+    {
+        "id": "7",
+        "teamName": "Orlando Magic",
+        "teamId": 26,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    }
+    ,
+    {
+        "id": "8",
+        "teamName": "Brooklyn Nets",
+        "teamId": 4,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    }
+    ,
+    {
+        "id": "8",
+        "teamName": "Brooklyn Nets",
+        "teamId": 4,
+        "primaryColor": "#1D1160",
+        "alternateColor": "#00788C"
+    }
+]

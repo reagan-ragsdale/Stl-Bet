@@ -1,0 +1,332 @@
+*{
+    z-index: 1;
+}
+/*
+
+darker blue
+#22577A
+
+lighter blue
+BADEFC
+
+lighter green
+57CC99
+
+ivory
+F5F6EC
+
+black
+240605
+
+
+
+*/
+
+.mat-tab-label1 { padding: 15px 0 15px 0; }
+mat-tab-group {
+  background-color: #22577A;
+}
+mat-tab-label{
+  color: white
+}
+.mat-tab-label{
+  color:white
+}
+.team-prop-display{
+    background-color:rgb(255, 56, 56);
+    display:flex;
+    justify-items: center;
+    padding-top: 1rem;
+}
+.team-prop-display button{
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+.card-header{
+    background-color: rgb(174, 174, 245);
+}
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+    gap: 3rem;
+  }
+  tr.example-detail-row {
+    height: 0;
+  }
+  mat-panel-description{
+    gap: 60rem;
+  }
+  
+
+
+  .player-table {
+    width: 100%;
+  }
+
+  .myPanelClass{
+    margin-top: 30px !important; 
+}
+
+.menu-pannel{
+  height: 100px !important;
+  overflow-y: scroll !important;
+  min-width: 80px !important;
+}
+mat-mdc-tab-body-content{
+  display:flex !important;
+}
+
+.ml-stat{
+  width: 94%;
+  margin-left: auto;
+  margin-right: auto;
+  display:flex;
+  flex-direction: column;
+  margin-bottom:5px;
+  background-color: #22577A;
+  color: white;
+}
+.other-stat{
+  width: 96%;
+  height:15%;
+  margin-left: auto;
+  margin-right: auto;
+  display:flex;
+  flex-direction: column;
+  margin-top:5px;
+}
+
+.mat-mdc-tab-body-wrapper{
+  height:100% !important;
+}
+  
+ 
+  
+  .mat-column-detailedStats {
+    width: 125px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+
+   /* @media screen {
+    body{
+      background-color: orange;
+    }
+
+    ::ng-deep .games-tab  .mdc-tab {
+      font-size: var(--mdc-typography-button-font-size, 12px) !important;
+      padding-left: var(--mdc-typography-button-padding, 2px) !important;
+      padding-right: var(--mdc-typography-button-padding, 2px) !important;
+      width:50px !important;
+      text-wrap: wrap !important;
+    }
+  } 
+
+  @media only screen and (max-width: 1000px){
+    body{
+      background-color: orange;
+    }
+
+    ::ng-deep .games-tab  .mdc-tab {
+      font-size: var(--mdc-typography-button-font-size, 8px) !important;
+      padding-left: var(--mdc-typography-button-padding, 0px) !important;
+      padding-right: var(--mdc-typography-button-padding, 0px) !important;
+      min-width:20px !important;
+      text-wrap: wrap !important;
+    }
+  }
+ */
+  .selected-game{
+    background-color: powderblue !important;
+    
+  }
+
+  a :hover{
+    color:blue
+  }
+  
+  
+
+  .away-team, .home-team{
+    width: 50%;
+    padding-bottom: 1rem;
+  }
+
+  .away-team {
+    background-color: #ebebeb;
+
+  }
+
+  .home-team{
+    background-color:#ebebeb;
+  }
+
+  .prop-names p, button{
+    width: 33%;
+    text-align: center;
+    
+  }
+  .prop-names p{
+    font-weight: bold;
+  }
+  .enabled{
+    width: 50% !important;
+  }
+  .disabled{
+    width: 100% !important;
+  }
+  
+  .mainenabled{
+    width:900px !important;
+  }
+  #lineChart2{
+    width: 50% !important;
+  }
+
+  
+.main-div{
+  width: auto; 
+  background-color: #252324; 
+  display: flex;
+  flex-direction: row;
+}
+.games-list{
+  width: 10%; 
+  background-color: #8ecae6; 
+  height: calc(100% - 60px);
+  position: fixed; 
+  top: 60px; 
+  left:0; 
+  z-index:99;
+  overflow-y: scroll;
+
+}
+.prop-div{
+  width: 90%; 
+  margin-left: 10%; 
+  background-color: #ebebeb
+}
+.prop-main{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.prop-section{
+  background-color: #ebebeb;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+}
+.games-list button{
+  display:block; 
+  width: 82%; 
+  font-size: 75%; 
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: 5px;
+}
+.link-hover :hover{
+  color: #fb8501;
+  cursor: pointer;
+
+}
+
+.player-dropdown{
+  display: flex; 
+  flex-direction: row;
+  justify-content:space-evenly;
+}
+.team-dropdown{
+  width:45%;
+}
+.team-name{
+  width:48%;
+  text-align: center;
+  text-decoration: none;
+}
+.team-name :hover{
+  cursor: pointer;
+  color:#22577A;
+}
+.name-link{
+  text-decoration: none;
+}
+.name-link :hover{
+  cursor: pointer;
+  color:#22577A;
+}
+
+
+
+  @media screen and (max-width: 974px) {
+    .main-div{
+      flex-direction: column;
+    }
+    .games-list{
+      width:100%;
+      position:unset;
+      height:70px;
+      display:flex;
+      flex-direction: row;
+      padding-left:0.5rem;
+      padding-right:0.5rem;
+      gap:0.5rem;
+
+    }
+    .prop-div{
+      width:100%;
+      margin-left:0;
+    }
+    .prop-section{
+      flex-direction: column;
+    }
+    .away-team, .home-team{
+      width: 100%;
+      padding-bottom: 1rem;
+    }
+    .games-list button{
+      min-width:100px;
+      margin-top:auto;
+      margin-bottom:auto;
+
+    }
+    .commence-time{
+      text-wrap: nowrap;
+    }
+    .commence{
+      width:33% !important;
+    }
+    .record1{
+      width:33% !important;
+    }
+    .record2{
+      width:33% !important;
+    }
+    .player-dropdown{
+      flex-direction:column;
+    }
+    .team-dropdown{
+      width:100%;
+    }
+    ::ng-deep .mat-expansion-panel-body{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    ::ng-deep .main-specific-class .mat-expansion-panel-body{
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+    
+    ::ng-deep .specific-class .mat-expansion-panel-body{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    ::ng-deep .mat-card-content{
+      padding: 0 !important;
+    }
+    .team-best-bets-body{
+      flex-direction:column;
+    }
+  }
+   

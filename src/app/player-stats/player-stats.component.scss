@@ -1,0 +1,198 @@
+.demo-row-is-clicked {
+    background-color: skyblue;
+  }
+  .top-bar{
+    width:100%; 
+    display: flex; 
+    gap: 2rem; 
+    background-color:#3f51b5; 
+    height:70px;
+  }
+  .player-name{
+    display: flex; 
+    gap: .5rem; 
+    align-items: flex-start; 
+    color:white; 
+    margin-left: 1rem;
+  }
+  .player-name-name{
+    font-size: 200%; 
+    margin-top:auto; 
+    margin-bottom:auto;
+  }
+  .player-name-team{
+    margin-top:auto; 
+    margin-bottom:auto;
+  }
+  .search-name{
+    display: flex; 
+    gap: 1rem; 
+    height:inherit; 
+    margin-left: auto; 
+    color:white;
+  }
+  .graph-body{
+    width: 100%; 
+    display:flex; 
+    margin-top:1rem; 
+    justify-content: space-around;
+  }
+  .line-chart{
+    width: 85%;
+  }
+  .chart-toggles{
+    width:12%; 
+    margin-top:2rem; 
+    border-left: 2px solid black; 
+    padding-left: 10px;
+  }
+  .stats-body{
+    display:flex; 
+    margin-top:1rem; 
+    border-top: 1px solid black; 
+    flex-direction:column;
+  }
+  .table-body{
+    width: 100%; 
+    display:flex; 
+    margin-bottom: 2rem;
+  }
+  .table{
+    width:50%; 
+    margin-left: 1rem;
+  }
+  .table-search{
+    height: inherit; 
+    width: 50%;
+  }
+  .stat-toggle-list{
+    list-style-type: none;
+  }
+  .search-buttons{
+    display: flex; 
+    flex-direction: column; 
+    padding-top: 2rem; 
+    gap: 1rem;
+  }
+  .search-form{
+    margin-left: 1rem; 
+    margin-top: 1rem;
+    width: 150px;
+    background-color: whitesmoke;
+  }
+  .player-total-stats{
+    width:100%;
+  }
+  .player-props{
+    width:100%; 
+    justify-content: space-evenly; 
+    display:flex;
+  }
+  .player-prop-body{
+    width:300px; 
+    background-color: darkslateblue; 
+    display:flex; 
+    gap:10px; 
+    color:white;
+  }
+  .prop-point{
+    margin-top:auto; 
+    margin-bottom: auto; 
+  }
+  .prop-one{
+    display:flex; 
+    flex-direction: column;
+  }
+  .prop-two{
+    display:flex; 
+    flex-direction: column;
+  }
+  
+
+  @media screen and (max-width: 970px) {
+    .charts {
+      flex-direction: column;
+    }
+    .player-name{
+      width:33%;
+      
+    }
+    .player-name-name, .player-name-team {
+      font-size:120%;
+      text-wrap: nowrap;
+    }
+    .search-name{
+      width:66%;
+      
+    }
+    .search-name h2 {
+      font-size: 100%;
+      text-wrap:nowrap
+    }
+    ::ng-deep .search-name .example-full-width{
+      max-width: 135px;
+    }
+    .graph-body{
+      flex-direction: column-reverse;
+      margin-top:0;
+    }
+    .line-chart{
+      width:96%;
+      margin-left:auto;
+      margin-right:auto;
+      min-height:300px;
+    }
+    .chart-toggles{
+      width:100%;
+      border-left: none; 
+      margin-top:1rem; 
+    }
+    .stat-toggle-list{
+      margin-left: 0;
+      padding-left: 0;
+    }
+    .stat-toggle-list li{
+     float:left
+    }
+    .table-body{
+      flex-direction:column-reverse;
+    }
+    .table{
+      width:96%;
+      margin-right:auto;
+      margin-left:auto;
+    }
+    .table-search{
+      width: 100%;
+      margin-bottom:1rem;
+    }
+    .search-buttons{
+      padding-top:5px;
+      padding-bottom: 5px;
+      margin-top:auto;
+      margin-bottom:auto;
+    }
+    .search-form{
+      width: 150px;
+    }
+    .player-props{
+      flex-direction: column;
+      gap:10px;
+    }
+    .player-prop-body{
+      width:96%;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .prop-point{
+      margin-left:1rem;
+    }
+    .prop-one{
+      margin-left:auto;
+    }
+    .prop-two{
+      margin-left:1rem;
+      margin-right:1rem;
+    }
+    
+  }

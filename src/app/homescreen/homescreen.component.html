@@ -1,0 +1,226 @@
+<div class="outer-div" >
+
+    <div class="game-list" >
+        <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
+        [ngClass]="game.selected ? 'button-selected': 'button-unselected'" (click)="onSportsListClick(game.name)"
+        >{{game.name}}</button>
+      
+    </div>
+    <div class="sport-section">
+      <div style=" width: 100%; display: flex; align-items: center;   margin-top: 1rem; margin-bottom: 1rem;">
+        <h1
+          style="width: 50%; height: 100%; text-align: start;  font-weight: 500; color:#240605; margin-left: 1.5rem; font-size: xx-large; margin-top:auto; margin-bottom: auto;">
+          {{selectedSport}} Dashboard</h1>
+        <div style="height: 100%; width: 50%; display:flex; align-items: center; justify-content: flex-end;">
+          <button mat-button style=" margin-right: 2rem; background-color: #22577A; color: #F0ECE5 " (click)="sportProps()">Go to
+            {{selectedSport}} Props</button>
+        </div>
+
+      </div>
+      <div style=" width: 100%; display: flex;  justify-content: space-evenly;  flex-wrap: wrap;">
+        <div class="top-fives">
+          <div style=" width: 100%; display: flex; ">
+            <h1
+              style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#FFFFFF">
+              Top Players</h1>
+            <!-- <div
+              style=" height: inherit; width: 70%; padding-left: 1rem; padding-right: 1rem; padding-top: 1rem; display:flex; gap: 1rem; justify-content: flex-end; ">
+              <button mat-button *ngFor="let stat of playerStatsButtons" (click)="onPlayerStatsClick(stat)"
+                [ngClass]="stat.selected === true ? 'selected' : 'unselected'">{{stat.name}}</button>
+            </div> -->
+          </div>
+
+
+          <div style="height: 85%; width: 96%; margin-left: auto; margin-right: auto; margin-bottom: 1rem;">
+
+            <table *ngIf="this.selectedSport == 'NBA'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width:98%;">
+
+              <ng-container matColumnDef="Player">
+                <th mat-header-cell *matHeaderCellDef> Player </th>
+                <td mat-cell *matCellDef="let element; let i = playerData; let j = index;">
+                  <a class="teamLink" (click)="playerStatsClicked(element.playerId)">{{element.playerName}}</a>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Points">
+                <th mat-header-cell *matHeaderCellDef> Points </th>
+                <td mat-cell *matCellDef="let element"> {{element.points | number: '1.0-2'}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Assists">
+                <th mat-header-cell *matHeaderCellDef> Assists </th>
+                <td mat-cell *matCellDef="let element"> {{element.assists | number: '1.0-2'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Rebounds">
+                <th mat-header-cell *matHeaderCellDef> Rebounds </th>
+                <td mat-cell *matCellDef="let element"> {{element.totReb | number: '1.0-2'}} </td>
+              </ng-container>
+
+
+
+              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false"></tr>
+              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
+                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
+            </table>
+
+            <table *ngIf="this.selectedSport == 'MLB'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+
+              <ng-container matColumnDef="Player">
+                <th mat-header-cell *matHeaderCellDef> Player </th>
+                <td mat-cell *matCellDef="let element; let i = playerData; let j = index;">
+                  <a class="teamLink" (click)="playerStatsClicked(element.playerId)">{{element.playerName}}</a>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Home Runs" >
+                <th mat-header-cell *matHeaderCellDef (click)="onPlayerStatsClick('homeruns')" class="click-header" [ngClass]="'click-header'"> HR </th>
+                <td mat-cell *matCellDef="let element" > {{element.batterHomeRuns | number: '1.0-2'}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Rbi's">
+                <th mat-header-cell *matHeaderCellDef (click)="onPlayerStatsClick('rbis')" class="click-header"> RBI </th>
+                <td mat-cell *matCellDef="let element"> {{element.batterRbis | number: '1.0-2'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Hits">
+                <th mat-header-cell *matHeaderCellDef (click)="onPlayerStatsClick('hits')" class="click-header"> H </th>
+                <td mat-cell *matCellDef="let element"> {{element.batterHits | number: '1.0-2'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Total Bases">
+                <th mat-header-cell *matHeaderCellDef (click)="onPlayerStatsClick('tb')" class="click-header"> TB </th>
+                <td mat-cell *matCellDef="let element"> {{element.batterTotalBases | number: '1.0-2'}} </td>
+              </ng-container>
+
+
+
+              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header"></tr>
+              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
+                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
+            </table>
+
+          </div>
+        </div>
+        <div class="top-fives"
+          >
+          <div style=" width: 100%; display: flex; margin-bottom: 0px;">
+            <h1
+              style=" width: 30%; height:inherit; text-align:start; margin-left: 1rem; padding-top: 1rem;  color:#F0ECE5">
+              Top Teams</h1>
+            <div
+              style=" height: ingerit; width: 70%; padding-left: 1rem; padding-right: 1rem; margin-top:auto; margin-bottom:auto; display:flex; gap: 1rem; justify-content: flex-end; ">
+              <!-- <button mat-button *ngFor="let stat of teamStatsButtons" (click)="onTeamStatsClick(stat)"
+                [ngClass]="stat.selected === true ? 'selected' : 'unselected'">{{stat.name}}</button> -->
+            </div>
+          </div>
+          <div style="height: 100%; width: 96%;  margin-left: auto; margin-right: auto; margin-bottom: 1rem; ">
+            <table *ngIf="this.selectedSport == 'NBA'" mat-table [dataSource]="teamData" [fixedLayout]="false" class="mat-elevation-z8" style="height: 100%; width:98%">
+
+              <ng-container matColumnDef="Team">
+                <th mat-header-cell *matHeaderCellDef> Team </th>
+                <td mat-cell *matCellDef="let element; let i = playerData; let j = index;">
+                  <a class="teamLink" (click)="onTeamClick(element.teamName)">{{element.teamName}}</a>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Wins">
+                <th mat-header-cell *matHeaderCellDef> Wins </th>
+                <td mat-cell *matCellDef="let element"> {{element.wins}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Losses">
+                <th mat-header-cell *matHeaderCellDef> Losses </th>
+                <td mat-cell *matCellDef="let element"> {{element.losses}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Points Scored">
+                <th mat-header-cell *matHeaderCellDef> Points Scored </th>
+                <td mat-cell *matCellDef="let element"> {{element.pointsScored | number: '1.0-2'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Points Allowed">
+                <th mat-header-cell *matHeaderCellDef> Points Allowed </th>
+                <td mat-cell *matCellDef="let element"> {{element.pointsAllowed | number: '1.0-2'}} </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
+              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+            </table>
+
+            <table *ngIf="this.selectedSport == 'MLB'" mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            
+              <ng-container matColumnDef="Team">
+                <th mat-header-cell *matHeaderCellDef> Team </th>
+                <td mat-cell *matCellDef="let element; let i = playerData; let j = index;">
+                  <a class="teamLink" (click)="onTeamClick(element.teamName)">{{element.teamName}}</a>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Wins">
+                <th mat-header-cell *matHeaderCellDef> Wins </th>
+                <td mat-cell *matCellDef="let element"> {{element.wins}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Losses">
+                <th mat-header-cell *matHeaderCellDef> Losses </th>
+                <td mat-cell *matCellDef="let element"> {{element.losses}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
+              <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="upcoming-games">
+        <div class="games-body">
+          <h1 style="height: 10%; width: 100%; text-align: center; margin-top:1rem; color:#F0ECE5"> Upcoming Games</h1>
+          <div
+            style="width: 100%; display:flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem;">
+            <div
+              style="width: 100%; margin-right: auto; margin-left: auto; display: flex; gap: 1rem; flex-wrap:wrap;  padding: 1rem; justify-content: space-evenly;">
+              <mat-card *ngFor="let game of gameDataAllFinal"  class="game-card" >
+                <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .2rem; justify-content: center;">
+                  <mat-card-title style="font-size:small; height: inherit">
+                    <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap; margin-left: auto; margin-right: auto;">
+                      <a class="teamLink" (click)="gameClick(game[0][0].bookId)" >{{game[0][0].awayTeam}} @ {{game[0][0].homeTeam}}</a>
+                      
+                      <h5 style="margin-top: 0; margin-bottom: 0;">{{game[0][0].commenceTime}}</h5>
+                    </div>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content style="display:flex; flex-direction: column;">
+                  <div *ngIf="game[0]" class="team-row">
+                    <a class="teamLink" (click)="onTeamClick(game[0][0].awayTeam)"><p class="team-name">{{game[0][0].awayTeam | transforFromFullTeamNameToAbvr}}</p></a><p *ngIf="game[0][0]" class="team-prop">{{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}</p><div *ngIf="game[0][1]" class="spread-prop" ><p>{{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}</p><p>{{game[0][1].price > 0 ? '+' : ''}}{{game[0][1].price}}</p></div><div *ngIf="game[2][0]" class="spread-prop" ><p>{{game[2][0].point}}</p><p>{{game[2][0].price > 0 ? '+' : ''}}{{game[2][0].price}}</p></div><span *ngIf="game[2][0]" style="margin-bottom: auto;
+                    margin-top: auto;">O</span>
+                  </div>
+                  <div *ngIf="game[1]" class="team-row">
+                    <a class="teamLink" (click)="onTeamClick(game[0][0].homeTeam)"><p class="team-name">{{game[0][0].homeTeam | transforFromFullTeamNameToAbvr}}</p></a><p *ngIf="game[1][0]" class="team-prop">{{game[1][0].price > 0 ? '+' : ''}}{{game[1][0].price}}</p><div *ngIf="game[1][1]" class="spread-prop" ><p>{{game[1][1].point > 0 ? '+' : ''}}{{game[1][1].point}}</p><p>{{game[1][1].price > 0 ? '+' : ''}}{{game[1][1].price}}</p></div><div *ngIf="game[3][0]" class="spread-prop" ><p>{{game[3][0].point}}</p><p>{{game[3][0].price > 0 ? '+' : ''}}{{game[3][0].price}}</p></div><span *ngIf="game[3][0]" style="margin-bottom: auto;
+                    margin-top: auto;">U</span>
+                  </div>
+                  
+
+                  
+
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+</div>

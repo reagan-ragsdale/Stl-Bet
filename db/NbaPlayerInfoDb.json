@@ -1,0 +1,770 @@
+[
+  {
+    "playerId": 382,
+    "playerName": "Dejounte Murray",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.208Z"
+  },
+  {
+    "playerId": 1858,
+    "playerName": "Bruno Fernando",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.209Z"
+  },
+  {
+    "playerId": 1046,
+    "playerName": "Trae Young",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.209Z"
+  },
+  {
+    "playerId": 1868,
+    "playerName": "De'Andre Hunter",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.210Z"
+  },
+  {
+    "playerId": 2327,
+    "playerName": "Garrison Mathews",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.211Z"
+  },
+  {
+    "playerId": 2629,
+    "playerName": "Onyeka Okongwu",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.212Z"
+  },
+  {
+    "playerId": 2569,
+    "playerName": "Saddiq Bey",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.213Z"
+  },
+  {
+    "playerId": 2589,
+    "playerName": "Trent Forrest",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.213Z"
+  },
+  {
+    "playerId": 2608,
+    "playerName": "Vit Krejci",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.214Z"
+  },
+  {
+    "playerId": 2819,
+    "playerName": "Jalen Johnson",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.215Z"
+  },
+  {
+    "playerId": 3444,
+    "playerName": "AJ Griffin",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.216Z"
+  },
+  {
+    "playerId": 3938,
+    "playerName": "Kobe Bufkin",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.216Z"
+  },
+  {
+    "playerId": 3939,
+    "playerName": "Mouhamed Gueye",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.217Z"
+  },
+  {
+    "playerId": 3941,
+    "playerName": "Seth Lundy",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.218Z"
+  },
+  {
+    "playerId": 3942,
+    "playerName": "Miles Norris",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.219Z"
+  },
+  {
+    "playerId": 365,
+    "playerName": "Patty Mills",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.219Z"
+  },
+  {
+    "playerId": 341,
+    "playerName": "Wesley Matthews",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.220Z"
+  },
+  {
+    "playerId": 92,
+    "playerName": "Clint Capela",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.221Z"
+  },
+  {
+    "playerId": 743,
+    "playerName": "Bogdan Bogdanovic",
+    "teamId": 1,
+    "createdAt": "2024-02-20T21:22:14.222Z"
+  },
+  {
+    "playerId": 75,
+    "playerName": "Jaylen Brown",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.223Z"
+  },
+  {
+    "playerId": 882,
+    "playerName": "Jayson Tatum",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.223Z"
+  },
+  {
+    "playerId": 897,
+    "playerName": "Derrick White",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.224Z"
+  },
+  {
+    "playerId": 819,
+    "playerName": "Luke Kornet",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.225Z"
+  },
+  {
+    "playerId": 1006,
+    "playerName": "Svi Mykhailiuk",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.225Z"
+  },
+  {
+    "playerId": 2110,
+    "playerName": "Oshae Brissett",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.226Z"
+  },
+  {
+    "playerId": 970,
+    "playerName": "Wenyen Gabriel",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.227Z"
+  },
+  {
+    "playerId": 2844,
+    "playerName": "Neemias Queta",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.228Z"
+  },
+  {
+    "playerId": 2635,
+    "playerName": "Payton Pritchard",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.229Z"
+  },
+  {
+    "playerId": 2647,
+    "playerName": "Lamar Stevens",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.230Z"
+  },
+  {
+    "playerId": 2921,
+    "playerName": "DJ Steward",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.231Z"
+  },
+  {
+    "playerId": 2812,
+    "playerName": "Sam Hauser",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.232Z"
+  },
+  {
+    "playerId": 2788,
+    "playerName": "Dalano Banton",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.232Z"
+  },
+  {
+    "playerId": 3429,
+    "playerName": "JD Davison",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.233Z"
+  },
+  {
+    "playerId": 3943,
+    "playerName": "Jordan Walsh",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.234Z"
+  },
+  {
+    "playerId": 3995,
+    "playerName": "Drew Peterson",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.235Z"
+  },
+  {
+    "playerId": 248,
+    "playerName": "Al Horford",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.236Z"
+  },
+  {
+    "playerId": 242,
+    "playerName": "Jrue Holiday",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.236Z"
+  },
+  {
+    "playerId": 432,
+    "playerName": "Kristaps Porzingis",
+    "teamId": 2,
+    "createdAt": "2024-02-20T21:22:14.237Z"
+  },
+  {
+    "playerId": 851,
+    "playerName": "Royce O'Neale",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.238Z"
+  },
+  {
+    "playerId": 481,
+    "playerName": "Ben Simmons",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.239Z"
+  },
+  {
+    "playerId": 175,
+    "playerName": "Dorian Finney-Smith",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.240Z"
+  },
+  {
+    "playerId": 876,
+    "playerName": "Dennis Smith Jr",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.241Z"
+  },
+  {
+    "playerId": 934,
+    "playerName": "Keita Bates-Diop",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.242Z"
+  },
+  {
+    "playerId": 940,
+    "playerName": "Mikal Bridges",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.243Z"
+  },
+  {
+    "playerId": 1038,
+    "playerName": "Lonnie Walker IV",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.243Z"
+  },
+  {
+    "playerId": 1847,
+    "playerName": "Darius Bazley",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.245Z"
+  },
+  {
+    "playerId": 1854,
+    "playerName": "Nicolas Claxton",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.245Z"
+  },
+  {
+    "playerId": 1871,
+    "playerName": "Cameron Johnson",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.246Z"
+  },
+  {
+    "playerId": 2325,
+    "playerName": "Armoni Brooks",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.247Z"
+  },
+  {
+    "playerId": 2848,
+    "playerName": "Day'Ron Sharpe",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.248Z"
+  },
+  {
+    "playerId": 2820,
+    "playerName": "Keon Johnson",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.249Z"
+  },
+  {
+    "playerId": 2855,
+    "playerName": "Cameron Thomas",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.250Z"
+  },
+  {
+    "playerId": 2861,
+    "playerName": "Trendon Watford",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.251Z"
+  },
+  {
+    "playerId": 3944,
+    "playerName": "Noah Clowney",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.251Z"
+  },
+  {
+    "playerId": 3945,
+    "playerName": "Dariq Whitehead",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.252Z"
+  },
+  {
+    "playerId": 3946,
+    "playerName": "Jalen Wilson",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.253Z"
+  },
+  {
+    "playerId": 4041,
+    "playerName": "Harry Giles III",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.255Z"
+  },
+  {
+    "playerId": 472,
+    "playerName": "Dennis Schroder",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.255Z"
+  },
+  {
+    "playerId": 142,
+    "playerName": "Spencer Dinwiddie",
+    "teamId": 4,
+    "createdAt": "2024-02-20T21:22:14.256Z"
+  },
+  {
+    "playerId": 254,
+    "playerName": "RJ Hunter",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.257Z"
+  },
+  {
+    "playerId": 458,
+    "playerName": "Terry Rozier",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.258Z"
+  },
+  {
+    "playerId": 850,
+    "playerName": "Frank Ntilikina",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.259Z"
+  },
+  {
+    "playerId": 880,
+    "playerName": "Edmond Sumner",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.260Z"
+  },
+  {
+    "playerId": 941,
+    "playerName": "Miles Bridges",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.261Z"
+  },
+  {
+    "playerId": 1879,
+    "playerName": "Cody Martin",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.262Z"
+  },
+  {
+    "playerId": 1897,
+    "playerName": "PJ Washington",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.263Z"
+  },
+  {
+    "playerId": 1901,
+    "playerName": "Grant Williams",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.264Z"
+  },
+  {
+    "playerId": 2566,
+    "playerName": "LaMelo Ball",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.265Z"
+  },
+  {
+    "playerId": 2614,
+    "playerName": "Theo Maledon",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.265Z"
+  },
+  {
+    "playerId": 2639,
+    "playerName": "Nick Richards",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.266Z"
+  },
+  {
+    "playerId": 2831,
+    "playerName": "Tre Mann",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.267Z"
+  },
+  {
+    "playerId": 2793,
+    "playerName": "James Bouknight",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.268Z"
+  },
+  {
+    "playerId": 2856,
+    "playerName": "JT Thor",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.269Z"
+  },
+  {
+    "playerId": 3506,
+    "playerName": "Mark Williams",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.270Z"
+  },
+  {
+    "playerId": 3469,
+    "playerName": "Bryce McGowens",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.271Z"
+  },
+  {
+    "playerId": 3947,
+    "playerName": "Amari Bailey",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.272Z"
+  },
+  {
+    "playerId": 3948,
+    "playerName": "Leaky Black",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.273Z"
+  },
+  {
+    "playerId": 3949,
+    "playerName": "Nathan Mensah",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.274Z"
+  },
+  {
+    "playerId": 3950,
+    "playerName": "Brandon Miller",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.275Z"
+  },
+  {
+    "playerId": 4042,
+    "playerName": "Nick Smith Jr",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.276Z"
+  },
+  {
+    "playerId": 227,
+    "playerName": "Gordon Hayward",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.276Z"
+  },
+  {
+    "playerId": 488,
+    "playerName": "Ish Smith",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.277Z"
+  },
+  {
+    "playerId": 52,
+    "playerName": "Davis Bertans",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.278Z"
+  },
+  {
+    "playerId": 123,
+    "playerName": "Seth Curry",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.279Z"
+  },
+  {
+    "playerId": 2739,
+    "playerName": "Vasilije Micic",
+    "teamId": 5,
+    "createdAt": "2024-02-20T21:22:14.280Z"
+  },
+  {
+    "playerId": 631,
+    "playerName": "Alex Caruso",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.281Z"
+  },
+  {
+    "playerId": 765,
+    "playerName": "Torrey Craig",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.282Z"
+  },
+  {
+    "playerId": 949,
+    "playerName": "Jevon Carter",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.283Z"
+  },
+  {
+    "playerId": 1900,
+    "playerName": "Coby White",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.283Z"
+  },
+  {
+    "playerId": 2664,
+    "playerName": "Patrick Williams",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.284Z"
+  },
+  {
+    "playerId": 2802,
+    "playerName": "Ayo Dosunmu",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.285Z"
+  },
+  {
+    "playerId": 3081,
+    "playerName": "Carlik Jones",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.286Z"
+  },
+  {
+    "playerId": 2853,
+    "playerName": "Terry Taylor",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.287Z"
+  },
+  {
+    "playerId": 3461,
+    "playerName": "Justin Lewis",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.288Z"
+  },
+  {
+    "playerId": 3494,
+    "playerName": "Dalen Terry",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.289Z"
+  },
+  {
+    "playerId": 3452,
+    "playerName": "Quenton Jackson",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.290Z"
+  },
+  {
+    "playerId": 3951,
+    "playerName": "Onuralp Bitim",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.291Z"
+  },
+  {
+    "playerId": 3952,
+    "playerName": "Henri Drell",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.292Z"
+  },
+  {
+    "playerId": 3953,
+    "playerName": "Max Heidegger",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.293Z"
+  },
+  {
+    "playerId": 3954,
+    "playerName": "Julian Phillips",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.294Z"
+  },
+  {
+    "playerId": 3955,
+    "playerName": "Adama Sanogo",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.295Z"
+  },
+  {
+    "playerId": 136,
+    "playerName": "DeMar DeRozan",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.296Z"
+  },
+  {
+    "playerId": 534,
+    "playerName": "Nikola Vucevic",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.297Z"
+  },
+  {
+    "playerId": 147,
+    "playerName": "Andre Drummond",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.298Z"
+  },
+  {
+    "playerId": 308,
+    "playerName": "Zach LaVine",
+    "teamId": 6,
+    "createdAt": "2024-02-20T21:22:14.300Z"
+  },
+  {
+    "playerId": 281,
+    "playerName": "Damian Jones",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.301Z"
+  },
+  {
+    "playerId": 317,
+    "playerName": "Caris LeVert",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.302Z"
+  },
+  {
+    "playerId": 391,
+    "playerName": "Georges Niang",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.303Z"
+  },
+  {
+    "playerId": 840,
+    "playerName": "Donovan Mitchell",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.304Z"
+  },
+  {
+    "playerId": 727,
+    "playerName": "Jarrett Allen",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.304Z"
+  },
+  {
+    "playerId": 1025,
+    "playerName": "Zhaire Smith",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.306Z"
+  },
+  {
+    "playerId": 2051,
+    "playerName": "Max Strus",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.306Z"
+  },
+  {
+    "playerId": 1860,
+    "playerName": "Darius Garland",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.307Z"
+  },
+  {
+    "playerId": 1870,
+    "playerName": "Ty Jerome",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.308Z"
+  },
+  {
+    "playerId": 2392,
+    "playerName": "Dean Wade",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.309Z"
+  },
+  {
+    "playerId": 2630,
+    "playerName": "Isaac Okoro",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.310Z"
+  },
+  {
+    "playerId": 2623,
+    "playerName": "Sam Merrill",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.311Z"
+  },
+  {
+    "playerId": 2800,
+    "playerName": "Sharife Cooper",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.312Z"
+  },
+  {
+    "playerId": 2835,
+    "playerName": "Evan Mobley",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.313Z"
+  },
+  {
+    "playerId": 3472,
+    "playerName": "Isaiah Mobley",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.314Z"
+  },
+  {
+    "playerId": 3956,
+    "playerName": "Emoni Bates",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.315Z"
+  },
+  {
+    "playerId": 3957,
+    "playerName": "Pete Nance",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.316Z"
+  },
+  {
+    "playerId": 3958,
+    "playerName": "Justin Powell",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.317Z"
+  },
+  {
+    "playerId": 4043,
+    "playerName": "Craig Porter Jr",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.318Z"
+  },
+  {
+    "playerId": 515,
+    "playerName": "Tristan Thompson",
+    "teamId": 7,
+    "createdAt": "2024-02-20T21:22:14.318Z"
+  },
+  {
+    "playerId": 246,
+    "playerName": "Richaun Holmes",
+    "teamId": 8,
+    "createdAt": "2024-02-20T21:22:14.319Z"
+  },
+  {
+    "playerId": 283,
+    "playerName": "Derrick Jones Jr",
+    "teamId": 8,
+    "createdAt": "2024-02-20T21:22:14.320Z"
+  },
+  {
+    "playerId": 817,
+    "playerName": "Maxi Kleber",
+    "teamId": 8,
+    "createdAt": "2024-02-20T21:22:14.322Z"
+  }
+]
