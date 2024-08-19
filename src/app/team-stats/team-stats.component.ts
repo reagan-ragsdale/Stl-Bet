@@ -270,7 +270,7 @@ public displayedColumnsValues: any[] = [
     this.searchName = ""
     this.filteredSearch = this.allSportTeamList
   }
-
+  teamPropArray: any[] = []
   async getTeamInfo() {
 
     if(this.selectedSport == 'MLB'){
@@ -345,6 +345,21 @@ public displayedColumnsValues: any[] = [
       console.log(this.teamSeasons)
       this.teamTotalStats = await MlbController.mlbGetSpecificTeamStatAverage(this.teamId)
       
+    }
+
+    this.teamProps = []
+    this.teamProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.teamStats[0].teamName)
+    console.log(this.teamProps)
+    let numberOfBookIds = this.teamProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
+    if(numberOfBookIds.length > 1){
+      //add if there is more than one game that day
+    }
+    else{
+      let numberOfProps = this.teamProps.map(x => x.marketKey).filter((value, index, array) => array.indexOf(value) === index)
+      for(let prop of numberOfProps){
+        let filteredProp = this.teamProps.filter(e => e.marketKey == prop)
+        this.teamPropArray.push(filteredProp)
+      }
     }
 
     //this.teamProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.teamStats[0].playerName)

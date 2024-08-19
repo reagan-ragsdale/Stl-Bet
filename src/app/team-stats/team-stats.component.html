@@ -152,11 +152,24 @@
           </div>
   
         </div>
-        <div style="width:100%; display: flex; flex-direction: column;">
+        <div style="width:100%; display: flex; flex-direction: column; margin-bottom:2rem;">
           <div style="margin-left: auto; margin-right: auto;">
             <h2>Team Props</h2>
           </div>
-          <div>
+          <div class="player-props">
+            <div class="player-prop-body" *ngFor="let prop of teamPropArray">
+              <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[0].marketKey | removeUnderScore |
+                titlecase}}:</h3>
+              <h4 class="prop-point">{{prop[0].point}}</h4>
+              <div class="prop-one">
+                <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].description}}</h4>
+                <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].price > 0 ? '+' : ''}}{{prop[0].price}}</h4>
+              </div>
+              <div class="prop-two">
+                <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[1].description}}</h4>
+                <h4 style="margin-top:auto; margin-bottom: auto; ">{{prop[1].price > 0 ? '+' : ''}}{{prop[1].price}}</h4>
+              </div>
+            </div>
   
           </div>
   
