@@ -368,14 +368,12 @@ public displayedColumnsValues: any[] = [
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
-
-      console.log(this.playerSeasons)
       this.playerTotalStats = await MlbController.mlbSpecificGetPlayerStatTotals(this.playerId)
       
     }
 
     this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
-    
+    console.log(this.playerProps)
     let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
     if(numberOfBookIds.length > 1){
       //add if there is more than one game that day
@@ -432,7 +430,7 @@ public displayedColumnsValues: any[] = [
     // later we can add over or under and combined stats
     if(this.formArray.length > 0){
       for (let i = 0; i < this.seasonArrayTable.length; i++) {
-        for (let j = 0; j < this.formArray.length - 1; j++) {
+        for (let j = 0; j < this.formArray.length; j++) {
   
           if(this.formArray[j].overUnder){
             if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
