@@ -2506,15 +2506,15 @@ export class PropScreenComponent implements OnInit {
   }
 
   createBarChart(index?: number) {
+    console.log("create bar chart below")
+    console.log(index)
     //loop thorugh each game. for winning after we use the inning loop 
     //for winning by we also loop thorugh each inning and look for the first appearance of the margin
     //for score we loop through each inning and look for the first instance of that score happening
 
     for (let team of this.liveProps) {
-      console.log(team)
       let barChartFinal: any[] = []
       let teamStats: DbMlbTeamGameStats[] = team.stats
-      console.log(teamStats)
       if(team.selectedDropDown == 'Winning After'){
         for (let i = 1; i < 9; i++) {
           let totalInningChance = 0;
@@ -2592,7 +2592,6 @@ export class PropScreenComponent implements OnInit {
 
     }
 
-    console.log(this.barData)
     if (!index) {
       
       this.barChart0 = new Chart("MyChart0", {
@@ -2694,6 +2693,8 @@ export class PropScreenComponent implements OnInit {
     }
   }
   onChartSearch(index:number){
+    console.log("Chart Search below")
+    console.log(index)
         this.destroyBarCharts(index);
         this.createBarChart(index)
   }
