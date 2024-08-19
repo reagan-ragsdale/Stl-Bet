@@ -2634,6 +2634,7 @@ export class PropScreenComponent implements OnInit {
     }
     else if (index == 0) {
       if(this.liveProps[0].selectedDropDown != 'Winning After'){
+        this.barData[0].labels = []
         for(let i = 1; i <= highestScoreTeam; i++){
           this.barData[0].labels.push(i.toString())
         }
