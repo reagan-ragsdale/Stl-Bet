@@ -2449,7 +2449,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   liveMoneylineStats = ['Winning After', 'Winning by X', 'Scoring']
-  liveProps: any[] = []
+  liveProps: any = []
   calcLiveProps() {
     let team1New: any = this.team1GameStats.slice()
     let team2New: any = this.team2GameStats.slice()
@@ -2459,8 +2459,8 @@ export class PropScreenComponent implements OnInit {
     team2New.number = 0;
     team2New.inning = 1;
     //this.liveProps.push(this.team1GameStats, this.team2GameStats)
-    this.liveProps[0].stats = this.team1GameStats
-    this.liveProps[1].stats = this.team2GameStats
+    this.liveProps[0].stats = team1New
+    this.liveProps[1].stats = team2New
     this.liveProps[0].number = 1
     this.liveProps[1].number = 1
     this.liveProps[0].selectedDropDown = this.selectedDropDown
@@ -2513,7 +2513,7 @@ export class PropScreenComponent implements OnInit {
     for (let team of this.liveProps) {
       console.log(team)
       let barChartFinal: any[] = []
-      let teamStats: DbMlbTeamGameStats[] = team.stats.slice()
+      let teamStats: DbMlbTeamGameStats[] = team.stats
       console.log(teamStats)
       if(team.selectedDropDown == 'Winning After'){
         for (let i = 1; i < 9; i++) {
