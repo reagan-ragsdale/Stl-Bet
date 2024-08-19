@@ -1139,11 +1139,13 @@
               <div style="width:90%; margin-left: auto; margin-right: auto; display:flex;">
                 <h3 style="align-self:center; color:white; margin-right:1rem;">Chance of winning when: </h3>
                 <mat-form-field style="min-width:auto;">
-                      <mat-select [value]="selectedDropDown" (selectionChange)="calcNewLiveProp($event)">
+                      <mat-select [value]="team.selectedDropDown" [(ngModel)]="team.selectedDropDown" (selectionChange)="calcNewLiveProp(i)">
                         <mat-option *ngFor="let stat of liveMoneylineStats"
                           value={{stat}}>{{stat}}</mat-option>
                       </mat-select>
                   </mat-form-field>
+                  <input *ngIf="team.selectedDropDown != 'Winning After'" matInput type="number" min="0" step="1" [(ngModel)]="team.number" style="width:inherit;"
+                    (click)="$event.stopPropagation()">
               </div>
               <div class="chart-container" style="background-color: #ebebeb;">
                 <canvas  [attr.id]="'MyChart' + i" >{{ 'barChart'+i }}</canvas>

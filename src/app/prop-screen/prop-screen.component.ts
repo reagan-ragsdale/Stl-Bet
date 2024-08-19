@@ -197,7 +197,7 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  
+
   playerPropObjectArray: any[] = [];
 
   public displayPropHtml1 =
@@ -271,7 +271,7 @@ export class PropScreenComponent implements OnInit {
         let teamArray: any[] = []
         distinctTeams.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
-          
+
           console.log(allOfTeam)
           teamArray.push(allOfTeam)
         })
@@ -303,10 +303,10 @@ export class PropScreenComponent implements OnInit {
     }
     await this.onGameClick(this.selectedGame)
   }
- 
+
   async onGameClick(game: string) {
     this.selectedGame = game;
-    
+
     this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     this.selectedSportGamesFinal.forEach(e => e[0].selected = false)
     let selectedGameClicked = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
@@ -324,7 +324,7 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  
+
   addItemToCheckout(event: any) {
     event.isDisabled = true;
     //var bestBets = this.findBestBetsFromEvent(event);
@@ -375,14 +375,14 @@ export class PropScreenComponent implements OnInit {
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
   async displayProp() {
-    try{
+    try {
       PropScreenComponent.sendEmail("Hello this is a test");
     }
-    catch(error:any){
+    catch (error: any) {
       console.log("here in prop")
       console.log(error.message)
     }
-    
+
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
@@ -400,14 +400,14 @@ export class PropScreenComponent implements OnInit {
     let team2Temp = team2
     var overUnders = tempProp.filter(e => e.teamName == "Over" || e.teamName == "Under")
 
-    
+
     var team1Totals = team1Temp.filter(e => e.marketKey.toString().includes('team_totals'))
     var team2Totals = team2Temp.filter(e => e.marketKey.toString().includes('team_totals'))
-    
+
 
     team1Temp = team1Temp.filter(e => e.marketKey != 'team_totals Over' && e.marketKey != 'team_totals Under')
     team2Temp = team2Temp.filter(e => e.marketKey != 'team_totals Over' && e.marketKey != 'team_totals Under')
-    
+
     team1Temp.push(overUnders)
     team2Temp.push(overUnders)
 
@@ -421,7 +421,7 @@ export class PropScreenComponent implements OnInit {
       filteredBet = team1Temp.filter(e => {
         if (e.length > 1) {
           if (e[0].marketKey == bet || e[1].marketKey == bet) {
-            
+
             return e
           }
         }
@@ -500,7 +500,7 @@ export class PropScreenComponent implements OnInit {
 
     this.listOfTeams = await TeamInfoController.getAllTeamInfo(this.selectedSport)
     name1 = team1[0].teamName;
-    
+
     let abvr = ''
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
@@ -508,13 +508,13 @@ export class PropScreenComponent implements OnInit {
     this.displayPropHtml1 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertTimestampToTime(team1[0].commenceTime.toString()) });
 
     name1 = team2[0].teamName;
-    
+
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    
+
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertTimestampToTime(team2[0].commenceTime.toString()) });
-    
+
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     this.setValuesToTeamPropFinal()
@@ -527,7 +527,7 @@ export class PropScreenComponent implements OnInit {
   public team2Wins: number = 0
   public team2OverallGames: number = 0
   computeTeamsGameStats(team1: any[], team2: any[]) {
-    
+
     this.team1OverallGames = team1.length
     this.team1Wins = team1.filter(e => e.result == 'W').length
     this.team2OverallGames = team2.length
@@ -536,13 +536,13 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  onTeamClick(teamName: string){
+  onTeamClick(teamName: string) {
     let teamId = this.listOfTeams.filter(e => e.teamNameAbvr == teamName)[0].teamId
     this.router.navigate(["/teamStats/" + this.selectedSport + "/" + teamId])
   }
 
   setValuesToTeamPropFinal() {
-   this.arrayOfTeamBets = []
+    this.arrayOfTeamBets = []
     for (let team of this.teamPropFinnal) {
       for (let prop of team) {
         let returnProp = {}
@@ -557,10 +557,10 @@ export class PropScreenComponent implements OnInit {
       }
     }
     this.getTeamBestBets()
-    
+
   }
 
-  
+
   playerPropIsLoading: boolean = false;
   playerPropDataFinalNew: any[] = []
   async loadPlayerStatData(team1: number, team2: number) {
@@ -601,15 +601,15 @@ export class PropScreenComponent implements OnInit {
             playerSpecific[0].propVariables = this.getPlayerStats(playerSpecific[0])
             playerHome.push(playerSpecific)
           }
-          
+
         } catch (error: any) {
           console.log(error.message)
           console.log(player)
         }
-        
+
 
       }
-      
+
       playerAway.teamName = this.displayPropHtml2.name
       playerHome.teamName = this.displayPropHtml1.name
       playerPropNew.push(playerAway, playerHome)
@@ -1297,7 +1297,7 @@ export class PropScreenComponent implements OnInit {
         marketKey: marketKey,
         propPoint: propPoint,
         propPrice: propPrice,
-        playerName : playerName,
+        playerName: playerName,
         playerOrTeam: 'Player',
         teamName: teamName
 
@@ -1363,9 +1363,9 @@ export class PropScreenComponent implements OnInit {
       let teamGameStats: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStats : this.team2GameStats
       let teamGameStatsReversed: DbMlbTeamGameStats[] = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team1GameStatsReversed : this.team2GameStatsReversed
       let teamAgainstStats = MlbService.mlbTeamNameToAbvr[teamName] == this.team1GameStats[0].teamName ? this.team2GameStats : this.team1GameStats
-      
+
       let teamNameNew = MlbService.mlbTeamNameToAbvr[teamName]
-      
+
       var finalTeam: any = {}
 
       finalTeam.homeAway = homeAway
@@ -1642,11 +1642,11 @@ export class PropScreenComponent implements OnInit {
       else if (propType == 'total') {
         // need to get record, chance of winning, weighted chance, avg, high and low
 
-        if(team.marketKey == 'totals'){
+        if (team.marketKey == 'totals') {
           finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
           finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
           finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
-  
+
           let totalSpread = 0
           teamGameStats.forEach(e => {
             totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
@@ -1657,7 +1657,7 @@ export class PropScreenComponent implements OnInit {
             if (e.homeOrAway == homeAway) {
               totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
             }
-  
+
           })
           finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
           totalSpread = 0
@@ -1665,64 +1665,64 @@ export class PropScreenComponent implements OnInit {
             if (e.teamAgainstName == teamAgainstName) {
               totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
             }
-  
+
           })
           finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
-  
+
           finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
           finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
           finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
-  
-  
+
+
           finalTeam.highOverall = this.getTotalHighLow(homeAway, 'overall', 'high', team.marketKey)
           finalTeam.highHomeAway = this.getTotalHighLow(homeAway, homeAway, 'high', team.marketKey)
           finalTeam.highTeam = this.getTotalHighLow(homeAway, 'team', 'high', team.marketKey)
-  
+
           finalTeam.lowOverall = this.getTotalHighLow(homeAway, 'overall', 'low', team.marketKey)
           finalTeam.lowHomeAway = this.getTotalHighLow(homeAway, homeAway, 'low', team.marketKey)
           finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low', team.marketKey)
         }
-        else if(team.marketKey.includes('team_totals')){
+        else if (team.marketKey.includes('team_totals')) {
           finalTeam.totalWins = teamGameStats.filter(e => (e.pointsScoredOverall) < team.point).length
-        finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
-        finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
+          finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
+          finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstName).length
 
-        let totalSpread = 0
-        teamGameStats.forEach(e => {
-          totalSpread += (e.pointsScoredOverall)
-        })
-        finalTeam.averageOverall = totalSpread / finalTeam.totalGames
-        totalSpread = 0
-        teamGameStats.forEach(e => {
-          if (e.homeOrAway == homeAway) {
+          let totalSpread = 0
+          teamGameStats.forEach(e => {
             totalSpread += (e.pointsScoredOverall)
-          }
+          })
+          finalTeam.averageOverall = totalSpread / finalTeam.totalGames
+          totalSpread = 0
+          teamGameStats.forEach(e => {
+            if (e.homeOrAway == homeAway) {
+              totalSpread += (e.pointsScoredOverall)
+            }
 
-        })
-        finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
-        totalSpread = 0
-        teamGameStats.forEach(e => {
-          if (e.teamAgainstName == teamAgainstName) {
-            totalSpread += (e.pointsScoredOverall)
-          }
+          })
+          finalTeam.averageHomeAway = totalSpread / finalTeam.totalGamesHomeAway
+          totalSpread = 0
+          teamGameStats.forEach(e => {
+            if (e.teamAgainstName == teamAgainstName) {
+              totalSpread += (e.pointsScoredOverall)
+            }
 
-        })
-        finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
+          })
+          finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
-        finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsScoredOverall) < team.point).length
-        finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
-        finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
+          finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsScoredOverall) < team.point).length
+          finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
+          finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.teamAgainstName == MlbService.mlbTeamNameToAbvr[teamName]).length
 
 
-        finalTeam.highOverall = this.getTotalHighLow(homeAway, 'overall', 'high', team.marketKey)
-        finalTeam.highHomeAway = this.getTotalHighLow(homeAway, homeAway, 'high', team.marketKey)
-        finalTeam.highTeam = this.getTotalHighLow(homeAway, 'team', 'high', team.marketKey)
+          finalTeam.highOverall = this.getTotalHighLow(homeAway, 'overall', 'high', team.marketKey)
+          finalTeam.highHomeAway = this.getTotalHighLow(homeAway, homeAway, 'high', team.marketKey)
+          finalTeam.highTeam = this.getTotalHighLow(homeAway, 'team', 'high', team.marketKey)
 
-        finalTeam.lowOverall = this.getTotalHighLow(homeAway, 'overall', 'low', team.marketKey)
-        finalTeam.lowHomeAway = this.getTotalHighLow(homeAway, homeAway, 'low', team.marketKey)
-        finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low', team.marketKey)
+          finalTeam.lowOverall = this.getTotalHighLow(homeAway, 'overall', 'low', team.marketKey)
+          finalTeam.lowHomeAway = this.getTotalHighLow(homeAway, homeAway, 'low', team.marketKey)
+          finalTeam.lowTeam = this.getTotalHighLow(homeAway, 'team', 'low', team.marketKey)
         }
-        
+
       }
       this.returnObj = {
         teamName: teamNameNew,
@@ -1821,26 +1821,26 @@ export class PropScreenComponent implements OnInit {
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
       if ((overallWin > .80) || (teamWin > .80) || (homeAwayWin > .80)) {
-        if(overallWin > .80){
+        if (overallWin > .80) {
           bet.overallHighlight = true
         }
-        if(homeAwayWin > .80){
+        if (homeAwayWin > .80) {
           bet.homeAwayHighlight = true
         }
-        if(teamWin > .80){
+        if (teamWin > .80) {
           bet.teamHighlight = true
         }
-          this.teamBestBets.push(bet)
+        this.teamBestBets.push(bet)
       }
-      else if(bet.propType == 'total'){
-        if((overallWin < .2) || (teamWin < .2) || (homeAwayWin < .2)){
-          if(overallWin < .2){
+      else if (bet.propType == 'total') {
+        if ((overallWin < .2) || (teamWin < .2) || (homeAwayWin < .2)) {
+          if (overallWin < .2) {
             bet.overallHighlight = true
           }
-          if(homeAwayWin < .2){
+          if (homeAwayWin < .2) {
             bet.homeAwayHighlight = true
           }
-          if(teamWin < .2){
+          if (teamWin < .2) {
             bet.teamHighlight = true
           }
           bet.overUnder = true
@@ -1848,56 +1848,56 @@ export class PropScreenComponent implements OnInit {
         }
       }
 
-      
-      
-      
+
+
+
 
     }
 
   }
-  calculateNewBestBetTeam(){
+  calculateNewBestBetTeam() {
     this.teamBestBets = []
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
-      if ((overallWin > (this.sliderValue/100)) || (teamWin > (this.sliderValue/100)) || (homeAwayWin > (this.sliderValue/100))) {
-        if(overallWin > (this.sliderValue/100)){
+      if ((overallWin > (this.sliderValue / 100)) || (teamWin > (this.sliderValue / 100)) || (homeAwayWin > (this.sliderValue / 100))) {
+        if (overallWin > (this.sliderValue / 100)) {
           bet.overallHighlight = true
         }
-        else{bet.overallHighlight = false}
-        if(homeAwayWin > (this.sliderValue/100)){
+        else { bet.overallHighlight = false }
+        if (homeAwayWin > (this.sliderValue / 100)) {
           bet.homeAwayHighlight = true
         }
-        else{bet.homeAwayHighlight = false}
-        if(teamWin > (this.sliderValue/100)){
+        else { bet.homeAwayHighlight = false }
+        if (teamWin > (this.sliderValue / 100)) {
           bet.teamHighlight = true
         }
-        else{bet.teamHighlight = false}
-          this.teamBestBets.push(bet)
+        else { bet.teamHighlight = false }
+        this.teamBestBets.push(bet)
       }
-      else if(bet.propType == 'total'){
-        if((overallWin < (1-(this.sliderValue/100))) || (teamWin < (1-(this.sliderValue/100))) || (homeAwayWin < (1-(this.sliderValue/100)))){
-          if(overallWin < (1-(this.sliderValue/100))){
+      else if (bet.propType == 'total') {
+        if ((overallWin < (1 - (this.sliderValue / 100))) || (teamWin < (1 - (this.sliderValue / 100))) || (homeAwayWin < (1 - (this.sliderValue / 100)))) {
+          if (overallWin < (1 - (this.sliderValue / 100))) {
             bet.overallHighlight = true
           }
-          else{bet.overallHighlight = false}
-          if(homeAwayWin < (1-(this.sliderValue/100))){
+          else { bet.overallHighlight = false }
+          if (homeAwayWin < (1 - (this.sliderValue / 100))) {
             bet.homeAwayHighlight = true
           }
-          else{bet.homeAwayHighlight = false}
-          if(teamWin < (1-(this.sliderValue/100))){
+          else { bet.homeAwayHighlight = false }
+          if (teamWin < (1 - (this.sliderValue / 100))) {
             bet.teamHighlight = true
           }
-          else{bet.teamHighlight = false}
+          else { bet.teamHighlight = false }
           bet.overUnder = true
           this.teamBestBets.push(bet)
         }
       }
 
-      
-      
-      
+
+
+
 
     }
   }
@@ -1912,27 +1912,27 @@ export class PropScreenComponent implements OnInit {
       let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
       let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
       let teamWin = bet.totalTeam == 0 ? 0 : (bet.overTeam / bet.totalTeam)
-      if ((overallWin > (this.sliderValuePlayer/100)) || (teamWin > (this.sliderValuePlayer/100)) || (homeAwayWin > (this.sliderValuePlayer/100))) {
-        if(overallWin > (this.sliderValuePlayer/100)){
+      if ((overallWin > (this.sliderValuePlayer / 100)) || (teamWin > (this.sliderValuePlayer / 100)) || (homeAwayWin > (this.sliderValuePlayer / 100))) {
+        if (overallWin > (this.sliderValuePlayer / 100)) {
           bet.overallHighlight = true
         }
-        if(homeAwayWin > (this.sliderValuePlayer/100)){
+        if (homeAwayWin > (this.sliderValuePlayer / 100)) {
           bet.homeAwayHighlight = true
         }
-        if(teamWin > (this.sliderValuePlayer/100)){
+        if (teamWin > (this.sliderValuePlayer / 100)) {
           bet.teamHighlight = true
         }
-          this.playerBestBets.push(bet)
+        this.playerBestBets.push(bet)
       }
-      else if(bet.propType == 'total'){
-        if((overallWin < (1-(this.sliderValuePlayer/100))) || (teamWin < (1-(this.sliderValuePlayer/100))) || (homeAwayWin < (1-(this.sliderValuePlayer/100)))){
-          if(overallWin < (1-(this.sliderValuePlayer/100))){
+      else if (bet.propType == 'total') {
+        if ((overallWin < (1 - (this.sliderValuePlayer / 100))) || (teamWin < (1 - (this.sliderValuePlayer / 100))) || (homeAwayWin < (1 - (this.sliderValuePlayer / 100)))) {
+          if (overallWin < (1 - (this.sliderValuePlayer / 100))) {
             bet.overallHighlight = true
           }
-          if(homeAwayWin < (1-(this.sliderValuePlayer/100))){
+          if (homeAwayWin < (1 - (this.sliderValuePlayer / 100))) {
             bet.homeAwayHighlight = true
           }
-          if(teamWin < (1-(this.sliderValuePlayer/100))){
+          if (teamWin < (1 - (this.sliderValuePlayer / 100))) {
             bet.teamHighlight = true
           }
           bet.overUnder = true
@@ -1940,57 +1940,57 @@ export class PropScreenComponent implements OnInit {
         }
       }
 
-      
-      
-      
+
+
+
 
     }
     this.teamPropIsLoading = false
 
   }
-  calculateNewBestBetPlayer(){
+  calculateNewBestBetPlayer() {
 
     this.playerBestBets = []
     for (let bet of this.arrayOfPlayerBets) {
       let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
       let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
       let teamWin = bet.totalTeam == 0 ? 0 : (bet.overTeam / bet.totalTeam)
-      if ((overallWin > (this.sliderValuePlayer/100)) || (teamWin > (this.sliderValuePlayer/100)) || (homeAwayWin > (this.sliderValuePlayer/100))) {
-        if(overallWin > (this.sliderValuePlayer/100)){
+      if ((overallWin > (this.sliderValuePlayer / 100)) || (teamWin > (this.sliderValuePlayer / 100)) || (homeAwayWin > (this.sliderValuePlayer / 100))) {
+        if (overallWin > (this.sliderValuePlayer / 100)) {
           bet.overallHighlight = true
         }
-        else{bet.overallHighlight = false}
-        if(homeAwayWin > (this.sliderValuePlayer/100)){
+        else { bet.overallHighlight = false }
+        if (homeAwayWin > (this.sliderValuePlayer / 100)) {
           bet.homeAwayHighlight = true
         }
-        else{bet.homeAwayHighlight = false}
-        if(teamWin > (this.sliderValuePlayer/100)){
+        else { bet.homeAwayHighlight = false }
+        if (teamWin > (this.sliderValuePlayer / 100)) {
           bet.teamHighlight = true
         }
-        else{bet.teamHighlight = false}
-          this.playerBestBets.push(bet)
+        else { bet.teamHighlight = false }
+        this.playerBestBets.push(bet)
       }
-       else if((overallWin < (1-(this.sliderValuePlayer/100))) || (teamWin < (1-(this.sliderValuePlayer/100))) || (homeAwayWin < (1-(this.sliderValuePlayer/100)))){
-          if(overallWin < (1-(this.sliderValuePlayer/100))){
-            bet.overallHighlight = true
-          }
-          else{bet.overallHighlight = false}
-          if(homeAwayWin < (1-(this.sliderValuePlayer/100))){
-            bet.homeAwayHighlight = true
-          }
-          else{bet.homeAwayHighlight = false}
-          if(teamWin < (1-(this.sliderValuePlayer/100))){
-            bet.teamHighlight = true
-          }
-          else{bet.teamHighlight = false}
-          bet.overUnder = true
-          this.playerBestBets.push(bet)
+      else if ((overallWin < (1 - (this.sliderValuePlayer / 100))) || (teamWin < (1 - (this.sliderValuePlayer / 100))) || (homeAwayWin < (1 - (this.sliderValuePlayer / 100)))) {
+        if (overallWin < (1 - (this.sliderValuePlayer / 100))) {
+          bet.overallHighlight = true
         }
-      
+        else { bet.overallHighlight = false }
+        if (homeAwayWin < (1 - (this.sliderValuePlayer / 100))) {
+          bet.homeAwayHighlight = true
+        }
+        else { bet.homeAwayHighlight = false }
+        if (teamWin < (1 - (this.sliderValuePlayer / 100))) {
+          bet.teamHighlight = true
+        }
+        else { bet.teamHighlight = false }
+        bet.overUnder = true
+        this.playerBestBets.push(bet)
+      }
 
-      
-      
-      
+
+
+
+
 
     }
   }
@@ -2000,18 +2000,18 @@ export class PropScreenComponent implements OnInit {
   }
   propParlays: any[] = []
   finalPropParlays: any[] = []
-  addPropToParlay(prop:any){
+  addPropToParlay(prop: any) {
     prop.isDisabled = true
     let isPlayer = prop.propVariables.playerOrTeam == 'Player' ? true : false
-    if(isPlayer){
+    if (isPlayer) {
       prop.stats = this.playerStatsFinal.filter(e => e.playerName == prop.propVariables.playerName)
     }
-    else{
+    else {
       prop.stats = prop.propVariables.homeAway == 'Home' ? this.team1GameStats : this.team2GameStats;
     }
     this.finalPropParlays.push(prop)
     this.finalPropParlays = this.finalPropParlays.slice()
-    
+
   }
 
 
@@ -2050,21 +2050,21 @@ export class PropScreenComponent implements OnInit {
     let finalReturn = ''
 
     if (prop[0].length > 1) {
-      if(prop.propVariables.marketKey == 'totals'){
+      if (prop.propVariables.marketKey == 'totals') {
         let propOver = prop[0][0].price > 0 ? '+' : ''
         let one = prop[0][0].teamName + " " + prop[0][0].point + " | " + propOver + prop[0][0].price
         propOver = prop[0][1].price > 0 ? '+' : ''
         let two = prop[0][1].teamName + " " + prop[0][1].point + " | " + propOver + prop[0][1].price
         finalReturn = one + " " + two
       }
-      else if(prop.propVariables.marketKey.includes('team_totals')){
+      else if (prop.propVariables.marketKey.includes('team_totals')) {
         let propOver = prop[0][0].price > 0 ? '+' : ''
         let one = "Over " + prop[0][0].point + " | " + propOver + prop[0][0].price
         propOver = prop[0][1].price > 0 ? '+' : ''
         let two = "Under " + prop[0][1].point + " | " + propOver + prop[0][1].price
         finalReturn = one + " " + two
       }
-      
+
 
     }
     else {
@@ -2215,8 +2215,8 @@ export class PropScreenComponent implements OnInit {
 
   getTotalHighLow(homeAway: string, type: string, highLow: string, marketKey: string): number {
     let finalTotal = 0
-    
-    if(marketKey == 'totals'){
+
+    if (marketKey == 'totals') {
       if (homeAway == 'Away') {
         if (highLow == 'high') {
           if (type == 'overall') {
@@ -2270,7 +2270,7 @@ export class PropScreenComponent implements OnInit {
             })
           }
         }
-  
+
       }
       else {
         if (highLow == 'high') {
@@ -2325,10 +2325,10 @@ export class PropScreenComponent implements OnInit {
             })
           }
         }
-  
+
       }
     }
-    else if(marketKey.includes('team_totals')){
+    else if (marketKey.includes('team_totals')) {
       if (homeAway == 'Away') {
         if (highLow == 'high') {
           if (type == 'overall') {
@@ -2382,7 +2382,7 @@ export class PropScreenComponent implements OnInit {
             })
           }
         }
-  
+
       }
       else {
         if (highLow == 'high') {
@@ -2437,7 +2437,7 @@ export class PropScreenComponent implements OnInit {
             })
           }
         }
-  
+
       }
     }
 
@@ -2448,9 +2448,9 @@ export class PropScreenComponent implements OnInit {
     return finalTotal
   }
 
-  liveMoneylineStats = ['Winning After', 'Winning by X after', 'Scoring']
+  liveMoneylineStats = ['Winning After', 'Winning by X', 'Scoring']
   liveProps: any[] = []
-  calcLiveProps(){
+  calcLiveProps() {
     let team1New: any = this.team1GameStats.slice()
     let team2New: any = this.team2GameStats.slice()
 
@@ -2458,17 +2458,22 @@ export class PropScreenComponent implements OnInit {
     team1New.inning = 1;
     team2New.number = 0;
     team2New.inning = 1;
-    this.liveProps.push(this.team1GameStats, this.team2GameStats)
+    //this.liveProps.push(this.team1GameStats, this.team2GameStats)
+    this.liveProps[0].stats = this.team1GameStats
+    this.liveProps[1].stats = this.team2GameStats
+    this.liveProps[0].number = 0
+    this.liveProps[1].number = 0
+    this.liveProps[0].selectedDropDown = this.selectedDropDown
+    this.liveProps[1].selectedDropDown = this.selectedDropDown
   }
 
-  calcNewLiveProp(event: any){
-    this.selectedDropDown = event.value;
-    this.destroyBarCharts();
-    this.createBarChart()
-    
+  calcNewLiveProp(index: number) {
+    this.destroyBarCharts(index);
+    this.createBarChart(index)
+
   }
 
-  
+
   public barChart0: any;
   public barChart1: any;
   barData: any[] = [];
@@ -2478,121 +2483,203 @@ export class PropScreenComponent implements OnInit {
     
     
   } */
-  destroyBarCharts(){
-    this.barChart0.destroy()
-    this.barChart1.destroy()
+  destroyBarCharts(index: number) {
+    if (index == 0) {
+      this.barChart0.destroy()
+    }
+    if (index == 1) {
+      this.barChart1.destroy()
+    }
+
+
   }
-  createBarChart(){
-    
-    for(let team of this.liveProps){
+
+  createBarChart(index?: number) {
+    //loop thorugh each game. for winning after we use the inning loop 
+    //for winning by we also loop thorugh each inning and look for the first appearance of the margin
+    //for score we loop through each inning and look for the first instance of that score happening
+
+    for (let team of this.liveProps) {
+      console.log(team)
       let barChartFinal: any[] = []
-      let teamStats: DbMlbTeamGameStats[] = team.slice()
+      let teamStats: DbMlbTeamGameStats[] = team.stats.slice()
       console.log(teamStats)
-      for(let i = 1; i < 9; i++){
-        let totalInningChance = 0;
-        let totalGames = 0
-        let totalWins = 0
-          if(i == 1){
-            let filteredGames = teamStats.filter(game => game.pointsScoredFirstInning > game.pointsAllowedFirstInning)
+      if(team.selectedDropDown == 'Winning After'){
+        for (let i = 1; i < 9; i++) {
+          let totalInningChance = 0;
+          let totalGames = 0
+          let totalWins = 0
+          if (i == 1) {
+            let filteredGames: DbMlbTeamGameStats[] = []
+              filteredGames = teamStats.filter(game => game.pointsScoredFirstInning > game.pointsAllowedFirstInning)
+            
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          else if(i == 2){
+          else if (i == 2) {
             let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning))
+            
+             
+            
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          else if(i == 3){
+          else if (i == 3) {
             let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          else if(i == 4){
+          else if (i == 4) {
             let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          else if(i == 5){
+          else if (i == 5) {
             let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          else if(i == 6){
+          else if (i == 6) {
             let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          else if(i == 7){
+          else if (i == 7) {
             let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          else if(i == 8){
+          else if (i == 8) {
             let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
-          
+  
           //totalInningChance = totalWins/this.team1GameStats.length
-      
-        totalInningChance = totalWins/totalGames
-        barChartFinal.push(totalInningChance * 100)
+  
+          totalInningChance = totalWins / totalGames
+          barChartFinal.push(totalInningChance * 100)
+        }
       }
+      else if(team.selectedDropDown == 'Scoring'){
+        // find game where in any combo of innings they scored more than the number
+        let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning + game.pointsScoredNinthInning) > team.number))
+        let totalWins = filteredGames.filter(e => e.result == 'W')
+        let totalChance = totalWins.length / filteredGames.length
+        barChartFinal.push(totalChance * 100)
+      }
+      
       this.barData.push(barChartFinal)
+
     }
-    
-  console.log(this.barData)
-    this.barChart0 = new Chart("MyChart0", {
-      type: 'bar', //this denotes tha type of chart
 
-      data: {// values on X-Axis
-        labels: ['1', '2', '3','4',
-								 '5', '6', '7','8'], 
-	       datasets: [
-          {
-            label: "Win Chance",
-            data: this.barData[0],
-            backgroundColor: 'blue'
-          } 
-        ]
-      },
-      options: {
-        aspectRatio:2.5
-      }
+    console.log(this.barData)
+    if (!index) {
       
-    });
-    this.barChart1 = new Chart("MyChart1", {
-      type: 'bar', //this denotes tha type of chart
+      this.barChart0 = new Chart("MyChart0", {
+        type: 'bar', //this denotes tha type of chart
 
-      data: {// values on X-Axis
-        labels: ['1', '2', '3','4',
-								 '5', '6', '7','8'], 
-	       datasets: [
-          {
-            label: "Win Chance",
-            data: this.barData[1],
-            backgroundColor: 'blue'
-          } 
-        ]
-      },
-      options: {
-        aspectRatio:2.5
+        data: {// values on X-Axis
+          labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
+          datasets: [
+            {
+              label: "Win Chance",
+              data: this.barData[0],
+              backgroundColor: 'blue'
+            }
+          ]
+        },
+        options: {
+          aspectRatio: 2.5
+        }
+
+      });
+      this.barChart1 = new Chart("MyChart1", {
+        type: 'bar', //this denotes tha type of chart
+
+        data: {// values on X-Axis
+          labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
+          datasets: [
+            {
+              label: "Win Chance",
+              data: this.barData[1],
+              backgroundColor: 'blue'
+            }
+          ]
+        },
+        options: {
+          aspectRatio: 2.5
+        }
+
+      });
+    }
+    if (index == 0) {
+      if(event != 'Winning After'){
+        this.barData[0].labels = ['Game']
       }
-      
-    });
+      else{
+        this.barData[0].lables = ['1', '2', '3', '4', '5', '6', '7', '8']
+      }
+      this.barChart0 = new Chart("MyChart0", {
+        type: 'bar', //this denotes tha type of chart
+
+        data: {// values on X-Axis
+          labels: this.barData[0].labels,
+          datasets: [
+            {
+              label: "Win Chance",
+              data: this.barData[0],
+              backgroundColor: 'blue'
+            }
+          ]
+        },
+        options: {
+          aspectRatio: 2.5
+        }
+
+      });
+
+    }
+    else if (index == 1) {
+      if(event != 'Winning After'){
+        this.barData[1].labels = ['Game']
+      }
+      else{
+        this.barData[1].lables = ['1', '2', '3', '4', '5', '6', '7', '8']
+      }
+      this.barChart1 = new Chart("MyChart1", {
+        type: 'bar', //this denotes tha type of chart
+
+        data: {// values on X-Axis
+          labels: this.barData[1].labels,
+          datasets: [
+            {
+              label: "Win Chance",
+              data: this.barData[1],
+              backgroundColor: 'blue'
+            }
+          ]
+        },
+        options: {
+          aspectRatio: 2.5
+        }
+
+      });
+    }
+
   }
 
-  onTabChange(event: any){
-    if(event.index == 2){
-      this.createBarChart()
+  onTabChange(event: any) {
+    if (event.index == 2) {
+      this.createBarChart(this.selectedDropDown)
     }
   }
 
@@ -2602,15 +2689,15 @@ export class PropScreenComponent implements OnInit {
     this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
   }
 
-  
 
-  
+
+
 
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
 
 
-  
- 
+
+
 
   /* async propTrend(teamName: string, prop: string, homeAway: string, content: TemplateRef<any>) {
     
@@ -3000,13 +3087,13 @@ export class PropScreenComponent implements OnInit {
     return name
   }
 
-  
 
-  
-  
-  
 
-  
+
+
+
+
+
 
 
   ngOnChanges() {
@@ -3021,7 +3108,7 @@ export class PropScreenComponent implements OnInit {
     this.initializeSport()
     this.getGames()
     //this.createBarChart();
-    ErrorEmailController.sendEmailError("This is the test email")
+    //ErrorEmailController.sendEmailError("This is the test email")
   }
 
   detailedStatsClicked(element: any) {
