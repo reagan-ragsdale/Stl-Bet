@@ -2506,6 +2506,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   createBarChart(index?: number) {
+    this.barData = []
     console.log("create bar chart below")
     console.log(index)
     //loop thorugh each game. for winning after we use the inning loop 
@@ -2583,7 +2584,9 @@ export class PropScreenComponent implements OnInit {
       else if(team.selectedDropDown == 'Scoring'){
         // find game where in any combo of innings they scored more than the number
         let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning + game.pointsScoredNinthInning) > team.number))
+        console.log(filteredGames)
         let totalWins = filteredGames.filter(e => e.result == 'W')
+        console.log(totalWins)
         let totalChance = totalWins.length / filteredGames.length
         barChartFinal.push(totalChance * 100)
       }
