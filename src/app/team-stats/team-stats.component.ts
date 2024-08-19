@@ -237,6 +237,7 @@ public displayedColumnsValues: any[] = [
       await this.loadData()
     })
   }
+  
 
   async loadData() {
     
@@ -253,7 +254,7 @@ public displayedColumnsValues: any[] = [
     else if (this.route.snapshot.paramMap.get('team') == 'all') {
     
       this.isNull = true
-      await this.getAllSportPlayers()
+      await this.getAllSportTeams()
     }
 
 
@@ -262,7 +263,7 @@ public displayedColumnsValues: any[] = [
 
   }
 
-  async getAllSportPlayers(){
+  async getAllSportTeams(){
     
     let teams = await TeamInfoController.getAllTeamInfo('MLB')
     this.allSportTeamList = teams
@@ -372,6 +373,7 @@ public displayedColumnsValues: any[] = [
     if(this.selectedSport != 'all'){
       this.destroyGraphs()
     }
+    this.isNull = false
     this.router.navigate([`/teamStats/${sport}/${id}`])
     this.formArray = []  
   }
@@ -448,7 +450,7 @@ public displayedColumnsValues: any[] = [
       
     }
     else{
-      this.filteredSearch = this.teamInfo.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
     }
     
   }
