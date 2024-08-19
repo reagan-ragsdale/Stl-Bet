@@ -35,6 +35,7 @@ import { DbMlbTeamGameStatAverages } from '../../shared/dbTasks/DbMlbTeamGameSta
 interface statSearch {
   stat: string;
   dataName: string;
+  overUnder: boolean;
   number: number;
   id: number
 }
@@ -389,24 +390,47 @@ public displayedColumnsValues: any[] = [
     summedData = Math.sqrt(summedData)
     this.playerStd = summedData
   }
-
+  totalNumberHighlighted: number = 0;
+  isSearched: boolean = false;
   searchNumberSubmit() {
+
+    this.isSearched = true;
     //for now we're going to make this just over and single stats
-
+    this.totalNumberHighlighted = 0;
     // later we can add over or under and combined stats
-    for (let i = 0; i < this.seasonArrayTable.length; i++) {
-      for (let j = 0; j < this.formArray.length; j++) {
-
-        if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
-          this.seasonArrayTable[i].isHighlighted = true
+    if(this.formArray.length > 0){
+      for (let i = 0; i < this.seasonArrayTable.length; i++) {
+        for (let j = 0; j < this.formArray.length; j++) {
+  
+          if(this.formArray[j].overUnder){
+            if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
+              this.seasonArrayTable[i].isHighlighted = true
+            }
+            else {
+              this.seasonArrayTable[i].isHighlighted = false
+              break
+            }
+          }
+          else{
+            if (this.seasonArrayTable[i][this.formArray[j].dataName] < this.formArray[j].number) {
+              this.seasonArrayTable[i].isHighlighted = true
+            }
+            else {
+              this.seasonArrayTable[i].isHighlighted = false
+              break
+            }
+          }
+          
         }
-        else {
-          this.seasonArrayTable[i].isHighlighted = false
-          break
+      }
+      for(let game of this.seasonArrayTable){
+        if(game.isHighlighted){
+          this.totalNumberHighlighted++;
         }
       }
     }
-
+    
+   
   }
 
   clearSearch() {
@@ -417,11 +441,14 @@ public displayedColumnsValues: any[] = [
 
   filterSearch() {
     if(this.isNull){
-      this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
-      console.log(this.filteredSearch)
+      if(this.searchName != ""){
+        this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
+        console.log(this.filteredSearch)
+      }
+      
     }
     else{
-      this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
+      this.filteredSearch = this.teamInfo.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
     }
     
   }
@@ -434,7 +461,8 @@ public displayedColumnsValues: any[] = [
     this.formArray.push({
       stat: "",
       dataName: '',
-      number: 0,
+      overUnder: false,
+      number: 0.5,
       id: this.formArray.length
     })
   }
@@ -446,6 +474,10 @@ public displayedColumnsValues: any[] = [
 
   deleteformArray(form: statSearch) {
     this.formArray = this.formArray.filter((e) => e != form)
+    this.searchNumberSubmit()
+    if(this.formArray.length ==0){
+      this.isSearched = false;
+    }
   }
 
   getTotalCost(stat: string) {

@@ -508,10 +508,6 @@ public displayedColumnsValues: any[] = [
     changedForm.stat = stat.label
     changedForm.dataName = stat.dataName
   }
-  updateFormOverUnder(form:statSearch, overUnder: boolean){
-    let changedForm = this.formArray.filter((e) => e.id == form.id)[0]
-    changedForm.overUnder = overUnder
-  }
 
   deleteformArray(form: statSearch) {
     this.formArray = this.formArray.filter((e) => e != form)

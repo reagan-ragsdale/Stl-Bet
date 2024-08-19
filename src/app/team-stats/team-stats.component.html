@@ -110,17 +110,27 @@
             <div style="background-color: gray; display:flex; justify-content: flex-start; align-items: flex-start;">
               <div style="height: inherit; width: 100%; display:flex; justify-content: flex-start; align-items:center;">
                 <div style="display: flex; flex-wrap:wrap;">
-                  <mat-form-field *ngFor="let forms of formArray" class="search-form" >
-                    <mat-label>Select</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
-                        value={{stat.dataName}}>{{stat.label}}</mat-option>
-                    </mat-select>
-                    <input matInput type="number" [(ngModel)]="forms.number" (click)="$event.stopPropagation()">
-                    <button mat-raised-button style="margin-top: 1rem;;" (click)="deleteformArray(forms)"
+                  
+                  <div *ngFor="let forms of formArray" class="search-form">
+                    <mat-form-field style="width:inherit;">
+                      <mat-label>Select</mat-label>
+                      <mat-select>
+                        <mat-option *ngFor="let stat of fullDataset" (onSelectionChange)="updateForm(forms, stat)"
+                          value={{stat.dataName}}>{{stat.label}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <div style="display:flex; margin-left: 0.5rem; margin-top:-1rem; margin-bottom:0.5rem;width:inherit;">
+                      <h5 style="margin-bottom:auto; margin-right: 5px;">Under</h5>
+                      <mat-slide-toggle [(ngModel)]="forms.overUnder"></mat-slide-toggle>
+                      <h5 style="margin-bottom:auto; margin-right: 5px;">Over</h5>
+                    </div>
+                    <input matInput type="number" min="0.5" step="1" [(ngModel)]="forms.number" style="width:inherit;"
+                      (click)="$event.stopPropagation()">
+                    <button mat-raised-button [color]="'warn'" style="margin-top: 1rem; display:flex; margin-left:auto; margin-right:auto; width:inherit;" (click)="deleteformArray(forms)"
                       (click)="$event.stopPropagation()">Delete</button>
   
-                  </mat-form-field>
+  
+                  </div>
                   <div class="search-buttons">
                     <button style="height: fit-content; width: fit-content; border-radius: 10px;" mat-raised-button
                       (click)="addStatForm()">Add</button>
