@@ -2512,7 +2512,7 @@ export class PropScreenComponent implements OnInit {
     //loop thorugh each game. for winning after we use the inning loop 
     //for winning by we also loop thorugh each inning and look for the first appearance of the margin
     //for score we loop through each inning and look for the first instance of that score happening
-
+    let highestScoreTeam = 0;
     for (let team of this.liveProps) {
       let barChartFinal: any[] = []
       let teamStats: DbMlbTeamGameStats[] = team.stats
@@ -2583,12 +2583,21 @@ export class PropScreenComponent implements OnInit {
       }
       else if(team.selectedDropDown == 'Scoring'){
         // find game where in any combo of innings they scored more than the number
-        let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) > team.number) || ((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning + game.pointsScoredNinthInning) > team.number))
-        console.log(filteredGames)
-        let totalWins = filteredGames.filter(e => e.result == 'W')
-        console.log(totalWins)
-        let totalChance = totalWins.length / filteredGames.length
-        barChartFinal.push(totalChance * 100)
+        let highestScore = 0
+        teamStats.forEach(e => {
+          if(e.pointsScoredOverall > highestScore){
+            highestScore = e.pointsScoredOverall
+          }
+        })
+        highestScoreTeam = highestScore
+        for(let i = 1; i <= highestScore; i++){
+          let filteredGames = teamStats.filter(game => game.pointsScoredOverall >= i)
+          let totalWins = filteredGames.filter(e => e.result == 'W')
+          let totalChance = filteredGames.length == 0 ? 0 : totalWins.length / filteredGames.length
+          barChartFinal.push(totalChance * 100)
+          
+        }
+       
       }
       
       this.barData.push(barChartFinal)
@@ -2636,7 +2645,9 @@ export class PropScreenComponent implements OnInit {
     }
     else if (index == 0) {
       if(this.liveProps[0].selectedDropDown != 'Winning After'){
-        this.barData[0].labels = ['Game']
+        for(let i = 1; i <= highestScoreTeam; i++){
+          this.barData[0].labels.push(i.toString())
+        }
       }
       else{
         this.barData[0].lables = ['1', '2', '3', '4', '5', '6', '7', '8']
@@ -2663,7 +2674,9 @@ export class PropScreenComponent implements OnInit {
     }
     else if (index == 1) {
       if(this.liveProps[1].selectedDropDown != 'Winning After'){
-        this.barData[1].labels = ['Game']
+        for(let i = 1; i <= highestScoreTeam; i++){
+          this.barData[1].labels.push(i.toString())
+        }
       }
       else{
         this.barData[1].lables = ['1', '2', '3', '4', '5', '6', '7', '8']

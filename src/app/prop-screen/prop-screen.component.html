@@ -1144,11 +1144,7 @@
                           value={{stat}}>{{stat}}</mat-option>
                       </mat-select>
                   </mat-form-field>
-                  <div *ngIf="team.selectedDropDown != 'Winning After'">
-                    <input  matInput type="number" min="0" step="1" [(ngModel)]="team.number" style="width:inherit;"
-                    (click)="$event.stopPropagation()">
-                  <button  mat-raised-button (click)="onChartSearch(i)">Search</button>
-                  </div>
+                 
                   
               </div>
               <div class="chart-container" style="background-color: #ebebeb;">
