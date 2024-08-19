@@ -29,6 +29,7 @@ import { DBMlbPlayerGameStatTotals } from 'src/shared/dbTasks/DbMlbPlayerGameSta
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStatAverages } from '../../shared/dbTasks/DbMlbTeamGameStatAverages';
+import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
 
 
 
@@ -348,7 +349,7 @@ public displayedColumnsValues: any[] = [
     }
 
     this.teamProps = []
-    this.teamProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.teamStats[0].teamName)
+    /* this.teamProps = await SportsBookController.
     console.log(this.teamProps)
     let numberOfBookIds = this.teamProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
     if(numberOfBookIds.length > 1){
@@ -360,7 +361,7 @@ public displayedColumnsValues: any[] = [
         let filteredProp = this.teamProps.filter(e => e.marketKey == prop)
         this.teamPropArray.push(filteredProp)
       }
-    }
+    } */
 
     //this.teamProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.teamStats[0].playerName)
     
