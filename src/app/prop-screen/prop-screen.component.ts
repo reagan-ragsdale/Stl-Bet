@@ -2640,7 +2640,7 @@ export class PropScreenComponent implements OnInit {
         }
       }
       else{
-        this.barData[0].lables = ['1', '2', '3', '4', '5', '6', '7', '8']
+        this.barData[0].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
       }
       this.barChart0 = new Chart("MyChart0", {
         type: 'bar', //this denotes tha type of chart
@@ -2664,12 +2664,13 @@ export class PropScreenComponent implements OnInit {
     }
     else if (index == 1) {
       if(this.liveProps[1].selectedDropDown != 'Winning After'){
+        this.barData[0].labels = []
         for(let i = 1; i <= highestScoreTeam; i++){
           this.barData[1].labels.push(i.toString())
         }
       }
       else{
-        this.barData[1].lables = ['1', '2', '3', '4', '5', '6', '7', '8']
+        this.barData[1].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
       }
       this.barChart1 = new Chart("MyChart1", {
         type: 'bar', //this denotes tha type of chart
