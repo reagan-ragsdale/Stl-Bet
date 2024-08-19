@@ -2468,19 +2468,8 @@ export class PropScreenComponent implements OnInit {
   }
 
   calcNewLiveProp(index: number) {
-    if(index == 0){
-      if(this.liveProps[0].selectedDropDown == 'Winning After'){
         this.destroyBarCharts(index);
         this.createBarChart(index)
-      }
-    }
-    else if(index == 1){
-      if(this.liveProps[1].selectedDropDown == 'Winning After'){
-        this.destroyBarCharts(index);
-        this.createBarChart(index)
-      }
-    }
-    
 
   }
 
