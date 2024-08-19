@@ -2592,7 +2592,7 @@ export class PropScreenComponent implements OnInit {
 
     }
 
-    if (!index) {
+    if (index == undefined) {
       
       this.barChart0 = new Chart("MyChart0", {
         type: 'bar', //this denotes tha type of chart
@@ -2631,7 +2631,7 @@ export class PropScreenComponent implements OnInit {
 
       });
     }
-    if (index == 0) {
+    else if (index == 0) {
       if(this.liveProps[0].selectedDropDown != 'Winning After'){
         this.barData[0].labels = ['Game']
       }
