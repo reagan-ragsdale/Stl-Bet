@@ -432,7 +432,7 @@ public displayedColumnsValues: any[] = [
     // later we can add over or under and combined stats
     if(this.formArray.length > 0){
       for (let i = 0; i < this.seasonArrayTable.length; i++) {
-        for (let j = 0; j < this.formArray.length; j++) {
+        for (let j = 0; j < this.formArray.length - 1; j++) {
   
           if(this.formArray[j].overUnder){
             if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
