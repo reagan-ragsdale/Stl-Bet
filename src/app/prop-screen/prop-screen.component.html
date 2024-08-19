@@ -1144,9 +1144,12 @@
                           value={{stat}}>{{stat}}</mat-option>
                       </mat-select>
                   </mat-form-field>
-                  <input *ngIf="team.selectedDropDown != 'Winning After'" matInput type="number" min="0" step="1" [(ngModel)]="team.number" style="width:inherit;"
+                  <div *ngIf="team.selectedDropDown != 'Winning After'">
+                    <input  matInput type="number" min="0" step="1" [(ngModel)]="team.number" style="width:inherit;"
                     (click)="$event.stopPropagation()">
-                  <button *ngIf="team.selectedDropDown != 'Winning After'"  mat-raised-button (click)="onChartSearch(i)">Search</button>
+                  <button  mat-raised-button (click)="onChartSearch(i)">Search</button>
+                  </div>
+                  
               </div>
               <div class="chart-container" style="background-color: #ebebeb;">
                 <canvas  [attr.id]="'MyChart' + i" >{{ 'barChart'+i }}</canvas>

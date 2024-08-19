@@ -2449,7 +2449,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   liveMoneylineStats = ['Winning After', 'Winning by X', 'Scoring']
-  liveProps: any = []
+  liveProps: any = [{}, {}]
   calcLiveProps() {
     let team1New: any = this.team1GameStats.slice()
     let team2New: any = this.team2GameStats.slice()
