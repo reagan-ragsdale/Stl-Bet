@@ -2461,15 +2461,26 @@ export class PropScreenComponent implements OnInit {
     //this.liveProps.push(this.team1GameStats, this.team2GameStats)
     this.liveProps[0].stats = this.team1GameStats
     this.liveProps[1].stats = this.team2GameStats
-    this.liveProps[0].number = 0
-    this.liveProps[1].number = 0
+    this.liveProps[0].number = 1
+    this.liveProps[1].number = 1
     this.liveProps[0].selectedDropDown = this.selectedDropDown
     this.liveProps[1].selectedDropDown = this.selectedDropDown
   }
 
   calcNewLiveProp(index: number) {
-    this.destroyBarCharts(index);
-    this.createBarChart(index)
+    if(index == 0){
+      if(this.liveProps[0].selectedDropDown == 'Winning After'){
+        this.destroyBarCharts(index);
+        this.createBarChart(index)
+      }
+    }
+    else if(index == 1){
+      if(this.liveProps[1].selectedDropDown == 'Winning After'){
+        this.destroyBarCharts(index);
+        this.createBarChart(index)
+      }
+    }
+    
 
   }
 
@@ -2622,7 +2633,7 @@ export class PropScreenComponent implements OnInit {
       });
     }
     if (index == 0) {
-      if(event != 'Winning After'){
+      if(this.liveProps[0].selectedDropDown != 'Winning After'){
         this.barData[0].labels = ['Game']
       }
       else{
@@ -2649,7 +2660,7 @@ export class PropScreenComponent implements OnInit {
 
     }
     else if (index == 1) {
-      if(event != 'Winning After'){
+      if(this.liveProps[1].selectedDropDown != 'Winning After'){
         this.barData[1].labels = ['Game']
       }
       else{
@@ -2679,8 +2690,12 @@ export class PropScreenComponent implements OnInit {
 
   onTabChange(event: any) {
     if (event.index == 2) {
-      this.createBarChart(this.selectedDropDown)
+      this.createBarChart()
     }
+  }
+  onChartSearch(index:number){
+        this.destroyBarCharts(index);
+        this.createBarChart(index)
   }
 
   playerClicked(player: string) {
