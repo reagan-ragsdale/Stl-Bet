@@ -2652,9 +2652,29 @@ export class PropScreenComponent implements OnInit {
     else if (index == 0) {
       if(this.liveProps[0].selectedDropDown != 'Winning After'){
         this.barData[0].labels = []
-        for(let i = 1; i <= highestScoreTeam; i++){
-          this.barData[0].labels.push(i.toString())
+        let highestTeamScore = 0 
+        if(this.liveProps[0].selectedDropDown = 'Winning By X'){
+          this.liveProps[0].stats.forEach((game: { pointsScoredOverall: number }) => {
+            if(game.pointsScoredOverall > highestTeamScore){
+              highestTeamScore = game.pointsScoredOverall
+            }
+          })
+          for(let i = 1; i <= highestTeamScore; i++){
+            this.barData[0].labels.push(i.toString())
+          }
         }
+        else{
+          this.liveProps[0].stats.forEach((game: {
+            pointsAllowedOverall: number; pointsScoredOverall: number }) => {
+            if((game.pointsScoredOverall - game.pointsAllowedOverall) > highestTeamScore){
+              highestTeamScore = (game.pointsScoredOverall - game.pointsAllowedOverall)
+            }
+          })
+          for(let i = 1; i <= highestTeamScore; i++){
+            this.barData[0].labels.push(i.toString())
+          }
+        }
+        
       }
       else{
         this.barData[0].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
@@ -2682,8 +2702,27 @@ export class PropScreenComponent implements OnInit {
     else if (index == 1) {
       if(this.liveProps[1].selectedDropDown != 'Winning After'){
         this.barData[1].labels = []
-        for(let i = 1; i <= highestScoreTeam; i++){
-          this.barData[1].labels.push(i.toString())
+        let highestTeamScore = 0 
+        if(this.liveProps[1].selectedDropDown = 'Winning By X'){
+          this.liveProps[1].stats.forEach((game: { pointsScoredOverall: number }) => {
+            if(game.pointsScoredOverall > highestTeamScore){
+              highestTeamScore = game.pointsScoredOverall
+            }
+          })
+          for(let i = 1; i <= highestTeamScore; i++){
+            this.barData[1].labels.push(i.toString())
+          }
+        }
+        else{
+          this.liveProps[1].stats.forEach((game: {
+            pointsAllowedOverall: number; pointsScoredOverall: number }) => {
+            if((game.pointsScoredOverall - game.pointsAllowedOverall) > highestTeamScore){
+              highestTeamScore = (game.pointsScoredOverall - game.pointsAllowedOverall)
+            }
+          })
+          for(let i = 1; i <= highestTeamScore; i++){
+            this.barData[1].labels.push(i.toString())
+          }
         }
       }
       else{
