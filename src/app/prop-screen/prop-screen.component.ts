@@ -2459,8 +2459,8 @@ export class PropScreenComponent implements OnInit {
     team2New.number = 0;
     team2New.inning = 1;
     //this.liveProps.push(this.team1GameStats, this.team2GameStats)
-    this.liveProps[0].stats = team1New
-    this.liveProps[1].stats = team2New
+    this.liveProps[0].stats = team2New
+    this.liveProps[1].stats = team1New
     this.liveProps[0].number = 1
     this.liveProps[1].number = 1
     this.liveProps[0].selectedDropDown = this.selectedDropDown
