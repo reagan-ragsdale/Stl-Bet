@@ -2571,6 +2571,7 @@ export class PropScreenComponent implements OnInit {
         }
       }
       else if(team.selectedDropDown == 'Scoring'){
+        highestScoreTeam = 0
         // find game where in any combo of innings they scored more than the number
         let highestScore = 0
         teamStats.forEach(e => {
@@ -2587,6 +2588,22 @@ export class PropScreenComponent implements OnInit {
           
         }
        
+      }
+      else if(team.selectedDropDown == 'Winning by X'){
+        highestScoreTeam = 0;
+        teamStats.forEach(e => {
+          if ((e.pointsScoredOverall - e.pointsAllowedOverall) > highestScoreTeam){
+            highestScoreTeam = (e.pointsScoredOverall - e.pointsAllowedOverall)
+          } 
+        })
+        for(let i = 1; i <= highestScoreTeam; i++){
+          let filteredGames = teamStats.filter(game => ((game.pointsScoredFirstInning - game.pointsAllowedFirstInning) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning)  - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning)  - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning + game.pointsScoredNinthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning + game.pointsAllowedNinthInning)) == i))
+          let totalWins = filteredGames.filter(e => e.result == 'W')
+
+          let totalChance = filteredGames.length == 0 ? 0 : totalWins.length/filteredGames.length
+          barChartFinal.push(totalChance * 100)
+        }
+        
       }
       
       this.barData.push(barChartFinal)
@@ -2664,7 +2681,7 @@ export class PropScreenComponent implements OnInit {
     }
     else if (index == 1) {
       if(this.liveProps[1].selectedDropDown != 'Winning After'){
-        this.barData[0].labels = []
+        this.barData[1].labels = []
         for(let i = 1; i <= highestScoreTeam; i++){
           this.barData[1].labels.push(i.toString())
         }
