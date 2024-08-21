@@ -97,7 +97,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat)
     }
     if(this.selectedSport == "MLB"){
-      this.playerData = await MlbController.mlbGetPlayerStatAverageTop5(stat, 2024)
+      this.playerData = await MlbController.mlbGetPlayerStatTotals(stat, 2024)
     }
     
     //stat.selected = true;
@@ -212,7 +212,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
-      let result = await Promise.all([MlbController.mlbGetPlayerStatTotals(), MlbController.mlbGetTeamStatAverageTop5("wins", 2024)])
+      let result = await Promise.all([MlbController.mlbGetPlayerStatTotals('homeRuns', 2024), MlbController.mlbGetTeamStatAverageTop5("wins", 2024)])
       this.playerData = result[0]
       this.teamData = result[1]
       this.playerStatsButtons = [

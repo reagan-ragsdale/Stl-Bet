@@ -129,21 +129,21 @@ export class MlbController {
     const taskRepo = remult.repo(DBMlbPlayerGameStatAverages)
     var finalData: DBMlbPlayerGameStatAverages[] = []
 
-    if(stat == "hits"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },  orderBy: {batterHits: "desc"}, limit: 5})
-    }
-    else if(stat == "homeRuns"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterHomeRuns: "desc"}, limit: 5})
-    }
-    else if(stat == "rbis"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterRbis: "desc"}, limit: 5})
-    }
-    else if(stat == "pitcherStrikes"){
-      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {pitcherStrikes: "desc"}, limit: 5})
-    }
-    else if (stat == 'totalBases'){
-      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterTotalBases: "desc"}, limit: 5})
-    }
+      if(stat == "hits"){
+        finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },  orderBy: {batterHits: "desc"}, limit: 5})
+      }
+      else if(stat == "homeRuns"){
+        finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterHomeRuns: "desc"}, limit: 5})
+      }
+      else if(stat == "rbis"){
+        finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterRbis: "desc"}, limit: 5})
+      }
+      else if(stat == "pitcherStrikes"){
+        finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {pitcherStrikes: "desc"}, limit: 5})
+      }
+      else if (stat == 'totalBases'){
+        finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterTotalBases: "desc"}, limit: 5})
+      }
     
     return finalData
   }
@@ -213,10 +213,25 @@ export class MlbController {
   }
 
   @BackendMethod({ allowed: true })
-  static async mlbGetPlayerStatTotals() {
+  static async mlbGetPlayerStatTotals(stat: string, season: number): Promise<DBMlbPlayerGameStatTotals[]> {
     const taskRepo = remult.repo(DBMlbPlayerGameStatTotals)
-
-    return await taskRepo.find({where: {totalGames:{ ">":10 }}, orderBy: {batterHomeRuns: 'desc'}, limit: 5})
+    let finalData: DBMlbPlayerGameStatTotals[] = [] 
+    if(stat == "hits"){
+      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },  orderBy: {batterHits: "desc"}, limit: 5})
+    }
+    else if(stat == "homeRuns"){
+      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterHomeRuns: "desc"}, limit: 5})
+    }
+    else if(stat == "rbis"){
+      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterRbis: "desc"}, limit: 5})
+    }
+    else if(stat == "pitcherStrikes"){
+      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {pitcherStrikes: "desc"}, limit: 5})
+    }
+    else if (stat == 'totalBases'){
+      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterTotalBases: "desc"}, limit: 5})
+    }
+    return finalData
    
     
   }
