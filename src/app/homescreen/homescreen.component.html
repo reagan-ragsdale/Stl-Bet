@@ -82,17 +82,17 @@
               </ng-container>
 
               <ng-container matColumnDef="Rbi's">
-                <th mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button  (click)="onPlayerStatsClick('rbis')">RBI</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;" (click)="onPlayerStatsClick('rbis')">RBI</button> </th>
                 <td mat-cell *matCellDef="let element"> {{element.batterRbis | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Hits">
-                <th mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button  (click)="onPlayerStatsClick('hits')">H</button>  </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;"  (click)="onPlayerStatsClick('hits')">H</button>  </th>
                 <td mat-cell *matCellDef="let element"> {{element.batterHits | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Total Bases">
-                <th mat-header-cell *matHeaderCellDef  class="click-header"> <button mat-button  (click)="onPlayerStatsClick('totalBases')">TB</button>  </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header"> <button mat-button style="padding-left: 0;" (click)="onPlayerStatsClick('totalBases')">TB</button>  </th>
                 <td mat-cell *matCellDef="let element"> {{element.batterTotalBases | number: '1.0-2'}} </td>
               </ng-container>
 
