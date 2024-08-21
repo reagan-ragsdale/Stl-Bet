@@ -141,6 +141,9 @@ export class MlbController {
     else if(stat == "pitcherStrikes"){
       finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {pitcherStrikes: "desc"}, limit: 5})
     }
+    else if (stat == 'totalBases'){
+      finalData = await taskRepo.find({where: {totalGames:{">": 0}, season: season },orderBy: {batterTotalBases: "desc"}, limit: 5})
+    }
     
     return finalData
   }
