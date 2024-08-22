@@ -146,7 +146,7 @@ public displayedColumnsValues: any[] = [
     }
   ]
 
-  public playerTotalStatColumns: string[] = ['Home Runs', 'Hits', 'Total Bases', 'Rbis', 'Runs']
+  public playerTotalStatColumns: string[] = ['Home Runs', 'Hits', 'Total Bases', 'RBIS', 'Runs']
 
   public playerTotalDataSet: any[] = [
     
@@ -163,7 +163,7 @@ public displayedColumnsValues: any[] = [
       data: 'batterTotalBases'
     },
     {
-      name: 'Rbis',
+      name: 'RBIS',
       data: 'batterRbis'
     },
     {
@@ -304,7 +304,7 @@ public displayedColumnsValues: any[] = [
     
         },
         {
-          label: "Rbis",
+          label: "RBIS",
           data: [],
           backgroundColor: 'yellow',
           showLine: false,
