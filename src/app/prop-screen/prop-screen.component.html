@@ -194,11 +194,11 @@
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total'">
                                     {{(((prop.propVariables.totalWins /
                                       prop.propVariables.totalGames) * ((prop.propVariables.teamAgainstTotalGames - prop.propVariables.teamAgainstTotalWins) /
-                                      prop.propVariables.teamAgainstTotalGames)) / ((prop.propVariables.totalWins /
+                                      prop.propVariables.teamAgainstTotalGames)) / (((prop.propVariables.totalWins /
                                       prop.propVariables.totalGames) * ((prop.propVariables.teamAgainstTotalGames - prop.propVariables.teamAgainstTotalWins) /
                                       prop.propVariables.teamAgainstTotalGames)) + (prop.propVariables.teamAgainstTotalWins /
                                       prop.propVariables.teamAgainstTotalGames) * ((prop.propVariables.totalGames - prop.propVariables.totalWins) /
-                                      prop.propVariables.totalGames)) | percent: '2.2-2'}}</h3>
+                                      prop.propVariables.totalGames))) | percent: '2.2-2'}}</h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">
                                     {{((prop.propVariables.totalWins / prop.propVariables.totalGames) *
@@ -263,11 +263,11 @@
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total'">
                                     {{(((prop.propVariables.totalWinsHomeAway /
                                       prop.propVariables.totalGamesHomeAway) * ((prop.propVariables.teamAgainstGamesHomeAway - prop.propVariables.teamAgainstWinsHomeAway) /
-                                      prop.propVariables.teamAgainstGamesHomeAway)) / ((prop.propVariables.totalWinsHomeAway /
+                                      prop.propVariables.teamAgainstGamesHomeAway)) / (((prop.propVariables.totalWinsHomeAway /
                                       prop.propVariables.totalGamesHomeAway) * ((prop.propVariables.teamAgainstGamesHomeAway - prop.propVariables.teamAgainstWinsHomeAway) /
                                       prop.propVariables.teamAgainstGamesHomeAway)) + (prop.propVariables.teamAgainstWinsHomeAway /
                                       prop.propVariables.teamAgainstGamesHomeAway) * ((prop.propVariables.totalGamesHomeAway - prop.propVariables.totalWinsHomeAway) /
-                                      prop.propVariables.totalGamesHomeAway)) | percent: '2.2-2'}}</h3>
+                                      prop.propVariables.totalGamesHomeAway))) | percent: '2.2-2'}}</h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">
                                     {{((prop.propVariables.totalWinsHomeAway / prop.propVariables.totalGamesHomeAway)
@@ -334,11 +334,11 @@
                                   <h3 style="margin:auto" *ngIf="prop.propVariables.propType != 'total'">
                                     {{(prop.propVariables.totalGamesTeam == 0 ? 0 :(((prop.propVariables.totalWinsTeam /
                                       prop.propVariables.totalGamesTeam) * ((prop.propVariables.teamAgainstGamesTeam - prop.propVariables.teamAgainstWinsTeam) /
-                                      prop.propVariables.teamAgainstGamesTeam)) / ((prop.propVariables.totalWinsTeam /
+                                      prop.propVariables.teamAgainstGamesTeam)) / (((prop.propVariables.totalWinsTeam /
                                       prop.propVariables.totalGamesTeam) * ((prop.propVariables.teamAgainstGamesTeam - prop.propVariables.teamAgainstWinsTeam) /
                                       prop.propVariables.teamAgainstGamesTeam)) + (prop.propVariables.teamAgainstWinsTeam /
                                       prop.propVariables.teamAgainstGamesTeam) * ((prop.propVariables.totalGamesTeam - prop.propVariables.totalWinsTeam) /
-                                      prop.propVariables.totalGamesTeam))) | percent: '2.2-2'}}
+                                      prop.propVariables.totalGamesTeam)))) | percent: '2.2-2'}}
                                     </h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false">
@@ -492,11 +492,11 @@
                               <h3 style="margin:auto">Weighted</h3>
                               <h3 style="margin:auto" *ngIf="bet.propType != 'total'">{{(((bet.totalWins /
                                 bet.totalGames) * ((bet.teamAgainstTotalGames - bet.teamAgainstTotalWins) /
-                                bet.teamAgainstTotalGames)) / ((bet.totalWins /
+                                bet.teamAgainstTotalGames)) / (((bet.totalWins /
                                 bet.totalGames) * ((bet.teamAgainstTotalGames - bet.teamAgainstTotalWins) /
                                 bet.teamAgainstTotalGames)) + (bet.teamAgainstTotalWins /
                                 bet.teamAgainstTotalGames) * ((bet.totalGames - bet.totalWins) /
-                                bet.totalGames)) | percent: '2.2-2'}}</h3>
+                                bet.totalGames))) | percent: '2.2-2'}}</h3>
                               <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == false">
                                 {{((bet.totalWins / bet.totalGames) * (bet.teamAgainstTotalWins /
                                 bet.teamAgainstTotalGames)) | percent: '2.2-2'}}</h3>
@@ -548,11 +548,11 @@
                               <h3 style="margin:auto">Weighted</h3>
                               <h3 style="margin:auto" *ngIf="bet.propType != 'total'">{{(((bet.totalWinsHomeAway /
                                 bet.totalGamesHomeAway) * ((bet.teamAgainstGamesHomeAway - bet.teamAgainstWinsHomeAway) /
-                                bet.teamAgainstGamesHomeAway)) / ((bet.totalWinsHomeAway /
+                                bet.teamAgainstGamesHomeAway)) / (((bet.totalWinsHomeAway /
                                 bet.totalGamesHomeAway) * ((bet.teamAgainstGamesHomeAway - bet.teamAgainstWinsHomeAway) /
                                 bet.teamAgainstGamesHomeAway)) + (bet.teamAgainstWinsHomeAway /
                                 bet.teamAgainstGamesHomeAway) * ((bet.totalGamesHomeAway - bet.totalWinsHomeAway) /
-                                bet.totalGamesHomeAway)) | percent: '2.2-2'}}
+                                bet.totalGamesHomeAway))) | percent: '2.2-2'}}
                               </h3>
                               <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == false">
                                 {{((bet.totalWinsHomeAway / bet.totalGamesHomeAway) * (bet.teamAgainstWinsHomeAway /
@@ -608,11 +608,11 @@
                               <h3 style="margin:auto" *ngIf="bet.propType != 'total'">{{(bet.totalGamesTeam == 0 ? 0
                                 : (((bet.totalWinsTeam /
                                   bet.totalGamesTeam) * ((bet.teamAgainstGamesTeam - bet.teamAgainstWinsTeam) /
-                                  bet.teamAgainstGamesTeam)) / ((bet.totalWinsTeam /
+                                  bet.teamAgainstGamesTeam)) / (((bet.totalWinsTeam /
                                   bet.totalGamesTeam) * ((bet.teamAgainstGamesTeam - bet.teamAgainstWinsTeam) /
                                   bet.teamAgainstGamesTeam)) + (bet.teamAgainstWinsTeam /
                                   bet.teamAgainstGamesTeam) * ((bet.totalGamesTeam - bet.totalWinsTeam) /
-                                  bet.totalGamesTeam))) | percent: '2.2-2'}}</h3>
+                                  bet.totalGamesTeam)))) | percent: '2.2-2'}}</h3>
                               <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == false">
                                 {{(bet.totalGamesTeam == 0 ? 0 : ((bet.totalWinsTeam / bet.totalGamesTeam) *
                                 (bet.teamAgainstWinsTeam / bet.teamAgainstGamesTeam))) | percent: '2.2-2'}}</h3>
