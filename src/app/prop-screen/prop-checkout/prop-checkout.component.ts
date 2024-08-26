@@ -81,7 +81,6 @@ export class PropCheckoutComponent implements OnChanges {
 
 
 
-    console.log(this.listOfProps)
     //an array is going to come in. It could have different team and player stat arrays
     //how to know how to calculate the same game chance of all the props happening
     // loop through each item in the array and check to see if there are both teams stats or players from both teams
@@ -113,7 +112,6 @@ export class PropCheckoutComponent implements OnChanges {
         if (players.length > 0) {
           distinctPlayers = players.map(e => e.propVariables.playerName).filter((value, index, array) => array.indexOf(value) === index)
         }
-        console.log(distinctPlayers)
 
         let numberOfTeamProps = this.listOfProps.filter(e => e.propVariables.playerOrTeam == 'Team')
         let statArray: any[] = []
@@ -127,7 +125,6 @@ export class PropCheckoutComponent implements OnChanges {
           let teamTotals: number = 0;
           for (let game of statArray) {
             if (game.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName) {
-              console.log("here in team totals += 1")
               teamTotals += 1;
             }
             let didParlayHappen: boolean[] = [];
@@ -138,7 +135,7 @@ export class PropCheckoutComponent implements OnChanges {
                 didParlayHappen.push(game.result == 'W' ? true : false);
                 if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(game.result == 'W' ? true : false)
-                  console.log("here in h2h")
+                  
                 }
               }
               else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
@@ -157,7 +154,7 @@ export class PropCheckoutComponent implements OnChanges {
                 didParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false);
                 if (game.teamAgainstName == prop.propVariables.teamAgainstName) {
                   didSameTeamParlayHappen.push(((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) ? true : false)
-                  console.log("here in h2h7")
+                  
                 }
               }
               else if (prop.propVariables.marketKey == 'spreads') {
@@ -180,7 +177,6 @@ export class PropCheckoutComponent implements OnChanges {
               }
 
             }
-            console.log(didSameTeamParlayHappen)
             if (!didParlayHappen.includes(false)) {
               totalWins += 1;
             }
@@ -196,7 +192,6 @@ export class PropCheckoutComponent implements OnChanges {
         }
 
         else if (distinctPlayers.length == 1) {
-          console.log("here")
           //need to get all the players game and the same games for that team
           statArray = players[0].stats
           //just loop through that player
@@ -315,7 +310,6 @@ export class PropCheckoutComponent implements OnChanges {
                   didParlayHappen.push(gameFiltered.result == 'W' ? true : false);
                   if (gameFiltered.teamAgainstName == prop.propVariables.teamAgainstName) {
                     didSameTeamParlayHappen.push(gameFiltered.result == 'W' ? true : false)
-                    console.log("here in h2h")
                   }
                 }
                 else if (prop.propVariables.marketKey == 'h2h_1st_3_innings') {
@@ -385,12 +379,9 @@ export class PropCheckoutComponent implements OnChanges {
           let gameArrays: any[] = []
           for (let player of distinctPlayers) {
             let filteredPlayer = players.filter(e => e.propVariables.playerName == player)
-            console.log(filteredPlayer)
             let gameIds = filteredPlayer[0].stats.map((e: { gameId: any; }) => e.gameId)
             gameArrays.push(gameIds)
           }
-          console.log("gameArrays below")
-          console.log(gameArrays)
           for (let player of gameArrays) {
             listOfCommonGameIds = listOfCommonGameIds.concat(player)
           }
@@ -422,8 +413,6 @@ export class PropCheckoutComponent implements OnChanges {
               newCommonGameIds.push(game)
             }
           }
-          console.log("new common game ids below")
-          console.log(newCommonGameIds)
 
 
           //above has common game ids for both players
@@ -437,7 +426,6 @@ export class PropCheckoutComponent implements OnChanges {
             for (let prop of this.listOfProps) {
               //need to find same games between the two players
               let filteredGame = prop.stats.filter((e: { gameId: any; }) => e.gameId == game)[0]
-              console.log(filteredGame)
               if (prop.propVariables.playerOrTeam == 'Player') {
                 if (prop.propVariables.marketKey == 'batter_total_bases') {
                   if (prop.propVariables.overUnder == false) {
@@ -576,7 +564,7 @@ export class PropCheckoutComponent implements OnChanges {
                   if (filteredGame.teamAgainstName == prop.propVariables.teamAgainstName) {
                     teamPlay = true
                     didSameTeamParlayHappen.push(((filteredGame.pointsScoredFirstInning + filteredGame.pointsScoredSecondInning + filteredGame.pointsScoredThirdInning + filteredGame.pointsScoredFourthInning + filteredGame.pointsScoredFifthInning + filteredGame.pointsScoredSixthInning + filteredGame.pointsScoredSeventhInning) > (filteredGame.pointsAllowedFirstInning + filteredGame.pointsAllowedSecondInning + filteredGame.pointsAllowedThirdInning + filteredGame.pointsAllowedFourthInning + filteredGame.pointsAllowedFifthInning + filteredGame.pointsAllowedSixthInning + filteredGame.pointsAllowedSeventhInning)) ? true : false)
-                    console.log("here in h2h7")
+                    
                   }
                 }
                 else if (prop.propVariables.marketKey == 'spreads') {
@@ -602,8 +590,6 @@ export class PropCheckoutComponent implements OnChanges {
                 }
               }
             }
-            console.log(didParlayHappen)
-            console.log(didSameTeamParlayHappen)
             if (teamPlay == true) {
               teamTotals += 1;
             }
@@ -632,14 +618,12 @@ export class PropCheckoutComponent implements OnChanges {
 
         //just the two teams
         if (players.length == 0) {
-          console.log(this.listOfProps)
           statArray = this.listOfProps[0].stats.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[0].propVariables.teamAgainstName)
-          console.log(statArray)
+         
           let totalWins: number = 0;
           for (let game of statArray) {
             let didParlayHappen: boolean[] = [];
             for (let prop of this.listOfProps) {
-              console.log(prop)
               //need to check which team the prop is from 
               if (prop.propVariables.teamName == game.teamName) {
                 if (prop.propVariables.marketKey == 'h2h') {
@@ -805,7 +789,6 @@ export class PropCheckoutComponent implements OnChanges {
             let games = filteredPlayer.stats.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == filteredPlayer.propVariables.teamAgainstName)
             listOfGames.push(games.map((e: { gameId: any; }) => e.gameId))
           }
-          console.log(listOfGames)
           let newCommonGameIds = []
           for (let game of listOfGames[0]) {
             let value = [];
@@ -821,8 +804,6 @@ export class PropCheckoutComponent implements OnChanges {
               newCommonGameIds.push(game)
             }
           }
-          console.log("common game ids below")
-          console.log(newCommonGameIds)
           if (newCommonGameIds.length == 0) {
             this.sameGameChance = 0
           }
@@ -946,6 +927,8 @@ export class PropCheckoutComponent implements OnChanges {
     let propOverall: number = 1;
     for (let prop of this.listOfProps) {
       if (prop.propVariables.playerOrTeam == 'Player') {
+        console.log(prop.propVariables.overOverall)
+        console.log(prop.propVariables.totalOverall)
         propOverall = propOverall * (prop.propVariables.overOverall / prop.propVariables.totalOverall)
       }
       else {
