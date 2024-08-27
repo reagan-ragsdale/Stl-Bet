@@ -186,7 +186,7 @@ export class MlbController {
       finalData =  await taskRepo.find({where: {season: season}, orderBy: {pointsScoredOverall: "desc"}, limit: 5})
     }
     else if(stat == "wins"){
-      finalData = await taskRepo.find({where: {season: season},orderBy: {wins: "desc"}, limit: 5})
+      finalData = await taskRepo.find({where: {season: season},orderBy: {wins: "desc", losses: "asc"}, limit: 5})
     }
     else if(stat == "pointsAllowed"){
       finalData = await taskRepo.find({where: {season: season},orderBy: {pointsAllowedOverall: "asc"}, limit: 5})
