@@ -132,9 +132,7 @@ export class NflService {
                 sacks: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'sacks') ? player.Defense.sacks : 0 ) : 0,
             })
             console.log("pushed:" + player.longName)
-            if(player.longName == "De'Von Achane" && gameSummary.gameID == '20240107_BUF@MIA'){
-                console.log(playerStats)
-            }
+            
         }
         
         

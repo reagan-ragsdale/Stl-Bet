@@ -3,6 +3,7 @@ import { DBNflTeamGameStats } from "../dbTasks/DbNflTeamGameStats"
 import { DBNflPlayerGameStats } from "../dbTasks/DbNflPlayerGameStats"
 import { DBNflPlayerGameStatTotals } from "../dbTasks/DbNflPlayerGameStatTotals"
 import { DBNflTeamGameStatTotals } from "../dbTasks/DbNflTeamGameStatTotals"
+import { ErrorEmailController } from "./ErrorEmailController"
 
 export class NflController {
 
@@ -45,7 +46,14 @@ export class NflController {
     @BackendMethod({allowed: true})
     static async addPlayerGameStats(playerStats: DBNflPlayerGameStats){
         const taskRepo = remult.repo(DBNflPlayerGameStats)
-        await taskRepo.insert(playerStats)
+        try{
+            await taskRepo.insert(playerStats)
+        }
+        catch(error:any){
+            ErrorEmailController.sendEmail(JSON.stringify(playerStats))
+        }
+        
+       
     }
 
     @BackendMethod({allowed:true})
