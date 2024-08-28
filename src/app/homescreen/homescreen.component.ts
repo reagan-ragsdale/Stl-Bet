@@ -94,6 +94,21 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     await this.getData(sport)
   }
 
+  async onPlayerStatsClick(stat: string) {
+    if(this.selectedSport == "NBA"){
+      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat)
+    }
+    if(this.selectedSport == "MLB"){
+      this.playerData = await MlbController.mlbGetPlayerStatTotals(stat, 2024)
+    }
+    
+
+    //stat.selected = true;
+    //this.playerStatsButtons.filter(e => e.dbName != stat).forEach(d => d.selected = false);
+
+
+  }
+
 
   
   
