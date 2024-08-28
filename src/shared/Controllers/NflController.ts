@@ -50,7 +50,7 @@ export class NflController {
             await taskRepo.insert(playerStats)
         }
         catch(error:any){
-            ErrorEmailController.sendEmail(JSON.stringify(playerStats))
+            ErrorEmailController.sendEmailError(JSON.stringify(playerStats))
         }
         
        
