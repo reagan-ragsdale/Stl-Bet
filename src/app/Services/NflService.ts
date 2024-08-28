@@ -3,7 +3,7 @@ import { DBNflPlayerGameStats } from "../../shared/dbTasks/DbNflPlayerGameStats"
 import { DBNflPlayerGameStatTotals } from "../../shared/dbTasks/DbNflPlayerGameStatTotals";
 import { DBNflTeamGameStats } from "../../shared/dbTasks/DbNflTeamGameStats";
 import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo";
-import { ErrorEmailController } from "src/shared/Controllers/ErrorEmailController";
+import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 
 
 export class NflService {
@@ -206,9 +206,9 @@ export class NflService {
             finalReturn.sacks += game.sacks
         }
 
-        finalReturn.qbYardsPerPassAttempt = finalReturn.qbPassingYards / finalReturn.qbPassingAttempts;
-        finalReturn.yardsPerRushAttempt = finalReturn.rushingYards / finalReturn.rushingAttempts;
-        finalReturn.yardsPerReception = finalReturn.receivingYards / finalReturn.receptions;
+        finalReturn.qbYardsPerPassAttempt = finalReturn.qbPassingAttempts == 0 ? 0 : finalReturn.qbPassingYards / finalReturn.qbPassingAttempts;
+        finalReturn.yardsPerRushAttempt = finalReturn.rushingAttempts == 0 ? 0 : finalReturn.rushingYards / finalReturn.rushingAttempts;
+        finalReturn.yardsPerReception = finalReturn.receptions == 0 ? 0 : finalReturn.receivingYards / finalReturn.receptions;
         finalReturn.touchdowns = finalReturn.rushingTouchdowns + finalReturn.receivingTouchdowns + finalReturn.qbPassingTouchdowns;
 
         return finalReturn
