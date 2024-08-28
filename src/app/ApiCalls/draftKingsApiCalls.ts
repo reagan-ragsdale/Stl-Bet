@@ -33,12 +33,15 @@ export class draftKingsApiController {
       playerProps = "batter_home_runs,batter_hits,batter_total_bases,batter_rbis,batter_runs_scored,batter_hits_runs_rbis"
 
     }
-    if (sport === "NHL") {
+    else if (sport === "NHL") {
       playerProps = "player_points,player_assists,player_shots_on_goal"
 
     }
-    if (sport == "NBA") {
+    else if (sport == "NBA") {
       playerProps = "player_points,player_rebounds,player_assists,player_threes,player_double_double,player_blocks"
+    }
+    else if(sport == "NFL"){
+      playerProps = "player_pass_tds,player_pass_yds,player_rush_yds,player_reception_yds"
     }
     urlNew = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + game + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=" + playerProps + "&bookmakers=draftkings&oddsFormat=american";
 

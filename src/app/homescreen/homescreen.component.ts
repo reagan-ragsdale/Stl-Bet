@@ -214,7 +214,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       
     }
     else if (sport == "MLB") {
-      var taskRepo = remult.repo(DbGameBookData)
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsMlb
       this.gameDataAllFinal = []
@@ -256,15 +255,11 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         }
       ]
 
-       this.unsubscribe = taskRepo
-      .liveQuery({
-        where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
-      })
-      .subscribe(info => this.loadProps(info.items)) 
+       
       this.playerAverageColumns = this.playerAverageColumnsMlb
     }
     else if (sport == "NFL") {
-      var taskRepo = remult.repo(DbGameBookData)
+      
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNfl
       this.gameDataAllFinal = []
@@ -301,13 +296,15 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         }
       ]
 
-       this.unsubscribe = taskRepo
+       
+      this.playerAverageColumns = this.playerAverageColumnsNfl
+    }
+    var taskRepo = remult.repo(DbGameBookData)
+    this.unsubscribe = taskRepo
       .liveQuery({
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
       .subscribe(info => this.loadProps(info.items)) 
-      this.playerAverageColumns = this.playerAverageColumnsNfl
-    }
 
   }
 
