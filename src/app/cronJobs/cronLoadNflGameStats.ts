@@ -1,6 +1,7 @@
 import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 import { NflController } from "../../shared/Controllers/NflController";
 import { nflApiController } from "../ApiCalls/nflApiCalls";
+import { NflService } from "../Services/NflService";
 
 
 export const cronLoadNflGameStats = async () => {
@@ -30,5 +31,23 @@ export const cronLoadNflGameStats = async () => {
     }catch(error:any){
         ErrorEmailController.sendEmailError(error.message)
         
+    }
+    try{
+        let players = await NflController.nflGetAllPlayerGameStatsBySeason(2023);
+        let distinctPlayers = players.map(e => e.playerId).filter((value, index,array) => array.indexOf(value) === index)
+        for(let player of distinctPlayers){
+            let playerStats = players.filter(e => e.playerId == player)
+            let playerStatTotals = NflService.convertPlayerStatsToTotals(playerStats)
+            await NflController.nflSetPlayerStatTotals(playerStatTotals)
+        }
+        let teams = await NflController.nflGetAllTeamGameStatsBySeason(2023);
+        let distinctTeams = teams.map(e => e.teamId).filter((value,index,array) => array.indexOf(value) === index);
+        for(let team of distinctTeams){
+            let teamStats = teams.filter(e => e.teamId == team);
+            let teamStatTotals = NflService.convertTeamStatsToTotals(teamStats)
+            await NflController.nflSetTeamStatTotals(teamStatTotals)
+        }
+    }catch(error:any){
+        ErrorEmailController.sendEmailError(error.message) 
     }
 }

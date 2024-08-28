@@ -18,6 +18,7 @@ import { mlbCronFile } from '../mlbCron';
 import { MlbService } from '../Services/MlbService';
 import { nflApiController } from '../ApiCalls/nflApiCalls';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
+import { NflController } from 'src/shared/Controllers/NflController';
 
 @Component({
     selector: 'home-screen',
@@ -39,7 +40,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   playerStatsButtons: any[] = []
   teamStatsButtons: any[] = []
 
-  public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: true, selected: false }, { name: "MLB", disabled: false, selected: true }, { name: "NFL", disabled: true, selected: false }];
+  public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: true, selected: false }, { name: "MLB", disabled: false, selected: true }, { name: "NFL", disabled: false, selected: false }];
   public selectedSport = ''
   public playerDataFinal: any[] = []
   public playerData: any[] = []
@@ -57,6 +58,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   playerAverageColumnsMlb: string[] = ["Player", "Home Runs", "Rbi's", "Hits", "Total Bases"]
   teamAverageColumnsMlb: string[] = ["Team", "Wins", "Losses"]
+
+  playerAverageColumnsNfl: string[] = ["Player", "Touchdowns", "Rushing Yards", "Receiving Yards"]
+  teamAverageColumnsNfl: string[] = ["Team", "Wins", "Losses"]
 
   propClicked() {
     this.router.navigate(["/props"])
@@ -92,24 +96,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
 
   
-  async onPlayerStatsClick(stat: string) {
-    if(this.selectedSport == "NBA"){
-      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat)
-    }
-    if(this.selectedSport == "MLB"){
-      this.playerData = await MlbController.mlbGetPlayerStatTotals(stat, 2024)
-    }
-    
-    //stat.selected = true;
-    //this.playerStatsButtons.filter(e => e.dbName != stat).forEach(d => d.selected = false);
-
-
-  }
-  async onTeamStatsClick(stat: any) {
-    this.teamData = await NbaController.nbaGetTeamStatAverageTop5(stat.dbName)
-    stat.selected = true;
-    this.teamStatsButtons.filter(e => e.dbName != stat.dbName).forEach(d => d.selected = false);
-  }
+  
 
   unsubscribe = () => {}
   async getData(sport: string) {
@@ -247,6 +234,51 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           selected: false,
           name: "Runs Allowed",
           dbName: "runsAllowed"
+        }
+      ]
+
+       this.unsubscribe = taskRepo
+      .liveQuery({
+        where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
+      })
+      .subscribe(info => this.loadProps(info.items)) 
+      this.playerAverageColumns = this.playerAverageColumnsMlb
+    }
+    else if (sport == "NFL") {
+      var taskRepo = remult.repo(DbGameBookData)
+      //var unsubscribe = () => {}
+      this.teamAverageColumns = this.teamAverageColumnsNfl
+      this.gameDataAllFinal = []
+      let result = await Promise.all([NflController.nflGetPlayerStatTotals('touchdowns', 2023), NflController.nflGetTeamStatTotals("wins", 2023)])
+      this.playerData = result[0]
+      this.teamData = result[1]
+      this.playerStatsButtons = [
+        {
+          selected: true,
+          name: "Touchdowns",
+          dbName: "touchdowns"
+        },
+        {
+          selected: false,
+          name: "Rushing Yards",
+          dbName: "rushingYards"
+        },
+        {
+          selected: false,
+          name: "Receiving Yards",
+          dbName: "receivingYards"
+        },
+      ]
+      this.teamStatsButtons = [
+        {
+          selected: true,
+          name: "Wins",
+          dbName: "wins"
+        },
+        {
+          selected: false,
+          name: "Losses",
+          dbName: "losses"
         }
       ]
 

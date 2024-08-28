@@ -45,6 +45,8 @@ import { cronLoadNflGameStats } from '../app/cronJobs/cronLoadNflGameStats';
 import { ErrorEmailController } from '../shared/Controllers/ErrorEmailController';
 import { generate, verify } from 'password-hash'
 import { emailer } from './emailService';
+import { DBNflTeamGameStatTotals } from '../shared/dbTasks/DbNflTeamGameStatTotals';
+import { DBNflPlayerGameStatTotals } from '../shared/dbTasks/DbNflPlayerGameStatTotals';
 
 config()
 UsersController.generate =generate;
@@ -70,7 +72,9 @@ export const api = remultExpress({
     DbTeamInfo,
     DbUsers,
     DBNflTeamGameStats,
-    DBNflPlayerGameStats
+    DBNflPlayerGameStats,
+    DBNflTeamGameStatTotals,
+    DBNflPlayerGameStatTotals
   ],
   controllers: [
     MlbController,
@@ -108,7 +112,7 @@ export const api = remultExpress({
 
     cron.schedule('0 */2 * * *', () => cronSportsBookHourly())
     cron.schedule('0 */2 * * *', () => cronLoadMlbPlayer())
-    cron.schedule('25 19 * * *', () => cronLoadNflGameStats())
+    cron.schedule('20 15 * * *', () => cronLoadNflGameStats())
   }
 
 });

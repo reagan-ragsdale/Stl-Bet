@@ -1,6 +1,8 @@
-import { DBNflPlayerGameStats } from "src/shared/dbTasks/DbNflPlayerGameStats";
-import { DBNflTeamGameStats } from "src/shared/dbTasks/DbNflTeamGameStats";
-import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
+import { DBNflTeamGameStatTotals } from "../../shared/dbTasks/DbNflTeamGameStatTotals";
+import { DBNflPlayerGameStats } from "../../shared/dbTasks/DbNflPlayerGameStats";
+import { DBNflPlayerGameStatTotals } from "../../shared/dbTasks/DbNflPlayerGameStatTotals";
+import { DBNflTeamGameStats } from "../../shared/dbTasks/DbNflTeamGameStats";
+import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo";
 
 
 export class NflService {
@@ -129,12 +131,147 @@ export class NflService {
                 totalTackles: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'totalTackles') ? player.Defense.totalTackles : 0) : 0,
                 sacks: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'sacks') ? player.Defense.sacks : 0 ) : 0,
             })
-            console.log("pushed:" + player)
+            console.log("pushed:" + player.longName)
         }
         
         finalReturn.push(playerStats)
 
         return finalReturn
+    }
+
+    static convertPlayerStatsToTotals(playerStats: DBNflPlayerGameStats[]): DBNflPlayerGameStatTotals{
+        let finalReturn: DBNflPlayerGameStatTotals = {
+            playerId: 0,
+            playerName: "",
+            teamName: '',
+            teamId: 0,
+            season: 0,
+            qbCompletions: 0,
+            qbPassingAttempts: 0,
+            qbPassingYards: 0,
+            qbYardsPerPassAttempt: 0,
+            qbPassingTouchdowns: 0,
+            qbInterceptions: 0,
+            qbsacks: 0,
+            qBRating: 0,
+            adjQBR: 0,
+            rushingAttempts: 0,
+            rushingYards: 0,
+            yardsPerRushAttempt: 0,
+            rushingTouchdowns: 0,
+            longRushing: 0,
+            receptions: 0,
+            receivingTargets: 0,
+            receivingYards: 0,
+            yardsPerReception: 0,
+            receivingTouchdowns: 0,
+            touchdowns: 0,
+            longReception: 0,
+            totalTackles: 0,
+            sacks: 0
+
+        };
+
+        for(let game of playerStats){
+            finalReturn.playerId = game.playerId;
+            finalReturn.playerName = game.playerName;
+            finalReturn.teamId = game.teamId;
+            finalReturn.teamName = game.teamName;
+            finalReturn.season = game.season;
+            finalReturn.qbCompletions += game.qbCompletions;
+            finalReturn.qbPassingAttempts += game.qbPassingAttempts;
+            finalReturn.qbPassingYards += game.qbPassingYards;
+            finalReturn.qbPassingTouchdowns += game.qbPassingTouchdowns;
+            finalReturn.qbInterceptions += game.qbInterceptions;
+            finalReturn.qbsacks += game.qbsacks;
+            finalReturn.qBRating += game.qBRating;
+            finalReturn.adjQBR += game.adjQBR;
+            finalReturn.rushingAttempts += game.rushingAttempts;
+            finalReturn.rushingYards += game.rushingYards;
+            finalReturn.rushingTouchdowns += game.rushingTouchdowns;
+            finalReturn.receptions += game.receptions;
+            finalReturn.receivingTargets += game.receivingTargets;
+            finalReturn.receivingYards += game.receivingYards;
+            finalReturn.receivingTouchdowns += game.receivingTouchdowns;
+            finalReturn.totalTackles += game.totalTackles;
+            finalReturn.sacks += game.sacks
+        }
+
+        finalReturn.qbYardsPerPassAttempt = finalReturn.qbPassingYards / finalReturn.qbPassingAttempts;
+        finalReturn.yardsPerRushAttempt = finalReturn.rushingYards / finalReturn.rushingAttempts;
+        finalReturn.yardsPerReception = finalReturn.receivingYards / finalReturn.receptions;
+        finalReturn.touchdowns = finalReturn.rushingTouchdowns + finalReturn.receivingTouchdowns + finalReturn.qbPassingTouchdowns;
+
+        return finalReturn
+
+    }
+
+    static convertTeamStatsToTotals(teamStats: DBNflTeamGameStats[]): DBNflTeamGameStatTotals{
+        let finalReturn: DBNflTeamGameStatTotals = {
+            teamName: '',            
+            teamId: 0,
+            season: 0,
+            wins: 0,
+            losses: 0,
+            pointsScoredOverall: 0,
+            pointsScoredFirstQuarter: 0,
+            pointsScoredSecondQuarter: 0,
+            pointsScoredThirdQuarter: 0,
+            pointsScoredFourthQuarter: 0,
+            totalYards: 0,
+            totalRushingYards: 0,
+            totalPassingYards: 0,
+            totalRushingAttempts: 0,
+            interceptionsThrown: 0,
+            interceptionsCaught: 0,
+            fumblesLost: 0,
+            firstDowns: 0,
+            sacksAgainst: 0,
+            passCompletions: 0,
+            passAttempts: 0,
+            pointsAllowedOverall: 0,
+            pointsAllowedFirstQuarter: 0,
+            pointsAllowedSecondQuarter: 0,
+            pointsAllowedThirdQuarter: 0,
+            pointsAllowedFourthQuarter: 0,
+            totalYardsAllowed: 0,
+            totalRushingYardsAllowed: 0,
+            totalPassingYardsAllowed: 0,
+        }
+        for(let stat of teamStats){
+            finalReturn.teamId = stat.teamId;
+            finalReturn.teamName = stat.teamName;
+            finalReturn.season = stat.season;
+            finalReturn.wins += stat.result == 'W' ? 1 : 0;
+            finalReturn.losses += stat.result == 'L' ? 1 : 0;
+            finalReturn.pointsScoredOverall += stat.pointsScoredOverall;
+            finalReturn.pointsScoredFirstQuarter += stat.pointsScoredFirstQuarter;
+            finalReturn.pointsScoredSecondQuarter += stat.pointsScoredSecondQuarter;
+            finalReturn.pointsScoredThirdQuarter += stat.pointsScoredThirdQuarter;
+            finalReturn.pointsScoredFourthQuarter += stat.pointsScoredFourthQuarter;
+            finalReturn.totalYards += stat.totalYards;
+            finalReturn.totalRushingYards += stat.totalRushingYards;
+            finalReturn.totalPassingYards += stat.totalPassingYards;
+            finalReturn.totalRushingAttempts += stat.totalRushingAttempts;
+            finalReturn.interceptionsThrown += stat.interceptionsThrown;
+            finalReturn.interceptionsCaught += stat.interceptionsCaught;
+            finalReturn.fumblesLost += stat.fumblesLost;
+            finalReturn.firstDowns += stat.firstDowns;
+            finalReturn.sacksAgainst += stat.sacksAgainst;
+            finalReturn.passCompletions += stat.passCompletions;
+            finalReturn.passAttempts += stat.passAttempts;
+            finalReturn.pointsAllowedOverall += stat.pointsAllowedOverall;
+            finalReturn.pointsAllowedFirstQuarter += stat.pointsAllowedFirstQuarter;
+            finalReturn.pointsAllowedSecondQuarter += stat.pointsAllowedSecondQuarter;
+            finalReturn.pointsAllowedThirdQuarter += stat.pointsAllowedThirdQuarter;
+            finalReturn.pointsAllowedFourthQuarter += stat.pointsAllowedFourthQuarter;
+            finalReturn.totalYardsAllowed += stat.totalYardsAllowed;
+            finalReturn.totalRushingYardsAllowed += stat.totalRushingYardsAllowed;
+            finalReturn.totalPassingYardsAllowed += stat.totalPassingYardsAllowed;
+
+        }
+
+        return finalReturn;
     }
 
     static convertTeamInfoToDb(teamInfo: any): DbTeamInfo[] {
