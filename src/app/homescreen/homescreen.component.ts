@@ -98,9 +98,13 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     if(this.selectedSport == "NBA"){
       this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat)
     }
-    if(this.selectedSport == "MLB"){
+    else if(this.selectedSport == "MLB"){
       this.playerData = await MlbController.mlbGetPlayerStatTotals(stat, 2024)
     }
+    else if(this.selectedSport == "NFL"){
+      this.playerData = await NflController.nflGetPlayerStatTotals(stat, 2023)
+    }
+    
     
 
     //stat.selected = true;
@@ -302,7 +306,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
       })
       .subscribe(info => this.loadProps(info.items)) 
-      this.playerAverageColumns = this.playerAverageColumnsMlb
+      this.playerAverageColumns = this.playerAverageColumnsNfl
     }
 
   }
