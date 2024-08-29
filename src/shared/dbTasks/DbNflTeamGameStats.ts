@@ -19,8 +19,8 @@ export class DBNflTeamGameStats {
     @Fields.string()
     gameId = ''
 
-    @Fields.integer()
-    gameDate = 0
+    @Fields.string()
+    gameDate = ''
 
     @Fields.integer()
     season = 0;
