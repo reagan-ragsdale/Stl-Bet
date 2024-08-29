@@ -2281,13 +2281,13 @@ export class PropScreenComponent implements OnInit {
         let two = prop[0][1].teamName + " " + prop[0][1].point + " | " + propOver + prop[0][1].price
         finalReturn = one + " " + two
       }
-      /* else if (prop.propVariables.marketKey.includes('team_totals')) {
+       else if (prop.propVariables.marketKey == ('team_totals Over') || prop.propVariables.marketKey == ('team_totals Under')) {
         let propOver = prop[0][0].price > 0 ? '+' : ''
         let one = "Over " + prop[0][0].point + " | " + propOver + prop[0][0].price
         propOver = prop[0][1].price > 0 ? '+' : ''
         let two = "Under " + prop[0][1].point + " | " + propOver + prop[0][1].price
         finalReturn = one + " " + two
-      } */
+      } 
 
 
     }
