@@ -519,7 +519,7 @@ export class PropScreenComponent implements OnInit {
 
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
-    this.setValuesToTeamPropFinal()
+    await this.setValuesToTeamPropFinal()
     await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
     this.calcLiveProps()
   }
@@ -543,17 +543,17 @@ export class PropScreenComponent implements OnInit {
     this.router.navigate(["/teamStats/" + this.selectedSport + "/" + teamId])
   }
 
-  setValuesToTeamPropFinal() {
+  async setValuesToTeamPropFinal() {
     this.arrayOfTeamBets = []
     for (let team of this.teamPropFinnal) {
       for (let prop of team) {
         let returnProp = {}
         if (prop[0].length > 1) {
-          returnProp = this.getTeamStats(prop[0][0], team[0][0].teamName)
+          returnProp = await this.getTeamStats(prop[0][0], team[0][0].teamName)
         }
         else {
 
-          returnProp = this.getTeamStats(prop[0], team[0][0].teamName)
+          returnProp = await this.getTeamStats(prop[0], team[0][0].teamName)
         }
         prop.propVariables = returnProp
       }
