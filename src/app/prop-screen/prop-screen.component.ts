@@ -521,7 +521,16 @@ export class PropScreenComponent implements OnInit {
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
-    await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
+    if(this.selectedSport == 'MLB'){
+      await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
+    }
+    else if(this.selectedSport == "NFL"){
+      let teams = await TeamInfoController.getAllTeamInfo('NFL')
+      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
+      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
+    }
+    
     this.calcLiveProps()
   }
 
@@ -2728,22 +2737,125 @@ export class PropScreenComponent implements OnInit {
     let highestScoreTeam = 0;
     for (let team of this.liveProps) {
       let barChartFinal: any[] = []
-      let teamStats: DbMlbTeamGameStats[] = team.stats
+      if(this.selectedSport == 'MLB'){
+        let teamStats: DbMlbTeamGameStats[] = team.stats
+        if (team.selectedDropDown == 'Winning After') {
+          for (let i = 1; i < 9; i++) {
+            let totalInningChance = 0;
+            let totalGames = 0
+            let totalWins = 0
+            if (i == 1) {
+              let filteredGames: DbMlbTeamGameStats[] = []
+              filteredGames = teamStats.filter(game => game.pointsScoredFirstInning > game.pointsAllowedFirstInning)
+  
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+            else if (i == 2) {
+              let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning))
+  
+  
+  
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+            else if (i == 3) {
+              let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning))
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+            else if (i == 4) {
+              let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning))
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+            else if (i == 5) {
+              let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning))
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+            else if (i == 6) {
+              let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning))
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+            else if (i == 7) {
+              let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning))
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+            else if (i == 8) {
+              let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning))
+              let gamesWon = filteredGames.filter(e => e.result == 'W')
+              totalGames = filteredGames.length
+              totalWins = gamesWon.length
+            }
+  
+            //totalInningChance = totalWins/this.team1GameStats.length
+  
+            totalInningChance = totalWins / totalGames
+            barChartFinal.push(totalInningChance * 100)
+          }
+        }
+        else if (team.selectedDropDown == 'Scoring') {
+          highestScoreTeam = 0
+          // find game where in any combo of innings they scored more than the number
+          let highestScore = 0
+          teamStats.forEach(e => {
+            if (e.pointsScoredOverall > highestScore) {
+              highestScore = e.pointsScoredOverall
+            }
+          })
+          highestScoreTeam = highestScore
+          for (let i = 1; i <= highestScore; i++) {
+            let filteredGames = teamStats.filter(game => game.pointsScoredOverall >= i)
+            let totalWins = filteredGames.filter(e => e.result == 'W')
+            let totalChance = filteredGames.length == 0 ? 0 : totalWins.length / filteredGames.length
+            barChartFinal.push(totalChance * 100)
+  
+          }
+  
+        }
+        else if (team.selectedDropDown == 'Winning by X') {
+          highestScoreTeam = 0;
+          teamStats.forEach(e => {
+            if ((e.pointsScoredOverall - e.pointsAllowedOverall) > highestScoreTeam) {
+              highestScoreTeam = (e.pointsScoredOverall - e.pointsAllowedOverall)
+            }
+          })
+          for (let i = 1; i <= highestScoreTeam; i++) {
+            let filteredGames = teamStats.filter(game => ((game.pointsScoredFirstInning - game.pointsAllowedFirstInning) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning + game.pointsScoredNinthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning + game.pointsAllowedNinthInning)) == i))
+            let totalWins = filteredGames.filter(e => e.result == 'W')
+            let totalChance = filteredGames.length == 0 ? 0 : totalWins.length / filteredGames.length
+            barChartFinal.push(totalChance * 100)
+          }
+  
+        }
+      }
+      else if(this.selectedSport == 'NFL'){
+        let teamStats: DBNflTeamGameStats[] = team.stats
       if (team.selectedDropDown == 'Winning After') {
-        for (let i = 1; i < 9; i++) {
+        for (let i = 1; i < 5; i++) {
           let totalInningChance = 0;
           let totalGames = 0
           let totalWins = 0
           if (i == 1) {
-            let filteredGames: DbMlbTeamGameStats[] = []
-            filteredGames = teamStats.filter(game => game.pointsScoredFirstInning > game.pointsAllowedFirstInning)
+            let filteredGames: DBNflTeamGameStats[] = []
+            filteredGames = teamStats.filter(game => game.pointsScoredFirstQuarter > game.pointsAllowedFirstQuarter)
 
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
           else if (i == 2) {
-            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning))
+            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter) > (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter))
 
 
 
@@ -2752,37 +2864,13 @@ export class PropScreenComponent implements OnInit {
             totalWins = gamesWon.length
           }
           else if (i == 3) {
-            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning))
+            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter + game.pointsScoredThirdQuarter) > (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter + game.pointsAllowedThirdQuarter))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
           }
           else if (i == 4) {
-            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning))
-            let gamesWon = filteredGames.filter(e => e.result == 'W')
-            totalGames = filteredGames.length
-            totalWins = gamesWon.length
-          }
-          else if (i == 5) {
-            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning))
-            let gamesWon = filteredGames.filter(e => e.result == 'W')
-            totalGames = filteredGames.length
-            totalWins = gamesWon.length
-          }
-          else if (i == 6) {
-            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning))
-            let gamesWon = filteredGames.filter(e => e.result == 'W')
-            totalGames = filteredGames.length
-            totalWins = gamesWon.length
-          }
-          else if (i == 7) {
-            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning))
-            let gamesWon = filteredGames.filter(e => e.result == 'W')
-            totalGames = filteredGames.length
-            totalWins = gamesWon.length
-          }
-          else if (i == 8) {
-            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredFifthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) > (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning))
+            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter + game.pointsScoredThirdQuarter + game.pointsScoredFourthQuarter) > (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter + game.pointsAllowedThirdQuarter + game.pointsAllowedFourthQuarter))
             let gamesWon = filteredGames.filter(e => e.result == 'W')
             totalGames = filteredGames.length
             totalWins = gamesWon.length
@@ -2821,25 +2909,34 @@ export class PropScreenComponent implements OnInit {
           }
         })
         for (let i = 1; i <= highestScoreTeam; i++) {
-          let filteredGames = teamStats.filter(game => ((game.pointsScoredFirstInning - game.pointsAllowedFirstInning) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning + game.pointsScoredNinthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning + game.pointsAllowedNinthInning)) == i))
+          let filteredGames = teamStats.filter(game => ((game.pointsScoredFirstQuarter - game.pointsAllowedFirstQuarter) == i) || (((game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter) - (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter)) == i) || (((game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter + game.pointsScoredThirdQuarter) - (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter + game.pointsAllowedThirdQuarter)) == i) || (((game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter + game.pointsScoredThirdQuarter + game.pointsScoredFourthQuarter) - (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter + game.pointsAllowedThirdQuarter + game.pointsAllowedFourthQuarter)) == i))
           let totalWins = filteredGames.filter(e => e.result == 'W')
           let totalChance = filteredGames.length == 0 ? 0 : totalWins.length / filteredGames.length
           barChartFinal.push(totalChance * 100)
         }
 
       }
+      }
+      
 
       this.barData.push(barChartFinal)
 
     }
 
     if (index == undefined) {
-
+      let labels: string[] = []
+      if(this.selectedSport == "MLB"){
+        labels = ['1', '2', '3', '4', '5', '6', '7', '8']
+      }
+      else if(this.selectedSport == "NFL"){
+        labels = ['1', '2', '3', '4']
+      }
       this.barChart0 = new Chart("MyChart0", {
         type: 'bar', //this denotes tha type of chart
 
         data: {// values on X-Axis
-          labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
+          
+          labels: labels,
           datasets: [
             {
               label: "Win Chance",
@@ -2857,7 +2954,7 @@ export class PropScreenComponent implements OnInit {
         type: 'bar', //this denotes tha type of chart
 
         data: {// values on X-Axis
-          labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
+          labels: labels,
           datasets: [
             {
               label: "Win Chance",
@@ -2901,7 +2998,13 @@ export class PropScreenComponent implements OnInit {
 
       }
       else {
-        this.barData[0].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
+        if(this.selectedSport == 'MLB'){
+          this.barData[0].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
+        }
+        else if(this.selectedSport == 'NFL'){
+          this.barData[0].labels = ['1', '2', '3', '4']
+        }
+        
       }
       this.barChart0 = new Chart("MyChart0", {
         type: 'bar', //this denotes tha type of chart
@@ -2951,7 +3054,12 @@ export class PropScreenComponent implements OnInit {
         }
       }
       else {
-        this.barData[1].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
+        if(this.selectedSport == 'MLB'){
+          this.barData[0].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
+        }
+        else if(this.selectedSport == 'NFL'){
+          this.barData[0].labels = ['1', '2', '3', '4']
+        }
       }
       this.barChart1 = new Chart("MyChart1", {
         type: 'bar', //this denotes tha type of chart
