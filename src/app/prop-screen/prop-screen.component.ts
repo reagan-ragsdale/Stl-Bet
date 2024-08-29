@@ -270,7 +270,6 @@ export class PropScreenComponent implements OnInit {
         distinctTeams.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
 
-          console.log(allOfTeam)
           teamArray.push(allOfTeam)
         })
         teamArray[0].selected = false;
@@ -289,7 +288,6 @@ export class PropScreenComponent implements OnInit {
         let teamArray: any[] = []
         distinctTeams.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
-          console.log(allOfTeam)
           teamArray.push(allOfTeam)
         })
         teamArray[0].selected = false;
@@ -548,6 +546,7 @@ export class PropScreenComponent implements OnInit {
 
   async setValuesToTeamPropFinal() {
     this.arrayOfTeamBets = []
+    console.log(this.teamPropFinnal)
     for (let team of this.teamPropFinnal) {
       for (let prop of team) {
         let returnProp = {}
@@ -2723,8 +2722,6 @@ export class PropScreenComponent implements OnInit {
 
   createBarChart(index?: number) {
     this.barData = []
-    console.log("create bar chart below")
-    console.log(index)
     //loop thorugh each game. for winning after we use the inning loop 
     //for winning by we also loop thorugh each inning and look for the first appearance of the margin
     //for score we loop through each inning and look for the first instance of that score happening
@@ -2826,7 +2823,6 @@ export class PropScreenComponent implements OnInit {
         for (let i = 1; i <= highestScoreTeam; i++) {
           let filteredGames = teamStats.filter(game => ((game.pointsScoredFirstInning - game.pointsAllowedFirstInning) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning)) == i) || (((game.pointsScoredFirstInning + game.pointsScoredSecondInning + game.pointsScoredThirdInning + game.pointsScoredFourthInning + game.pointsScoredFifthInning + game.pointsScoredSixthInning + game.pointsScoredSeventhInning + game.pointsScoredEigthInning + game.pointsScoredNinthInning) - (game.pointsAllowedFirstInning + game.pointsAllowedSecondInning + game.pointsAllowedThirdInning + game.pointsAllowedFourthInning + game.pointsAllowedFifthInning + game.pointsAllowedSixthInning + game.pointsAllowedSeventhInning + game.pointsAllowedEigthInning + game.pointsAllowedNinthInning)) == i))
           let totalWins = filteredGames.filter(e => e.result == 'W')
-          console.log(filteredGames)
           let totalChance = filteredGames.length == 0 ? 0 : totalWins.length / filteredGames.length
           barChartFinal.push(totalChance * 100)
         }
@@ -2985,8 +2981,6 @@ export class PropScreenComponent implements OnInit {
     }
   }
   onChartSearch(index: number) {
-    console.log("Chart Search below")
-    console.log(index)
     this.destroyBarCharts(index);
     this.createBarChart(index)
   }
