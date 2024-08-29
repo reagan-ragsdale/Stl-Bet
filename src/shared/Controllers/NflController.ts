@@ -37,9 +37,9 @@ export class NflController {
 
     
     @BackendMethod({allowed: true})
-    static async nflGetAllTeamGameStatsByNameAndSeason(name: string,season: number): Promise<DBNflTeamGameStats[]>{
+    static async nflGetAllTeamGameStatsByName(name: string): Promise<DBNflTeamGameStats[]>{
         const taskRepo = remult.repo(DBNflTeamGameStats)
-        return await taskRepo.find({where:{teamName: name,season:season}})
+        return await taskRepo.find({where:{teamName: name}})
     }
     
     
