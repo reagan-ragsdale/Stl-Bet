@@ -52,6 +52,8 @@ export class NflController {
     @BackendMethod({allowed:true})
     static async nflSetTeamStatTotals(teamTotal:DBNflTeamGameStatTotals){
         const taskRepo = remult.repo(DBNflTeamGameStatTotals)
+        let currentStat = await taskRepo.findFirst({teamId: teamTotal.teamId})
+        await taskRepo.delete(currentStat)
         await taskRepo.insert(teamTotal)
     }
     
@@ -121,7 +123,9 @@ export class NflController {
     @BackendMethod({allowed:true})
     static async nflSetPlayerStatTotals(playerTotals: DBNflPlayerGameStatTotals){
         const taskRepo = remult.repo(DBNflPlayerGameStatTotals)
-         await taskRepo.insert(playerTotals)
+        let currentStat = await taskRepo.findFirst({playerId: playerTotals.playerId})
+        await taskRepo.delete(currentStat)
+        await taskRepo.insert(playerTotals)
     }
 
     
