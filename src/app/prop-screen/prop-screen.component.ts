@@ -474,8 +474,11 @@ export class PropScreenComponent implements OnInit {
     }
 
     else if (this.selectedSport == "NFL") {
-      this.team1GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team1[0].teamName, 2023)
-      this.team2GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team2[0].teamName, 2023)
+      let teams = await TeamInfoController.getAllTeamInfo('NFL')
+      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
+      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      this.team1GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team1Info[0].teamNameAbvr, 2023)
+      this.team2GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team2Info[0].teamNameAbvr, 2023)
     }
     this.team1GameStatsReversed = JSON.parse(JSON.stringify(this.team1GameStats))
     this.team1GameStatsReversed = this.team1GameStatsReversed.reverse()
