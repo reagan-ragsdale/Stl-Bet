@@ -580,7 +580,13 @@ export class PropScreenComponent implements OnInit {
     this.playerPropIsLoading = true;
     this.playerPropDataFinalNew = [];
     this.arrayOfPlayerBets = [];
-    this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
+    if(this.selectedSport == 'MLB'){
+      this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
+    }
+    else if(this.selectedSport == 'NFL'){
+      this.playerStatsFinal = await NflController.nflGetPlayerGameStatsByTeamIdAndSeason([team1, team2], 2023)
+    }
+    
     //this.playerpropDataFinal is a 3 length array with 2 props for each player within it
     //console.log(this.playerPropDataFinal)
     //for each prop type ex: batter hits
