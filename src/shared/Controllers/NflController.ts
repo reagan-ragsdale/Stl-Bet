@@ -26,7 +26,14 @@ export class NflController {
     @BackendMethod({allowed: true})
     static async nflGetAllTeamGameStatsBySeason(season: number): Promise<DBNflTeamGameStats[]>{
         const taskRepo = remult.repo(DBNflTeamGameStats)
-        return await taskRepo.find({where:{season:season}})
+        let returnFinal: DBNflTeamGameStats[] = []
+        if(season == 2023){
+            returnFinal = await taskRepo.find({where:{gameDate: {$lte: '20240301', $gte: '20230801'}}}) 
+        }
+        else if(season == 2024){
+            returnFinal = await taskRepo.find({where:{gameDate: {$lte: '20250301', $gte: '20240801'}}})
+        }
+        return returnFinal
     }
 
     @BackendMethod({allowed: true})
@@ -54,7 +61,7 @@ export class NflController {
     @BackendMethod({allowed:true})
     static async nflGetTeamStatTotals(stat: string, season: number): Promise<DBNflTeamGameStatTotals[]>{
         const taskRepo = remult.repo(DBNflTeamGameStatTotals)
-        return await taskRepo.find({where:{season:season},orderBy: {wins: 'desc'}, limit: 5})
+        return await taskRepo.find({where:{season:season},orderBy: {wins: 'desc', losses: "asc"}, limit: 5})
     }
     @BackendMethod({allowed:true})
     static async nflSetTeamStatTotals(teamTotal:DBNflTeamGameStatTotals){

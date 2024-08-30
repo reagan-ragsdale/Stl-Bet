@@ -1302,6 +1302,7 @@ export class PropScreenComponent implements OnInit {
         let allTeams = await TeamInfoController.getAllTeamInfo('NFL')
         let homeTeamInfo = allTeams.filter(e => e.teamNameFull == player.homeTeam)
         let awayTeamInfo = allTeams.filter(e => e.teamNameFull == player.awayTeam)
+        console.log(playerStats)
         if (playerStats[0].teamName == homeTeamInfo[0].teamNameAbvr) {
           homeAway = 'home'
           teamName = homeTeamInfo[0].teamNameAbvr
