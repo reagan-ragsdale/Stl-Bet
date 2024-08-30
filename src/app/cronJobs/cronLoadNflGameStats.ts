@@ -29,7 +29,7 @@ export const cronLoadNflGameStats = async () => {
 
 
     }catch(error:any){
-        ErrorEmailController.sendEmailError(error.message)
+        ErrorEmailController.sendEmailError("cron player and team stats: " + error.message)
         
     }
     try{
@@ -48,6 +48,6 @@ export const cronLoadNflGameStats = async () => {
             await NflController.nflSetTeamStatTotals(teamStatTotals)
         }
     }catch(error:any){
-        ErrorEmailController.sendEmailError(error.message) 
+        ErrorEmailController.sendEmailError("cron player and team stat totals: " + error.message) 
     }
 }

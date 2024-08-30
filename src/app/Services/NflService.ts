@@ -135,7 +135,7 @@ export class NflService {
                 })
             }
             catch(error:any){
-                ErrorEmailController.sendEmailError(JSON.stringify(player))
+                ErrorEmailController.sendEmailError("player stats push" + error.message)
             }
             
             console.log("pushed:" + player.longName)
