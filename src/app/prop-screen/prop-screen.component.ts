@@ -2520,7 +2520,7 @@ export class PropScreenComponent implements OnInit {
             bet.homeAwayHighlight = true
           }
           else { bet.homeAwayHighlight = false }
-          if (teamWin < (1 - (this.sliderValue / 100))) {
+          if ((teamWin < (1 - (this.sliderValue / 100))) && teamWin != 0) {
             bet.teamHighlight = true
           }
           else { bet.teamHighlight = false }
