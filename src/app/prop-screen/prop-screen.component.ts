@@ -650,14 +650,14 @@ export class PropScreenComponent implements OnInit {
   async getPlayerStats(player: any) {
 
     try {
-      
+      console.log(player)
       var playerName = ''
       var marketKey = ''
-      let propPoint = ''
-      let propPrice = ''
-      let teamName = ''
-      let teamAgainstName = ''
-      let homeAway = 'away'
+      var propPoint = ''
+      var propPrice = ''
+      var teamName = ''
+      var teamAgainstName = ''
+      var homeAway = 'away'
       
       var totalOverall = 0
       var totalHomeAway = 0
@@ -673,11 +673,11 @@ export class PropScreenComponent implements OnInit {
       var lowHomeAway = 100
       var highTeam = 0
       var lowTeam = 100
-      let overTeam = 0
-      let tableOverall: any[] = []
-      let tableHomeAway: any[] = []
-      let tableTeam: any[] = []
-      let overUnder = false
+      var overTeam = 0
+      var tableOverall: any[] = []
+      var tableHomeAway: any[] = []
+      var tableTeam: any[] = []
+      var overUnder = false
       
 
       if (this.selectedSport == 'MLB') {
