@@ -117,6 +117,14 @@ export class NflController {
         return await taskRepo.find({orderBy: {gameDate: 'desc'}})
     }
 
+    @BackendMethod({allowed:true})
+    static async nflGetAllPlayerGameStatsByPlayerNameAndSeason(listOfPlayers: string[], season: number): Promise<DBNflPlayerGameStats[]>{
+        const taskRepo = remult.repo(DBNflPlayerGameStats)
+        return await taskRepo.find({where:{playerName: listOfPlayers},orderBy: {gameDate: 'desc'}})
+    }
+
+    
+
     //player game stat totals
     @BackendMethod({allowed:true})
     static async nflGetPlayerStatTotals(stat: string, season:number): Promise<DBNflPlayerGameStatTotals[]>{

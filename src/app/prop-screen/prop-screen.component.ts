@@ -585,7 +585,9 @@ export class PropScreenComponent implements OnInit {
       this.playerStatsFinal = await MlbController.mlbGetPlayerGameStatsByTeamAndSeason([team1, team2], 2024)
     }
     else if(this.selectedSport == 'NFL'){
-      this.playerStatsFinal = await NflController.nflGetPlayerGameStatsByTeamIdAndSeason([team1, team2], 2023)
+      let uniquePlayerNames = this.playerPropData.map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
+      
+      this.playerStatsFinal = await NflController.nflGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2023)
     }
     
     //this.playerpropDataFinal is a 3 length array with 2 props for each player within it
