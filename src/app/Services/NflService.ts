@@ -102,7 +102,7 @@ export class NflService {
             try{
                 playerStats.push({
                     playerId: player.playerID,
-                    playerName: setPlayerName(player.longName),
+                    playerName: this.setPlayerName(player.longName),
                     teamName: player.teamAbv,
                     teamId: player.teamID,
                     teamAgainstName: gameSummary.away == player.teamAbv ? gameSummary.home : gameSummary.away,
