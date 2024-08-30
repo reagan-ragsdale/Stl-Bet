@@ -257,6 +257,16 @@ mat-mdc-tab-body-content{
   color:#22577A;
 }
 
+.live-main-div{
+  width:100%; 
+  display:flex; 
+  margin-top:1rem;
+}
+.live-team-div{
+  width:48%; 
+  margin-left:auto; 
+  margin-right:auto;
+}
 
 
   @media screen and (max-width: 974px) {
@@ -327,6 +337,12 @@ mat-mdc-tab-body-content{
     }
     .team-best-bets-body{
       flex-direction:column;
+    }
+    .live-main-div{
+      flex-direction: column;
+    }
+    .live-team-div{
+      width:98%;
     }
   }
    

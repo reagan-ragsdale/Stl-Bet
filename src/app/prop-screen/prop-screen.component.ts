@@ -3327,7 +3327,7 @@ console.log(this.playerBestBets)
         labels = ['1', '2', '3', '4', '5', '6', '7', '8']
       }
       else if(this.selectedSport == "NFL"){
-        labels = ['1', '2', '3', '4']
+        labels = ['1', '2', '3']
       }
       this.barChart0 = new Chart("MyChart0", {
         type: 'bar', //this denotes tha type of chart
@@ -3400,7 +3400,7 @@ console.log(this.playerBestBets)
           this.barData[0].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
         }
         else if(this.selectedSport == 'NFL'){
-          this.barData[0].labels = ['1', '2', '3', '4']
+          this.barData[0].labels = ['1', '2', '3']
         }
         
       }
@@ -3456,7 +3456,7 @@ console.log(this.playerBestBets)
           this.barData[0].labels = ['1', '2', '3', '4', '5', '6', '7', '8']
         }
         else if(this.selectedSport == 'NFL'){
-          this.barData[0].labels = ['1', '2', '3', '4']
+          this.barData[0].labels = ['1', '2', '3']
         }
       }
       this.barChart1 = new Chart("MyChart1", {
