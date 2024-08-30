@@ -102,7 +102,7 @@ export class NflService {
             try{
                 playerStats.push({
                     playerId: player.playerID,
-                    playerName: player.longName,
+                    playerName: setPlayerName(player.longName),
                     teamName: player.teamAbv,
                     teamId: player.teamID,
                     teamAgainstName: gameSummary.away == player.teamAbv ? gameSummary.home : gameSummary.away,
@@ -304,5 +304,18 @@ export class NflService {
             finalGameIds.push(gameId.gameID)
         }
         return finalGameIds
+    }
+    static setPlayerName(name:string): string{
+        let nameNew = name
+        if(nameNew == "A.J. Brown"){
+            nameNew = "AJ Brown"
+        }
+        else if(nameNew == 'A.J. Terrell'){
+            nameNew = 'AJ Terrell'
+        }
+        else if(nameNew == 'A.J. Klein'){
+            nameNew = 'AJ Klein'
+        }
+        return nameNew
     }
 }
