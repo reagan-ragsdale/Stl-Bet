@@ -2573,8 +2573,7 @@ export class PropScreenComponent implements OnInit {
           this.playerBestBets.push(bet)
         }
       }
-
-
+console.log(this.playerBestBets)
 
 
 
