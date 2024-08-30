@@ -651,10 +651,10 @@ export class PropScreenComponent implements OnInit {
 
     try {
       console.log(player)
-      var playerName = ''
-      var marketKey = ''
-      var propPoint = ''
-      var propPrice = ''
+      var playerName = player.playerName
+      var marketKey = player.marketKey
+      var propPoint = player.point
+      var propPrice = player.price
       var teamName = ''
       var teamAgainstName = ''
       var homeAway = 'away'
