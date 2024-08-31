@@ -1,3 +1,4 @@
+import { parse } from "path";
 
 
 
@@ -103,6 +104,9 @@ export class reusedFunctions {
     }
     else if(parseInt(hour) == 5){
       hour = "00"
+    }
+    else if(parseInt(hour) > 12){
+      hour = (parseInt(hour) - 12).toString()
     }
 
     var indexOfFirstDash = tempDate[0].indexOf("-");
