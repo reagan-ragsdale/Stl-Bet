@@ -1160,6 +1160,7 @@
           <div *ngFor="let team of liveProps; let i = index;" class="live-team-div"> 
             <div style="width:100%; display: flex; flex-direction: column;">
               <div style="width:90%; margin-left: auto; margin-right: auto; display:flex;">
+                <h2 style="text-align: center;">{{team.stats[0].teamName}}</h2>
                 <h3 style="align-self:center; color:white; margin-right:1rem;">Chance of winning when: </h3>
                 <mat-form-field style="min-width:auto;">
                       <mat-select [value]="team.selectedDropDown" [(ngModel)]="team.selectedDropDown" (selectionChange)="calcNewLiveProp(i)">
