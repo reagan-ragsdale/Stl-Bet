@@ -509,7 +509,7 @@ export class PropScreenComponent implements OnInit {
     if (this.selectedSport == "MLB") {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
-    this.displayPropHtml1 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertTimestampToTime(team1[0].commenceTime.toString()) });
+    this.displayPropHtml1 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertDateToDateTime(team1[0].commenceTime.toString()) });
 
     name1 = team2[0].teamName;
 
@@ -517,7 +517,7 @@ export class PropScreenComponent implements OnInit {
       abvr = MlbService.mlbTeamNameToAbvr[name1]
     }
 
-    this.displayPropHtml2 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertTimestampToTime(team2[0].commenceTime.toString()) });
+    this.displayPropHtml2 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertDateToDateTime(team2[0].commenceTime.toString()) });
 
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
