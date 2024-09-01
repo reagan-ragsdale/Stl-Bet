@@ -484,6 +484,7 @@ export class PlayerStatsComponent {
     }
     else if (this.selectedSport == "NFL") {
       this.playerStats = await NflController.nflGetPlayerGameStatsByPlayerId(this.selectedPlayer.playerId)
+      console.log(this.playerStats)
 
       let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
       allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
