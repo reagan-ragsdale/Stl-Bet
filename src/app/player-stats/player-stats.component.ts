@@ -345,6 +345,7 @@ export class PlayerStatsComponent {
 
   playerPropArray: any[] = []
   async getPlayerInfo() {
+    console.log(this.selectedSport)
 
     if (this.selectedSport == 'MLB') {
       this.fullDataset = [
