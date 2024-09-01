@@ -4,6 +4,7 @@ import { DBNflPlayerGameStatTotals } from "../../shared/dbTasks/DbNflPlayerGameS
 import { DBNflTeamGameStats } from "../../shared/dbTasks/DbNflTeamGameStats";
 import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo";
 import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
+import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo";
 
 
 export class NflService {
@@ -296,6 +297,20 @@ export class NflService {
         }
 
         return finalTeamInfo
+    }
+
+    static convertPlayers(playerList: any[]):DbPlayerInfo[]{
+        let playerInfoFinal:DbPlayerInfo[] = []
+        for(let player of playerList){
+            playerInfoFinal.push({
+                playerId: player.playerID,
+                playerName: this.setPlayerName(player.longName),
+                teamName: player.team,
+                teamId: player.teamID,
+                sport: 'NFL'
+            })
+        }
+        return playerInfoFinal
     }
 
     static convertGameIdsToArray(gameIds: any): string[] {

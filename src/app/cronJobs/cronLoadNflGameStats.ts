@@ -1,3 +1,4 @@
+import { PlayerInfoController } from "src/shared/Controllers/PlayerInfoController";
 import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 import { NflController } from "../../shared/Controllers/NflController";
 import { nflApiController } from "../ApiCalls/nflApiCalls";
@@ -50,4 +51,6 @@ export const cronLoadNflGameStats = async () => {
     }catch(error:any){
         ErrorEmailController.sendEmailError("cron player and team stat totals: " + error.message) 
     }
+    let players = await nflApiController.loadAllPLayerInfo()
+    await PlayerInfoController.playerInfoAddPlayers(players)
 }
