@@ -21,7 +21,7 @@ export class NflService {
             teamAgainstId: gameSummary.teamStats.home.teamID,
             gameId: gameSummary.gameID,
             gameDate: gameSummary.gameDate,
-            season: gameSummary.gameDate.slice(0, 4),
+            season: this.getSeason(gameSummary.gameDate),
             homeAway: 'Away',
             result: gameSummary.awayResult,
             pointsScoredOverall: gameSummary.lineScore.away.totalPts,
@@ -58,7 +58,7 @@ export class NflService {
             teamAgainstId: gameSummary.teamStats.away.teamID,
             gameId: gameSummary.gameID,
             gameDate: gameSummary.gameDate,
-            season: gameSummary.gameDate.slice(0, 4),
+            season: this.getSeason(gameSummary.gameDate),
             homeAway: 'Home',
             result: gameSummary.homeResult,
             pointsScoredOverall: gameSummary.lineScore.home.totalPts,
@@ -109,7 +109,7 @@ export class NflService {
                     teamAgainstId: gameSummary.away == player.teamAbv ? gameSummary.teamIDHome : gameSummary.teamIDAway,
                     gameId: gameSummary.gameID,
                     gameDate: gameSummary.gameDate,
-                    season: gameSummary.gameDate.slice(0, 4),
+                    season: this.getSeason(gameSummary.gameDate),
                     qbCompletions: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passCompletions') ? player.Passing.passCompletions : 0) : 0,
                     qbPassingAttempts: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passAttempts') ? player.Passing.passAttempts : 0) : 0,
                     qbPassingYards: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passYds') ? player.Passing.passYds : 0) : 0,
@@ -317,5 +317,14 @@ export class NflService {
             nameNew = 'AJ Klein'
         }
         return nameNew
+    }
+    static getSeason(gameDate: string): number{
+        let monthDay = gameDate.slice(4)
+        let year = gameDate.slice(0,4)
+        if(Number(monthDay) < 301){
+            year = (Number(year)-1).toString()
+        }
+
+        return Number(year)
     }
 }

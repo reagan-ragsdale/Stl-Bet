@@ -3,6 +3,7 @@ import { Allow, BackendMethod, remult } from "remult"
 import { DbUsers, userRepo } from "../dbTasks/DbUsers";
 import { getCurrentUser, setSessionUser } from "../../server/server-session";
 import type { generate, verify } from 'password-hash'
+import { ErrorEmailController } from "./ErrorEmailController";
 
 
 
@@ -27,6 +28,7 @@ export class UsersController {
         userPass: UsersController.generate(password)
         //userPass: generate(password)
       })
+    
       return setSessionUser({
         id: user.id!,
         name: user.userName!,
