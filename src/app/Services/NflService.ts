@@ -4,7 +4,9 @@ import { DBNflPlayerGameStatTotals } from "../../shared/dbTasks/DbNflPlayerGameS
 import { DBNflTeamGameStats } from "../../shared/dbTasks/DbNflTeamGameStats";
 import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo";
 import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
-import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo";
+import { DbPlayerInfo } from "../../shared/dbTasks/DbPlayerInfo";
+import { NflController } from "../../shared/Controllers/NflController";
+import { remult } from "remult";
 
 
 export class NflService {
@@ -14,80 +16,88 @@ export class NflService {
         let finalReturn: any[] = []
 
         let teamStats: DBNflTeamGameStats[] = []
-
-        teamStats.push({
-            teamName: gameSummary.teamStats.away.teamAbv,
-            teamId: gameSummary.teamStats.away.teamID,
-            teamAgainstName: gameSummary.teamStats.home.teamAbv,
-            teamAgainstId: gameSummary.teamStats.home.teamID,
-            gameId: gameSummary.gameID,
-            gameDate: gameSummary.gameDate,
-            season: this.getSeason(gameSummary.gameDate),
-            homeAway: 'Away',
-            result: gameSummary.awayResult,
-            pointsScoredOverall: gameSummary.lineScore.away.totalPts,
-            pointsScoredFirstQuarter: gameSummary.lineScore.away.Q1,
-            pointsScoredSecondQuarter: gameSummary.lineScore.away.Q2,
-            pointsScoredThirdQuarter: gameSummary.lineScore.away.Q3,
-            pointsScoredFourthQuarter: gameSummary.lineScore.away.Q4,
-            totalYards: gameSummary.teamStats.away.totalYards,
-            totalRushingYards: gameSummary.teamStats.away.rushingYards,
-            totalPassingYards: gameSummary.teamStats.away.passingYards,
-            totalRushingAttempts: gameSummary.teamStats.away.rushingAttempts,
-            interceptionsThrown: gameSummary.teamStats.away.interceptionsThrown,
-            interceptionsCaught: gameSummary.teamStats.away.defensiveInterceptions,
-            fumblesLost: gameSummary.teamStats.away.fumblesLost,
-            firstDowns: gameSummary.teamStats.away.firstDowns,
-            sacksAgainst: Number(gameSummary.teamStats.away.sacksAndYardsLost.slice(0, gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-'))),
-            passCompletions: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(0, gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-'))),
-            passAttempts: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-') + 1)),
-            pointsAllowedOverall: gameSummary.lineScore.home.totalPts,
-            pointsAllowedFirstQuarter: gameSummary.lineScore.home.Q1,
-            pointsAllowedSecondQuarter: gameSummary.lineScore.home.Q2,
-            pointsAllowedThirdQuarter: gameSummary.lineScore.home.Q3,
-            pointsAllowedFourthQuarter: gameSummary.lineScore.home.Q4,
-            totalYardsAllowed: gameSummary.teamStats.home.totalYards,
-            totalRushingYardsAllowed: gameSummary.teamStats.home.rushingYards,
-            totalPassingYardsAllowed: gameSummary.teamStats.home.passingYards
-
-        });
+        const taskRepo = remult.repo(DBNflTeamGameStats)
+        let team1 = await taskRepo.find({where:{teamId: gameSummary.teamStats.away.teamID, gameId: gameSummary.gameID}})
+        
+        if(team1.length == 0){
+            teamStats.push({
+                teamName: gameSummary.teamStats.away.teamAbv,
+                teamId: gameSummary.teamStats.away.teamID,
+                teamAgainstName: gameSummary.teamStats.home.teamAbv,
+                teamAgainstId: gameSummary.teamStats.home.teamID,
+                gameId: gameSummary.gameID,
+                gameDate: gameSummary.gameDate,
+                season: this.getSeason(gameSummary.gameDate),
+                homeAway: 'Away',
+                result: gameSummary.awayResult,
+                pointsScoredOverall: gameSummary.lineScore.away.totalPts,
+                pointsScoredFirstQuarter: gameSummary.lineScore.away.Q1,
+                pointsScoredSecondQuarter: gameSummary.lineScore.away.Q2,
+                pointsScoredThirdQuarter: gameSummary.lineScore.away.Q3,
+                pointsScoredFourthQuarter: gameSummary.lineScore.away.Q4,
+                totalYards: gameSummary.teamStats.away.totalYards,
+                totalRushingYards: gameSummary.teamStats.away.rushingYards,
+                totalPassingYards: gameSummary.teamStats.away.passingYards,
+                totalRushingAttempts: gameSummary.teamStats.away.rushingAttempts,
+                interceptionsThrown: gameSummary.teamStats.away.interceptionsThrown,
+                interceptionsCaught: gameSummary.teamStats.away.defensiveInterceptions,
+                fumblesLost: gameSummary.teamStats.away.fumblesLost,
+                firstDowns: gameSummary.teamStats.away.firstDowns,
+                sacksAgainst: Number(gameSummary.teamStats.away.sacksAndYardsLost.slice(0, gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-'))),
+                passCompletions: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(0, gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-'))),
+                passAttempts: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-') + 1)),
+                pointsAllowedOverall: gameSummary.lineScore.home.totalPts,
+                pointsAllowedFirstQuarter: gameSummary.lineScore.home.Q1,
+                pointsAllowedSecondQuarter: gameSummary.lineScore.home.Q2,
+                pointsAllowedThirdQuarter: gameSummary.lineScore.home.Q3,
+                pointsAllowedFourthQuarter: gameSummary.lineScore.home.Q4,
+                totalYardsAllowed: gameSummary.teamStats.home.totalYards,
+                totalRushingYardsAllowed: gameSummary.teamStats.home.rushingYards,
+                totalPassingYardsAllowed: gameSummary.teamStats.home.passingYards
+    
+            });
+        }
+        let team2 = await taskRepo.find({where:{teamId: gameSummary.teamStats.home.teamID, gameId: gameSummary.gameID}})
         console.log("pushed team one")
-        teamStats.push({
-            teamName: gameSummary.teamStats.home.teamAbv,
-            teamId: gameSummary.teamStats.home.teamID,
-            teamAgainstName: gameSummary.teamStats.away.teamAbv,
-            teamAgainstId: gameSummary.teamStats.away.teamID,
-            gameId: gameSummary.gameID,
-            gameDate: gameSummary.gameDate,
-            season: this.getSeason(gameSummary.gameDate),
-            homeAway: 'Home',
-            result: gameSummary.homeResult,
-            pointsScoredOverall: gameSummary.lineScore.home.totalPts,
-            pointsScoredFirstQuarter: gameSummary.lineScore.home.Q1,
-            pointsScoredSecondQuarter: gameSummary.lineScore.home.Q2,
-            pointsScoredThirdQuarter: gameSummary.lineScore.home.Q3,
-            pointsScoredFourthQuarter: gameSummary.lineScore.home.Q4,
-            totalYards: gameSummary.teamStats.home.totalYards,
-            totalRushingYards: gameSummary.teamStats.home.rushingYards,
-            totalPassingYards: gameSummary.teamStats.home.passingYards,
-            totalRushingAttempts: gameSummary.teamStats.home.rushingAttempts,
-            interceptionsThrown: gameSummary.teamStats.home.interceptionsThrown,
-            interceptionsCaught: gameSummary.teamStats.home.defensiveInterceptions,
-            fumblesLost: gameSummary.teamStats.home.fumblesLost,
-            firstDowns: gameSummary.teamStats.home.firstDowns,
-            sacksAgainst: Number(gameSummary.teamStats.home.sacksAndYardsLost.slice(0, gameSummary.teamStats.home.sacksAndYardsLost.indexOf('-'))),
-            passCompletions: Number(gameSummary.teamStats.home.passCompletionsAndAttempts.slice(0, gameSummary.teamStats.home.sacksAndYardsLost.indexOf('-'))),
-            passAttempts: Number(gameSummary.teamStats.home.passCompletionsAndAttempts.slice(gameSummary.teamStats.home.sacksAndYardsLost.indexOf('-') + 1)),
-            pointsAllowedOverall: gameSummary.lineScore.away.totalPts,
-            pointsAllowedFirstQuarter: gameSummary.lineScore.away.Q1,
-            pointsAllowedSecondQuarter: gameSummary.lineScore.away.Q2,
-            pointsAllowedThirdQuarter: gameSummary.lineScore.away.Q3,
-            pointsAllowedFourthQuarter: gameSummary.lineScore.away.Q4,
-            totalYardsAllowed: gameSummary.teamStats.away.totalYards,
-            totalRushingYardsAllowed: gameSummary.teamStats.away.rushingYards,
-            totalPassingYardsAllowed: gameSummary.teamStats.away.passingYards
-
-        })
+        if(team2.length == 0){
+            teamStats.push({
+                teamName: gameSummary.teamStats.home.teamAbv,
+                teamId: gameSummary.teamStats.home.teamID,
+                teamAgainstName: gameSummary.teamStats.away.teamAbv,
+                teamAgainstId: gameSummary.teamStats.away.teamID,
+                gameId: gameSummary.gameID,
+                gameDate: gameSummary.gameDate,
+                season: this.getSeason(gameSummary.gameDate),
+                homeAway: 'Home',
+                result: gameSummary.homeResult,
+                pointsScoredOverall: gameSummary.lineScore.home.totalPts,
+                pointsScoredFirstQuarter: gameSummary.lineScore.home.Q1,
+                pointsScoredSecondQuarter: gameSummary.lineScore.home.Q2,
+                pointsScoredThirdQuarter: gameSummary.lineScore.home.Q3,
+                pointsScoredFourthQuarter: gameSummary.lineScore.home.Q4,
+                totalYards: gameSummary.teamStats.home.totalYards,
+                totalRushingYards: gameSummary.teamStats.home.rushingYards,
+                totalPassingYards: gameSummary.teamStats.home.passingYards,
+                totalRushingAttempts: gameSummary.teamStats.home.rushingAttempts,
+                interceptionsThrown: gameSummary.teamStats.home.interceptionsThrown,
+                interceptionsCaught: gameSummary.teamStats.home.defensiveInterceptions,
+                fumblesLost: gameSummary.teamStats.home.fumblesLost,
+                firstDowns: gameSummary.teamStats.home.firstDowns,
+                sacksAgainst: Number(gameSummary.teamStats.home.sacksAndYardsLost.slice(0, gameSummary.teamStats.home.sacksAndYardsLost.indexOf('-'))),
+                passCompletions: Number(gameSummary.teamStats.home.passCompletionsAndAttempts.slice(0, gameSummary.teamStats.home.sacksAndYardsLost.indexOf('-'))),
+                passAttempts: Number(gameSummary.teamStats.home.passCompletionsAndAttempts.slice(gameSummary.teamStats.home.sacksAndYardsLost.indexOf('-') + 1)),
+                pointsAllowedOverall: gameSummary.lineScore.away.totalPts,
+                pointsAllowedFirstQuarter: gameSummary.lineScore.away.Q1,
+                pointsAllowedSecondQuarter: gameSummary.lineScore.away.Q2,
+                pointsAllowedThirdQuarter: gameSummary.lineScore.away.Q3,
+                pointsAllowedFourthQuarter: gameSummary.lineScore.away.Q4,
+                totalYardsAllowed: gameSummary.teamStats.away.totalYards,
+                totalRushingYardsAllowed: gameSummary.teamStats.away.rushingYards,
+                totalPassingYardsAllowed: gameSummary.teamStats.away.passingYards
+    
+            })
+        }
+        
         console.log("pushed team two")
         finalReturn.push(teamStats);
         
@@ -99,41 +109,46 @@ export class NflService {
             newPlayerStatData[index] = gameSummary.playerStats[i]
             index++
         }
+        const playerRepo = remult.repo(DBNflPlayerGameStats)
         for (let player of newPlayerStatData) {
             try{
-                playerStats.push({
-                    playerId: player.playerID,
-                    playerName: this.setPlayerName(player.longName),
-                    teamName: player.teamAbv,
-                    teamId: player.teamID,
-                    teamAgainstName: gameSummary.away == player.teamAbv ? gameSummary.home : gameSummary.away,
-                    teamAgainstId: gameSummary.away == player.teamAbv ? gameSummary.teamIDHome : gameSummary.teamIDAway,
-                    gameId: gameSummary.gameID,
-                    gameDate: gameSummary.gameDate,
-                    season: this.getSeason(gameSummary.gameDate),
-                    qbCompletions: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passCompletions') ? player.Passing.passCompletions : 0) : 0,
-                    qbPassingAttempts: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passAttempts') ? player.Passing.passAttempts : 0) : 0,
-                    qbPassingYards: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passYds') ? player.Passing.passYds : 0) : 0,
-                    qbYardsPerPassAttempt: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passAvg') ? player.Passing.passAvg : 0) : 0,
-                    qbPassingTouchdowns: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passTD') ? player.Passing.passTD : 0) : 0,
-                    qbInterceptions: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'int') ? player.Passing.int : 0) : 0,
-                    qbsacks: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'sacked') ? Number(player.Passing.sacked.slice(0, player.Passing.sacked.indexOf('-'))) : 0) : 0,
-                    qBRating: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'qbr') ? player.Passing.qbr : 0) : 0,
-                    adjQBR: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'rtg') ? player.Passing.rtg : 0) : 0,
-                    rushingAttempts: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'carries') ? player.Rushing.carries : 0) : 0,
-                    rushingYards: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing , 'rushYds') ? player.Rushing.rushYds : 0) : 0,
-                    yardsPerRushAttempt: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'rushAvg') ? player.Rushing.rushAvg : 0) : 0,
-                    rushingTouchdowns: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'rushTD') ? player.Rushing.rushTD : 0) : 0,
-                    longRushing: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'longRush') ? player.Rushing.longRush : 0) : 0,
-                    receptions: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'receptions') ? player.Receiving.receptions : 0) : 0,
-                    receivingTargets: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'targets') ? player.Receiving.targets : 0) : 0,
-                    receivingYards: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'recYds') ? player.Receiving.recYds : 0) : 0,
-                    yardsPerReception: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving,'recAvg') ? player.Receiving.recAvg : 0) : 0,
-                    receivingTouchdowns: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'recTD') ? player.Receiving.recTD : 0) : 0,
-                    longReception: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'longRec') ? player.Receiving.longRec : 0) : 0,
-                    totalTackles: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'totalTackles') ? player.Defense.totalTackles : 0) : 0,
-                    sacks: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'sacks') ? player.Defense.sacks : 0 ) : 0,
-                })
+                let playerDb = await playerRepo.find({where:{playerId: player.playerID, gameId: gameSummary.gameID}})
+                if(playerDb.length == 0){
+                    playerStats.push({
+                        playerId: player.playerID,
+                        playerName: this.setPlayerName(player.longName),
+                        teamName: player.teamAbv,
+                        teamId: player.teamID,
+                        teamAgainstName: gameSummary.away == player.teamAbv ? gameSummary.home : gameSummary.away,
+                        teamAgainstId: gameSummary.away == player.teamAbv ? gameSummary.teamIDHome : gameSummary.teamIDAway,
+                        gameId: gameSummary.gameID,
+                        gameDate: gameSummary.gameDate,
+                        season: this.getSeason(gameSummary.gameDate),
+                        qbCompletions: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passCompletions') ? player.Passing.passCompletions : 0) : 0,
+                        qbPassingAttempts: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passAttempts') ? player.Passing.passAttempts : 0) : 0,
+                        qbPassingYards: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passYds') ? player.Passing.passYds : 0) : 0,
+                        qbYardsPerPassAttempt: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passAvg') ? player.Passing.passAvg : 0) : 0,
+                        qbPassingTouchdowns: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'passTD') ? player.Passing.passTD : 0) : 0,
+                        qbInterceptions: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'int') ? player.Passing.int : 0) : 0,
+                        qbsacks: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'sacked') ? Number(player.Passing.sacked.slice(0, player.Passing.sacked.indexOf('-'))) : 0) : 0,
+                        qBRating: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'qbr') ? player.Passing.qbr : 0) : 0,
+                        adjQBR: Object.hasOwn(player, 'Passing') ? (Object.hasOwn(player.Passing, 'rtg') ? player.Passing.rtg : 0) : 0,
+                        rushingAttempts: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'carries') ? player.Rushing.carries : 0) : 0,
+                        rushingYards: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing , 'rushYds') ? player.Rushing.rushYds : 0) : 0,
+                        yardsPerRushAttempt: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'rushAvg') ? player.Rushing.rushAvg : 0) : 0,
+                        rushingTouchdowns: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'rushTD') ? player.Rushing.rushTD : 0) : 0,
+                        longRushing: Object.hasOwn(player, 'Rushing') ? (Object.hasOwn(player.Rushing, 'longRush') ? player.Rushing.longRush : 0) : 0,
+                        receptions: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'receptions') ? player.Receiving.receptions : 0) : 0,
+                        receivingTargets: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'targets') ? player.Receiving.targets : 0) : 0,
+                        receivingYards: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'recYds') ? player.Receiving.recYds : 0) : 0,
+                        yardsPerReception: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving,'recAvg') ? player.Receiving.recAvg : 0) : 0,
+                        receivingTouchdowns: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'recTD') ? player.Receiving.recTD : 0) : 0,
+                        longReception: Object.hasOwn(player, 'Receiving') ? (Object.hasOwn(player.Receiving, 'longRec') ? player.Receiving.longRec : 0) : 0,
+                        totalTackles: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'totalTackles') ? player.Defense.totalTackles : 0) : 0,
+                        sacks: Object.hasOwn(player, 'Defense') ? (Object.hasOwn(player.Defense, 'sacks') ? player.Defense.sacks : 0 ) : 0,
+                    })
+                }
+                
             }
             catch(error:any){
                 ErrorEmailController.sendEmailError("player stats push" + error.message)

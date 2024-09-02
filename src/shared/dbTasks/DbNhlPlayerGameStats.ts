@@ -52,9 +52,6 @@ export class DbNhlPlayerGameStats {
   @Fields.integer()
   shots = 0
 
-  @Fields.number()
-  shotPct = 0
-
   @Fields.integer()
   hits = 0
 
@@ -69,6 +66,9 @@ export class DbNhlPlayerGameStats {
 
   @Fields.integer()
   points = 0
+
+  @Fields.integer()
+  blocks = 0
 
   @Fields.createdAt()
   createdAt?: Date
