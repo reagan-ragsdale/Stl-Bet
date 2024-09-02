@@ -11,8 +11,6 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
 
 import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';
-import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGameStatsController';
-import { NhlPlayerInfoController } from '../../shared/Controllers/NhlPlayerInfoController';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
