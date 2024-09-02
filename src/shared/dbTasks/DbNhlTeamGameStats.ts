@@ -1,17 +1,12 @@
 import { Allow, Entity, Fields, Validators } from "remult"
 
-@Entity("DbNhlPlayerGameStats", {
+@Entity("DbNhlTeamGameStats", {
   allowApiCrud: true
 })
-export class DbNhlPlayerGameStats {
+export class DbNhlTeamGameStats {
   @Fields.cuid()
   id? = ''
   
-  @Fields.integer()
-  playerId = 0
-
-  @Fields.string()
-  playerName = ""
 
   @Fields.string()
   teamName = ''
@@ -41,35 +36,39 @@ export class DbNhlPlayerGameStats {
   result = ''
 
   @Fields.integer()
-  goals = 0
+  pointsScoredOverall = 0
 
   @Fields.integer()
-  assists = 0
+  pointsScoredFirstPeriod = 0
 
   @Fields.integer()
-  pim = 0
+  pointsScoredSecondPeriod = 0
 
   @Fields.integer()
-  shots = 0
-
-  @Fields.number()
-  shotPct = 0
+  pointsScoredThirdPeriod = 0
 
   @Fields.integer()
-  hits = 0
+  shotsOnGoal = 0
 
   @Fields.integer()
-  powerPlayGoals = 0
+  saves = 0
 
   @Fields.integer()
-  powerPlayPoints = 0
+  pointsAllowedOverall = 0
 
   @Fields.integer()
-  plusMinus = 0
+  pointsAllowedFirstPeriod = 0
 
   @Fields.integer()
-  points = 0
+  pointsAllowedSecondPeriod = 0
 
+  @Fields.integer()
+  pointsAllowedThirdPeriod = 0
+
+  @Fields.integer()
+  shotsAllowedOnGoal = 0
+
+  
   @Fields.createdAt()
   createdAt?: Date
 }

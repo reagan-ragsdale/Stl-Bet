@@ -10,8 +10,6 @@ import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
 
-
-import { DbNhlPlayerInfo } from '../../shared/dbTasks/DbNhlPlayerInfo';
 import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';
 import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGameStatsController';
 import { NhlPlayerInfoController } from '../../shared/Controllers/NhlPlayerInfoController';
@@ -280,10 +278,8 @@ export class PlayerStatsComponent {
   table!: MatTable<any>;
 
   //nhl
-  public nhlPlayerInfo: DbNhlPlayerInfo[] = []
   public nhlPlayerStatsInfo2022: DbNhlPlayerGameStats[] = []
   public nhlPlayerStatsInfo2023: DbNhlPlayerGameStats[] = []
-  public nhlAllPlayerInfo: DbNhlPlayerInfo[] = []
 
 
   //all
@@ -457,7 +453,7 @@ export class PlayerStatsComponent {
 
     }
     else if (this.selectedSport == "NHL") {
-      this.nhlPlayerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL", this.playerId)
+      this.playerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL", this.playerId)
       this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)

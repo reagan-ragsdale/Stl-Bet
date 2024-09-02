@@ -1,4 +1,4 @@
-import { PlayerInfoController } from "src/shared/Controllers/PlayerInfoController";
+import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController";
 import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 import { NflController } from "../../shared/Controllers/NflController";
 import { nflApiController } from "../ApiCalls/nflApiCalls";
