@@ -7,11 +7,7 @@ import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { filter } from 'compression';
 
-
-import { DbNhlPlayerInfo } from '../../shared/dbTasks/DbNhlPlayerInfo';
 import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';
-import { NhlPlayerGameStatsController } from 'src/shared/Controllers/NhlPlayerGameStatsController';
-import { NhlPlayerInfoController } from '../../shared/Controllers/NhlPlayerInfoController';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -211,10 +207,8 @@ public displayedColumnsValues: any[] = [
   table!: MatTable<any>;
 
   //nhl
-  public nhlPlayerInfo: DbNhlPlayerInfo[] = []
   public nhlPlayerStatsInfo2022: DbNhlPlayerGameStats[] = []
   public nhlPlayerStatsInfo2023: DbNhlPlayerGameStats[] = []
-  public nhlAllPlayerInfo: DbNhlPlayerInfo[] = []
 
 
   //all
