@@ -103,7 +103,7 @@ export const api = remultExpress({
 
     cron.schedule('0 */2 * * *', () => cronSportsBookHourly())
     cron.schedule('0 */2 * * *', () => cronLoadMlbPlayer())
-    cron.schedule('46 15 * * *', () => cronLoadNflGameStats())
+    cron.schedule('51 15 * * *', () => cronLoadNflGameStats())
   }
 
 });
