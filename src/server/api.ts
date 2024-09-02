@@ -9,7 +9,6 @@ import { DbGameBookData } from '../shared/dbTasks/DbGameBookData';
 import { SportsBookController } from '../shared/Controllers/SportsBookController';
 import { DbPlayerPropData } from '../shared/dbTasks/DbPlayerPropData';
 import { PlayerPropController } from '../shared/Controllers/PlayerPropController';
-import { DbNhlPlayerInfo } from '../shared/dbTasks/DbNhlPlayerInfo';
 import { NhlPlayerInfoController } from '../shared/Controllers/NhlPlayerInfoController';
 import { DbNhlPlayerGameStats } from '../shared/dbTasks/DbNhlPlayerGameStats';
 import { NhlPlayerGameStatsController } from '../shared/Controllers/NhlPlayerGameStatsController';
@@ -60,7 +59,6 @@ export const api = remultExpress({
     DbMlbGameBookData,
     DbGameBookData,
     DbPlayerPropData,
-    DbNhlPlayerInfo,
     DbNhlPlayerGameStats,
     NbaPlayerInfoDb,
     DbNbaGameStats,
