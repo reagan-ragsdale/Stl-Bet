@@ -3,7 +3,7 @@ import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailControl
 import { nhlApiController } from "../ApiCalls/nhlApiCalls";
 import { NhlController } from "../../shared/Controllers/NhlController";
 
-export const cronLoadNflGameStats = async () => {
+export const cronLoadNhlStats = async () => {
 
     let players = await nhlApiController.getPlayerInfo()
     await PlayerInfoController.playerInfoAddPlayers(players)
