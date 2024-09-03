@@ -380,7 +380,7 @@
 
                         <mat-tab label="Prop Trend" [disabled]="false">
                           <ng-template matTabContent>
-                            <canvas id="'lineChart' + i" style="width: 100%; height: 100%; background-color: white;">{{
+                            <canvas [attr.id]="'lineChart' + i" style="width: 100%; height: 100%; background-color: white;">{{
                               chart + i
                               }}</canvas>
                           </ng-template>
