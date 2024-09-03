@@ -149,7 +149,7 @@
                     </mat-card-header>
                     <mat-card-content style="min-height:400px; padding: 0;">
                       <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
-                        disablePagination="true" (selectedIndexChange)="openChart($event, i, prop.propVariables.teamName, j)">
+                        disablePagination="true" (selectedIndexChange)="openChart($event, i, prop.propVariables.teamName, j, prop.propVariable.marketKey)">
                         <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                           <!-- <ng-template matTabContent> -->
                           <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
@@ -459,7 +459,7 @@
                 </mat-card-header>
                 <mat-card-content style="min-height:400px; padding: 0;">
                   <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" disablePagination="true"
-                    (selectedIndexChange)="openChart($event, i, bet.teamName, 0)">
+                    (selectedIndexChange)="openChart($event, i, bet.teamName, 0, bet.marketKey)">
                     <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                       <!-- <ng-template matTabContent> -->
                       <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
@@ -750,7 +750,7 @@
                             </mat-card-header>
                             <mat-card-content style="min-height:400px">
                               <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
-                                disablePagination="true" preserveContent (selectedIndexChange)="openChart($event, i, player[0].propVariables.teamName, j)">
+                                disablePagination="true" preserveContent (selectedIndexChange)="openChart($event, i, player[0].propVariables.teamName, j, player[0].propVariables.marketKey)">
                                 <mat-tab style="color: white; display: flex; height: 100%;" label="Prop Stats">
 
                                   <div class="full-body"
@@ -975,7 +975,7 @@
                 </mat-card-header>
                 <mat-card-content style="min-height:400px; padding: 0;">
                   <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" disablePagination="true"
-                    (selectedIndexChange)="openChart($event, i, bet.teamName, 0)">
+                    (selectedIndexChange)="openChart($event, i, bet.teamName, 0, bet.marketKey)">
                     <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                       <!-- <ng-template matTabContent> -->
                       <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">

@@ -3638,25 +3638,28 @@ console.log(this.playerBestBets)
 
   } */
 
-  openChart(event: any, index: number, teamName: string, teamIndex: number) {
+  openChart(event: any, index: number, teamName: string, teamIndex: number, marketKey: string) {
     if (event == 0) {
       this.destroySelectedChart(index, teamIndex)
     }
     if (event == 1) {
-      this.createChart(index, teamName)
+      this.createChart(index, teamName, marketKey, teamIndex)
     }
   }
   destroySelectedChart(index: number, teamIndex: number){
     this.listOfTeamsAndPropsForCharts[teamIndex][index].destroy()
   }
 
-  createChart(index: number, teamName: string) {
+  createChart(index: number, teamName: string, marketKey: string, teamIndex: number) {
     var historyOfProp: number[] = []
+
+    let filteredPropTrend = this.allPropTrendData.filter(e => e.teamName == teamName && e.marketKey == marketKey)
+
 
 
     var dataPoint: string[] = []
     var index = 1
-    if (this.selectedPropHistoryName == 'h2h') {
+    if (marketKey == 'h2h') {
       this.propHistory.forEach((e) => {
         historyOfProp.push(e.price)
         if (e.createdAt) {
@@ -3716,16 +3719,16 @@ console.log(this.playerBestBets)
       }
     })
 
-    if (this.selectedPropHistoryName == 'h2h') {
+    if (marketKey== 'h2h') {
       min = min - 10
       max = max + 10
     }
-    else if (this.selectedPropHistoryName == 'spreads') {
+    else if (marketKey == 'spreads') {
       min = min - 1
       max = max + 1
     }
 
-    this.chart = new Chart("lineChart", {
+    this.listOfTeamsAndPropsForCharts[teamIndex][index] = new Chart(this.listOfTeamsAndPropsForCharts[teamIndex][index], {
 
       type: 'line',
 
