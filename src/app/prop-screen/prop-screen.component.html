@@ -130,7 +130,7 @@
 
             <div style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly;">
               <mat-accordion style="width:94%">
-                <mat-expansion-panel *ngFor="let prop of team">
+                <mat-expansion-panel *ngFor="let prop of team; let i = index;">
                   <mat-expansion-panel-header>
                     <mat-panel-title style="max-width:fit-content;">
                       {{displayPropTitle(prop)}}:
@@ -380,8 +380,8 @@
 
                         <mat-tab label="Prop Trend" [disabled]="true">
                           <ng-template matTabContent>
-                            <canvas id="lineChart" style="width: 100%; height: 100%; background-color: white;">{{
-                              chart
+                            <canvas id="'lineChart' + i" style="width: 100%; height: 100%; background-color: white;">{{
+                              chart + i
                               }}</canvas>
                           </ng-template>
 
