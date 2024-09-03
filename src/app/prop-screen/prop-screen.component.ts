@@ -3650,6 +3650,7 @@ console.log(this.playerBestBets)
     this.listOfTeamsAndPropsForCharts[teamIndex][index].destroy()
   }
 
+  chartVariable: any;
   createChart(index: number, teamName: string, marketKey: string, teamIndex: number) {
     var historyOfProp: number[] = []
 
@@ -3727,8 +3728,7 @@ console.log(this.playerBestBets)
       min = min - 1
       max = max + 1
     }
-
-    this.listOfTeamsAndPropsForCharts[teamIndex][index] = new Chart(this.listOfTeamsAndPropsForCharts[teamIndex][index], {
+    this.chartVariable = new Chart(this.listOfTeamsAndPropsForCharts[teamIndex][index], {
 
       type: 'line',
 
