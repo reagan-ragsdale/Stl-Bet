@@ -3639,6 +3639,8 @@ console.log(this.playerBestBets)
   } */
 
   openChart(index: number, teamName: string, teamIndex: number, marketKey: string) {
+    console.log(teamName)
+    console.log(this.allPropTrendData)
     let filteredPropHistory = this.allPropTrendData.filter(e => e.teamName == teamName && e.marketKey == marketKey)
     this.createTrendChartData = [filteredPropHistory, marketKey]
   }
