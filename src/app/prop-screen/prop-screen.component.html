@@ -124,7 +124,7 @@
       <mat-tab style="color: white" label="Game Props">
 
         <div *ngIf="!teamPropIsLoading" class="prop-section">
-          <div *ngFor="let team of teamPropFinnal" class="away-team">
+          <div *ngFor="let team of teamPropFinnal; let j = index;" class="away-team">
             <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{team[0][0].teamName}} Game Props
             </h2>
 
@@ -149,7 +149,7 @@
                     </mat-card-header>
                     <mat-card-content style="min-height:400px; padding: 0;">
                       <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
-                        disablePagination="true" (selectedIndexChange)="openChart($event)">
+                        disablePagination="true" (selectedIndexChange)="openChart($event, i, prop.propVariables.teamName)">
                         <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                           <!-- <ng-template matTabContent> -->
                           <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
@@ -380,9 +380,9 @@
 
                         <mat-tab label="Prop Trend" [disabled]="false">
                           <ng-template matTabContent>
-                            <canvas [attr.id]="'lineChart' + i" style="width: 100%; height: 100%; background-color: white;">{{
-                              chart + i
-                              }}</canvas>
+                            <canvas [attr.id]=listOfTeamsAndPropsForCharts[j][i] style="width: 100%; height: 100%; background-color: white;">
+                              {{listOfTeamsAndPropsForCharts[j][i]}}
+                              </canvas>
                           </ng-template>
 
                         </mat-tab>
@@ -448,7 +448,7 @@
           </div>
           <div class="team-best-bets-body"
             style="width:100%; display:flex; gap:1rem; margin-left:auto; margin-right:auto; flex-wrap:wrap; justify-content: space-evenly;">
-            <div *ngFor="let bet of teamBestBets">
+            <div *ngFor="let bet of teamBestBets; let i = index;">
               <mat-card
                 style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                 <mat-card-header>
@@ -459,7 +459,7 @@
                 </mat-card-header>
                 <mat-card-content style="min-height:400px; padding: 0;">
                   <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" disablePagination="true"
-                    (selectedIndexChange)="openChart($event)">
+                    (selectedIndexChange)="openChart($event, i, bet.teamName)">
                     <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                       <!-- <ng-template matTabContent> -->
                       <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
@@ -722,7 +722,7 @@
                 <div class="player-dropdown">
                   <div *ngFor="let homeAway of prop" class="team-dropdown">
                     <h2 style="margin-left: auto; margin-right: auto;">{{homeAway.teamName}}</h2>
-                    <mat-accordion *ngFor="let player of homeAway" class="specific-class" style="margin-bottom:.5rem;">
+                    <mat-accordion *ngFor="let player of homeAway; let i = index;" class="specific-class" style="margin-bottom:.5rem;">
                       <mat-expansion-panel style="margin-bottom:.5rem;">
                         <mat-expansion-panel-header>
                           <mat-panel-title style="min-width: fit-content">
@@ -750,7 +750,7 @@
                             </mat-card-header>
                             <mat-card-content style="min-height:400px">
                               <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
-                                disablePagination="true" preserveContent (selectedIndexChange)="openChart($event)">
+                                disablePagination="true" preserveContent (selectedIndexChange)="openChart($event, i, player[0].propVariables.teamName)">
                                 <mat-tab style="color: white; display: flex; height: 100%;" label="Prop Stats">
 
                                   <div class="full-body"
@@ -964,7 +964,7 @@
           </div>
           <div class="team-best-bets-body"
             style="width:100%; display:flex; gap:1rem; margin-left:auto; margin-right:auto; flex-wrap:wrap; justify-content: space-evenly;">
-            <div *ngFor="let bet of playerBestBets">
+            <div *ngFor="let bet of playerBestBets; let i = index;">
               <mat-card
                 style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                 <mat-card-header>
@@ -975,7 +975,7 @@
                 </mat-card-header>
                 <mat-card-content style="min-height:400px; padding: 0;">
                   <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;" disablePagination="true"
-                    (selectedIndexChange)="openChart($event)">
+                    (selectedIndexChange)="openChart($event, i, bet.teamName)">
                     <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                       <!-- <ng-template matTabContent> -->
                       <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">

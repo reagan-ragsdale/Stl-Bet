@@ -362,7 +362,9 @@ export class PropScreenComponent implements OnInit {
 
   static sendEmail: (errorMessage: string) => void;
 
+  allPropTrendData: DbGameBookData[] = []
   listOfTeams: DbTeamInfo[] = []
+  listOfTeamsAndPropsForCharts: any[] = []
   public teamPropFinnal: any = []
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
@@ -514,6 +516,7 @@ export class PropScreenComponent implements OnInit {
 
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertDateToDateTime(team2[0].commenceTime.toString()) });
 
+    this.allPropTrendData = await SportsBookController.loadAllBookDataByBookId(this.selectedGame)
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
@@ -528,6 +531,13 @@ export class PropScreenComponent implements OnInit {
     }
     
     this.calcLiveProps()
+    for(let i = 0; i < this.teamPropFinnal.length; i++){
+      let teamPropsForChart = []
+      for(let j = 0; j < this.teamPropFinnal[i].length; j++){
+        teamPropsForChart.push('chartName' + i + '-' + 'j')
+      }
+      this.listOfTeamsAndPropsForCharts.push(teamPropsForChart)
+    }
   }
 
   public team1Wins: number = 0
@@ -3499,7 +3509,7 @@ console.log(this.playerBestBets)
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
 
 
-
+  
 
 
   /* async propTrend(teamName: string, prop: string, homeAway: string, content: TemplateRef<any>) {
@@ -3627,16 +3637,16 @@ console.log(this.playerBestBets)
 
   } */
 
-  openChart(event: any) {
+  openChart(event: any, index: number, teamName: string) {
     if (event == 0) {
-      this.chart.destroy()
+      //this.destroySelectedChart(index, teamName)
     }
     if (event == 1) {
-      this.createChart()
+      this.createChart(index, teamName)
     }
   }
 
-  createChart() {
+  createChart(index: number, teamName: string) {
     var historyOfProp: number[] = []
 
 
