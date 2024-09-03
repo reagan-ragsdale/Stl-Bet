@@ -532,7 +532,7 @@ export class PropScreenComponent implements OnInit {
     
     this.calcLiveProps()
     for(let i = 0; i < this.teamPropFinnal.length; i++){
-      let teamPropsForChart: any[] = []
+      let teamPropsForChart: string[] = []
       for(let j = 0; j < this.teamPropFinnal[i].length; j++){
         teamPropsForChart[j] = 'chartName' + i + '-' + j
       }
@@ -3728,6 +3728,7 @@ console.log(this.playerBestBets)
       min = min - 1
       max = max + 1
     }
+    console.log(this.listOfTeamsAndPropsForCharts[teamIndex][index])
     this.chartVariable = new Chart(this.listOfTeamsAndPropsForCharts[teamIndex][index], {
 
       type: 'line',
