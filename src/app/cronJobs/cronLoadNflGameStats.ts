@@ -12,10 +12,10 @@ export const cronLoadNflGameStats = async () => {
         let incomingGameIds = await nflApiController.loadAllNflGameIds(2023)
 
         //find the ones that don't intersect
-        let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
-        console.log(newGameIds)
+        //let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
+        //console.log(newGameIds)
 
-        for(let game of newGameIds){
+        for(let game of incomingGameIds){
             try{
                 let gameStats = await nflApiController.getGameSummary(game)
                 await NflController.addTeamGameStats(gameStats[0])
