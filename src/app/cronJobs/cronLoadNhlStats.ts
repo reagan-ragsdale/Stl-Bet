@@ -47,27 +47,27 @@ export const cronLoadNhlStats = async () => {
         "20240605", "20240606", "20240607", "20240608", "20240609", "20240610", "20240611",
         "20240612", "20240613", "20240614", "20240615", "20240616", "20240617", "20240618",
         "20240619", "20240620", "20240621", "20240622", "20240623", "20240624"
-      ];
-      try{
-        for(let date of dates){
-            let gamesToday = await nhlApiController.getDailySchedule(date)
-            console.log(gamesToday)
-            if(gamesToday.length > 0){
-                for(let game of gamesToday){
+    ];
+
+    for (let date of dates) {
+        let gamesToday = await nhlApiController.getDailySchedule(date)
+        if (gamesToday.length > 0) {
+            for (let game of gamesToday) {
+                try {
                     let gameAndPlayerStats = await nhlApiController.getGameStats(game)
-                    console.log(gameAndPlayerStats)
                     await NhlController.nhlSetGameStats(gameAndPlayerStats[0])
                     await NhlController.nhlSetPlayerStats(gameAndPlayerStats[1])
                 }
+                catch (error: any) {
+                    console.log(error.message)
+                }
             }
-            
         }
-      }
-      catch(error: any){
-        console.log(error.message)
-      }
-      
-    
+
+    }
+
+
+
 
 
 }
