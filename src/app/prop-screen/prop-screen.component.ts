@@ -3729,7 +3729,8 @@ console.log(this.playerBestBets)
       max = max + 1
     }
     console.log(this.listOfTeamsAndPropsForCharts[teamIndex][index])
-    this.chartVariable = new Chart(this.listOfTeamsAndPropsForCharts[teamIndex][index].toString(), {
+    let newName: string = this.listOfTeamsAndPropsForCharts[teamIndex][index]
+    this.chartVariable = new Chart(newName, {
 
       type: 'line',
 
