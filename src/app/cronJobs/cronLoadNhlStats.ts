@@ -52,12 +52,15 @@ export const cronLoadNhlStats = async () => {
         for(let date of dates){
             let gamesToday = await nhlApiController.getDailySchedule(date)
             console.log(gamesToday)
-            for(let game of gamesToday){
-                let gameAndPlayerStats = await nhlApiController.getGameStats(game)
-                console.log(gameAndPlayerStats)
-                await NhlController.nhlSetGameStats(gameAndPlayerStats[0])
-                await NhlController.nhlSetPlayerStats(gameAndPlayerStats[1])
+            if(gamesToday.length > 0){
+                for(let game of gamesToday){
+                    let gameAndPlayerStats = await nhlApiController.getGameStats(game)
+                    console.log(gameAndPlayerStats)
+                    await NhlController.nhlSetGameStats(gameAndPlayerStats[0])
+                    await NhlController.nhlSetPlayerStats(gameAndPlayerStats[1])
+                }
             }
+            
         }
       }
       catch(error: any){
