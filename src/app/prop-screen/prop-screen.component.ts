@@ -3661,7 +3661,7 @@ console.log(this.playerBestBets)
     var dataPoint: string[] = []
     var index = 1
     if (marketKey == 'h2h') {
-      this.propHistory.forEach((e) => {
+      filteredPropTrend.forEach((e) => {
         historyOfProp.push(e.price)
         if (e.createdAt) {
           dataPoint.push("f")
@@ -3729,7 +3729,7 @@ console.log(this.playerBestBets)
       max = max + 1
     }
     console.log(this.listOfTeamsAndPropsForCharts[teamIndex][index])
-    this.chartVariable = new Chart(this.listOfTeamsAndPropsForCharts[teamIndex][index], {
+    this.chartVariable = new Chart(this.listOfTeamsAndPropsForCharts[teamIndex][index].toString(), {
 
       type: 'line',
 
