@@ -70,6 +70,9 @@ export class DbNhlPlayerGameStats {
   @Fields.integer()
   blocks = 0
 
+  @Fields.integer()
+  saves = 0
+
   @Fields.createdAt()
   createdAt?: Date
 }

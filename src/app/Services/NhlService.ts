@@ -110,16 +110,17 @@ export class NhlService {
                     season: this.getSeason(gameStats.gameDate),
                     homeAway: player.teamID == gameStats.teamIDHome ? 'Home' : 'Away',
                     result: player.teamID == gameStats.teamIDHome ? gameStats.homeResult : gameStats.awayResult,
-                    goals: player.goals,
-                    assists: player.assists,
-                    pim: player.penaltiesInMinutes,
-                    shots: player.shots,
-                    hits: player.hits,
-                    powerPlayGoals: player.powerPlayGoals,
-                    powerPlayPoints: player.powerPlayPoints,
-                    plusMinus: player.plusMinus,
-                    points: Number(player.goals) + Number(player.assists),
-                    blocks: player.blockedShots
+                    goals: Object.hasOwn(player, 'goals') ? player.goals : 0,
+                    assists: Object.hasOwn(player, 'assists') ? player.assists : 0,
+                    pim: Object.hasOwn(player, 'penaltiesInMinutes') ? player.penaltiesInMinutes : 0,
+                    shots: Object.hasOwn(player, 'shots') ? player.shots : 0,
+                    hits: Object.hasOwn(player, 'hits') ? player.hits : 0,
+                    powerPlayGoals: Object.hasOwn(player, 'powerPlayGoals') ? player.powerPlayGoals : 0,
+                    powerPlayPoints: Object.hasOwn(player, 'powerPlayPoints') ? player.powerPlayPoints : 0,
+                    plusMinus: Object.hasOwn(player, 'plusMinus') ? player.plusMinus : 0,
+                    points: Object.hasOwn(player, 'assists') ? (Object.hasOwn(player, 'goals') ? Number(player.goals) + Number(player.assists) : 0) : (Object.hasOwn(player, 'goals') ? Number(player.goals) : 0),
+                    blocks: Object.hasOwn(player, 'blockedShots') ? player.blockedShots : 0,
+                    saves: Object.hasOwn(player, 'saves') ? player.saves : 0
                 })
             }
 
