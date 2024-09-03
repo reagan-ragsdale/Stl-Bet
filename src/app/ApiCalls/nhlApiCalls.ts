@@ -55,6 +55,7 @@ export class nhlApiController {
     const response = await fetch(url, options);
     const result = await response.json();
     const processedResponse = result.body;
+    console.log(processedResponse)
     return NhlService.convertGameAndPlayerStatsToDb(processedResponse)
   }
 
