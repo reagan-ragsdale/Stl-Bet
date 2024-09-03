@@ -49,6 +49,7 @@ import { RemoveUnderScore } from "./customPipes/removeUnderScore.pipe";
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { UsersController } from 'src/shared/Controllers/UsersController';
+import { PropTrendComponent } from './prop-screen/propTrend/prop-trend.component';
 
 @NgModule({
     declarations: [
@@ -60,6 +61,7 @@ import { UsersController } from 'src/shared/Controllers/UsersController';
         WelcomeScreenComponent,
         TeamStatsComponent,
         LoginScreenComponent,
+        PropTrendComponent
     ],
     providers: [
       { provide: APP_INITIALIZER, useFactory: initApp, multi: true },

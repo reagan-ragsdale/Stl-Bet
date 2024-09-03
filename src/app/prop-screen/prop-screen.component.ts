@@ -3638,20 +3638,21 @@ console.log(this.playerBestBets)
 
   } */
 
-  openChart(event: any, index: number, teamName: string, teamIndex: number, marketKey: string) {
-    if (event == 0) {
-      this.destroySelectedChart(index, teamIndex)
-    }
-    if (event == 1) {
-      this.createChart(index, teamName, marketKey, teamIndex)
-    }
+  openChart(index: number, teamName: string, teamIndex: number, marketKey: string) {
+    let filteredPropHistory = this.allPropTrendData.filter(e => e.teamName == teamName && e.marketKey == marketKey)
+    this.createTrendChartData = [filteredPropHistory, marketKey]
   }
   destroySelectedChart(index: number, teamIndex: number){
     this.listOfTeamsAndPropsForCharts[teamIndex][index].destroy()
   }
 
   chartVariable: any;
+  createTrendChartData: any[] = []
   createChart(index: number, teamName: string, marketKey: string, teamIndex: number) {
+
+    
+    
+
     var historyOfProp: number[] = []
 
     let filteredPropTrend = this.allPropTrendData.filter(e => e.teamName == teamName && e.marketKey == marketKey)
