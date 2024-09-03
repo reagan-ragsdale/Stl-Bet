@@ -7,6 +7,7 @@ export class NhlController{
     //team stats
     @BackendMethod({allowed:true})
     static async nhlSetGameStats(gameStats: DbNhlTeamGameStats[]){
+        
         const taskRepo = remult.repo(DbNhlTeamGameStats)
         await taskRepo.insert(gameStats)
     }
