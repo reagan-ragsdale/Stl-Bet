@@ -532,12 +532,13 @@ export class PropScreenComponent implements OnInit {
     
     this.calcLiveProps()
     for(let i = 0; i < this.teamPropFinnal.length; i++){
-      let teamPropsForChart = []
+      let teamPropsForChart: any[] = []
       for(let j = 0; j < this.teamPropFinnal[i].length; j++){
-        teamPropsForChart.push('chartName' + i + '-' + 'j')
+        teamPropsForChart[j] = 'chartName' + i + '-' + j
       }
-      this.listOfTeamsAndPropsForCharts.push(teamPropsForChart)
+      this.listOfTeamsAndPropsForCharts[i] = teamPropsForChart
     }
+    console.log(this.listOfTeamsAndPropsForCharts)
   }
 
   public team1Wins: number = 0
@@ -3637,13 +3638,16 @@ console.log(this.playerBestBets)
 
   } */
 
-  openChart(event: any, index: number, teamName: string) {
+  openChart(event: any, index: number, teamName: string, teamIndex: number) {
     if (event == 0) {
-      //this.destroySelectedChart(index, teamName)
+      this.destroySelectedChart(index, teamIndex)
     }
     if (event == 1) {
       this.createChart(index, teamName)
     }
+  }
+  destroySelectedChart(index: number, teamIndex: number){
+    this.listOfTeamsAndPropsForCharts[teamIndex][index].destroy()
   }
 
   createChart(index: number, teamName: string) {
