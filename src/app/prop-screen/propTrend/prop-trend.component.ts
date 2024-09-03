@@ -30,7 +30,8 @@ export class PropTrendComponent implements OnChanges {
   createChart(propHistory: DbGameBookData[], marketKey: string) {
     var historyOfProp: number[] = []
 
-
+    console.log(propHistory)
+    console.log(marketKey)
 
 
     var dataPoint: string[] = []
