@@ -118,7 +118,7 @@ export class NhlService {
                     powerPlayGoals: player.powerPlayGoals,
                     powerPlayPoints: player.powerPlayPoints,
                     plusMinus: player.plusMinus,
-                    points: player.goals + player.assists,
+                    points: Number(player.goals) + Number(player.assists),
                     blocks: player.blockedShots
                 })
             }
