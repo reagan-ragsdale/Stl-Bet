@@ -146,7 +146,7 @@
                     style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                     <mat-card-header>
                       <mat-card-title>{{displayPropTitle(prop)}} {{displayPropDescription(prop)}}</mat-card-title>
-                      <button mat-raised-button (click)="openChart(i, prop.propVariables.teamName, j, prop.propVariables.marketKey)"> Prop Trend</button>
+                      <button mat-raised-button (click)="openChart(i, team[0][0].teamName, j, prop.propVariables.marketKey)"> Prop Trend</button>
                     </mat-card-header>
                     <mat-card-content style="min-height:400px; padding: 0;">
                       <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
