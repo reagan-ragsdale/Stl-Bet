@@ -50,6 +50,7 @@ import { LoginScreenComponent } from './login-screen/login-screen.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { UsersController } from 'src/shared/Controllers/UsersController';
 import { PropTrendComponent } from './prop-screen/propTrend/prop-trend.component';
+import { ConvertCommenceTimePipe } from './customPipes/convertCommenceTime.pipe';
 
 @NgModule({
     declarations: [
@@ -113,7 +114,8 @@ import { PropTrendComponent } from './prop-screen/propTrend/prop-trend.component
         MatMenuModule,
         MatProgressSpinnerModule,
         RemoveUnderScore,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        ConvertCommenceTimePipe
     ]
 })
 export class AppModule { 
