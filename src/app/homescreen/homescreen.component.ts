@@ -368,7 +368,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       }
       teamArrayFinal[0][0].commenceTime = reusedFunctions.convertCommenceTime(teamArrayFinal[0][0].commenceTime.toString() )
       if(teamArrayFinal[0].length == 2 && teamArrayFinal[1].length == 2 && teamArrayFinal[2].length == 1 && teamArrayFinal[3].length == 1){
-        this.gameDataAllFinal.push(teamArrayFinal)
+        let team1 = [teamArrayFinal[0], teamArrayFinal[2]]
+        let team2 = [teamArrayFinal[1], teamArrayFinal[3]]
+        let team: any[] = [team1, team2]
+        this.gameDataAllFinal.push(team)
       }
       
     })
