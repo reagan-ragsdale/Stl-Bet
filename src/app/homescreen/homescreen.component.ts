@@ -375,6 +375,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       }
       
     })
+    console.log(this.gameDataAllFinal)
   }
 
   teamClicked(teamName: string) {
