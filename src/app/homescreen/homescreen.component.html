@@ -269,31 +269,31 @@
                   </div> -->
                   <table mat-table [dataSource]="game" class="mat-elevation-z8">
                     <ng-container matColumnDef="Team">
-                      <th mat-header-cell *matHeaderCellDef style="padding:0;">  </th>
+                      <th mat-header-cell *matHeaderCellDef >  </th>
                       <td mat-cell *matCellDef="let element; let j = index;">
                         <a class="teamLink" (click)="onTeamClick(element[0][0].teamName)">{{element[0][0].teamName | transforFromFullTeamNameToAbvr | async}}</a>
                       </td>
                     </ng-container>
       
                     <ng-container matColumnDef="ML">
-                      <th mat-header-cell *matHeaderCellDef style="padding:0;"> H2H </th>
+                      <th mat-header-cell *matHeaderCellDef > H2H </th>
                       <td mat-cell *matCellDef="let element"> {{element[0][0].price > 0 ? '+' : ''}}{{element[0][0].price}}
                       </td>
                     </ng-container>
       
                     <ng-container matColumnDef="Spread">
-                      <th mat-header-cell *matHeaderCellDef style="padding:0;"> Spread </th>
-                      <td *matCellDef="let element"> {{element[0][1].point}} | {{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}} </td>
+                      <th mat-header-cell *matHeaderCellDef > Spread </th>
+                      <td *matCellDef="let element"> {{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}} | {{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="OverUnder">
-                      <th mat-header-cell *matHeaderCellDef style="padding:0;"> O/U </th>
+                      <th mat-header-cell *matHeaderCellDef > O/U </th>
                       <td mat-cell *matCellDef="let element"> {{element[1][0].point}} | {{element[1][0].price > 0 ? '+' : ''}}{{element[1][0].price}} </td>
                     </ng-container>
       
                     <tr mat-header-row *matHeaderRowDef="upcomingGamePropColumns; sticky:false" style="height:auto;" ></tr>
                     <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
-                      *matRowDef="let row; columns: upcomingGamePropColumns; " style="height:auto;"></tr>
+                      *matRowDef="let row; columns: upcomingGamePropColumns; " ></tr>
                   </table>
                   
 
