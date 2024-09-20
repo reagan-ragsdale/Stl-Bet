@@ -43,9 +43,9 @@ export class WelcomeScreenComponent {
 
  
 
-
+  remult = remult
   async ngOnInit() {
-
+    
   }
 
 

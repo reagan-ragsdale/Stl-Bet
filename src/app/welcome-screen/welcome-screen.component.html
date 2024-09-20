@@ -1,6 +1,6 @@
-<div style="padding: auto;  width: 100%; height:calc(100vh - 100px); display:flex;">
+<div style="padding: auto;  width: 100%; height:calc(100vh - 100px); display:flex;" *ngIf="remult.authenticated()">
    <!--  <button *ngIf="remult.authenticated()" mat-raised-button color="primary" style="margin:auto;" routerLink="/sports">Get Started</button> -->
-    <div style="width:100%;" *ngIf="getStarted == false">
+    <div style="width:100%;">
         <header>
             <h1>Welcome to the Ultimate Sports Betting Statistics Hub!</h1>
             <p>Unlock the Power of Data-Driven Betting!</p>
