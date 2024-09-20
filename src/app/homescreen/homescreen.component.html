@@ -1,7 +1,7 @@
  <div class="outer-div" >
 
     <div class="game-list" >
-      <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+      <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
         <mat-chip-option *ngFor="let game of gamesList" style="height:40px; width:85%;" [selected]="game.selected"  [disabled]="game.disabled == true"
          (click)="onSportsListClick(game.name)">
           {{game.name}}
