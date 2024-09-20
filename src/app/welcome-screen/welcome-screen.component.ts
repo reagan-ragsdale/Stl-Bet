@@ -23,30 +23,25 @@ export class WelcomeScreenComponent {
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
 
-
+  getStarted: boolean = false;
   private modalService = inject(NgbModal);
 
   openVerticallyCentered(content: TemplateRef<any>) {
     this.modalService.open(content, { centered: true });
   }
 
-  async signUp() {
-    remult.user = await UsersController.signUp(this.emailFormControl.value!, this.passwordFormControl.value!)
-  }
-  async login() {
-    remult.user = await UsersController.login(this.emailFormControl.value!, this.passwordFormControl.value!)
-  }
+  stlBetEmailName = 'stlbetmail@gmail.com'
+
+  
   async logout() {
     await UsersController.logout()
     remult.user = undefined;
   }
+  routeToSignUp(){
+    this.router.navigate(['/signup'])
+  }
 
-
-
-  signInUsername = '';
-  signInPassword = ''
-  remult = remult;
-
+ 
 
 
   async ngOnInit() {

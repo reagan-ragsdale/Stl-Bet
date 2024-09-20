@@ -1,0 +1,56 @@
+<div class="auth-container">
+    <div class="form-container">
+        <mat-card class="form-card">
+            <mat-card-header>
+                <mat-toolbar color="primary">
+                    <span>{{isLoginMode ? 'Login' : 'Sign Up'}}</span>
+                </mat-toolbar>
+            </mat-card-header>
+            <mat-card-content style="margin-top:1rem;">
+                <form (ngSubmit)="onSubmit()" class="auth-form">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput [(ngModel)]="email" name="email" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" [(ngModel)]="password" name="password" required>
+                    </mat-form-field>
+                    <mat-form-field *ngIf="!isLoginMode" appearance="outline" class="full-width">
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" type="submit" class="full-width">{{isLoginMode ? 'Login' :
+                        'Sign Up'}}</button>
+                    <div class="toggle-link" (click)="toggleMode()">{{isLoginMode ? signUpMessage : loginMessage}}</div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-card  *ngIf="false" class="subscription-card">
+        <mat-card-header>
+          <mat-toolbar color="primary" class="header-toolbar">
+            <span>Premium Subscription</span>
+          </mat-toolbar>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="pricing">
+            <h2>$9.99/month</h2>
+            <p>Unlock exclusive features with our premium plan!</p>
+          </div>
+          <mat-divider></mat-divider>
+          <h3>Benefits:</h3>
+          <ul class="benefits-list">
+            <li>✅ Access to advanced analytics</li>
+            <li>✅ Ad-free experience</li>
+            <li>✅ Priority customer support</li>
+            <li>✅ Early access to new features</li>
+            <li>✅ Personalized betting tips</li>
+            <li>✅ Monthly newsletters with insights</li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" class="subscribe-button">Subscribe Now</button>
+        </mat-card-actions>
+      </mat-card>
+</div>

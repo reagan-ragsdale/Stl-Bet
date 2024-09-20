@@ -1,61 +1,96 @@
 <div style="padding: auto;  width: 100%; height:calc(100vh - 100px); display:flex;">
-    <button *ngIf="remult.authenticated()" mat-raised-button color="primary" style="margin:auto;" routerLink="/sports">Get Started</button>
-    <div *ngIf="!remult.authenticated()" style="margin:auto; border: 1px solid black;">
-        <mat-button-toggle-group style="display:flex; justify-content: center;"  [(ngModel)]="loginSignUp" aria-label="Font Style">
-            <mat-button-toggle  style="width:50%;"  value="Login">Login</mat-button-toggle>
-            <mat-button-toggle style="width:50%;" value="Sign Up">Sign Up</mat-button-toggle>
-        </mat-button-toggle-group>
-
-        <form *ngIf="loginSignUp=='Sign Up'" class="example-form" style="display: flex; flex-direction: column; margin-top:1rem;">
-            <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput [formControl]="emailFormControl">
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                    Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                    Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput [formControl]="passwordFormControl">
-                <mat-error *ngIf="passwordFormControl.hasError('minLength') && !emailFormControl.hasError('required')">
-                    Password must be at least 8 characters
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                    Password is <strong>required</strong>
-                </mat-error>
-
-            </mat-form-field>
-            <button mat-raised-button color="primary" style="margin:auto; width:100%;" (click)="signUp()">Sign Up</button>
-        </form>
-        <form *ngIf="loginSignUp=='Login'" class="example-form" style="display: flex; flex-direction: column; margin-top:1rem;">
-            <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput [formControl]="emailFormControl">
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                    Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                    Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput [formControl]="passwordFormControl">
-                <mat-error *ngIf="passwordFormControl.hasError('minLength') && !emailFormControl.hasError('required')">
-                    Password must be at least 8 characters
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                    Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-            <button mat-raised-button color="primary" style="margin:auto;width: 100%;" (click)="login()">Login</button>
-
-        </form>
-      
+   <!--  <button *ngIf="remult.authenticated()" mat-raised-button color="primary" style="margin:auto;" routerLink="/sports">Get Started</button> -->
+    <div style="width:100%;" *ngIf="getStarted == false">
+        <header>
+            <h1>Welcome to the Ultimate Sports Betting Statistics Hub!</h1>
+            <p>Unlock the Power of Data-Driven Betting!</p>
+        </header>
+    
+        <section id="why-choose-us">
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li><strong>Comprehensive Stats:</strong> Get in-depth statistics for all major sports, including NFL, NBA, MLB, NHL, and more.</li>
+                <li><strong>Real-Time Updates:</strong> Stay ahead of the game with live updates and analysis.</li>
+                <li><strong>Expert Insights:</strong> Access expert tips and predictions based on the latest trends and data.</li>
+            </ul>
+        </section>
+    
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li>
+                    <strong>User-Friendly Dashboard:</strong> Navigate effortlessly with an intuitive interface designed for bettors of all levels.
+                </li>
+                <li>
+                    <strong>Customizable Reports:</strong> Generate tailored reports to focus on your favorite teams, leagues, or sports.
+                </li>
+                <li>
+                    <strong>In-Depth Analytics:</strong> Explore advanced metrics like player performance, team statistics, and historical trends.
+                </li>
+                <li>
+                    <strong>Betting Odds Comparison:</strong> Compare odds across multiple sportsbooks to maximize your betting potential.
+                </li>
+            </ul>
+        </section>
+    
+        <section id="signup">
+            <h2>Join Our Community!</h2>
+            <p><strong>Sign Up Today for a FREE Trial!</strong></p>
+            <ul>
+                <li>Gain instant access to premium content.</li>
+                <li>Receive exclusive tips and betting strategies.</li>
+                <li>Join our community of sports betting enthusiasts.</li>
+            </ul>
+            <button (click)="routeToSignUp()">Get Started</button>
+        </section>
+    
+        <section *ngIf="false" id="testimonials">
+            <h2>Testimonials</h2>
+            <blockquote>
+                <p>"This website transformed how I bet on sports! The statistics are detailed and easy to understand."</p>
+                <cite>— Alex J., Avid Bettor</cite>
+            </blockquote>
+            <blockquote>
+                <p>"I love the real-time updates and insights. It’s like having my own betting advisor!"</p>
+                <cite>— Sarah L., Sports Fanatic</cite>
+            </blockquote>
+        </section>
+    
+        <section *ngIf="false" id="articles">
+            <h2>Latest Articles & Insights</h2>
+            <ul>
+                <li><a href="article1.html">Top 5 Betting Strategies for NFL Season 2024</a></li>
+                <li><a href="article2.html">Understanding Betting Odds: A Beginner's Guide</a></li>
+                <li><a href="article3.html">How Statistics Can Change Your Betting Game</a></li>
+            </ul>
+            <button onclick="location.href='articles.html'">Read More</button>
+        </section>
+    
+        <footer>
+            <h2>Stay Connected</h2>
+            <p>Follow us on Social Media:</p>
+            <ul>
+                <li style="justify-content: center;"><a href="">Facebook</a></li>
+                <li style="justify-content: center;"><a href="">Twitter</a></li>
+                <li style="justify-content: center;"><a href="">Instagram</a></li>
+                <li style="justify-content: center;"><a href="">YouTube</a></li>
+            </ul>
+    
+            <h2>Contact Us</h2>
+            <p>Have questions? We're here to help!</p>
+            <p >Email: <a href="mailto:{{stlBetEmailName}}">{{stlBetEmailName}}</a></p>
+            
+    
+            <p>&copy; 2024 Stl-Bet. All Rights Reserved.</p>
+            <p><em>Disclaimer: Betting involves risk. Please gamble responsibly.</em></p>
+    
+            <p>
+                <a href="">Privacy Policy</a> | 
+                <a  href="">Terms of Service</a>
+            </p>
+        </footer>
     </div>
+     
 
 
 </div>
