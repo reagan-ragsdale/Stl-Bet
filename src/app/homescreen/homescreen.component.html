@@ -258,7 +258,7 @@
                     </div>
                     </mat-card-title>
                 </mat-card-header>
-                <mat-card-content style="display:flex; flex-direction: column;">
+                <mat-card-content style="display:flex; flex-direction: column; padding: 0;">
                   <!-- <div *ngIf="game[0]" class="team-row">
                     <a class="teamLink" (click)="onTeamClick(game[0][0].awayTeam)"><p class="team-name">{{game[0][0].awayTeam | transforFromFullTeamNameToAbvr | async}}</p></a><p *ngIf="game[0][0]" class="team-prop">{{game[0][0].price > 0 ? '+' : ''}}{{game[0][0].price}}</p><div *ngIf="game[0][1]" class="spread-prop" ><p>{{game[0][1].point > 0 ? '+' : ''}}{{game[0][1].point}}</p><p>{{game[0][1].price > 0 ? '+' : ''}}{{game[0][1].price}}</p></div><div *ngIf="game[2][0]" class="spread-prop" ><p>{{game[2][0].point}}</p><p>{{game[2][0].price > 0 ? '+' : ''}}{{game[2][0].price}}</p></div><span *ngIf="game[2][0]" style="margin-bottom: auto;
                     margin-top: auto;">O</span>
@@ -283,8 +283,7 @@
       
                     <ng-container matColumnDef="Spread">
                       <th mat-header-cell *matHeaderCellDef > Spread </th>
-                      <td mat-cell *matCellDef="let element"> {{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}} | {{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}} </td>
-                      <td mat-cell *matCellDef="let element"> {{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}} | {{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}} </td>
+                      <td mat-cell *matCellDef="let element" style="display:flex; flex-direction: column;"> <div>{{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}}</div> <div>{{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}}</div> </td>
                     </ng-container>
 
                     <ng-container matColumnDef="OverUnder">
