@@ -45,7 +45,9 @@ export class WelcomeScreenComponent {
 
   remult = remult
   async ngOnInit() {
-    
+    if(remult.authenticated()){
+      this.router.navigate([`/sports`])
+    }
   }
 
 
