@@ -1,9 +1,15 @@
-<div class="outer-div" >
+ <div class="outer-div" >
 
     <div class="game-list" >
-        <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
+      <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+        <mat-chip-option *ngFor="let game of gamesList" style="height:40px; width:85%;" [selected]="game.selected"  [disabled]="game.disabled == true"
+         (click)="onSportsListClick(game.name)">
+          {{game.name}}
+        </mat-chip-option>
+      </mat-chip-listbox>
+        <!-- <button mat-button *ngFor="let game of gamesList" [disabled]="game.disabled == true"
         [ngClass]="game.selected ? 'button-selected': 'button-unselected'" (click)="onSportsListClick(game.name)"
-        >{{game.name}}</button>
+        >{{game.name}}</button> -->
       
     </div>
     <div class="sport-section">
@@ -276,4 +282,4 @@
 
     </div>
 
-</div>
+</div> 

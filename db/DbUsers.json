@@ -16,5 +16,11 @@
     "userName": "noam@xx.com",
     "userPass": "sha1$f5688289$1$7049b3ea54bfbc032d968729b7e161a44ca99480",
     "createdAt": "2024-08-04T15:28:52.905Z"
+  },
+  {
+    "id": "r4tivwh2fd3eb9ffeh8ywrfp",
+    "userName": "rr@gmail.com",
+    "userPass": "sha1$dc130ad0$1$58187204d7a770af0e65dc4c3663cf12b4c1f4ca",
+    "createdAt": "2024-09-20T18:38:21.826Z"
   }
 ]

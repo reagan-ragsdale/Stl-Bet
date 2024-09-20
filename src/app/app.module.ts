@@ -54,6 +54,7 @@ import { ConvertCommenceTimePipe } from './customPipes/convertCommenceTime.pipe'
 import { LoginSignUpComponent } from './login-sign-up/login-sign-up.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
+
 @NgModule({
     declarations: [
         AppComponent,
