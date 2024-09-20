@@ -283,12 +283,13 @@
       
                     <ng-container matColumnDef="Spread">
                       <th mat-header-cell *matHeaderCellDef > Spread </th>
-                      <td *matCellDef="let element"> {{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}} | {{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}} | {{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}} | {{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="OverUnder">
                       <th mat-header-cell *matHeaderCellDef > O/U </th>
-                      <td mat-cell *matCellDef="let element"> {{element[1][0].point}} | {{element[1][0].price > 0 ? '+' : ''}}{{element[1][0].price}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element[1][0].point}} | {{element[1][0].price > 0 ? '+' : ''}}{{element[1][0].price}} {{element[1][0].teamName == 'Over' ? 'O' : 'U'}}</td>
                     </ng-container>
       
                     <tr mat-header-row *matHeaderRowDef="upcomingGamePropColumns; sticky:false" style="height:auto;" ></tr>
