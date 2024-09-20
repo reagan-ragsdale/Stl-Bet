@@ -50,6 +50,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   public gameDataAllFinal: any[] = []
   public gameDataFinal: any[] = []
 
+  upcomingGamePropColumns: string[] = ["Team", "ML", "Spread", "OverUnder"]
+
   playerAverageColumns: string[] = []
   teamAverageColumns: string[] = []
 
