@@ -20,3 +20,8 @@ mat-accordion{
 .container-class{
     gap: 1rem;
 }
+@media screen and (max-width: 974px) {
+    .parlay-text{
+        font-size:x-small !important;
+    }
+}
