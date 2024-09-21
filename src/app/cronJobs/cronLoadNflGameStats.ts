@@ -6,10 +6,11 @@ import { NflService } from "../Services/NflService";
 
 
 export const cronLoadNflGameStats = async () => {
-
+    let players = await nflApiController.loadAllPLayerInfo()
+    await PlayerInfoController.playerInfoAddPlayers(players)
     try{
-        let currentGameIds = await NflController.nflGetDistinctGameIds(2023);
-        let incomingGameIds = await nflApiController.loadAllNflGameIds(2023)
+        let currentGameIds = await NflController.nflGetDistinctGameIds(2024);
+        let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
 
         //find the ones that don't intersect
         let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
@@ -33,7 +34,7 @@ export const cronLoadNflGameStats = async () => {
         ErrorEmailController.sendEmailError("cron player and team stats: " + error.message)
         
     }
-    try{
+    /* try{
         let players = await NflController.nflGetAllPlayerGameStatsBySeason(2023);
         let distinctPlayers = players.map(e => e.playerId).filter((value, index,array) => array.indexOf(value) === index)
         for(let player of distinctPlayers){
@@ -50,7 +51,6 @@ export const cronLoadNflGameStats = async () => {
         }
     }catch(error:any){
         ErrorEmailController.sendEmailError("cron player and team stat totals: " + error.message) 
-    }
-    let players = await nflApiController.loadAllPLayerInfo()
-    await PlayerInfoController.playerInfoAddPlayers(players)
+    } */
+    
 }
