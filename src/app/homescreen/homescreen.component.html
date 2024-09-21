@@ -283,7 +283,7 @@
       
                     <ng-container matColumnDef="Spread">
                       <th mat-header-cell *matHeaderCellDef > Spread </th>
-                      <td mat-cell *matCellDef="let element" style="display:flex; flex-direction: column; border-bottom: 1px solid white"> <div>{{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}}</div> <div>{{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}}</div> </td>
+                      <td mat-cell *matCellDef="let element" style="display:flex; flex-direction: column; padding-bottom:11px;"> <div>{{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}}</div> <div>{{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}}</div> </td>
                     </ng-container>
 
                     <ng-container matColumnDef="OverUnder">
