@@ -75,7 +75,7 @@ mat-chip-option {
 
 ::ng-deep .mdc-evolution-chip-set__chips{
     margin-left:0 !important;
-    flex-flow: nowrap;
+    flex-flow: nowrap !important;
 }
 
 .button-selected {
@@ -295,7 +295,6 @@ table {
     .game-card {
         width: 48%;
         min-width: 300px;
-        height: 170px
     }
 
     .mat-mdc-cell,
@@ -324,6 +323,10 @@ table {
         margin-top: auto !important;
         background-color: #fb8501 !important;
         color: #240604 !important;
+    }
+    .chip-box{
+        margin-top:auto !important;
+        margin-bottom:auto !important;
     }
 }
 
