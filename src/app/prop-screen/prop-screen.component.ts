@@ -2474,13 +2474,13 @@ export class PropScreenComponent implements OnInit {
       }
        else if (bet.propType == 'total') {
         if ((overallWin < .2 && bet.totalGames != 0) || (teamWin < .2 && bet.totalGamesHomeAway != 0) || (homeAwayWin < .2 && bet.totalGamesTeam != 0)) {
-          if (overallWin < .2) {
+          if (overallWin < .2 && bet.totalGames != 0) {
             bet.overallHighlight = true
           }
-          if (homeAwayWin < .2) {
+          if (homeAwayWin < .2 && bet.totalGamesHomeAway != 0) {
             bet.homeAwayHighlight = true
           }
-          if (teamWin < .2) {
+          if (teamWin < .2 && bet.totalGamesTeam != 0) {
             bet.teamHighlight = true
           }
           bet.overUnder = true
