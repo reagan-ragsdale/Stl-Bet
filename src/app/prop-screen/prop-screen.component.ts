@@ -2164,10 +2164,10 @@ export class PropScreenComponent implements OnInit {
         finalTeam.homeAway = homeAway
         finalTeam.propType = propType
         finalTeam.totalGames = teamGameStats.length
-        finalTeam.totalGamesHomeAway = teamGameStats.filter(e => e.homeAway == homeAway).length
+        finalTeam.totalGamesHomeAway = teamGameStats.filter(e => e.homeOrAway == homeAway).length
         finalTeam.totalGamesTeam = teamGameStats.filter(e => e.teamAgainstName == teamAgainstNameNew).length
         finalTeam.teamAgainstTotalGames = teamAgainstStats.length
-        finalTeam.teamAgainstGamesHomeAway = teamAgainstStats.filter(e => e.homeAway != homeAway).length
+        finalTeam.teamAgainstGamesHomeAway = teamAgainstStats.filter(e => e.homeOrAway != homeAway).length
         finalTeam.teamAgainstGamesTeam = teamAgainstStats.filter(e => e.teamAgainstName == teamNameAbvrFinal).length
         finalTeam.overUnder = false
 
@@ -2188,20 +2188,20 @@ export class PropScreenComponent implements OnInit {
             gameDate: e.gameDate,
             pointsScoredOverall: e.pointsScoredOverall,
             pointsAllowedOverall: e.pointsAllowedOverall,
-            homeAway: e.homeAway
+            homeAway: e.homeOrAway
           })
         })
         finalTeam.tableOverall = tableTemp
 
         tableTemp = []
         teamGameStatsReversed.forEach(e => {
-          if (e.homeAway == homeAway) {
+          if (e.homeOrAway == homeAway) {
             tableTemp.push({
               teamAgainstName: e.teamAgainstName,
               gameDate: e.gameDate,
               pointsScoredOverall: e.pointsScoredOverall,
               pointsAllowedOverall: e.pointsAllowedOverall,
-              homeAway: e.homeAway
+              homeAway: e.homeOrAway
             })
           }
         })
@@ -2215,7 +2215,7 @@ export class PropScreenComponent implements OnInit {
               gameDate: e.gameDate,
               pointsScoredOverall: e.pointsScoredOverall,
               pointsAllowedOverall: e.pointsAllowedOverall,
-              homeAway: e.homeAway
+              homeAway: e.homeOrAway
             })
           }
         })
@@ -2227,11 +2227,11 @@ export class PropScreenComponent implements OnInit {
 
           if (team.marketKey == 'h2h') {
             finalTeam.totalWins = teamGameStats.filter(e => e.result == 'W').length
-            finalTeam.totalWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeAway == homeAway).length
+            finalTeam.totalWinsHomeAway = teamGameStats.filter(e => e.result == 'W' && e.homeOrAway == homeAway).length
             finalTeam.totalWinsTeam = teamGameStats.filter(e => e.result == 'W' && e.teamAgainstName == teamAgainstNameNew).length
 
             finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => e.result == 'W').length
-            finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => e.result == 'W' && e.homeAway != homeAway).length
+            finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => e.result == 'W' && e.homeOrAway != homeAway).length
             finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => e.result == 'W' && e.teamAgainstName == teamNameAbvrFinal).length
 
 
@@ -2240,11 +2240,11 @@ export class PropScreenComponent implements OnInit {
         else if (propType == 'spread') {
           // need to get record, chance of winning, weighted chance, avg, high and low
           finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
-          finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeAway == homeAway).length
+          finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
           finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstNameNew).length
 
           finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < team.point).length
-          finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeAway != homeAway).length
+          finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
           finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall - e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamNameAbvrFinal).length
 
           let totalSpread = 0
@@ -2254,7 +2254,7 @@ export class PropScreenComponent implements OnInit {
           finalTeam.averageOverall = totalSpread / finalTeam.totalGames
           totalSpread = 0
           teamGameStats.forEach(e => {
-            if (e.homeAway == homeAway) {
+            if (e.homeOrAway == homeAway) {
               totalSpread += (e.pointsAllowedOverall - e.pointsScoredOverall)
             }
 
@@ -2283,7 +2283,7 @@ export class PropScreenComponent implements OnInit {
 
           if (team.marketKey == 'totals') {
             finalTeam.totalWins = teamGameStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
-            finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeAway == homeAway).length
+            finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
             finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstNameNew).length
 
             let totalSpread = 0
@@ -2293,7 +2293,7 @@ export class PropScreenComponent implements OnInit {
             finalTeam.averageOverall = totalSpread / finalTeam.totalGames
             totalSpread = 0
             teamGameStats.forEach(e => {
-              if (e.homeAway == homeAway) {
+              if (e.homeOrAway == homeAway) {
                 totalSpread += (e.pointsAllowedOverall + e.pointsScoredOverall)
               }
 
@@ -2309,7 +2309,7 @@ export class PropScreenComponent implements OnInit {
             finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
             finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsAllowedOverall + e.pointsScoredOverall) < team.point).length
-            finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeAway != homeAway).length
+            finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
             finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsAllowedOverall + e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamNameAbvrFinal).length
 
 
@@ -2323,7 +2323,7 @@ export class PropScreenComponent implements OnInit {
           }
           else if (team.marketKey.includes('team_totals')) {
             finalTeam.totalWins = teamGameStats.filter(e => (e.pointsScoredOverall) < team.point).length
-            finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeAway == homeAway).length
+            finalTeam.totalWinsHomeAway = teamGameStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeOrAway == homeAway).length
             finalTeam.totalWinsTeam = teamGameStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamAgainstNameNew).length
 
             let totalSpread = 0
@@ -2333,7 +2333,7 @@ export class PropScreenComponent implements OnInit {
             finalTeam.averageOverall = totalSpread / finalTeam.totalGames
             totalSpread = 0
             teamGameStats.forEach(e => {
-              if (e.homeAway == homeAway) {
+              if (e.homeOrAway == homeAway) {
                 totalSpread += (e.pointsScoredOverall)
               }
 
@@ -2349,7 +2349,7 @@ export class PropScreenComponent implements OnInit {
             finalTeam.averageTeam = totalSpread / finalTeam.totalGamesTeam
 
             finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsScoredOverall) < team.point).length
-            finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeAway != homeAway).length
+            finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.homeOrAway != homeAway).length
             finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => ((e.pointsScoredOverall) < team.point) && e.teamAgainstName == teamNameAbvrFinal).length
 
 
