@@ -75,7 +75,7 @@ mat-chip-option {
 
 ::ng-deep .mdc-evolution-chip-set__chips{
     margin-left:0 !important;
-    flex-flow: nowrap !important;
+    flex-flow: wrap !important;
 }
 
 .button-selected {
@@ -327,6 +327,10 @@ table {
     .chip-box{
         margin-top:auto !important;
         margin-bottom:auto !important;
+    }
+    ::ng-deep .mdc-evolution-chip-set__chips{
+        margin-left:0 !important;
+        flex-flow: nowrap !important;
     }
 }
 
