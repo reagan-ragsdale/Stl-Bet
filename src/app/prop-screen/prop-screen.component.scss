@@ -328,6 +328,9 @@ mat-mdc-tab-body-content{
       padding-left: 0.5rem !important;
       padding-right: 0.5rem !important;
     }
+    ::ng-deep .mat-expansion-panel-header-title{
+      margin-right: 10px !important;
+    }
     
     ::ng-deep .specific-class .mat-expansion-panel-body{
       padding-left: 0 !important;
