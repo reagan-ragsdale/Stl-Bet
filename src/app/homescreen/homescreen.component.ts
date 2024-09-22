@@ -104,7 +104,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       this.playerData = await MlbController.mlbGetPlayerStatTotals(stat, 2024)
     }
     else if(this.selectedSport == "NFL"){
-      this.playerData = await NflController.nflGetPlayerStatTotals(stat, 2023)
+      this.playerData = await NflController.nflGetPlayerStatTotals(stat, 2024)
     }
     
     
