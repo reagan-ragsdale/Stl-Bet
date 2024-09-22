@@ -6,7 +6,7 @@ import { NflService } from "../Services/NflService";
 
 
 export const cronLoadNflGameStats = async () => {
-    let players = await nflApiController.loadAllPLayerInfo()
+    /* let players = await nflApiController.loadAllPLayerInfo()
     await PlayerInfoController.playerInfoAddPlayers(players)
     try{
         let currentGameIds = await NflController.nflGetDistinctGameIds(2024);
@@ -33,16 +33,16 @@ export const cronLoadNflGameStats = async () => {
     }catch(error:any){
         ErrorEmailController.sendEmailError("cron player and team stats: " + error.message)
         
-    }
-    /* try{
-        let players = await NflController.nflGetAllPlayerGameStatsBySeason(2023);
+    } */
+     try{
+        let players = await NflController.nflGetAllPlayerGameStatsBySeason(2024);
         let distinctPlayers = players.map(e => e.playerId).filter((value, index,array) => array.indexOf(value) === index)
         for(let player of distinctPlayers){
             let playerStats = players.filter(e => e.playerId == player)
             let playerStatTotals = NflService.convertPlayerStatsToTotals(playerStats)
             await NflController.nflSetPlayerStatTotals(playerStatTotals)
         }
-        let teams = await NflController.nflGetAllTeamGameStatsBySeason(2023);
+        let teams = await NflController.nflGetAllTeamGameStatsBySeason(2024);
         let distinctTeams = teams.map(e => e.teamId).filter((value,index,array) => array.indexOf(value) === index);
         for(let team of distinctTeams){
             let teamStats = teams.filter(e => e.teamId == team);
@@ -51,6 +51,6 @@ export const cronLoadNflGameStats = async () => {
         }
     }catch(error:any){
         ErrorEmailController.sendEmailError("cron player and team stat totals: " + error.message) 
-    } */
+    } 
     
 }

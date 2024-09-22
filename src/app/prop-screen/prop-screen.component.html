@@ -732,11 +732,11 @@
                             : {{player[0].point}} -- {{"O"}}
                             {{player[1].price > 0 ? '+': ''}}<button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                             (click)="$event.stopPropagation()" (click)="player[0].propVariables.overUnder = true" (click)="addPropToParlay(player[0])"
-                            style="margin-right:auto; margin-left: auto; width:auto;"
+                            style=" margin-left: auto; width:auto;"
                             mat-raised-button>{{player[1].price}}</button>
                             {{player[0].price > 0 ? '+': ''}}<button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                             (click)="$event.stopPropagation()" (click)="player[0].propVariables.overUnder = false" (click)="addPropToParlay(player[0])"
-                            style="margin-right:auto; margin-left: auto; width:auto;"
+                            style="margin-right:3px; margin-left: 3px; width:auto;"
                             mat-raised-button>{{player[0].price}}</button> {{"U"}}
                           </mat-panel-title>
                           <!-- <mat-panel-description style="display:flex; gap:1rem;">
