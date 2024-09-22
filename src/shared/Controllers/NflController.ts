@@ -146,7 +146,10 @@ export class NflController {
     static async nflSetPlayerStatTotals(playerTotals: DBNflPlayerGameStatTotals){
         const taskRepo = remult.repo(DBNflPlayerGameStatTotals)
         let currentStat = await taskRepo.findFirst({playerId: playerTotals.playerId})
-        await taskRepo.delete(currentStat)
+        if(currentStat){
+            await taskRepo.delete(currentStat)
+        }
+        
         await taskRepo.insert(playerTotals)
     }
 
