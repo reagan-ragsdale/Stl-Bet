@@ -61,7 +61,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   playerAverageColumnsMlb: string[] = ["Player", "Home Runs", "Rbi's", "Hits", "Total Bases"]
   teamAverageColumnsMlb: string[] = ["Team", "Wins", "Losses"]
 
-  playerAverageColumnsNfl: string[] = ["Player", "Touchdowns", "Rushing Yards", "Receiving Yards"]
+  playerAverageColumnsNfl: string[] = ["Player", "Pass Tds", "Rush Tds", "Rec Tds", "Rushing Yards", "Receiving Yards"]
   teamAverageColumnsNfl: string[] = ["Team", "Wins", "Losses"]
 
   propClicked() {

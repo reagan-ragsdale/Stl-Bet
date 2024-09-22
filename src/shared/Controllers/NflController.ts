@@ -136,6 +136,15 @@ export class NflController {
         if(stat == 'touchdowns'){
             finalReturn = await taskRepo.find({where: {season: season},orderBy: {touchdowns: 'desc'}, limit: 5})
         }
+        else if(stat == 'qbpassingtouchdowns'){
+            finalReturn = await taskRepo.find({where: {season: season},orderBy: {qbPassingTouchdowns: 'desc'}, limit: 5})
+        }
+        else if(stat == 'rushingtouchdowns'){
+            finalReturn = await taskRepo.find({where: {season: season},orderBy: {rushingTouchdowns: 'desc'}, limit: 5})
+        }
+        else if(stat == 'receivingtouchdowns'){
+            finalReturn = await taskRepo.find({where: {season: season},orderBy: {receivingTouchdowns: 'desc'}, limit: 5})
+        }
         else if(stat == 'rushingYards'){
             finalReturn = await taskRepo.find({where: {season: season},orderBy: {rushingYards: 'desc'}, limit: 5})
         }
