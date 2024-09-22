@@ -265,7 +265,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNfl
       this.gameDataAllFinal = []
-      let result = await Promise.all([NflController.nflGetPlayerStatTotals('touchdowns', 2023), NflController.nflGetTeamStatTotals("wins", 2023)])
+      let result = await Promise.all([NflController.nflGetPlayerStatTotals('touchdowns', 2024), NflController.nflGetTeamStatTotals("wins", 2024)])
       this.playerData = result[0]
       this.teamData = result[1]
       this.playerStatsButtons = [
