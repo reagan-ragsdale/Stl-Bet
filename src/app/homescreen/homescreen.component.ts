@@ -89,11 +89,14 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   async onSportsListClick(sport: string) {
-    this.selectedSport = sport
-    let selected = this.gamesList.filter(e => e.name == sport)
-    this.gamesList.forEach(e => e.selected = false)
-    selected[0].selected = true
-    await this.getData(sport)
+    if(this.selectedSport != sport){
+      this.selectedSport = sport
+      let selected = this.gamesList.filter(e => e.name == sport)
+      this.gamesList.forEach(e => e.selected = false)
+      selected[0].selected = true
+      await this.getData(sport)
+    }
+    
   }
 
   async onPlayerStatsClick(stat: string) {
