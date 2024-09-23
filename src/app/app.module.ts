@@ -53,6 +53,7 @@ import { PropTrendComponent } from './prop-screen/propTrend/prop-trend.component
 import { ConvertCommenceTimePipe } from './customPipes/convertCommenceTime.pipe';
 import { LoginSignUpComponent } from './login-sign-up/login-sign-up.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { RemoveHeading } from './customPipes/reomveHeading.pipe';
 
 
 @NgModule({
@@ -120,7 +121,8 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
         MatProgressSpinnerModule,
         RemoveUnderScore,
         MatButtonToggleModule,
-        ConvertCommenceTimePipe
+        ConvertCommenceTimePipe,
+        RemoveHeading
     ]
 })
 export class AppModule { 

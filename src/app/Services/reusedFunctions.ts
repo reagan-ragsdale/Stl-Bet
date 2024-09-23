@@ -233,4 +233,12 @@ export class reusedFunctions {
     return finalWord
   }
 
+  static removeHeading(thing: string): string{
+    let finalWord = thing;
+    if(finalWord.includes('Player')){
+      finalWord = finalWord.replace("Player", '')
+    }
+    return finalWord
+  }
+
 }

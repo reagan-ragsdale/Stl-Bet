@@ -9,7 +9,7 @@
       <div style="padding-top:1rem; padding-left:1rem;">
         <div *ngFor="let prop of listOfProps" style="display:flex; gap:1rem; margin-bottom:10px;">
           <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{prop.propVariables.playerOrTeam == 'Player' ? prop.propVariables.playerName : prop.propVariables.teamName}}</h4>
-          <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{(prop.propVariables.playerOrTeam == 'Player' ? prop.propVariables.marketKey : prop.propVariables.convertedMarketKey) | removeUnderScore | titlecase}}</h4>
+          <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{(prop.propVariables.playerOrTeam == 'Player' ? prop.propVariables.marketKey : prop.propVariables.convertedMarketKey) | removeHeading | removeUnderScore | titlecase}}</h4>
           <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propVariables.propType == 'total' || prop.propVariables.playerOrTeam == 'Player'">{{prop.propVariables.overUnder == false ? 'Under' : 'Over'}}</h4>
           <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propVariables.propType != 'h2h'">{{prop.propVariables.propType == 'spread' ? (prop.propVariables.propPoint > 0 ? '+' : '') : ''}}{{prop.propVariables.propPoint}}</h4>
           <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{prop.propVariables.propPrice > 0 ? '+' : ''}}{{prop.propVariables.propPrice}}</h4>
