@@ -333,11 +333,12 @@ table {
         flex-flow: nowrap !important;
     }
     .player-table-button{
-        font-size: small !important;
+        font-size: x-small !important;
     }
     .nfl-table .mat-mdc-cell,
     .mat-mdc-header-cell {
         padding: 0px !important;
+        text-align:center;
     }
 }
 
