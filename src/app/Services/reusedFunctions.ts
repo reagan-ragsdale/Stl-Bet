@@ -241,4 +241,22 @@ export class reusedFunctions {
     return finalWord
   }
 
+  static formatDateString(dateString: string): string {
+    // Create a new Date object from the input string
+    const date = new Date(dateString);
+
+    // Define options for formatting
+    const options: Intl.DateTimeFormatOptions = {
+        weekday: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC', // Adjust the time zone as needed
+    };
+
+    // Format the date and time
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+
+    return formattedDate;
+}
+
 }

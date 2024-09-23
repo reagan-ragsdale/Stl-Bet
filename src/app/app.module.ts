@@ -54,6 +54,7 @@ import { ConvertCommenceTimePipe } from './customPipes/convertCommenceTime.pipe'
 import { LoginSignUpComponent } from './login-sign-up/login-sign-up.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { RemoveHeading } from './customPipes/reomveHeading.pipe';
+import { GetDayAndTime } from './customPipes/getDayAndTime.pipe';
 
 
 @NgModule({
@@ -122,7 +123,8 @@ import { RemoveHeading } from './customPipes/reomveHeading.pipe';
         RemoveUnderScore,
         MatButtonToggleModule,
         ConvertCommenceTimePipe,
-        RemoveHeading
+        RemoveHeading,
+        GetDayAndTime
     ]
 })
 export class AppModule { 
