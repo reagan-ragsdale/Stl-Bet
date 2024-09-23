@@ -250,7 +250,7 @@ export class reusedFunctions {
 
     // Define options for formatting
     const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
+      weekday: 'short',
       hour: '2-digit',
       minute: '2-digit',
       timeZone: this.getUserTimeZone(), // Adjust the time zone as needed
