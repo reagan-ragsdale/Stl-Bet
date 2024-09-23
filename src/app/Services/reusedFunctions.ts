@@ -250,7 +250,7 @@ export class reusedFunctions {
         weekday: 'long',
         hour: '2-digit',
         minute: '2-digit',
-        timeZone: 'UTC', // Adjust the time zone as needed
+        timeZone: 'America/Chicago', // Adjust the time zone as needed
     };
 
     // Format the date and time
