@@ -101,7 +101,7 @@
                 *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
             </table>
 
-            <table *ngIf="this.selectedSport == 'NFL'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            <table *ngIf="this.selectedSport == 'NFL'" mat-table [dataSource]="playerData" class="mat-elevation-z8 nfl-table" style="height: 100%; width: 98%;">
 
               <ng-container matColumnDef="Player">
                 <th  mat-header-cell *matHeaderCellDef> Player </th>

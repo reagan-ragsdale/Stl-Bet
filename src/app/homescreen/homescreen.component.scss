@@ -335,6 +335,10 @@ table {
     .player-table-button{
         font-size: small !important;
     }
+    .nfl-table .mat-mdc-cell,
+    .mat-mdc-header-cell {
+        padding: 0px !important;
+    }
 }
 
 @media screen and (max-width: 680px) {
