@@ -17,6 +17,7 @@ export class PropCheckoutComponent implements OnChanges {
 
   display() {
   }
+  panelOpenState: boolean = false;
 
 
 

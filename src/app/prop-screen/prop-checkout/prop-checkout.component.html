@@ -1,5 +1,6 @@
-<mat-accordion>
-  <mat-expansion-panel style="color: white;">
+<mat-accordion [ngClass]="panelOpenState ? 'opened' : 'closed'">
+  <mat-expansion-panel style="color: white;" (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false" >
     <mat-expansion-panel-header style="padding:0; padding-right:1rem; padding-left:1rem; border-bottom: 2px solid white;">
       <mat-panel-title style="color:white">
         Parlay Picks | {{listOfProps.length}} | {{overallProbability > 0 ? '+' : ''}}{{overallProbability | number: '1.0-0'}}
