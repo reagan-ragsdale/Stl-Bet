@@ -366,5 +366,8 @@ mat-mdc-tab-body-content{
     ::ng-deep .mat-accordion{
       width:98%; 
     }
+    ::ng-deep .mat-mdc-card-content{
+      padding: 0 !important;
+    }
   }
    

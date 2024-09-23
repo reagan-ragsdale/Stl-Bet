@@ -55,6 +55,7 @@ import { LoginSignUpComponent } from './login-sign-up/login-sign-up.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { RemoveHeading } from './customPipes/reomveHeading.pipe';
 import { GetDayAndTime } from './customPipes/getDayAndTime.pipe';
+import { ConvertGameDateToMonthDay } from './customPipes/convertGameDateToMonthDay.pipe';
 
 
 @NgModule({
@@ -124,7 +125,9 @@ import { GetDayAndTime } from './customPipes/getDayAndTime.pipe';
         MatButtonToggleModule,
         ConvertCommenceTimePipe,
         RemoveHeading,
-        GetDayAndTime
+        GetDayAndTime,
+        ConvertGameDateToMonthDay
+        
     ]
 })
 export class AppModule { 

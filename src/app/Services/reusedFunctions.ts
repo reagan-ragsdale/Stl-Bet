@@ -268,4 +268,13 @@ export class reusedFunctions {
     return timeZone;
 }
 
+static convertGameDateToMonthDay(date: string): string{
+  let thing = date
+  thing = thing.slice(4)
+  let thing1 = thing.slice(0,2)
+  let thing2 = thing.slice(2)
+  let finalThing = thing1 + "/" + thing2
+  return finalThing
+}
+
 }

@@ -335,10 +335,10 @@ table {
     .player-table-button{
         font-size: x-small !important;
     }
-    .nfl-table mat-mdc-cell,
-    mat-mdc-header-cell {
+    .nfl-table .mat-mdc-cell,
+    .mat-mdc-header-cell {
         padding: 0px !important;
-        text-align:center;
+        //text-align:center;
         padding-left:2px !important;
     }
 }
