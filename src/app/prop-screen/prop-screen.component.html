@@ -751,9 +751,9 @@
                             style="width:100%; margin-left:auto; margin-right: auto; border-radius: 10px; margin-bottom:1rem;">
                             <mat-card-header>
                               <mat-card-title>{{player[0].marketKey | removeUnderScore | titlecase}}:
-                                {{player[0].point}} -- {{player[0].description}}
-                                {{player[0].price > 0 ? '+': ''}}{{player[0].price}} | {{player[1].description}}
-                                {{player[1].price > 0 ? '+': ''}}{{player[1].price}}</mat-card-title>
+                                {{player[0].point}} -- {{"O"}}
+                                {{player[1].price > 0 ? '+': ''}}{{player[1].price}} | {{"U"}}
+                                {{player[0].price > 0 ? '+': ''}}{{player[0].price}}</mat-card-title>
                             </mat-card-header>
                             <mat-card-content style="min-height:400px">
                               <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
