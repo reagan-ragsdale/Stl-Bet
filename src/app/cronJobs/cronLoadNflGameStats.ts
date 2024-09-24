@@ -6,6 +6,7 @@ import { NflService } from "../Services/NflService";
 
 
 export const cronLoadNflGameStats = async () => {
+    console.log('Running cron nfl')
      let players = await nflApiController.loadAllPLayerInfo()
     await PlayerInfoController.playerInfoAddPlayers(players)
     try{
