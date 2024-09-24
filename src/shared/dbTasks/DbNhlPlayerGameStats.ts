@@ -35,7 +35,7 @@ export class DbNhlPlayerGameStats {
   season = 0
 
   @Fields.string()
-  homeAway = ''
+  homeOrAway = ''
 
   @Fields.string()
   result = ''

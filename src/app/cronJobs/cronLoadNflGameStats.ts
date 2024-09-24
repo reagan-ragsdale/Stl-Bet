@@ -6,7 +6,7 @@ import { NflService } from "../Services/NflService";
 
 
 export const cronLoadNflGameStats = async () => {
-    /* let players = await nflApiController.loadAllPLayerInfo()
+     let players = await nflApiController.loadAllPLayerInfo()
     await PlayerInfoController.playerInfoAddPlayers(players)
     try{
         let currentGameIds = await NflController.nflGetDistinctGameIds(2024);
@@ -33,7 +33,7 @@ export const cronLoadNflGameStats = async () => {
     }catch(error:any){
         ErrorEmailController.sendEmailError("cron player and team stats: " + error.message)
         
-    } */
+    } 
      try{
         let players = await NflController.nflGetAllPlayerGameStatsBySeason(2024);
         let distinctPlayers = players.map(e => e.playerId).filter((value, index,array) => array.indexOf(value) === index)
