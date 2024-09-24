@@ -166,7 +166,7 @@ public displayedColumnsValuesNfl: any[] = [
   teamTotalStatColumns: string[] = []
 
   public teamTotalStatColumnsMlb: string[] = ['Home Runs', 'Hits', 'Points', 'Rbis']
-  public teamTotalStatColumnsNfl: string[] = ['Points', 'Rush Yds', 'Pass Yds']
+  public teamTotalStatColumnsNfl: string[] = ['Points', '1st Qtr Pts', '2nd Qtr Pts', '3rd Qtr Pts', '4th Qtr Pts', 'Rush Yds', 'Pass Yds']
 
 
   teamTotalDataSet: any[] = []
@@ -201,6 +201,22 @@ public displayedColumnsValuesNfl: any[] = [
     {
       name: 'Points',
       data: 'pointsScoredOverall'
+    },
+    {
+      name: '1st Qtr Pts',
+      data: 'pointsScoredFirstQuarter'
+    },
+    {
+      name: '2nd Qtr Pts',
+      data: 'pointsScoredSecondQuarter'
+    },
+    {
+      name: '3rd Qtr Pts',
+      data: 'pointsScoredThirdQuarter'
+    },
+    {
+      name: '4th Qtr Pts',
+      data: 'pointsScoredFourthQuarter'
     },
     {
       name: 'Rush Yds',
