@@ -238,6 +238,8 @@ export class reusedFunctions {
 
   static removeHeading(thing: string): string {
     let finalWord = thing;
+    console.log("remove heading below")
+    console.log(finalWord)
     if (finalWord.includes('Player')) {
       finalWord = finalWord.replace("Player", ' ')
     }
