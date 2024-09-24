@@ -34,7 +34,6 @@
 
 </ng-template>
 
-<!-- [style.border-right]="'3px solid black'" -->
 <ng-template #playerGameLog let-playerStats>
   <div style="width:100%">
     <table mat-table [dataSource]="playerStats">
@@ -86,18 +85,6 @@
     </button>
   </div>
 
-  <!-- <mat-tab-group class="sports-tab" [backgroundColor]="'warn'" (selectedTabChange)="onSportClick($event)">
-    <mat-tab *ngFor="let sport of sportsNew" label="{{sport.title}}"></mat-tab>
-  </mat-tab-group>
-
-  <mat-tab-group class="dates-tab" [backgroundColor]="'primary'" (selectedTabChange)="onDateClick($event)">
-    <mat-tab *ngFor="let date of dates" label="{{date}}"></mat-tab>
-  </mat-tab-group>
-
-  <mat-tab-group  class="games-tab" [backgroundColor]="'warn'" (selectedTabChange)="onGameClick($event)" [disablePagination]="true" mat-align-tabs="start" >
-    <mat-tab  class="games-tabs" *ngFor="let game of games" label="{{game.game}}"></mat-tab>
-  </mat-tab-group>
- -->
   <div *ngIf="teamPropIsLoading" style="height:100%; width: 100%; background-color: white;">
     <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
   </div>
@@ -721,7 +708,7 @@
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  {{prop[0][0][0].marketKey | removeUnderScore | titlecase}}:
+                  {{prop[0][0][0].marketKey | removeUnderScore | removeHeading | titlecase}}:
                 </mat-panel-title>
                 <mat-panel-description>
                 </mat-panel-description>
@@ -982,7 +969,7 @@
                 <mat-card-header>
                   <mat-card-title class="name-link"><a class="name-link"
                       (click)="playerClicked(bet.playerName)">{{bet.playerName
-                      }}</a> | {{bet.marketKey | removeUnderScore | titlecase}} | {{bet.propPoint}} | {{bet.overUnder ==
+                      }}</a> | {{bet.marketKey | removeUnderScore | removeHeading | titlecase}} | {{bet.propPoint}} | {{bet.overUnder ==
                     false ? 'Under' : "Over"}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content style="min-height:400px; padding: 0;">
