@@ -442,7 +442,7 @@ public displayedColumnsValuesNfl: any[] = [
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
 
       console.log(this.teamSeasons)
-      this.teamTotalStats = await NflController.nflGetTeamStatTotals(this.teamId, 2024)
+      this.teamTotalStats = await NflController.nflGetSpecificTeamStatTotals(this.teamId, 2024)
     }
 
     this.teamProps = []

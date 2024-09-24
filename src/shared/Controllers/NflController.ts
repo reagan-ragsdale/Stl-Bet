@@ -71,6 +71,12 @@ export class NflController {
         const taskRepo = remult.repo(DBNflTeamGameStatTotals)
         return await taskRepo.find({where:{season:season},orderBy: {wins: 'desc', losses: "asc"}, limit: 5})
     }
+
+    @BackendMethod({allowed:true})
+    static async nflGetSpecificTeamStatTotals(teamId: number, season: number): Promise<DBNflTeamGameStatTotals[]>{
+        const taskRepo = remult.repo(DBNflTeamGameStatTotals)
+        return await taskRepo.find({where:{teamId: teamId, season:season},orderBy: {wins: 'desc', losses: "asc"}, limit: 5})
+    }
     @BackendMethod({allowed:true})
     static async nflSetTeamStatTotals(teamTotal:DBNflTeamGameStatTotals){
         const taskRepo = remult.repo(DBNflTeamGameStatTotals)
