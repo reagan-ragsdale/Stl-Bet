@@ -106,7 +106,7 @@ public displayedColumnsValuesNfl: any[] = [
   {name: 'Date',
     value: 'gameDate'},
   {name: 'Points',
-    value: 'totalPointsScored'},
+    value: 'pointsScoredOverall'},
   {name: 'Rush Yds',
     value: 'totalRushingYards'},
   {name: 'Pass Yds',
