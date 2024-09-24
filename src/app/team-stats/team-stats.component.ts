@@ -208,7 +208,7 @@ public displayedColumnsValuesNfl: any[] = [
     },
     {
       name: 'Pass Yds',
-      data: 'totalPassingYds'
+      data: 'totalPassingYards'
     }
 
 
