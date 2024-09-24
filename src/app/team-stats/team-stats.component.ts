@@ -166,7 +166,7 @@ public displayedColumnsValuesNfl: any[] = [
   teamTotalStatColumns: string[] = []
 
   public teamTotalStatColumnsMlb: string[] = ['Home Runs', 'Hits', 'Points', 'Rbis']
-  public teamTotalStatColumnsNfl: string[] = ['Points', '1st Qtr Pts', '2nd Qtr Pts', '3rd Qtr Pts', '4th Qtr Pts', 'Rush Yds', 'Pass Yds']
+  public teamTotalStatColumnsNfl: string[] = ['Pts Scored', 'Pts Allowed', '1st Qtr Pts Scored', '1st Qtr Pts Allowed', '2nd Qtr Pts Scored', '2nd Qtr Pts Allowed', '3rd Qtr Pts Scored', '3rd Qtr Pts Allowed', '4th Qtr Pts Scored', '4th Qtr Pts Allowed', 'Total Yds', 'Total Yds Allowed', 'Rush Yds', 'Rush Yds Allowed', 'Rush Attempts', 'Pass Yds', 'Pass Yds Allowed', 'Ints Thrown', 'Ints Caught']
 
 
   teamTotalDataSet: any[] = []
@@ -199,32 +199,80 @@ public displayedColumnsValuesNfl: any[] = [
   public teamTotalDataSetNfl: any[] = [
     
     {
-      name: 'Points',
+      name: 'Pts Scored',
       data: 'pointsScoredOverall'
     },
     {
-      name: '1st Qtr Pts',
+      name: 'Pts Allowed',
+      data: 'pointsAllowedOverall'
+    },
+    {
+      name: '1st Qtr Pts Scored',
       data: 'pointsScoredFirstQuarter'
     },
     {
-      name: '2nd Qtr Pts',
+      name: '1st Qtr Pts Allowed',
+      data: 'pointsAllowedFirstQuarter'
+    },
+    {
+      name: '2nd Qtr Pts Scored',
       data: 'pointsScoredSecondQuarter'
     },
     {
-      name: '3rd Qtr Pts',
+      name: '2nd Qtr Pts Allowed',
+      data: 'pointsAllowedSecondQuarter'
+    },
+    {
+      name: '3rd Qtr Pts Scored',
       data: 'pointsScoredThirdQuarter'
     },
     {
-      name: '4th Qtr Pts',
+      name: '3rd Qtr Pts Allowed',
+      data: 'pointsAllowedThirdQuarter'
+    },
+    {
+      name: '4th Qtr Pts Scored',
       data: 'pointsScoredFourthQuarter'
+    },
+    {
+      name: '4th Qtr Pts Allowed',
+      data: 'pointsAllowedFourthQuarter'
+    },
+    {
+      name: 'Total Yds',
+      data: 'totalYards'
+    },
+    {
+      name: 'Total Yds Allowed',
+      data: 'totalYardsAllowed'
     },
     {
       name: 'Rush Yds',
       data: 'totalRushingYards'
     },
     {
+      name: 'Rush Yds Allowed',
+      data: 'totalRushingYardsAllowed'
+    },
+    {
+      name: 'Rush Attempts',
+      data: 'totalRushingAttempts'
+    },
+    {
       name: 'Pass Yds',
       data: 'totalPassingYards'
+    },
+    {
+      name: 'Pass Yds Allowed',
+      data: 'totalPassingYardsAllowed'
+    },
+    {
+      name: 'Ints Thrown',
+      data: 'interceptionsThrown'
+    },
+    {
+      name: 'Ints Caught',
+      data: 'interceptionsCaught'
     }
 
 
