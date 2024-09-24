@@ -200,7 +200,7 @@ public displayedColumnsValuesNfl: any[] = [
     
     {
       name: 'Points',
-      data: 'totalPointsScored'
+      data: 'pointsScoredOverall'
     },
     {
       name: 'Rush Yds',
