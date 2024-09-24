@@ -26,6 +26,8 @@ import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStatAverages } from '../../shared/dbTasks/DbMlbTeamGameStatAverages';
 import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
+import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
+import { NflController } from 'src/shared/Controllers/NflController';
 
 
 
@@ -221,7 +223,7 @@ public displayedColumnsValues: any[] = [
   public teamSeasonStats: any[] = []
 
   public teamProps: DbPlayerPropData[] = []
-  public teamTotalStats: DbMlbTeamGameStatAverages[] = []
+  public teamTotalStats: any[] = []
 
 
   async initialize(){
@@ -302,10 +304,40 @@ public displayedColumnsValues: any[] = [
     
         }
       ]
+      this.allSportTeamList = await TeamInfoController.getAllTeamInfo('MLB')
+    this.teamInfo = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
+    }
+    else if(this.selectedSport == 'NFL'){
+      this.fullDataset = [
+        {
+          label: "Points",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: true,
+          dataName: 'totalPointsScored'
+    
+        },
+        {
+          label: "Rush Yds",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'totalRushingYards'
+        },
+        {
+          label: "Pass Yds",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'totalPassingYards'
+    
+        }
+      ]
+      this.allSportTeamList = await TeamInfoController.getAllTeamInfo('NFL')
+    this.teamInfo = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
     }
 
-    this.allSportTeamList = await TeamInfoController.getAllTeamInfo('MLB')
-    this.teamInfo = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
+    
 
     this.teamSeasons = []
     if (this.selectedSport == "NBA") {
@@ -315,9 +347,9 @@ public displayedColumnsValues: any[] = [
 
 
     }
-    if (this.selectedSport == "NHL") {
+    else if (this.selectedSport == "NHL") {
     }
-    if(this.selectedSport == "MLB"){
+    else if(this.selectedSport == "MLB"){
       
       this.teamStats = await MlbController.mlbGetAllTeamGameStatsByTeamId(this.teamInfo[0].teamId)
       console.log(this.teamStats)
@@ -340,6 +372,28 @@ public displayedColumnsValues: any[] = [
       console.log(this.teamSeasons)
       this.teamTotalStats = await MlbController.mlbGetSpecificTeamStatAverage(this.teamId)
       
+    }
+    else if(this.selectedSport == 'NFL'){
+      this.teamStats = await NflController.nflGetAllTeamGameStatsById(this.teamInfo[0].teamId)
+      console.log(this.teamStats)
+      
+      let allSeasons = this.teamStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+      allSeasons.forEach(e => this.teamSeasonStats.push(this.teamStats.filter(i => i.season == e))) 
+      
+      allSeasons.sort(function(a, b) {
+        return a - b;
+      });
+      allSeasons.forEach(e => this.teamSeasons.push(e))
+      this.seasonArray = this.teamStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
+
+      this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
+      this.nbaPlayerStatsInfo2023TableTemp.reverse()
+      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
+      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
+      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+
+      console.log(this.teamSeasons)
+      this.teamTotalStats = await NflController.nflGetTeamStatTotals(this.teamId, 2024)
     }
 
     this.teamProps = []
@@ -553,6 +607,25 @@ public displayedColumnsValues: any[] = [
       })
       
       arrayOFpoints = [hits, homeRuns, points, rbis]
+      
+    }
+    else if(this.selectedSport == 'NFL'){
+      var points: number[] = []
+      var rushYds: number[] = []
+      var passYds: number[] = []
+  
+      var index = 1
+      this.seasonArray.forEach((e) => {
+        hits.push(e.totalHitsScored)
+        homeRuns.push(e.totalHomeRunsScored)
+        points.push(e.totalPointsScored)
+        rbis.push(e.totalRbisScored)
+  
+        dataPoint.push(index.toString())
+        index++
+      })
+      
+      arrayOFpoints = [points, rushYds, passYds]
       
     }
     

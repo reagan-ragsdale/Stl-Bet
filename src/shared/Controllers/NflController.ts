@@ -55,6 +55,14 @@ export class NflController {
         }
         return returnFinal
     }
+
+    @BackendMethod({allowed: true})
+    static async nflGetAllTeamGameStatsById(id: number): Promise<DBNflTeamGameStats[]>{
+        const taskRepo = remult.repo(DBNflTeamGameStats)
+        return await taskRepo.find({where:{teamId: id}})
+    }
+
+    
     
     
     //team stat totals
