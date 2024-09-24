@@ -663,10 +663,9 @@ public displayedColumnsValuesNfl: any[] = [
   
       var index = 1
       this.seasonArray.forEach((e) => {
-        hits.push(e.totalHitsScored)
-        homeRuns.push(e.totalHomeRunsScored)
-        points.push(e.totalPointsScored)
-        rbis.push(e.totalRbisScored)
+        points.push(e.pointsScoredOverall)
+        rushYds.push(e.totalRushingYards)
+        passYds.push(e.totalPassingYards)
   
         dataPoint.push(index.toString())
         index++
