@@ -395,6 +395,7 @@ public displayedColumnsValuesNfl: any[] = [
       this.displayedColumns = this.displayedColumnsMlb
       this.displayedColumnsValues = this.displayedColumnsValuesMlb
       this.teamTotalDataSet = this.teamTotalDataSetMlb
+      this.teamTotalStatColumns = this.teamTotalStatColumnsMlb
       this.teamStats = await MlbController.mlbGetAllTeamGameStatsByTeamId(this.teamInfo[0].teamId)
       console.log(this.teamStats)
       
@@ -421,6 +422,7 @@ public displayedColumnsValuesNfl: any[] = [
       this.displayedColumns = this.displayedColumnsNfl
       this.displayedColumnsValues = this.displayedColumnsValuesNfl
       this.teamTotalDataSet = this.teamTotalDataSetNfl
+      this.teamTotalStatColumns = this.teamTotalStatColumnsNfl
       this.teamStats = await NflController.nflGetAllTeamGameStatsById(this.teamInfo[0].teamId)
       console.log(this.teamStats)
       
