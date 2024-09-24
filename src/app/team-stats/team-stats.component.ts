@@ -745,7 +745,7 @@ public displayedColumnsValuesNfl: any[] = [
         max = e
       }
     })
-    max = (max + 2)
+    max = (max + (max/4))
     if (max.toString().includes(".")) {
       var maxNew = max.toString().split(".")
       max = parseInt(maxNew[0]) + 1
