@@ -19,6 +19,7 @@ import { MlbService } from '../Services/MlbService';
 import { nflApiController } from '../ApiCalls/nflApiCalls';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
 import { NflController } from 'src/shared/Controllers/NflController';
+import { NflService } from '../Services/NflService';
 
 @Component({
     selector: 'home-screen',
@@ -76,12 +77,13 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     this.router.navigate([`/props/${this.selectedSport}`])
   }
 
-  onTeamClick(team: string){
+  async onTeamClick(team: string){
     if(team.length > 3){
       team = MlbService.mlbTeamNameToAbvr[team]
     }
-    let teamId = MlbService.mlbTeamIds[team]
-    this.router.navigate([`/teamStats/MLB/${teamId}`])
+    let teamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
+    let teamId = teamInfo.filter(e => e.teamNameAbvr == team)[0]
+    this.router.navigate([`/teamStats/${this.selectedSport}/${teamId}`])
   }
 
   playerStatsClicked(playerId: number) {
@@ -390,6 +392,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
+    
     
   }
 
