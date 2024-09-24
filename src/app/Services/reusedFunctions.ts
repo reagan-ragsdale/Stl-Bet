@@ -240,9 +240,10 @@ export class reusedFunctions {
     let finalWord = thing;
     console.log("remove heading below")
     console.log(finalWord)
-    if (finalWord.includes('Player')) {
-      finalWord = finalWord.replace("Player", ' ')
+    if (finalWord.includes('player')) {
+      finalWord = finalWord.replace("player", ' ')
     }
+    finalWord = finalWord.trim()
     return finalWord
   }
 
