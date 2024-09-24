@@ -83,6 +83,7 @@ export class TeamStatsComponent {
   displayedColumnsValues: any[] = []
 
   public displayedColumnsMlb: string[] = ["Game", "Date", "HR", "H", "RBI"]
+  public displayedColumnsNfl: string[] = ["Game", "Date", "Points", "Rush Yds", "Pass Yds"]
 
 public displayedColumnsValuesMlb: any[] = [
   {name: 'Game',
@@ -393,6 +394,7 @@ public displayedColumnsValuesNfl: any[] = [
     else if(this.selectedSport == "MLB"){
       this.displayedColumns = this.displayedColumnsMlb
       this.displayedColumnsValues = this.displayedColumnsValuesMlb
+      this.teamTotalDataSet = this.teamTotalDataSetMlb
       this.teamStats = await MlbController.mlbGetAllTeamGameStatsByTeamId(this.teamInfo[0].teamId)
       console.log(this.teamStats)
       
@@ -418,6 +420,7 @@ public displayedColumnsValuesNfl: any[] = [
     else if(this.selectedSport == 'NFL'){
       this.displayedColumns = this.displayedColumnsNfl
       this.displayedColumnsValues = this.displayedColumnsValuesNfl
+      this.teamTotalDataSet = this.teamTotalDataSetNfl
       this.teamStats = await NflController.nflGetAllTeamGameStatsById(this.teamInfo[0].teamId)
       console.log(this.teamStats)
       
