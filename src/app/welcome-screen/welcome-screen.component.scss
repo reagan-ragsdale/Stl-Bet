@@ -217,5 +217,12 @@ footer a:hover {
         width: 50px; /* Smaller image on mobile */
         height: 50px;
     }
+    li{
+        flex-direction:column
+    }
+
+    li::before{
+        content: none;
+    }
 }
 
