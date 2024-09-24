@@ -78,9 +78,13 @@ export class TeamStatsComponent {
   public chart2: any;
   public chart3: any
 
-  public displayedColumns: string[] = ["Game", "Date", "HR", "H", "RBI"]
 
-public displayedColumnsValues: any[] = [
+  displayedColumns: string[] = []
+  displayedColumnsValues: any[] = []
+
+  public displayedColumnsMlb: string[] = ["Game", "Date", "HR", "H", "RBI"]
+
+public displayedColumnsValuesMlb: any[] = [
   {name: 'Game',
     value: 'teamAgainstName'
   }, 
@@ -92,6 +96,20 @@ public displayedColumnsValues: any[] = [
     value: 'totalHitsScored'},
   {name: 'RBI',
     value: 'totalRbisScored'}
+]
+
+public displayedColumnsValuesNfl: any[] = [
+  {name: 'Game',
+    value: 'teamAgainstName'
+  }, 
+  {name: 'Date',
+    value: 'gameDate'},
+  {name: 'Points',
+    value: 'totalPointsScored'},
+  {name: 'Rush Yds',
+    value: 'totalRushingYards'},
+  {name: 'Pass Yds',
+    value: 'totalPassingYards'}
 ]
 
   public fullDataset: any[] = [
@@ -144,9 +162,15 @@ public displayedColumnsValues: any[] = [
     }
   ]
 
-  public teamTotalStatColumns: string[] = ['Home Runs', 'Hits', 'Points', 'Rbis']
+  teamTotalStatColumns: string[] = []
 
-  public teamTotalDataSet: any[] = [
+  public teamTotalStatColumnsMlb: string[] = ['Home Runs', 'Hits', 'Points', 'Rbis']
+  public teamTotalStatColumnsNfl: string[] = ['Points', 'Rush Yds', 'Pass Yds']
+
+
+  teamTotalDataSet: any[] = []
+
+  public teamTotalDataSetMlb: any[] = [
     
     {
       name: 'Home Runs',
@@ -167,6 +191,23 @@ public displayedColumnsValues: any[] = [
     {
       name: 'Runs',
       data: 'totalRunsScored'
+    }
+
+
+  ]
+  public teamTotalDataSetNfl: any[] = [
+    
+    {
+      name: 'Points',
+      data: 'totalPointsScored'
+    },
+    {
+      name: 'Rush Yds',
+      data: 'totalRushingYards'
+    },
+    {
+      name: 'Pass Yds',
+      data: 'totalPassingYds'
     }
 
 
@@ -350,7 +391,8 @@ public displayedColumnsValues: any[] = [
     else if (this.selectedSport == "NHL") {
     }
     else if(this.selectedSport == "MLB"){
-      
+      this.displayedColumns = this.displayedColumnsMlb
+      this.displayedColumnsValues = this.displayedColumnsValuesMlb
       this.teamStats = await MlbController.mlbGetAllTeamGameStatsByTeamId(this.teamInfo[0].teamId)
       console.log(this.teamStats)
       
@@ -374,6 +416,8 @@ public displayedColumnsValues: any[] = [
       
     }
     else if(this.selectedSport == 'NFL'){
+      this.displayedColumns = this.displayedColumnsNfl
+      this.displayedColumnsValues = this.displayedColumnsValuesNfl
       this.teamStats = await NflController.nflGetAllTeamGameStatsById(this.teamInfo[0].teamId)
       console.log(this.teamStats)
       
