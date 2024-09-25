@@ -21,7 +21,7 @@
             <h4 style="margin:auto;">Overall Chance</h4>
             <h4 style="margin:auto;">{{overallChance | percent: '2.2-2'}}</h4>
           </div>
-          <div *ngIf="this.listOfProps.length > 1" style="display:flex; flex-direction: column;">
+          <div *ngIf="this.listOfProps.length > 1 && !noGamesPlayedTogether" style="display:flex; flex-direction: column;">
             <h4 style="margin:auto;">Same Game Chance</h4>
             <h4 style="margin:auto;">{{sameGameChance | percent: '2.2-2'}}</h4>
           </div>

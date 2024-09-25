@@ -36,6 +36,7 @@ export class PropCheckoutComponent implements OnChanges {
   ngInit() {
     this.display()
   }
+  noGamesPlayedTogether: boolean = false;
 
   overallProbability: number = 0
   calculateOverallProbability() {
@@ -930,6 +931,7 @@ export class PropCheckoutComponent implements OnChanges {
           }
           if (newCommonGameIds.length == 0) {
             this.sameGameChance = 0
+            this.noGamesPlayedTogether = true;
           }
           else {
             let totalWins: number = 0;
