@@ -536,6 +536,8 @@ export class PlayerStatsComponent {
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
       this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
       this.playerTotalStats = await NflController.nflGetPlayerStatTotals(this.playerId, allSeasons[allSeasons.length - 1])
+      console.log(this.playerTotalStats)
+      console.log(allSeasons[allSeasons.length - 1])
     }
     this.playerProps = []
     this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
