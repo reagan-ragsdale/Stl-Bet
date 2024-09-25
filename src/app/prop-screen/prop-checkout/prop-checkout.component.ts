@@ -73,6 +73,7 @@ export class PropCheckoutComponent implements OnChanges {
   overallChance: number = 0
   sameGameChance: number = 0
   teamSameGameChance: number = 0
+  noGamesVsTeam: boolean = false;
 
   isSameGameTeam: boolean = false;
   displayPropChance() {
@@ -191,6 +192,9 @@ export class PropCheckoutComponent implements OnChanges {
           }
           this.sameGameChance = (totalWins / statArray.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
+          if(teamTotals == 0){
+            this.noGamesVsTeam = true
+          }
         }
 
         else if (distinctPlayers.length == 1) {
@@ -414,6 +418,9 @@ export class PropCheckoutComponent implements OnChanges {
           }
           this.sameGameChance = (totalWins / statArray.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
+          if(teamTotals == 0){
+            this.noGamesVsTeam = true
+          }
 
         }
         else if (distinctPlayers.length > 1) {
@@ -702,6 +709,9 @@ export class PropCheckoutComponent implements OnChanges {
           }
           this.sameGameChance = (totalWins / newCommonGameIds.length)
           this.teamSameGameChance = (totalTeamWins / teamTotals)
+          if(teamTotals == 0){
+            this.noGamesVsTeam = true
+          }
         }
 
         //now we have a stat array of either team or player
