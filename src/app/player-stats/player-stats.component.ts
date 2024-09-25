@@ -240,39 +240,39 @@ export class PlayerStatsComponent {
 
     {
       name: 'Pass TD',
-      value: 'qbPassingTouchdowns'
+      data: 'qbPassingTouchdowns'
     },
     {
       name: 'Pass Completions',
-      value: 'qbCompletions'
+      data: 'qbCompletions'
     },
     {
       name: 'Rush TD',
-      value: 'rushingTouchdowns'
+      data: 'rushingTouchdowns'
     },
     {
       name: 'Rush Yds',
-      value: 'rushingYards'
+      data: 'rushingYards'
     },
     {
       name: 'Carries',
-      value: 'rushingAttempts'
+      data: 'rushingAttempts'
     },
     {
       name: 'Rec TD',
-      value: 'receivingTouchdowns'
+      data: 'receivingTouchdowns'
     },
     {
       name: 'Rec Yds',
-      value: 'receivingYards'
+      data: 'receivingYards'
     },
     {
       name: 'Receptions',
-      value: 'receptions'
+      data: 'receptions'
     },
     {
       name: 'Ints Thrown',
-      value: 'qbInterceptions'
+      data: 'qbInterceptions'
     }
 
 
