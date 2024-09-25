@@ -6,12 +6,15 @@ import { NflService } from "../Services/NflService";
 
 
 export const cronLoadNflGameStats = async () => {
+    let count = 0
     console.log('Running cron nfl')
      let players = await nflApiController.loadAllPLayerInfo()
+     count++
     await PlayerInfoController.playerInfoAddPlayers(players)
     try{
         let currentGameIds = await NflController.nflGetDistinctGameIds(2024);
         let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
+        count++
 
         //find the ones that don't intersect
         let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
@@ -20,6 +23,7 @@ export const cronLoadNflGameStats = async () => {
         for(let game of newGameIds){
             try{
                 let gameStats = await nflApiController.getGameSummary(game)
+                count++
                 await NflController.addTeamGameStats(gameStats[0])
                 await NflController.addPlayerGameStats(gameStats[1])
             }
@@ -53,5 +57,36 @@ export const cronLoadNflGameStats = async () => {
     }catch(error:any){
         ErrorEmailController.sendEmailError("cron player and team stat totals: " + error.message) 
     } 
+
+    if(count < 100){
+        try{
+            let currentGameIds = await NflController.nflGetDistinctGameIds(2023);
+            let incomingGameIds = await nflApiController.loadAllNflGameIds(2023)
+            
+    
+            //find the ones that don't intersect
+            let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
+            //console.log(newGameIds)
+    
+            for(let game of newGameIds){
+                try{
+                    let gameStats = await nflApiController.getGameSummary(game)
+                    
+                    await NflController.addTeamGameStats(gameStats[0])
+                    await NflController.addPlayerGameStats(gameStats[1])
+                }
+                catch(error:any){
+                    console.log(error.message)
+                }
+                
+    
+            } 
+    
+    
+        }catch(error:any){
+            ErrorEmailController.sendEmailError("cron player and team stats: 2023" + error.message)
+            
+        }
+    }
     
 }
