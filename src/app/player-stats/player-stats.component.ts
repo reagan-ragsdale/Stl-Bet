@@ -442,7 +442,7 @@ export class PlayerStatsComponent {
           label: "Completions",
           data: [],
           backgroundColor: 'blue',
-          showLine: true,
+          showLine: false,
           dataName: 'qbqbCompletions'
 
         },
@@ -782,6 +782,7 @@ export class PlayerStatsComponent {
       var rushYds: number[] = []
       var recYds: number[] = []
       var passTd: number[] = []
+      var passYds: number[] = []
       var carries: number[] = []
       var completions: number[] = []
       var receptions: number[] = []
@@ -796,13 +797,14 @@ export class PlayerStatsComponent {
         carries.push(e.rushingAttempts)
         completions.push(e.qbCompletions)
         receptions.push(e.receptions)
+        passYds.push(e.qbPassingYards)
 
 
         dataPoint.push(index.toString())
         index++
       })
 
-      arrayOFpoints = [rushingTd, recTd, rushYds, recYds]
+      arrayOFpoints = [rushingTd, recTd, rushYds, recYds, passTd, carries, completions, receptions, passYds]
     }
 
 
