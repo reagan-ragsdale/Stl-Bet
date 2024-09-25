@@ -781,6 +781,10 @@ export class PlayerStatsComponent {
       var recTd: number[] = []
       var rushYds: number[] = []
       var recYds: number[] = []
+      var passTd: number[] = []
+      var carries: number[] = []
+      var completions: number[] = []
+      var receptions: number[] = []
 
       var index = 1
       this.seasonArray.forEach((e) => {
@@ -788,6 +792,11 @@ export class PlayerStatsComponent {
         recTd.push(e.receivingTouchdowns)
         rushYds.push(e.rushingYards)
         recYds.push(e.receivingYards)
+        passTd.push(e.qbPassingTouchdowns)
+        carries.push(e.rushingAttempts)
+        completions.push(e.qbCompletions)
+        receptions.push(e.receptions)
+
 
         dataPoint.push(index.toString())
         index++
