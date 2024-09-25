@@ -368,7 +368,8 @@ public displayedColumnsValuesNfl: any[] = [
 
   async getAllSportTeams(){
     
-    let teams = await TeamInfoController.getAllTeamInfo('MLB')
+    //let teams = await TeamInfoController.getAllTeamInfo('MLB')
+    let teams = await TeamInfoController.getAllTeamInfoBySports(['MLB', 'NFL'])
     this.allSportTeamList = teams
     this.searchName = ""
     this.filteredSearch = this.allSportTeamList

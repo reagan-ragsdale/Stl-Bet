@@ -46,5 +46,10 @@ export class PlayerInfoController {
     const taskRepo = remult.repo(DbPlayerInfo)
     return await taskRepo.find({where: {sport: sport, teamName: {'!=': 'None'}}})
   }
+  @BackendMethod({ allowed: true })
+  static async loadActivePlayerInfoBySports(sport: string[]): Promise<DbPlayerInfo[]> {
+    const taskRepo = remult.repo(DbPlayerInfo)
+    return await taskRepo.find({where: {sport: sport, teamName: {'!=': 'None'}}})
+  }
 
 }

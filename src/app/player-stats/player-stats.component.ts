@@ -105,7 +105,7 @@ export class PlayerStatsComponent {
       value: 'batterRbis'
     }
   ]
-  public displayedColumnsNfl: string[] = ["Game", "Date", "rushTD", "recTD", "rushYds", "recYds"]
+  public displayedColumnsNfl: string[] = ["Game", "Date", "Pass TD", 'Pass Completions', 'Rush TD', 'Rush Yds', 'Carries', "Rec TD", 'Rec Yds', 'Receptions', 'Ints Thrown']
 
   public displayedColumnsValuesNfl: any[] = [
     {
@@ -117,20 +117,40 @@ export class PlayerStatsComponent {
       value: 'gameDate'
     },
     {
-      name: 'rushTD',
+      name: 'Pass TD',
+      value: 'qbPassingTouchdowns'
+    },
+    {
+      name: 'Pass Completions',
+      value: 'qbCompletions'
+    },
+    {
+      name: 'Rush TD',
       value: 'rushingTouchdowns'
     },
     {
-      name: 'recTD',
-      value: 'receivingTouchdowns'
-    },
-    {
-      name: 'rushYds',
+      name: 'Rush Yds',
       value: 'rushingYards'
     },
     {
-      name: 'recYds',
+      name: 'Carries',
+      value: 'rushingAttempts'
+    },
+    {
+      name: 'Rec TD',
+      value: 'receivingTouchdowns'
+    },
+    {
+      name: 'Rec Yds',
       value: 'receivingYards'
+    },
+    {
+      name: 'Receptions',
+      value: 'receptions'
+    },
+    {
+      name: 'Ints Thrown',
+      value: 'qbInterceptions'
     }
   ]
 
@@ -330,7 +350,7 @@ export class PlayerStatsComponent {
   }
 
   async getAllSportPlayers() {
-    let players = await PlayerInfoController.loadActivePlayerInfoBySport('MLB')
+    let players = await PlayerInfoController.loadActivePlayerInfoBySports(['MLB', 'NFL'])
     this.allSportPlayerList = players
     this.searchName = ""
     this.filteredSearch = this.allSportPlayerList
