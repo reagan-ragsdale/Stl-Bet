@@ -777,12 +777,14 @@ export class PlayerStatsComponent {
 
     }
     else if(this.selectedSport == 'NFL'){
+      var passTd: number[] = []
+      var passYds: number[] = []
       var rushingTd: number[] = []
       var recTd: number[] = []
       var rushYds: number[] = []
       var recYds: number[] = []
-      var passTd: number[] = []
-      var passYds: number[] = []
+      
+      
       var carries: number[] = []
       var completions: number[] = []
       var receptions: number[] = []
@@ -804,7 +806,7 @@ export class PlayerStatsComponent {
         index++
       })
 
-      arrayOFpoints = [rushingTd, recTd, rushYds, recYds, passTd, carries, completions, receptions, passYds]
+      arrayOFpoints = [passTd, passYds, completions, rushingTd, rushYds, carries, recTd,recYds,receptions ]
     }
 
 

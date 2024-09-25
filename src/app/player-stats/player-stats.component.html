@@ -59,7 +59,7 @@
       </table>
     </div>
     <div class="graph-body">
-      <div class="line-chart">
+      <div [ngClass]="selectedSport == 'NFL' ? 'nfl-chart' : 'other-chart'">
         <canvas id="lineChart">{{ chart }}</canvas>
       </div>
       <!-- <div style="width: 40%;">
