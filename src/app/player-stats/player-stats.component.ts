@@ -234,7 +234,7 @@ export class PlayerStatsComponent {
 
   ]
 
-  public playerTotalStatColumnsNfl: string[] = ["Pass TD", 'Pass Completions', 'Rush TD', 'Rush Yds', 'Carries', "Rec TD", 'Rec Yds', 'Receptions', 'Ints Thrown']
+  public playerTotalStatColumnsNfl: string[] = ["Pass TD", 'Pass Completions', 'Rush TD', 'Rush Yds', 'Carries', 'Rec TD', 'Rec Yds', 'Receptions', 'Ints Thrown']
 
   public playerTotalDataSetNfl: any[] = [
 

@@ -108,9 +108,9 @@
     flex-direction: column;
   }
   ::ng-deep .mdc-data-table__header-cell{
-    padding: 0 5px 0 5px;
+    padding: 0 5px 0 5px !important;
     font-size:small;
-    text-align:center;
+    text-align:center !important;
   }
 
   @media screen and (max-width: 970px) {

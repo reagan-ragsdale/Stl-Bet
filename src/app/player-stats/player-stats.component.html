@@ -48,7 +48,7 @@
         <ng-container *ngFor="let col of playerTotalDataSet" matColumnDef="{{col.name}}">
           <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
           <td mat-cell *matCellDef="let element; let j = index;">
-            {{(element[col.data] / seasonArrayTable.length) | number: '1.2-2'}}
+            {{element[col.data]}}
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="playerTotalStatColumns"></tr>
