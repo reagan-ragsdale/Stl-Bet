@@ -482,6 +482,14 @@ export class PlayerStatsComponent {
           showLine: false,
           dataName: 'receivingYards'
 
+        },
+        {
+          label: "Receptions",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'receptions'
+
         }
       ]
       this.displayedColumns = this.displayedColumnsNfl
@@ -808,12 +816,13 @@ export class PlayerStatsComponent {
     }
 
     console.log('things below')
+    console.log(arrayOFpoints)
+    console.log(this.fullDataset)
     for (let i = 0; i < arrayOFpoints.length; i++) {
       
       this.fullDataset[i].data = arrayOFpoints[i]
     }
-    console.log(arrayOFpoints)
-    console.log(this.fullDataset)
+    
 
     var filteredDataSet: any[] = []
     this.fullDataset.forEach((e) => {

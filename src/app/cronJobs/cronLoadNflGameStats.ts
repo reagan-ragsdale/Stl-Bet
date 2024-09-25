@@ -61,7 +61,7 @@ export const cronLoadNflGameStats = async () => {
     if(count < 100){
         try{
             let currentGameIds = await NflController.nflGetDistinctGameIds(2023);
-            let incomingGameIds = await nflApiController.loadAllNflGameIds(2023)
+            let incomingGameIds = await nflApiController.loadAllNflGameIdsPostSeason(2023)
             
     
             //find the ones that don't intersect

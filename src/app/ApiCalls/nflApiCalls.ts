@@ -68,6 +68,23 @@ export class nflApiController {
         return NflService.convertGameIdsToArray(processedResponse)
     }
 
+    static async loadAllNflGameIdsPostSeason(year: number) {
+        const url = `https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLGamesForWeek?week=all&seasonType=post&season=${year}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': '' + process.env['nflApiKey'],
+                'x-rapidapi-host': 'tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com'
+            }
+        };
+
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const processedResponse = result.body;
+        return NflService.convertGameIdsToArray(processedResponse)
+    }
+
     static async loadAllPLayerInfo() {
         const url = 'https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLPlayerList';
         const options = {
