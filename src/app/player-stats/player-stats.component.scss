@@ -107,7 +107,11 @@
     display:flex; 
     flex-direction: column;
   }
-  
+  ::ng-deep .mdc-data-table__header-cell{
+    padding: 0 5px 0 5px;
+    font-size:small;
+    text-align:center;
+  }
 
   @media screen and (max-width: 970px) {
     .charts {

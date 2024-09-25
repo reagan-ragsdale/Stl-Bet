@@ -234,25 +234,45 @@ export class PlayerStatsComponent {
 
   ]
 
-  public playerTotalStatColumnsNfl: string[] = ['Touchdowns', 'Rushing Yards', 'Receiving Yards', 'Passing Yards']
+  public playerTotalStatColumnsNfl: string[] = ["Pass TD", 'Pass Completions', 'Rush TD', 'Rush Yds', 'Carries', "Rec TD", 'Rec Yds', 'Receptions', 'Ints Thrown']
 
   public playerTotalDataSetNfl: any[] = [
 
     {
-      name: 'Touchdowns',
-      data: 'touchdowns'
+      name: 'Pass TD',
+      value: 'qbPassingTouchdowns'
     },
     {
-      name: 'Rushing Yards',
-      data: 'rushingYards'
+      name: 'Pass Completions',
+      value: 'qbCompletions'
     },
     {
-      name: 'Receiving Yards',
-      data: 'receivingYards'
+      name: 'Rush TD',
+      value: 'rushingTouchdowns'
     },
     {
-      name: 'Passing Yards',
-      data: 'qbPassingYards'
+      name: 'Rush Yds',
+      value: 'rushingYards'
+    },
+    {
+      name: 'Carries',
+      value: 'rushingAttempts'
+    },
+    {
+      name: 'Rec TD',
+      value: 'receivingTouchdowns'
+    },
+    {
+      name: 'Rec Yds',
+      value: 'receivingYards'
+    },
+    {
+      name: 'Receptions',
+      value: 'receptions'
+    },
+    {
+      name: 'Ints Thrown',
+      value: 'qbInterceptions'
     }
 
 
