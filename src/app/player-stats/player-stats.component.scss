@@ -82,6 +82,8 @@
   }
   .player-total-stats{
     width:100%;
+    display:flex;
+    flex-direction: column;
   }
   .player-props{
     width:100%; 
@@ -110,6 +112,9 @@
   ::ng-deep .mdc-data-table__header-cell{
     padding: 0 5px 0 5px !important;
     font-size:small;
+    text-align:center !important;
+  }
+  ::ng-deep .mdc-data-table__cell{
     text-align:center !important;
   }
 
