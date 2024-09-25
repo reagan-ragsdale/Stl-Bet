@@ -423,12 +423,35 @@ export class PlayerStatsComponent {
     else if (this.selectedSport == 'NFL') {
       this.fullDataset = [
         {
-          label: "TD",
+          label: "Pass TD",
           data: [],
           backgroundColor: 'blue',
           showLine: true,
-          dataName: 'touchdowns'
+          dataName: 'qbPassingTouchdowns'
 
+        },
+        {
+          label: "Pass Yds",
+          data: [],
+          backgroundColor: 'yellow',
+          showLine: false,
+          dataName: 'passingYards'
+
+        },
+        {
+          label: "Completions",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: true,
+          dataName: 'qbqbCompletions'
+
+        },
+        {
+          label: "Rush TD",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'rushingTouchdowns'
         },
         {
           label: "Rush Yds",
@@ -438,19 +461,26 @@ export class PlayerStatsComponent {
           dataName: 'rushingYards'
         },
         {
+          label: "Carries",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'rushingAttempts'
+        },
+        {
+          label: "Rec TD",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'receivingTouchdowns'
+
+        },
+        {
           label: "Rec Yds",
           data: [],
           backgroundColor: 'red',
           showLine: false,
           dataName: 'receivingYards'
-
-        },
-        {
-          label: "Pass Yds",
-          data: [],
-          backgroundColor: 'yellow',
-          showLine: false,
-          dataName: 'passingYards'
 
         }
       ]
