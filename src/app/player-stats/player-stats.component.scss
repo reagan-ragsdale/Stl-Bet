@@ -41,13 +41,16 @@
     width: 85%;
   }
   .nfl-chart{
-    width:60%;
+    width:65%;
   }
   .chart-toggles{
     width:12%; 
     margin-top:2rem; 
     border-left: 2px solid black; 
     padding-left: 10px;
+  }
+  .nfl-chart-toggles{
+    width:25%;
   }
   .stats-body{
     display:flex; 
@@ -70,6 +73,9 @@
   }
   .stat-toggle-list{
     list-style-type: none;
+  }
+  .nfl-stat-toggle-list{
+    columns: 2;
   }
   .search-buttons{
     display: flex; 

@@ -65,11 +65,11 @@
       <!-- <div style="width: 40%;">
        <canvas id="barChart">{{ chart2 }}</canvas> 
       </div> -->
-      <div class="chart-toggles">
+      <div [ngClass]="selectedSport == 'NFL' ? 'nfl-chart-toggles': 'chart-toggles'">
         <span class="example-list-section">
           <mat-slide-toggle [(ngModel)]="isCombineStats" (ngModelChange)="reDrawLineGraph()">Combine
             Stats</mat-slide-toggle>
-          <ul class="stat-toggle-list">
+          <ul [ngClass]="selectedSport == 'NFL' ? 'nfl-stat-toggle-list' : 'stat-toggle-list'">
             <li *ngFor="let box of fullDataset">
               <mat-checkbox [(ngModel)]="box.showLine" [color]="box.color" (ngModelChange)="reDrawLineGraph()">
                 {{box.label}}
