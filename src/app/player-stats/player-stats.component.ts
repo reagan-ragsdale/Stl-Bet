@@ -435,7 +435,7 @@ export class PlayerStatsComponent {
           data: [],
           backgroundColor: 'yellow',
           showLine: false,
-          dataName: 'passingYards'
+          dataName: 'qbPassingYards'
 
         },
         {
@@ -443,7 +443,7 @@ export class PlayerStatsComponent {
           data: [],
           backgroundColor: 'blue',
           showLine: false,
-          dataName: 'qbqbCompletions'
+          dataName: 'qbCompletions'
 
         },
         {
