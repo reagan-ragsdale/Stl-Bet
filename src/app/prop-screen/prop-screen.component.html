@@ -724,28 +724,18 @@
                               style="text-decoration: none;">{{player[0].playerName}}</a>
                             : {{player[0].point}}
                             <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
-                            (click)="$event.stopPropagation()" (click)="player[0].propVariables.overUnder = true" (click)="addPropToParlay(player[0])"
+                            (click)="$event.stopPropagation()" (click)="player[0].propVariables.overUnder = false" (click)="addPropToParlay(player[0])"
                             style=" margin-left: auto; width:auto; max-width:40px; height:auto;"
                             mat-raised-button>{{"U "}}{{player[0].price > 0 ? '+': ''}}{{player[0].price}}</button>
                             <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
-                            (click)="$event.stopPropagation()" (click)="player[0].propVariables.overUnder = false" (click)="addPropToParlay(player[0])"
+                            (click)="$event.stopPropagation()" (click)="player[0].propVariables.overUnder = true" (click)="addPropToParlay(player[0])"
                             style="margin-right:3px; margin-left: 3px; width:auto; max-width:40px; height:auto;"
                             mat-raised-button>{{"O "}}{{player[1].price > 0 ? '+': ''}}{{player[1].price}}</button>
                           </mat-panel-title>
-                          <!-- <mat-panel-description style="display:flex; gap:1rem;">
-                            <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
-                              (click)="$event.stopPropagation()" (click)="addPropToParlay(player[0])"
-                              style="margin-right:1rem; margin-left: auto; width:auto;"
-                              mat-raised-button>Parlay</button>
-                          </mat-panel-description> -->
                         </mat-expansion-panel-header>
                         <ng-template matExpansionPanelContent style="padding-right: .5rem; padding-left: .5rem;">
                           <mat-card>
                             <mat-card-header>
-                              <!-- <mat-card-title>{{player[0].marketKey | removeUnderScore | titlecase}}:
-                                {{player[0].point}} -- {{"O"}}
-                                {{player[1].price > 0 ? '+': ''}}{{player[1].price}} | {{"U"}}
-                                {{player[0].price > 0 ? '+': ''}}{{player[0].price}}</mat-card-title> -->
                             </mat-card-header>
                             <mat-card-content style="min-height:400px">
                               <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"

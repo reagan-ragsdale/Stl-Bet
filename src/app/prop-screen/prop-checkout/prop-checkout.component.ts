@@ -304,6 +304,54 @@ export class PropCheckoutComponent implements OnChanges {
                     }
                   }
                 }
+                else if (prop.propVariables.marketKey == 'player_reception_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.receivingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.receivingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
+                      didSameTeamParlayHappen.push((game.receivingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didSameTeamParlayHappen.push((game.receivingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'player_pass_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.qbPassingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.qbPassingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
+                      didSameTeamParlayHappen.push((game.qbPassingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didSameTeamParlayHappen.push((game.qbPassingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'player_rush_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((game.rushingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((game.rushingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == game.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
+                      didSameTeamParlayHappen.push((game.rushingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didSameTeamParlayHappen.push((game.rushingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                  }
+                }
               }
               else {
                 let gameFiltered = prop.stats.filter((e: { gameId: any; }) => e.gameId == game.gameId)[0]
@@ -537,6 +585,54 @@ export class PropCheckoutComponent implements OnChanges {
                   }
 
                 }
+                else if (prop.propVariables.marketKey == 'player_reception_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((filteredGame.receivingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((filteredGame.receivingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
+                      didSameTeamParlayHappen.push((filteredGame.receivingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didSameTeamParlayHappen.push((filteredGame.receivingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'player_pass_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((filteredGame.qbPassingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((filteredGame.qbPassingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
+                      didSameTeamParlayHappen.push((filteredGame.qbPassingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didSameTeamParlayHappen.push((filteredGame.qbPassingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                  }
+                }
+                else if (prop.propVariables.marketKey == 'player_rush_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((filteredGame.rushingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((filteredGame.rushingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  if (prop.propVariables.teamAgainstName == filteredGame.teamAgainstName) {
+                    if (prop.propVariables.overUnder == false) {
+                      didSameTeamParlayHappen.push((filteredGame.rushingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didSameTeamParlayHappen.push((filteredGame.rushingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                  }
+                }
               }
               else if (prop.propVariables.playerOrTeam == 'Team') {
                 if (prop.propVariables.marketKey == 'h2h') {
@@ -748,6 +844,33 @@ export class PropCheckoutComponent implements OnChanges {
                   }
 
                 }
+                else if (prop.propVariables.marketKey == 'player_reception_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((filteredGame.receivingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((filteredGame.receivingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  
+                }
+                else if (prop.propVariables.marketKey == 'player_pass_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((filteredGame.qbPassingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((filteredGame.qbPassingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  
+                }
+                else if (prop.propVariables.marketKey == 'player_rush_yds') {
+                  if (prop.propVariables.overUnder == false) {
+                    didParlayHappen.push((filteredGame.rushingYards < prop.propVariables.propPoint) ? true : false)
+                  }
+                  else {
+                    didParlayHappen.push((filteredGame.rushingYards > prop.propVariables.propPoint) ? true : false)
+                  }
+                  
+                }
 
               }
               else {
@@ -872,6 +995,33 @@ export class PropCheckoutComponent implements OnChanges {
                       didParlayHappen.push(filteredGame.batterRbis > prop.propVariables.propPoint ? true : false)
                     }
 
+                  }
+                  else if (prop.propVariables.marketKey == 'player_reception_yds') {
+                    if (prop.propVariables.overUnder == false) {
+                      didParlayHappen.push((filteredGame.receivingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didParlayHappen.push((filteredGame.receivingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                    
+                  }
+                  else if (prop.propVariables.marketKey == 'player_pass_yds') {
+                    if (prop.propVariables.overUnder == false) {
+                      didParlayHappen.push((filteredGame.qbPassingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didParlayHappen.push((filteredGame.qbPassingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                    
+                  }
+                  else if (prop.propVariables.marketKey == 'player_rush_yds') {
+                    if (prop.propVariables.overUnder == false) {
+                      didParlayHappen.push((filteredGame.rushingYards < prop.propVariables.propPoint) ? true : false)
+                    }
+                    else {
+                      didParlayHappen.push((filteredGame.rushingYards > prop.propVariables.propPoint) ? true : false)
+                    }
+                    
                   }
 
                 }
