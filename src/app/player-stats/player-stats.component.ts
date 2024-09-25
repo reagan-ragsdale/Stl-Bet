@@ -783,8 +783,6 @@ export class PlayerStatsComponent {
       var recTd: number[] = []
       var rushYds: number[] = []
       var recYds: number[] = []
-      
-      
       var carries: number[] = []
       var completions: number[] = []
       var receptions: number[] = []
@@ -809,10 +807,13 @@ export class PlayerStatsComponent {
       arrayOFpoints = [passTd, passYds, completions, rushingTd, rushYds, carries, recTd,recYds,receptions ]
     }
 
-
+    console.log('things below')
     for (let i = 0; i < arrayOFpoints.length; i++) {
+      
       this.fullDataset[i].data = arrayOFpoints[i]
     }
+    console.log(arrayOFpoints)
+    console.log(this.fullDataset)
 
     var filteredDataSet: any[] = []
     this.fullDataset.forEach((e) => {
