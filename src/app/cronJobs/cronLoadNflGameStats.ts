@@ -3,14 +3,20 @@ import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailControl
 import { NflController } from "../../shared/Controllers/NflController";
 import { nflApiController } from "../ApiCalls/nflApiCalls";
 import { NflService } from "../Services/NflService";
+import { TeamInfoController } from "src/shared/Controllers/TeamInfoController";
+import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo";
 
 
 export const cronLoadNflGameStats = async () => {
     let count = 0
     console.log('Running cron nfl')
-     let players = await nflApiController.loadAllPLayerInfo()
-     count++
-    await PlayerInfoController.playerInfoAddPlayers(players)
+    let teams = await TeamInfoController.getAllTeamInfo('NFL')
+    let listOfPlayers: DbPlayerInfo[] = []
+    for(let team of teams){
+        let players = await nflApiController.loadTeamRoster(team.teamId)
+        players.forEach(e => listOfPlayers.push(e))
+    }
+    await PlayerInfoController.playerInfoAddPlayers(listOfPlayers)
     try{
         let currentGameIds = await NflController.nflGetDistinctGameIds(2024);
         let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)

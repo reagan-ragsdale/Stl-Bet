@@ -100,5 +100,22 @@ export class nflApiController {
         return NflService.convertPlayers(processedResponse)
     }
 
+    static async loadTeamRoster(teamId: number) {
+        const url = `https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLTeamRoster?teamID=${teamId}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
+                'x-rapidapi-host': 'tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com'
+            }
+        };
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const processedResponse = result.body.roster;
+        return NflService.convertPlayers(processedResponse)
+    }
+
+    
+
 
 }
