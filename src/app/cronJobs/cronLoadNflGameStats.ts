@@ -3,8 +3,8 @@ import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailControl
 import { NflController } from "../../shared/Controllers/NflController";
 import { nflApiController } from "../ApiCalls/nflApiCalls";
 import { NflService } from "../Services/NflService";
-import { TeamInfoController } from "src/shared/Controllers/TeamInfoController";
-import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo";
+import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
+import { DbPlayerInfo } from "../../shared/dbTasks/DbPlayerInfo";
 
 
 export const cronLoadNflGameStats = async () => {

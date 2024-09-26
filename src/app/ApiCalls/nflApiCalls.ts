@@ -90,7 +90,7 @@ export class nflApiController {
         const options = {
             method: 'GET',
             headers: {
-                'x-rapidapi-key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
+                'x-rapidapi-key': '' + process.env['nflApiKey'],
                 'x-rapidapi-host': 'tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com'
             }
         };
@@ -105,7 +105,7 @@ export class nflApiController {
         const options = {
             method: 'GET',
             headers: {
-                'x-rapidapi-key': 'b66301c5cdmsh89a2ce517c0ca87p1fe140jsne708007ee552',
+                'x-rapidapi-key': '' + process.env['nflApiKey'],
                 'x-rapidapi-host': 'tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com'
             }
         };
