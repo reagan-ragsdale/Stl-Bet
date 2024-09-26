@@ -16,13 +16,15 @@ export class UsersController {
   static verify: typeof verify;
 
   @BackendMethod({ allowed: true })
-  static async signUp(username: string, password: string) {
+  static async signUp(username: string, password: string, confirmPassword: string) {
+    if(password != confirmPassword) throw Error('Passwords must match')
     let users = await userRepo.find({ where: { userName: username } })
     if (users.length > 0) {
-      throw Error('There is someone already with that usernamne')
+      throw Error('There is someone already with that username')
     }
     else {
       if (!password) throw Error('Password is required')
+        if(password.length < 8) throw Error('Password length must be at least 8 characters')
       const user = await userRepo.insert({
         userName: username,
         userPass: UsersController.generate(password)

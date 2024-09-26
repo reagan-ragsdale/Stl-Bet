@@ -12,55 +12,49 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginSignUpComponent {
   constructor(private router: Router, private _snackBar: MatSnackBar) {
   }
-  async onSubmit(){
-    
-    if(this.isLoginMode){
-        try{
-          remult.user = await UsersController.login(this.email.toLowerCase(), this.password)
-        }
-        catch(error:any){
-          this._snackBar.open(error.message, 'close')
-        }
-        
+  async onSubmit() {
+
+    if (this.isLoginMode) {
+      try {
+        remult.user = await UsersController.login(this.email.toLowerCase(), this.password)
       }
-    else{
-      if(this.password == this.confirmPassword){
-        try{
-          remult.user = await UsersController.signUp(this.email.toLowerCase(), this.password)
-        }catch(error:any){
-          this._snackBar.open(error.message, 'close')
-        }
+      catch (error: any) {
+        this._snackBar.open(error.message, 'close')
       }
-      else{
-        this._snackBar.open('Passwords must match', 'Close');
-      }
-      
+
     }
-    if(remult.authenticated()){
+    else {
+      try {
+        remult.user = await UsersController.signUp(this.email.toLowerCase(), this.password, this.confirmPassword)
+      } catch (error: any) {
+        this._snackBar.open(error.message, 'close')
+      }
+    }
+    if (remult.authenticated()) {
       this.router.navigate(['/sports'])
     }
-    
 
-    
-     
-    
-      
-    
+
+
+
+
+
+
 
   }
 
-  toggleMode(){
+  toggleMode() {
     this.isLoginMode = !this.isLoginMode
   }
 
-isLoginMode: boolean = true
+  isLoginMode: boolean = true
 
   email = '';
   password = ''
   confirmPassword = ''
 
-signUpMessage = `Don't have an account? Sign Up`
-loginMessage = `Already have an account? Login`
+  signUpMessage = `Don't have an account? Sign Up`
+  loginMessage = `Already have an account? Login`
 
 
 }
