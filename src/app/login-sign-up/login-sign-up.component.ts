@@ -13,13 +13,28 @@ export class LoginSignUpComponent {
   constructor(private router: Router, private _snackBar: MatSnackBar) {
   }
   async onSubmit(){
+    
     if(this.isLoginMode){
-      remult.user = await UsersController.login(this.email, this.password)
+      if(this.password.length != 0){
+        remult.user = await UsersController.login(this.email, this.password)
+        if(!remult.authenticated()){
+          this._snackBar.open('Wrong username and password', 'close')
+        }
+        
+      }
+      else{
+        this._snackBar.open('Password required', 'close')
+      }
+      
+      
       
     }
     else{
       if(this.password == this.confirmPassword){
         remult.user = await UsersController.signUp(this.email, this.password)
+        if(!remult.authenticated()){
+          this._snackBar.open('That username is already taken')
+        }
       }
       else{
         this._snackBar.open('Passwords must match', 'Close');
@@ -29,6 +44,7 @@ export class LoginSignUpComponent {
     if(remult.authenticated()){
       this.router.navigate(['/sports'])
     }
+    
 
     
      
