@@ -16,7 +16,13 @@ export class LoginSignUpComponent {
     
     if(this.isLoginMode){
       if(this.password.length != 0){
-        remult.user = await UsersController.login(this.email.toLowerCase(), this.password)
+        try{
+          remult.user = await UsersController.login(this.email.toLowerCase(), this.password)
+        }
+        catch(error:any){
+          console.log(error)
+        }
+        
         if(!remult.authenticated()){
           this._snackBar.open('Wrong username and password', 'close')
         }
