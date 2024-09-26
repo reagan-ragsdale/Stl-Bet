@@ -15,31 +15,20 @@ export class LoginSignUpComponent {
   async onSubmit(){
     
     if(this.isLoginMode){
-      if(this.password.length != 0){
         try{
           remult.user = await UsersController.login(this.email.toLowerCase(), this.password)
         }
         catch(error:any){
-          console.log(error)
-        }
-        
-        if(!remult.authenticated()){
-          this._snackBar.open('Wrong username and password', 'close')
+          this._snackBar.open(error.message, 'close')
         }
         
       }
-      else{
-        this._snackBar.open('Password required', 'close')
-      }
-      
-      
-      
-    }
     else{
       if(this.password == this.confirmPassword){
-        remult.user = await UsersController.signUp(this.email.toLowerCase(), this.password)
-        if(!remult.authenticated()){
-          this._snackBar.open('That username is already taken')
+        try{
+          remult.user = await UsersController.signUp(this.email.toLowerCase(), this.password)
+        }catch(error:any){
+          this._snackBar.open(error.message, 'close')
         }
       }
       else{
