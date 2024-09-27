@@ -384,8 +384,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     })
     console.log(this.gameDataAllFinal)
     if(this.selectedSport == 'NFL'){
+      console.log("here in slice")
       this.gameDataAllFinal = this.gameDataAllFinal.slice(0,20)
     }
+    console.log(this.gameDataAllFinal)
   }
 
   teamClicked(teamName: string) {
