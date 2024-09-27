@@ -51,6 +51,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   public gameDataAllFinal: any[] = []
   public gameDataFinal: any[] = []
 
+  betCheats: any[] = []
+
+  betCheatsColumns: string[] = ["Name","Prop","Point","Price","OverallChance","HomeAwayChance","TeamChance"]
+
   upcomingGamePropColumns: string[] = ["Team", "ML", "Spread", "OverUnder"]
 
   playerAverageColumns: string[] = []
@@ -385,7 +389,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     console.log(this.gameDataAllFinal)
     if(this.selectedSport == 'NFL'){
       console.log("here in slice")
-      this.gameDataAllFinal = this.gameDataAllFinal.slice(0,20)
+      this.gameDataAllFinal = this.gameDataAllFinal.slice(0,15)
     }
     console.log(this.gameDataAllFinal)
   }
