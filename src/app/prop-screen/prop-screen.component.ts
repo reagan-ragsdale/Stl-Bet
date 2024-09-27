@@ -761,7 +761,7 @@ export class PropScreenComponent implements OnInit {
           playerStatsReversed.forEach(e => {
             tableOverall.push({
               teamAgainstName: e.teamAgainstName,
-              gameDate: e.gameDate,
+              gameDate: this.selectedSport == 'NFL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
               propNumber: e.batterHits,
               homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
               propName: 'H'
@@ -770,7 +770,7 @@ export class PropScreenComponent implements OnInit {
             if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
               tableHomeAway.push({
                 teamAgainstName: e.teamAgainstName,
-                gameDate: e.gameDate,
+                gameDate: this.selectedSport == 'NFL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
                 propNumber: e.batterHits,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
                 propName: 'H'
@@ -779,7 +779,7 @@ export class PropScreenComponent implements OnInit {
             if (e.teamAgainstName == teamAgainstName) {
               tableTeam.push({
                 teamAgainstName: e.teamAgainstName,
-                gameDate: e.gameDate,
+                gameDate: this.selectedSport == 'NFL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
                 propNumber: e.batterHits,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
                 propName: 'H'
@@ -1065,7 +1065,7 @@ export class PropScreenComponent implements OnInit {
           playerStatsReversed.forEach(e => {
             tableOverall.push({
               teamAgainstName: e.teamAgainstName,
-              gameDate: e.gameDate,
+              gameDate: this.selectedSport == 'NFL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
               propNumber: e.batterRunsScored,
               homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
               propName: 'R'
@@ -1074,7 +1074,7 @@ export class PropScreenComponent implements OnInit {
             if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
               tableHomeAway.push({
                 teamAgainstName: e.teamAgainstName,
-                gameDate: e.gameDate,
+                gameDate: this.selectedSport == 'NFL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
                 propNumber: e.batterRunsScored,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
                 propName: 'R'
@@ -1083,7 +1083,7 @@ export class PropScreenComponent implements OnInit {
             if (e.teamAgainstName == teamAgainstName) {
               tableTeam.push({
                 teamAgainstName: e.teamAgainstName,
-                gameDate: e.gameDate,
+                gameDate: this.selectedSport == 'NFL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
                 propNumber: e.batterRunsScored,
                 homeAway: reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName),
                 propName: 'R'
