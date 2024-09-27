@@ -4,6 +4,7 @@ import { TeamInfoController } from "../../shared/Controllers/TeamInfoController"
 import { reusedFunctions } from "../Services/reusedFunctions"
 import { DbPlayerBestBets } from "../../shared/dbTasks/DBPlayerBestBets"
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData"
+import { BestBetController } from "../../shared/Controllers/BestBetController"
 
 
 
@@ -225,5 +226,6 @@ export const cronLoadBestBets = async () => {
 
         }
     }
+    BestBetController.addBestBet(listOfBetsToAdd)
 
 }
