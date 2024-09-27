@@ -384,7 +384,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     })
     console.log(this.gameDataAllFinal)
     if(this.selectedSport == 'NFL'){
-      //this.gameDataAllFinal = reusedFunctions.getNflGamesForThisWeek(this.gameDataAllFinal)
+      this.gameDataAllFinal = this.gameDataAllFinal.slice(0,20)
     }
   }
 
