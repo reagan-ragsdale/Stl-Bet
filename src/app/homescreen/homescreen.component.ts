@@ -395,9 +395,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     const nextTuesday = new Date(today);
     nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
       this.gameDataAllFinal = this.gameDataAllFinal.filter(e => {
-        console.log(e[0][0][0]);
-        console.log(nextTuesday)
-        e[0][0][0].commenceTime < nextTuesday
+        console.log(e[0][0][0].commenceTime < nextTuesday);
+        e[0][0][0].commenceTime < nextTuesday;
       })
     }
     console.log(this.gameDataAllFinal)
