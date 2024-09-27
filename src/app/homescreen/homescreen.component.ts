@@ -391,13 +391,13 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       console.log("here in slice")
       let today = new Date()
       let dayOfWeek = today.getDay()
-      const daysToSubtract = (dayOfWeek + 5) % 7
-      const mostRecentTuesday = new Date(today);
-      mostRecentTuesday.setDate(today.getDate() - daysToSubtract);
+      const daysToAdd = (2 - dayOfWeek + 7) % 7; 
+    const nextTuesday = new Date(today);
+    nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
       this.gameDataAllFinal = this.gameDataAllFinal.filter(e => {
         console.log(e[0][0][0]);
-        console.log(mostRecentTuesday)
-        e[0][0][0].commenceTime < mostRecentTuesday.toISOString()
+        console.log(nextTuesday)
+        e[0][0][0].commenceTime < nextTuesday
       })
     }
     console.log(this.gameDataAllFinal)
