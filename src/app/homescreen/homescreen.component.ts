@@ -389,7 +389,12 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     console.log(this.gameDataAllFinal)
     if(this.selectedSport == 'NFL'){
       console.log("here in slice")
-      this.gameDataAllFinal = this.gameDataAllFinal.slice(0,15)
+      let today = new Date()
+      let dayOfWeek = today.getDay()
+      const daysToSubtract = (dayOfWeek + 5) % 7
+      const mostRecentTuesday = new Date(today);
+      mostRecentTuesday.setDate(today.getDate() - daysToSubtract);
+      this.gameDataAllFinal = this.gameDataAllFinal.filter(e => e[0][0][0].commenceTime < mostRecentTuesday.toISOString())
     }
     console.log(this.gameDataAllFinal)
   }

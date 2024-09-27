@@ -43,6 +43,8 @@ import { DBNflTeamGameStatTotals } from '../shared/dbTasks/DbNflTeamGameStatTota
 import { DBNflPlayerGameStatTotals } from '../shared/dbTasks/DbNflPlayerGameStatTotals';
 import { cronLoadNhlStats } from '../app/cronJobs/cronLoadNhlStats';
 import { DbNhlTeamGameStats } from '../shared/dbTasks/DbNhlTeamGameStats';
+import { BestBetController } from '../shared/Controllers/BestBetController';
+import { DbPlayerBestBets } from '../shared/dbTasks/DBPlayerBestBets';
 
 config()
 UsersController.generate =generate;
@@ -71,7 +73,8 @@ export const api = remultExpress({
     DBNflTeamGameStatTotals,
     DBNflPlayerGameStatTotals,
     DbNhlPlayerGameStats,
-    DbNhlTeamGameStats
+    DbNhlTeamGameStats,
+    DbPlayerBestBets
   ],
   controllers: [
     MlbController,
@@ -82,7 +85,8 @@ export const api = remultExpress({
     TeamInfoController,
     UsersController,
     NflController,
-    ErrorEmailController
+    ErrorEmailController,
+    BestBetController
 
   ],
 

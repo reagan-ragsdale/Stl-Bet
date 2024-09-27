@@ -62,7 +62,19 @@ export class PlayerPropController {
     const taskRepo = remult.repo(DbPlayerPropData)
     let today = new Date();
     today.setHours(6,0,0,0);
+    
     return await taskRepo.find({ where: { playerName: playerName, sportTitle: sport, bookSeq: 0, commenceTime: {$gte: today.toISOString()} } })
   }
+
+  @BackendMethod({ allowed: true })
+  static async loadAllCurrentPlayerPropDataBySport(sport: string): Promise<DbPlayerPropData[]> {
+    const taskRepo = remult.repo(DbPlayerPropData)
+    let today = new Date();
+    today.setHours(6,0,0,0);
+    
+    return await taskRepo.find({ where: { sportTitle: sport, bookSeq: 0, commenceTime: {$gte: today.toISOString()} } })
+  }
+
+  
 
 }
