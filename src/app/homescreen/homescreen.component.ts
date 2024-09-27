@@ -394,10 +394,13 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       const daysToAdd = (2 - dayOfWeek + 7) % 7; 
     const nextTuesday = new Date(today);
     nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
-      this.gameDataAllFinal = this.gameDataAllFinal.filter(e => {
-        console.log(e[0][0][0].commenceTime < nextTuesday);
-        e[0][0][0].commenceTime < nextTuesday;
+    let gameTemp: any[] = []
+      this.gameDataAllFinal.forEach(e =>  {
+        if(e[0][0][0].commenceTime < nextTuesday){
+          gameTemp.push(e)
+        }
       })
+      this.gameDataAllFinal = gameTemp
     }
     console.log(this.gameDataAllFinal)
   }
