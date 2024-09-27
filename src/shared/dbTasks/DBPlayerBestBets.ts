@@ -11,16 +11,10 @@ export class DbPlayerBestBets {
   bookId = ''
 
   @Fields.string()
-  sportKey = ""
-
-  @Fields.string()
   sportTitle = ''
 
   @Fields.string()
-  homeTeam = ""
-
-  @Fields.string()
-  awayTeam = ""
+  teamName = ""
 
   @Fields.date()
   commenceTime = ""
