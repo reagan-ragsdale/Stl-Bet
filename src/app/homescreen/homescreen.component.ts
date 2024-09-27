@@ -396,6 +396,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       mostRecentTuesday.setDate(today.getDate() - daysToSubtract);
       this.gameDataAllFinal = this.gameDataAllFinal.filter(e => {
         console.log(e[0][0][0]);
+        console.log(mostRecentTuesday)
         e[0][0][0].commenceTime < mostRecentTuesday.toISOString()
       })
     }
