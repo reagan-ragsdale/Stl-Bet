@@ -283,4 +283,10 @@ static convertGameDateToMonthDay(date: string): string{
   return finalThing
 }
 
+/* static getNflGamesForThisWeek(games: any[]): any[]{
+  for(let game of games){
+
+  }
+} */
+
 }
