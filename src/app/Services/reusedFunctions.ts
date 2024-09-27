@@ -272,10 +272,13 @@ export class reusedFunctions {
 }
 
 static convertGameDateToMonthDay(date: string): string{
+  console.log("here in convert game date")
   let thing = date
   thing = thing.slice(4)
   let thing1 = thing.slice(0,2)
+  console.log(thing1)
   let thing2 = thing.slice(2)
+  console.log(thing2)
   let finalThing = thing1 + "/" + thing2
   return finalThing
 }
