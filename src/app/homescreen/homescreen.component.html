@@ -327,7 +327,7 @@
         <h2 style="text-align: center;">Bet Cheat Sheet</h2>
         <table mat-table [dataSource]="betCheats" class="mat-elevation-z8">
           <ng-container matColumnDef="Name">
-            <th mat-header-cell *matHeaderCellDef>  </th>
+            <th mat-header-cell *matHeaderCellDef> Player </th>
             <td mat-cell *matCellDef="let element; let j = index;">
              {{element.playerName}}
             </td>
@@ -335,7 +335,7 @@
 
           <ng-container matColumnDef="Prop">
             <th mat-header-cell *matHeaderCellDef>Prop</th>
-            <td mat-cell *matCellDef="let element">{{element.marketKey | removeHeading | titlecase}} {{" " + element.description}}</td>
+            <td mat-cell *matCellDef="let element">{{element.marketKey | removeUnderScore | removeHeading | titlecase}} {{" " + element.description}}</td>
           </ng-container>
 
           <ng-container matColumnDef="Point">
@@ -350,17 +350,17 @@
 
           <ng-container matColumnDef="OverallChance">
             <th mat-header-cell *matHeaderCellDef >Overall Chance </th>
-            <td mat-cell *matCellDef="let element">{{element.overallChance}}</td>
+            <td mat-cell *matCellDef="let element">{{element.overallChance * 100}}</td>
           </ng-container>
 
           <ng-container matColumnDef="HomeAwayChance">
             <th mat-header-cell *matHeaderCellDef >Home/Away Chance </th>
-            <td mat-cell *matCellDef="let element">{{element.homeAwayChance}}</td>
+            <td mat-cell *matCellDef="let element">{{element.homeAwayChance * 100}}</td>
           </ng-container>
 
           <ng-container matColumnDef="TeamChance">
             <th mat-header-cell *matHeaderCellDef >Team Chance </th>
-            <td mat-cell *matCellDef="let element">{{element.teamChance}}</td>
+            <td mat-cell *matCellDef="let element">{{element.teamChance * 100}}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="betCheatsColumns; sticky:false" style="height:auto;" ></tr>
