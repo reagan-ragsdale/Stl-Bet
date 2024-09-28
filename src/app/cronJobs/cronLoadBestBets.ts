@@ -38,6 +38,8 @@ export const cronLoadBestBets = async () => {
                 let teamTotal = 0
                 let overallTotal = 0
                 let teamName: string = ''
+                let teamAgainstName: string = ''
+                let homeAway:string = ''
                 if (sport == 'NFL') {
                     let teamInfo = await TeamInfoController.getAllTeamInfo('NFL')
                     let playerGameStats = await NflController.nflGetAllPlayerGameStatsBySpecificPlayerNameAndSeason(player.playerName, 2024)
@@ -46,8 +48,9 @@ export const cronLoadBestBets = async () => {
                         overallTotal = playerGameStats.length
                         let specificTeam = teamInfo.filter(e => e.teamNameAbvr == playerGameStats[0].teamName)[0]
                         teamName = specificTeam.teamNameAbvr
-                        let homeAway = player.homeTeam == specificTeam.teamNameFull ? 'Home' : 'Away'
+                        homeAway = player.homeTeam == specificTeam.teamNameFull ? 'Home' : 'Away'
                         let teamAgainst = player.homeTeam == specificTeam.teamNameFull ? teamInfo.filter(e => e.teamNameFull == player.awayTeam)[0] : teamInfo.filter(e => e.teamNameFull == player.homeTeam)[0]
+                        teamAgainstName = teamAgainst.teamNameAbvr
                         for (let game of playerGameStats) {
 
                             if (player.marketKey == 'player_pass_tds') {
@@ -215,6 +218,8 @@ export const cronLoadBestBets = async () => {
                         bookId: player.bookId,
                         sportTitle: player.sportTitle,
                         teamName: teamName,
+                        teamAgainstName: teamAgainstName,
+                        homeAway: homeAway,
                         commenceTime: player.commenceTime,
                         bookMaker: player.bookMaker,
                         marketKey: player.marketKey,

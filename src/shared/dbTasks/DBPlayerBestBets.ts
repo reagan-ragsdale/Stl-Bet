@@ -16,6 +16,12 @@ export class DbPlayerBestBets {
   @Fields.string()
   teamName = ""
 
+  @Fields.string()
+  teamAgainstName = ""
+
+  @Fields.string()
+  homeAway = ""
+
   @Fields.date()
   commenceTime = ""
 
