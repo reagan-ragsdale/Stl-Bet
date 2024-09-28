@@ -41,167 +41,170 @@ export const cronLoadBestBets = async () => {
                 if (sport == 'NFL') {
                     let teamInfo = await TeamInfoController.getAllTeamInfo('NFL')
                     let playerGameStats = await NflController.nflGetAllPlayerGameStatsBySpecificPlayerNameAndSeason(player.playerName, 2024)
-                    console.log(playerGameStats.length)
-                    overallTotal = playerGameStats.length
-                    let specificTeam = teamInfo.filter(e => e.teamNameAbvr == playerGameStats[0].teamName)[0]
-                    teamName = specificTeam.teamNameAbvr
-                    let homeAway = player.homeTeam == specificTeam.teamNameFull ? 'Home' : 'Away'
-                    let teamAgainst = player.homeTeam == specificTeam.teamNameFull ? teamInfo.filter(e => e.teamNameFull == player.awayTeam)[0] : teamInfo.filter(e => e.teamNameFull == player.homeTeam)[0]
-                    for (let game of playerGameStats) {
+                    if (playerGameStats.length > 0) {
+                        console.log(playerGameStats.length)
+                        overallTotal = playerGameStats.length
+                        let specificTeam = teamInfo.filter(e => e.teamNameAbvr == playerGameStats[0].teamName)[0]
+                        teamName = specificTeam.teamNameAbvr
+                        let homeAway = player.homeTeam == specificTeam.teamNameFull ? 'Home' : 'Away'
+                        let teamAgainst = player.homeTeam == specificTeam.teamNameFull ? teamInfo.filter(e => e.teamNameFull == player.awayTeam)[0] : teamInfo.filter(e => e.teamNameFull == player.homeTeam)[0]
+                        for (let game of playerGameStats) {
 
-                        if (player.marketKey == 'player_pass_tds') {
-                            if (player.description == 'Over') {
-                                if (game.qbPassingTouchdowns > player.point) {
-                                    overallCount++;
-                                }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
+                            if (player.marketKey == 'player_pass_tds') {
+                                if (player.description == 'Over') {
                                     if (game.qbPassingTouchdowns > player.point) {
-                                        homeAwayCount++
+                                        overallCount++;
                                     }
-                                }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.qbPassingTouchdowns > player.point) {
-                                        teamCount++
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.qbPassingTouchdowns > player.point) {
+                                            homeAwayCount++
+                                        }
                                     }
-                                }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.qbPassingTouchdowns > player.point) {
+                                            teamCount++
+                                        }
+                                    }
 
-                            }
-                            else if (player.description == 'Under') {
-                                if (game.qbPassingTouchdowns < player.point) {
-                                    overallCount++;
                                 }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
+                                else if (player.description == 'Under') {
                                     if (game.qbPassingTouchdowns < player.point) {
-                                        homeAwayCount++
+                                        overallCount++;
+                                    }
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.qbPassingTouchdowns < player.point) {
+                                            homeAwayCount++
+                                        }
+                                    }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.qbPassingTouchdowns < player.point) {
+                                            teamCount++
+                                        }
                                     }
                                 }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.qbPassingTouchdowns < player.point) {
-                                        teamCount++
-                                    }
-                                }
-                            }
 
-                        }
-                        else if (player.marketKey == 'player_rush_yds') {
-                            if (player.description == 'Over') {
-                                if (game.rushingYards > player.point) {
-                                    overallCount++;
-                                }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
+                            }
+                            else if (player.marketKey == 'player_rush_yds') {
+                                if (player.description == 'Over') {
                                     if (game.rushingYards > player.point) {
-                                        homeAwayCount++
+                                        overallCount++;
                                     }
-                                }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.rushingYards > player.point) {
-                                        teamCount++
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.rushingYards > player.point) {
+                                            homeAwayCount++
+                                        }
                                     }
-                                }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.rushingYards > player.point) {
+                                            teamCount++
+                                        }
+                                    }
 
-                            }
-                            else if (player.description == 'Under') {
-                                if (game.rushingYards < player.point) {
-                                    overallCount++;
                                 }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
+                                else if (player.description == 'Under') {
                                     if (game.rushingYards < player.point) {
-                                        homeAwayCount++
+                                        overallCount++;
+                                    }
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.rushingYards < player.point) {
+                                            homeAwayCount++
+                                        }
+                                    }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.rushingYards < player.point) {
+                                            teamCount++
+                                        }
                                     }
                                 }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.rushingYards < player.point) {
-                                        teamCount++
-                                    }
-                                }
-                            }
 
-                        }
-                        else if (player.marketKey == 'player_reception_yds') {
-                            if (player.description == 'Over') {
-                                if (game.receivingYards > player.point) {
-                                    overallCount++;
-                                }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
+                            }
+                            else if (player.marketKey == 'player_reception_yds') {
+                                if (player.description == 'Over') {
                                     if (game.receivingYards > player.point) {
-                                        homeAwayCount++
+                                        overallCount++;
                                     }
-                                }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.receivingYards > player.point) {
-                                        teamCount++
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.receivingYards > player.point) {
+                                            homeAwayCount++
+                                        }
                                     }
-                                }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.receivingYards > player.point) {
+                                            teamCount++
+                                        }
+                                    }
 
-                            }
-                            else if (player.description == 'Under') {
-                                if (game.receivingYards < player.point) {
-                                    overallCount++;
                                 }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
+                                else if (player.description == 'Under') {
                                     if (game.receivingYards < player.point) {
-                                        homeAwayCount++
+                                        overallCount++;
+                                    }
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.receivingYards < player.point) {
+                                            homeAwayCount++
+                                        }
+                                    }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.receivingYards < player.point) {
+                                            teamCount++
+                                        }
                                     }
                                 }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.receivingYards < player.point) {
-                                        teamCount++
-                                    }
-                                }
-                            }
 
-                        }
-                        else if (player.marketKey == 'player_pass_yds') {
-                            if (player.description == 'Over') {
-                                if (game.qbPassingYards > player.point) {
-                                    overallCount++;
-                                }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
+                            }
+                            else if (player.marketKey == 'player_pass_yds') {
+                                if (player.description == 'Over') {
                                     if (game.qbPassingYards > player.point) {
-                                        homeAwayCount++
+                                        overallCount++;
                                     }
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.qbPassingYards > player.point) {
+                                            homeAwayCount++
+                                        }
+                                    }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.qbPassingYards > player.point) {
+                                            teamCount++
+                                        }
+                                    }
+
                                 }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.qbPassingYards > player.point) {
-                                        teamCount++
+                                else if (player.description == 'Under') {
+                                    if (game.qbPassingYards < player.point) {
+                                        overallCount++;
+                                    }
+                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                        homeAwayTotal++
+                                        if (game.qbPassingYards < player.point) {
+                                            homeAwayCount++
+                                        }
+                                    }
+                                    if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
+                                        teamTotal++
+                                        if (game.qbPassingYards < player.point) {
+                                            teamCount++
+                                        }
                                     }
                                 }
 
                             }
-                            else if (player.description == 'Under') {
-                                if (game.qbPassingYards < player.point) {
-                                    overallCount++;
-                                }
-                                if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
-                                    homeAwayTotal++
-                                    if (game.qbPassingYards < player.point) {
-                                        homeAwayCount++
-                                    }
-                                }
-                                if (specificTeam.teamNameAbvr == teamAgainst.teamNameAbvr) {
-                                    teamTotal++
-                                    if (game.qbPassingYards < player.point) {
-                                        teamCount++
-                                    }
-                                }
-                            }
-
                         }
                     }
+
                 }
                 let overallChance = overallTotal == 0 ? 0 : overallCount / overallTotal
                 let homeAwayChance = homeAwayTotal == 0 ? 0 : homeAwayCount / homeAwayTotal
