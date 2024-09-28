@@ -25,8 +25,6 @@ export const cronLoadBestBets = async () => {
 
             let newPlayers: DbPlayerPropData[] = []
             playerProps.forEach(e => {
-                console.log(e.commenceTime)
-                console.log(nextTuesday.toISOString())
                 if (e.commenceTime < nextTuesday.toISOString()) {
                     newPlayers.push(e)
                 }
