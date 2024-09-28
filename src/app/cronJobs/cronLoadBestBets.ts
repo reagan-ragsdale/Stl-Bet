@@ -16,17 +16,12 @@ export const cronLoadBestBets = async () => {
     try {
         for (let sport of sports) {
             let playerProps = await PlayerPropController.loadAllCurrentPlayerPropDataBySport(sport)
-            console.log(playerProps.length)
             let today = new Date()
             let dayOfWeek = today.getDay()
             const daysToAdd = (2 - dayOfWeek + 7) % 7;
             const nextTuesday = new Date(today);
             nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
 
-            let newDate = new Date(playerProps[0].commenceTime)
-            console.log(newDate < nextTuesday)
-            console.log(newDate)
-            console.log(nextTuesday)
             let newPlayers: DbPlayerPropData[] = []
             playerProps.forEach(e => {
                 let newDate = new Date(e.commenceTime)
@@ -34,7 +29,6 @@ export const cronLoadBestBets = async () => {
                     newPlayers.push(e)
                 }
             })
-            console.log(newPlayers.length)
 
             for (let player of newPlayers) {
                 let overallCount = 0
@@ -46,7 +40,8 @@ export const cronLoadBestBets = async () => {
                 let teamName: string = ''
                 if (sport == 'NFL') {
                     let teamInfo = await TeamInfoController.getAllTeamInfo('NFL')
-                    let playerGameStats = await NflController.nflGetAllPlayerGameStatsByPlayerNameAndSeason([player.playerName], 2024)
+                    let playerGameStats = await NflController.nflGetAllPlayerGameStatsBySpecificPlayerNameAndSeason(player.playerName, 2024)
+                    console.log(playerGameStats.length)
                     overallTotal = playerGameStats.length
                     let specificTeam = teamInfo.filter(e => e.teamNameAbvr == playerGameStats[0].teamName)[0]
                     teamName = specificTeam.teamNameAbvr
