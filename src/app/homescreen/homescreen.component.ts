@@ -54,7 +54,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   betCheats: any[] = []
 
-  betCheatsColumns: string[] = ["Name","Prop","Point","Price","OverallChance","HomeAwayChance","TeamChance"]
+  betCheatsColumns: string[] = ["Name", "Team", "Prop","Point","Price","OverallChance","HomeAwayChance","TeamChance"]
 
   upcomingGamePropColumns: string[] = ["Team", "ML", "Spread", "OverUnder"]
 

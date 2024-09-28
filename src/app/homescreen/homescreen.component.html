@@ -333,6 +333,13 @@
             </td>
           </ng-container>
 
+          <ng-container matColumnDef="Team">
+            <th mat-header-cell *matHeaderCellDef> Team </th>
+            <td mat-cell *matCellDef="let element; let j = index;">
+             {{element.teamName}}
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="Prop">
             <th mat-header-cell *matHeaderCellDef>Prop</th>
             <td mat-cell *matCellDef="let element">{{element.marketKey | removeUnderScore | removeHeading | titlecase}} {{" " + element.description}}</td>
@@ -345,7 +352,7 @@
 
           <ng-container matColumnDef="Price">
             <th mat-header-cell *matHeaderCellDef > Price </th>
-            <td mat-cell *matCellDef="let element">{{element.price > 0 ? '+' : ''}} {{element.price}}</td>
+            <td mat-cell *matCellDef="let element">{{element.price > 0 ? '+' : ''}}{{element.price}}</td>
           </ng-container>
 
           <ng-container matColumnDef="OverallChance">
