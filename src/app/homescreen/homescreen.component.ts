@@ -20,6 +20,7 @@ import { nflApiController } from '../ApiCalls/nflApiCalls';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
 import { NflController } from 'src/shared/Controllers/NflController';
 import { NflService } from '../Services/NflService';
+import { BestBetController } from '../../shared/Controllers/BestBetController';
 
 @Component({
     selector: 'home-screen',
@@ -276,9 +277,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNfl
       this.gameDataAllFinal = []
-      let result = await Promise.all([NflController.nflGetPlayerStatTotals('touchdowns', 2024), NflController.nflGetTeamStatTotals("wins", 2024)])
+      let result = await Promise.all([NflController.nflGetPlayerStatTotals('touchdowns', 2024), NflController.nflGetTeamStatTotals("wins", 2024), BestBetController.getBestBets('NFL')])
       this.playerData = result[0]
       this.teamData = result[1]
+      this.betCheats = result[2]
       this.playerStatsButtons = [
         {
           selected: true,

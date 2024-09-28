@@ -8,4 +8,9 @@ export class BestBetController {
       const taskRepo = remult.repo(DbPlayerBestBets)
       await taskRepo.insert(playerStats)
     }
+    @BackendMethod({ allowed: true})
+    static async getBestBets(sport: string): Promise<DbPlayerBestBets[]>{
+      const taskRepo = remult.repo(DbPlayerBestBets)
+      return await taskRepo.find({where: {sportTitle:sport}})
+    }
 }
