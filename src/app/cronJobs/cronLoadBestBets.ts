@@ -23,9 +23,8 @@ export const cronLoadBestBets = async () => {
             const nextTuesday = new Date(today);
             nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
 
-            console.log(playerProps[0])
-            console.log(playerProps[playerProps.length -1])
-            console.log(nextTuesday)
+            console.log(playerProps[0].commenceTime < nextTuesday.toISOString())
+            console.log(playerProps[0].commenceTime < nextTuesday.toDateString())
             let newPlayers: DbPlayerPropData[] = []
             playerProps.forEach(e => {
                 if (e.commenceTime < nextTuesday.toISOString()) {
