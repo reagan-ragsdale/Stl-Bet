@@ -29,6 +29,7 @@ export const cronLoadBestBets = async () => {
                     newPlayers.push(e)
                 }
             })
+            console.log(newPlayers.length)
 
             for (let player of newPlayers) {
                 let overallCount = 0
@@ -227,6 +228,7 @@ export const cronLoadBestBets = async () => {
 
             }
         }
+        console.log(listOfBetsToAdd.length)
         BestBetController.addBestBet(listOfBetsToAdd)
     } catch (error: any) {
         console.log(error.message)
