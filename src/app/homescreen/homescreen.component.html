@@ -370,9 +370,9 @@
             <td mat-cell *matCellDef="let element">{{element.teamChance * 100}}</td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="betCheatsColumns; sticky:false" style="height:auto;" ></tr>
+          <tr mat-header-row *matHeaderRowDef="betCheatsColumns; sticky:false" class="tr-cheat" style="height:auto;" ></tr>
           <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
-            *matRowDef="let row; columns: betCheatsColumns; " ></tr>
+            *matRowDef="let row; columns: betCheatsColumns; " class="tr-cheat"></tr>
         </table>
       </div>
 
