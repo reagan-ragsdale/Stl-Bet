@@ -58,7 +58,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.qbPassingTouchdowns > player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.qbPassingTouchdowns > player.point) {
                                             homeAwayCount++
@@ -76,7 +76,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.qbPassingTouchdowns < player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.qbPassingTouchdowns < player.point) {
                                             homeAwayCount++
@@ -96,7 +96,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.rushingYards > player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.rushingYards > player.point) {
                                             homeAwayCount++
@@ -114,7 +114,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.rushingYards < player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.rushingYards < player.point) {
                                             homeAwayCount++
@@ -134,7 +134,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.receivingYards > player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.receivingYards > player.point) {
                                             homeAwayCount++
@@ -152,7 +152,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.receivingYards < player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.receivingYards < player.point) {
                                             homeAwayCount++
@@ -172,7 +172,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.qbPassingYards > player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.qbPassingYards > player.point) {
                                             homeAwayCount++
@@ -190,7 +190,7 @@ export const cronLoadBestBets = async () => {
                                     if (game.qbPassingYards < player.point) {
                                         overallCount++;
                                     }
-                                    if (homeAway == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
+                                    if (homeAway.toLowerCase() == reusedFunctions.getHomeAwayFromGameId(game.gameId, specificTeam.teamNameAbvr)) {
                                         homeAwayTotal++
                                         if (game.qbPassingYards < player.point) {
                                             homeAwayCount++
