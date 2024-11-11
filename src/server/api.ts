@@ -28,7 +28,6 @@ import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
 import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
 import { DbTeamInfo } from '../shared/dbTasks/DBTeamInfo';
 import { DbUsers } from '../shared/dbTasks/DbUsers';
-
 import { UsersController } from '../shared/Controllers/UsersController';
 import { initRequest } from './server-session';
 import { nflApiController } from '../app/ApiCalls/nflApiCalls';
@@ -115,7 +114,7 @@ export const api = remultExpress({
     //cron.schedule('0 */2 * * *', () => cronLoadMlbPlayer())
     cron.schedule('04 13 * * *', () => cronLoadNflGameStats())
     cron.schedule('0 17 * * 2', () => cronLoadBestBets())
-    cron.schedule('21 53 * * *', () => cronLoadNhlStats())
+    cron.schedule('00 22 * * *', () => cronLoadNhlStats())
   }
 
 });
