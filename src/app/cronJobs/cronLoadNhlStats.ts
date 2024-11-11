@@ -4,7 +4,7 @@ import { nhlApiController } from "../ApiCalls/nhlApiCalls";
 import { NhlController } from "../../shared/Controllers/NhlController";
 
 export const cronLoadNhlStats = async () => {
-
+    console.log("starting nhl stats")
     let players = await nhlApiController.getPlayerInfo()
     await PlayerInfoController.playerInfoAddPlayers(players)
 
