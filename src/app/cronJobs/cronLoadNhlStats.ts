@@ -59,8 +59,21 @@ export const cronLoadNhlStats = async () => {
         "20241107", "20241108", "20241109", "20241110", "20241111"
     ]
 
-    for (let date of dates2024) {
-        let gamesToday = await nhlApiController.getDailySchedule(date)
+    let today = new Date();
+
+    // Subtract one day to get yesterday's date
+    today.setDate(today.getDate() - 1);
+
+    // Get the year, month, and day
+    let year = today.getFullYear();
+    let month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    let day = String(today.getDate()).padStart(2, '0');
+
+    // Combine them into the yyyymmdd format
+    let yesterday = `${year}${month}${day}`;
+
+    
+        let gamesToday = await nhlApiController.getDailySchedule(yesterday)
         if (gamesToday.length > 0) {
             for (let game of gamesToday) {
                 try {
@@ -69,12 +82,12 @@ export const cronLoadNhlStats = async () => {
                     await NhlController.nhlSetPlayerStats(gameAndPlayerStats[1])
                 }
                 catch (error: any) {
-                    console.log(date + "--" + game + "--" + error.message)
+                    console.log(yesterday + "--" + game + "--" + error.message)
                 }
             }
         }
 
-    }
+    
 
 
 

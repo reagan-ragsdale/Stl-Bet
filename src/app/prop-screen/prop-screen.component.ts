@@ -1689,6 +1689,301 @@ export class PropScreenComponent implements OnInit {
 
         }
       }
+      else if(this.selectedSport == 'NHL'){
+        let playerStats: DbNhlPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
+        let playerStatsReversed: DbNhlPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
+        totalOverall = playerStats.length
+        let allTeams = await TeamInfoController.getAllTeamInfo('NHL')
+        let homeTeamInfo = allTeams.filter(e => e.teamNameFull == player.homeTeam)
+        let awayTeamInfo = allTeams.filter(e => e.teamNameFull == player.awayTeam)
+        console.log(playerStats)
+        if (playerStats[0].teamName == homeTeamInfo[0].teamNameAbvr) {
+          homeAway = 'home'
+          teamName = homeTeamInfo[0].teamNameAbvr
+          teamAgainstName = awayTeamInfo[0].teamNameAbvr
+        }
+        else {
+          teamName = awayTeamInfo[0].teamNameAbvr
+          teamAgainstName = homeTeamInfo[0].teamNameAbvr
+        }
+        if (player.marketKey == 'player_points') {
+          overOverall = playerStats.filter(e => {
+            if (e.points > highOverall) {
+              highOverall = e.points
+            }
+            if (e.points < lowOverall) {
+              lowOverall = e.points
+            }
+            return e.points < player.point
+          }).length
+          overHomeAway = playerStats.filter(e => {
+            if (e.points > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              highHomeAway = e.points
+            }
+            if (e.points < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = e.points
+            }
+            return e.points < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
+          }).length
+          overTeam = playerStats.filter(e => {
+            if (e.points > highTeam && e.teamAgainstName == teamAgainstName) {
+              highTeam = e.points
+            }
+            if (e.points < lowTeam && e.teamAgainstName == teamAgainstName) {
+              lowTeam = e.points
+            }
+            return e.points < player.point && e.teamAgainstName == teamAgainstName
+          }).length
+          let totalSum = 0
+          playerStats.forEach(e => {
+            totalSum += e.points
+          })
+          averageOverall = totalSum / totalOverall
+
+          totalSum = 0
+          let homeAwayGames = playerStats.filter(e => {
+            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
+          })
+          homeAwayGames.forEach(f => {
+            totalSum += f.points
+            totalHomeAway++
+          })
+          averageHomeAway = totalSum / totalHomeAway
+          totalSum = 0
+          let teamGames = playerStats.filter(e => {
+            return e.teamAgainstName == teamAgainstName
+          })
+          teamGames.forEach(f => {
+            totalSum += f.points
+            totalTeam++
+          })
+          if (totalTeam == 0) {
+            averageTeam = 0
+          }
+          else {
+            averageTeam = totalSum / totalTeam
+          }
+
+
+          playerStatsReversed.forEach(e => {
+            tableOverall.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+              propNumber: e.points,
+              homeAway: e.homeOrAway,
+              propName: 'p'
+
+            })
+            if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
+              tableHomeAway.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                propNumber: e.points,
+                homeAway: e.homeOrAway,
+                propName: 'p'
+              })
+            }
+            if (e.teamAgainstName == teamAgainstName) {
+              tableTeam.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                propNumber: e.points,
+                homeAway: e.homeOrAway,
+                propName: 'p'
+              })
+            }
+
+
+          })
+
+
+        }
+        else if (player.marketKey == 'player_assists') {
+          overOverall = playerStats.filter(e => {
+            if (e.assists > highOverall) {
+              highOverall = e.assists
+            }
+            if (e.assists < lowOverall) {
+              lowOverall = e.assists
+            }
+            return e.assists < player.point
+          }).length
+          overHomeAway = playerStats.filter(e => {
+            if (e.assists > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              highHomeAway = e.assists
+            }
+            if (e.assists < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = e.assists
+            }
+            return e.assists < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
+          }).length
+          overTeam = playerStats.filter(e => {
+            if (e.assists > highTeam && e.teamAgainstName == teamAgainstName) {
+              highTeam = e.assists
+            }
+            if (e.assists < lowTeam && e.teamAgainstName == teamAgainstName) {
+              lowTeam = e.assists
+            }
+            return e.assists < player.point && e.teamAgainstName == teamAgainstName
+          }).length
+          let totalSum = 0
+          playerStats.forEach(e => {
+            totalSum += e.assists
+          })
+          averageOverall = totalSum / totalOverall
+
+          totalSum = 0
+          let homeAwayGames = playerStats.filter(e => {
+            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
+          })
+          homeAwayGames.forEach(f => {
+            totalSum += f.assists
+            totalHomeAway++
+          })
+          averageHomeAway = totalSum / totalHomeAway
+          totalSum = 0
+          let teamGames = playerStats.filter(e => {
+            return e.teamAgainstName == teamAgainstName
+          })
+          teamGames.forEach(f => {
+            totalSum += f.assists
+            totalTeam++
+          })
+          if (totalTeam == 0) {
+            averageTeam = 0
+          }
+          else {
+            averageTeam = totalSum / totalTeam
+          }
+
+
+          playerStatsReversed.forEach(e => {
+            tableOverall.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+              propNumber: e.assists,
+              homeAway: e.homeOrAway,
+              propName: 'A'
+
+            })
+            if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
+              tableHomeAway.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                propNumber: e.assists,
+                homeAway: e.homeOrAway,
+                propName: 'A'
+              })
+            }
+            if (e.teamAgainstName == teamAgainstName) {
+              tableTeam.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                propNumber: e.assists,
+                homeAway: e.homeOrAway,
+                propName: 'A'
+              })
+            }
+
+
+          })
+
+
+        }
+        else if (player.marketKey == 'player_shots_on_goal') {
+          overOverall = playerStats.filter(e => {
+            if (e.shots > highOverall) {
+              highOverall = e.shots
+            }
+            if (e.shots < lowOverall) {
+              lowOverall = e.shots
+            }
+            return e.shots < player.point
+          }).length
+          overHomeAway = playerStats.filter(e => {
+            if (e.shots > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              highHomeAway = e.shots
+            }
+            if (e.shots < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = e.shots
+            }
+            return e.shots < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
+          }).length
+          overTeam = playerStats.filter(e => {
+            if (e.shots > highTeam && e.teamAgainstName == teamAgainstName) {
+              highTeam = e.shots
+            }
+            if (e.shots < lowTeam && e.teamAgainstName == teamAgainstName) {
+              lowTeam = e.shots
+            }
+            return e.shots < player.point && e.teamAgainstName == teamAgainstName
+          }).length
+          let totalSum = 0
+          playerStats.forEach(e => {
+            totalSum += e.shots
+          })
+          averageOverall = totalSum / totalOverall
+
+          totalSum = 0
+          let homeAwayGames = playerStats.filter(e => {
+            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
+          })
+          homeAwayGames.forEach(f => {
+            totalSum += f.shots
+            totalHomeAway++
+          })
+          averageHomeAway = totalSum / totalHomeAway
+          totalSum = 0
+          let teamGames = playerStats.filter(e => {
+            return e.teamAgainstName == teamAgainstName
+          })
+          teamGames.forEach(f => {
+            totalSum += f.shots
+            totalTeam++
+          })
+          if (totalTeam == 0) {
+            averageTeam = 0
+          }
+          else {
+            averageTeam = totalSum / totalTeam
+          }
+
+
+          playerStatsReversed.forEach(e => {
+            tableOverall.push({
+              teamAgainstName: e.teamAgainstName,
+              gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+              propNumber: e.shots,
+              homeAway: e.homeOrAway,
+              propName: 'S'
+
+            })
+            if (reusedFunctions.getHomeAwayFromGameId(e.gameId, e.teamName) == homeAway) {
+              tableHomeAway.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                propNumber: e.shots,
+                homeAway: e.homeOrAway,
+                propName: 'S'
+              })
+            }
+            if (e.teamAgainstName == teamAgainstName) {
+              tableTeam.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                propNumber: e.shots,
+                homeAway: e.homeOrAway,
+                propName: 'S'
+              })
+            }
+
+
+          })
+
+
+        }
+       
+      }
 
       this.playerStatObj = {
         totalOverall: totalOverall,

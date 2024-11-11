@@ -42,7 +42,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   playerStatsButtons: any[] = []
   teamStatsButtons: any[] = []
 
-  public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: true, selected: false }, { name: "MLB", disabled: false, selected: true }, { name: "NFL", disabled: false, selected: false }];
+  public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: false, selected: false }, { name: "MLB", disabled: true, selected: true }, { name: "NFL", disabled: false, selected: false }];
   public selectedSport = ''
   public playerDataFinal: any[] = []
   public playerData: any[] = []
@@ -69,6 +69,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   playerAverageColumnsNfl: string[] = ["Player", "Pass Tds", "Rush Tds", "Rec Tds", "Rushing Yards", "Receiving Yards"]
   teamAverageColumnsNfl: string[] = ["Team", "Wins", "Losses"]
+
+  playerAverageColumnsNhl: string[] = ["Player", "Points", "Goals", "Assists"]
+  teamAverageColumnsNhl: string[] = ["Team", "Wins", "Losses"]
 
   propClicked() {
     this.router.navigate(["/props"])
@@ -296,6 +299,48 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           selected: false,
           name: "Receiving Yards",
           dbName: "receivingYards"
+        },
+      ]
+      this.teamStatsButtons = [
+        {
+          selected: true,
+          name: "Wins",
+          dbName: "wins"
+        },
+        {
+          selected: false,
+          name: "Losses",
+          dbName: "losses"
+        }
+      ]
+
+       
+      this.playerAverageColumns = this.playerAverageColumnsNfl
+    }
+    else if (sport == "NHL") {
+      
+      //var unsubscribe = () => {}
+      this.teamAverageColumns = this.teamAverageColumnsNhl
+      this.gameDataAllFinal = []
+      //let result = await Promise.all([NhlController.nhlGetPlayerStatTotals('points', 2024), NhlController.nhlGetTeamStatTotals("wins", 2024)])
+      this.playerData = []
+      this.teamData = []
+      //this.betCheats = result[2]
+      this.playerStatsButtons = [
+        {
+          selected: true,
+          name: "Points",
+          dbName: "points"
+        },
+        {
+          selected: false,
+          name: "Goals",
+          dbName: "goals"
+        },
+        {
+          selected: false,
+          name: "Assists",
+          dbName: "assists"
         },
       ]
       this.teamStatsButtons = [
