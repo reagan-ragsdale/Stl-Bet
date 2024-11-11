@@ -28,7 +28,7 @@ export class nhlApiController {
 
 
   static async getDailySchedule(date: string){
-    const url = 'https://tank01-nhl-live-in-game-real-time-statistics-nhl.p.rapidapi.com/getNHLGamesForDate?gameDate=20240220';
+    const url = `https://tank01-nhl-live-in-game-real-time-statistics-nhl.p.rapidapi.com/getNHLGamesForDate?gameDate=${date}`;
     const options = {
 	    method: 'GET',
 	    headers: {
@@ -44,7 +44,7 @@ export class nhlApiController {
   }
 
   static async getGameStats(gameId: string): Promise<any[]>{
-    const url = 'https://tank01-nhl-live-in-game-real-time-statistics-nhl.p.rapidapi.com/getNHLBoxScore?gameID=20240305_MTL%40NSH';
+    const url = `https://tank01-nhl-live-in-game-real-time-statistics-nhl.p.rapidapi.com/getNHLBoxScore?gameID=${gameId}`;
     const options = {
 	    method: 'GET',
 	    headers: {

@@ -9,7 +9,7 @@ export const cronLoadNhlStats = async () => {
     await PlayerInfoController.playerInfoAddPlayers(players)
 
     //set player stats
-    const dates = [
+    const dates2023 = [
         "20231010", "20231011", "20231012", "20231013", "20231014", "20231015", "20231016",
         "20231017", "20231018", "20231019", "20231020", "20231021", "20231022", "20231023",
         "20231024", "20231025", "20231026", "20231027", "20231028", "20231029", "20231030",
@@ -49,7 +49,17 @@ export const cronLoadNhlStats = async () => {
         "20240619", "20240620", "20240621", "20240622", "20240623", "20240624"
     ];
 
-    for (let date of dates) {
+    let dates2024: string[] = [
+        "20241004", "20241005", "20241008", "20241009", "20241010", "20241011", "20241012",
+        "20241013", "20241014", "20241015", "20241016", "20241017",
+        "20241018", "20241019", "20241020", "20241021", "20241022",
+        "20241023", "20241024", "20241025", "20241026", "20241027",
+        "20241028", "20241029", "20241030", "20241031", "20241101",
+        "20241102", "20241103", "20241104", "20241105", "20241106",
+        "20241107", "20241108", "20241109", "20241110", "20241111"
+    ]
+
+    for (let date of dates2024) {
         let gamesToday = await nhlApiController.getDailySchedule(date)
         if (gamesToday.length > 0) {
             for (let game of gamesToday) {
@@ -59,7 +69,7 @@ export const cronLoadNhlStats = async () => {
                     await NhlController.nhlSetPlayerStats(gameAndPlayerStats[1])
                 }
                 catch (error: any) {
-                    console.log(error.message)
+                    console.log(date + "--" + game + "--" + error.message)
                 }
             }
         }
