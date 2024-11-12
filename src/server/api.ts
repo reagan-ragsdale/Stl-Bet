@@ -45,6 +45,7 @@ import { DbNhlTeamGameStats } from '../shared/dbTasks/DbNhlTeamGameStats';
 import { BestBetController } from '../shared/Controllers/BestBetController';
 import { DbPlayerBestBets } from '../shared/dbTasks/DBPlayerBestBets';
 import { cronLoadBestBets } from '../app/cronJobs/cronLoadBestBets';
+import { NhlController } from '../shared/Controllers/NhlController';
 
 
 config()
@@ -87,7 +88,8 @@ export const api = remultExpress({
     UsersController,
     NflController,
     ErrorEmailController,
-    BestBetController
+    BestBetController,
+    NhlController
 
   ],
 
