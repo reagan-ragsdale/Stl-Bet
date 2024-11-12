@@ -2,6 +2,7 @@ import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoControl
 import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 import { nhlApiController } from "../ApiCalls/nhlApiCalls";
 import { NhlController } from "../../shared/Controllers/NhlController";
+import { TeamInfoController } from "src/shared/Controllers/TeamInfoController";
 
 export const cronLoadNhlStats = async () => {
     console.log("starting nhl stats")
@@ -86,6 +87,9 @@ export const cronLoadNhlStats = async () => {
                 }
             }
         }
+
+        let teams = await nhlApiController.getTeamInfo()
+        TeamInfoController.setTeamInfo(teams)
 
     
 

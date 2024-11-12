@@ -2,6 +2,7 @@ import { DbNhlTeamGameStats } from "../../shared/dbTasks/DbNhlTeamGameStats";
 import { DbPlayerInfo } from "../../shared/dbTasks/DbPlayerInfo";
 import { remult } from "remult";
 import { DbNhlPlayerGameStats } from "../../shared/dbTasks/DbNhlPlayerGameStats";
+import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
 
 
 export class NhlService {
@@ -138,6 +139,19 @@ export class NhlService {
         }
 
         return Number(year)
+    }
+
+    static convertTeamInfoToDb(teams: any[]): DbTeamInfo[]{
+        let teamInfoFinal: DbTeamInfo[] = []
+        for (let team of teams) {
+            teamInfoFinal.push({
+                teamId: team.teamID,
+                teamNameAbvr: team.teamAbv,
+                teamNameFull: team.teamCity + " " + team.teamName, 
+                sport: 'NHL'
+            })
+        }
+        return teamInfoFinal
     }
 
 }
