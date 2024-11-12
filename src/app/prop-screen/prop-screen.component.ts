@@ -475,6 +475,7 @@ export class PropScreenComponent implements OnInit {
       let teams = await TeamInfoController.getAllTeamInfo('NHL')
       let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
       let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      console.log([team1Info, team2Info])
       this.team1GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team1Info[0].teamNameAbvr, 2024)
       this.team2GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team2Info[0].teamNameAbvr, 2024)
     }
