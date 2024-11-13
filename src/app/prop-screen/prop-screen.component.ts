@@ -3053,7 +3053,7 @@ export class PropScreenComponent implements OnInit {
             teamGameStatsReversed.forEach(e => {
               tableTemp.push({
                 teamAgainstName: e.teamAgainstName,
-                gameDate: e.gameDate,
+                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
                 pointsScoredOverall: (e.pointsScoredFirstPeriod),
                 pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
                 homeAway: e.homeOrAway
@@ -3066,7 +3066,7 @@ export class PropScreenComponent implements OnInit {
               if (e.homeOrAway == homeAway) {
                 tableTemp.push({
                   teamAgainstName: e.teamAgainstName,
-                  gameDate: e.gameDate,
+                  gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
                   pointsScoredOverall: (e.pointsScoredFirstPeriod),
                   pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
                   homeAway: e.homeOrAway
@@ -3080,7 +3080,7 @@ export class PropScreenComponent implements OnInit {
               if (e.teamAgainstName == teamAgainstNameNew) {
                 tableTemp.push({
                   teamAgainstName: e.teamAgainstName,
-                  gameDate: e.gameDate,
+                  gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
                   pointsScoredOverall: (e.pointsScoredFirstPeriod),
                   pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
                   homeAway: e.homeOrAway
