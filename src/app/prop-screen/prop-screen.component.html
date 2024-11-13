@@ -96,21 +96,23 @@
         <a class="team-name">
           <h2 (click)="onTeamClick(displayPropHtml2.abvr)">{{displayPropHtml2.name}}</h2>
         </a>
+        <h2 class="record1" style="text-align: center;">({{team2Wins}} -
+          {{team2OverallGames - team2Wins}})</h2>
         <h2 style="width: 4%; text-align: center;">&#64;</h2>
         <a class="team-name">
           <h2 (click)="onTeamClick(displayPropHtml1.abvr)">{{displayPropHtml1.name}}</h2>
         </a>
+        <h2 class="record2" style="text-align: center;">({{team1Wins}} -
+          {{team1OverallGames - team1Wins}})</h2>
       </div>
       <div>
         <div style="display:flex">
-          <h2 class="record1" style="width: 50%; text-align: center;">{{team2Wins}} -
-            {{team2OverallGames - team2Wins}}</h2>
+          
           <div class="commence" style="width: 10%; display: flex; flex-direction:column;">
             <h2 class="commence-time" style="width: 100%; text-align: center; margin-bottom:0;">
               {{displayPropHtml2.commenceTime  }}</h2>
           </div>
-          <h2 class="record2" style="width: 50%; text-align: center;">{{team1Wins}} -
-            {{team1OverallGames - team1Wins}}</h2>
+          
         </div>
       </div>
     </div>
