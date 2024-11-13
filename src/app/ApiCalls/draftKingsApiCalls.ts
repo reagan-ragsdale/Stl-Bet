@@ -58,10 +58,16 @@ export class draftKingsApiController {
     for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
       for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
         for (let m = 0; m < this.playerProps.bookmakers[j].markets[k].outcomes.length; m++) {
-          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.playerProps.bookmakers[j].markets[k].outcomes[m].description && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name)
+          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.playerProps.bookmakers[j].markets[k].outcomes[m].description && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name).map(e => e.bookSeq).filter((value,index,array) => array.indexOf(value) === index)
+          let highestBookSeq = 0
+          filteredPlayer.forEach(e => {
+            if(e > highestBookSeq){
+              highestBookSeq = e
+            }
+          })
           let newBookSeq = 0
           if (filteredPlayer.length > 0) {
-            newBookSeq = filteredPlayer[0].bookSeq + 1
+            newBookSeq = highestBookSeq + 1
           }
 
           tempData.push({
