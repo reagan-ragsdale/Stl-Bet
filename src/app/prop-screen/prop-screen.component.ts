@@ -3301,6 +3301,7 @@ export class PropScreenComponent implements OnInit {
   }
   calculateNewBestBetTeam() {
     this.teamBestBets = []
+    console.log(this.arrayOfTeamBets)
     for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
