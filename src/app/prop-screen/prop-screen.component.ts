@@ -3322,15 +3322,15 @@ export class PropScreenComponent implements OnInit {
       }
       else if (bet.propType == 'total') {
         if ((overallWin < (1 - (this.sliderValue / 100))) || (teamWin < (1 - (this.sliderValue / 100))) || (homeAwayWin < (1 - (this.sliderValue / 100)))) {
-          if (overallWin < (1 - (this.sliderValue / 100))) {
+          if (overallWin < (1 - (this.sliderValue / 100)) && bet.totalGames != 0) {
             bet.overallHighlight = true
           }
           else { bet.overallHighlight = false }
-          if (homeAwayWin < (1 - (this.sliderValue / 100))) {
+          if (homeAwayWin < (1 - (this.sliderValue / 100)) && bet.totalGamesHomeAway != 0) {
             bet.homeAwayHighlight = true
           }
           else { bet.homeAwayHighlight = false }
-          if ((teamWin < (1 - (this.sliderValue / 100))) && teamWin != 0) {
+          if ((teamWin < (1 - (this.sliderValue / 100))) && bet.totalGamesTeam != 0) {
             bet.teamHighlight = true
           }
           else { bet.teamHighlight = false }
