@@ -3040,6 +3040,55 @@ export class PropScreenComponent implements OnInit {
 
 
           }
+          else if(team.marketKey == 'h2h_p1'){
+            finalTeam.totalWins = teamGameStats.filter(e => (e.pointsScoredFirstPeriod > e.pointsAllowedFirstPeriod)).length
+            finalTeam.totalWinsHomeAway = teamGameStats.filter(e => (e.pointsScoredFirstPeriod > e.pointsAllowedFirstPeriod) && e.homeOrAway == homeAway).length
+            finalTeam.totalWinsTeam = teamGameStats.filter(e => (e.pointsScoredFirstPeriod > e.pointsAllowedFirstPeriod) && e.teamAgainstName == teamAgainstNameNew).length
+
+            finalTeam.teamAgainstTotalWins = teamAgainstStats.filter(e => (e.pointsScoredFirstPeriod > e.pointsAllowedFirstPeriod)).length
+            finalTeam.teamAgainstWinsHomeAway = teamAgainstStats.filter(e => (e.pointsScoredFirstPeriod > e.pointsAllowedFirstPeriod) && e.homeOrAway != homeAway).length
+            finalTeam.teamAgainstWinsTeam = teamAgainstStats.filter(e => (e.pointsScoredFirstPeriod > e.pointsAllowedFirstPeriod) && e.teamAgainstName == teamNameAbvrFinal).length
+          
+            let tableTemp: any[] = []
+            teamGameStatsReversed.forEach(e => {
+              tableTemp.push({
+                teamAgainstName: e.teamAgainstName,
+                gameDate: e.gameDate,
+                pointsScoredOverall: (e.pointsScoredFirstPeriod),
+                pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
+                homeAway: e.homeOrAway
+              })
+            })
+            finalTeam.tableOverall = tableTemp
+
+            tableTemp = []
+            teamGameStatsReversed.forEach(e => {
+              if (e.homeOrAway == homeAway) {
+                tableTemp.push({
+                  teamAgainstName: e.teamAgainstName,
+                  gameDate: e.gameDate,
+                  pointsScoredOverall: (e.pointsScoredFirstPeriod),
+                  pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
+                  homeAway: e.homeOrAway
+                })
+              }
+            })
+            finalTeam.tableHomeAway = tableTemp
+
+            tableTemp = []
+            teamGameStatsReversed.forEach(e => {
+              if (e.teamAgainstName == teamAgainstNameNew) {
+                tableTemp.push({
+                  teamAgainstName: e.teamAgainstName,
+                  gameDate: e.gameDate,
+                  pointsScoredOverall: (e.pointsScoredFirstPeriod),
+                  pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
+                  homeAway: e.homeOrAway
+                })
+              }
+            })
+            finalTeam.tableTeam = tableTemp
+          }
         }
         else if (propType == 'spread') {
           // need to get record, chance of winning, weighted chance, avg, high and low
