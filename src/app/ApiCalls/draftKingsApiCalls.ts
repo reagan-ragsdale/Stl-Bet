@@ -34,7 +34,7 @@ export class draftKingsApiController {
 
     }
     else if (sport === "NHL") {
-      playerProps = "player_points,player_assists,player_shots_on_goal"
+      playerProps = "player_points,player_assists,player_shots_on_goal,player_goals,player_total_saves,player_blocked_shots"
 
     }
     else if (sport == "NBA") {
