@@ -3415,6 +3415,7 @@ console.log(this.playerBestBets)
           bet.teamHighlight = true
         }
         else { bet.teamHighlight = false }
+        bet.overUnder = true
         this.playerBestBets.push(bet)
       }
       else if ((overallWin < (1 - (this.sliderValuePlayer / 100)) && bet.totalOverall != 0) || (teamWin < (1 - (this.sliderValuePlayer / 100)) && bet.totalTeam != 0) || (homeAwayWin < (1 - (this.sliderValuePlayer / 100)) && bet.totalHomeAway != 0)) {
