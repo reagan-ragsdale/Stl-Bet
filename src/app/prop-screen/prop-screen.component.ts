@@ -404,7 +404,7 @@ export class PropScreenComponent implements OnInit {
     team2Temp.push(team2Totals)
     let listOfMlbBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_1st_3_innings', 'h2h_1st_5_innings', 'h2h_1st_7_innings', "team_totals Over"]
     let listOfNflBets: string[] = ['h2h', 'spreads', 'totals']
-    let listOfNhlBets: string[] = ['h2h', 'spreads', 'totals']
+    let listOfNhlBets: string[] = ['h2h', 'spreads', 'totals', 'h2h_p1']
     let listOfBets: string[] = []
     if (this.selectedSport == 'MLB') {
       listOfBets = listOfMlbBets

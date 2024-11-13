@@ -88,8 +88,8 @@ export const cronLoadNhlStats = async () => {
             }
         }
 
-        let teams = await nhlApiController.getTeamInfo()
-        TeamInfoController.setTeamInfo(teams)
+        //let teams = await nhlApiController.getTeamInfo()
+        //TeamInfoController.setTeamInfo(teams)
 
     
 
