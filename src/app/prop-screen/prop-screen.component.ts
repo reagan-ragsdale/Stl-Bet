@@ -3306,15 +3306,15 @@ export class PropScreenComponent implements OnInit {
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
       if ((overallWin > (this.sliderValue / 100)) || (teamWin > (this.sliderValue / 100)) || (homeAwayWin > (this.sliderValue / 100))) {
-        if (overallWin > (this.sliderValue / 100)) {
+        if (overallWin > (this.sliderValue / 100) && bet.totalGames != 0) {
           bet.overallHighlight = true
         }
         else { bet.overallHighlight = false }
-        if (homeAwayWin > (this.sliderValue / 100)) {
+        if (homeAwayWin > (this.sliderValue / 100) && bet.totalGamesHomeAway != 0) {
           bet.homeAwayHighlight = true
         }
         else { bet.homeAwayHighlight = false }
-        if (teamWin > (this.sliderValue / 100)) {
+        if (teamWin > (this.sliderValue / 100) && bet.totalGamesTeam != 0 ) {
           bet.teamHighlight = true
         }
         else { bet.teamHighlight = false }
