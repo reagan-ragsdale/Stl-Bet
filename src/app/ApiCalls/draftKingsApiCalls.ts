@@ -48,7 +48,12 @@ export class draftKingsApiController {
     const promise = await fetch(urlNew);
     const processedResponse = await promise.json();
     this.playerProps = processedResponse;
-    this.playerPropData = await this.convertPropDataToInterface(sport, game)
+    try{
+      this.playerPropData = await this.convertPropDataToInterface(sport, game)
+    }catch(error:any){
+      console.log("Player prop " + error.message)
+    }
+    
     return this.playerPropData
   }
 
