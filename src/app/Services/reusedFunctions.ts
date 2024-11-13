@@ -151,14 +151,14 @@ export class reusedFunctions {
     var timeHourMinute = tempDate[1].slice(0, 5)
     let hour = timeHourMinute.slice(0, 2)
     let minute = timeHourMinute.slice(2)
-    if (parseInt(hour) < 5) {
-      hour = (24 - (5 - parseInt(hour))).toString()
+    if (parseInt(hour) < 6) {
+      hour = (24 - (6 - parseInt(hour))).toString()
     }
-    else if (parseInt(hour) == 5) {
+    else if (parseInt(hour) == 6) {
       hour = "24"
     }
     else {
-      hour = (parseInt(hour) - 5).toString()
+      hour = (parseInt(hour) - 6).toString()
     }
 
     if (parseInt(hour) > 12) {
