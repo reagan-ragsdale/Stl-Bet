@@ -3430,7 +3430,7 @@ console.log(this.playerBestBets)
           bet.teamHighlight = true
         }
         else { bet.teamHighlight = false }
-        bet.overUnder = !bet.overUnder
+        bet.overUnder = true
         this.playerBestBets.push(bet)
       }
 
