@@ -529,7 +529,7 @@ export class PropScreenComponent implements OnInit {
 
     this.allPropTrendData = await SportsBookController.loadAllBookDataByBookId(this.selectedGame)
 
-    //this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
+    this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
     
     
@@ -601,6 +601,7 @@ export class PropScreenComponent implements OnInit {
       let team2Info = teams.filter(e => e.teamNameFull == this.team2GameStats[0].teamName)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
+    this.playerPropIsLoading = false;
     this.playerPropsHasBeenLoaded = true
   }
   playerPropIsLoading: boolean = false;
