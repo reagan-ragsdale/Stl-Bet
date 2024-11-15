@@ -242,6 +242,8 @@ export class PropScreenComponent implements OnInit {
   nbaPlayerStatData2022Final: DbNbaGameStats[] = []
   nbaPlayerStatData2023Final: DbNbaGameStats[] = []
 
+  allSportTeamInfo: DbTeamInfo[] = []
+
 
   async initializeSport() {
     if (this.route.snapshot.paramMap.get('sport') != null) {
@@ -365,13 +367,12 @@ export class PropScreenComponent implements OnInit {
   static sendEmail: (errorMessage: string) => void;
 
   allPropTrendData: DbGameBookData[] = []
-  listOfTeams: DbTeamInfo[] = []
   listOfTeamsAndPropsForCharts: any[] = []
   public teamPropFinnal: any = []
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
   async displayProp() {
-
+    this.allSportTeamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
@@ -472,18 +473,16 @@ export class PropScreenComponent implements OnInit {
 
     }
     else if (this.selectedSport == "NHL") {
-      let teams = await TeamInfoController.getAllTeamInfo('NHL')
-      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      let team1Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team1[0].teamName)
+      let team2Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team2[0].teamName)
       console.log([team1Info, team2Info])
       this.team1GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team1Info[0].teamNameAbvr, 2024)
       this.team2GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team2Info[0].teamNameAbvr, 2024)
     }
 
     else if (this.selectedSport == "NFL") {
-      let teams = await TeamInfoController.getAllTeamInfo('NFL')
-      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      let team1Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team1[0].teamName)
+      let team2Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team2[0].teamName)
       this.team1GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team1Info[0].teamNameAbvr, 2024)
       this.team2GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team2Info[0].teamNameAbvr, 2024)
     }
@@ -510,7 +509,6 @@ export class PropScreenComponent implements OnInit {
       this.playerPropDataFinal.push(propSpecificArray)
     }
 
-    this.listOfTeams = await TeamInfoController.getAllTeamInfo(this.selectedSport)
     name1 = team1[0].teamName;
 
     let abvr = ''
@@ -560,11 +558,12 @@ export class PropScreenComponent implements OnInit {
   }
 
   onTeamClick(teamName: string) {
-    let teamId = this.listOfTeams.filter(e => e.teamNameAbvr == teamName)[0].teamId
+    let teamId = this.allSportTeamInfo.filter(e => e.teamNameAbvr == teamName)[0].teamId
     this.router.navigate(["/teamStats/" + this.selectedSport + "/" + teamId])
   }
 
   async setValuesToTeamPropFinal() {
+    
     this.arrayOfTeamBets = []
     console.log(this.teamPropFinnal)
     for (let team of this.teamPropFinnal) {
@@ -590,15 +589,13 @@ export class PropScreenComponent implements OnInit {
       await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team1GameStats[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team2GameStats[0].teamName]])
     }
     else if (this.selectedSport == "NFL") {
-      let teams = await TeamInfoController.getAllTeamInfo('NFL')
-      let team1Info = teams.filter(e => e.teamNameFull == this.team1GameStats[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == this.team2GameStats[0].teamName)
+      let team1Info = this.allSportTeamInfo.filter(e => e.teamNameFull == this.team1GameStats[0].teamName)
+      let team2Info = this.allSportTeamInfo.filter(e => e.teamNameFull == this.team2GameStats[0].teamName)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
     else if (this.selectedSport == 'NHL') {
-      let teams = await TeamInfoController.getAllTeamInfo('NHL')
-      let team1Info = teams.filter(e => e.teamNameAbvr == this.team1GameStats[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameAbvr == this.team2GameStats[0].teamName)
+      let team1Info = this.allSportTeamInfo.filter(e => e.teamNameAbvr == this.team1GameStats[0].teamName)
+      let team2Info = this.allSportTeamInfo.filter(e => e.teamNameAbvr == this.team2GameStats[0].teamName)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
     this.playerPropIsLoading = false;
@@ -1336,9 +1333,8 @@ export class PropScreenComponent implements OnInit {
         let playerStats: DBNflPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
         let playerStatsReversed: DBNflPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
         totalOverall = playerStats.length
-        let allTeams = await TeamInfoController.getAllTeamInfo('NFL')
-        let homeTeamInfo = allTeams.filter(e => e.teamNameFull == player.homeTeam)
-        let awayTeamInfo = allTeams.filter(e => e.teamNameFull == player.awayTeam)
+        let homeTeamInfo = this.allSportTeamInfo.filter(e => e.teamNameFull == player.homeTeam)
+        let awayTeamInfo = this.allSportTeamInfo.filter(e => e.teamNameFull == player.awayTeam)
         console.log(playerStats)
         if (playerStats[0].teamName == homeTeamInfo[0].teamNameAbvr) {
           homeAway = 'home'
@@ -1723,9 +1719,8 @@ export class PropScreenComponent implements OnInit {
           let playerStats: DbNhlPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
           let playerStatsReversed: DbNhlPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
           totalOverall = playerStats.length
-          let allTeams = await TeamInfoController.getAllTeamInfo('NHL')
-          let homeTeamInfo = allTeams.filter(e => e.teamNameFull == player.homeTeam)
-          let awayTeamInfo = allTeams.filter(e => e.teamNameFull == player.awayTeam)
+          let homeTeamInfo = this.allSportTeamInfo.filter(e => e.teamNameFull == player.homeTeam)
+          let awayTeamInfo = this.allSportTeamInfo.filter(e => e.teamNameFull == player.awayTeam)
           console.log(playerStats)
           if (playerStats[0].teamName == homeTeamInfo[0].teamNameAbvr) {
             homeAway = 'home'
@@ -2387,14 +2382,14 @@ export class PropScreenComponent implements OnInit {
   async getTeamStats(team: DbGameBookData, teamName: string) {
 
     try {
-      let teamNameAbvr = await TeamInfoController.getTeamInfoByFullName(teamName)
+      let teamNameAbvr = this.allSportTeamInfo.filter(e => e.teamNameFull = teamName)
       let teamNameAbvrFinal = teamNameAbvr[0].teamNameAbvr
       let marketKey = team.marketKey
       let propType = this.getPropType(team.marketKey)
       let propPoint = team.point
       let propPrice = team.price
       let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
-      let teamAgainstName = teamName == team.homeTeam ? await TeamInfoController.getTeamInfoByFullName(team.awayTeam) : await TeamInfoController.getTeamInfoByFullName(team.homeTeam)
+      let teamAgainstName = teamName == team.homeTeam ? this.allSportTeamInfo.filter(e => e.teamNameFull = team.awayTeam) : this.allSportTeamInfo.filter(e => e.teamNameFull = team.awayTeam)
       let teamAgainstNameNew = teamAgainstName[0].teamNameAbvr
       var finalTeam: any = {}
 
@@ -4810,6 +4805,7 @@ export class PropScreenComponent implements OnInit {
   ngAfterViewInit() {
   }
   ngOnInit() {
+    this.allSportTeamInfo = []
     Chart.register(annotationPlugin);
     this.initializeSport()
     this.getGames()
