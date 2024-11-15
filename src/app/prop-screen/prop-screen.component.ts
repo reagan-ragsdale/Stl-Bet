@@ -531,21 +531,8 @@ export class PropScreenComponent implements OnInit {
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
-    if (this.selectedSport == 'MLB') {
-      await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
-    }
-    else if (this.selectedSport == "NFL") {
-      let teams = await TeamInfoController.getAllTeamInfo('NFL')
-      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
-      await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
-    }
-    else if (this.selectedSport == 'NHL') {
-      let teams = await TeamInfoController.getAllTeamInfo('NHL')
-      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
-      await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
-    }
+    
+    
 
     this.calcLiveProps()
     for (let i = 0; i < this.teamPropFinnal.length; i++) {
@@ -596,12 +583,30 @@ export class PropScreenComponent implements OnInit {
     this.getTeamBestBets()
 
   }
-
-
+  playerPropsHasBeenLoaded: Boolean = false
+  async loadPlayerProps(){
+    this.playerPropIsLoading = true;
+    if (this.selectedSport == 'MLB') {
+      await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
+    }
+    else if (this.selectedSport == "NFL") {
+      let teams = await TeamInfoController.getAllTeamInfo('NFL')
+      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
+      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
+    }
+    else if (this.selectedSport == 'NHL') {
+      let teams = await TeamInfoController.getAllTeamInfo('NHL')
+      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
+      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
+    }
+    this.playerPropsHasBeenLoaded = true
+  }
   playerPropIsLoading: boolean = false;
   playerPropDataFinalNew: any[] = []
   async loadPlayerStatData(team1: number, team2: number) {
-    this.playerPropIsLoading = true;
+    
     this.playerPropDataFinalNew = [];
     this.arrayOfPlayerBets = [];
     if (this.selectedSport == 'MLB') {
@@ -4361,8 +4366,11 @@ export class PropScreenComponent implements OnInit {
 
   }
 
-  onTabChange(event: any) {
+  async onTabChange(event: any) {
     console.log(event.index)
+    if(event.index == 1 && this.playerPropHasBeenLoaded == false){
+      await this.loadPlayerProps();
+    }
   }
   onChartSearch(index: number) {
     this.destroyBarCharts(index);
