@@ -4361,10 +4361,11 @@ export class PropScreenComponent implements OnInit {
     }
 
   }
-
+  selectedTabIndex = 0
   async onTabChange(event: any) {
-    console.log(event.index)
+    this.selectedTabIndex = event.index
     if(event.index == 1 && this.playerPropsHasBeenLoaded == false){
+      
       await this.loadPlayerProps();
     }
   }
