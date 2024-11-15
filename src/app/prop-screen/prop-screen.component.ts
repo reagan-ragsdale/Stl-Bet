@@ -4362,9 +4362,7 @@ export class PropScreenComponent implements OnInit {
   }
 
   onTabChange(event: any) {
-    if (event.index == 2) {
-      this.createBarChart()
-    }
+    console.log(event.index)
   }
   onChartSearch(index: number) {
     this.destroyBarCharts(index);
