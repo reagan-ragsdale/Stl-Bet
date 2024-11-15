@@ -587,18 +587,18 @@ export class PropScreenComponent implements OnInit {
   async loadPlayerProps(){
     this.playerPropIsLoading = true;
     if (this.selectedSport == 'MLB') {
-      await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]])
+      await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team1GameStats[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team2GameStats[0].teamName]])
     }
     else if (this.selectedSport == "NFL") {
       let teams = await TeamInfoController.getAllTeamInfo('NFL')
-      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      let team1Info = teams.filter(e => e.teamNameFull == this.team1GameStats[0].teamName)
+      let team2Info = teams.filter(e => e.teamNameFull == this.team2GameStats[0].teamName)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
     else if (this.selectedSport == 'NHL') {
       let teams = await TeamInfoController.getAllTeamInfo('NHL')
-      let team1Info = teams.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == team2[0].teamName)
+      let team1Info = teams.filter(e => e.teamNameFull == this.team1GameStats[0].teamName)
+      let team2Info = teams.filter(e => e.teamNameFull == this.team2GameStats[0].teamName)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
     this.playerPropsHasBeenLoaded = true
@@ -4368,7 +4368,7 @@ export class PropScreenComponent implements OnInit {
 
   async onTabChange(event: any) {
     console.log(event.index)
-    if(event.index == 1 && this.playerPropHasBeenLoaded == false){
+    if(event.index == 1 && this.playerPropsHasBeenLoaded == false){
       await this.loadPlayerProps();
     }
   }
