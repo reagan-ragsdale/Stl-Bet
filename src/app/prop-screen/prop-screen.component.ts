@@ -306,6 +306,7 @@ export class PropScreenComponent implements OnInit {
     this.selectedGame = game;
 
     this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
+    console.log(this.selectedSportGamesFinal)
     this.selectedSportGamesFinal.forEach(e => {
       e[0].selected = false;
       e[0][0].awayTeam = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)[0].teamNameAbvr;
