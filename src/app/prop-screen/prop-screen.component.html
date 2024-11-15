@@ -85,7 +85,7 @@
     </button>
   </div>
 
-  <div *ngIf="teamPropIsLoading" style="height:100%; width: 100%; background-color: white;">
+  <div *ngIf="teamPropIsLoading || playerPropIsLoading" style="height:100%; width: 100%; background-color: white;">
     <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
   </div>
 
