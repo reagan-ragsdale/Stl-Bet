@@ -1712,7 +1712,8 @@ export class PropScreenComponent implements OnInit {
         }
       }
       else if(this.selectedSport == 'NHL'){
-        let playerStats: DbNhlPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
+        try{
+          let playerStats: DbNhlPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
         let playerStatsReversed: DbNhlPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
         totalOverall = playerStats.length
         let allTeams = await TeamInfoController.getAllTeamInfo('NHL')
@@ -2292,6 +2293,10 @@ export class PropScreenComponent implements OnInit {
 
 
         }
+        }catch(error:any){
+          console.log("nhl error: " + error.message)
+        }
+        
         
        
       }
