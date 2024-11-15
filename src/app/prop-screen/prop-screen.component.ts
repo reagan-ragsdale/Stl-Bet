@@ -656,7 +656,7 @@ export class PropScreenComponent implements OnInit {
           console.log(error.message)
           console.log(player)
         }
-
+        
 
       }
 
@@ -670,6 +670,7 @@ export class PropScreenComponent implements OnInit {
 
 
     }
+    console.log(this.playerPropDataFinalNew)
     this.getPlayerBestBets()
 
   }
@@ -1712,7 +1713,7 @@ export class PropScreenComponent implements OnInit {
         }
       }
       else if (this.selectedSport == 'NHL') {
-        try {
+        
           let playerStats: DbNhlPlayerGameStats[] = this.playerStatsFinal.filter(e => e.playerName == this.playerNameSpanishConvert(player.playerName))
           let playerStatsReversed: DbNhlPlayerGameStats[] = JSON.parse(JSON.stringify(playerStats))
           totalOverall = playerStats.length
@@ -2293,9 +2294,7 @@ export class PropScreenComponent implements OnInit {
 
 
           }
-        } catch (error: any) {
-          console.log("nhl error: " + error.message)
-        }
+        
 
 
 
