@@ -724,11 +724,11 @@
                   <div *ngFor="let homeAway of prop; let j = index;" class="team-dropdown">
                     <h2 style="margin-left: auto; margin-right: auto;">{{homeAway.teamName}}</h2>
                     <mat-accordion *ngFor="let player of homeAway; let i = index;" class="specific-class" style="margin-bottom:.5rem;">
-                      <mat-expansion-panel style="margin-bottom:.5rem;">
+                      <mat-expansion-panel *ngIf="player[0]" style="margin-bottom:.5rem;">
                         <mat-expansion-panel-header>
                           <mat-panel-title style="min-width: fit-content">
                             <a (click)="playerClicked(player[0].playerName)" class="link-hover"
-                              style="text-decoration: none;">{{player[0].playerName}}</a>
+                              style="text-decoration: none;">{{player[0].playerName }}</a>
                             : {{player[0].point}}
                             <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                             (click)="$event.stopPropagation()" (click)="player[0].propVariables.overUnder = false" (click)="addPropToParlay(player[0])"
