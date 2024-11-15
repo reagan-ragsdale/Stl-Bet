@@ -529,12 +529,12 @@ export class PropScreenComponent implements OnInit {
 
     this.allPropTrendData = await SportsBookController.loadAllBookDataByBookId(this.selectedGame)
 
-    this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
+    //this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
     
     
 
-    this.calcLiveProps()
+    //this.calcLiveProps()
     for (let i = 0; i < this.teamPropFinnal.length; i++) {
       let teamPropsForChart: string[] = []
       for (let j = 0; j < this.teamPropFinnal[i].length; j++) {
@@ -581,7 +581,7 @@ export class PropScreenComponent implements OnInit {
       }
     }
     this.getTeamBestBets()
-
+    this.teamPropIsLoading = false
   }
   playerPropsHasBeenLoaded: Boolean = false
   async loadPlayerProps(){
@@ -3462,7 +3462,7 @@ export class PropScreenComponent implements OnInit {
 
 
     }
-    this.teamPropIsLoading = false
+    
 
   }
   calculateNewBestBetPlayer() {
