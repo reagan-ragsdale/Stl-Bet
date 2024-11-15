@@ -85,11 +85,11 @@
     </button>
   </div>
 
-  <div *ngIf="teamPropIsLoading || playerPropIsLoading" style="height:100%; width: 100%; background-color: white;">
+  <div *ngIf="(teamPropIsLoading && !playerPropIsLoading) || (playerPropIsLoading && teamPropIsLoading)" style="height:100%; width: 100%; background-color: white;">
     <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
   </div>
 
-  <div class="prop-div" *ngIf="!teamPropIsLoading && selectedTabIndex == 0">
+  <div class="prop-div">
 
     <div style="display:flex; flex-direction: column; width: 100%; margin-top: 1rem;">
       <div style="display:flex">
@@ -125,7 +125,7 @@
     <mat-tab-group [backgroundColor]="'primary'" style="width:100%" animationDuration="0ms" disablePagination="true" preserveContent="true" (selectedTabChange)="onTabChange($event)">
       <mat-tab style="color: white" label="Game Props">
 
-        <div *ngIf="!teamPropIsLoading" class="prop-section">
+        <div *ngIf="!teamPropIsLoading && selectedTabIndex == 0" class="prop-section">
           <div *ngFor="let team of teamPropFinnal; let j = index;" class="away-team">
             <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{team[0][0].teamName}} Game Props
             </h2>
@@ -705,7 +705,7 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab style=" color: white" label="Player Props">
+      <mat-tab style=" color: white" *ngIf="!playerPropIsLoading" label="Player Props">
 
         <div *ngIf="!playerPropIsLoading"
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
