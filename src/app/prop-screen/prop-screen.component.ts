@@ -260,7 +260,9 @@ export class PropScreenComponent implements OnInit {
 
 
   async getGames() {
+    this.allSportTeamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
     if (this.selectedGame == '') {
+      
       this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
@@ -304,7 +306,11 @@ export class PropScreenComponent implements OnInit {
     this.selectedGame = game;
 
     this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
-    this.selectedSportGamesFinal.forEach(e => e[0].selected = false)
+    this.selectedSportGamesFinal.forEach(e => {
+      e[0].selected = false;
+      e[0][0].awayTeam = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)[0].teamNameAbvr;
+      e[0][0].homeTeam = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)[0].teamNameAbvr;
+    })
     let selectedGameClicked = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
     selectedGameClicked[0][0].selected = true
 
@@ -372,7 +378,7 @@ export class PropScreenComponent implements OnInit {
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
   async displayProp() {
-    this.allSportTeamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
+    
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);

@@ -74,8 +74,7 @@
       [ngClass]="game[0].selected === true ? 'selected-game' : ''" (click)="onGameClick(game[0][0].bookId)">
       <div style="display:flex; flex-direction: column;">
         <div>
-          {{game[0][0].awayTeam | transforFromFullTeamNameToAbvr | async}} &#64; {{game[0][0].homeTeam |
-          transforFromFullTeamNameToAbvr | async}}
+          {{game[0][0].awayTeam}} &#64; {{game[0][0].homeTeam}}
         </div>
         <div>
           {{game[0][0].commenceTime | getDayAndTime}}
