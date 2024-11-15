@@ -1729,52 +1729,54 @@ export class PropScreenComponent implements OnInit {
           teamAgainstName = homeTeamInfo[0].teamNameAbvr
         }
         if (player.marketKey == 'player_points') {
-          overOverall = playerStats.filter(e => {
-            if (e.points > highOverall) {
-              highOverall = e.points
-            }
-            if (e.points < lowOverall) {
-              lowOverall = e.points
-            }
-            return e.points < player.point
-          }).length
-          overHomeAway = playerStats.filter(e => {
-            if (e.points > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              highHomeAway = e.points
-            }
-            if (e.points < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              lowHomeAway = e.points
-            }
-            return e.points < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          }).length
-          overTeam = playerStats.filter(e => {
-            if (e.points > highTeam && e.teamAgainstName == teamAgainstName) {
-              highTeam = e.points
-            }
-            if (e.points < lowTeam && e.teamAgainstName == teamAgainstName) {
-              lowTeam = e.points
-            }
-            return e.points < player.point && e.teamAgainstName == teamAgainstName
-          }).length
           let totalSum = 0
-          playerStats.forEach(e => {
-            totalSum += e.points
-          })
+          let homeAwayGames: any[] = []
+          let teamGames: any[] = []
+          for(let i = 0; i < playerStats.length; i++){
+            if(playerStats[i].points > highOverall){
+              highOverall = playerStats[i].points
+            }
+            if(playerStats[i].points < lowOverall){
+              lowOverall = playerStats[i].points
+            }
+            totalSum += playerStats[i].points
+            if(playerStats[i].points < player.points){
+              overOverall++
+            }
+            if(playerStats[i].points > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              highHomeAway = playerStats[i].points
+            }
+            if (playerStats[i].points < lowHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = playerStats[i].points
+            }
+            if(playerStats[i].points < player.point && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              overHomeAway++
+            }
+            if (playerStats[i].points > highTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              highTeam = playerStats[i].points
+            }
+            if (playerStats[i].points < lowTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              lowTeam = playerStats[i].points
+            }
+            if(playerStats[i].points < player.point && playerStats[i].teamAgainstName == teamAgainstName){
+              overTeam++
+            }
+            if(playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              homeAwayGames.push(playerStats[i])
+            }
+            if(playerStats[i].teamAgainstName == teamAgainstName){
+              teamGames.push(playerStats[i])
+            }
+          }
           averageOverall = totalSum / totalOverall
-
+          
           totalSum = 0
-          let homeAwayGames = playerStats.filter(e => {
-            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          })
           homeAwayGames.forEach(f => {
             totalSum += f.points
             totalHomeAway++
           })
           averageHomeAway = totalSum / totalHomeAway
           totalSum = 0
-          let teamGames = playerStats.filter(e => {
-            return e.teamAgainstName == teamAgainstName
-          })
           teamGames.forEach(f => {
             totalSum += f.points
             totalTeam++
@@ -1821,52 +1823,54 @@ export class PropScreenComponent implements OnInit {
 
         }
         else if (player.marketKey == 'player_assists') {
-          overOverall = playerStats.filter(e => {
-            if (e.assists > highOverall) {
-              highOverall = e.assists
-            }
-            if (e.assists < lowOverall) {
-              lowOverall = e.assists
-            }
-            return e.assists < player.point
-          }).length
-          overHomeAway = playerStats.filter(e => {
-            if (e.assists > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              highHomeAway = e.assists
-            }
-            if (e.assists < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              lowHomeAway = e.assists
-            }
-            return e.assists < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          }).length
-          overTeam = playerStats.filter(e => {
-            if (e.assists > highTeam && e.teamAgainstName == teamAgainstName) {
-              highTeam = e.assists
-            }
-            if (e.assists < lowTeam && e.teamAgainstName == teamAgainstName) {
-              lowTeam = e.assists
-            }
-            return e.assists < player.point && e.teamAgainstName == teamAgainstName
-          }).length
           let totalSum = 0
-          playerStats.forEach(e => {
-            totalSum += e.assists
-          })
+          let homeAwayGames: any[] = []
+          let teamGames: any[] = []
+          for(let i = 0; i < playerStats.length; i++){
+            if(playerStats[i].assists > highOverall){
+              highOverall = playerStats[i].assists
+            }
+            if(playerStats[i].assists < lowOverall){
+              lowOverall = playerStats[i].assists
+            }
+            totalSum += playerStats[i].assists
+            if(playerStats[i].assists < player.points){
+              overOverall++
+            }
+            if(playerStats[i].assists > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              highHomeAway = playerStats[i].assists
+            }
+            if (playerStats[i].assists < lowHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = playerStats[i].assists
+            }
+            if(playerStats[i].assists < player.point && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              overHomeAway++
+            }
+            if (playerStats[i].assists > highTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              highTeam = playerStats[i].assists
+            }
+            if (playerStats[i].assists < lowTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              lowTeam = playerStats[i].assists
+            }
+            if(playerStats[i].assists < player.point && playerStats[i].teamAgainstName == teamAgainstName){
+              overTeam++
+            }
+            if(playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              homeAwayGames.push(playerStats[i])
+            }
+            if(playerStats[i].teamAgainstName == teamAgainstName){
+              teamGames.push(playerStats[i])
+            }
+          }
           averageOverall = totalSum / totalOverall
 
           totalSum = 0
-          let homeAwayGames = playerStats.filter(e => {
-            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          })
           homeAwayGames.forEach(f => {
             totalSum += f.assists
             totalHomeAway++
           })
           averageHomeAway = totalSum / totalHomeAway
           totalSum = 0
-          let teamGames = playerStats.filter(e => {
-            return e.teamAgainstName == teamAgainstName
-          })
           teamGames.forEach(f => {
             totalSum += f.assists
             totalTeam++
@@ -1913,52 +1917,54 @@ export class PropScreenComponent implements OnInit {
 
         }
         else if (player.marketKey == 'player_shots_on_goal') {
-          overOverall = playerStats.filter(e => {
-            if (e.shots > highOverall) {
-              highOverall = e.shots
-            }
-            if (e.shots < lowOverall) {
-              lowOverall = e.shots
-            }
-            return e.shots < player.point
-          }).length
-          overHomeAway = playerStats.filter(e => {
-            if (e.shots > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              highHomeAway = e.shots
-            }
-            if (e.shots < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              lowHomeAway = e.shots
-            }
-            return e.shots < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          }).length
-          overTeam = playerStats.filter(e => {
-            if (e.shots > highTeam && e.teamAgainstName == teamAgainstName) {
-              highTeam = e.shots
-            }
-            if (e.shots < lowTeam && e.teamAgainstName == teamAgainstName) {
-              lowTeam = e.shots
-            }
-            return e.shots < player.point && e.teamAgainstName == teamAgainstName
-          }).length
           let totalSum = 0
-          playerStats.forEach(e => {
-            totalSum += e.shots
-          })
+          let homeAwayGames: any[] = []
+          let teamGames: any[] = []
+          for(let i = 0; i < playerStats.length; i++){
+            if(playerStats[i].shots > highOverall){
+              highOverall = playerStats[i].shots
+            }
+            if(playerStats[i].shots < lowOverall){
+              lowOverall = playerStats[i].shots
+            }
+            totalSum += playerStats[i].shots
+            if(playerStats[i].shots < player.points){
+              overOverall++
+            }
+            if(playerStats[i].shots > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              highHomeAway = playerStats[i].shots
+            }
+            if (playerStats[i].shots < lowHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = playerStats[i].shots
+            }
+            if(playerStats[i].shots < player.point && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              overHomeAway++
+            }
+            if (playerStats[i].shots > highTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              highTeam = playerStats[i].shots
+            }
+            if (playerStats[i].shots < lowTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              lowTeam = playerStats[i].shots
+            }
+            if(playerStats[i].shots < player.point && playerStats[i].teamAgainstName == teamAgainstName){
+              overTeam++
+            }
+            if(playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              homeAwayGames.push(playerStats[i])
+            }
+            if(playerStats[i].teamAgainstName == teamAgainstName){
+              teamGames.push(playerStats[i])
+            }
+          }
           averageOverall = totalSum / totalOverall
 
           totalSum = 0
-          let homeAwayGames = playerStats.filter(e => {
-            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          })
           homeAwayGames.forEach(f => {
             totalSum += f.shots
             totalHomeAway++
           })
           averageHomeAway = totalSum / totalHomeAway
           totalSum = 0
-          let teamGames = playerStats.filter(e => {
-            return e.teamAgainstName == teamAgainstName
-          })
           teamGames.forEach(f => {
             totalSum += f.shots
             totalTeam++
@@ -2005,52 +2011,54 @@ export class PropScreenComponent implements OnInit {
 
         }
         else if (player.marketKey == 'player_goals') {
-          overOverall = playerStats.filter(e => {
-            if (e.goals > highOverall) {
-              highOverall = e.goals
-            }
-            if (e.goals < lowOverall) {
-              lowOverall = e.goals
-            }
-            return e.goals < player.point
-          }).length
-          overHomeAway = playerStats.filter(e => {
-            if (e.goals > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              highHomeAway = e.goals
-            }
-            if (e.goals < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              lowHomeAway = e.goals
-            }
-            return e.goals < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          }).length
-          overTeam = playerStats.filter(e => {
-            if (e.goals > highTeam && e.teamAgainstName == teamAgainstName) {
-              highTeam = e.goals
-            }
-            if (e.goals < lowTeam && e.teamAgainstName == teamAgainstName) {
-              lowTeam = e.goals
-            }
-            return e.goals < player.point && e.teamAgainstName == teamAgainstName
-          }).length
           let totalSum = 0
-          playerStats.forEach(e => {
-            totalSum += e.goals
-          })
+          let homeAwayGames: any[] = []
+          let teamGames: any[] = []
+          for(let i = 0; i < playerStats.length; i++){
+            if(playerStats[i].goals > highOverall){
+              highOverall = playerStats[i].goals
+            }
+            if(playerStats[i].goals < lowOverall){
+              lowOverall = playerStats[i].goals
+            }
+            totalSum += playerStats[i].goals
+            if(playerStats[i].goals < player.points){
+              overOverall++
+            }
+            if(playerStats[i].goals > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              highHomeAway = playerStats[i].goals
+            }
+            if (playerStats[i].goals < lowHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = playerStats[i].goals
+            }
+            if(playerStats[i].goals < player.point && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              overHomeAway++
+            }
+            if (playerStats[i].goals > highTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              highTeam = playerStats[i].goals
+            }
+            if (playerStats[i].goals < lowTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              lowTeam = playerStats[i].goals
+            }
+            if(playerStats[i].goals < player.point && playerStats[i].teamAgainstName == teamAgainstName){
+              overTeam++
+            }
+            if(playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              homeAwayGames.push(playerStats[i])
+            }
+            if(playerStats[i].teamAgainstName == teamAgainstName){
+              teamGames.push(playerStats[i])
+            }
+          }
           averageOverall = totalSum / totalOverall
 
           totalSum = 0
-          let homeAwayGames = playerStats.filter(e => {
-            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          })
           homeAwayGames.forEach(f => {
             totalSum += f.goals
             totalHomeAway++
           })
           averageHomeAway = totalSum / totalHomeAway
           totalSum = 0
-          let teamGames = playerStats.filter(e => {
-            return e.teamAgainstName == teamAgainstName
-          })
           teamGames.forEach(f => {
             totalSum += f.goals
             totalTeam++
@@ -2097,52 +2105,54 @@ export class PropScreenComponent implements OnInit {
 
         }
         else if (player.marketKey == 'player_blocked_shots') {
-          overOverall = playerStats.filter(e => {
-            if (e.blocks > highOverall) {
-              highOverall = e.blocks
-            }
-            if (e.blocks < lowOverall) {
-              lowOverall = e.blocks
-            }
-            return e.blocks < player.point
-          }).length
-          overHomeAway = playerStats.filter(e => {
-            if (e.blocks > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              highHomeAway = e.blocks
-            }
-            if (e.blocks < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              lowHomeAway = e.blocks
-            }
-            return e.blocks < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          }).length
-          overTeam = playerStats.filter(e => {
-            if (e.blocks > highTeam && e.teamAgainstName == teamAgainstName) {
-              highTeam = e.blocks
-            }
-            if (e.blocks < lowTeam && e.teamAgainstName == teamAgainstName) {
-              lowTeam = e.blocks
-            }
-            return e.blocks < player.point && e.teamAgainstName == teamAgainstName
-          }).length
           let totalSum = 0
-          playerStats.forEach(e => {
-            totalSum += e.blocks
-          })
+          let homeAwayGames: any[] = []
+          let teamGames: any[] = []
+          for(let i = 0; i < playerStats.length; i++){
+            if(playerStats[i].blocks > highOverall){
+              highOverall = playerStats[i].blocks
+            }
+            if(playerStats[i].blocks < lowOverall){
+              lowOverall = playerStats[i].blocks
+            }
+            totalSum += playerStats[i].blocks
+            if(playerStats[i].blocks < player.points){
+              overOverall++
+            }
+            if(playerStats[i].blocks > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              highHomeAway = playerStats[i].blocks
+            }
+            if (playerStats[i].blocks < lowHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = playerStats[i].blocks
+            }
+            if(playerStats[i].blocks < player.point && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              overHomeAway++
+            }
+            if (playerStats[i].blocks > highTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              highTeam = playerStats[i].blocks
+            }
+            if (playerStats[i].blocks < lowTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              lowTeam = playerStats[i].blocks
+            }
+            if(playerStats[i].blocks < player.point && playerStats[i].teamAgainstName == teamAgainstName){
+              overTeam++
+            }
+            if(playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              homeAwayGames.push(playerStats[i])
+            }
+            if(playerStats[i].teamAgainstName == teamAgainstName){
+              teamGames.push(playerStats[i])
+            }
+          }
           averageOverall = totalSum / totalOverall
 
           totalSum = 0
-          let homeAwayGames = playerStats.filter(e => {
-            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          })
           homeAwayGames.forEach(f => {
             totalSum += f.blocks
             totalHomeAway++
           })
           averageHomeAway = totalSum / totalHomeAway
           totalSum = 0
-          let teamGames = playerStats.filter(e => {
-            return e.teamAgainstName == teamAgainstName
-          })
           teamGames.forEach(f => {
             totalSum += f.blocks
             totalTeam++
@@ -2189,52 +2199,54 @@ export class PropScreenComponent implements OnInit {
 
         }
         else if (player.marketKey == 'player_total_saves') {
-          overOverall = playerStats.filter(e => {
-            if (e.saves > highOverall) {
-              highOverall = e.saves
-            }
-            if (e.saves < lowOverall) {
-              lowOverall = e.saves
-            }
-            return e.saves < player.point
-          }).length
-          overHomeAway = playerStats.filter(e => {
-            if (e.saves > highHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              highHomeAway = e.saves
-            }
-            if (e.saves < lowHomeAway && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
-              lowHomeAway = e.saves
-            }
-            return e.saves < player.point && e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          }).length
-          overTeam = playerStats.filter(e => {
-            if (e.saves > highTeam && e.teamAgainstName == teamAgainstName) {
-              highTeam = e.saves
-            }
-            if (e.saves < lowTeam && e.teamAgainstName == teamAgainstName) {
-              lowTeam = e.saves
-            }
-            return e.saves < player.point && e.teamAgainstName == teamAgainstName
-          }).length
           let totalSum = 0
-          playerStats.forEach(e => {
-            totalSum += e.saves
-          })
+          let homeAwayGames: any[] = []
+          let teamGames: any[] = []
+          for(let i = 0; i < playerStats.length; i++){
+            if(playerStats[i].saves > highOverall){
+              highOverall = playerStats[i].saves
+            }
+            if(playerStats[i].saves < lowOverall){
+              lowOverall = playerStats[i].saves
+            }
+            totalSum += playerStats[i].saves
+            if(playerStats[i].saves < player.points){
+              overOverall++
+            }
+            if(playerStats[i].saves > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              highHomeAway = playerStats[i].saves
+            }
+            if (playerStats[i].saves < lowHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()) {
+              lowHomeAway = playerStats[i].saves
+            }
+            if(playerStats[i].saves < player.point && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              overHomeAway++
+            }
+            if (playerStats[i].saves > highTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              highTeam = playerStats[i].saves
+            }
+            if (playerStats[i].saves < lowTeam && playerStats[i].teamAgainstName == teamAgainstName) {
+              lowTeam = playerStats[i].saves
+            }
+            if(playerStats[i].saves < player.point && playerStats[i].teamAgainstName == teamAgainstName){
+              overTeam++
+            }
+            if(playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
+              homeAwayGames.push(playerStats[i])
+            }
+            if(playerStats[i].teamAgainstName == teamAgainstName){
+              teamGames.push(playerStats[i])
+            }
+          }
           averageOverall = totalSum / totalOverall
 
           totalSum = 0
-          let homeAwayGames = playerStats.filter(e => {
-            return e.homeOrAway.toLowerCase() == homeAway.toLowerCase()
-          })
           homeAwayGames.forEach(f => {
             totalSum += f.saves
             totalHomeAway++
           })
           averageHomeAway = totalSum / totalHomeAway
           totalSum = 0
-          let teamGames = playerStats.filter(e => {
-            return e.teamAgainstName == teamAgainstName
-          })
           teamGames.forEach(f => {
             totalSum += f.saves
             totalTeam++
