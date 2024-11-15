@@ -597,8 +597,8 @@ export class PropScreenComponent implements OnInit {
     }
     else if (this.selectedSport == 'NHL') {
       let teams = await TeamInfoController.getAllTeamInfo('NHL')
-      let team1Info = teams.filter(e => e.teamNameFull == this.team1GameStats[0].teamName)
-      let team2Info = teams.filter(e => e.teamNameFull == this.team2GameStats[0].teamName)
+      let team1Info = teams.filter(e => e.teamNameAbvr == this.team1GameStats[0].teamName)
+      let team2Info = teams.filter(e => e.teamNameAbvr == this.team2GameStats[0].teamName)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
     this.playerPropIsLoading = false;
