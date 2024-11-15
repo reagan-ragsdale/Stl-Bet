@@ -1740,7 +1740,7 @@ export class PropScreenComponent implements OnInit {
               lowOverall = playerStats[i].points
             }
             totalSum += playerStats[i].points
-            if(playerStats[i].points < player.points){
+            if(playerStats[i].points < player.point){
               overOverall++
             }
             if(playerStats[i].points > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
@@ -1834,7 +1834,7 @@ export class PropScreenComponent implements OnInit {
               lowOverall = playerStats[i].assists
             }
             totalSum += playerStats[i].assists
-            if(playerStats[i].assists < player.points){
+            if(playerStats[i].assists < player.point){
               overOverall++
             }
             if(playerStats[i].assists > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
@@ -1928,7 +1928,7 @@ export class PropScreenComponent implements OnInit {
               lowOverall = playerStats[i].shots
             }
             totalSum += playerStats[i].shots
-            if(playerStats[i].shots < player.points){
+            if(playerStats[i].shots < player.point){
               overOverall++
             }
             if(playerStats[i].shots > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
@@ -2022,7 +2022,7 @@ export class PropScreenComponent implements OnInit {
               lowOverall = playerStats[i].goals
             }
             totalSum += playerStats[i].goals
-            if(playerStats[i].goals < player.points){
+            if(playerStats[i].goals < player.point){
               overOverall++
             }
             if(playerStats[i].goals > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
@@ -2116,7 +2116,7 @@ export class PropScreenComponent implements OnInit {
               lowOverall = playerStats[i].blocks
             }
             totalSum += playerStats[i].blocks
-            if(playerStats[i].blocks < player.points){
+            if(playerStats[i].blocks < player.point){
               overOverall++
             }
             if(playerStats[i].blocks > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
@@ -2210,7 +2210,7 @@ export class PropScreenComponent implements OnInit {
               lowOverall = playerStats[i].saves
             }
             totalSum += playerStats[i].saves
-            if(playerStats[i].saves < player.points){
+            if(playerStats[i].saves < player.point){
               overOverall++
             }
             if(playerStats[i].saves > highHomeAway && playerStats[i].homeOrAway.toLowerCase() == homeAway.toLowerCase()){
