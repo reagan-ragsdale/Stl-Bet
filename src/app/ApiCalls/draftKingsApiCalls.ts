@@ -153,8 +153,8 @@ export class draftKingsApiController {
                 bookId: selectedSportsData[i].id,
                 sportKey: selectedSportsData[i].sport_key,
                 sportTitle: selectedSportsData[i].sport_title,
-                homeTeam: selectedSportsData[i].home_team,
-                awayTeam: selectedSportsData[i].away_team,
+                homeTeam: this.cleanTeamName(selectedSportsData[i].home_team),
+                awayTeam: this.cleanTeamName(selectedSportsData[i].away_team),
                 commenceTime: selectedSportsData[i].commence_time,
                 bookMaker: selectedSportsData[i].bookmakers[j].title,
                 marketKey: selectedSportsData[i].bookmakers[j].markets[k].key,
@@ -178,6 +178,12 @@ export class draftKingsApiController {
     }
     return tempData;
 
+  }
+
+  static cleanTeamName(name: string): string{
+    let finalReturn = name
+    finalReturn = finalReturn.replaceAll('é','e')
+    return finalReturn
   }
 
   static async convertSportsDataToInterface(): Promise<DbGameBookData[]> {
