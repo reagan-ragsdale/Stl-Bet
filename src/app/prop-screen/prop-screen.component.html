@@ -84,7 +84,7 @@
     </button>
   </div>
 
-  <div *ngIf="(teamPropIsLoading && !playerPropIsLoading) || (playerPropIsLoading && !teamPropIsLoading)" style="height:100%; width: 100%; background-color: white;">
+  <div *ngIf="shouldShowSpinner" style="height:100%; width: 100%; background-color: white;">
     <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
   </div>
 
@@ -704,9 +704,9 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab style=" color: white" *ngIf="!playerPropIsLoading" label="Player Props">
+      <mat-tab style=" color: white"  label="Player Props">
 
-        <div *ngIf="!playerPropIsLoading"
+        <div *ngIf="!playerPropIsLoading && selectedTabIndex == 1"
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
           <mat-accordion *ngFor="let prop of playerPropDataFinalNew" class="main-specific-class"
             style="width:90%; margin-bottom:.5rem;">

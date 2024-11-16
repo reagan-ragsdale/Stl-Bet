@@ -322,7 +322,7 @@ export class PropScreenComponent implements OnInit {
 
 
   }
-
+  shouldShowSpinner:Boolean = false;
 
 
 
@@ -379,7 +379,7 @@ export class PropScreenComponent implements OnInit {
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
   async displayProp() {
-    
+    this.shouldShowSpinner = true;
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
@@ -537,7 +537,7 @@ export class PropScreenComponent implements OnInit {
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
     
-    
+    this.shouldShowSpinner = false
 
     //this.calcLiveProps()
     for (let i = 0; i < this.teamPropFinnal.length; i++) {
@@ -591,6 +591,7 @@ export class PropScreenComponent implements OnInit {
   }
   playerPropsHasBeenLoaded: Boolean = false
   async loadPlayerProps(){
+    this.shouldShowSpinner = true
     this.playerPropIsLoading = true;
     if (this.selectedSport == 'MLB') {
       await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team1GameStats[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team2GameStats[0].teamName]])
@@ -605,6 +606,7 @@ export class PropScreenComponent implements OnInit {
       let team2Info = this.allSportTeamInfo.filter(e => e.teamNameAbvr == this.team2GameStats[0].teamName)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
+    this.shouldShowSpinner = false
     this.playerPropIsLoading = false;
     this.playerPropsHasBeenLoaded = true
   }
