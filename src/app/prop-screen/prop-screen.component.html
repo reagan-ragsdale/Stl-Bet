@@ -124,7 +124,7 @@
     <mat-tab-group [backgroundColor]="'primary'" style="width:100%" animationDuration="0ms" disablePagination="true" preserveContent="true" (selectedTabChange)="onTabChange($event)">
       <mat-tab style="color: white" label="Game Props">
 
-        <div *ngIf="!teamPropIsLoading && selectedTabIndex == 0" class="prop-section">
+        <div  class="prop-section">
           <div *ngFor="let team of teamPropFinnal; let j = index;" class="away-team">
             <h2 style="margin-top: 1rem; margin-bottom:1rem; text-align:center">{{team[0][0].teamName}} Game Props
             </h2>
@@ -706,7 +706,7 @@
       </mat-tab>
       <mat-tab style=" color: white"  label="Player Props">
 
-        <div *ngIf="!playerPropIsLoading && selectedTabIndex == 1"
+        <div 
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
           <mat-accordion *ngFor="let prop of playerPropDataFinalNew" class="main-specific-class"
             style="width:90%; margin-bottom:.5rem;">
