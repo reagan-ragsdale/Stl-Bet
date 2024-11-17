@@ -261,11 +261,11 @@ export class PropScreenComponent implements OnInit {
 
   async getGames() {
     this.allSportTeamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
-    console.log("orig this.allSportTeamInfo below")
-    console.log(this.allSportTeamInfo)
     if (this.selectedGame == '') {
       
       this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
+      console.log('selectedSportsGames below')
+      console.log(this.selectedSportGames)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
@@ -285,6 +285,8 @@ export class PropScreenComponent implements OnInit {
     }
     else {
       this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
+      console.log('selectedSportsGames below')
+      console.log(this.selectedSportGames)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
