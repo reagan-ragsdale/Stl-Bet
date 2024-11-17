@@ -303,6 +303,7 @@ export class PropScreenComponent implements OnInit {
           teamArray.push(allOfTeam)
         })
         teamArray[0].selected = false;
+        console.log(teamArray)
         this.selectedSportGamesFinal.push(teamArray)
       })
       let currentGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
@@ -441,6 +442,9 @@ export class PropScreenComponent implements OnInit {
 
     let team1Final = []
     let team2Final = []
+    console.log('team temps below')
+    console.log(team1Temp)
+    console.log(team2Temp)
     for (let bet of listOfBets) {
       var filteredBet = []
       filteredBet = team1Temp.filter(e => {
