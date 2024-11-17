@@ -311,8 +311,10 @@ export class PropScreenComponent implements OnInit {
     console.log(this.selectedSportGamesFinal)
     this.selectedSportGamesFinal.forEach(e => {
       e[0].selected = false;
-      e[0][0].awayTeam = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)[0].teamNameAbvr;
-      e[0][0].homeTeam = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)[0].teamNameAbvr;
+      let awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)
+      let homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)
+      e[0][0].awayTeam = awayTeamInfo[0].teamNameAbvr;
+      e[0][0].homeTeam = homeTeamInfo[0].teamNameAbvr;
     })
     let selectedGameClicked = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
     selectedGameClicked[0][0].selected = true
