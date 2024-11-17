@@ -598,7 +598,8 @@ export class PropScreenComponent implements OnInit {
       let team1Info = this.allSportTeamInfo.filter(e => e.teamNameAbvr == this.team1GameStats[0].teamName)
       let team2Info = this.allSportTeamInfo.filter(e => e.teamNameAbvr == this.team2GameStats[0].teamName)
       console.log("team info below")
-      console.log([team1Info, team2Info])
+      console.log(this.allSportTeamInfo)
+      console.log(this.team1GameStats)
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
     this.shouldShowSpinner = false
