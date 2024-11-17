@@ -2391,9 +2391,9 @@ export class PropScreenComponent implements OnInit {
     try {
       console.log('Incoming team name below')
       console.log(teamName)
-      let teamNameAbvr = this.allSportTeamInfo.filter(e => e.teamNameFull == teamName)
-      console.log(teamNameAbvr)
-      let teamNameAbvrFinal = teamNameAbvr[0].teamNameAbvr
+      let teamNameAbreviation = this.allSportTeamInfo.filter(e => e.teamNameFull == teamName)
+      console.log(teamNameAbreviation)
+      let teamNameAbvrFinal = teamNameAbreviation[0].teamNameAbvr
 
       let marketKey = team.marketKey
       let propType = this.getPropType(team.marketKey)
