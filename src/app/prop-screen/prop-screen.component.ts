@@ -261,6 +261,8 @@ export class PropScreenComponent implements OnInit {
 
   async getGames() {
     this.allSportTeamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
+    console.log("orig this.allSportTeamInfo below")
+    console.log(this.allSportTeamInfo)
     if (this.selectedGame == '') {
       
       this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
@@ -2387,14 +2389,14 @@ export class PropScreenComponent implements OnInit {
   async getTeamStats(team: DbGameBookData, teamName: string) {
 
     try {
-      let teamNameAbvr = this.allSportTeamInfo.filter(e => e.teamNameFull = teamName)
+      let teamNameAbvr = this.allSportTeamInfo.filter(e => e.teamNameFull == teamName)
       let teamNameAbvrFinal = teamNameAbvr[0].teamNameAbvr
       let marketKey = team.marketKey
       let propType = this.getPropType(team.marketKey)
       let propPoint = team.point
       let propPrice = team.price
       let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
-      let teamAgainstName = teamName == team.homeTeam ? this.allSportTeamInfo.filter(e => e.teamNameAbvr = team.awayTeam) : this.allSportTeamInfo.filter(e => e.teamNameAbvr = team.awayTeam)
+      let teamAgainstName = teamName == team.homeTeam ? this.allSportTeamInfo.filter(e => e.teamNameAbvr == team.awayTeam) : this.allSportTeamInfo.filter(e => e.teamNameAbvr == team.awayTeam)
       let teamAgainstNameNew = teamAgainstName[0].teamNameAbvr
       var finalTeam: any = {}
 
