@@ -290,10 +290,16 @@ export class PropScreenComponent implements OnInit {
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
+        console.log("all of book below")
+        console.log(allOfBook)
         var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
+        console.log("distinct teams below")
+        console.log(distinctTeams)
         let teamArray: any[] = []
         distinctTeams.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
+          console.log("all 0f team below")
+          console.log(allOfTeam)
           teamArray.push(allOfTeam)
         })
         teamArray[0].selected = false;
