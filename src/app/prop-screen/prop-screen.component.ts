@@ -540,14 +540,7 @@ export class PropScreenComponent implements OnInit {
     this.shouldShowSpinner = false
 
     //this.calcLiveProps()
-    for (let i = 0; i < this.teamPropFinnal.length; i++) {
-      let teamPropsForChart: string[] = []
-      for (let j = 0; j < this.teamPropFinnal[i].length; j++) {
-        teamPropsForChart[j] = 'chartName' + i + '-' + j
-      }
-      this.listOfTeamsAndPropsForCharts[i] = teamPropsForChart
-    }
-    console.log(this.listOfTeamsAndPropsForCharts)
+    
   }
 
   public team1Wins: number = 0
@@ -604,6 +597,8 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == 'NHL') {
       let team1Info = this.allSportTeamInfo.filter(e => e.teamNameAbvr == this.team1GameStats[0].teamName)
       let team2Info = this.allSportTeamInfo.filter(e => e.teamNameAbvr == this.team2GameStats[0].teamName)
+      console.log("team info below")
+      console.log([team1Info, team2Info])
       await this.loadPlayerStatData(team1Info[0].teamId, team2Info[0].teamId)
     }
     this.shouldShowSpinner = false
