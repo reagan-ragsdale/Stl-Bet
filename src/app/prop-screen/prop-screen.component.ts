@@ -2407,7 +2407,7 @@ export class PropScreenComponent implements OnInit {
       let propPoint = team.point
       let propPrice = team.price
       let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
-      let teamAgainstName = teamNameAbvrFinal == team.homeTeam ? this.allSportTeamInfo.filter(e => e.teamNameFull == team.awayTeam) : this.allSportTeamInfo.filter(e => e.teamNameFull == team.homeTeam)
+      let teamAgainstName = teamNameAbreviation[0].teamNameFull == team.homeTeam ? this.allSportTeamInfo.filter(e => e.teamNameFull == team.awayTeam) : this.allSportTeamInfo.filter(e => e.teamNameFull == team.homeTeam)
       let teamAgainstNameNew = teamAgainstName[0].teamNameAbvr
       var finalTeam: any = {}
 
