@@ -2392,6 +2392,7 @@ export class PropScreenComponent implements OnInit {
       console.log('Incoming team name below')
       console.log(teamName)
       let teamNameAbvr = this.allSportTeamInfo.filter(e => e.teamNameFull == teamName)
+      console.log(teamNameAbvr)
       let teamNameAbvrFinal = teamNameAbvr[0].teamNameAbvr
 
       let marketKey = team.marketKey
@@ -2399,7 +2400,7 @@ export class PropScreenComponent implements OnInit {
       let propPoint = team.point
       let propPrice = team.price
       let homeAway = teamName == team.homeTeam ? 'Home' : 'Away'
-      let teamAgainstName = teamNameAbvr[0].teamNameAbvr == team.homeTeam ? this.allSportTeamInfo.filter(e => e.teamNameAbvr == team.awayTeam) : this.allSportTeamInfo.filter(e => e.teamNameAbvr == team.awayTeam)
+      let teamAgainstName = teamNameAbvrFinal == team.homeTeam ? this.allSportTeamInfo.filter(e => e.teamNameAbvr == team.awayTeam) : this.allSportTeamInfo.filter(e => e.teamNameAbvr == team.homeTeam)
       let teamAgainstNameNew = teamAgainstName[0].teamNameAbvr
       var finalTeam: any = {}
 
