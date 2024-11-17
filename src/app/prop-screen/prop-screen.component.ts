@@ -3286,7 +3286,7 @@ export class PropScreenComponent implements OnInit {
       }
 
     } catch (error: any) {
-      console.log(error.message)
+      console.log('team stats' + error.message)
       this.returnObj = {
         teamName: '',
         homeAway: ' ',
