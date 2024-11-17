@@ -287,9 +287,10 @@ export class PropScreenComponent implements OnInit {
       this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
       console.log('selectedSportsGames below')
       console.log(this.selectedSportGames)
-      var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+      let sportsGamesNew: any[] = JSON.parse(JSON.stringify(this.selectedSportGames))
+      var distinctGames = sportsGamesNew.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
-        let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
+        let allOfBook = sportsGamesNew.filter(e => e.bookId == book)
         console.log("all of book below")
         console.log(allOfBook)
         var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
