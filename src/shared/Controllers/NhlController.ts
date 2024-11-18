@@ -25,7 +25,7 @@ export class NhlController{
     @BackendMethod({allowed:true})
     static async nhlGetAllTeamStatsByTeamNameAndSeason(teamName: string, season: number): Promise<DbNhlTeamGameStats[]>{
         const taskRepo = remult.repo(DbNhlTeamGameStats)
-        return await taskRepo.find({where: {teamName: teamName, season: season}})
+        return await taskRepo.find({where: {teamName: teamName, season: season}, orderBy: {gameDate: 'desc'}})
     }
 
     //player stats
