@@ -2,6 +2,7 @@ import { Allow, BackendMethod, remult } from "remult"
 
 import { DbGameBookData } from "../dbTasks/DbGameBookData";
 import { filter } from "compression";
+import { DbGameBookDataHistory } from "../dbTasks/DbGameBookDataHistory";
 
 export class SportsBookController {
 
@@ -171,6 +172,26 @@ export class SportsBookController {
     
   }
 
+  @BackendMethod({ allowed: true })
+  static async getAllDataLessThanDate(date: Date): Promise<DbGameBookData[]> {
+    const taskRepo = remult.repo(DbGameBookData)
+    return await taskRepo.find({where: {createdAt: {$lt: date}}})
+  }
+
+  @BackendMethod({ allowed: true })
+  static async deleteAllDataLessThanDate(date: Date) {
+    const taskRepo = remult.repo(DbGameBookData)
+    await taskRepo.deleteMany({where: {createdAt: {$lt: date}}})
+  }
+
+
+
+  //Game book data history controller
+  @BackendMethod({ allowed: true })
+  static async insertIntoGameBookHistory(data: DbGameBookDataHistory[]) {
+    const taskRepo = remult.repo(DbGameBookDataHistory)
+    await taskRepo.insert(data)
+  }
   
 
 

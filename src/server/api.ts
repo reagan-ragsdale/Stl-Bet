@@ -14,8 +14,6 @@ import { createPostgresDataProvider } from 'remult/postgres';
 import { DbNbaTeamGameStats } from '../shared/dbTasks/DbNbaTeamGameStats';
 import { DbNbaTeamLogos } from '../shared/dbTasks/DbNbaTeamLogos';
 import { config } from 'dotenv'
-import { cronTestFile } from '../app/cronTest';
-import { mlbCronFile } from '../app/mlbCron';
 import cron from 'node-cron'
 import { DBMlbPlayerGameStats } from '../shared/dbTasks/DbMlbPlayerGameStats';
 import { DbPlayerInfo } from '../shared/dbTasks/DbPlayerInfo';
@@ -23,14 +21,11 @@ import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController
 import { cronSportsBookHourly } from '../app/cronJobs/cronSportsBookLoadHourly';
 import { DBMlbPlayerGameStatTotals } from '../shared/dbTasks/DbMlbPlayerGameStatTotals';
 import { cronLoadMlbPlayer } from '../app/cronJobs/cronLoadMlbPlayerPropsHorly';
-import { repo } from 'remult';
 import { TeamInfoController } from '../shared/Controllers/TeamInfoController';
-import { DbMlbTeamGameStats } from '../shared/dbTasks/DbMlbTeamGameStats';
 import { DbTeamInfo } from '../shared/dbTasks/DBTeamInfo';
 import { DbUsers } from '../shared/dbTasks/DbUsers';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { initRequest } from './server-session';
-import { nflApiController } from '../app/ApiCalls/nflApiCalls';
 import { DBNflTeamGameStats } from '../shared/dbTasks/DbNflTeamGameStats';
 import { DBNflPlayerGameStats } from '../shared/dbTasks/DbNflPlayerGameStats';
 import { NflController } from '../shared/Controllers/NflController';
@@ -46,6 +41,8 @@ import { BestBetController } from '../shared/Controllers/BestBetController';
 import { DbPlayerBestBets } from '../shared/dbTasks/DBPlayerBestBets';
 import { cronLoadBestBets } from '../app/cronJobs/cronLoadBestBets';
 import { NhlController } from '../shared/Controllers/NhlController';
+import { DbGameBookDataHistory } from '../shared/dbTasks/DbGameBookDataHistory';
+import { cronLoadIntoHistoryTables } from '../app/cronJobs/cronLoadIntoHistoryTables';
 
 
 config()
@@ -76,7 +73,8 @@ export const api = remultExpress({
     DBNflPlayerGameStatTotals,
     DbNhlPlayerGameStats,
     DbNhlTeamGameStats,
-    DbPlayerBestBets
+    DbPlayerBestBets,
+    DbGameBookDataHistory
   ],
   controllers: [
     MlbController,
@@ -117,6 +115,7 @@ export const api = remultExpress({
     cron.schedule('04 13 * * *', () => cronLoadNflGameStats())
     cron.schedule('0 17 * * 2', () => cronLoadBestBets())
     cron.schedule('09 10 * * *', () => cronLoadNhlStats())
+    cron.schedule('0 18 * * 0', () => cronLoadIntoHistoryTables())
   }
 
 });
