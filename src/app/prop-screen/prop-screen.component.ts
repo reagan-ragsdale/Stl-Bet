@@ -505,6 +505,12 @@ export class PropScreenComponent implements OnInit {
       console.log([team1Info, team2Info])
       this.team1GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team1Info[0].teamNameAbvr, 2024)
       this.team2GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team2Info[0].teamNameAbvr, 2024)
+      for(let i = 0; i < this.team1GameStats.length; i++){
+        this.team1GameStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.team1GameStats[i].gameDate)
+      }
+      for(let i = 0; i < this.team2GameStats.length; i++){
+        this.team2GameStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.team2GameStats[i].gameDate)
+      }
     }
 
     else if (this.selectedSport == "NFL") {
@@ -3035,7 +3041,7 @@ export class PropScreenComponent implements OnInit {
         teamGameStatsReversed.forEach(e => {
           tableTemp.push({
             teamAgainstName: e.teamAgainstName,
-            gameDate: this.selectedSport == 'NHL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
+            gameDate: e.gameDate,
             pointsScoredOverall: e.pointsScoredOverall,
             pointsAllowedOverall: e.pointsAllowedOverall,
             homeAway: e.homeOrAway
@@ -3048,7 +3054,7 @@ export class PropScreenComponent implements OnInit {
           if (e.homeOrAway == homeAway) {
             tableTemp.push({
               teamAgainstName: e.teamAgainstName,
-              gameDate: this.selectedSport == 'NHL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
+              gameDate: e.gameDate,
               pointsScoredOverall: e.pointsScoredOverall,
               pointsAllowedOverall: e.pointsAllowedOverall,
               homeAway: e.homeOrAway
@@ -3062,7 +3068,7 @@ export class PropScreenComponent implements OnInit {
           if (e.teamAgainstName == teamAgainstNameNew) {
             tableTemp.push({
               teamAgainstName: e.teamAgainstName,
-              gameDate: this.selectedSport == 'NHL' ? reusedFunctions.convertGameDateToMonthDay(e.gameDate) : e.gameDate,
+              gameDate: e.gameDate,
               pointsScoredOverall: e.pointsScoredOverall,
               pointsAllowedOverall: e.pointsAllowedOverall,
               homeAway: e.homeOrAway
@@ -3099,7 +3105,7 @@ export class PropScreenComponent implements OnInit {
             teamGameStatsReversed.forEach(e => {
               tableTemp.push({
                 teamAgainstName: e.teamAgainstName,
-                gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                gameDate: e.gameDate,
                 pointsScoredOverall: (e.pointsScoredFirstPeriod),
                 pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
                 homeAway: e.homeOrAway
@@ -3112,7 +3118,7 @@ export class PropScreenComponent implements OnInit {
               if (e.homeOrAway == homeAway) {
                 tableTemp.push({
                   teamAgainstName: e.teamAgainstName,
-                  gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                  gameDate: e.gameDate,
                   pointsScoredOverall: (e.pointsScoredFirstPeriod),
                   pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
                   homeAway: e.homeOrAway
@@ -3126,7 +3132,7 @@ export class PropScreenComponent implements OnInit {
               if (e.teamAgainstName == teamAgainstNameNew) {
                 tableTemp.push({
                   teamAgainstName: e.teamAgainstName,
-                  gameDate: reusedFunctions.convertGameDateToMonthDay(e.gameDate),
+                  gameDate: e.gameDate,
                   pointsScoredOverall: (e.pointsScoredFirstPeriod),
                   pointsAllowedOverall: (e.pointsAllowedFirstPeriod),
                   homeAway: e.homeOrAway
