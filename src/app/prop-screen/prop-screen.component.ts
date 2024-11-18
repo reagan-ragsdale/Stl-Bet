@@ -490,9 +490,10 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "NHL") {
       let team1Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team1[0].teamName)
       let team2Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team2[0].teamName)
-      let stats = await Promise.all([NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team1Info[0].teamNameAbvr, 2024),NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team2Info[0].teamNameAbvr, 2024)])
-      this.team1GameStats = stats[0]
-      this.team2GameStats = stats[1]
+      //let stats = await Promise.all([NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team1Info[0].teamNameAbvr, 2024),NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team2Info[0].teamNameAbvr, 2024)])
+      let stats = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([team1Info[0].teamNameAbvr,team2Info[0].teamNameAbvr], 2024)
+      this.team1GameStats = stats.filter(e => e.teamName == team1Info[0].teamNameAbvr)
+      this.team2GameStats = stats.filter(e => e.teamName == team2Info[0].teamNameAbvr)
       for(let i = 0; i < this.team1GameStats.length; i++){
         this.team1GameStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.team1GameStats[i].gameDate)
       }
