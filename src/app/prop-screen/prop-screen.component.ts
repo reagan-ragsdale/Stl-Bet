@@ -512,23 +512,7 @@ export class PropScreenComponent implements OnInit {
     this.team2GameStatsReversed = JSON.parse(JSON.stringify(this.team2GameStats))
     this.team2GameStatsReversed = this.team2GameStatsReversed.reverse()
 
-    this.playerPropData = await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame)
-    let uniquePlayerProps = this.playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
-
-    this.playerPropDataFinal = [];
-    for (let prop of uniquePlayerProps) {
-      let propSpecificArray: any[] = []
-      let uniquePlayerNames = this.playerPropData.filter(e => e.marketKey == prop).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
-
-      for (let player of uniquePlayerNames) {
-        let filteredPlayer = this.playerPropData.filter(e => e.playerName == player && e.marketKey == prop)
-
-        propSpecificArray = propSpecificArray.concat(filteredPlayer)
-
-      }
-
-      this.playerPropDataFinal.push(propSpecificArray)
-    }
+    
 
     name1 = team1[0].teamName;
 
@@ -546,7 +530,7 @@ export class PropScreenComponent implements OnInit {
 
     this.displayPropHtml2 = ({ name: name1, abvr: abvr, commenceTime: reusedFunctions.convertTimestampToTime(team2[0].commenceTime.toString()) });
 
-    this.allPropTrendData = await SportsBookController.loadAllBookDataByBookId(this.selectedGame)
+    //this.allPropTrendData = await SportsBookController.loadAllBookDataByBookId(this.selectedGame)
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
@@ -600,6 +584,23 @@ export class PropScreenComponent implements OnInit {
   async loadPlayerProps(){
     this.shouldShowSpinner = true
     this.playerPropIsLoading = true;
+    this.playerPropData = await PlayerPropController.loadPlayerPropData(this.selectedSport, this.selectedGame)
+    let uniquePlayerProps = this.playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
+
+    this.playerPropDataFinal = [];
+    for (let prop of uniquePlayerProps) {
+      let propSpecificArray: any[] = []
+      let uniquePlayerNames = this.playerPropData.filter(e => e.marketKey == prop).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
+
+      for (let player of uniquePlayerNames) {
+        let filteredPlayer = this.playerPropData.filter(e => e.playerName == player && e.marketKey == prop)
+
+        propSpecificArray = propSpecificArray.concat(filteredPlayer)
+
+      }
+
+      this.playerPropDataFinal.push(propSpecificArray)
+    }
     if (this.selectedSport == 'MLB') {
       await this.loadPlayerStatData(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team1GameStats[0].teamName]], MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[this.team2GameStats[0].teamName]])
     }
@@ -4831,7 +4832,7 @@ export class PropScreenComponent implements OnInit {
   }
   ngOnInit() {
     this.allSportTeamInfo = []
-    Chart.register(annotationPlugin);
+    //Chart.register(annotationPlugin);
     this.initializeSport()
     this.getGames()
     //this.createBarChart();
