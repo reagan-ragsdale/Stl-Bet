@@ -260,12 +260,11 @@ export class PropScreenComponent implements OnInit {
 
 
   async getGames() {
-    this.allSportTeamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
+    
+    let initialData = await Promise.all([TeamInfoController.getAllTeamInfo(this.selectedSport),SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)])
+    this.allSportTeamInfo = initialData[0]
+    this.selectedSportGames = initialData[1]
     if (this.selectedGame == '') {
-      
-      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
-      console.log('selectedSportsGames below')
-      console.log(this.selectedSportGames)
       var distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = this.selectedSportGames.filter(e => e.bookId == book)
@@ -284,27 +283,17 @@ export class PropScreenComponent implements OnInit {
       this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
-      this.selectedSportGames = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)
-      console.log('selectedSportsGames below')
-      console.log(this.selectedSportGames)
       let sportsGamesNew: any[] = JSON.parse(JSON.stringify(this.selectedSportGames))
       var distinctGames = sportsGamesNew.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
         let allOfBook = sportsGamesNew.filter(e => e.bookId == book)
-        console.log("all of book below")
-        console.log(allOfBook)
         var distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
-        console.log("distinct teams below")
-        console.log(distinctTeams)
         let teamArray: any[] = []
         distinctTeams.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
-          console.log("all 0f team below")
-          console.log(allOfTeam)
           teamArray.push(allOfTeam)
         })
         teamArray[0].selected = false;
-        console.log(teamArray)
         this.selectedSportGamesFinal.push(teamArray)
       })
       let currentGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
@@ -324,7 +313,6 @@ export class PropScreenComponent implements OnInit {
     this.selectedGame = game;
 
     this.router.navigate([`/props/${this.selectedSport}/${this.selectedGame}`])
-    console.log(this.selectedSportGamesFinal)
     this.selectedSportGamesFinal.forEach(e => {
       e[0].selected = false;
       
@@ -502,9 +490,9 @@ export class PropScreenComponent implements OnInit {
     else if (this.selectedSport == "NHL") {
       let team1Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team1[0].teamName)
       let team2Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team2[0].teamName)
-      console.log([team1Info, team2Info])
-      this.team1GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team1Info[0].teamNameAbvr, 2024)
-      this.team2GameStats = await NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team2Info[0].teamNameAbvr, 2024)
+      let stats = await Promise.all([NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team1Info[0].teamNameAbvr, 2024),NhlController.nhlGetAllTeamStatsByTeamNameAndSeason(team2Info[0].teamNameAbvr, 2024)])
+      this.team1GameStats = stats[0]
+      this.team2GameStats = stats[1]
       for(let i = 0; i < this.team1GameStats.length; i++){
         this.team1GameStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.team1GameStats[i].gameDate)
       }
