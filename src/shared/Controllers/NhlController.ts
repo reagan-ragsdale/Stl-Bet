@@ -59,7 +59,7 @@ export class NhlController{
     @BackendMethod({allowed:true})
     static async nhlGetAllPlayerGameStatsByPlayerNameAndSeason(playerName: string[], season: number): Promise<DbNhlPlayerGameStats[]>{
         const taskRepo = remult.repo(DbNhlPlayerGameStats)
-        return await taskRepo.find({where:{playerName: playerName, season: season}})
+        return await taskRepo.find({where:{playerName: playerName, season: season}, orderBy:{gameDate: 'desc'}})
     }
     
     
