@@ -707,10 +707,10 @@
         </div>
       </mat-tab>
       <mat-tab style=" color: white"  label="Player Props">
-        <div  style="height:100%; width: 100%; background-color: white;">
+        <!-- <div  style="height:100%; width: 100%; background-color: white;">
           <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
-        </div>
-        <div *ngIf="!playerPropIsLoading && selectedTabIndex == 1"
+        </div> -->
+        <div 
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
           <mat-accordion *ngFor="let prop of playerPropDataFinalNew" class="main-specific-class"
             style="width:90%; margin-bottom:.5rem;">
