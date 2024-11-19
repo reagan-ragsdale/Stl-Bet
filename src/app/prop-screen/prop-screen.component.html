@@ -707,7 +707,7 @@
         </div>
       </mat-tab>
       <mat-tab style=" color: white"  label="Player Props">
-        <div *ngIf="playerPropIsLoading" style="height:100%; width: 100%; background-color: white;">
+        <div  style="height:100%; width: 100%; background-color: white;">
           <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
         </div>
         <div *ngIf="!playerPropIsLoading && selectedTabIndex == 1"

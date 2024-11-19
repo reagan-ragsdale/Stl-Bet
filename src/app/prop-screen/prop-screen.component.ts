@@ -534,6 +534,7 @@ export class PropScreenComponent implements OnInit {
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     await this.setValuesToTeamPropFinal()
+    await this.loadPlayerProps();
     
     this.shouldShowSpinner = false
 
@@ -4389,10 +4390,10 @@ export class PropScreenComponent implements OnInit {
   selectedTabIndex = 0
   async onTabChange(event: any) {
     this.selectedTabIndex = event.index
-    if(event.index == 1 && this.playerPropsHasBeenLoaded == false){
+    /* if(event.index == 1 && this.playerPropsHasBeenLoaded == false){
       
       await this.loadPlayerProps();
-    }
+    } */
   }
   onChartSearch(index: number) {
     this.destroyBarCharts(index);
