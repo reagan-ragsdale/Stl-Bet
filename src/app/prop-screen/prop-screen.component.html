@@ -951,7 +951,7 @@
             </mat-expansion-panel>
           </mat-accordion>
         </div>
-        <div class="team-best-bets" style="width: 100%;display: flex; flex-direction: column; ">
+        <div *ngIf="playerPropDataFinalNew.length > 0" class="team-best-bets" style="width: 100%;display: flex; flex-direction: column; ">
           <h2 style="text-align: center; color: white; margin-top:1rem;">Best Bets</h2>
           <div style="margin-top:1rem; margin-bottom:1rem; margin-left:auto; margin-right:auto;">
             <h3 style="color: white; margin-bottom:0;"> Find bets with chance of winning over: {{sliderValuePlayer}}%
