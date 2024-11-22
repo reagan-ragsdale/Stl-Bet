@@ -710,6 +710,9 @@
         <!-- <div  style="height:100%; width: 100%; background-color: white;">
           <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
         </div> -->
+        <div style="width: 100%; " *ngIf="playerPropDataFinalNew.length == 0">
+          <h2 style="text-align: center; margin-top:2rem;">No player props available</h2>
+        </div>
         <div 
           style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly; margin-top:1rem; margin-bottom:1rem;">
           <mat-accordion *ngFor="let prop of playerPropDataFinalNew" class="main-specific-class"

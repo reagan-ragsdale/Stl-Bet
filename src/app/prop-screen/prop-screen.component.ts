@@ -533,7 +533,7 @@ export class PropScreenComponent implements OnInit {
     //this.allPropTrendData = await SportsBookController.loadAllBookDataByBookId(this.selectedGame)
 
     this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
-    await this.setValuesToTeamPropFinal()
+    this.setValuesToTeamPropFinal()
     await this.loadPlayerProps();
     
     this.shouldShowSpinner = false
@@ -561,7 +561,7 @@ export class PropScreenComponent implements OnInit {
     this.router.navigate(["/teamStats/" + this.selectedSport + "/" + teamId])
   }
 
-  async setValuesToTeamPropFinal() {
+  setValuesToTeamPropFinal() {
     
     this.arrayOfTeamBets = []
     console.log(this.teamPropFinnal)
@@ -569,11 +569,11 @@ export class PropScreenComponent implements OnInit {
       for (let prop of team) {
         let returnProp = {}
         if (prop[0].length > 1) {
-          returnProp = await this.getTeamStats(prop[0][0], team[0][0].teamName)
+          returnProp = this.getTeamStats(prop[0][0], team[0][0].teamName)
         }
         else {
 
-          returnProp = await this.getTeamStats(prop[0], team[0][0].teamName)
+          returnProp = this.getTeamStats(prop[0], team[0][0].teamName)
         }
         prop.propVariables = returnProp
       }
@@ -2400,7 +2400,7 @@ export class PropScreenComponent implements OnInit {
   public returnObj: any = {}
   public count = 0
   public arrayOfTeamBets: any[] = [];
-  async getTeamStats(team: DbGameBookData, teamName: string) {
+  getTeamStats(team: DbGameBookData, teamName: string) {
 
     try {
       console.log('Incoming team name below')
