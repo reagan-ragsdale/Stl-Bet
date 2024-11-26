@@ -177,13 +177,16 @@ export class NhlService {
         for (let i = 0; i < teamProps.length; i++) {
             let teamStats = teamProps[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
             let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
+            console.log("Info stuff below")
+            console.log(teamStats)
+            console.log(homeTeam)
             let propReturn: TeamPropDto = {
                 gameBookData: teamProps[i],
                 teamName: homeTeam.teamNameFull == teamProps[0].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
                 teamId: homeTeam.teamNameFull == teamProps[0].teamName ? homeTeam.teamId : awayTeam.teamId,
                 teamAgainstName: homeTeam.teamNameFull == teamProps[0].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
                 teamAgainstId: homeTeam.teamNameFull == teamProps[0].teamName ? awayTeam.teamId : homeTeam.teamId,
-                homeAway: homeTeam.teamNameFull == teamStats[0].teamName ? 'Home' : 'Away',
+                homeAway: homeTeam.teamNameAbvr == teamStats[0].teamName ? 'Home' : 'Away',
                 propType: '',
                 overallChance: 0,
                 homeAwayChance: 0,
