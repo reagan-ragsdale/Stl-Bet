@@ -179,10 +179,10 @@ export class NhlService {
             let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
             let propReturn: TeamPropDto = {
                 gameBookData: teamProps[i],
-                teamName: homeTeam.teamNameFull == teamStats[0].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
-                teamId: homeTeam.teamNameFull == teamStats[0].teamName ? homeTeam.teamId : awayTeam.teamId,
-                teamAgainstName: homeTeam.teamNameFull == teamStats[0].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
-                teamAgainstId: homeTeam.teamNameFull == teamStats[0].teamName ? awayTeam.teamId : homeTeam.teamId,
+                teamName: homeTeam.teamNameFull == teamProps[0].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
+                teamId: homeTeam.teamNameFull == teamProps[0].teamName ? homeTeam.teamId : awayTeam.teamId,
+                teamAgainstName: homeTeam.teamNameFull == teamProps[0].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
+                teamAgainstId: homeTeam.teamNameFull == teamProps[0].teamName ? awayTeam.teamId : homeTeam.teamId,
                 homeAway: homeTeam.teamNameFull == teamStats[0].teamName ? 'Home' : 'Away',
                 propType: '',
                 overallChance: 0,
