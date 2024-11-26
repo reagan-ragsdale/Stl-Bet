@@ -5,7 +5,7 @@ import { DbNhlPlayerGameStats } from "../../shared/dbTasks/DbNhlPlayerGameStats"
 import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
 import { TeamPropDto } from "../Dtos/TeamPropsDto";
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
-import { NhlController } from "src/shared/Controllers/NhlController";
+import { NhlController } from "../../shared/Controllers/NhlController";
 
 
 export class NhlService {
