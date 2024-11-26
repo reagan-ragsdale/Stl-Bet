@@ -3592,11 +3592,11 @@ export class PropScreenComponent implements OnInit {
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings", 'h2h_p1', 'h2h_p2', 'h2h_p3']
   displayPropTitle(prop: any): string {
     let finalReturn = ''
-    if (prop[0].length > 1) {
-      finalReturn = this.listOfTeamProps[prop[0][0].marketKey]
+    if (prop.length > 1) {
+      finalReturn = this.listOfTeamProps[prop[0].gameBookData.marketKey]
     }
     else {
-      finalReturn = this.listOfTeamProps[prop[0].marketKey]
+      finalReturn = this.listOfTeamProps[prop.gameBookData.marketKey]
     }
 
     return finalReturn
