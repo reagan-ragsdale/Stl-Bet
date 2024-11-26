@@ -175,8 +175,8 @@ export class NhlService {
 
 
         for (let i = 0; i < teamProps.length; i++) {
-            let teamStats = props[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
-            let teamAgainstStats = props[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
+            let teamStats = teamProps[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
+            let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
             let propReturn: TeamPropDto = {
                 gameBookData: teamProps[i],
                 teamName: homeTeam.teamNameFull == teamStats[0].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
