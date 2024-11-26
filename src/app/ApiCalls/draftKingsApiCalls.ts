@@ -57,6 +57,29 @@ export class draftKingsApiController {
     return this.playerPropData
   }
 
+  static async getAlternatePlayerProps(sport: string, game: string) {
+    var urlNew = '';
+    var playerProps = '';
+    if (sport === "NHL") {
+      playerProps = "player_shots_on_goal_alternate"
+
+    }
+    urlNew = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + game + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=" + playerProps + "&bookmakers=draftkings&oddsFormat=american";
+
+    const promise = await fetch(urlNew);
+    const processedResponse = await promise.json();
+    this.playerProps = processedResponse;
+    try{
+      this.playerPropData = await this.convertPropDataToInterface(sport, game)
+    }catch(error:any){
+      console.log("Player prop " + error.message)
+    }
+    
+    return this.playerPropData
+  }
+
+  
+
   static async convertPropDataToInterface(sport: string, game: string) {
     var tempData: DbPlayerPropData[] = [];
     let allOfPlayersBook = await PlayerPropController.loadPlayerPropData(sport, game)

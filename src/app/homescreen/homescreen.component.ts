@@ -42,7 +42,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   playerStatsButtons: any[] = []
   teamStatsButtons: any[] = []
 
-  public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: false, selected: false }, { name: "MLB", disabled: true, selected: true }, { name: "NFL", disabled: false, selected: false }];
+  public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: false, selected: true }, { name: "MLB", disabled: true, selected: false }, { name: "NFL", disabled: false, selected: false }];
   public selectedSport = ''
   public playerDataFinal: any[] = []
   public playerData: any[] = []

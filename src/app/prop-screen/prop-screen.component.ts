@@ -41,6 +41,7 @@ import { DBNflTeamGameStats } from '../../shared/dbTasks/DbNflTeamGameStats';
 import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
 import { NhlController } from '../../shared/Controllers/NhlController';
 import { DbNhlTeamGameStats } from '../../shared/dbTasks/DbNhlTeamGameStats';
+import { NhlService } from '../Services/NhlService';
 
 @Component({
   selector: 'app-prop-screen',
@@ -383,10 +384,27 @@ export class PropScreenComponent implements OnInit {
   public teamPropFinnal: any = []
   public selectedTotalAwayProp: number = 0
   public selectedTotalHomeProp: number = 0
+  team1Info: DbTeamInfo = {
+    teamId: 0,
+    teamNameAbvr: '',
+    teamNameFull: '',
+    sport: ''
+  }
+  team2Info: DbTeamInfo = {
+    teamId: 0,
+    teamNameAbvr: '',
+    teamNameFull: '',
+    sport: ''
+  }
   async displayProp() {
     this.shouldShowSpinner = true;
     this.teamPropIsLoading = true
     this.teamPropFinnal = []
+    
+    let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
+    this.teamPropFinnal = await NhlService.getTeamPropData(gameProps, this.allSportTeamInfo)
+    console.log("new prop array below")
+    console.log(this.teamPropFinnal)
     const tempProp = this.selectedSportGames.filter((x) => x.bookId == this.selectedGame);
     var name1 = '';
     this.team1GameStats = []
@@ -468,7 +486,7 @@ export class PropScreenComponent implements OnInit {
       }
     }
 
-    this.teamPropFinnal.push(team2Final, team1Final)
+    //this.teamPropFinnal.push(team2Final, team1Final)
 
 
 
@@ -532,8 +550,8 @@ export class PropScreenComponent implements OnInit {
 
     //this.allPropTrendData = await SportsBookController.loadAllBookDataByBookId(this.selectedGame)
 
-    this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
-    this.setValuesToTeamPropFinal()
+    //this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
+    //this.setValuesToTeamPropFinal()
     await this.loadPlayerProps();
     
     this.shouldShowSpinner = false

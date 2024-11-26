@@ -1,0 +1,32 @@
+import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
+
+export interface TeamPropDto {
+    gameBookData: DbGameBookData
+    teamName: string,
+    teamId: number,
+    teamAgainstName: string,
+    teamAgainstId: number,
+    homeAway: string,
+    propType: string,
+    overallChance: number,
+    homeAwayChance: number,
+    teamChance: number,
+    overallWeighted: number,
+    homeAwayWeighted: number,
+    teamWeighted: number,
+    averageOverall: number,
+    averageHomeAway: number,
+    averageTeam: number,
+    highOverall: number,
+    highHomeAway: number,
+    highTeam: number,
+    lowOverall: number,
+    lowHomeAway: number,
+    lowTeam: number,
+    isDisabled: boolean,
+    teamStats: any[],
+    teamAgainstStats: any[],
+    last10Overall: any[],
+    last10HomeAway: any[],
+    last10Team: any[],
+}

@@ -56,6 +56,32 @@ export class PlayerPropController {
 
     }
   }
+  @BackendMethod({ allowed: true})
+  static async updateAlternatePlayerSeqZero(playerData: DbPlayerPropData[]){
+    const taskRepo = remult.repo(DbPlayerPropData)
+    //get each individual book id
+    let individualBookIds = playerData.map(e => e.bookId).filter((value, index, array) => array.indexOf(value) === index)
+    //loop through each book id
+    for(let book of individualBookIds){
+      //find if there is already a entry in the db with bookseq 0
+      let databaseBookSeqZero = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
+      
+      if(databaseBookSeqZero.length > 0){
+        //get all the incoming prop data matched on the book id
+        let propDataMathcedOnBookId = playerData.filter(e => e.bookId == book)
+        //loop through each of the props for that book id
+        for(let individualProp of propDataMathcedOnBookId){
+          //find the prop from the database that matches the incoming prop
+          let matchedProp = databaseBookSeqZero.filter(e => e.marketKey == individualProp.marketKey && e.playerName == individualProp.playerName && e.description == individualProp.description && e.point == individualProp.point)[0]
+          //update the databasebookseqZero
+          
+          await taskRepo.save({...matchedProp, price: individualProp.price})
+        }
+        
+      }
+
+    }
+  }
 
   @BackendMethod({ allowed: true })
   static async loadCurrentPlayerPropData(sport: string, playerName: string): Promise<DbPlayerPropData[]> {
