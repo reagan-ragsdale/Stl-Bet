@@ -552,6 +552,7 @@ export class PropScreenComponent implements OnInit {
 
     //this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
     //this.setValuesToTeamPropFinal()
+    this.teamPropIsLoading = false
     await this.loadPlayerProps();
     
     this.shouldShowSpinner = false
@@ -597,7 +598,7 @@ export class PropScreenComponent implements OnInit {
       }
     }
     this.getTeamBestBets()
-    this.teamPropIsLoading = false
+    
   }
   playerPropsHasBeenLoaded: Boolean = false
   async loadPlayerProps(){
