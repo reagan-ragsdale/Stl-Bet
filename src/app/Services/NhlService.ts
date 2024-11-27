@@ -6,7 +6,8 @@ import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
 import { TeamPropDto } from "../Dtos/TeamPropsDto";
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
 import { NhlController } from "../../shared/Controllers/NhlController";
-import { DbPlayerPropData } from "src/shared/dbTasks/DbPlayerPropData";
+import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
+import { PlayerPropController } from "../../shared/Controllers/PlayerPropController";
 
 
 export class NhlService {
@@ -663,8 +664,14 @@ export class NhlService {
         return finalReturn
     }
 
-    static async getPlayerPropData(props: DbPlayerPropData[], teamsInfo:DbTeamInfo[]): Promise<any[]>{
+    static async getPlayerPropData(bookId: string): Promise<any[]>{
         let finalReturn: any[] = []
+
+        let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
+
+        let uniquePlayerNames = playerPropData.map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
+
+        let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
 
         return finalReturn
     }

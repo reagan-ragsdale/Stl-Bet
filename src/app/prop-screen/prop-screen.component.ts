@@ -407,8 +407,17 @@ export class PropScreenComponent implements OnInit {
     this.teamPropFinnal = await NhlService.getTeamPropData(gameProps, this.allSportTeamInfo)
     console.log("new prop array below")
     console.log(this.teamPropFinnal)
-    this.awayTeamStatsDisplay = this.teamPropFinnal[0].filter((e: { gameBookData: { marketKey: string; }; }) => e.gameBookData.marketKey == 'h2h')[0]
-    this.homeTeamStatsDisplay = this.teamPropFinnal[1].filter((e: { gameBookData: { marketKey: string; }; }) => e.gameBookData.marketKey == 'h2h')[0]
+    this.teamPropFinnal[0].forEach((e: any) => {
+      if(e.gameBookData.marketKey == 'h2h'){
+        this.awayTeamStatsDisplay = e
+      }
+    })
+    this.teamPropFinnal[1].forEach((e: any) => {
+      if(e.gameBookData.marketKey == 'h2h'){
+        this.homeTeamStatsDisplay = e
+      }
+    })
+    
    
     console.log(this.awayTeamStatsDisplay)
     console.log(this.homeTeamStatsDisplay)
@@ -423,7 +432,8 @@ export class PropScreenComponent implements OnInit {
     //this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
    
     this.teamPropIsLoading = false
-    await this.loadPlayerProps();
+    this.playerPropDataFinalNew = await NhlService.getPlayerPropData(this.selectedGame)
+    //this.loadPlayerProps();
     
     this.shouldShowSpinner = false
 
