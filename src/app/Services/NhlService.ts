@@ -476,6 +476,9 @@ export class NhlService {
                 homeProp.overallChance = homeProp.overallTotal == 0 ? 0 : homeProp.overallWins / homeProp.overallTotal
                 homeProp.homeAwayChance = homeProp.homeAwayTotal == 0 ? 0 : homeProp.homeAwayWins / homeProp.homeAwayTotal
                 homeProp.teamChance = homeProp.teamTotal == 0 ? 0 : homeProp.teamWins / homeProp.teamTotal
+                homeProp.last10Overall = overAllTableTemp.slice(0,10)
+                homeProp.last10HomeAway = homeAwayTableTemp.slice(0,10)
+                homeProp.last10Team = teamTableTemp.slice(0,10)
 
                 teamStats = awayTeamStats
                 awayProp.overallWins = teamStats.filter(e => e.result == 'W' && (e.pointsScoredOverall + e.pointsScoredOverall) > overUnderProps[j].point).length;
@@ -526,6 +529,9 @@ export class NhlService {
                 awayProp.overallChance = awayProp.overallTotal == 0 ? 0 : awayProp.overallWins / awayProp.overallTotal
                 awayProp.homeAwayChance = awayProp.homeAwayTotal == 0 ? 0 : awayProp.homeAwayWins / awayProp.homeAwayTotal
                 awayProp.teamChance = awayProp.teamTotal == 0 ? 0 : awayProp.teamWins / awayProp.teamTotal
+                awayProp.last10Overall = overAllTableTemp.slice(0,10)
+                awayProp.last10HomeAway = homeAwayTableTemp.slice(0,10)
+                awayProp.last10Team = teamTableTemp.slice(0,10)
             }
             else {
                 teamStats = homeTeamStats
@@ -577,6 +583,9 @@ export class NhlService {
                 homeProp.overallChance = homeProp.overallTotal == 0 ? 0 : homeProp.overallWins / homeProp.overallTotal
                 homeProp.homeAwayChance = homeProp.homeAwayTotal == 0 ? 0 : homeProp.homeAwayWins / homeProp.homeAwayTotal
                 homeProp.teamChance = homeProp.teamTotal == 0 ? 0 : homeProp.teamWins / homeProp.teamTotal
+                homeProp.last10Overall = overAllTableTemp.slice(0,10)
+                homeProp.last10HomeAway = homeAwayTableTemp.slice(0,10)
+                homeProp.last10Team = teamTableTemp.slice(0,10)
 
                 teamStats = awayTeamStats
                 awayProp.overallWins = teamStats.filter(e => e.result == 'W' && (e.pointsScoredOverall + e.pointsScoredOverall) < overUnderProps[j].point).length;
@@ -627,8 +636,14 @@ export class NhlService {
                 awayProp.overallChance = awayProp.overallTotal == 0 ? 0 : awayProp.overallWins / awayProp.overallTotal
                 awayProp.homeAwayChance = awayProp.homeAwayTotal == 0 ? 0 : awayProp.homeAwayWins / awayProp.homeAwayTotal
                 awayProp.teamChance = awayProp.teamTotal == 0 ? 0 : awayProp.teamWins / awayProp.teamTotal
+                awayProp.last10Overall = overAllTableTemp.slice(0,10)
+                awayProp.last10HomeAway = homeAwayTableTemp.slice(0,10)
+                awayProp.last10Team = teamTableTemp.slice(0,10)
+                
             }
+            
 
+            
 
             homeTeamOverUnderFinal.push(homeProp)
             awayTeamOverUnderFinal.push(awayProp)
