@@ -238,7 +238,7 @@
                                     percent: '2.2-2'}}</h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'total'">
-                                    {{prop[prop.overUnder ? 0 : 1].homeAWayChance | percent: '2.2-2'}}</h3>
+                                    {{prop[prop.overUnder ? 0 : 1].homeAwayChance | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Weighted</h3>
@@ -443,7 +443,7 @@
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Record</h3>
                               <h3 style="margin:auto"
-                                *ngIf="bet.propType != 'total' || (bet.propType == 'total' && bet.overUnder == false)">
+                                *ngIf="bet.propType != 'total'">
                                 {{bet.totalWins}} - {{bet.totalGames - bet.totalWins}}</h3>
                               <h3 style="margin:auto" *ngIf="bet.propType == 'total' && bet.overUnder == true">
                                 {{bet.totalGames - bet.totalWins}} - {{bet.totalWins}}</h3>
