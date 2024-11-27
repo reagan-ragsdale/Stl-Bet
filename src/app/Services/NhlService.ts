@@ -6,6 +6,7 @@ import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
 import { TeamPropDto } from "../Dtos/TeamPropsDto";
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
 import { NhlController } from "../../shared/Controllers/NhlController";
+import { DbPlayerPropData } from "src/shared/dbTasks/DbPlayerPropData";
 
 
 export class NhlService {
@@ -177,9 +178,7 @@ export class NhlService {
         for (let i = 0; i < teamProps.length; i++) {
             let teamStats = teamProps[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
             let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
-            console.log("Info stuff below")
-            console.log(teamStats)
-            console.log(homeTeam)
+            
             let propReturn: TeamPropDto = {
                 gameBookData: teamProps[i],
                 teamName: homeTeam.teamNameFull == teamProps[i].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
@@ -660,6 +659,12 @@ export class NhlService {
         awayTeamPropsFinal[awayTeamPropsFinal.length - 1].overUnder = false
         finalReturn.push(awayTeamPropsFinal)
         finalReturn.push(homeTeamPropsFinal)
+
+        return finalReturn
+    }
+
+    static async getPlayerPropData(props: DbPlayerPropData[], teamsInfo:DbTeamInfo[]): Promise<any[]>{
+        let finalReturn: any[] = []
 
         return finalReturn
     }

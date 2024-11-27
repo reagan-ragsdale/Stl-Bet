@@ -405,10 +405,11 @@ export class PropScreenComponent implements OnInit {
     
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
     this.teamPropFinnal = await NhlService.getTeamPropData(gameProps, this.allSportTeamInfo)
-    this.awayTeamStatsDisplay = this.teamPropFinnal[0].filter((e: { gameBookData: { marketKey: string; }; }) => e.gameBookData.marketKey == 'h2h')[0]
-    this.homeTeamStatsDisplay = this.teamPropFinnal[1].filter((e: { gameBookData: { marketKey: string; }; }) => e.gameBookData.marketKey == 'h2h')[0]
     console.log("new prop array below")
     console.log(this.teamPropFinnal)
+    this.awayTeamStatsDisplay = this.teamPropFinnal[0].filter((e: { gameBookData: { marketKey: string; }; }) => e.gameBookData.marketKey == 'h2h')[0]
+    this.homeTeamStatsDisplay = this.teamPropFinnal[1].filter((e: { gameBookData: { marketKey: string; }; }) => e.gameBookData.marketKey == 'h2h')[0]
+   
     console.log(this.awayTeamStatsDisplay)
     console.log(this.homeTeamStatsDisplay)
    
