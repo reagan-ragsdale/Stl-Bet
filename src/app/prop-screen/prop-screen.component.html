@@ -262,7 +262,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].highHomeAway | number: '1.2-2'}}</h3>
                                 </div>
-                                <div *ngIf="prop.propVariables.propType != 'h2h'" [ngClass]="'ml-stat'">
+                                <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
                                   <h3 *ngIf="prop.propType == 'spread'" style="margin:auto">{{prop.lowHomeAway > 0 ? '+' : ''}}
                                     {{prop.lowHomeAway | number: '1.2-2'}}</h3>
@@ -320,7 +320,7 @@
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
-                                  <h3 *ngIf="prop.propType == 'spread'" style="margin:auto">{{prop.propVariables.lowTeam > 0 ? '+' : ''}}
+                                  <h3 *ngIf="prop.propType == 'spread'" style="margin:auto">{{prop.lowTeam > 0 ? '+' : ''}}
                                     {{prop.lowTeam | number:'1.2-2'}}</h3>
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].lowTeam | number:'1.2-2'}}</h3>
