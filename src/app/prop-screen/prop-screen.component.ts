@@ -408,14 +408,20 @@ export class PropScreenComponent implements OnInit {
     console.log("new prop array below")
     console.log(this.teamPropFinnal)
     this.teamPropFinnal[0].forEach((e: any) => {
-      if(e.gameBookData.marketKey == 'h2h'){
-        this.awayTeamStatsDisplay = e
+      if(e.length <= 1){
+        if(e.gameBookData.marketKey == 'h2h'){
+          this.awayTeamStatsDisplay = e
+        }
       }
+      
     })
     this.teamPropFinnal[1].forEach((e: any) => {
-      if(e.gameBookData.marketKey == 'h2h'){
-        this.homeTeamStatsDisplay = e
+      if(e.length <= 1){
+        if(e.gameBookData.marketKey == 'h2h'){
+          this.homeTeamStatsDisplay = e
+        }
       }
+      
     })
     
    
