@@ -411,54 +411,7 @@ export class PropScreenComponent implements OnInit {
     console.log(this.teamPropFinnal)
     console.log(this.awayTeamStatsDisplay)
     console.log(this.homeTeamStatsDisplay)
-    var name1 = '';
-    this.team1GameStats = []
-    this.team2GameStats = []
-    this.team1GameStatsReversed = []
-    this.team2GameStatsReversed = []
-
-
-
-    
-
-
-    if (this.selectedSport == "NBA") {
-      this.team1GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team1[0].teamName)], 2023)
-      this.team2GameStats = await NbaController.nbaLoadTeamGameStatsByTeamIdAndSeason(reusedFunctions.arrayOfNBATeams[reusedFunctions.addUnderScoreToName(team2[0].teamName)], 2023)
-    }
-    else if (this.selectedSport == "MLB") {
-      this.team1GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team1[0].teamName]], 2024)
-      this.team2GameStats = await MlbController.mlbGetTeamGameStatsByTeamIdAndSeason(MlbService.mlbTeamIds[MlbService.mlbTeamNameToAbvr[team2[0].teamName]], 2024)
-
-      this.awayAlternateSpreadstemp = team2.filter(e => e.marketKey == "alternate_spreads")
-      this.homeAlternateSpreadstemp = team1.filter(e => e.marketKey == "alternate_spreads")
-
-
-    }
-   /*  else if (this.selectedSport == "NHL") {
-      let team1Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team2[0].teamName)
-      let stats = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([team1Info[0].teamNameAbvr,team2Info[0].teamNameAbvr], 2024)
-      this.team1GameStats = stats.filter(e => e.teamName == team1Info[0].teamNameAbvr)
-      this.team2GameStats = stats.filter(e => e.teamName == team2Info[0].teamNameAbvr)
-      for(let i = 0; i < this.team1GameStats.length; i++){
-        this.team1GameStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.team1GameStats[i].gameDate)
-      }
-      for(let i = 0; i < this.team2GameStats.length; i++){
-        this.team2GameStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.team2GameStats[i].gameDate)
-      }
-    } */
-
-    else if (this.selectedSport == "NFL") {
-      let team1Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team1[0].teamName)
-      let team2Info = this.allSportTeamInfo.filter(e => e.teamNameFull == team2[0].teamName)
-      this.team1GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team1Info[0].teamNameAbvr, 2024)
-      this.team2GameStats = await NflController.nflGetAllTeamGameStatsByNameAndSeason(team2Info[0].teamNameAbvr, 2024)
-    }
-    this.team1GameStatsReversed = JSON.parse(JSON.stringify(this.team1GameStats))
-    this.team1GameStatsReversed = this.team1GameStatsReversed.reverse()
-    this.team2GameStatsReversed = JSON.parse(JSON.stringify(this.team2GameStats))
-    this.team2GameStatsReversed = this.team2GameStatsReversed.reverse()
+   
 
     
 
