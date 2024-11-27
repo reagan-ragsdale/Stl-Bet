@@ -158,7 +158,7 @@
                             <div *ngIf="prop.propType == 'total'"
                               style="margin-left:1rem; display:flex; margin-top: .5rem">
                               <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
-                              <mat-slide-toggle [(ngModel)]="prop.propVariables.overUnder"></mat-slide-toggle>
+                              <mat-slide-toggle [(ngModel)]="prop.overUnder"></mat-slide-toggle>
                               <h4 style="margin-bottom: auto">Over</h4>
                             </div>
                             <div class="full-stats"
@@ -172,13 +172,14 @@
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
                                   <h3 style="margin:auto"
-                                    *ngIf="prop.propVariables.propType != 'total' || (prop.propVariables.propType == 'total' && prop.propVariables.overUnder == false)">
-                                    {{prop.propVariables.totalWins}} - {{prop.propVariables.totalGames -
-                                    prop.propVariables.totalWins}}</h3>
+                                    *ngIf="prop.propType != 'total'">
+                                    {{prop.overallChance}}</h3>
                                   <h3 style="margin:auto"
-                                    *ngIf="prop.propVariables.propType == 'total' && prop.propVariables.overUnder == true">
-                                    {{prop.propVariables.totalGames - prop.propVariables.totalWins}} -
-                                    {{prop.propVariables.totalWins}}</h3>
+                                    *ngIf="prop.propType == 'total' && prop.overUnder == false">
+                                    {{prop[0].overallChance}}</h3>
+                                    <h3 style="margin:auto"
+                                    *ngIf="prop.propType == 'total' && prop.overUnder == true">
+                                    {{prop[1].overallChance}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
