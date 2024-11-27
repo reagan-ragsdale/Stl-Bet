@@ -396,8 +396,8 @@ export class PropScreenComponent implements OnInit {
     teamNameFull: '',
     sport: ''
   }
-  awayTeamStatsDisplay: any[] = []
-  homeTeamStatsDisplay: any[] = []
+  awayTeamStatsDisplay: any = []
+  homeTeamStatsDisplay: any = []
   async displayProp() {
     this.shouldShowSpinner = true;
     this.teamPropIsLoading = true
