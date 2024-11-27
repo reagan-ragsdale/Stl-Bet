@@ -3610,17 +3610,17 @@ export class PropScreenComponent implements OnInit {
 
     if (prop.length > 1) {
       if (prop[0].gameBookData.marketKey == 'totals') {
-        let propOver = prop[0].price > 0 ? '+' : ''
-        let one = prop[0].teamName + " " + prop[0].point + " | " + propOver + prop[0].price
+        let propOver = prop[0].gameBookData.price > 0 ? '+' : ''
+        let one = prop[0].teamName + " " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
         propOver = prop[1].price > 0 ? '+' : ''
-        let two = prop[1].teamName + " " + prop[1].point + " | " + propOver + prop[1].price
+        let two = prop[1].teamName + " " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
         finalReturn = one + " " + two
       }
-      else if (prop[0].marketKey == ('team_totals Over') || prop[0].marketKey == ('team_totals Under')) {
-        let propOver = prop[0].price > 0 ? '+' : ''
-        let one = "Over " + prop[0].point + " | " + propOver + prop[0].price
-        propOver = prop[1].price > 0 ? '+' : ''
-        let two = "Under " + prop[1].point + " | " + propOver + prop[1].price
+      else if (prop[0].gameBookData.marketKey == ('team_totals Over') || prop[0].gameBookData.marketKey == ('team_totals Under')) {
+        let propOver = prop[0].gameBookData.price > 0 ? '+' : ''
+        let one = "Over " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
+        propOver = prop[1].gameBookData.price > 0 ? '+' : ''
+        let two = "Under " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
         finalReturn = one + " " + two
       }
 
@@ -3628,13 +3628,13 @@ export class PropScreenComponent implements OnInit {
     }
     else {
       if (this.listOfMoneylines.includes(prop.gameBookData.marketKey)) {
-        let overProp = prop.price > 0 ? '+' : ''
-        finalReturn = overProp + prop.price
+        let overProp = prop.gameBookData.price > 0 ? '+' : ''
+        finalReturn = overProp + prop.gameBookData.price
       }
       else {
-        let overProp = prop.price > 0 ? '+' : ''
-        let overPoint = prop.point > 0 ? "+" : ''
-        finalReturn = overPoint + prop.point + " | " + overProp + prop.price
+        let overProp = prop.gameBookData.price > 0 ? '+' : ''
+        let overPoint = prop.gameBookData.point > 0 ? "+" : ''
+        finalReturn = overPoint + prop.gameBookData.point + " | " + overProp + prop.gameBookData.price
       }
     }
     return finalReturn
