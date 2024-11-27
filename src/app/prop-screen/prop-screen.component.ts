@@ -580,7 +580,7 @@ export class PropScreenComponent implements OnInit {
     this.router.navigate(["/teamStats/" + this.selectedSport + "/" + teamId])
   }
 
-  setValuesToTeamPropFinal() {
+ /*  setValuesToTeamPropFinal() {
     
     this.arrayOfTeamBets = []
     console.log(this.teamPropFinnal)
@@ -599,7 +599,7 @@ export class PropScreenComponent implements OnInit {
     }
     this.getTeamBestBets()
     
-  }
+  } */
   playerPropsHasBeenLoaded: Boolean = false
   async loadPlayerProps(){
     this.shouldShowSpinner = true
@@ -2419,7 +2419,7 @@ export class PropScreenComponent implements OnInit {
   public returnObj: any = {}
   public count = 0
   public arrayOfTeamBets: any[] = [];
-  getTeamStats(team: DbGameBookData, teamName: string) {
+  /* getTeamStats(team: DbGameBookData, teamName: string) {
 
     try {
       console.log('Incoming team name below')
@@ -3362,7 +3362,7 @@ export class PropScreenComponent implements OnInit {
     this.arrayOfTeamBets.push(this.returnObj)
     return this.returnObj
 
-  }
+  } */
   public teamBestBets: any[] = []
   //how to find best bets
   //if either overall home/away or team win percentage is over a certain number then add it to it
