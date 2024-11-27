@@ -172,9 +172,9 @@
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propType != 'total'">
-                                    {{prop.overallWins}} - {{prop.overallTotal}}</h3>
+                                    {{prop.overallWins}} - {{prop.overallTotal - prop.overallWins}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propType == 'total'">
-                                    {{prop[prop.overUnder ? 0 : 1].overallWins}} - {{prop[prop.overUnder ? 0 : 1].overallTotal}}</h3>
+                                    {{prop[prop.overUnder ? 0 : 1].overallWins}} - {{prop[prop.overUnder ? 0 : 1].overallTotal - prop[prop.overUnder ? 0 : 1].overallWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -224,11 +224,11 @@
                                   <h3 style="margin:auto">Record</h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propType != 'total'">
-                                    {{prop.homeAwayWins}} - {{prop.homeAwayTotal}}
+                                    {{prop.homeAwayWins}} - {{prop.homeAwayTotal - prop.homeAwayWins}}
                                     </h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'total'">
-                                    {{prop[prop.overUnder ? 0 : 1].homeAwayWins}} - {{prop[prop.overUnder ? 0 : 1].homeAwayTotal}}</h3>
+                                    {{prop[prop.overUnder ? 0 : 1].homeAwayWins}} - {{prop[prop.overUnder ? 0 : 1].homeAwayTotal - prop[prop.overUnder ? 0 : 1].homeAwayWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -281,7 +281,7 @@
                                   <h3 style="margin:auto">Record</h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propType != 'total'">
-                                    {{prop.teamWins}} - {{prop.teamTotal}}</h3>
+                                    {{prop.teamWins}} - {{prop.teamTotal - prop.teamWins}}</h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'total'">
                                     {{prop[prop.overUnder ? 0 : 1].teamWins}} - {{prop[prop.overUnder ? 0 : 1].teamTotal}}</h3>
