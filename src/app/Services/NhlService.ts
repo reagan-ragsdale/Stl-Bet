@@ -164,8 +164,8 @@ export class NhlService {
         let teamStatsCombined = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([homeTeam.teamNameAbvr, awayTeam.teamNameAbvr], 2024)
         let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
         let awayTeamStats = teamStatsCombined.filter(e => e.teamName == awayTeam.teamNameAbvr)
-        let homeTeamPropsFinal = []
-        let awayTeamPropsFinal = []
+        let homeTeamPropsFinal: any[] = []
+        let awayTeamPropsFinal: any[] = []
         let teamProps = props.filter(e => {
             return e.teamName != 'Over' && e.teamName != 'Under';
         })
@@ -615,7 +615,9 @@ export class NhlService {
         }
 
         homeTeamPropsFinal.push(homeTeamOverUnderFinal)
+        homeTeamPropsFinal[homeTeamPropsFinal.length -1].propType = 'total'
         awayTeamPropsFinal.push(awayTeamOverUnderFinal)
+        awayTeamPropsFinal[awayTeamPropsFinal.length -1].propType = 'total'
         finalReturn.push(awayTeamPropsFinal)
         finalReturn.push(homeTeamPropsFinal)
 
