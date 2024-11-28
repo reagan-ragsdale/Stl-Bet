@@ -92,16 +92,16 @@
 
     <div style="display:flex; flex-direction: column; width: 100%; margin-top: 1rem;">
       <div style="display:flex">
-        <div style="display:flex; width: 48%;">
-          <a class="team-name" style="margin-left: auto;">
+        <div class="team-and-record" >
+          <a class="team-name" >
             <h2 (click)="onTeamClick(awayTeamStatsDisplay.teamName)">{{awayTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
           </a>
           <h2 class="record1" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.overallWins}} -
             {{awayTeamStatsDisplay.overallTotal - awayTeamStatsDisplay.overallWins}})</h2>
         </div>
         <h2 style="width: 4%; text-align: center;">&#64;</h2>
-        <div style="display:flex; width: 48%;">
-          <a class="team-name" style="margin-left: auto;">
+        <div class="team-and-record">
+          <a class="team-name" >
             <h2 (click)="onTeamClick(homeTeamStatsDisplay.teamName)">{{homeTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
           </a>
           <h2 class="record2" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.overallWins}} -

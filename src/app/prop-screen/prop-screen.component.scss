@@ -232,6 +232,10 @@ mat-mdc-tab-body-content{
   cursor: pointer;
 
 }
+.team-and-record{
+  display:flex; 
+  width: 48%;
+}
 
 .player-dropdown{
   display: flex; 
@@ -245,6 +249,7 @@ mat-mdc-tab-body-content{
   //width:48%;
   text-align: center;
   text-decoration: none;
+  margin-left: auto;
 }
 .team-name :hover{
   cursor: pointer;
@@ -297,6 +302,12 @@ mat-mdc-tab-body-content{
       gap:0.5rem;
 
     }
+    .team-and-record{
+      flex-direction: column;
+    }
+    .team-name{
+      margin-left:unset;
+    }
     .prop-div{
       width:100%;
       margin-left:0;
@@ -319,12 +330,15 @@ mat-mdc-tab-body-content{
     }
     .commence{
       width:33% !important;
+      
     }
     .record1{
       width:33% !important;
+      margin-left:auto;
     }
     .record2{
       width:33% !important;
+      margin-left:auto;
     }
     .player-dropdown{
       flex-direction:column;
