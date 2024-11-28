@@ -666,12 +666,28 @@ export class NhlService {
 
     static async getPlayerPropData(bookId: string): Promise<any[]>{
         let finalReturn: any[] = []
+        let awayTeamPlayerProps: any[] = []
+        let homeTeamPlayerProps: any[] = []
 
         let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
+
+        let uniquePlayerProps = playerPropData.map(e => e.marketKey).filter((value,index,array) => array.indexOf(value) === index)
 
         let uniquePlayerNames = playerPropData.map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
 
         let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
+
+        for(let j = 0; j < uniquePlayerProps.length; j++){
+            let homeTeamPlayers: any[] = []
+            let awayTeamPlayers: any[] = []
+            let specifcProps = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j])
+            for(let i = 0; i < specifcProps.length; i++){
+                let playerPropStats: any[] = []
+                let playerStats = allPlayerStats.filter(e => e.playerName == specifcProps[i].playerName)
+    
+            }
+        }
+        
 
         return finalReturn
     }

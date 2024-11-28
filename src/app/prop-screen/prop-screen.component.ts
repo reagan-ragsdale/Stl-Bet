@@ -429,7 +429,7 @@ export class PropScreenComponent implements OnInit {
       }
       
     })
-    
+    this.getTeamBestBets()
    
     console.log(this.awayTeamStatsDisplay)
     console.log(this.homeTeamStatsDisplay)
@@ -2298,8 +2298,23 @@ export class PropScreenComponent implements OnInit {
   //
   sliderValue: number = 80;
   getTeamBestBets() {
+    for(let i = 0; i < this.teamPropFinnal.length; i++){
+      for(let j = 0; j < this.teamPropFinnal[i].length; j++){
+        if(this.teamPropFinnal[i][j].length > 1){
+          for(let k = 0; k < this.teamPropFinnal[i][j].length; k++){
+            this.arrayOfTeamBets.push(this.teamPropFinnal[i][j][k])
+          }
+
+        }
+        else{
+          this.arrayOfTeamBets.push(this.teamPropFinnal[i][j])
+        }
+      }
+    }
+    console.log("array of team bets below")
+    console.log(this.arrayOfTeamBets)
     this.teamBestBets = []
-    for (let bet of this.arrayOfTeamBets) {
+    /* for (let bet of this.arrayOfTeamBets) {
       let overallWin = bet.totalGames == 0 ? 0 : (bet.totalWins / bet.totalGames)
       let homeAwayWin = bet.totalGamesHomeAway == 0 ? 0 : (bet.totalWinsHomeAway / bet.totalGamesHomeAway)
       let teamWin = bet.totalGamesTeam == 0 ? 0 : (bet.totalWinsTeam / bet.totalGamesTeam)
@@ -2335,10 +2350,11 @@ export class PropScreenComponent implements OnInit {
 
 
 
-    }
+    } */
 
   }
   calculateNewBestBetTeam() {
+
     this.teamBestBets = []
     console.log(this.arrayOfTeamBets)
     for (let bet of this.arrayOfTeamBets) {
