@@ -694,6 +694,8 @@ export class NhlService {
                     let playerInfo = allPlayerInfo.filter(e => e.playerId == playerStats[0].playerId)
                     let playerTeamNameLong = allTeamInfo.filter(e => e.teamNameAbvr = playerInfo[0].teamName)
                     let playerTeamAgainst = playerTeamNameLong[0].teamNameFull == specificProps[i].awayTeam ? allTeamInfo.filter(e => e.teamNameAbvr = specificProps[i].homeTeam) : allTeamInfo.filter(e => e.teamNameAbvr = specificProps[i].awayTeam)
+                    console.log(playerTeamNameLong[0].teamNameFull)
+                    console.log(specificProps[i])
                     let playerPropObj: PlayerPropDto = {
                         playerBookData: specificProps[i],
                         playerName: playerInfo[0].playerName,
