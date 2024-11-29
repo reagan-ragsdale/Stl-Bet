@@ -9,7 +9,7 @@ import { NhlController } from "../../shared/Controllers/NhlController";
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { PlayerPropController } from "../../shared/Controllers/PlayerPropController";
 import { PlayerPropDto } from "../Dtos/PlayerPropsDto";
-import { PlayerInfoController } from "src/shared/Controllers/PlayerInfoController";
+import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController";
 
 
 export class NhlService {
