@@ -668,8 +668,6 @@ export class NhlService {
 
     static async getPlayerPropData(bookId: string, allTeamInfo: DbTeamInfo[]): Promise<any[]> {
         let finalReturn: any[] = []
-        let awayTeamPlayerProps: any[] = []
-        let homeTeamPlayerProps: any[] = []
 
         let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
 
@@ -681,9 +679,12 @@ export class NhlService {
 
         let allPlayerInfo = await PlayerInfoController.loadActivePlayerInfoBySport("NHL")
 
+        //create an array for each prop that has a home and away array that contains an array for each player props
+        
         for (let j = 0; j < uniquePlayerProps.length; j++) {
-            let homeTeamPlayers: any[] = []
-            let awayTeamPlayers: any[] = []
+            let propArray: any[] = []
+            let homePlayerProps: any[] = []
+            let awayPlayerProps: any[] = []
             let uniquePlayersWithinProp = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j]).map(e => e.playerName).filter((value,index,array) => array.indexOf(value) === index)
             for(let m = 0; m < uniquePlayersWithinProp.length; m++){
                 let specificProps = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j] && e.playerName == uniquePlayersWithinProp[m])
@@ -1061,13 +1062,15 @@ export class NhlService {
                     playerPropStats.push(playerPropObj)
     
                 }
-                playerPropStats[0].homeAway == 'Home' ? homeTeamPlayerProps.push(playerPropStats) : awayTeamPlayerProps.push(playerPropStats)
+                playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
             }
+            propArray.push(awayPlayerProps);
+            propArray.push(homePlayerProps);
+            finalReturn.push(propArray)
             
             
         }
-        finalReturn.push(awayTeamPlayerProps)
-        finalReturn.push(homeTeamPlayerProps)
+        
 
 
         return finalReturn
