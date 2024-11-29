@@ -444,7 +444,9 @@ export class PropScreenComponent implements OnInit {
     //this.computeTeamsGameStats(this.team1GameStats, this.team2GameStats)
    
     this.teamPropIsLoading = false
-    this.playerPropDataFinalNew = await NhlService.getPlayerPropData(this.selectedGame)
+    this.playerPropDataFinalNew = await NhlService.getPlayerPropData(this.selectedGame, this.allSportTeamInfo)
+    console.log('Player prop data final new below')
+    console.log(this.playerPropDataFinalNew)
     //this.loadPlayerProps();
     
     this.shouldShowSpinner = false
