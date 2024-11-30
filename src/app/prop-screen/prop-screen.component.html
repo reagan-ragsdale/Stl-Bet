@@ -893,9 +893,8 @@
                 <mat-card-header>
                   <mat-card-title class="name-link"><a class="name-link"
                       (click)="playerClicked(bet.playerName)">{{bet.playerName
-                      }}</a> | {{bet.marketKey | removeUnderScore | removeHeading | titlecase}} | {{bet.propPoint}} |
-                    {{bet.overUnder ==
-                    false ? 'Under' : "Over"}}</mat-card-title>
+                      }}</a> | {{bet.playerBookData.marketKey | removeUnderScore | removeHeading | titlecase}} | {{bet.playerBookData.point}} |
+                    {{bet.playerBookData.description}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content style="min-height:400px; padding: 0;">
                   <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
@@ -914,17 +913,13 @@
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Record</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == false">
-                                {{bet.overOverall}} - {{bet.totalOverall - bet.overOverall}}</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == true">
-                                {{bet.totalOverall - bet.overOverall}} - {{bet.totalOverall}}</h3>
+                              <h3 style="margin:auto" >
+                                {{bet.overallWins}} - {{bet.overallTotal - bet.overallWins}}</h3>
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Win</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == false">
-                                {{(bet.overOverall / bet.totalOverall) | percent: '2.2-2'}}</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == true">
-                                {{((bet.totalOverall - bet.overOverall) / bet.totalOverall) | percent: '2.2-2'}}</h3>
+                              <h3 style="margin:auto" >
+                                {{bet.overallChance | percent: '2.2-2'}}</h3>
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Avg</h3>
@@ -948,18 +943,13 @@
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Record</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == false">
-                                {{bet.overHomeAway}} - {{bet.totalHomeAway - bet.overHomeAway}}</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == true">
-                                {{bet.totalHomeAway - bet.overHomeAway}} - {{bet.overHomeAway}}</h3>
+                              <h3 style="margin:auto" >
+                                {{bet.homeAwayWins}} - {{bet.homeAwayTotal - bet.homeAwayWins}}</h3>
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Win</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == false">
-                                {{(bet.overHomeAway / bet.totalHomeAway) | percent: '2.2-2'}}</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == true">
-                                {{((bet.totalHomeAway - bet.overHomeAway) / bet.totalHomeAway) |
-                                percent: '2.2-2'}}</h3>
+                              <h3 style="margin:auto" >
+                                {{bet.homeAwayChance | percent: '2.2-2'}}</h3>
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Avg</h3>
@@ -983,23 +973,17 @@
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Record</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == false">
-                                {{bet.overTeam}} - {{bet.totalTeam - bet.overTeam}}</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == true">
-                                {{bet.totalTeam - bet.overTeam}} - {{bet.overTeam}}</h3>
+                              <h3 style="margin:auto" >
+                                {{bet.teamWins}} - {{bet.teamTotal - bet.teamWins}}</h3>
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Win</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == false">
-                                {{(bet.totalTeam == 0 ? 0 : (bet.overTeam / bet.totalTeam)) | percent:
-                                '2.2-2'}}</h3>
-                              <h3 style="margin:auto" *ngIf="bet.overUnder == true">
-                                {{(bet.totalTeam == 0 ? 0 : ((bet.totalTeam - bet.overTeam) /
-                                bet.totalTeam)) | percent: '2.2-2'}}</h3>
+                              <h3 style="margin:auto" >
+                                {{bet.teamChance | percent: '2.2-2'}}</h3>
                             </div>
                             <div [ngClass]="'ml-stat'">
                               <h3 style="margin:auto">Avg</h3>
-                              <h3 style="margin:auto">{{(bet.totalTeam == 0 ? 0 : bet.averageTeam) | number: '1.2-2' }}
+                              <h3 style="margin:auto">{{bet.averageTeam | number: '1.2-2' }}
                               </h3>
                             </div>
                             <div [ngClass]="'ml-stat'">
@@ -1040,7 +1024,7 @@
                           </div>
                           <div style=" border-right: 1px solid black;">
                             <ng-container [ngTemplateOutlet]="playerGameLog"
-                              [ngTemplateOutletContext]="{ $implicit: bet.tableOverall}">
+                              [ngTemplateOutletContext]="{ $implicit: bet.last10Overall}">
                             </ng-container>
                           </div>
                         </div>
@@ -1051,7 +1035,7 @@
                           </div>
                           <div style="border-right: 1px solid black;">
                             <ng-container style="border-right: 1px solid black" [ngTemplateOutlet]="playerGameLog"
-                              [ngTemplateOutletContext]="{ $implicit: bet.tableHomeAway}">
+                              [ngTemplateOutletContext]="{ $implicit: bet.last10HomeAway}">
                             </ng-container>
                           </div>
                         </div>
@@ -1062,7 +1046,7 @@
                           </div>
                           <div>
                             <ng-container style="width:25%;" [ngTemplateOutlet]="playerGameLog"
-                              [ngTemplateOutletContext]="{ $implicit: bet.tableTeam}">
+                              [ngTemplateOutletContext]="{ $implicit: bet.last10Team}">
                             </ng-container>
                           </div>
                         </div>
