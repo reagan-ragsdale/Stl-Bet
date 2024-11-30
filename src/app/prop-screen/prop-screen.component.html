@@ -638,10 +638,11 @@
                       <mat-expansion-panel *ngIf="homeAway.length > 0" style="margin-bottom:.5rem;">
                         <mat-expansion-panel-header>
                           <mat-panel-title style="min-width: fit-content">
+                            <div *ngIf="player[0].propType == 'OU'" style="display:flex; ">
                             <a (click)="playerClicked(player[0].playerName)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
                             : {{player[0].playerBookData.point}}
-                            <div *ngIf="player[0].propType == 'OU'" style="margin-left: auto; margin-right:3px; height: auto;">
+                            
                               <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
@@ -654,9 +655,16 @@
                               mat-raised-button>{{"O "}}{{player[1].playerBookData.price > 0 ? '+': ''}}{{player[1].playerBookData.price}}</button>
                             </div>
                             <div *ngIf="player[0].propType == 'Alt'">
+                              <a (click)="playerClicked(player[0].playerName)" class="link-hover"
+                              style="text-decoration: none;">{{player[0].playerName }}</a>
                               <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
                                 <mat-button-toggle *ngFor="let prop of player" value="red">{{prop.playerBookData.price}}</mat-button-toggle>
                               </mat-button-toggle-group>
+                              <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
+                              (click)="$event.stopPropagation()"
+                              (click)="addPropToParlay(player[0])"
+                              style=" width:auto; max-width:40px; height:auto;"
+                              mat-raised-button>{{"O "}}{{player[1].playerBookData.price > 0 ? '+': ''}}{{player[1].playerBookData.price}}</button>
                             </div>
                             
                           </mat-panel-title>
