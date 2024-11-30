@@ -655,7 +655,7 @@
                             </div>
                             <div *ngIf="player[0].propType == 'Alt'">
                               <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
-                                <mat-button-toggle *ngFor="let prop of player" value="red">prop.playerBookData.price</mat-button-toggle>
+                                <mat-button-toggle *ngFor="let prop of player" value="red">{{prop.playerBookData.price}}</mat-button-toggle>
                               </mat-button-toggle-group>
                             </div>
                             
