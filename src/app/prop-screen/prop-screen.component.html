@@ -641,16 +641,24 @@
                             <a (click)="playerClicked(player[0].playerName)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
                             : {{player[0].playerBookData.point}}
-                            <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
+                            <div *ngIf="player[0].propType == 'OU'" style="margin-left: auto; margin-right:3px; height: auto;">
+                              <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
-                              style=" margin-left: auto; width:auto; max-width:40px; height:auto;"
+                              style="  width:auto; max-width:40px; height:auto;"
                               mat-raised-button>{{"U "}}{{player[0].playerBookData.price > 0 ? '+': ''}}{{player[0].playerBookData.price}}</button>
                             <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
-                              style="margin-right:3px; margin-left: 3px; width:auto; max-width:40px; height:auto;"
+                              style=" width:auto; max-width:40px; height:auto;"
                               mat-raised-button>{{"O "}}{{player[1].playerBookData.price > 0 ? '+': ''}}{{player[1].playerBookData.price}}</button>
+                            </div>
+                            <div *ngIf="player[0].propType == 'Alt'">
+                              <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
+                                <mat-button-toggle *ngFor="let prop of player" value="red">prop.playerBookData.price</mat-button-toggle>
+                              </mat-button-toggle-group>
+                            </div>
+                            
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                         <ng-template matExpansionPanelContent style="padding-right: .5rem; padding-left: .5rem;">
