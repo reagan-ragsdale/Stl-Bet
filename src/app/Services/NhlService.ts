@@ -671,6 +671,9 @@ export class NhlService {
 
         let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
 
+        let homeTeam = playerPropData[0].homeTeam
+        let awayTeam = playerPropData[0].awayTeam
+
         let uniquePlayerProps = playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
 
         let uniquePlayerNames = playerPropData.map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
@@ -693,7 +696,7 @@ export class NhlService {
                 let specificProps = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j] && e.playerName == uniquePlayersWithinProp[m])
                 console.log("specific props below")
                 console.log(specificProps)
-                let playerPropStats: PlayerPropDto[] = []
+                let playerPropStats: any = []
                 for (let i = 0; i < specificProps.length; i++) {
                     let playerStats = allPlayerStats.filter(e => e.playerName == specificProps[i].playerName)
                     console.log("player stats below")
@@ -1073,10 +1076,13 @@ export class NhlService {
                     playerPropStats.push(playerPropObj)
     
                 }
+                playerPropStats.overUnder = false;
                 playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
             }
             propArray.push(awayPlayerProps);
+            propArray[0].teamName = awayTeam
             propArray.push(homePlayerProps);
+            propArray[1].teamName = homeTeam
             finalReturn.push(propArray)
             
             
