@@ -680,14 +680,19 @@ export class NhlService {
         let allPlayerInfo = await PlayerInfoController.loadActivePlayerInfoBySport("NHL")
 
         //create an array for each prop that has a home and away array that contains an array for each player props
-        
+        console.log("unique player props below")
+        console.log(uniquePlayerProps)
         for (let j = 0; j < uniquePlayerProps.length; j++) {
             let propArray: any[] = []
             let homePlayerProps: any[] = []
             let awayPlayerProps: any[] = []
             let uniquePlayersWithinProp = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j]).map(e => e.playerName).filter((value,index,array) => array.indexOf(value) === index)
+            console.log("uniquePlayersWithinProp below")
+            console.log(uniquePlayersWithinProp)
             for(let m = 0; m < uniquePlayersWithinProp.length; m++){
                 let specificProps = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j] && e.playerName == uniquePlayersWithinProp[m])
+                console.log("specific props below")
+                console.log(specificProps)
                 let playerPropStats: PlayerPropDto[] = []
                 for (let i = 0; i < specificProps.length; i++) {
                     let playerStats = allPlayerStats.filter(e => e.playerName == specificProps[i].playerName)
