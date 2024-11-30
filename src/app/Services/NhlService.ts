@@ -1063,7 +1063,7 @@ export class NhlService {
                                 })
                             }
                         }
-                        playerPropObj.propType = 'OU'
+                        playerPropObj.propType = 'Alt'
                     }
                     playerPropObj.last10Overall = overAllTableTemp.slice(0,10)
                     playerPropObj.last10HomeAway = homeAwayTableTemp.slice(0,10)
@@ -1075,6 +1075,19 @@ export class NhlService {
 
                     playerPropStats.push(playerPropObj)
     
+                }
+                if(playerPropStats.length == 2 && playerPropStats[0].propType == 'OU'){
+                    if(playerPropStats[0].playerBookData.description == 'Over'){
+                        let zero = JSON.parse(JSON.stringify(playerPropStats[0]))
+                        let one = JSON.parse(JSON.stringify(playerPropStats[1]))
+
+                        playerPropStats[1] = zero
+                        playerPropStats[0] = one
+
+                    }
+                }
+                else if(playerPropStats[0].propType = 'Alt'){
+                    playerPropStats.sort((a: { playerBookData: { point: any; }; },b: { playerBookData: { point: any; }; }) => a.playerBookData.point = b.playerBookData.point)
                 }
                 playerPropStats.overUnder = false;
                 playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
