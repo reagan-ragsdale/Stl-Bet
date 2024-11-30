@@ -3727,7 +3727,9 @@ export class PropScreenComponent implements OnInit {
 
 
 
-
+  handleClick(event: Event){
+    event.stopPropagation();
+  }
 
 
 

@@ -658,7 +658,7 @@
                               <a (click)="playerClicked(player[0].playerName)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
                               <mat-button-toggle-group name="favoriteColor" (valueChange)="$event.stopPropagation()" aria-label="Favorite Color">
-                                <mat-button-toggle  *ngFor="let prop of player; let i = index;" (change)="player.index = i" >{{prop.playerBookData.point}}</mat-button-toggle>
+                                <mat-button-toggle  *ngFor="let prop of player; let i = index;" (change)="player.index = i" (click)="handleClick($event)">{{prop.playerBookData.point}}</mat-button-toggle>
                               </mat-button-toggle-group>
                               <button [color]="'primary'"
                               (click)="$event.stopPropagation()"
