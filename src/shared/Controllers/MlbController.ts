@@ -1,5 +1,4 @@
 import { Allow, BackendMethod, remult } from "remult"
-import {DbMlbPlayerInfo}   from '../dbTasks/DbMlbPlayerInfo'
 import { DBMlbPlayerGameStats } from "../dbTasks/DbMlbPlayerGameStats"
 import { DbMlbTeamGameStats } from "../dbTasks/DbMlbTeamGameStats"
 import { DBMlbPlayerGameStatAverages } from "../dbTasks/DbMlbPlayerGameStatAverages"
@@ -11,45 +10,7 @@ export class MlbController {
 
 
 
-  //player info 
-  @BackendMethod({ allowed: true})
-  static async mlbSetPlayerInfo(playerData: DbMlbPlayerInfo[]){
-    const taskRepo = remult.repo(DbMlbPlayerInfo)
-    var currentDb = await taskRepo.find({ where: { playerId: { ">=": 0 } } })
-    if(currentDb.length > 0){
-      for(let player of currentDb){
-        await taskRepo.delete(player)
-      }
-    }
-    try{
-      await taskRepo.insert(playerData)
-    }catch(error: any){console.log(error.message)}
-    
-  }
-
-  @BackendMethod({ allowed: true})
-  static async mlbGetPlayerInfoByPlayerId(id: number): Promise<DbMlbPlayerInfo[]>{
-    const taskRepo = remult.repo(DbMlbPlayerInfo)
-    return await taskRepo.find({where: {playerId: id}})
-  }
-
-  @BackendMethod({ allowed: true})
-  static async mlbGetPlayerInfoByPlayerName(name: string): Promise<DbMlbPlayerInfo[]>{
-    const taskRepo = remult.repo(DbMlbPlayerInfo)
-    return await taskRepo.find({where: {playerName: name}})
-  }
-
-  @BackendMethod({ allowed: true})
-  static async mlbGetAllPlayerInfo(): Promise<DbMlbPlayerInfo[]>{
-    const taskRepo = remult.repo(DbMlbPlayerInfo)
-    return await taskRepo.find({ where: { playerId: { "!=": 0 } }, limit: 5 })
-  }
-
-  @BackendMethod({ allowed: true})
-  static async mlbGetActivePlayerInfo(): Promise<DbMlbPlayerInfo[]>{
-    const taskRepo = remult.repo(DbMlbPlayerInfo)
-    return await taskRepo.find({ where: { teamId: { "!=": 0 } } })
-  }
+  
   
 
   //player game stats

@@ -5,7 +5,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 
-import { DbMlbPlayerInfo } from 'src/shared/dbTasks/DbMlbPlayerInfo';
 import { MlbController } from 'src/shared/Controllers/MlbController';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
@@ -226,8 +225,6 @@ export class PropScreenComponent implements OnInit {
   selectedSportGamesFinal: any[] = [];
   selectedSportsData: any;
 
-  playerInfoTemp: DbMlbPlayerInfo[] = []
-  playerInfoFinal: DbMlbPlayerInfo[] = []
   sportsBookData: DbGameBookData[] = []
   sportsBookDataFinal: DbGameBookData[] = []
   //playerPropData: DbPlayerPropData[] = []

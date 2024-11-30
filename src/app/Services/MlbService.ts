@@ -2,7 +2,6 @@ import { DbNbaPlayerStatAverages } from "../../shared/dbTasks/DbNbaPlayerStatAve
 import { DbNbaGameStats } from "../../shared/dbTasks/DbNbaGameStats"
 import { DbNbaTeamGameStats } from "../../shared/dbTasks/DbNbaTeamGameStats"
 import { DbNbaTeamStatAverages } from "../../shared/dbTasks/DbNbaTeamStatAverages"
-import { DbMlbPlayerInfo } from "../../shared/dbTasks/DbMlbPlayerInfo"
 import { DBMlbPlayerGameStats } from "../../shared/dbTasks/DbMlbPlayerGameStats"
 import { MlbController } from "../../shared/Controllers/MlbController"
 import { reusedFunctions } from "./reusedFunctions"
@@ -13,6 +12,7 @@ import { DbMlbTeamGameStatAverages } from "../../shared/dbTasks/DbMlbTeamGameSta
 import { DBMlbPlayerGameStatTotals } from "../../shared/dbTasks/DbMlbPlayerGameStatTotals"
 import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo"
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController"
+import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController"
 
 
 
@@ -106,7 +106,7 @@ export class MlbService {
             let playerDb = await MlbController.mlbGetPlayerGameStatsByPlayerIdAndSeason(newPlayerStatData[0].playerID, this.getSeason(newPlayerStatData[0].gameID))
             let uniqueGameId = playerDb.map(e => { return e.gameId })
 
-            let player = await MlbController.mlbGetPlayerInfoByPlayerId(newPlayerStatData[0].playerID)
+            let player = await PlayerInfoController.loadPlayerInfoBySportAndId('MLB', newPlayerStatData[0].playerID)
             var playerName = player[0].playerName
             if (playerName.includes("á")) {
                 playerName = playerName.replaceAll("á", "a")
@@ -325,7 +325,7 @@ export class MlbService {
     
             var listOfPlayerGameStats: DBMlbPlayerGameStats[] = []
             for (let player of newTeamStatData) {
-                let playerInfo = await MlbController.mlbGetPlayerInfoByPlayerId(player.playerID)
+                let playerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId('MLB', player.playerID)
                 if(playerInfo.length == 0){
                     continue
                 }
