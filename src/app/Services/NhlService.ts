@@ -1087,7 +1087,7 @@ export class NhlService {
                     }
                 }
                 else if(playerPropStats[0].propType = 'Alt'){
-                    playerPropStats.sort((a: { playerBookData: { point: any; }; },b: { playerBookData: { point: any; }; }) => a.playerBookData.point = b.playerBookData.point)
+                    playerPropStats.sort((a: { playerBookData: { point: any; }; },b: { playerBookData: { point: any; }; }) => a.playerBookData.point - b.playerBookData.point)
                 }
                 playerPropStats.overUnder = false;
                 playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)

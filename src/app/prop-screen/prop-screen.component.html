@@ -681,88 +681,88 @@
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Record</h3>
                                           <h3 style="margin:auto" >
-                                            {{player[player.overUnder ? 0 : 1].overallWins}}-{{player[player.overUnder ? 0 : 1].overallTotal
-                                            - player[player.overUnder ? 0 : 1].overallWins}}</h3>
+                                            {{player[player.overUnder ? 1 : 0].overallWins}}-{{player[player.overUnder ? 1 : 0].overallTotal
+                                            - player[player.overUnder ? 1 : 0].overallWins}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Win</h3>
                                           <h3 style="margin:auto" >
-                                            {{player[player.overUnder ? 0 : 1].overallChance | percent: '2.2-2'}}</h3>
+                                            {{player[player.overUnder ? 1 : 0].overallChance | percent: '2.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Avg</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].averageOverall | number:'1.2-2'}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].averageOverall | number:'1.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">High</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].highOverall}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].highOverall}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Low</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].lowOverall}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].lowOverall}}</h3>
                                         </div>
                                       </div>
                                       <div class="homeaway-stats"
                                         style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                                         <div
                                           style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].homeAway | titlecase}}
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].homeAway | titlecase}}
                                           </h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Record</h3>
                                           <h3 style="margin:auto">
-                                            {{player[player.overUnder ? 0 : 1].homeAwayWins}} -
-                                            {{player[player.overUnder ? 0 : 1].homeAwayTotal -
-                                            player[player.overUnder ? 0 : 1].homeAwayWins}}</h3>
+                                            {{player[player.overUnder ? 1 : 0].homeAwayWins}} -
+                                            {{player[player.overUnder ? 1 : 0].homeAwayTotal -
+                                            player[player.overUnder ? 1 : 0].homeAwayWins}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Win</h3>
                                           <h3 style="margin:auto">
-                                            {{player[player.overUnder ? 0 : 1].homeAwayChance | percent: '2.2-2'}}</h3>
+                                            {{player[player.overUnder ? 1 : 0].homeAwayChance | percent: '2.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Avg</h3>
-                                          <h3 style="margin:auto"> {{player[player.overUnder ? 0 : 1].averageHomeAway | number:'1.2-2'}}</h3>
+                                          <h3 style="margin:auto"> {{player[player.overUnder ? 1 : 0].averageHomeAway | number:'1.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">High</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].highHomeAway}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].highHomeAway}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Low</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].lowHomeAway}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].lowHomeAway}}</h3>
                                         </div>
                                       </div>
                                       <div class="team-stats"
                                         style="width: 30%; height:100%; display: flex; flex-direction: column; background-color:#fb8501;">
                                         <div
                                           style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].teamAgainstName}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].teamAgainstName}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Record</h3>
                                           <h3 style="margin:auto">
-                                            {{player[player.overUnder ? 0 : 1].teamWins}} - {{player[player.overUnder ? 0 : 1].teamTotal
-                                            - player[player.overUnder ? 0 : 1].teamWins}}</h3>
+                                            {{player[player.overUnder ? 1 : 0].teamWins}} - {{player[player.overUnder ? 0 : 1].teamTotal
+                                            - player[player.overUnder ? 1 : 0].teamWins}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Win</h3>
                                           <h3 style="margin:auto">
-                                            {{player[player.overUnder ? 0 : 1].teamChance | percent: '2.2-2'}}</h3>
+                                            {{player[player.overUnder ? 1 : 0].teamChance | percent: '2.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Avg</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].averageTeam | number:
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].averageTeam | number:
                                             '1.2-2'}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">High</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].highTeam}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].highTeam}}</h3>
                                         </div>
                                         <div [ngClass]="'ml-stat'">
                                           <h3 style="margin:auto">Low</h3>
-                                          <h3 style="margin:auto">{{player[player.overUnder ? 0 : 1].lowTeam}}</h3>
+                                          <h3 style="margin:auto">{{player[player.overUnder ? 1 : 0].lowTeam}}</h3>
                                         </div>
                                       </div>
                                     </div>
@@ -785,7 +785,7 @@
                                   </div>
                                   <div style="border-right: 1px solid black; ">
                                     <ng-container [ngTemplateOutlet]="playerGameLog"
-                                      [ngTemplateOutletContext]="{ $implicit: player[player.overUnder ? 0 : 1].last10Overall}">
+                                      [ngTemplateOutletContext]="{ $implicit: player[player.overUnder ? 1 : 0].last10Overall}">
                                     </ng-container>
                                   </div>
                                 </div>
@@ -797,14 +797,14 @@
                                   <div style="border-right: 1px solid black;">
                                     <ng-container style="border-right: 1px solid black"
                                       [ngTemplateOutlet]="playerGameLog"
-                                      [ngTemplateOutletContext]="{ $implicit: player[player.overUnder ? 0 : 1].last10HomeAway}">
+                                      [ngTemplateOutletContext]="{ $implicit: player[player.overUnder ? 1 : 0].last10HomeAway}">
                                     </ng-container>
                                   </div>
                                 </div>
 
                                 <div style="display:flex; flex-direction: column;width:33%">
                                   <div style="text-align: center;">
-                                    vs {{player[player.overUnder ? 0 : 1].teamAgainstName}}
+                                    vs {{player[player.overUnder ? 1 : 0].teamAgainstName}}
                                   </div>
                                   <div>
                                     <ng-container [ngTemplateOutlet]="playerGameLog"
