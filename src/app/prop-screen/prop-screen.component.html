@@ -638,7 +638,7 @@
                       <mat-expansion-panel *ngIf="homeAway.length > 0" style="margin-bottom:.5rem;">
                         <mat-expansion-panel-header>
                           <mat-panel-title style="min-width: fit-content">
-                            <div *ngIf="player[0].propType == 'OU'" style="display:flex; ">
+                            <div *ngIf="player[0].propType == 'OU'" style="display:flex;width:100%; align-items: center; ">
                             <a (click)="playerClicked(player[0].playerName)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
                             : {{player[0].playerBookData.point}}
@@ -646,24 +646,24 @@
                               <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
-                              style="  width:auto; max-width:40px; height:auto;"
+                              style="  width:auto; max-width:40px; height:auto; margin-left:auto;"
                               mat-raised-button>{{"U "}}{{player[0].playerBookData.price > 0 ? '+': ''}}{{player[0].playerBookData.price}}</button>
                             <button [color]="'primary'" [disabled]="player[0].isDisabled == true"
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
-                              style=" width:auto; max-width:40px; height:auto;"
+                              style=" width:auto; max-width:40px; height:auto; margin-right:5px;"
                               mat-raised-button>{{"O "}}{{player[1].playerBookData.price > 0 ? '+': ''}}{{player[1].playerBookData.price}}</button>
                             </div>
-                            <div *ngIf="player[0].propType == 'Alt'">
+                            <div *ngIf="player[0].propType == 'Alt'" style="width: 100%; display:flex; align-items: center;">
                               <a (click)="playerClicked(player[0].playerName)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
-                              <mat-button-toggle-group name="favoriteColor" (valueChange)="$event.stopPropagation()" aria-label="Favorite Color">
+                              <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color" style="margin-left:1rem;">
                                 <mat-button-toggle  *ngFor="let prop of player; let i = index;" (change)="player.index = i" (click)="handleClick($event)">{{prop.playerBookData.point}}</mat-button-toggle>
                               </mat-button-toggle-group>
                               <button [color]="'primary'"
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
-                              style=" width:auto; max-width:40px; height:auto;"
+                              style=" width:auto; max-width:40px; margin-left:auto; margin-right:5px;"
                               mat-raised-button>{{player[player.index].playerBookData.price > 0 ? '+': ''}}{{player[player.index].playerBookData.price}}</button>
                             </div>
                             
