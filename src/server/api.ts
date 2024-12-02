@@ -93,10 +93,10 @@ export const api = remultExpress({
 
   admin: true,
   dataProvider:
-    process.env['DATABASE_PRIVATE_URL'] ?
+    process.env['RAILWAY_PRIVATE_DOMAIN'] ?
       createPostgresDataProvider({
         caseInsensitiveIdentifiers: true,
-        connectionString: process.env['DATABASE_PRIVATE_URL']
+        connectionString: process.env['RAILWAY_PRIVATE_DOMAIN']
       }) : undefined
   , initRequest
   , initApi: async () => {
