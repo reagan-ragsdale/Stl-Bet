@@ -1,6 +1,5 @@
 import { remultExpress } from 'remult/remult-express';
 import { MlbController } from '../shared/Controllers/MlbController';
-import { DbMlbGameBookData } from '../shared/dbTasks/DbMlbGameBookData';
 import { DbGameBookData } from '../shared/dbTasks/DbGameBookData';
 import { SportsBookController } from '../shared/Controllers/SportsBookController';
 import { DbPlayerPropData } from '../shared/dbTasks/DbPlayerPropData';
@@ -52,7 +51,6 @@ ErrorEmailController.sendEmail = emailer;
 
 export const api = remultExpress({
   entities: [
-    DbMlbGameBookData,
     DbGameBookData,
     DbPlayerPropData,
     DbNhlPlayerGameStats,
