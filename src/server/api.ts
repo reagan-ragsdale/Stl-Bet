@@ -93,10 +93,10 @@ export const api = remultExpress({
 
   admin: true,
   dataProvider:
-    process.env['DATABASE_URL'] ?
+    process.env['DATABASE_PRIVATE_URL'] ?
       createPostgresDataProvider({
         caseInsensitiveIdentifiers: true,
-        connectionString: process.env['DATABASE_URL']
+        connectionString: process.env['DATABASE_PRIVATE_URL']
       }) : undefined
   , initRequest
   , initApi: async () => {
@@ -112,7 +112,7 @@ export const api = remultExpress({
     cron.schedule('*/30 * * * *', () => cronLoadMlbPlayer())
     cron.schedule('04 13 * * *', () => cronLoadNflGameStats())
     cron.schedule('0 17 * * 2', () => cronLoadBestBets())
-    cron.schedule('45 16 * * *', () => cronLoadNhlStats())
+    cron.schedule('26 10 * * *', () => cronLoadNhlStats())
     //cron.schedule('02 22 * * *', () => cronLoadIntoHistoryTables())
   }
 
