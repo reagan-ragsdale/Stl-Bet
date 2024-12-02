@@ -16,19 +16,20 @@
         <button mat-button style=" color: #240605;height:65%;margin: auto 0; width:auto" routerLink="/teamStats">Team
             Stats</button>
 
-        <form *ngIf="isClicked" style="align-items: center; margin-right:auto; margin-left:auto;" class="example-form">
-            <mat-form-field class="example-full-width">
-                <input type="text" placeholder="Search Players or Teams" aria-label="Number" matInput
-                    [(ngModel)]="searchName" (ngModelChange)="filterSearch()" [formControl]="myControl"
-                    [matAutocomplete]="auto">
+            <form *ngIf="isClicked" style="align-items: center; margin-right:auto; margin-left:auto;" class="example-form">
+                <input type="text"
+                       placeholder="Search for a street"
+                       [formControl]="myControl"
+                       [matAutocomplete]="auto"
+                       [(ngModel)]="searchName" 
+                       (ngModelChange)="filterSearch()"
+                       class="example-input">
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
-                        (onSelectionChange)="loadNewPlayer(player.playerId, player.sport)">
-                        {{player.playerName}}
-                    </mat-option>
+                  <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName">
+                    {{player.playerName}}
+                  </mat-option>
                 </mat-autocomplete>
-            </mat-form-field>
-        </form>
+              </form>
         <button mat-button (click)="onSearchClicked()">
             <mat-icon  class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
         </button>
