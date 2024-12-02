@@ -38,12 +38,13 @@ export class AppComponent {
   }
   isClicked: Boolean = false;
   onSearchClicked(){
-
+    this.isClicked = true
   }
   myControl = new FormControl('');
   playerInfo: any[] = []
-  ngOnInit(){
-    let players = PlayerInfoController.loadAllSportPlayerInfo()
+  async ngOnInit(){
+    this.playerInfo = await PlayerInfoController.loadAllSportPlayerInfo()
+    this.filteredSearch = this.playerInfo
   }
 
 
