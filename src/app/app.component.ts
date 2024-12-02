@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { remult } from 'remult';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { Router } from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
