@@ -56,8 +56,10 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../remult-angular-todo', 'index.html'));
 });
 
+const port: number = Number(process.env['PORT']) || 3002
+
 // Added this line to active express server on the port provided in the environment variable `PORT` or `3002`
-app.listen(process.env['PORT'] || 3002, () => console.log('Server started'));
+app.listen(port, '::', () => console.log('Server started'));
 
 
 //cron.schedule('0 12 * * *',  cronTestFile)
