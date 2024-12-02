@@ -31,7 +31,8 @@
                 </mat-autocomplete>
               </form>
         <button mat-button (click)="onSearchClicked()">
-            <mat-icon  class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
+            <mat-icon ngIf="!isClicked"  class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
+            <mat-icon ngIf="isClicked"  class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
         </button>
 
 

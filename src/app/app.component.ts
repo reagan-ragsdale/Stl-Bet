@@ -38,7 +38,7 @@ export class AppComponent {
   }
   isClicked: Boolean = false;
   onSearchClicked(){
-    this.isClicked = true
+    this.isClicked = !this.isClicked
   }
   myControl = new FormControl('');
   playerInfo: any[] = []
