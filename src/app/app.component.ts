@@ -4,6 +4,8 @@ import { remult } from 'remult';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { Router } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
+import { PlayerInfoController } from 'src/shared/Controllers/PlayerInfoController';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +19,31 @@ export class AppComponent {
   }
   remult = remult;
 
+  searchName: string = ''
    async logout(){
     await UsersController.logout()
     remult.user = undefined;
     this.router.navigate([`/home`])
+  }
+
+  filteredSearch: any[] = []
+
+  filterSearch(){
+      this.filteredSearch = this.playerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+    
+  }
+
+  loadNewPlayer(playerId: number, sport: string){
+
+  }
+  isClicked: Boolean = false;
+  onSearchClicked(){
+
+  }
+  myControl = new FormControl('');
+  playerInfo: any[] = []
+  ngOnInit(){
+    let players = PlayerInfoController.loadAllSportPlayerInfo()
   }
 
 

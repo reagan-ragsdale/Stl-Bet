@@ -1,24 +1,45 @@
-
-<div style="height: 60px; width: 100%; display: flex; border-bottom: 3px solid #FFFFFF; background-color: #FFFFFF; position: sticky; top: 0; left: 0; z-index: 100;">
+<div
+    style="height: 60px; width: 100%; display: flex; border-bottom: 3px solid #FFFFFF; background-color: #FFFFFF; position: sticky; top: 0; left: 0; z-index: 100;">
     <div style=" height: 100%;  display:flex;">
-        <a routerLink="home" style="text-decoration: none; color: #240605; margin-top:auto; margin-bottom: auto;"><h1 class="logo" >
-            STL Bet
-        </h1></a>
+        <a routerLink="home" style="text-decoration: none; color: #240605; margin-top:auto; margin-bottom: auto;">
+            <h1 class="logo">
+                STL Bet
+            </h1>
+        </a>
     </div>
-        <div *ngIf="remult.authenticated()" class="top-button">
-            <button mat-button style=" color: #240605;height:65%;margin-top:auto; margin-bottom: auto; width:auto" routerLink="/sports">Props</button>
-            <button mat-button style=" color: #240605;height:65%;margin: auto 0; width:auto" routerLink="/playerStats">Player
-                Stats</button>
-            <button mat-button  style=" color: #240605;height:65%;margin: auto 0; width:auto" routerLink="/teamStats">Team Stats</button>
-            
-            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
- 
-        
-            <button mat-button style=" color: #240605; height:65%;margin: auto 0; width:auto" (click)="logout()">Log Out</button> 
-        </div>
-        <div *ngIf="!remult.authenticated()" class="top-button-login" style="margin-right:1rem;">
-            <button routerLink="/signup">Login/Sign Up</button>
-        </div>
-    
+    <div *ngIf="remult.authenticated()" class="top-button">
+        <button mat-button style=" color: #240605;height:65%;margin-top:auto; margin-bottom: auto; width:auto"
+            routerLink="/sports">Props</button>
+        <button mat-button style=" color: #240605;height:65%;margin: auto 0; width:auto"
+            routerLink="/playerStats">Player
+            Stats</button>
+        <button mat-button style=" color: #240605;height:65%;margin: auto 0; width:auto" routerLink="/teamStats">Team
+            Stats</button>
+
+        <form *ngIf="isClicked" style="align-items: center; margin-right:auto; margin-left:auto;" class="example-form">
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Search Players or Teams" aria-label="Number" matInput
+                    [(ngModel)]="searchName" (ngModelChange)="filterSearch()" [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName"
+                        (onSelectionChange)="loadNewPlayer(player.playerId, player.sport)">
+                        {{player.playerName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+        <button mat-button (click)="onSearchClicked()">
+            <mat-icon  class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
+        </button>
+
+
+        <button mat-button style=" color: #240605; height:65%;margin: auto 0; width:auto" (click)="logout()">Log
+            Out</button>
+    </div>
+    <div *ngIf="!remult.authenticated()" class="top-button-login" style="margin-right:1rem;">
+        <button routerLink="/signup">Login/Sign Up</button>
+    </div>
+
 </div>
 <router-outlet></router-outlet>
