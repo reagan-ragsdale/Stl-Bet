@@ -10,6 +10,10 @@ import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { PlayerPropController } from "../../shared/Controllers/PlayerPropController";
 import { PlayerPropDto } from "../Dtos/PlayerPropsDto";
 import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController";
+import { DbNhlTeamGameStatTotals } from "../../shared/dbTasks/DbNhlTeamGameStatTotals";
+import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameStatTotals";
+import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
+import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGameStatAverages";
 
 
 export class NhlService {
@@ -689,10 +693,10 @@ export class NhlService {
             let propArray: any[] = []
             let homePlayerProps: any[] = []
             let awayPlayerProps: any[] = []
-            let uniquePlayersWithinProp = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j]).map(e => e.playerName).filter((value,index,array) => array.indexOf(value) === index)
+            let uniquePlayersWithinProp = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j]).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
             console.log("uniquePlayersWithinProp below")
             console.log(uniquePlayersWithinProp)
-            for(let m = 0; m < uniquePlayersWithinProp.length; m++){
+            for (let m = 0; m < uniquePlayersWithinProp.length; m++) {
                 let specificProps = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j] && e.playerName == uniquePlayersWithinProp[m])
                 console.log("specific props below")
                 console.log(specificProps)
@@ -745,13 +749,13 @@ export class NhlService {
                     let overAllTableTemp = []
                     let homeAwayTableTemp = []
                     let teamTableTemp = []
-    
+
                     if (specificProps[i].marketKey == 'player_points') {
                         if (specificProps[i].description == 'Over') {
                             playerPropObj.overallWins = playerStats.filter(e => e.points > specificProps[i].point).length;
                             playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.points > specificProps[i].point).length;
                             playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.points > specificProps[i].point).length;
-    
+
                         }
                         else {
                             playerPropObj.overallWins = playerStats.filter(e => e.points < specificProps[i].point).length;
@@ -798,14 +802,14 @@ export class NhlService {
                             }
                         }
                         playerPropObj.propType = 'OU'
-    
+
                     }
                     else if (specificProps[i].marketKey == 'player_assists') {
                         if (specificProps[i].description == 'Over') {
                             playerPropObj.overallWins = playerStats.filter(e => e.assists > specificProps[i].point).length;
                             playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.assists > specificProps[i].point).length;
                             playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.assists > specificProps[i].point).length;
-    
+
                         }
                         else {
                             playerPropObj.overallWins = playerStats.filter(e => e.assists < specificProps[i].point).length;
@@ -858,7 +862,7 @@ export class NhlService {
                             playerPropObj.overallWins = playerStats.filter(e => e.shots > specificProps[i].point).length;
                             playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length;
                             playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length;
-    
+
                         }
                         else {
                             playerPropObj.overallWins = playerStats.filter(e => e.shots < specificProps[i].point).length;
@@ -911,7 +915,7 @@ export class NhlService {
                             playerPropObj.overallWins = playerStats.filter(e => e.blocks > specificProps[i].point).length;
                             playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.blocks > specificProps[i].point).length;
                             playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.blocks > specificProps[i].point).length;
-    
+
                         }
                         else {
                             playerPropObj.overallWins = playerStats.filter(e => e.blocks < specificProps[i].point).length;
@@ -964,7 +968,7 @@ export class NhlService {
                             playerPropObj.overallWins = playerStats.filter(e => e.saves > specificProps[i].point).length;
                             playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.saves > specificProps[i].point).length;
                             playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.saves > specificProps[i].point).length;
-    
+
                         }
                         else {
                             playerPropObj.overallWins = playerStats.filter(e => e.saves < specificProps[i].point).length;
@@ -1017,7 +1021,7 @@ export class NhlService {
                             playerPropObj.overallWins = playerStats.filter(e => e.shots > specificProps[i].point).length;
                             playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length;
                             playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length;
-    
+
                         }
                         else {
                             playerPropObj.overallWins = playerStats.filter(e => e.shots < specificProps[i].point).length;
@@ -1065,19 +1069,19 @@ export class NhlService {
                         }
                         playerPropObj.propType = 'Alt'
                     }
-                    playerPropObj.last10Overall = overAllTableTemp.slice(0,10)
-                    playerPropObj.last10HomeAway = homeAwayTableTemp.slice(0,10)
-                    playerPropObj.last10Team = teamTableTemp.slice(0,10)
-    
+                    playerPropObj.last10Overall = overAllTableTemp.slice(0, 10)
+                    playerPropObj.last10HomeAway = homeAwayTableTemp.slice(0, 10)
+                    playerPropObj.last10Team = teamTableTemp.slice(0, 10)
+
                     playerPropObj.overallChance = playerPropObj.overallTotal == 0 ? 0 : playerPropObj.overallWins / playerPropObj.overallTotal
                     playerPropObj.homeAwayChance = playerPropObj.homeAwayTotal == 0 ? 0 : playerPropObj.homeAwayWins / playerPropObj.homeAwayTotal
                     playerPropObj.teamChance = playerPropObj.teamTotal == 0 ? 0 : playerPropObj.teamWins / playerPropObj.teamTotal
 
                     playerPropStats.push(playerPropObj)
-    
+
                 }
-                if(playerPropStats[0].propType == 'OU'){
-                    if(playerPropStats[0].playerBookData.description == 'Over'){
+                if (playerPropStats[0].propType == 'OU') {
+                    if (playerPropStats[0].playerBookData.description == 'Over') {
                         let zero = JSON.parse(JSON.stringify(playerPropStats[0]))
                         let one = JSON.parse(JSON.stringify(playerPropStats[1]))
 
@@ -1087,11 +1091,11 @@ export class NhlService {
                     }
                     playerPropStats.overUnder = false;
                 }
-                else if(playerPropStats[0].propType = 'Alt'){
-                    playerPropStats.sort((a: { playerBookData: { point: any; }; },b: { playerBookData: { point: any; }; }) => a.playerBookData.point - b.playerBookData.point)
+                else if (playerPropStats[0].propType = 'Alt') {
+                    playerPropStats.sort((a: { playerBookData: { point: any; }; }, b: { playerBookData: { point: any; }; }) => a.playerBookData.point - b.playerBookData.point)
                     playerPropStats.index = 0;
                 }
-                
+
                 playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
             }
             propArray.push(awayPlayerProps);
@@ -1099,13 +1103,206 @@ export class NhlService {
             propArray.push(homePlayerProps);
             propArray[1].teamName = homeTeam
             finalReturn.push(propArray)
-            
-            
+
+
         }
-        
+
 
 
         return finalReturn
     }
+
+
+    static setTeamGameStatTotals(listOfTeams: DbTeamInfo[], allTeamStats: DbNhlTeamGameStats[]): DbNhlTeamGameStatTotals[] {
+        let finalArray: DbNhlTeamGameStatTotals[] = []
+        for (let i = 0; i < listOfTeams.length; i++) {
+            let teamTotals: DbNhlTeamGameStatTotals = {
+                teamId: listOfTeams[i].teamId,
+                teamName: listOfTeams[i].teamNameAbvr,
+                season: 0,
+                pointsScoredOverall: 0,
+                pointsScoredFirstPeriod: 0,
+                pointsScoredSecondPeriod: 0,
+                pointsScoredThirdPeriod: 0,
+                shotsOnGoal: 0,
+                saves: 0,
+                pointsAllowedOverall: 0,
+                pointsAllowedFirstPeriod: 0,
+                pointsAllowedSecondPeriod: 0,
+                pointsAllowedThirdPeriod: 0,
+                shotsAllowedOnGoal: 0
+            }
+            let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
+            teamTotals.season = teamStats[0].season;
+            for (let j = 0; j < teamStats.length; j++) {
+                teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
+                teamTotals.pointsScoredFirstPeriod += teamStats[j].pointsScoredFirstPeriod;
+                teamTotals.pointsScoredSecondPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.pointsScoredThirdPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.shotsOnGoal += teamStats[j].shotsOnGoal;
+                teamTotals.saves += teamStats[j].saves;
+                teamTotals.pointsAllowedOverall += teamStats[j].pointsAllowedOverall;
+                teamTotals.pointsAllowedFirstPeriod += teamStats[j].pointsAllowedFirstPeriod;
+                teamTotals.pointsAllowedSecondPeriod += teamStats[j].pointsAllowedSecondPeriod;
+                teamTotals.pointsAllowedThirdPeriod += teamStats[j].pointsAllowedThirdPeriod;
+                teamTotals.shotsAllowedOnGoal += teamStats[j].shotsAllowedOnGoal;
+            }
+            finalArray.push(teamTotals)
+
+        }
+        return finalArray
+    }
+
+    static setPlayerGameStatTotals(listOfPlayers: number[], allPlayerStats: DbNhlPlayerGameStats[]): DbNhlPlayerGameStatTotals[] {
+        let finalArray: DbNhlPlayerGameStatTotals[] = []
+        for (let i = 0; i < listOfPlayers.length; i++) {
+            let playerStats = allPlayerStats.filter(e => e.playerId == listOfPlayers[i])
+            let playerTotal: DbNhlPlayerGameStatTotals = {
+                playerId: listOfPlayers[i],
+                playerName: "",
+                teamName: "",
+                teamId: 0,
+                season: 0,
+                goals: 0,
+                assists: 0,
+                pim: 0,
+                shots: 0,
+                hits: 0,
+                powerPlayGoals: 0,
+                powerPlayPoints: 0,
+                plusMinus: 0,
+                points: 0,
+                blocks: 0,
+                saves: 0
+            }
+            for (let j = 0; j < playerStats.length; j++) {
+                playerTotal.playerName += playerStats[j].playerName;
+                playerTotal.teamName += playerStats[j].teamName;
+                playerTotal.teamId += playerStats[j].teamId;
+                playerTotal.season += playerStats[j].season;
+                playerTotal.goals += playerStats[j].goals;
+                playerTotal.assists += playerStats[j].assists;
+                playerTotal.pim += playerStats[j].pim;
+                playerTotal.shots += playerStats[j].shots;
+                playerTotal.hits += playerStats[j].hits;
+                playerTotal.powerPlayGoals += playerStats[j].powerPlayGoals;
+                playerTotal.powerPlayPoints += playerStats[j].powerPlayPoints;
+                playerTotal.plusMinus += playerStats[j].plusMinus;
+                playerTotal.points += playerStats[j].points;
+                playerTotal.blocks += playerStats[j].blocks;
+                playerTotal.saves += playerStats[j].saves;
+            }
+            finalArray.push(playerTotal)
+        }
+        return finalArray
+    }
+
+    static setTeamGameStatAverages(listOfTeams: DbTeamInfo[], allTeamStats: DbNhlTeamGameStats[]): DbNhlTeamGameStatAverages[] {
+        let finalArray: DbNhlTeamGameStatAverages[] = []
+        for (let i = 0; i < listOfTeams.length; i++) {
+            let teamTotals: DbNhlTeamGameStatAverages = {
+                teamId: listOfTeams[i].teamId,
+                teamName: listOfTeams[i].teamNameAbvr,
+                season: 0,
+                pointsScoredOverall: 0,
+                pointsScoredFirstPeriod: 0,
+                pointsScoredSecondPeriod: 0,
+                pointsScoredThirdPeriod: 0,
+                shotsOnGoal: 0,
+                saves: 0,
+                pointsAllowedOverall: 0,
+                pointsAllowedFirstPeriod: 0,
+                pointsAllowedSecondPeriod: 0,
+                pointsAllowedThirdPeriod: 0,
+                shotsAllowedOnGoal: 0
+            }
+            let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
+            teamTotals.season = teamStats[0].season;
+            for (let j = 0; j < teamStats.length; j++) {
+                teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
+                teamTotals.pointsScoredFirstPeriod += teamStats[j].pointsScoredFirstPeriod;
+                teamTotals.pointsScoredSecondPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.pointsScoredThirdPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.shotsOnGoal += teamStats[j].shotsOnGoal;
+                teamTotals.saves += teamStats[j].saves;
+                teamTotals.pointsAllowedOverall += teamStats[j].pointsAllowedOverall;
+                teamTotals.pointsAllowedFirstPeriod += teamStats[j].pointsAllowedFirstPeriod;
+                teamTotals.pointsAllowedSecondPeriod += teamStats[j].pointsAllowedSecondPeriod;
+                teamTotals.pointsAllowedThirdPeriod += teamStats[j].pointsAllowedThirdPeriod;
+                teamTotals.shotsAllowedOnGoal += teamStats[j].shotsAllowedOnGoal;
+            }
+            teamTotals.pointsScoredOverall = teamTotals.pointsScoredOverall / teamStats.length;
+            teamTotals.pointsScoredFirstPeriod = teamTotals.pointsScoredFirstPeriod / teamStats.length;
+            teamTotals.pointsScoredSecondPeriod = teamTotals.pointsScoredSecondPeriod / teamStats.length;
+            teamTotals.pointsScoredThirdPeriod = teamTotals.pointsScoredThirdPeriod / teamStats.length;
+            teamTotals.shotsOnGoal = teamTotals.shotsOnGoal / teamStats.length;
+            teamTotals.saves = teamTotals.saves / teamStats.length;
+            teamTotals.pointsAllowedOverall = teamTotals.pointsAllowedOverall / teamStats.length;
+            teamTotals.pointsAllowedFirstPeriod = teamTotals.pointsAllowedFirstPeriod / teamStats.length;
+            teamTotals.pointsAllowedSecondPeriod = teamTotals.pointsAllowedSecondPeriod / teamStats.length;
+            teamTotals.pointsAllowedThirdPeriod = teamTotals.pointsAllowedThirdPeriod / teamStats.length;
+            teamTotals.shotsAllowedOnGoal = teamTotals.shotsAllowedOnGoal / teamStats.length;
+
+            finalArray.push(teamTotals)
+
+        }
+        return finalArray
+    }
+
+    static setPlayerGameStatAverages(listOfPlayers: number[], allPlayerStats: DbNhlPlayerGameStats[]): DbNhlPlayerGameStatAverages[] {
+        let finalArray: DbNhlPlayerGameStatAverages[] = []
+        for (let i = 0; i < listOfPlayers.length; i++) {
+            let playerStats = allPlayerStats.filter(e => e.playerId == listOfPlayers[i])
+            let playerTotal: DbNhlPlayerGameStatTotals = {
+                playerId: listOfPlayers[i],
+                playerName: "",
+                teamName: "",
+                teamId: 0,
+                season: 0,
+                goals: 0,
+                assists: 0,
+                pim: 0,
+                shots: 0,
+                hits: 0,
+                powerPlayGoals: 0,
+                powerPlayPoints: 0,
+                plusMinus: 0,
+                points: 0,
+                blocks: 0,
+                saves: 0
+            }
+            playerTotal.playerName = playerStats[0].playerName;
+            for (let j = 0; j < playerStats.length; j++) {
+                playerTotal.teamName = playerStats[j].teamName;
+                playerTotal.teamId = playerStats[j].teamId;
+                playerTotal.season = playerStats[j].season;
+                playerTotal.goals = playerStats[j].goals;
+                playerTotal.assists = playerStats[j].assists;
+                playerTotal.pim = playerStats[j].pim;
+                playerTotal.shots = playerStats[j].shots;
+                playerTotal.hits = playerStats[j].hits;
+                playerTotal.powerPlayGoals = playerStats[j].powerPlayGoals;
+                playerTotal.powerPlayPoints = playerStats[j].powerPlayPoints;
+                playerTotal.plusMinus = playerStats[j].plusMinus;
+                playerTotal.points = playerStats[j].points;
+                playerTotal.blocks = playerStats[j].blocks;
+                playerTotal.saves = playerStats[j].saves;
+            }
+            playerTotal.goals = playerTotal.goals/playerStats.length;
+            playerTotal.assists = playerTotal.assists/playerStats.length;
+            playerTotal.pim = playerTotal.pim/playerStats.length;
+            playerTotal.shots = playerTotal.shots/playerStats.length;
+            playerTotal.hits = playerTotal.hits/playerStats.length;
+            playerTotal.powerPlayGoals = playerTotal.powerPlayGoals/playerStats.length;
+            playerTotal.powerPlayPoints = playerTotal.powerPlayPoints/playerStats.length;
+            playerTotal.plusMinus = playerTotal.plusMinus/playerStats.length;
+            playerTotal.points = playerTotal.points/playerStats.length;
+            playerTotal.blocks = playerTotal.blocks/playerStats.length;
+            playerTotal.saves = playerTotal.saves/playerStats.length;
+            finalArray.push(playerTotal)
+        }
+        return finalArray
+    }
+
 
 }

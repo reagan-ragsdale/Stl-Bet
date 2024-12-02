@@ -3,6 +3,9 @@ import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailControl
 import { nhlApiController } from "../ApiCalls/nhlApiCalls";
 import { NhlController } from "../../shared/Controllers/NhlController";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
+import { DbNhlTeamGameStatTotals } from "src/shared/dbTasks/DbNhlTeamGameStatTotals";
+import { NhlService } from "../Services/NhlService";
+import { DbNhlPlayerGameStatTotals } from "src/shared/dbTasks/DbNhlPlayerGameStatTotals";
 
 export const cronLoadNhlStats = async () => {
     console.log("starting nhl stats")
@@ -73,25 +76,50 @@ export const cronLoadNhlStats = async () => {
     // Combine them into the yyyymmdd format
     let yesterday = `${year}${month}${day}`;
 
-    
-        let gamesToday = await nhlApiController.getDailySchedule(yesterday)
-        if (gamesToday.length > 0) {
-            for (let game of gamesToday) {
-                try {
-                    let gameAndPlayerStats = await nhlApiController.getGameStats(game)
-                    await NhlController.nhlSetGameStats(gameAndPlayerStats[0])
-                    await NhlController.nhlSetPlayerStats(gameAndPlayerStats[1])
-                }
-                catch (error: any) {
-                    console.log(yesterday + "--" + game + "--" + error.message)
-                }
+
+    let gamesToday = await nhlApiController.getDailySchedule(yesterday)
+    if (gamesToday.length > 0) {
+        for (let game of gamesToday) {
+            try {
+                let gameAndPlayerStats = await nhlApiController.getGameStats(game)
+                await NhlController.nhlSetGameStats(gameAndPlayerStats[0])
+                await NhlController.nhlSetPlayerStats(gameAndPlayerStats[1])
+            }
+            catch (error: any) {
+                console.log(yesterday + "--" + game + "--" + error.message)
             }
         }
+    }
 
-        //let teams = await nhlApiController.getTeamInfo()
-        //TeamInfoController.setTeamInfo(teams)
+
+    //set team game stat totals
+    let listOfTeams = await TeamInfoController.getAllTeamInfo('NHL')
+    let stringOfTeams = listOfTeams.map(e => e.teamNameAbvr)
+    let allTeamStats = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason(stringOfTeams, 2024)
+    let arrayOfTeamTotals: DbNhlTeamGameStatTotals[] = NhlService.setTeamGameStatTotals(listOfTeams, allTeamStats)
+    await NhlController.NhlSetTeamGameStatTotals(arrayOfTeamTotals)
+
+    //set player game stat totals
+    let statsOfActivePlayersThisSeason = await NhlController.nhlGetAllPlayerStatsBySeason(2024)
+    let listOfDistinctPlayers = statsOfActivePlayersThisSeason.map(e => e.playerId).filter((value,index,array) => array.indexOf(value) === index)
+    let arrayOfPlayerTotals: DbNhlPlayerGameStatTotals[] = NhlService.setPlayerGameStatTotals(listOfDistinctPlayers, statsOfActivePlayersThisSeason)
+    await NhlController.NhlSetPlayerGameStatTotals(arrayOfPlayerTotals)
+
+    //set team game stat averages
+    let arrayOfTeamAverages: DbNhlTeamGameStatTotals[] = NhlService.setTeamGameStatAverages(listOfTeams, allTeamStats)
+    await NhlController.NhlSetTeamGameStatAverages(arrayOfTeamAverages)
+
+    //set player game stat averages
+    let arrayOfPlayerAverages: DbNhlPlayerGameStatTotals[] = NhlService.setPlayerGameStatAverages(listOfDistinctPlayers, statsOfActivePlayersThisSeason)
+    await NhlController.NhlSetPlayerGameStatAverages(arrayOfPlayerAverages)
+
 
     
+
+    //let teams = await nhlApiController.getTeamInfo()
+    //TeamInfoController.setTeamInfo(teams)
+
+
 
 
 
