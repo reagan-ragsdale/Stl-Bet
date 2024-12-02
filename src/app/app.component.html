@@ -17,8 +17,8 @@
             Stats</button>
 
             <form *ngIf="isClicked" style="align-items: center; margin-right:auto; margin-left:auto;" class="example-form">
-                <input type="text"
-                       placeholder="Search for a street"
+                <input type="text" 
+                       placeholder="Search Players or Teams"
                        [formControl]="myControl"
                        [matAutocomplete]="auto"
                        [(ngModel)]="searchName" 
