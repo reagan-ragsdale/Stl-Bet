@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { NbaController } from '../../shared/Controllers/NbaController';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
-import { MlbController } from 'src/shared/Controllers/MlbController';
+import { MlbController } from '../../shared/Controllers/MlbController';
 import { HostListener } from '@angular/core';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
@@ -13,15 +13,15 @@ import { TransforFromFullTeamNameToAbvr } from '../customPipes/transformFromFull
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
 import { remult } from 'remult';
 import { DbMlbGameBookData } from 'src/shared/dbTasks/DbMlbGameBookData';
-import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
+import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
 import { mlbCronFile } from '../mlbCron';
 import { MlbService } from '../Services/MlbService';
 import { nflApiController } from '../ApiCalls/nflApiCalls';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
-import { NflController } from 'src/shared/Controllers/NflController';
+import { NflController } from '../../shared/Controllers/NflController';
 import { NflService } from '../Services/NflService';
 import { BestBetController } from '../../shared/Controllers/BestBetController';
-import { NhlController } from 'src/shared/Controllers/NhlController';
+import { NhlController } from '../../shared/Controllers/NhlController';
 
 @Component({
     selector: 'home-screen',
