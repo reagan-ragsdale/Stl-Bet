@@ -489,6 +489,7 @@ export class PropScreenComponent implements OnInit {
   //
   sliderValue: number = 80;
   getTeamBestBets() {
+    this.arrayOfTeamBets = []
     for(let i = 0; i < this.teamPropFinnal.length; i++){
       for(let j = 0; j < this.teamPropFinnal[i].length; j++){
         if(this.teamPropFinnal[i][j].length > 1){
