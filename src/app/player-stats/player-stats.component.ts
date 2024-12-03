@@ -632,8 +632,7 @@ export class PlayerStatsComponent {
       //this.playerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL", this.playerId)
       //this.playerName = this.nbaPlayerInfo[0].playerName
       //this.nbaPlayerStatsInfo2022 = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2023)
-      this.nhlPlayerStatsInfo2023 = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024)
-      this.playerTotalStats = await NhlController.NhlGetPlayerGameStatTotalsByPlayerId(this.playerId)
+      this.playerStats = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024)
     }
     else if (this.selectedSport == "MLB") {
 
