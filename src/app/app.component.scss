@@ -10,6 +10,9 @@
     cursor: pointer;
     background-color: #BADEFC !important;
 }
+*:focus {
+  outline: none;
+}
 .top-button, .top-button-login{
   justify-content: space-evenly; 
   //gap: 1rem; 
