@@ -41,6 +41,10 @@ import { cronLoadBestBets } from '../app/cronJobs/cronLoadBestBets';
 import { NhlController } from '../shared/Controllers/NhlController';
 import { DbGameBookDataHistory } from '../shared/dbTasks/DbGameBookDataHistory';
 import { cronLoadIntoHistoryTables } from '../app/cronJobs/cronLoadIntoHistoryTables';
+import { DbNhlPlayerGameStatAverages } from '../shared/dbTasks/DbNhlPlayerGameStatAverages';
+import { DbNhlPlayerGameStatTotals } from '../shared/dbTasks/DbNhlPlayerGameStatTotals';
+import { DbNhlTeamGameStatAverages } from '../shared/dbTasks/DbNhlTeamGameStatAverages';
+import { DbNhlTeamGameStatTotals } from '../shared/dbTasks/DbNhlTeamGameStatTotals';
 
 
 config()
@@ -70,7 +74,11 @@ export const api = remultExpress({
     DbNhlPlayerGameStats,
     DbNhlTeamGameStats,
     DbPlayerBestBets,
-    DbGameBookDataHistory
+    DbGameBookDataHistory,
+    DbNhlPlayerGameStatAverages,
+    DbNhlPlayerGameStatTotals,
+    DbNhlTeamGameStatAverages,
+    DbNhlTeamGameStatTotals
   ],
   controllers: [
     MlbController,
