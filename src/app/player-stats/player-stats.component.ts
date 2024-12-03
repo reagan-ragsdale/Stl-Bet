@@ -26,6 +26,7 @@ import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { DBMlbPlayerGameStatTotals } from '../../shared/dbTasks/DbMlbPlayerGameStatTotals';
 import { NflController } from 'src/shared/Controllers/NflController';
+import { NhlController } from 'src/shared/Controllers/NhlController';
 
 
 interface statSearch {
@@ -630,8 +631,9 @@ export class PlayerStatsComponent {
     else if (this.selectedSport == "NHL") {
       //this.playerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL", this.playerId)
       //this.playerName = this.nbaPlayerInfo[0].playerName
-      this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
-      this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
+      //this.nbaPlayerStatsInfo2022 = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2023)
+      this.nhlPlayerStatsInfo2023 = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024)
+      this.playerTotalStats = await NhlController.NhlGetPlayerGameStatTotalsByPlayerId(this.playerId)
     }
     else if (this.selectedSport == "MLB") {
 

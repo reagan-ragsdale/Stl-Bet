@@ -122,6 +122,14 @@ export class NhlController{
         return finalReturn
         
     }
+    @BackendMethod({allowed:true})
+    static async NhlGetPlayerGameStatTotalsByPlayerId(playerId: number):Promise<DbNhlPlayerGameStatTotals[]>{
+        const taskRepo = remult.repo(DbNhlPlayerGameStatTotals)
+       
+        return await taskRepo.find({where:{playerId: playerId}})
+        
+    }
+    
 
     //player stat averages
     @BackendMethod({allowed:true})
