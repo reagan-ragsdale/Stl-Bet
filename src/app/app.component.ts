@@ -34,8 +34,10 @@ export class AppComponent {
   }
 
   loadNewPlayer(playerId: number, sport: string){
-
+    this.router.navigate([`/playerStats/${sport}/${playerId}`])
   }
+  
+
   isClicked: Boolean = false;
   onSearchClicked(){
     this.isClicked = !this.isClicked
