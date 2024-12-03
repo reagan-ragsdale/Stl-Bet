@@ -107,6 +107,39 @@ export class PlayerStatsComponent {
   ]
   public displayedColumnsNfl: string[] = ["Game", "Date", "Pass TD", 'Pass Completions', 'Rush TD', 'Rush Yds', 'Carries', "Rec TD", 'Rec Yds', 'Receptions', 'Ints Thrown']
 
+  public displayedColumnsNhl: string[] = ["Game", "Date", "Points", 'Goals', 'Assists', 'Shots', 'Blocks']
+
+  public displayedColumnsValuesNhl: any[] = [
+    {
+      name: 'Game',
+      value: 'teamAgainstName'
+    },
+    {
+      name: 'Date',
+      value: 'gameDate'
+    },
+    {
+      name: 'Points',
+      value: 'points'
+    },
+    {
+      name: 'Goals',
+      value: 'goals'
+    },
+    {
+      name: 'Assists',
+      value: 'assists'
+    },
+    {
+      name: 'Shots',
+      value: 'shots'
+    },
+    {
+      name: 'Blocks',
+      value: 'blocks'
+    }
+  ]
+
   public displayedColumnsValuesNfl: any[] = [
     {
       name: 'Game',
@@ -236,6 +269,8 @@ export class PlayerStatsComponent {
 
   public playerTotalStatColumnsNfl: string[] = ['Pass TD', 'Pass Completions', 'Rush TD', 'Rush Yds', 'Carries', 'Rec TD', 'Rec Yds', 'Receptions', 'Ints Thrown']
 
+  public playerTotalStatColumnsNhl: string[] = ['Points', 'Goals', 'Assists', 'Shots', 'Blocks']
+
   public playerTotalDataSetNfl: any[] = [
 
     {
@@ -276,6 +311,29 @@ export class PlayerStatsComponent {
     }
 
 
+  ]
+  public playerTotalDataSetNhl: any[] = [
+
+    {
+      name: 'Points',
+      data: 'points'
+    },
+    {
+      name: 'Goals',
+      data: 'goals'
+    },
+    {
+      name: 'Assists',
+      data: 'assists'
+    },
+    {
+      name: 'Shots',
+      data: 'shots'
+    },
+    {
+      name: 'Blocks',
+      data: 'blocks'
+    }
   ]
 
   formArray: statSearch[] = [
@@ -325,7 +383,7 @@ export class PlayerStatsComponent {
   public allSportPlayerList: any[] = []
 
   public playerInfo: DbPlayerInfo[] = []
-  public selectedPlayer: any = []
+  public selectedPlayer: DbPlayerInfo[] = []
   public playerStats: any[] = []
   public playerSeasonStats: any[] = []
 
@@ -344,21 +402,15 @@ export class PlayerStatsComponent {
 
   async loadData() {
 
-    if (this.route.snapshot.paramMap.get('sport') != 'all') {
-      this.selectedSport = this.route.snapshot.paramMap.get('sport')
-      this.playerId = this.route.snapshot.paramMap.get('id')
-      await this.getPlayerInfo()
-      //await this.getAllPlayerInfo()
-      this.calculateMeanAndStd()
-      this.createChart()
-      //this.createChart2()
-      //this.createNormalDistChart()
-    }
-    else if (this.route.snapshot.paramMap.get('sport') == 'all') {
 
-      this.isNull = true
-      await this.getAllSportPlayers()
-    }
+    this.selectedSport = this.route.snapshot.paramMap.get('sport')
+    this.playerId = this.route.snapshot.paramMap.get('id')
+    await this.getPlayerInfo()
+    //await this.getAllPlayerInfo()
+    this.calculateMeanAndStd()
+    this.createChart()
+    //this.createChart2()
+    //this.createNormalDistChart()
 
     if (this.selectedSport == 'MLB') {
 
@@ -497,9 +549,56 @@ export class PlayerStatsComponent {
       this.playerTotalStatColumns = this.playerTotalStatColumnsNfl
       this.playerTotalDataSet = this.playerTotalDataSetNfl
     }
+    else if(this.selectedSport == 'NHL'){
+      this.fullDataset = [
+        {
+          label: "Points",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: true,
+          dataName: 'points'
+
+        },
+        {
+          label: "Goals",
+          data: [],
+          backgroundColor: 'yellow',
+          showLine: false,
+          dataName: 'goals'
+
+        },
+        {
+          label: "Assists",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: false,
+          dataName: 'assists'
+
+        },
+        {
+          label: "Shots",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'shots'
+        },
+        {
+          label: "Blocks",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'blocks'
+        }
+      ]
+      this.displayedColumns = this.displayedColumnsNhl
+      this.displayedColumnsValues = this.displayedColumnsValuesNhl
+      this.playerTotalStatColumns = this.playerTotalStatColumnsNhl
+      this.playerTotalDataSet = this.playerTotalDataSetNhl
+    }
 
     this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
-    this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)[0]
+    this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)
+    this.playerName = this.selectedPlayer[0].playerName
 
     this.playerSeasons = []
     if (this.selectedSport == "NBA") {
@@ -529,8 +628,8 @@ export class PlayerStatsComponent {
 
     }
     else if (this.selectedSport == "NHL") {
-      this.playerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL", this.playerId)
-      this.playerName = this.nbaPlayerInfo[0].playerName
+      //this.playerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL", this.playerId)
+      //this.playerName = this.nbaPlayerInfo[0].playerName
       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
     }
@@ -784,7 +883,7 @@ export class PlayerStatsComponent {
       arrayOFpoints = [hits, homeRuns, totalBases, rbis]
 
     }
-    else if(this.selectedSport == 'NFL'){
+    else if (this.selectedSport == 'NFL') {
       var passTd: number[] = []
       var passYds: number[] = []
       var rushingTd: number[] = []
@@ -812,17 +911,17 @@ export class PlayerStatsComponent {
         index++
       })
 
-      arrayOFpoints = [passTd, passYds, completions, rushingTd, rushYds, carries, recTd,recYds,receptions ]
+      arrayOFpoints = [passTd, passYds, completions, rushingTd, rushYds, carries, recTd, recYds, receptions]
     }
 
     console.log('things below')
     console.log(arrayOFpoints)
     console.log(this.fullDataset)
     for (let i = 0; i < arrayOFpoints.length; i++) {
-      
+
       this.fullDataset[i].data = arrayOFpoints[i]
     }
-    
+
 
     var filteredDataSet: any[] = []
     this.fullDataset.forEach((e) => {
@@ -889,7 +988,7 @@ export class PlayerStatsComponent {
         max = e
       }
     })
-    max = (max + (max/4))
+    max = (max + (max / 4))
     if (max.toString().includes(".")) {
       var maxNew = max.toString().split(".")
       max = parseInt(maxNew[0]) + 1

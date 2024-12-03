@@ -1176,10 +1176,10 @@ export class NhlService {
                 saves: 0
             }
             for (let j = 0; j < playerStats.length; j++) {
-                playerTotal.playerName += playerStats[j].playerName;
-                playerTotal.teamName += playerStats[j].teamName;
-                playerTotal.teamId += playerStats[j].teamId;
-                playerTotal.season += playerStats[j].season;
+                playerTotal.playerName = playerStats[j].playerName;
+                playerTotal.teamName = playerStats[j].teamName;
+                playerTotal.teamId = playerStats[j].teamId;
+                playerTotal.season = playerStats[j].season;
                 playerTotal.goals += playerStats[j].goals;
                 playerTotal.assists += playerStats[j].assists;
                 playerTotal.pim += playerStats[j].pim;
