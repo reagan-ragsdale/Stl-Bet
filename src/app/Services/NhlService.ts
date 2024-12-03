@@ -1120,6 +1120,9 @@ export class NhlService {
                 teamId: listOfTeams[i].teamId,
                 teamName: listOfTeams[i].teamNameAbvr,
                 season: 0,
+                wins: 0,
+                loss: 0,
+                otl: 0,
                 pointsScoredOverall: 0,
                 pointsScoredFirstPeriod: 0,
                 pointsScoredSecondPeriod: 0,
@@ -1135,6 +1138,15 @@ export class NhlService {
             let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
             teamTotals.season = teamStats[0].season;
             for (let j = 0; j < teamStats.length; j++) {
+                if(teamStats[j].result == 'W'){
+                    teamTotals.wins++
+                }
+                else if(teamStats[j].result == 'L'){
+                    teamTotals.loss++
+                }
+                else if(teamStats[j].result == 'OTL'){
+                    teamTotals.otl++
+                }
                 teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
                 teamTotals.pointsScoredFirstPeriod += teamStats[j].pointsScoredFirstPeriod;
                 teamTotals.pointsScoredSecondPeriod += teamStats[j].pointsScoredSecondPeriod;

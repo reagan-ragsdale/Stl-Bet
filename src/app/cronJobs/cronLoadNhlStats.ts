@@ -5,7 +5,8 @@ import { NhlController } from "../../shared/Controllers/NhlController";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
 import { DbNhlTeamGameStatTotals } from "src/shared/dbTasks/DbNhlTeamGameStatTotals";
 import { NhlService } from "../Services/NhlService";
-import { DbNhlPlayerGameStatTotals } from "src/shared/dbTasks/DbNhlPlayerGameStatTotals";
+import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameStatTotals";
+import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
 
 export const cronLoadNhlStats = async () => {
     console.log("starting nhl stats")
@@ -106,7 +107,7 @@ export const cronLoadNhlStats = async () => {
     await NhlController.NhlSetPlayerGameStatTotals(arrayOfPlayerTotals)
 
     //set team game stat averages
-    let arrayOfTeamAverages: DbNhlTeamGameStatTotals[] = NhlService.setTeamGameStatAverages(listOfTeams, allTeamStats)
+    let arrayOfTeamAverages: DbNhlTeamGameStatAverages[] = NhlService.setTeamGameStatAverages(listOfTeams, allTeamStats)
     await NhlController.NhlSetTeamGameStatAverages(arrayOfTeamAverages)
 
     //set player game stat averages

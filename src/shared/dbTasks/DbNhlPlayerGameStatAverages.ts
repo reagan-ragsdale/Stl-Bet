@@ -22,37 +22,37 @@ export class DbNhlPlayerGameStatAverages {
   @Fields.integer()
   season = 0
 
-  @Fields.integer()
+  @Fields.number()
   goals = 0
 
-  @Fields.integer()
+  @Fields.number()
   assists = 0
 
-  @Fields.integer()
+  @Fields.number()
   pim = 0
 
-  @Fields.integer()
+  @Fields.number()
   shots = 0
 
-  @Fields.integer()
+  @Fields.number()
   hits = 0
 
-  @Fields.integer()
+  @Fields.number()
   powerPlayGoals = 0
 
-  @Fields.integer()
+  @Fields.number()
   powerPlayPoints = 0
 
-  @Fields.integer()
+  @Fields.number()
   plusMinus = 0
 
-  @Fields.integer()
+  @Fields.number()
   points = 0
 
-  @Fields.integer()
+  @Fields.number()
   blocks = 0
 
-  @Fields.integer()
+  @Fields.number()
   saves = 0
 
   @Fields.createdAt()

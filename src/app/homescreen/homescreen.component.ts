@@ -21,6 +21,7 @@ import { TeamInfoController } from '../../shared/Controllers/TeamInfoController'
 import { NflController } from 'src/shared/Controllers/NflController';
 import { NflService } from '../Services/NflService';
 import { BestBetController } from '../../shared/Controllers/BestBetController';
+import { NhlController } from 'src/shared/Controllers/NhlController';
 
 @Component({
     selector: 'home-screen',
@@ -322,9 +323,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNhl
       this.gameDataAllFinal = []
-      //let result = await Promise.all([NhlController.nhlGetPlayerStatTotals('points', 2024), NhlController.nhlGetTeamStatTotals("wins", 2024)])
-      this.playerData = []
-      this.teamData = []
+      let result = await Promise.all([NhlController.NhlGetPlayerGameStatTotals('points', 2024), NhlController.NhlGetTeamGameStatTotals("wins", 2024)])
+      this.playerData = result[0]
+      this.teamData = result[1]
       //this.betCheats = result[2]
       this.playerStatsButtons = [
         {
@@ -352,7 +353,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         {
           selected: false,
           name: "Losses",
-          dbName: "losses"
+          dbName: "loss"
         }
       ]
 

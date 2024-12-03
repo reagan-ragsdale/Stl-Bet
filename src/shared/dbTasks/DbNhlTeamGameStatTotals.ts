@@ -18,6 +18,15 @@ export class DbNhlTeamGameStatTotals {
   season = 0
 
   @Fields.integer()
+  wins = 0
+
+  @Fields.integer()
+  loss = 0
+
+  @Fields.integer()
+  otl = 0
+
+  @Fields.integer()
   pointsScoredOverall = 0
 
   @Fields.integer()

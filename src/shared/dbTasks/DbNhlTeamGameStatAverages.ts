@@ -16,37 +16,37 @@ export class DbNhlTeamGameStatAverages {
   @Fields.integer()
   season = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsScoredOverall = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsScoredFirstPeriod = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsScoredSecondPeriod = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsScoredThirdPeriod = 0
 
-  @Fields.integer()
+  @Fields.number()
   shotsOnGoal = 0
 
-  @Fields.integer()
+  @Fields.number()
   saves = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsAllowedOverall = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsAllowedFirstPeriod = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsAllowedSecondPeriod = 0
 
-  @Fields.integer()
+  @Fields.number()
   pointsAllowedThirdPeriod = 0
 
-  @Fields.integer()
+  @Fields.number()
   shotsAllowedOnGoal = 0
 
   

@@ -44,6 +44,13 @@ export class NhlController{
         await taskRepo.deleteMany({where: {teamId: {$gte: 0}}})
         await taskRepo.insert(teamStats)
     }
+    @BackendMethod({allowed:true})
+    static async NhlGetTeamGameStatTotals(stat: string, season: number){
+        const taskRepo = remult.repo(DbNhlTeamGameStatTotals)
+            return await taskRepo.find({where: {season : season}, orderBy:{wins: 'desc'}})
+        
+        
+    }
     //team stat averages
     @BackendMethod({allowed:true})
     static async NhlSetTeamGameStatAverages(teamStats: DbNhlTeamGameStatAverages[]){
@@ -90,6 +97,31 @@ export class NhlController{
         await taskRepo.deleteMany({where: {playerId: {$gte: 0}}})
         await taskRepo.insert(playerStats)
     }
+    @BackendMethod({allowed:true})
+    static async NhlGetPlayerGameStatTotals(stat: string, season: number):Promise<DbNhlPlayerGameStatTotals[]>{
+        const taskRepo = remult.repo(DbNhlPlayerGameStatTotals)
+        let finalReturn: DbNhlPlayerGameStatTotals[] = []
+        if(stat == 'points'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{points: 'desc'}})
+        }
+        else if(stat == 'goals'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{goals: 'desc'}})
+        }
+        else if(stat == 'assists'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{assists: 'desc'}})
+        }
+        else if(stat == 'shots'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{shots: 'desc'}})
+        }
+        else if(stat == 'blocks'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{blocks: 'desc'}})
+        }
+        else if(stat == 'saves'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{saves: 'desc'}})
+        }
+        return finalReturn
+        
+    }
 
     //player stat averages
     @BackendMethod({allowed:true})
@@ -97,6 +129,32 @@ export class NhlController{
         const taskRepo = remult.repo(DbNhlPlayerGameStatAverages)
         await taskRepo.deleteMany({where: {playerId: {$gte: 0}}})
         await taskRepo.insert(playerStats)
+    }
+
+    @BackendMethod({allowed:true})
+    static async NhlGetPlayerGameStatAverages(stat: string, season: number):Promise<DbNhlPlayerGameStatAverages[]>{
+        const taskRepo = remult.repo(DbNhlPlayerGameStatAverages)
+        let finalReturn: DbNhlPlayerGameStatAverages[] = []
+        if(stat == 'points'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{points: 'desc'}})
+        }
+        else if(stat == 'goals'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{goals: 'desc'}})
+        }
+        else if(stat == 'assists'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{assists: 'desc'}})
+        }
+        else if(stat == 'shots'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{shots: 'desc'}})
+        }
+        else if(stat == 'blocks'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{blocks: 'desc'}})
+        }
+        else if(stat == 'saves'){
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{saves: 'desc'}})
+        }
+        return finalReturn
+        
     }
     
     
