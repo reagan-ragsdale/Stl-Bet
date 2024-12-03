@@ -322,6 +322,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNhl
+      this.playerAverageColumns = this.playerAverageColumnsNhl
       this.gameDataAllFinal = []
       let result = await Promise.all([NhlController.NhlGetPlayerGameStatTotals('points', 2024), NhlController.NhlGetTeamGameStatTotals("wins", 2024)])
       this.playerData = result[0]
@@ -358,7 +359,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       ]
 
        
-      this.playerAverageColumns = this.playerAverageColumnsNfl
+      
     }
     var taskRepo = remult.repo(DbGameBookData)
     this.unsubscribe = taskRepo
