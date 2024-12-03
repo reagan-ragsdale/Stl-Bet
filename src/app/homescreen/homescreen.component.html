@@ -8,13 +8,13 @@
         </mat-chip-option>
       </mat-chip-listbox>
     </div>
-<div style="display:flex; flex-direction:column">
-    <div style=" width: 100%; display: flex; align-items: center;   margin-top: 1rem; margin-bottom: 1rem;">
+<div style="display:flex; flex-direction:column;">
+    <div style=" display: flex; align-items: center;   margin-top: 1rem; margin-bottom: 1rem;">
       
       <h1
-        style="width: 50%; height: 100%; text-align: start;  font-weight: 500; color:#240605; margin-left: 1.5rem; font-size: xx-large; margin-top:auto; margin-bottom: auto;">
+        style=" height: 100%; text-align: start;  font-weight: 500; color:#240605; margin-left: 1.5rem; font-size: xx-large; margin-top:auto; margin-bottom: auto;">
         {{selectedSport}} Dashboard</h1>
-      <div style="height: 100%; width: 50%; display:flex; align-items: center; justify-content: flex-end;">
+      <div style="height: 100%; display:flex; align-items: center; justify-content: flex-end;">
         <button mat-button style=" margin-right: 2rem; background-color: #22577A; color: #F0ECE5 " (click)="sportProps()">Go to
           {{selectedSport}} Props</button>
       </div>
@@ -22,7 +22,7 @@
     </div>
     <div *ngIf="isDashboard" class="sport-section">
       
-      <div style=" width: 100%; display: flex;  justify-content: space-evenly;  flex-wrap: wrap;">
+      <div style=" width: 100%; display: flex;  justify-content: space-evenly;  flex-wrap: wrap; margin-left:auto;">
         <div class="top-fives">
           <div style=" width: 100%; display: flex; ">
             <h1
