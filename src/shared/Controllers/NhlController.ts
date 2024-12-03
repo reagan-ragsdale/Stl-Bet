@@ -47,7 +47,7 @@ export class NhlController{
     @BackendMethod({allowed:true})
     static async NhlGetTeamGameStatTotals(stat: string, season: number){
         const taskRepo = remult.repo(DbNhlTeamGameStatTotals)
-            return await taskRepo.find({where: {season : season}, orderBy:{wins: 'desc'}})
+            return await taskRepo.find({where: {season : season}, orderBy:{wins: 'desc'},limit: 5})
         
         
     }
@@ -102,22 +102,22 @@ export class NhlController{
         const taskRepo = remult.repo(DbNhlPlayerGameStatTotals)
         let finalReturn: DbNhlPlayerGameStatTotals[] = []
         if(stat == 'points'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{points: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{points: 'desc'},limit: 5})
         }
         else if(stat == 'goals'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{goals: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{goals: 'desc'},limit: 5})
         }
         else if(stat == 'assists'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{assists: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{assists: 'desc'},limit: 5})
         }
         else if(stat == 'shots'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{shots: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{shots: 'desc'},limit: 5})
         }
         else if(stat == 'blocks'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{blocks: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{blocks: 'desc'},limit: 5})
         }
         else if(stat == 'saves'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{saves: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{saves: 'desc'},limit: 5})
         }
         return finalReturn
         
@@ -136,22 +136,22 @@ export class NhlController{
         const taskRepo = remult.repo(DbNhlPlayerGameStatAverages)
         let finalReturn: DbNhlPlayerGameStatAverages[] = []
         if(stat == 'points'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{points: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{points: 'desc'},limit: 5})
         }
         else if(stat == 'goals'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{goals: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{goals: 'desc'},limit: 5})
         }
         else if(stat == 'assists'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{assists: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{assists: 'desc'},limit: 5})
         }
         else if(stat == 'shots'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{shots: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{shots: 'desc'},limit: 5})
         }
         else if(stat == 'blocks'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{blocks: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{blocks: 'desc'},limit: 5})
         }
         else if(stat == 'saves'){
-            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{saves: 'desc'}})
+            finalReturn = await taskRepo.find({where:{season: season}, orderBy:{saves: 'desc'},limit: 5})
         }
         return finalReturn
         
