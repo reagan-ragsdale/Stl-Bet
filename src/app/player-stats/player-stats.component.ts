@@ -633,6 +633,9 @@ export class PlayerStatsComponent {
       //this.playerName = this.nbaPlayerInfo[0].playerName
       //this.nbaPlayerStatsInfo2022 = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2023)
       this.playerStats = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024)
+      this.playerTotalStats = await NhlController.NhlGetPlayerGameStatTotalsByPlayerId(this.playerId)
+      
+      this.seasonArrayTable = this.playerTotalStats
     }
     else if (this.selectedSport == "MLB") {
 
@@ -672,7 +675,6 @@ export class PlayerStatsComponent {
       this.nbaPlayerStatsInfo2023TableTemp.reverse()
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
       this.playerTotalStats = await NflController.nflGetPlayerStatTotalsByPlayerIdAndSeason(this.playerId, allSeasons[allSeasons.length - 1])
       console.log(this.playerTotalStats)
       console.log(allSeasons[allSeasons.length - 1])
@@ -778,16 +780,8 @@ export class PlayerStatsComponent {
   }
 
   filterSearch() {
-    if (this.isNull) {
-      if (this.searchName != "") {
-        this.filteredSearch = this.allSportPlayerList.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
-        console.log(this.filteredSearch)
-      }
-
-    }
-    else {
       this.filteredSearch = this.playerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
-    }
+    
 
   }
 
