@@ -635,7 +635,7 @@ export class PlayerStatsComponent {
     }
     else if (this.selectedSport == "MLB") {
 
-      this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer.playerId)
+      this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer[0].playerId)
 
       let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
       allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
@@ -655,7 +655,7 @@ export class PlayerStatsComponent {
 
     }
     else if (this.selectedSport == "NFL") {
-      this.playerStats = await NflController.nflGetPlayerGameStatsByPlayerId(this.selectedPlayer.playerId)
+      this.playerStats = await NflController.nflGetPlayerGameStatsByPlayerId(this.selectedPlayer[0].playerId)
       console.log(this.playerStats)
 
       let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)

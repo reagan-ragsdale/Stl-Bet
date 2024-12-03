@@ -4,7 +4,7 @@ import { remult } from 'remult';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { Router } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
-import { PlayerInfoController } from 'src/shared/Controllers/PlayerInfoController';
+import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
 import { FormControl } from '@angular/forms';
 
 @Component({
