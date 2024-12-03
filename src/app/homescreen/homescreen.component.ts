@@ -42,6 +42,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   screen: string = '';
   playerStatsButtons: any[] = []
   teamStatsButtons: any[] = []
+  isDashboard: boolean = true;
+  isBestBets: boolean = false;
 
   public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: false, selected: true }, { name: "MLB", disabled: true, selected: false }, { name: "NFL", disabled: false, selected: false }];
   public selectedSport = ''
@@ -121,6 +123,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     }
     else if(this.selectedSport == "NFL"){
       this.playerData = await NflController.nflGetPlayerStatTotals(stat, 2024)
+    }
+    else if(this.selectedSport == 'NHL'){
+      this.playerData = await NhlController.NhlGetPlayerGameStatTotals(stat, 2024)
     }
     
     
