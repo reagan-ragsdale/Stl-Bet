@@ -14,6 +14,8 @@ import { DbNhlTeamGameStatTotals } from "../../shared/dbTasks/DbNhlTeamGameStatT
 import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameStatTotals";
 import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
 import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGameStatAverages";
+import { MatGridTileHeaderCssMatStyler } from "@angular/material/grid-list";
+import { reusedFunctions } from "./reusedFunctions";
 
 
 export class NhlService {
@@ -170,6 +172,9 @@ export class NhlService {
         let homeTeam = teamsInfo.filter(e => e.teamNameFull == props[0].homeTeam)[0]
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
         let teamStatsCombined = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([homeTeam.teamNameAbvr, awayTeam.teamNameAbvr], 2024)
+        for(let i = 0; i < teamStatsCombined.length; i++){
+            teamStatsCombined[i].gameDate = reusedFunctions.convertGameDateToMonthDay(teamStatsCombined[i].gameDate)
+        }
         let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
         let awayTeamStats = teamStatsCombined.filter(e => e.teamName == awayTeam.teamNameAbvr)
         let homeTeamPropsFinal: any[] = []
@@ -683,6 +688,10 @@ export class NhlService {
         let uniquePlayerNames = playerPropData.map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
 
         let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
+
+        for(let i = 0; i < allPlayerStats.length; i++){
+            allPlayerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(allPlayerStats[i].gameDate)
+        }
 
         let allPlayerInfo = await PlayerInfoController.loadActivePlayerInfoBySport("NHL")
 
