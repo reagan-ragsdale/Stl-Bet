@@ -67,8 +67,6 @@ export class PlayerStatsComponent {
   public selectedStatSearchNumber: number = 0
   public filteredSearch: DbPlayerInfo[] = []
   public searchName: string = ''
-  playerAverage: number = 0
-  playerStd: number = 0
 
   public chart: any;
 
@@ -355,17 +353,10 @@ export class PlayerStatsComponent {
 
   isCombineStats: boolean = false
 
-  public seasonArray: any[] = []
+  public selectedSeasonPlayerStats: any[] = []
 
   //nba
-  public nbaPlayerInfo: NbaPlayerInfoDb[] = []
-  public nbaPlayerStatsInfo2022: DbNbaGameStats[] = []
-  public nbaPlayerStatsInfo2023: DbNbaGameStats[] = []
-  public nbaAllPlayerInfo: NbaPlayerInfoDb[] = []
-  public nbaPlayerStatsInfo2023TableTemp: any[] = []
-  public nbaPlayerStatsInfo2023Table: any[] = []
-  public nbaPlayerStatsInfo2022TableTemp: any[] = []
-  public nbaPlayerStatsInfo2022Table: any[] = []
+  public distinctSeasons: number[] = []
   public playerSeasons: number[] = []
   public playerSeason: number = 2024
   public teamInfo: DbNbaTeamLogos[] = []
@@ -373,14 +364,10 @@ export class PlayerStatsComponent {
   @ViewChild(MatTable)
   table!: MatTable<any>;
 
-  //nhl
-  public nhlPlayerStatsInfo2022: DbNhlPlayerGameStats[] = []
-  public nhlPlayerStatsInfo2023: DbNhlPlayerGameStats[] = []
+  
 
 
   //all
-  public isNull: boolean = false
-  public allSportPlayerList: any[] = []
 
   public playerInfo: DbPlayerInfo[] = []
   public selectedPlayer: DbPlayerInfo[] = []
@@ -547,14 +534,12 @@ export class PlayerStatsComponent {
       for(let i = 0; i < this.playerStats.length; i++){
         this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
       }
-      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
+      this.distinctSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
 
-      allSeasons.sort(function (a, b) {
+      this.distinctSeasons.sort(function (a, b) {
         return a - b;
       });
-      allSeasons.forEach(e => this.playerSeasons.push(e))
-      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
+      this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
 
 
 
@@ -611,74 +596,7 @@ export class PlayerStatsComponent {
     this.playerName = this.selectedPlayer[0].playerName
 
     this.playerSeasons = []
-    if (this.selectedSport == "NBA") {
-      /*  this.selectedStatSearchNumber = 0
-       this.nbaPlayerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NBA",this.playerId)
-       this.playerName = this.nbaPlayerInfo[0].playerName
-       this.nbaPlayerStatsInfo2022 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2022)
-       this.nbaPlayerStatsInfo2023 = await NbaController.nbaLoadPlayerStatsInfoFromIdAndSeason(this.playerId, 2023)
-       this.nbaPlayerStatsInfo2023TableTemp = structuredClone(this.nbaPlayerStatsInfo2023)
-       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp.reverse()
-       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-       this.nbaPlayerStatsInfo2022TableTemp = structuredClone(this.nbaPlayerStatsInfo2022)
-       this.nbaPlayerStatsInfo2022Table = this.nbaPlayerStatsInfo2022TableTemp.reverse()
-       this.nbaPlayerStatsInfo2022Table.forEach((e) => e.isHighlighted = false)
-       this.searchName = this.playerName
-       this.playerSeasons.push("2023")
-       if (this.nbaPlayerStatsInfo2022.length > 1) {
-         this.playerSeasons.push("2022")
-       }
-       this.seasonArray = this.nbaPlayerStatsInfo2023
-       
-       this.teamInfo = await NbaController.nbaGetLogoFromTeamId(this.nbaPlayerInfo[0].teamId) */
-
-
-
-
-
-    }
-    
-    else if (this.selectedSport == "MLB") {
-
-      this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer[0].playerId)
-
-      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
-
-      allSeasons.sort(function (a, b) {
-        return a - b;
-      });
-      allSeasons.forEach(e => this.playerSeasons.push(e))
-      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
-
-      this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
-      this.nbaPlayerStatsInfo2023TableTemp.reverse()
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp
-      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.playerTotalStats = await MlbController.mlbSpecificGetPlayerStatTotals(this.playerId)
-
-    }
-    else if (this.selectedSport == "NFL") {
-      this.playerStats = await NflController.nflGetPlayerGameStatsByPlayerId(this.selectedPlayer[0].playerId)
-      console.log(this.playerStats)
-
-      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
-
-      allSeasons.sort(function (a, b) {
-        return a - b;
-      });
-      allSeasons.forEach(e => this.playerSeasons.push(e))
-      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
-
-      this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
-      this.nbaPlayerStatsInfo2023TableTemp.reverse()
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp
-      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.playerTotalStats = await NflController.nflGetPlayerStatTotalsByPlayerIdAndSeason(this.playerId, allSeasons[allSeasons.length - 1])
-      console.log(this.playerTotalStats)
-      console.log(allSeasons[allSeasons.length - 1])
-    }
+   
     this.playerProps = []
     this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
     console.log(this.playerProps)
@@ -696,15 +614,7 @@ export class PlayerStatsComponent {
     console.log(this.playerPropArray)
   }
 
-  /* async getAllPlayerInfo() {
-    if (this.selectedSport == "NBA") {
-      this.nbaAllPlayerInfo = await NbaController.nbaLoadAllPlayerInfo()
-      this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName == this.searchName)
-
-    }
-    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
-    
-  } */
+  
 
   loadNewPlayer(id: number, sport: string) {
     this.destroyGraphs()
@@ -712,11 +622,6 @@ export class PlayerStatsComponent {
     this.formArray = []
   }
 
-  loadFindHomeAwayFromGameId(gameId: string, teamName: string): string {
-    //console.log(gameId)
-    //console.log(teamName)
-    return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
-  }
 
   
   totalNumberHighlighted: number = 0;
@@ -727,31 +632,31 @@ export class PlayerStatsComponent {
     this.totalNumberHighlighted = 0;
     // later we can add over or under and combined stats
     if (this.formArray.length > 0) {
-      for (let i = 0; i < this.seasonArray.length; i++) {
+      for (let i = 0; i < this.selectedSeasonPlayerStats.length; i++) {
         for (let j = 0; j < this.formArray.length; j++) {
 
           if (this.formArray[j].overUnder) {
-            if (this.seasonArray[i][this.formArray[j].dataName] > this.formArray[j].number) {
-              this.seasonArray[i].isHighlighted = true
+            if (this.selectedSeasonPlayerStats[i][this.formArray[j].dataName] > this.formArray[j].number) {
+              this.selectedSeasonPlayerStats[i].isHighlighted = true
             }
             else {
-              this.seasonArray[i].isHighlighted = false
+              this.selectedSeasonPlayerStats[i].isHighlighted = false
               break
             }
           }
           else {
-            if (this.seasonArray[i][this.formArray[j].dataName] < this.formArray[j].number) {
-              this.seasonArray[i].isHighlighted = true
+            if (this.selectedSeasonPlayerStats[i][this.formArray[j].dataName] < this.formArray[j].number) {
+              this.selectedSeasonPlayerStats[i].isHighlighted = true
             }
             else {
-              this.seasonArray[i].isHighlighted = false
+              this.selectedSeasonPlayerStats[i].isHighlighted = false
               break
             }
           }
 
         }
       }
-      for (let game of this.seasonArray) {
+      for (let game of this.selectedSeasonPlayerStats) {
         if (game.isHighlighted) {
           this.totalNumberHighlighted++;
         }
@@ -764,7 +669,7 @@ export class PlayerStatsComponent {
   }
 
   clearSearch() {
-    this.seasonArray.forEach((e) => {
+    this.selectedSeasonPlayerStats.forEach((e) => {
       e.isHighlighted = false
     })
   }
@@ -803,18 +708,15 @@ export class PlayerStatsComponent {
     }
   }
 
-  getTotalCost(stat: string) {
-    var num = this.seasonArray.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
-    return (num / this.seasonArray.length).toFixed(2)
-  }
+  
   updateSeasonsDisplayed(season: number) {
     this.playerSeason = season
 
-    this.seasonArray = JSON.parse(JSON.stringify(this.playerStats.filter(e => e.season == this.playerSeason)))
-    this.seasonArray.reverse()
-    this.seasonArray = this.playerStats.filter(e => e.season == this.playerSeason)
+    this.selectedSeasonPlayerStats = JSON.parse(JSON.stringify(this.playerStats.filter(e => e.season == this.playerSeason)))
+    this.selectedSeasonPlayerStats.reverse()
+    this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.playerSeason)
 
-    this.seasonArray.forEach((e) => e.isHighlighted = false)
+    this.selectedSeasonPlayerStats.forEach((e) => e.isHighlighted = false)
     this.table.renderRows()
     this.reDrawLineGraph()
   }
@@ -833,7 +735,7 @@ export class PlayerStatsComponent {
 
 
       var index = 1
-      this.seasonArray.forEach((e) => {
+      this.selectedSeasonPlayerStats.forEach((e) => {
         points.push(e.points)
         assists.push(e.assists)
         rebounds.push(e.totReb)
@@ -853,7 +755,7 @@ export class PlayerStatsComponent {
       var rbis: number[] = []
 
       var index = 1
-      this.seasonArray.forEach((e) => {
+      this.selectedSeasonPlayerStats.forEach((e) => {
         hits.push(e.batterHits)
         homeRuns.push(e.batterHomeRuns)
         totalBases.push(e.batterTotalBases)
@@ -878,7 +780,7 @@ export class PlayerStatsComponent {
       var receptions: number[] = []
 
       var index = 1
-      this.seasonArray.forEach((e) => {
+      this.selectedSeasonPlayerStats.forEach((e) => {
         rushingTd.push(e.rushingTouchdowns)
         recTd.push(e.receivingTouchdowns)
         rushYds.push(e.rushingYards)
@@ -904,7 +806,7 @@ export class PlayerStatsComponent {
       var blocks: number[] = []
 
       var index = 1
-      this.seasonArray.forEach((e) => {
+      this.selectedSeasonPlayerStats.forEach((e) => {
         points.push(e.points)
         goals.push(e.goals)
         assists.push(e.assists)
@@ -1109,269 +1011,9 @@ export class PlayerStatsComponent {
     });
   }
 
-  createChart2() {
-    var points: number[] = []
-    var assists: number[] = []
-    var rebounds: number[] = []
-    var blocks: number[] = []
-    var threes: number[] = []
-    var doubleDoubles: number[] = []
+  
 
-    var dataPoint: number[] = []
-    var pointsFinal: number[] = []
-    var assistsFinal: number[] = []
-    var reboundsFinal: number[] = []
-    var blocksFinal: number[] = []
-    var thressFinal: number[] = []
-    var doubleDoublesFinal: number[] = []
-    var combinedArrays: any[] = []
-
-    var index = 1
-    for (let i = 0; i < 100; i++) {
-      dataPoint.push(i)
-    }
-    this.seasonArray.forEach((e) => {
-      points.push(e.points)
-      assists.push(e.assists)
-      rebounds.push(e.totReb)
-      blocks.push(e.blocks)
-      threes.push(e.tpm)
-      doubleDoubles.push(e.doubleDouble)
-
-      //dataPoint.push(index)
-      index++
-    })
-
-
-    var arrayOFunfiltered = [points, assists, rebounds, blocks, threes, doubleDoubles]
-    for (let i = 0; i < 100; i++) {
-      let num = points.filter((e) => e == i)
-      pointsFinal.push(num.length)
-      let num2 = assists.filter((e) => e == i)
-      assistsFinal.push(num2.length)
-      let num3 = rebounds.filter((e) => e == i)
-      reboundsFinal.push(num3.length)
-      let num4 = blocks.filter((e) => e == i)
-      blocksFinal.push(num4.length)
-      let num5 = threes.filter((e) => e == i)
-      thressFinal.push(num5.length)
-      let num6 = doubleDoubles.filter((e) => e == i)
-      doubleDoublesFinal.push(num6.length)
-    }
-    var arrayOFpoints = [pointsFinal, assistsFinal, reboundsFinal, blocksFinal, thressFinal, doubleDoublesFinal]
-
-    for (let i = 0; i < arrayOFpoints.length; i++) {
-      this.fullDataset[i].data = arrayOFpoints[i]
-      this.fullDataset[i].unfilteredData = arrayOFunfiltered[i]
-    }
-
-    var filteredDataSet: any[] = []
-    this.fullDataset.forEach((e) => {
-      if (e.showLine) {
-        filteredDataSet.push(e)
-        combinedArrays.push(e.unfilteredData)
-      }
-    })
-    var combinedArrayFinal: any[] = []
-
-    for (let i = 0; i < combinedArrays[0].length; i++) {
-      let sum = 0
-      for (let j = 0; j < combinedArrays.length; j++) {
-
-        sum += combinedArrays[j][i]
-      }
-      combinedArrayFinal.push(sum)
-    }
-    var newFilteredData: any[] = []
-    for (let i = 0; i < 100; i++) {
-      let temp = combinedArrayFinal.filter((e) => e == i)
-      newFilteredData.push(temp.length)
-    }
-    var stringOfPoints: string = ''
-    var count = 0
-    filteredDataSet.forEach((e) => {
-
-      if (filteredDataSet.length == 1 || count == 0) {
-        stringOfPoints += e.label
-        count++
-      }
-      else { stringOfPoints += " + " + e.label }
-
-    })
-    if (this.isCombineStats) {
-      filteredDataSet = [{
-        label: stringOfPoints,
-        data: newFilteredData,
-        backgroundColor: 'blue',
-        showLine: true
-      }]
-    }
-    this.chart2 = new Chart("barChart", {
-      type: 'bar',
-
-      data: {// values on X-Axis
-        labels: dataPoint,
-        datasets: filteredDataSet
-      },
-      options: {
-        datasets: {
-          bar: {
-            barPercentage: 1,
-            barThickness: 'flex'
-          }
-        },
-        scales: {
-          y: {
-            min: 0,
-            max: 10
-          }
-
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: 'Distrbution'
-          },
-        },
-
-        maintainAspectRatio: false
-      }
-
-    });
-  }
-
-  createNormalDistChart() {
-    var points: number[] = []
-    var assists: number[] = []
-    var rebounds: number[] = []
-    var blocks: number[] = []
-    var threes: number[] = []
-    var doubleDoubles: number[] = []
-
-    var dataPoint: number[] = []
-    var pointsFinal: number[] = []
-    var assistsFinal: number[] = []
-    var reboundsFinal: number[] = []
-    var blocksFinal: number[] = []
-    var thressFinal: number[] = []
-    var doubleDoublesFinal: number[] = []
-    var combinedArrays: any[] = []
-
-    var index = 1
-    for (let i = 0; i < 100; i++) {
-      dataPoint.push(i)
-    }
-    this.seasonArray.forEach((e) => {
-      points.push(e.points)
-      assists.push(e.assists)
-      rebounds.push(e.totReb)
-      blocks.push(e.blocks)
-      threes.push(e.tpm)
-      doubleDoubles.push(e.doubleDouble)
-
-      //dataPoint.push(index)
-      index++
-    })
-
-
-    var arrayOFunfiltered = [points, assists, rebounds, blocks, threes, doubleDoubles]
-    for (let i = 0; i < 100; i++) {
-      let num = points.filter((e) => e == i)
-      pointsFinal.push(num.length)
-      let num2 = assists.filter((e) => e == i)
-      assistsFinal.push(num2.length)
-      let num3 = rebounds.filter((e) => e == i)
-      reboundsFinal.push(num3.length)
-      let num4 = blocks.filter((e) => e == i)
-      blocksFinal.push(num4.length)
-      let num5 = threes.filter((e) => e == i)
-      thressFinal.push(num5.length)
-      let num6 = doubleDoubles.filter((e) => e == i)
-      doubleDoublesFinal.push(num6.length)
-    }
-    var arrayOFpoints = [pointsFinal, assistsFinal, reboundsFinal, blocksFinal, thressFinal, doubleDoublesFinal]
-
-    for (let i = 0; i < arrayOFpoints.length; i++) {
-      this.fullDataset[i].data = arrayOFpoints[i]
-      this.fullDataset[i].unfilteredData = arrayOFunfiltered[i]
-    }
-
-    var filteredDataSet: any[] = []
-    this.fullDataset.forEach((e) => {
-      if (e.showLine) {
-        filteredDataSet.push(e)
-        combinedArrays.push(e.unfilteredData)
-      }
-    })
-    var combinedArrayFinal: any[] = []
-
-    for (let i = 0; i < combinedArrays[0].length; i++) {
-      let sum = 0
-      for (let j = 0; j < combinedArrays.length; j++) {
-
-        sum += combinedArrays[j][i]
-      }
-      combinedArrayFinal.push(sum)
-    }
-    combinedArrayFinal = [5, 5, 5, 5, 8, 8, 8, 8, 12, 12, 12, 12, 12, 12, 12, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 56, 56, 56, 56, 56, 56, 56, 62, 62, 62, 62, 65, 65]
-
-    var newFilteredData: any[] = []
-    for (let i = 0; i < 100; i++) {
-      let temp = combinedArrayFinal.filter((e) => e == i)
-      newFilteredData.push(temp.length)
-    }
-    var stringOfPoints: string = ''
-    var count = 0
-    filteredDataSet.forEach((e) => {
-
-      if (filteredDataSet.length == 1 || count == 0) {
-        stringOfPoints += e.label
-        count++
-      }
-      else { stringOfPoints += " + " + e.label }
-
-    })
-    if (this.isCombineStats) {
-      filteredDataSet = [{
-        label: stringOfPoints,
-        data: newFilteredData,
-        backgroundColor: 'blue',
-        showLine: true
-      }]
-    }
-    this.chart3 = new Chart("NormalDistChart", {
-
-      type: 'line',
-
-      data: {// values on X-Axis
-        labels: dataPoint,
-        datasets: filteredDataSet,
-
-      },
-      options: {
-        elements: {
-          line: {
-            tension: .4
-          },
-          point: {
-            radius: 5
-          }
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: 'Normal Distribution'
-          },
-
-
-
-        },
-
-        maintainAspectRatio: false
-      }
-
-    });
-  }
+  
 
 
   reDrawLineGraph() {
