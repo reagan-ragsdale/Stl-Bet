@@ -84,11 +84,11 @@
       </div>
       <div class="table-body">
         <div class="table">
-          <table mat-table [dataSource]="seasonArrayTable" class="mat-elevation-z8" style="height: inherit;">
+          <table mat-table [dataSource]="seasonArray" class="mat-elevation-z8" style="height: inherit;">
 
             <ng-container *ngFor="let col of displayedColumnsValues" matColumnDef="{{col.name}}">
               <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
-              <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;">
+              <td mat-cell *matCellDef="let element; let i = seasonArray; let j = index;">
                 {{col.name == 'Game' ? (loadFindHomeAwayFromGameId(element.gameId, element.teamName) == 'away' ? '@' :
                 '') : ''}}{{element[col.value]}}
               </td>
@@ -141,11 +141,11 @@
             <div *ngIf="isSearched" class="search-results" style="display:flex; gap:1rem; padding-left:1rem; border-top: 2px solid black; margin-top:1rem; width:100%;">
               <div style="display: flex; flex-direction: column;">
                 <h2>Record</h2>
-                <div>{{totalNumberHighlighted}} - {{seasonArrayTable.length}}</div>
+                <div>{{totalNumberHighlighted}} - {{seasonArray.length}}</div>
               </div>
               <div style="display: flex; flex-direction: column;">
                 <h2>Chance</h2>
-                <div>{{(totalNumberHighlighted / seasonArrayTable.length) | percent: '2.2-2'}}</div>
+                <div>{{(totalNumberHighlighted / seasonArray.length) | percent: '2.2-2'}}</div>
               </div>
 
             </div>

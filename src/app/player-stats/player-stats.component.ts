@@ -356,7 +356,6 @@ export class PlayerStatsComponent {
   isCombineStats: boolean = false
 
   public seasonArray: any[] = []
-  public seasonArrayTable: any[] = []
 
   //nba
   public nbaPlayerInfo: NbaPlayerInfoDb[] = []
@@ -407,32 +406,24 @@ export class PlayerStatsComponent {
     this.selectedSport = this.route.snapshot.paramMap.get('sport')
     this.playerId = this.route.snapshot.paramMap.get('id')
     await this.getPlayerInfo()
-    //await this.getAllPlayerInfo()
     this.calculateMeanAndStd()
     this.createChart()
-    //this.createChart2()
-    //this.createNormalDistChart()
 
-    if (this.selectedSport == 'MLB') {
-
-    }
+    
 
 
 
 
   }
 
-  async getAllSportPlayers() {
-    let players = await PlayerInfoController.loadActivePlayerInfoBySports(['MLB', 'NFL'])
-    this.allSportPlayerList = players
-    this.searchName = ""
-    this.filteredSearch = this.allSportPlayerList
-    console.log(players)
-  }
+  
 
   playerPropArray: any[] = []
   async getPlayerInfo() {
-    console.log(this.selectedSport)
+    //what to fetch for this screen
+    //all stats for the player
+    //player averages
+    //player props
 
     if (this.selectedSport == 'MLB') {
       this.fullDataset = [
@@ -551,6 +542,20 @@ export class PlayerStatsComponent {
       this.playerTotalDataSet = this.playerTotalDataSetNfl
     }
     else if(this.selectedSport == 'NHL'){
+      let callArray = await Promise.all([NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024),NhlController.NhlGetPlayerGameStatAveragesByPlayerId(this.playerId)])
+      this.playerStats = callArray[0] 
+      this.playerTotalStats = callArray[1] 
+      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
+
+      allSeasons.sort(function (a, b) {
+        return a - b;
+      });
+      allSeasons.forEach(e => this.playerSeasons.push(e))
+      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
+
+
+
       this.fullDataset = [
         {
           label: "Points",
@@ -595,6 +600,8 @@ export class PlayerStatsComponent {
       this.displayedColumnsValues = this.displayedColumnsValuesNhl
       this.playerTotalStatColumns = this.playerTotalStatColumnsNhl
       this.playerTotalDataSet = this.playerTotalDataSetNhl
+
+      
     }
 
     this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
@@ -628,23 +635,7 @@ export class PlayerStatsComponent {
 
 
     }
-    else if (this.selectedSport == "NHL") {
-      //this.playerInfo = await PlayerInfoController.loadPlayerInfoBySportAndId("NHL", this.playerId)
-      //this.playerName = this.nbaPlayerInfo[0].playerName
-      //this.nbaPlayerStatsInfo2022 = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2023)
-      this.playerStats = await NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024)
-      this.playerTotalStats = await NhlController.NhlGetPlayerGameStatAveragesByPlayerId(this.playerId)
-      
-      this.seasonArrayTable = this.playerStats
-      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
-
-      allSeasons.sort(function (a, b) {
-        return a - b;
-      });
-      allSeasons.forEach(e => this.playerSeasons.push(e))
-      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
-    }
+    
     else if (this.selectedSport == "MLB") {
 
       this.playerStats = await MlbController.mlbGetAllPlayerGameStatsByPlayerId(this.selectedPlayer[0].playerId)
@@ -662,7 +653,6 @@ export class PlayerStatsComponent {
       this.nbaPlayerStatsInfo2023TableTemp.reverse()
       this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp
       this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
       this.playerTotalStats = await MlbController.mlbSpecificGetPlayerStatTotals(this.playerId)
 
     }
@@ -745,31 +735,31 @@ export class PlayerStatsComponent {
     this.totalNumberHighlighted = 0;
     // later we can add over or under and combined stats
     if (this.formArray.length > 0) {
-      for (let i = 0; i < this.seasonArrayTable.length; i++) {
+      for (let i = 0; i < this.seasonArray.length; i++) {
         for (let j = 0; j < this.formArray.length; j++) {
 
           if (this.formArray[j].overUnder) {
-            if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
-              this.seasonArrayTable[i].isHighlighted = true
+            if (this.seasonArray[i][this.formArray[j].dataName] > this.formArray[j].number) {
+              this.seasonArray[i].isHighlighted = true
             }
             else {
-              this.seasonArrayTable[i].isHighlighted = false
+              this.seasonArray[i].isHighlighted = false
               break
             }
           }
           else {
-            if (this.seasonArrayTable[i][this.formArray[j].dataName] < this.formArray[j].number) {
-              this.seasonArrayTable[i].isHighlighted = true
+            if (this.seasonArray[i][this.formArray[j].dataName] < this.formArray[j].number) {
+              this.seasonArray[i].isHighlighted = true
             }
             else {
-              this.seasonArrayTable[i].isHighlighted = false
+              this.seasonArray[i].isHighlighted = false
               break
             }
           }
 
         }
       }
-      for (let game of this.seasonArrayTable) {
+      for (let game of this.seasonArray) {
         if (game.isHighlighted) {
           this.totalNumberHighlighted++;
         }
@@ -782,7 +772,7 @@ export class PlayerStatsComponent {
   }
 
   clearSearch() {
-    this.seasonArrayTable.forEach((e) => {
+    this.seasonArray.forEach((e) => {
       e.isHighlighted = false
     })
   }
@@ -822,17 +812,17 @@ export class PlayerStatsComponent {
   }
 
   getTotalCost(stat: string) {
-    var num = this.seasonArrayTable.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
-    return (num / this.seasonArrayTable.length).toFixed(2)
+    var num = this.seasonArray.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
+    return (num / this.seasonArray.length).toFixed(2)
   }
   updateSeasonsDisplayed(season: number) {
     this.playerSeason = season
 
-    this.seasonArrayTable = JSON.parse(JSON.stringify(this.playerStats.filter(e => e.season == this.playerSeason)))
-    this.seasonArrayTable.reverse()
+    this.seasonArray = JSON.parse(JSON.stringify(this.playerStats.filter(e => e.season == this.playerSeason)))
+    this.seasonArray.reverse()
     this.seasonArray = this.playerStats.filter(e => e.season == this.playerSeason)
 
-    this.seasonArrayTable.forEach((e) => e.isHighlighted = false)
+    this.seasonArray.forEach((e) => e.isHighlighted = false)
     this.table.renderRows()
     this.reDrawLineGraph()
   }
