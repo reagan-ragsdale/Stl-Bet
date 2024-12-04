@@ -636,6 +636,14 @@ export class PlayerStatsComponent {
       this.playerTotalStats = await NhlController.NhlGetPlayerGameStatAveragesByPlayerId(this.playerId)
       
       this.seasonArrayTable = this.playerStats
+      let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+      allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
+
+      allSeasons.sort(function (a, b) {
+        return a - b;
+      });
+      allSeasons.forEach(e => this.playerSeasons.push(e))
+      this.seasonArray = this.playerStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
     }
     else if (this.selectedSport == "MLB") {
 
