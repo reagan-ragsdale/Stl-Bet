@@ -7,6 +7,9 @@
 mat-toolbar {
     width: inherit;
 }
+*:focus {
+    outline: none;
+  }
 
 
 
@@ -167,7 +170,7 @@ table {
 .game-list {
     height: 100%;
     background-color: #FFFFFF;
-    
+    width: min-content;
 }
 
 .sport-section {
