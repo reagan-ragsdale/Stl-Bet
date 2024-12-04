@@ -78,7 +78,7 @@ export const cronLoadNhlStats = async () => {
     let yesterday = `${year}${month}${day}`;
 
 
-    /* let gamesToday = await nhlApiController.getDailySchedule(yesterday)
+     let gamesToday = await nhlApiController.getDailySchedule(yesterday)
     if (gamesToday.length > 0) {
         for (let game of gamesToday) {
             try {
@@ -90,7 +90,7 @@ export const cronLoadNhlStats = async () => {
                 console.log(yesterday + "--" + game + "--" + error.message)
             }
         }
-    } */
+    } 
 
 
     //set team game stat totals
