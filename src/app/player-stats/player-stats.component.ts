@@ -785,9 +785,7 @@ export class PlayerStatsComponent {
 
   }
 
-  setSearchEmpty() {
-    this.searchName = this.playerName
-  }
+  
 
   addStatForm() {
     if (this.formArray.length < this.fullDataset.length) {
@@ -907,6 +905,28 @@ export class PlayerStatsComponent {
       })
 
       arrayOFpoints = [passTd, passYds, completions, rushingTd, rushYds, carries, recTd, recYds, receptions]
+    }
+    else if (this.selectedSport == 'NHL') {
+      var points: number[] = []
+      var goals: number[] = []
+      var assists: number[] = []
+      var shots: number[] = []
+      var blocks: number[] = []
+
+      var index = 1
+      this.seasonArray.forEach((e) => {
+        points.push(e.points)
+        goals.push(e.goals)
+        assists.push(e.assists)
+        shots.push(e.shots)
+        blocks.push(e.blocks)
+
+
+        dataPoint.push(index.toString())
+        index++
+      })
+
+      arrayOFpoints = [points, goals, assists, shots, blocks]
     }
 
     console.log('things below')
