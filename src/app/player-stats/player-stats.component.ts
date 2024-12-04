@@ -406,7 +406,6 @@ export class PlayerStatsComponent {
     this.selectedSport = this.route.snapshot.paramMap.get('sport')
     this.playerId = this.route.snapshot.paramMap.get('id')
     await this.getPlayerInfo()
-    this.calculateMeanAndStd()
     this.createChart()
 
     
@@ -545,6 +544,9 @@ export class PlayerStatsComponent {
       let callArray = await Promise.all([NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024),NhlController.NhlGetPlayerGameStatAveragesByPlayerId(this.playerId)])
       this.playerStats = callArray[0] 
       this.playerTotalStats = callArray[1] 
+      for(let i = 0; i < this.playerStats.length; i++){
+        this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
+      }
       let allSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
       allSeasons.forEach(e => this.playerSeasonStats.push(this.playerStats.filter(i => i.season == e)))
 
@@ -705,10 +707,7 @@ export class PlayerStatsComponent {
   } */
 
   loadNewPlayer(id: number, sport: string) {
-    if (this.selectedSport != 'all') {
-      this.destroyGraphs()
-    }
-    this.isNull = false
+    this.destroyGraphs()
     this.router.navigate([`/playerStats/${sport}/${id}`])
     this.formArray = []
   }
@@ -719,14 +718,7 @@ export class PlayerStatsComponent {
     return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
   }
 
-  calculateMeanAndStd() {
-    this.playerAverage = (this.seasonArray.map(t => t.points).reduce((acc, value) => acc + value, 0)) / this.seasonArray.length
-    let summedData: number = 0
-    this.seasonArray.forEach(e => summedData += (e.points - this.playerAverage) ** 2)
-    summedData = summedData / this.seasonArray.length
-    summedData = Math.sqrt(summedData)
-    this.playerStd = summedData
-  }
+  
   totalNumberHighlighted: number = 0;
   isSearched: boolean = false;
   searchNumberSubmit() {
