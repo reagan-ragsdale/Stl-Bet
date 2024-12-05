@@ -547,7 +547,7 @@ export class PlayerStatsComponent {
         {
           label: "Points",
           data: [],
-          backgroundColor: 'blue',
+          backgroundColor: 'rgba(50,0,255,0.2)',
           showLine: true,
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
@@ -562,7 +562,7 @@ export class PlayerStatsComponent {
         {
           label: "Goals",
           data: [],
-          backgroundColor: 'yellow',
+          backgroundColor: 'rgba(0,255,255,0.2)',
           showLine: false,
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
@@ -577,7 +577,7 @@ export class PlayerStatsComponent {
         {
           label: "Assists",
           data: [],
-          backgroundColor: 'blue',
+          backgroundColor: 'rgba(0,0,255,0.2)',
           showLine: false,
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
@@ -592,7 +592,7 @@ export class PlayerStatsComponent {
         {
           label: "Shots",
           data: [],
-          backgroundColor: 'green',
+          backgroundColor: 'rgba(0,255,0,0.2)',
           showLine: false,
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
@@ -606,7 +606,7 @@ export class PlayerStatsComponent {
         {
           label: "Blocks",
           data: [],
-          backgroundColor: 'green',
+          backgroundColor: 'rgba(0,200,25,0.2)',
           showLine: false,
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
