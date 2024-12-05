@@ -66,10 +66,15 @@ export class DbGameBookData {
     //SqlDatabase.LogToConsole = true
     let today = new Date();
     today.setHours(0,0,0,0);
+    let utcday = new Date()
+    utcday.setUTCHours(utcday.getUTCHours()) 
+    let newdssdd = new Date()
+    utcday.setUTCHours(utcday.getUTCHours()- 6)
+    newdssdd.setUTCHours(utcday.getUTCHours())
     return {
       bookSeq: 0,
       sportTitle: sport,
-      commenceTime: { $gte: today }
+      commenceTime: { $gte: newdssdd }
     }
 
 
@@ -80,12 +85,9 @@ export class DbGameBookData {
     today.setHours(0,0,0,0);
     let utcday = new Date()
     utcday.setUTCHours(utcday.getUTCHours()) 
-    console.log(today)
-    console.log(utcday)
     let newdssdd = new Date()
     utcday.setUTCHours(utcday.getUTCHours()- 6)
     newdssdd.setUTCHours(utcday.getUTCHours())
-    console.log(newdssdd)
     return {
       bookSeq: 0,
       sportTitle: sport,
