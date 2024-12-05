@@ -364,7 +364,7 @@ export class PlayerStatsComponent {
   @ViewChild(MatTable)
   table!: MatTable<any>;
 
-  
+
 
 
   //all
@@ -395,14 +395,14 @@ export class PlayerStatsComponent {
     await this.getPlayerInfo()
     this.createChart()
 
-    
+
 
 
 
 
   }
 
-  
+
 
   playerPropArray: any[] = []
   async getPlayerInfo() {
@@ -527,11 +527,11 @@ export class PlayerStatsComponent {
       this.playerTotalStatColumns = this.playerTotalStatColumnsNfl
       this.playerTotalDataSet = this.playerTotalDataSetNfl
     }
-    else if(this.selectedSport == 'NHL'){
-      let callArray = await Promise.all([NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024),NhlController.NhlGetPlayerGameStatAveragesByPlayerId(this.playerId)])
-      this.playerStats = callArray[0] 
-      this.playerTotalStats = callArray[1] 
-      for(let i = 0; i < this.playerStats.length; i++){
+    else if (this.selectedSport == 'NHL') {
+      let callArray = await Promise.all([NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024), NhlController.NhlGetPlayerGameStatAveragesByPlayerId(this.playerId)])
+      this.playerStats = callArray[0]
+      this.playerTotalStats = callArray[1]
+      for (let i = 0; i < this.playerStats.length; i++) {
         this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
       }
       this.distinctSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
@@ -588,7 +588,7 @@ export class PlayerStatsComponent {
       this.playerTotalStatColumns = this.playerTotalStatColumnsNhl
       this.playerTotalDataSet = this.playerTotalDataSetNhl
 
-      
+
     }
 
     this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
@@ -596,7 +596,7 @@ export class PlayerStatsComponent {
     this.playerName = this.selectedPlayer[0].playerName
 
     this.playerSeasons = []
-   
+
     this.playerProps = []
     this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
     console.log(this.playerProps)
@@ -614,7 +614,7 @@ export class PlayerStatsComponent {
     console.log(this.playerPropArray)
   }
 
-  
+
 
   loadNewPlayer(id: number, sport: string) {
     this.destroyGraphs()
@@ -623,7 +623,7 @@ export class PlayerStatsComponent {
   }
 
 
-  
+
   totalNumberHighlighted: number = 0;
   isSearched: boolean = false;
   searchNumberSubmit() {
@@ -675,12 +675,12 @@ export class PlayerStatsComponent {
   }
 
   filterSearch() {
-      this.filteredSearch = this.playerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
-    
+    this.filteredSearch = this.playerInfo.filter((e) => e.playerName.toLowerCase().includes(this.searchName.toLowerCase()))
+
 
   }
 
-  
+
 
   addStatForm() {
     if (this.formArray.length < this.fullDataset.length) {
@@ -708,7 +708,7 @@ export class PlayerStatsComponent {
     }
   }
 
-  
+
   updateSeasonsDisplayed(season: number) {
     this.playerSeason = season
 
@@ -881,13 +881,13 @@ export class PlayerStatsComponent {
       //backgroundColor: 'blue',
       showLine: true,
       borderColor: 'rgb(75, 192, 192)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true, // This makes the area under the line filled with color
-                tension: 0.4, // Smooth curve
-                pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
-                pointBorderColor: '#fff', // Point border color
-                pointBorderWidth: 3, // Point border width
-                pointRadius: 5, // Point size
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      fill: true, // This makes the area under the line filled with color
+      tension: 0.4, // Smooth curve
+      pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+      pointBorderColor: '#fff', // Point border color
+      pointBorderWidth: 3, // Point border width
+      pointRadius: 5, // Point size
     }]
     if (!this.isCombineStats) {
       fullDisplayDataSet = filteredDataSet
@@ -993,7 +993,8 @@ export class PlayerStatsComponent {
           pointBorderWidth: 3, // Point border width
           pointRadius: 5, // Point size}],
 
-      }]},
+        }]
+      },
       options: {
         elements: {
           point: {
@@ -1019,7 +1020,15 @@ export class PlayerStatsComponent {
         scales: {
           y: {
             min: 0,
-            max: max
+            max: max,
+            grid: {
+              display: false // Hides grid lines on the y-axis
+            }
+          },
+          x: {
+            grid: {
+              display: false // Hides grid lines on the y-axis
+            }
           }
         },
         maintainAspectRatio: false
@@ -1028,9 +1037,9 @@ export class PlayerStatsComponent {
     });
   }
 
-  
 
-  
+
+
 
 
   reDrawLineGraph() {
