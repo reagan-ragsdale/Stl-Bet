@@ -589,11 +589,20 @@ export class PropScreenComponent implements OnInit {
       if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValue/100)){
         this.arrayOfPlayerBets[i].overallHighlight = true;
       }
+      else if(this.arrayOfPlayerBets[i].overallChance < (this.sliderValue/100)){
+        this.arrayOfPlayerBets[i].overallHighlight = false;
+      }
       if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValue/100)){
         this.arrayOfPlayerBets[i].homeAwayHighlight = true;
       }
+      else if(this.arrayOfPlayerBets[i].homeAwayChance < (this.sliderValue/100)){
+        this.arrayOfPlayerBets[i].homeAwayHighlight = false;
+      }
       if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
         this.arrayOfPlayerBets[i].teamHighlight = true;
+      }
+      else if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
+        this.arrayOfPlayerBets[i].teamHighlight = false;
       }
     }
   }
