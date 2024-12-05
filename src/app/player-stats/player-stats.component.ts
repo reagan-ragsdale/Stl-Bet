@@ -552,7 +552,7 @@ export class PlayerStatsComponent {
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
           tension: 0.4, // Smooth curve
-          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBackgroundColor: 'rgb(25, 208, 192)', // Point color
           pointBorderColor: '#fff', // Point border color
           pointBorderWidth: 3, // Point border width
           pointRadius: 5, // Point size
@@ -567,7 +567,7 @@ export class PlayerStatsComponent {
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
           tension: 0.4, // Smooth curve
-          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBackgroundColor: 'rgb(200, 100, 150)', // Point color
           pointBorderColor: '#fff', // Point border color
           pointBorderWidth: 3, // Point border width
           pointRadius: 5, // Point size
@@ -582,7 +582,7 @@ export class PlayerStatsComponent {
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
           tension: 0.4, // Smooth curve
-          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBackgroundColor: 'rgb(25, 25, 100)', // Point color
           pointBorderColor: '#fff', // Point border color
           pointBorderWidth: 3, // Point border width
           pointRadius: 5, // Point size
@@ -597,7 +597,7 @@ export class PlayerStatsComponent {
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
           tension: 0.4, // Smooth curve
-          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBackgroundColor: 'rgb(225, 50, 125)', // Point color
           pointBorderColor: '#fff', // Point border color
           pointBorderWidth: 3, // Point border width
           pointRadius: 5, // Point size
@@ -611,7 +611,7 @@ export class PlayerStatsComponent {
           borderColor: 'rgb(75, 192, 192)',
           fill: true, // This makes the area under the line filled with color
           tension: 0.4, // Smooth curve
-          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBackgroundColor: 'rgb(89, 106, 209)', // Point color
           pointBorderColor: '#fff', // Point border color
           pointBorderWidth: 3, // Point border width
           pointRadius: 5, // Point size
