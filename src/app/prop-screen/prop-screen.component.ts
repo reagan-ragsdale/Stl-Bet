@@ -570,13 +570,13 @@ export class PropScreenComponent implements OnInit {
       }
     }
     for(let i = 0; i < this.arrayOfPlayerBets.length; i++){
-      if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValue/100)){
+      if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].overallHighlight = true;
       }
-      if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValue/100)){
+      if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].homeAwayHighlight = true;
       }
-      if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
+      if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].teamHighlight = true;
       }
       if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].teamChance > (this.sliderValuePlayer/100)){
@@ -592,29 +592,27 @@ export class PropScreenComponent implements OnInit {
   calculateNewBestBetPlayer() {
     this.playerBestBets = []
     for(let i = 0; i < this.arrayOfPlayerBets.length; i++){
-      if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValue/100)){
+      if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].overallHighlight = true;
       }
-      else if(this.arrayOfPlayerBets[i].overallChance < (this.sliderValue/100)){
+      else if(this.arrayOfPlayerBets[i].overallChance < (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].overallHighlight = false;
       }
-      if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValue/100)){
+      if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].homeAwayHighlight = true;
       }
-      else if(this.arrayOfPlayerBets[i].homeAwayChance < (this.sliderValue/100)){
+      else if(this.arrayOfPlayerBets[i].homeAwayChance < (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].homeAwayHighlight = false;
       }
-      if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
+      if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].teamHighlight = true;
       }
-      else if(this.arrayOfPlayerBets[i].teamChance < (this.sliderValue/100)){
+      else if(this.arrayOfPlayerBets[i].teamChance < (this.sliderValuePlayer/100)){
         this.arrayOfPlayerBets[i].teamHighlight = false;
       }
       if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].teamChance > (this.sliderValuePlayer/100)){
         this.playerBestBets.push(this.arrayOfPlayerBets[i])
       }
-      console.log('player best bets recalc below')
-      console.log(this.playerBestBets)
       
     }
   }
@@ -710,367 +708,11 @@ export class PropScreenComponent implements OnInit {
 
 
 
-  getSpreadHighLow(homeAway: string, type: string, highLow: string): number {
-    let finalSpread = 0
-    if (homeAway == 'Away') {
-      if (highLow == 'high') {
-        if (type == 'overall') {
-          finalSpread = 1000
-          this.team2GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall);
-            }
-          })
-        }
-        else if (type == 'Away') {
-          finalSpread = 1000
-          this.team2GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.homeOrAway == 'Away') {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall);
-            }
-          })
-        }
-        else if (type == 'team') {
-          finalSpread = 1000
-          this.team2GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.teamAgainstId == this.team1GameStats[0].teamId) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall);
-            }
-          })
-        }
-      }
-      else {
-        if (type == 'overall') {
-          finalSpread = -1000
-          this.team2GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-        else if (type == 'Away') {
-          finalSpread = -1000
-          this.team2GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread && e.homeOrAway == 'Away') {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-        else if (type == 'team') {
-          finalSpread = -1000
-          this.team2GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread && e.teamAgainstId == this.team1GameStats[0].teamId) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-      }
+  
 
-    }
-    else {
-      if (highLow == 'high') {
-        if (type == 'overall') {
-          finalSpread = 1000
-          this.team1GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-        else if (type == 'Home') {
-          finalSpread = 1000
-          this.team1GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.homeOrAway == 'Home') {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-        else if (type == 'team') {
-          finalSpread = 1000
-          this.team1GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) < finalSpread && e.teamAgainstId == this.team2GameStats[0].teamId) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-      }
-      else {
-        if (type == 'overall') {
-          finalSpread = -1000
-          this.team1GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-        else if (type == 'Home') {
-          finalSpread = -1000
-          this.team1GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread && e.homeOrAway == 'Home') {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-        else if (type == 'team') {
-          finalSpread = -1000
-          this.team1GameStats.forEach(e => {
-            if ((e.pointsAllowedOverall - e.pointsScoredOverall) > finalSpread && e.teamAgainstId == this.team2GameStats[0].teamId) {
-              finalSpread = (e.pointsAllowedOverall - e.pointsScoredOverall)
-            }
-          })
-        }
-      }
+  
 
-    }
-    if (finalSpread == 1000 || finalSpread == -1000) {
-      finalSpread = 0
-    }
-    return finalSpread
-  }
-
-  public overTrueUnderFalseAway: boolean = true
-  public overTrueUnderFalseHome: boolean = true
-  public totalAwayOverallChance: number = 0
-  public totalHomeOverallChance: number = 0
-  public totalAwayAwayChance: number = 0
-  public totalHomeHomeChance: number = 0
-  public totalAwayTeamChance: number = 0
-  public totalHomeTeamChance: number = 0
-
-  getTotalHighLow(homeAway: string, type: string, highLow: string, marketKey: string): number {
-    let finalTotal = 0
-
-    if (marketKey == 'totals') {
-      if (homeAway == 'Away') {
-        if (highLow == 'high') {
-          if (type == 'overall') {
-            finalTotal = 0
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'Away') {
-            finalTotal = 0
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.homeOrAway == 'Away') {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 0
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.teamAgainstId == this.team1GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-        }
-        else {
-          if (type == 'overall') {
-            finalTotal = 1000
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'Away') {
-            finalTotal = 1000
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.homeOrAway == 'Away') {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 1000
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.teamAgainstId == this.team1GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-        }
-
-      }
-      else {
-        if (highLow == 'high') {
-          if (type == 'overall') {
-            finalTotal = 0
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'Home') {
-            finalTotal = 0
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.homeOrAway == 'Home') {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 0
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) > finalTotal && e.teamAgainstId == this.team2GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-        }
-        else {
-          if (type == 'overall') {
-            finalTotal = 1000
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'Home') {
-            finalTotal = 1000
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.homeOrAway == 'Home') {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 1000
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall + e.pointsAllowedOverall) < finalTotal && e.teamAgainstId == this.team2GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall + e.pointsAllowedOverall)
-              }
-            })
-          }
-        }
-
-      }
-    }
-    else if (marketKey.includes('team_totals')) {
-      if (homeAway == 'Away') {
-        if (highLow == 'high') {
-          if (type == 'overall') {
-            finalTotal = 0
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) > finalTotal) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'Away') {
-            finalTotal = 0
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) > finalTotal && e.homeOrAway == 'Away') {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 0
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) > finalTotal && e.teamAgainstId == this.team1GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-        }
-        else {
-          if (type == 'overall') {
-            finalTotal = 1000
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) < finalTotal) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'Away') {
-            finalTotal = 1000
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) < finalTotal && e.homeOrAway == 'Away') {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 1000
-            this.team2GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) < finalTotal && e.teamAgainstId == this.team1GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-        }
-
-      }
-      else {
-        if (highLow == 'high') {
-          if (type == 'overall') {
-            finalTotal = 0
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) > finalTotal) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'Home') {
-            finalTotal = 0
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) > finalTotal && e.homeOrAway == 'Home') {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 0
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) > finalTotal && e.teamAgainstId == this.team2GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-        }
-        else {
-          if (type == 'overall') {
-            finalTotal = 1000
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) < finalTotal) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'Home') {
-            finalTotal = 1000
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) < finalTotal && e.homeOrAway == 'Home') {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-          else if (type == 'team') {
-            finalTotal = 1000
-            this.team1GameStats.forEach(e => {
-              if ((e.pointsScoredOverall) < finalTotal && e.teamAgainstId == this.team2GameStats[0].teamId) {
-                finalTotal = (e.pointsScoredOverall)
-              }
-            })
-          }
-        }
-
-      }
-    }
-
-
-    if (finalTotal == 1000) {
-      finalTotal = 0
-    }
-    return finalTotal
-  }
+  
 
   liveMoneylineStats = ['Winning After', 'Winning by X', 'Scoring']
   liveProps: any = [{}, {}]
