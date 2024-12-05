@@ -81,6 +81,9 @@ export class DbGameBookData {
   static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
     let today = new Date();
     today.setHours(0,0,0,0);
+    console.log('sql logs below')
+    console.log(today.getTimezoneOffset())
+    console.log(today.getUTCHours())
     return {
       bookSeq: 0,
       sportTitle: sport,
