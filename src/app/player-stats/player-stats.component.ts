@@ -910,7 +910,7 @@ export class PlayerStatsComponent {
     }
     var annotationObj = {
       type: 'line',
-      borderColor: 'black',
+      borderColor: 'rgb(75, 192, 192)',
       borderDash: [6, 6],
       borderDashOffset: 0,
       borderWidth: 3,
@@ -944,7 +944,7 @@ export class PlayerStatsComponent {
         annotationVal = annotationVal / e.data.length
         annotationObj = {
           type: 'line',
-          borderColor: 'black',
+          borderColor: 'rgb(75, 192, 192)',
           borderDash: [6, 6],
           borderDashOffset: 0,
           borderWidth: 3,
@@ -972,6 +972,14 @@ export class PlayerStatsComponent {
       })
     }
 
+  /*   borderColor: 'rgb(75, 192, 192)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size}], */
 
 
 
@@ -982,23 +990,16 @@ export class PlayerStatsComponent {
 
       data: {// values on X-Axis
         labels: dataPoint,
-        datasets: [{
-          data: fullDisplayDataSet,
-          borderColor: 'rgb(75, 192, 192)',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          fill: true, // This makes the area under the line filled with color
-          tension: 0.4, // Smooth curve
-          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
-          pointBorderColor: '#fff', // Point border color
-          pointBorderWidth: 3, // Point border width
-          pointRadius: 5, // Point size}],
-
-        }]
+        datasets: fullDisplayDataSet
       },
       options: {
         elements: {
           point: {
-            radius: 3
+            radius: 3,
+            borderWidth: 3,
+            borderColor: '#fff',
+            backgroundColor: 'rgb(75, 192, 192)'
+
           }
         },
         plugins: {
