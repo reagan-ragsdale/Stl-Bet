@@ -878,8 +878,16 @@ export class PlayerStatsComponent {
     fullDisplayDataSet = [{
       label: stringOfPoints,
       data: finalDataSetResult,
-      backgroundColor: 'blue',
-      showLine: true
+      //backgroundColor: 'blue',
+      showLine: true,
+      borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true, // This makes the area under the line filled with color
+                tension: 0.4, // Smooth curve
+                pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+                pointBorderColor: '#fff', // Point border color
+                pointBorderWidth: 3, // Point border width
+                pointRadius: 5, // Point size
     }]
     if (!this.isCombineStats) {
       fullDisplayDataSet = filteredDataSet

@@ -1127,8 +1127,6 @@ export class PropScreenComponent implements OnInit {
   }
 
   playerClicked(playerId: number) {
-    console.log('playerid below from click')
-    console.log(playerId)
     this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
   }
 
