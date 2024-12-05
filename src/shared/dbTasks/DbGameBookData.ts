@@ -82,6 +82,7 @@ export class DbGameBookData {
     utcday.setUTCHours(utcday.getUTCHours()) 
     console.log(today)
     console.log(utcday)
+    console.log(utcday.getTimezoneOffset())
     return {
       bookSeq: 0,
       sportTitle: sport,
