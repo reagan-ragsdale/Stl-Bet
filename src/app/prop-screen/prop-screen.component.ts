@@ -610,7 +610,7 @@ export class PropScreenComponent implements OnInit {
       if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
         this.arrayOfPlayerBets[i].teamHighlight = true;
       }
-      else if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
+      else if(this.arrayOfPlayerBets[i].teamChance < (this.sliderValue/100)){
         this.arrayOfPlayerBets[i].teamHighlight = false;
       }
     }
