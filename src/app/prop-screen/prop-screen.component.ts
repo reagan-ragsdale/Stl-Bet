@@ -1484,9 +1484,7 @@ export class PropScreenComponent implements OnInit {
     this.createBarChart(index)
   }
 
-  playerClicked(player: string) {
-    let playerInfo = this.playerStatsFinal.filter(e => e.playerName == player)[0]
-    let playerId = playerInfo.playerId
+  playerClicked(playerId: number) {
     this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
   }
 

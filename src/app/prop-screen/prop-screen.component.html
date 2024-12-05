@@ -639,7 +639,7 @@
                         <mat-expansion-panel-header>
                           <mat-panel-title style="min-width: fit-content">
                             <div *ngIf="player[0].propType == 'OU'" style="display:flex;width:100%; align-items: center; ">
-                            <a (click)="playerClicked(player[0].playerName)" class="link-hover"
+                            <a (click)="playerClicked(player[0].playerId)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
                             : {{player[0].playerBookData.point}}
                             
@@ -655,7 +655,7 @@
                               mat-raised-button>{{"O "}}{{player[1].playerBookData.price > 0 ? '+': ''}}{{player[1].playerBookData.price}}</button>
                             </div>
                             <div *ngIf="player[0].propType == 'Alt'" style="width: 100%; display:flex; align-items: center;">
-                              <a (click)="playerClicked(player[0].playerName)" class="link-hover"
+                              <a (click)="playerClicked(player[0].playerId)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
                               <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color" style="margin-left:1rem;">
                                 <mat-button-toggle  *ngFor="let prop of player; let i = index;" (change)="player.index = i" (click)="handleClick($event)" [checked]="i == player.index">{{prop.playerBookData.point}}</mat-button-toggle>
@@ -892,7 +892,7 @@
               <mat-card>
                 <mat-card-header>
                   <mat-card-title class="name-link"><a class="name-link"
-                      (click)="playerClicked(bet.playerName)">{{bet.playerName
+                      (click)="playerClicked(bet.playerId)">{{bet.playerName
                       }}</a> | {{bet.playerBookData.marketKey | removeUnderScore | removeHeading | titlecase}} | {{bet.playerBookData.point}} |
                     {{bet.playerBookData.description}}</mat-card-title>
                 </mat-card-header>
