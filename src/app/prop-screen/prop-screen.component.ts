@@ -532,10 +532,19 @@ export class PropScreenComponent implements OnInit {
       if(bet.overallChance > (this.sliderValue/100)){
         bet.overallHighlight = true;
       }
+      else if(bet.overallChance < (this.sliderValue/100)){
+        bet.overallHighlight = false;
+      }
       if(bet.homeAwayChance > (this.sliderValue/100)){
         bet.homeAwayHighlight = true;
       }
+      else if(bet.homeAwayChance < (this.sliderValue/100)){
+        bet.homeAwayHighlight = true;
+      }
       if(bet.teamChance > (this.sliderValue/100)){
+        bet.teamHighlight = true;
+      }
+      else if(bet.teamChance < (this.sliderValue/100)){
         bet.teamHighlight = true;
       }
     }
