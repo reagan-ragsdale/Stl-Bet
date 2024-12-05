@@ -90,7 +90,7 @@ export class DbGameBookData {
       bookSeq: 0,
       sportTitle: sport,
       marketKey: ['h2h', 'totals', 'spreads'],
-      commenceTime: { $gte: today }
+      commenceTime: { $gte: newdssdd }
     }
 
 
