@@ -900,7 +900,7 @@ export class PlayerStatsComponent {
         pointBorderWidth: 3, // Point border width
         pointRadius: 5, // Point size}]
       //filteredDataSet
-    }
+    }]
     var annotationVal = 0
     finalDataSetResult.forEach(e => {
       annotationVal += e
