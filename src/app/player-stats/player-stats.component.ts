@@ -549,6 +549,13 @@ export class PlayerStatsComponent {
           data: [],
           backgroundColor: 'blue',
           showLine: true,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
           dataName: 'points'
 
         },
@@ -557,6 +564,13 @@ export class PlayerStatsComponent {
           data: [],
           backgroundColor: 'yellow',
           showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
           dataName: 'goals'
 
         },
@@ -565,6 +579,13 @@ export class PlayerStatsComponent {
           data: [],
           backgroundColor: 'blue',
           showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
           dataName: 'assists'
 
         },
@@ -573,6 +594,13 @@ export class PlayerStatsComponent {
           data: [],
           backgroundColor: 'green',
           showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
           dataName: 'shots'
         },
         {
@@ -580,6 +608,13 @@ export class PlayerStatsComponent {
           data: [],
           backgroundColor: 'green',
           showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
           dataName: 'blocks'
         }
       ]
@@ -890,18 +925,8 @@ export class PlayerStatsComponent {
       pointRadius: 5, // Point size
     }]
     if (!this.isCombineStats) {
-      fullDisplayDataSet = [{data: filteredDataSet,showLine: true,
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        fill: true, // This makes the area under the line filled with color
-        tension: 0.4, // Smooth curve
-        pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
-        pointBorderColor: '#fff', // Point border color
-        pointBorderWidth: 3, // Point border width
-        pointRadius: 5, // Point size}]
-      //filteredDataSet
-    }]
-  }
+      fullDisplayDataSet = filteredDataSet
+    }
     var annotationVal = 0
     finalDataSetResult.forEach(e => {
       annotationVal += e
@@ -982,14 +1007,14 @@ export class PlayerStatsComponent {
       })
     }
 
-  /*   borderColor: 'rgb(75, 192, 192)',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          fill: true, // This makes the area under the line filled with color
-          tension: 0.4, // Smooth curve
-          pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
-          pointBorderColor: '#fff', // Point border color
-          pointBorderWidth: 3, // Point border width
-          pointRadius: 5, // Point size}], */
+    /*   borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            fill: true, // This makes the area under the line filled with color
+            tension: 0.4, // Smooth curve
+            pointBackgroundColor: 'rgb(75, 192, 192)', // Point color
+            pointBorderColor: '#fff', // Point border color
+            pointBorderWidth: 3, // Point border width
+            pointRadius: 5, // Point size}], */
 
 
 
