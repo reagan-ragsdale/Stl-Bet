@@ -539,13 +539,13 @@ export class PropScreenComponent implements OnInit {
         bet.homeAwayHighlight = true;
       }
       else if(bet.homeAwayChance < (this.sliderValue/100)){
-        bet.homeAwayHighlight = true;
+        bet.homeAwayHighlight = false;
       }
       if(bet.teamChance > (this.sliderValue/100)){
         bet.teamHighlight = true;
       }
       else if(bet.teamChance < (this.sliderValue/100)){
-        bet.teamHighlight = true;
+        bet.teamHighlight = false;
       }
     }
   }
