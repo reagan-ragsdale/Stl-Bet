@@ -582,49 +582,19 @@ export class PropScreenComponent implements OnInit {
   calculateNewBestBetPlayer() {
 
     this.playerBestBets = []
-    for (let bet of this.arrayOfPlayerBets) {
-      let overallWin = bet.totalOverall == 0 ? 0 : (bet.overOverall / bet.totalOverall)
-      let homeAwayWin = bet.totalHomeAway == 0 ? 0 : (bet.overHomeAway / bet.totalHomeAway)
-      let teamWin = bet.totalTeam == 0 ? 0 : (bet.overTeam / bet.totalTeam)
-      if ((overallWin > (this.sliderValuePlayer / 100)) || (teamWin > (this.sliderValuePlayer / 100)) || (homeAwayWin > (this.sliderValuePlayer / 100))) {
-        if (overallWin > (this.sliderValuePlayer / 100)) {
-          bet.overallHighlight = true
-        }
-        else { bet.overallHighlight = false }
-        if (homeAwayWin > (this.sliderValuePlayer / 100)) {
-          bet.homeAwayHighlight = true
-        }
-        else { bet.homeAwayHighlight = false }
-        if (teamWin > (this.sliderValuePlayer / 100)) {
-          bet.teamHighlight = true
-        }
-        else { bet.teamHighlight = false }
-        bet.overUnder = false
-        this.playerBestBets.push(bet)
+    for(let i = 0; i < this.arrayOfPlayerBets.length; i++){
+      if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].teamChance > (this.sliderValuePlayer/100)){
+        this.playerBestBets.push(this.arrayOfPlayerBets[i])
       }
-      else if ((overallWin < (1 - (this.sliderValuePlayer / 100)) && bet.totalOverall != 0) || (teamWin < (1 - (this.sliderValuePlayer / 100)) && bet.totalTeam != 0) || (homeAwayWin < (1 - (this.sliderValuePlayer / 100)) && bet.totalHomeAway != 0)) {
-        if (overallWin < (1 - (this.sliderValuePlayer / 100))) {
-          bet.overallHighlight = true
-
-        }
-        else { bet.overallHighlight = false }
-        if (homeAwayWin < (1 - (this.sliderValuePlayer / 100))) {
-          bet.homeAwayHighlight = true
-        }
-        else { bet.homeAwayHighlight = false }
-        if (teamWin < (1 - (this.sliderValuePlayer / 100))) {
-          bet.teamHighlight = true
-        }
-        else { bet.teamHighlight = false }
-        bet.overUnder = true
-        this.playerBestBets.push(bet)
+      if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValue/100)){
+        this.arrayOfPlayerBets[i].overallHighlight = true;
       }
-
-
-
-
-
-
+      if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValue/100)){
+        this.arrayOfPlayerBets[i].homeAwayHighlight = true;
+      }
+      if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
+        this.arrayOfPlayerBets[i].teamHighlight = true;
+      }
     }
   }
 
