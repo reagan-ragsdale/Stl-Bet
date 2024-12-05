@@ -593,25 +593,26 @@ export class PropScreenComponent implements OnInit {
     this.playerBestBets = []
     for(let i = 0; i < this.arrayOfPlayerBets.length; i++){
       if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].teamChance > (this.sliderValuePlayer/100)){
+       
+        this.playerBestBets.push(this.arrayOfPlayerBets[i])
         if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValue/100)){
-          this.arrayOfPlayerBets[i].overallHighlight = true;
+          this.playerBestBets[this.playerBestBets.length-1].overallHighlight = true;
         }
         else if(this.arrayOfPlayerBets[i].overallChance < (this.sliderValue/100)){
-          this.arrayOfPlayerBets[i].overallHighlight = false;
+          this.playerBestBets[this.playerBestBets.length-1].overallHighlight = false;
         }
         if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValue/100)){
-          this.arrayOfPlayerBets[i].homeAwayHighlight = true;
+          this.playerBestBets[this.playerBestBets.length-1].homeAwayHighlight = true;
         }
         else if(this.arrayOfPlayerBets[i].homeAwayChance < (this.sliderValue/100)){
-          this.arrayOfPlayerBets[i].homeAwayHighlight = false;
+          this.playerBestBets[this.playerBestBets.length-1].homeAwayHighlight = false;
         }
         if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
-          this.arrayOfPlayerBets[i].teamHighlight = true;
+          this.playerBestBets[this.playerBestBets.length-1].teamHighlight = true;
         }
         else if(this.arrayOfPlayerBets[i].teamChance < (this.sliderValue/100)){
-          this.arrayOfPlayerBets[i].teamHighlight = false;
+          this.playerBestBets[this.playerBestBets.length-1].teamHighlight = false;
         }
-        this.playerBestBets.push(this.arrayOfPlayerBets[i])
       }
       
     }
