@@ -595,7 +595,7 @@ export class PropScreenComponent implements OnInit {
     for(let i = 0; i < copyOfBets.length; i++){
       if(copyOfBets[i].overallChance > (this.sliderValuePlayer/100) || copyOfBets[i].homeAwayChance > (this.sliderValuePlayer/100) || copyOfBets[i].teamChance > (this.sliderValuePlayer/100)){
        
-        this.playerBestBets.push(this.arrayOfPlayerBets[i])
+        this.playerBestBets.push(copyOfBets[i])
         if(copyOfBets[i].overallChance > (this.sliderValue/100)){
           this.playerBestBets[this.playerBestBets.length-1].overallHighlight = true;
         }
