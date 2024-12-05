@@ -593,26 +593,27 @@ export class PropScreenComponent implements OnInit {
     this.playerBestBets = []
     for(let i = 0; i < this.arrayOfPlayerBets.length; i++){
       if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValuePlayer/100) || this.arrayOfPlayerBets[i].teamChance > (this.sliderValuePlayer/100)){
+        if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValue/100)){
+          this.arrayOfPlayerBets[i].overallHighlight = true;
+        }
+        else if(this.arrayOfPlayerBets[i].overallChance < (this.sliderValue/100)){
+          this.arrayOfPlayerBets[i].overallHighlight = false;
+        }
+        if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValue/100)){
+          this.arrayOfPlayerBets[i].homeAwayHighlight = true;
+        }
+        else if(this.arrayOfPlayerBets[i].homeAwayChance < (this.sliderValue/100)){
+          this.arrayOfPlayerBets[i].homeAwayHighlight = false;
+        }
+        if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
+          this.arrayOfPlayerBets[i].teamHighlight = true;
+        }
+        else if(this.arrayOfPlayerBets[i].teamChance < (this.sliderValue/100)){
+          this.arrayOfPlayerBets[i].teamHighlight = false;
+        }
         this.playerBestBets.push(this.arrayOfPlayerBets[i])
       }
-      if(this.arrayOfPlayerBets[i].overallChance > (this.sliderValue/100)){
-        this.arrayOfPlayerBets[i].overallHighlight = true;
-      }
-      else if(this.arrayOfPlayerBets[i].overallChance < (this.sliderValue/100)){
-        this.arrayOfPlayerBets[i].overallHighlight = false;
-      }
-      if(this.arrayOfPlayerBets[i].homeAwayChance > (this.sliderValue/100)){
-        this.arrayOfPlayerBets[i].homeAwayHighlight = true;
-      }
-      else if(this.arrayOfPlayerBets[i].homeAwayChance < (this.sliderValue/100)){
-        this.arrayOfPlayerBets[i].homeAwayHighlight = false;
-      }
-      if(this.arrayOfPlayerBets[i].teamChance > (this.sliderValue/100)){
-        this.arrayOfPlayerBets[i].teamHighlight = true;
-      }
-      else if(this.arrayOfPlayerBets[i].teamChance < (this.sliderValue/100)){
-        this.arrayOfPlayerBets[i].teamHighlight = false;
-      }
+      
     }
   }
 
