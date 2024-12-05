@@ -78,6 +78,10 @@ export class DbGameBookData {
   static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData[], { sport: string }>(async ({ sport }) => {
     let today = new Date();
     today.setHours(0,0,0,0);
+    let utcday = new Date()
+    utcday.setUTCHours(utcday.getUTCHours()) 
+    console.log(today)
+    console.log(utcday)
     return {
       bookSeq: 0,
       sportTitle: sport,
