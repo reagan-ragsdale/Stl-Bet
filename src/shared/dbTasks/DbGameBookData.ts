@@ -62,7 +62,7 @@ export class DbGameBookData {
     }) */
   });
 
-  static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
+  static allSportFilterByMAxBookSeq = Filter.createCustom<DbGameBookData[], { sport: string }>(async ({ sport }) => {
     //SqlDatabase.LogToConsole = true
     let today = new Date();
     today.setHours(0,0,0,0);
@@ -71,29 +71,19 @@ export class DbGameBookData {
       sportTitle: sport,
       commenceTime: { $gte: today }
     }
-    return SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'bookSeq = (select max(b.bookSeq) from DbGameBookData b where b.sportTitle = ' + whereFragment.param(sport) + ' and b.bookId = bookId and date(commencetime) >= CURRENT_DATE) and sportTitle = ' + whereFragment.param(sport) + ' and date(commencetime) >= CURRENT_DATE'
-    })
 
 
   });
 
-  static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
+  static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData[], { sport: string }>(async ({ sport }) => {
     let today = new Date();
     today.setHours(0,0,0,0);
-    console.log('sql logs below')
-    console.log(today.getTimezoneOffset())
-    console.log(today.getUTCHours())
     return {
       bookSeq: 0,
       sportTitle: sport,
       marketKey: ['h2h', 'totals', 'spreads'],
       commenceTime: { $gte: today }
     }
-    // SqlDatabase.LogToConsole = true
-    return SqlDatabase.rawFilter((whereFragment) => {
-      whereFragment.sql = 'bookSeq = 0 and sportTitle = ' + whereFragment.addParameterAndReturnSqlToken(sport) + ' and marketkey in (' + whereFragment.addParameterAndReturnSqlToken('h2h') + ', ' + whereFragment.addParameterAndReturnSqlToken('spreads') + ', ' + whereFragment.addParameterAndReturnSqlToken('totals') + ') and date(commencetime) >= CURRENT_DATE'
-    })
 
 
   });
