@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { remult } from 'remult';
 import { UsersController } from '../shared/Controllers/UsersController';
@@ -18,6 +18,10 @@ export class AppComponent {
     remult.apiClient.wrapMessageHandling = handler => zone.run(() => handler())
   }
   remult = remult;
+
+
+  @ViewChild('playerSearchInput')
+  myInput!: ElementRef;
 
   searchName: string = ''
    async logout(){
@@ -41,6 +45,9 @@ export class AppComponent {
   isClicked: Boolean = false;
   onSearchClicked(){
     this.isClicked = !this.isClicked
+    if(this.isClicked == true){
+      this.myInput.nativeElement.focus();
+    }
   }
   myControl = new FormControl('');
   playerInfo: any[] = []
