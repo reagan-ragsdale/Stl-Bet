@@ -12,8 +12,8 @@
       
     </div>
     <div style="display:flex; width:100%; gap:5px; align-items: center; margin-top: 1rem;">
-      <h3 style="margin-left:1rem;">Season: </h3>
-      <mat-form-field style="width:min-content;">
+      <h3 style="margin-left:auto;">Season: </h3>
+      <mat-form-field style="width:min-content; margin-right:1rem;">
         <mat-select placeholder="{{playerSeason}}">
           <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
             value="season">
@@ -23,7 +23,7 @@
       </mat-form-field>
     </div>
     
-    <div class="player-total-stats">
+   <!--  <div class="player-total-stats">
       <h4 style="text-align: center;">Player Averages</h4>
       <table mat-table [dataSource]="playerTotalStats" class="mat-elevation-z8" style="height: inherit;">
 
@@ -38,7 +38,7 @@
         </tr>
 
       </table>
-    </div>
+    </div> -->
     <div class="graph-body">
       <div [ngClass]="selectedSport == 'NFL' ? 'nfl-chart' : 'other-chart'">
         <canvas id="lineChart">{{ chart }}</canvas>
