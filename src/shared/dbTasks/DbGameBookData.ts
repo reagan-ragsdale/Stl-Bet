@@ -67,7 +67,7 @@ export class DbGameBookData {
     let today = new Date();
     today.setHours(0,0,0,0);
     let utcday = new Date()
-    today.setUTCHours(0)
+    today.setUTCHours(6)
     return {
       bookSeq: 0,
       sportTitle: sport,
@@ -81,7 +81,7 @@ export class DbGameBookData {
     let today = new Date();
     today.setHours(0,0,0,0);
     let utcday = new Date()
-    today.setUTCHours(0)
+    today.setUTCHours(6)
     return {
       bookSeq: 0,
       sportTitle: sport,
