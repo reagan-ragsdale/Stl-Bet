@@ -24,7 +24,7 @@
                        [(ngModel)]="searchName" 
                        (ngModelChange)="filterSearch()"
                        class="example-input">
-                <mat-autocomplete #auto="matAutocomplete" []>
+                <mat-autocomplete #auto="matAutocomplete" >
                   <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName" (onSelectionChange)="loadNewPlayer(player.playerId, player.sport)">
                     {{player.playerName}}
                   </mat-option>
