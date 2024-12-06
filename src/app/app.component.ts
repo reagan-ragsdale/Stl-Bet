@@ -46,7 +46,9 @@ export class AppComponent {
   onSearchClicked(){
     this.isClicked = !this.isClicked
     if(this.isClicked == true){
-      this.myInput.nativeElement.focus();
+      setTimeout(() => {
+        this.myInput.nativeElement.focus();
+      }, 0);
     }
   }
   myControl = new FormControl('');
