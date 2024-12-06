@@ -11,14 +11,18 @@
 
       
     </div>
-    <mat-form-field style="width:100%">
-      <mat-select placeholder="{{playerSeason}}">
-        <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
-          value="season">
-          {{season}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div style="display:flex; width:100%; gap:5px; align-items: center;">
+      <h3 style="margin-left:1rem;">Season: </h3>
+      <mat-form-field style="width:min-content;">
+        <mat-select placeholder="{{playerSeason}}">
+          <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
+            value="season">
+            {{season}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
     <div class="player-total-stats">
       <h4 style="text-align: center;">Player Averages</h4>
       <table mat-table [dataSource]="playerTotalStats" class="mat-elevation-z8" style="height: inherit;">
