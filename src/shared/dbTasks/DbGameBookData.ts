@@ -67,14 +67,11 @@ export class DbGameBookData {
     let today = new Date();
     today.setHours(0,0,0,0);
     let utcday = new Date()
-    utcday.setUTCHours(utcday.getUTCHours()) 
-    let newdssdd = new Date()
-    utcday.setUTCHours(utcday.getUTCHours()- 6)
-    newdssdd.setUTCHours(utcday.getUTCHours())
+    today.setUTCHours(0)
     return {
       bookSeq: 0,
       sportTitle: sport,
-      commenceTime: { $gte: newdssdd }
+      commenceTime: { $gte: today }
     }
 
 
@@ -84,15 +81,12 @@ export class DbGameBookData {
     let today = new Date();
     today.setHours(0,0,0,0);
     let utcday = new Date()
-    utcday.setUTCHours(utcday.getUTCHours()) 
-    let newdssdd = new Date()
-    utcday.setUTCHours(utcday.getUTCHours()- 6)
-    newdssdd.setUTCHours(utcday.getUTCHours())
+    today.setUTCHours(0)
     return {
       bookSeq: 0,
       sportTitle: sport,
       marketKey: ['h2h', 'totals', 'spreads'],
-      commenceTime: { $gte: newdssdd }
+      commenceTime: { $gte: today }
     }
 
 
