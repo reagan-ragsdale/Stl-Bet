@@ -27,7 +27,7 @@ export class LoginSignUpComponent {
       try {
         remult.user = await UsersController.signUp(this.email.toLowerCase(), this.password, this.confirmPassword)
       } catch (error: any) {
-        this._snackBar.open(error.message, 'close')
+        this._snackBar.open(error.message, 'close',{duration: 8000})
       }
     }
     if (remult.authenticated()) {
