@@ -23,6 +23,7 @@
                        [matAutocomplete]="auto"
                        [(ngModel)]="searchName" 
                        (ngModelChange)="filterSearch()"
+                       (focus)="isClicked"
                        class="example-input">
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option *ngFor="let player of filteredSearch" [value]="player.playerName" (onSelectionChange)="loadNewPlayer(player.playerId, player.sport)">
