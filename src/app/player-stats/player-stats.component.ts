@@ -383,6 +383,12 @@ export class PlayerStatsComponent {
       this.selectedSport = params.get('sport') == null ? 'all' : params.get('sport')
       this.playerId = params.get('id') == null ? 0 : params.get('id')
       this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
+      try{
+        this.destroyGraphs()
+      }
+      catch(error:any){
+        
+      }
       await this.loadData()
     })
   }
