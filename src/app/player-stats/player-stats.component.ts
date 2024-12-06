@@ -410,6 +410,9 @@ export class PlayerStatsComponent {
     //all stats for the player
     //player averages
     //player props
+    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
+    this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)
+    this.playerName = this.selectedPlayer[0].playerName
 
     if (this.selectedSport == 'MLB') {
       this.fullDataset = [
@@ -626,9 +629,7 @@ export class PlayerStatsComponent {
 
     }
 
-    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
-    this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)
-    this.playerName = this.selectedPlayer[0].playerName
+    
 
     this.playerSeasons = []
 
