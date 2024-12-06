@@ -19,7 +19,7 @@ export class LoginSignUpComponent {
         remult.user = await UsersController.login(this.email.toLowerCase(), this.password)
       }
       catch (error: any) {
-        this._snackBar.open(error.message, 'close')
+        this._snackBar.open(error.message, 'close',{duration: 8000})
       }
 
     }
