@@ -134,7 +134,7 @@ export const cronLoadNhlStats = async () => {
             let firstToScore = filteredGames.filter(e => e.teamName == teamToScoreFirst)[0]
             let lastToScore = filteredGames.filter(e => e.teamName != teamToScoreFirst)[0]
             await taskRepo.update(firstToScore.id!,{...firstToScore, scoredFirst: 'Y'})
-            await taskRepo.update(lastToScore.id!,{...firstToScore, scoredFirst: 'N'})
+            await taskRepo.update(lastToScore.id!,{...lastToScore, scoredFirst: 'N'})
         }
         catch(error:any){
             console.log('Error in nhl update game score first. Game id: ' + distinctGameIds[i] + " " + error.message)
