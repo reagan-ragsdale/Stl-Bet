@@ -8,20 +8,21 @@
         <h1 class="player-name-name">{{selectedPlayer[0].playerName}}: </h1>
         <h1 class="player-name-team">{{selectedPlayer[0].teamName}}</h1>
       </div>
+      <div style="display:flex; width:100%; gap:5px; align-items: center; margin-top: 1rem;">
+        <h3 style="margin-left:auto;">Season: </h3>
+        <mat-form-field style="width:min-content; margin-right:1rem;">
+          <mat-select placeholder="{{playerSeason}}">
+            <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
+              value="season">
+              {{season}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
       
     </div>
-    <div style="display:flex; width:100%; gap:5px; align-items: center; margin-top: 1rem;">
-      <h3 style="margin-left:auto;">Season: </h3>
-      <mat-form-field style="width:min-content; margin-right:1rem;">
-        <mat-select placeholder="{{playerSeason}}">
-          <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
-            value="season">
-            {{season}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    
     
    <!--  <div class="player-total-stats">
       <h4 style="text-align: center;">Player Averages</h4>
