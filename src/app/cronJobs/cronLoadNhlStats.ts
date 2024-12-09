@@ -80,7 +80,7 @@ export const cronLoadNhlStats = async () => {
     let yesterday = `${year}${month}${day}`;
 
 
-   /*   let gamesToday = await nhlApiController.getDailySchedule(yesterday)
+     let gamesToday = await nhlApiController.getDailySchedule(yesterday)
     if (gamesToday.length > 0) {
         for (let game of gamesToday) {
             try {
@@ -114,7 +114,7 @@ export const cronLoadNhlStats = async () => {
 
     //set player game stat averages
     let arrayOfPlayerAverages: DbNhlPlayerGameStatTotals[] = NhlService.setPlayerGameStatAverages(listOfDistinctPlayers, statsOfActivePlayersThisSeason)
-    await NhlController.NhlSetPlayerGameStatAverages(arrayOfPlayerAverages) */
+    await NhlController.NhlSetPlayerGameStatAverages(arrayOfPlayerAverages)
 
 
     
@@ -124,7 +124,7 @@ export const cronLoadNhlStats = async () => {
 
 
     //temp to update game stats for first to score
-    let taskRepo = remult.repo(DbNhlTeamGameStats)
+   /*  let taskRepo = remult.repo(DbNhlTeamGameStats)
     let allGames = await taskRepo.find()
     let distinctGameIds = allGames.map(e => e.gameId).filter((value,index,array) => array.indexOf(value) === index)
     for(let i = 0; i < distinctGameIds.length; i++){
@@ -140,7 +140,7 @@ export const cronLoadNhlStats = async () => {
             console.log('Error in nhl update game score first. Game id: ' + distinctGameIds[i] + " " + error.message)
         }
         
-    }
+    } */
 
 
 
