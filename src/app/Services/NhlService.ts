@@ -25,7 +25,7 @@ export class NhlService {
         for (let player of playerInfo) {
             playerInfoFinal.push({
                 playerId: player.playerID,
-                playerName: player.longName,
+                playerName: this.cleanNhlPlayerNames(player.longName),
                 teamId: player.teamID,
                 teamName: player.team,
                 sport: 'NHL'
@@ -114,7 +114,7 @@ export class NhlService {
             if (playerDb.length == 0) {
                 playerStats.push({
                     playerId: player.playerID,
-                    playerName: player.longName,
+                    playerName: this.cleanNhlPlayerNames(player.longName),
                     teamId: player.teamID,
                     teamName: player.team,
                     teamAgainstId: player.teamID == gameStats.teamIDHome ? gameStats.teamIDAway : gameStats.teamIDHome,
@@ -1323,6 +1323,16 @@ export class NhlService {
             finalArray.push(playerTotal)
         }
         return finalArray
+    }
+
+    static cleanNhlPlayerNames(playerName: string): string{
+        if(playerName.includes('è')){
+            playerName = playerName.replaceAll('è', 'e')
+        }
+        if(playerName == 'Pat Maroon'){
+            playerName = 'Patrick Maroon'
+        }
+        return playerName
     }
 
 

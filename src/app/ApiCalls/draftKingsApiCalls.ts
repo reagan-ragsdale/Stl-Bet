@@ -86,7 +86,7 @@ export class draftKingsApiController {
     for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
       for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
         for (let m = 0; m < this.playerProps.bookmakers[j].markets[k].outcomes.length; m++) {
-          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.playerProps.bookmakers[j].markets[k].outcomes[m].description && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name).map(e => e.bookSeq).filter((value,index,array) => array.indexOf(value) === index)
+          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description) && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name).map(e => e.bookSeq).filter((value,index,array) => array.indexOf(value) === index)
           let highestBookSeq = 0
           filteredPlayer.forEach(e => {
             if(e > highestBookSeq){
@@ -108,7 +108,7 @@ export class draftKingsApiController {
             bookMaker: this.playerProps.bookmakers[j].title,
             marketKey: this.playerProps.bookmakers[j].markets[k].key,
             description: this.playerProps.bookmakers[j].markets[k].outcomes[m].name,
-            playerName: this.playerProps.bookmakers[j].markets[k].outcomes[m].description,
+            playerName: this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description),
             price: this.playerProps.bookmakers[j].markets[k].outcomes[m].price,
             point: this.playerProps.bookmakers[j].markets[k].outcomes[m].point != null ? this.playerProps.bookmakers[j].markets[k].outcomes[m].point : 0,
             bookSeq: newBookSeq
@@ -206,6 +206,13 @@ export class draftKingsApiController {
   static cleanTeamName(name: string): string{
     let finalReturn = name
     finalReturn = finalReturn.replaceAll('é','e')
+    return finalReturn
+  }
+
+  static cleanPlayerName(name: string): string{
+    let finalReturn = name
+    finalReturn = finalReturn.replaceAll('é','e')
+    finalReturn = finalReturn.replaceAll('è', 'e')
     return finalReturn
   }
 
