@@ -7,11 +7,13 @@ import { DbNhlTeamGameStatTotals } from "src/shared/dbTasks/DbNhlTeamGameStatTot
 import { NhlService } from "../Services/NhlService";
 import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameStatTotals";
 import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
+import { remult } from "remult";
+import { DbNhlTeamGameStats } from "../../shared/dbTasks/DbNhlTeamGameStats";
 
 export const cronLoadNhlStats = async () => {
     console.log("starting nhl stats")
-    let players = await nhlApiController.getPlayerInfo()
-    await PlayerInfoController.playerInfoAddPlayers(players)
+    //let players = await nhlApiController.getPlayerInfo()
+    //await PlayerInfoController.playerInfoAddPlayers(players)
 
     //set player stats
     const dates2023 = [
@@ -78,7 +80,7 @@ export const cronLoadNhlStats = async () => {
     let yesterday = `${year}${month}${day}`;
 
 
-     let gamesToday = await nhlApiController.getDailySchedule(yesterday)
+   /*   let gamesToday = await nhlApiController.getDailySchedule(yesterday)
     if (gamesToday.length > 0) {
         for (let game of gamesToday) {
             try {
@@ -112,7 +114,7 @@ export const cronLoadNhlStats = async () => {
 
     //set player game stat averages
     let arrayOfPlayerAverages: DbNhlPlayerGameStatTotals[] = NhlService.setPlayerGameStatAverages(listOfDistinctPlayers, statsOfActivePlayersThisSeason)
-    await NhlController.NhlSetPlayerGameStatAverages(arrayOfPlayerAverages)
+    await NhlController.NhlSetPlayerGameStatAverages(arrayOfPlayerAverages) */
 
 
     
@@ -120,6 +122,25 @@ export const cronLoadNhlStats = async () => {
     //let teams = await nhlApiController.getTeamInfo()
     //TeamInfoController.setTeamInfo(teams)
 
+
+    //temp to update game stats for first to score
+    let taskRepo = remult.repo(DbNhlTeamGameStats)
+    let allGames = await taskRepo.find()
+    let distinctGameIds = allGames.map(e => e.gameId).filter((value,index,array) => array.indexOf(value) === index)
+    for(let i = 0; i < distinctGameIds.length; i++){
+        try{
+            let teamToScoreFirst = await nhlApiController.findScoredFirst(distinctGameIds[i])
+            let filteredGames = allGames.filter(e => e.gameId == distinctGameIds[i])
+            let firstToScore = filteredGames.filter(e => e.teamName == teamToScoreFirst)[0]
+            let lastToScore = filteredGames.filter(e => e.teamName != teamToScoreFirst)[0]
+            await taskRepo.update(firstToScore.id!,{...firstToScore, scoredFirst: 'Y'})
+            await taskRepo.update(lastToScore.id!,{...firstToScore, scoredFirst: 'N'})
+        }
+        catch(error:any){
+            console.log('Error in nhl update game score first. Game id: ' + distinctGameIds[i] + " " + error.message)
+        }
+        
+    }
 
 
 

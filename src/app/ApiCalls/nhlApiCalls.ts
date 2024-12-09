@@ -77,6 +77,24 @@ export class nhlApiController {
 
   }
 
+  static async findScoredFirst(gameId: string): Promise<string>{
+    let teamName = ''
+
+    const url = `https://tank01-nhl-live-in-game-real-time-statistics-nhl.p.rapidapi.com/getNHLBoxScore?gameID=${gameId}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': '' + process.env['nhlApiKey'],
+        'x-rapidapi-host': 'tank01-nhl-live-in-game-real-time-statistics-nhl.p.rapidapi.com'
+      }
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    const processedResponse = result.body;
+    teamName = processedResponse.scoringPlays[0].team
+    return teamName
+  }
+
 
    
 }
