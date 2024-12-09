@@ -1103,7 +1103,7 @@ export class NhlService {
                     playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
                 }
                 catch(error:any){
-                    console.log('Nhl Service player: ' + error.message)
+                    console.log('Nhl Service player: ' + uniquePlayersWithinProp[m] + ' ' + error.message)
                 }
                 
             }
