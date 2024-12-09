@@ -35,6 +35,9 @@ export class DbNhlTeamGameStats {
   @Fields.string()
   result = ''
 
+  @Fields.string()
+  scoredFirst = ''
+
   @Fields.integer()
   pointsScoredOverall = 0
 
