@@ -5,12 +5,14 @@ import type  session from "cookie-session"
 declare module 'remult' {
     export interface RemultContext {
         session: CookieSessionInterfaces.CookieSessionObject
+        
     }
 }
 
 export async function initRequest(req: Request) {
     remult.context.session = req.session!
     remult.user = req.session!['user']
+    
 }
 
 export function setSessionUser(user: UserInfo | null): UserInfo {
