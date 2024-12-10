@@ -7,9 +7,9 @@
         <h1 class="player-name-team">{{selectedPlayer[0].teamName}}</h1>
       </div>
       <div style="display:flex; width:100%; gap:5px; align-items: center; margin-top: 1rem;">
-        <h3 style="margin-left:auto;">Season: </h3>
+        <h2 style="margin-left:auto; color:white;">Season: </h2>
         <mat-form-field style="width:min-content; margin-right:1rem;">
-          <mat-select placeholder="{{playerSeason}}">
+          <mat-select placeholder="{{playerSeason}}" style="display: inline-block; width: auto;">
             <mat-option *ngFor="let season of playerSeasons" (onSelectionChange)="updateSeasonsDisplayed(season)"
               value="season">
               {{season}}

@@ -1047,7 +1047,7 @@ export class PlayerStatsComponent {
         plugins: {
           title: {
             display: true,
-            text: 'Points by Game'
+            text: 'Stats by Game'
           },
 
 
@@ -1066,6 +1066,9 @@ export class PlayerStatsComponent {
             max: max,
             grid: {
               display: false // Hides grid lines on the y-axis
+            },
+            ticks:{
+              stepSize:1
             }
           },
           x: {

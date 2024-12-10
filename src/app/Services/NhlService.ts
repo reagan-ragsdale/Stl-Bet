@@ -16,6 +16,7 @@ import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameSta
 import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGameStatAverages";
 import { MatGridTileHeaderCssMatStyler } from "@angular/material/grid-list";
 import { reusedFunctions } from "./reusedFunctions";
+import { filter } from "compression";
 
 
 export class NhlService {
@@ -169,12 +170,14 @@ export class NhlService {
         return teamInfoFinal
     }
 
+    static alternatePropNames: string[] = ['alternate_team_totals', 'alternate_spreads']
+
     static async getTeamPropData(props: DbGameBookData[], teamsInfo: DbTeamInfo[]): Promise<any[]> {
         let finalReturn: any[] = []
         let homeTeam = teamsInfo.filter(e => e.teamNameFull == props[0].homeTeam)[0]
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
         let teamStatsCombined = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([homeTeam.teamNameAbvr, awayTeam.teamNameAbvr], 2024)
-        for(let i = 0; i < teamStatsCombined.length; i++){
+        for (let i = 0; i < teamStatsCombined.length; i++) {
             teamStatsCombined[i].gameDate = reusedFunctions.convertGameDateToMonthDay(teamStatsCombined[i].gameDate)
         }
         let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
@@ -182,187 +185,364 @@ export class NhlService {
         let homeTeamPropsFinal: any[] = []
         let awayTeamPropsFinal: any[] = []
         let teamProps = props.filter(e => {
-            return e.teamName != 'Over' && e.teamName != 'Under';
+            return e.teamName != '';
         })
-        let overUnderProps = props.filter(e => {
-            return e.teamName == 'Over' || e.teamName == 'Under';
+        let overUnderTotalProps = props.filter(e => {
+            return e.teamName == 'Both';
         })
 
+        let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v,i,a) => a.indexOf(v) === i)
+        for(let i = 0; i < distinctTeamProps.length; i++){
+            
+            let filteredPropsOnMarketKey = teamProps.filter(e => e.marketKey == distinctTeamProps[i])
+            if(this.alternatePropNames.includes(distinctTeamProps[i])){
+                let distictTeams = filteredPropsOnMarketKey.map(e => e.teamName).filter((v, i, a) => a.indexOf(v) === i)
+                let propArray: any = []
+                for (let i = 0; i < distictTeams.length; i++) {
+                    let teamProps = filteredPropsOnMarketKey.filter(e => e.teamName == distictTeams[i])
+                    let distinctPoints = teamProps.map(e => e.point).filter((v, i, a) => a.indexOf(v) === i)
+                    let teamArray: any = []
+                    for (let j = 0; j < distinctPoints.length; j++) {
+                        let filteredPointsProps = teamProps.filter(e => e.point == distinctPoints[j])
+                        let pointArray: any = []
+                        for (let m = 0; m < filteredPointsProps.length; m++) {
+                            let teamStats = teamProps[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
+                            let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
+                            let teamProp: TeamPropDto = {
+                                gameBookData: filteredPointsProps[m],
+                                teamName: homeTeam.teamNameFull == filteredPointsProps[m].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
+                                teamId: homeTeam.teamNameFull == filteredPointsProps[m].teamName ? homeTeam.teamId : awayTeam.teamId,
+                                teamAgainstName: awayTeam.teamNameFull == filteredPointsProps[m].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
+                                teamAgainstId: awayTeam.teamNameFull == filteredPointsProps[m].teamName ? awayTeam.teamId : homeTeam.teamId,
+                                homeAway: homeTeam.teamNameAbvr == teamStats[0].teamName ? 'Home' : 'Away',
+                                propType: '',
+                                overallChance: 0,
+                                overallWins: 0,
+                                overallTotal: 0,
+                                homeAwayChance: 0,
+                                homeAwayWins: 0,
+                                homeAwayTotal: 0,
+                                teamChance: 0,
+                                teamWins: 0,
+                                teamTotal: 0,
+                                overallWeighted: 0,
+                                homeAwayWeighted: 0,
+                                teamWeighted: 0,
+                                averageOverall: 0,
+                                averageHomeAway: 0,
+                                averageTeam: 0,
+                                highOverall: 0,
+                                highHomeAway: 0,
+                                highTeam: 0,
+                                lowOverall: 0,
+                                lowHomeAway: 0,
+                                lowTeam: 0,
+                                isDisabled: false,
+                                teamStats: teamStats,
+                                teamAgainstStats: teamAgainstStats,
+                                last10Overall: [],
+                                last10HomeAway: [],
+                                last10Team: [],
+                            }
+                            let overAllTableTemp = []
+                            let homeAwayTableTemp = []
+                            let teamTableTemp = []
+                            if(filteredPointsProps[m].marketKey == 'alternate_team_totals'){
+                                if (filteredPointsProps[m].description == 'Over') {
+                                    teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > filteredPointsProps[m].point).length;
+                                    teamProp.overallTotal = teamStats.length
+                                    teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) > filteredPointsProps[m].point).length;
+                                    teamProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).length
+                                    teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > filteredPointsProps[m].point).length;
+                                    teamProp.teamTotal = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).length
+                                    for (let j = 0; j < teamStats.length; j++) {
+                                        overAllTableTemp.push({
+                                            teamAgainstName: teamStats[j].teamAgainstName,
+                                            gameDate: teamStats[j].gameDate,
+                                            pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                            pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                            homeAway: teamStats[j].homeOrAway
+                                        })
+                                        if (teamStats[j].homeOrAway == teamProp.homeAway) {
+                                            homeAwayTableTemp.push({
+                                                teamAgainstName: teamStats[j].teamAgainstName,
+                                                gameDate: teamStats[j].gameDate,
+                                                pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                                pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                                homeAway: teamStats[j].homeOrAway
+                                            })
+                                        }
+                                        if (teamStats[j].teamAgainstId == teamProp.teamAgainstId) {
+                                            teamTableTemp.push({
+                                                teamAgainstName: teamStats[j].teamAgainstName,
+                                                gameDate: teamStats[j].gameDate,
+                                                pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                                pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                                homeAway: teamStats[j].homeOrAway
+                                            })
+                                        }
+                                    }
+                                    let totalOverall = teamStats.map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    let totalHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    let totalTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    teamProp.lowOverall = totalOverall.length > 0 ? Math.min(...totalOverall) : 0
+                                    teamProp.highOverall = totalOverall.length > 0 ? Math.max(...totalOverall) : 0
+                                    teamProp.lowHomeAway = totalHomeAway.length > 0 ? Math.min(...totalHomeAway) : 0
+                                    teamProp.highHomeAway = totalHomeAway.length > 0 ? Math.max(...totalHomeAway) : 0
+                                    teamProp.lowTeam = totalTeam.length > 0 ? Math.min(...totalTeam) : 0
+                                    teamProp.highTeam = totalTeam.length > 0 ? Math.max(...totalTeam) : 0
+                                    teamProp.averageOverall = totalOverall.length > 0 ? totalOverall.reduce((a, b) => a + b) / totalOverall.length : 0
+                                    teamProp.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
+                                    teamProp.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
+                                    teamProp.overallChance = teamProp.overallTotal == 0 ? 0 : teamProp.overallWins / teamProp.overallTotal
+                                    teamProp.homeAwayChance = teamProp.homeAwayTotal == 0 ? 0 : teamProp.homeAwayWins / teamProp.homeAwayTotal
+                                    teamProp.teamChance = teamProp.teamTotal == 0 ? 0 : teamProp.teamWins / teamProp.teamTotal
+                                    teamProp.last10Overall = overAllTableTemp.slice(0, 10)
+                                    teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
+                                    teamProp.last10Team = teamTableTemp.slice(0, 10)
+                                }
+                                else {
+                                    teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < filteredPointsProps[m].point).length;
+                                    teamProp.overallTotal = teamStats.length
+                                    teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) < filteredPointsProps[m].point).length;
+                                    teamProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).length
+                                    teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) < filteredPointsProps[m].point).length;
+                                    teamProp.teamTotal = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).length
+                                    for (let j = 0; j < teamStats.length; j++) {
+                                        overAllTableTemp.push({
+                                            teamAgainstName: teamStats[j].teamAgainstName,
+                                            gameDate: teamStats[j].gameDate,
+                                            pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                            pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                            homeAway: teamStats[j].homeOrAway
+                                        })
+                                        if (teamStats[j].homeOrAway == teamProp.homeAway) {
+                                            homeAwayTableTemp.push({
+                                                teamAgainstName: teamStats[j].teamAgainstName,
+                                                gameDate: teamStats[j].gameDate,
+                                                pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                                pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                                homeAway: teamStats[j].homeOrAway
+                                            })
+                                        }
+                                        if (teamStats[j].teamAgainstId == teamProp.teamAgainstId) {
+                                            teamTableTemp.push({
+                                                teamAgainstName: teamStats[j].teamAgainstName,
+                                                gameDate: teamStats[j].gameDate,
+                                                pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                                pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                                homeAway: teamStats[j].homeOrAway
+                                            })
+                                        }
+                                    }
+                                    let totalOverall = teamStats.map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    let totalHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    let totalTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    teamProp.lowOverall = totalOverall.length > 0 ? Math.min(...totalOverall) : 0
+                                    teamProp.highOverall = totalOverall.length > 0 ? Math.max(...totalOverall) : 0
+                                    teamProp.lowHomeAway = totalHomeAway.length > 0 ? Math.min(...totalHomeAway) : 0
+                                    teamProp.highHomeAway = totalHomeAway.length > 0 ? Math.max(...totalHomeAway) : 0
+                                    teamProp.lowTeam = totalTeam.length > 0 ? Math.min(...totalTeam) : 0
+                                    teamProp.highTeam = totalTeam.length > 0 ? Math.max(...totalTeam) : 0
+                                    teamProp.averageOverall = totalOverall.length > 0 ? totalOverall.reduce((a, b) => a + b) / totalOverall.length : 0
+                                    teamProp.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
+                                    teamProp.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
+                                    teamProp.overallChance = teamProp.overallTotal == 0 ? 0 : teamProp.overallWins / teamProp.overallTotal
+                                    teamProp.homeAwayChance = teamProp.homeAwayTotal == 0 ? 0 : teamProp.homeAwayWins / teamProp.homeAwayTotal
+                                    teamProp.teamChance = teamProp.teamTotal == 0 ? 0 : teamProp.teamWins / teamProp.teamTotal
+                                    teamProp.last10Overall = overAllTableTemp.slice(0, 10)
+                                    teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
+                                    teamProp.last10Team = teamTableTemp.slice(0, 10)
+                                }
+                            }
+                            else if(filteredPointsProps[m].marketKey == 'alternate_spreads'){
 
-        for (let i = 0; i < teamProps.length; i++) {
-            let teamStats = teamProps[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
-            let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
-
-            let propReturn: TeamPropDto = {
-                gameBookData: teamProps[i],
-                teamName: homeTeam.teamNameFull == teamProps[i].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
-                teamId: homeTeam.teamNameFull == teamProps[i].teamName ? homeTeam.teamId : awayTeam.teamId,
-                teamAgainstName: homeTeam.teamNameFull == teamProps[i].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
-                teamAgainstId: homeTeam.teamNameFull == teamProps[i].teamName ? awayTeam.teamId : homeTeam.teamId,
-                homeAway: homeTeam.teamNameAbvr == teamStats[0].teamName ? 'Home' : 'Away',
-                propType: '',
-                overallChance: 0,
-                overallWins: 0,
-                overallTotal: 0,
-                homeAwayChance: 0,
-                homeAwayWins: 0,
-                homeAwayTotal: 0,
-                teamChance: 0,
-                teamWins: 0,
-                teamTotal: 0,
-                overallWeighted: 0,
-                homeAwayWeighted: 0,
-                teamWeighted: 0,
-                averageOverall: 0,
-                averageHomeAway: 0,
-                averageTeam: 0,
-                highOverall: 0,
-                highHomeAway: 0,
-                highTeam: 0,
-                lowOverall: 0,
-                lowHomeAway: 0,
-                lowTeam: 0,
-                isDisabled: false,
-                teamStats: teamStats,
-                teamAgainstStats: teamAgainstStats,
-                last10Overall: [],
-                last10HomeAway: [],
-                last10Team: [],
-            }
-            propReturn.overallTotal = teamStats.length;
-            propReturn.homeAwayTotal = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).length;
-            propReturn.teamTotal = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).length;
-            let overAllTableTemp = []
-            let homeAwayTableTemp = []
-            let teamTableTemp = []
-            if (teamProps[i].marketKey == 'h2h') {
-                propReturn.overallWins = teamStats.filter(e => e.result == 'W').length;
-                propReturn.homeAwayWins = teamStats.filter(e => e.result == 'W' && e.homeOrAway == propReturn.homeAway).length;
-                propReturn.teamWins = teamStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamAgainstId).length;
-                for (let j = 0; j < teamStats.length; j++) {
-                    overAllTableTemp.push({
-                        teamAgainstName: teamStats[j].teamAgainstName,
-                        gameDate: teamStats[j].gameDate,
-                        pointsScoredOverall: teamStats[j].pointsScoredOverall,
-                        pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
-                        homeAway: teamStats[j].homeOrAway
-                    })
-                    if (teamStats[j].homeOrAway == propReturn.homeAway) {
-                        homeAwayTableTemp.push({
-                            teamAgainstName: teamStats[j].teamAgainstName,
-                            gameDate: teamStats[j].gameDate,
-                            pointsScoredOverall: teamStats[j].pointsScoredOverall,
-                            pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
-                            homeAway: teamStats[j].homeOrAway
-                        })
+                            }
+                            pointArray.push(teamProp)
+                        }
+                        teamArray.push(pointArray)
                     }
-                    if (teamStats[j].teamAgainstId == propReturn.teamAgainstId) {
-                        teamTableTemp.push({
-                            teamAgainstName: teamStats[j].teamAgainstName,
-                            gameDate: teamStats[j].gameDate,
-                            pointsScoredOverall: teamStats[j].pointsScoredOverall,
-                            pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
-                            homeAway: teamStats[j].homeOrAway
-                        })
-                    }
+                    teamArray[0][0].homeAway == "Home" ? homeTeamPropsFinal.push(teamArray) : awayTeamPropsFinal.push(teamArray)
                 }
-                propReturn.propType = 'h2h';
             }
-            else if (teamProps[i].marketKey == 'spreads') {
-                propReturn.overallWins = teamStats.filter(e => e.result == 'W' && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
-                propReturn.homeAwayWins = teamStats.filter(e => e.result == 'W' && e.homeOrAway == propReturn.homeAway && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
-                propReturn.teamWins = teamStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamAgainstId && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
-                for (let j = 0; j < teamStats.length; j++) {
-                    overAllTableTemp.push({
-                        teamAgainstName: teamStats[j].teamAgainstName,
-                        gameDate: teamStats[j].gameDate,
-                        pointsScoredOverall: teamStats[j].pointsScoredOverall,
-                        pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
-                        homeAway: teamStats[j].homeOrAway
-                    })
-                    if (teamStats[j].homeOrAway == propReturn.homeAway) {
-                        homeAwayTableTemp.push({
-                            teamAgainstName: teamStats[j].teamAgainstName,
-                            gameDate: teamStats[j].gameDate,
-                            pointsScoredOverall: teamStats[j].pointsScoredOverall,
-                            pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
-                            homeAway: teamStats[j].homeOrAway
-                        })
+            else{
+                for (let i = 0; i < teamProps.length; i++) {
+                    let teamStats = teamProps[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
+                    let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
+        
+                    let propReturn: TeamPropDto = {
+                        gameBookData: teamProps[i],
+                        teamName: homeTeam.teamNameFull == teamProps[i].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
+                        teamId: homeTeam.teamNameFull == teamProps[i].teamName ? homeTeam.teamId : awayTeam.teamId,
+                        teamAgainstName: homeTeam.teamNameFull == teamProps[i].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
+                        teamAgainstId: homeTeam.teamNameFull == teamProps[i].teamName ? awayTeam.teamId : homeTeam.teamId,
+                        homeAway: homeTeam.teamNameAbvr == teamStats[0].teamName ? 'Home' : 'Away',
+                        propType: '',
+                        overallChance: 0,
+                        overallWins: 0,
+                        overallTotal: 0,
+                        homeAwayChance: 0,
+                        homeAwayWins: 0,
+                        homeAwayTotal: 0,
+                        teamChance: 0,
+                        teamWins: 0,
+                        teamTotal: 0,
+                        overallWeighted: 0,
+                        homeAwayWeighted: 0,
+                        teamWeighted: 0,
+                        averageOverall: 0,
+                        averageHomeAway: 0,
+                        averageTeam: 0,
+                        highOverall: 0,
+                        highHomeAway: 0,
+                        highTeam: 0,
+                        lowOverall: 0,
+                        lowHomeAway: 0,
+                        lowTeam: 0,
+                        isDisabled: false,
+                        teamStats: teamStats,
+                        teamAgainstStats: teamAgainstStats,
+                        last10Overall: [],
+                        last10HomeAway: [],
+                        last10Team: [],
                     }
-                    if (teamStats[j].teamAgainstId == propReturn.teamAgainstId) {
-                        teamTableTemp.push({
-                            teamAgainstName: teamStats[j].teamAgainstName,
-                            gameDate: teamStats[j].gameDate,
-                            pointsScoredOverall: teamStats[j].pointsScoredOverall,
-                            pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
-                            homeAway: teamStats[j].homeOrAway
-                        })
+                    propReturn.overallTotal = teamStats.length;
+                    propReturn.homeAwayTotal = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).length;
+                    propReturn.teamTotal = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).length;
+                    let overAllTableTemp = []
+                    let homeAwayTableTemp = []
+                    let teamTableTemp = []
+                    if (teamProps[i].marketKey == 'h2h') {
+                        propReturn.overallWins = teamStats.filter(e => e.result == 'W').length;
+                        propReturn.homeAwayWins = teamStats.filter(e => e.result == 'W' && e.homeOrAway == propReturn.homeAway).length;
+                        propReturn.teamWins = teamStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamAgainstId).length;
+                        for (let j = 0; j < teamStats.length; j++) {
+                            overAllTableTemp.push({
+                                teamAgainstName: teamStats[j].teamAgainstName,
+                                gameDate: teamStats[j].gameDate,
+                                pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                homeAway: teamStats[j].homeOrAway
+                            })
+                            if (teamStats[j].homeOrAway == propReturn.homeAway) {
+                                homeAwayTableTemp.push({
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                    homeAway: teamStats[j].homeOrAway
+                                })
+                            }
+                            if (teamStats[j].teamAgainstId == propReturn.teamAgainstId) {
+                                teamTableTemp.push({
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                    homeAway: teamStats[j].homeOrAway
+                                })
+                            }
+                        }
+                        propReturn.propType = 'h2h';
                     }
+                    else if (teamProps[i].marketKey == 'spreads') {
+                        propReturn.overallWins = teamStats.filter(e => e.result == 'W' && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
+                        propReturn.homeAwayWins = teamStats.filter(e => e.result == 'W' && e.homeOrAway == propReturn.homeAway && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
+                        propReturn.teamWins = teamStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamAgainstId && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
+                        for (let j = 0; j < teamStats.length; j++) {
+                            overAllTableTemp.push({
+                                teamAgainstName: teamStats[j].teamAgainstName,
+                                gameDate: teamStats[j].gameDate,
+                                pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                homeAway: teamStats[j].homeOrAway
+                            })
+                            if (teamStats[j].homeOrAway == propReturn.homeAway) {
+                                homeAwayTableTemp.push({
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                    homeAway: teamStats[j].homeOrAway
+                                })
+                            }
+                            if (teamStats[j].teamAgainstId == propReturn.teamAgainstId) {
+                                teamTableTemp.push({
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    pointsScoredOverall: teamStats[j].pointsScoredOverall,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedOverall,
+                                    homeAway: teamStats[j].homeOrAway
+                                })
+                            }
+                        }
+                        let spreadOverall = teamStats.map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
+                        let spreadHomeAway = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
+                        let spreadTeam = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
+                        propReturn.lowOverall = spreadOverall.length > 0 ? Math.max(...spreadOverall) : 0
+                        propReturn.highOverall = spreadOverall.length > 0 ? Math.min(...spreadOverall) : 0
+                        propReturn.lowHomeAway = spreadHomeAway.length > 0 ? Math.max(...spreadHomeAway) : 0
+                        propReturn.highHomeAway = spreadHomeAway.length > 0 ? Math.min(...spreadHomeAway) : 0
+                        propReturn.lowTeam = spreadTeam.length > 0 ? Math.max(...spreadTeam) : 0
+                        propReturn.highTeam = spreadTeam.length > 0 ? Math.min(...spreadTeam) : 0
+                        propReturn.averageOverall = spreadOverall.length > 0 ? spreadOverall.reduce((a, b) => a + b) / spreadOverall.length : 0
+                        propReturn.averageHomeAway = spreadHomeAway.length > 0 ? spreadHomeAway.reduce((a, b) => a + b) / spreadHomeAway.length : 0
+                        propReturn.averageTeam = spreadTeam.length > 0 ? spreadTeam.reduce((a, b) => a + b) / spreadTeam.length : 0
+                        propReturn.propType = 'spread'
+                    }
+                    else if (teamProps[i].marketKey == 'h2h_p1') {
+                        propReturn.overallWins = teamStats.filter(e => e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod).length;
+                        propReturn.homeAwayWins = teamStats.filter(e => (e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod) && e.homeOrAway == propReturn.homeAway).length;
+                        propReturn.teamWins = teamStats.filter(e => (e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod) && e.teamAgainstId == propReturn.teamAgainstId).length;
+                        for (let j = 0; j < teamStats.length; j++) {
+                            overAllTableTemp.push({
+                                teamAgainstName: teamStats[j].teamAgainstName,
+                                gameDate: teamStats[j].gameDate,
+                                pointsScoredOverall: teamStats[j].pointsScoredFirstPeriod,
+                                pointsAllowedOverall: teamStats[j].pointsAllowedFirstPeriod,
+                                homeAway: teamStats[j].homeOrAway
+                            })
+                            if (teamStats[j].homeOrAway == propReturn.homeAway) {
+                                homeAwayTableTemp.push({
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    pointsScoredOverall: teamStats[j].pointsScoredFirstPeriod,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFirstPeriod,
+                                    homeAway: teamStats[j].homeOrAway
+                                })
+                            }
+                            if (teamStats[j].teamAgainstId == propReturn.teamAgainstId) {
+                                teamTableTemp.push({
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    pointsScoredOverall: teamStats[j].pointsScoredFirstPeriod,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFirstPeriod,
+                                    homeAway: teamStats[j].homeOrAway
+                                })
+                            }
+                        }
+                        propReturn.propType = 'h2h'
+                    }
+                    propReturn.overallChance = propReturn.overallTotal == 0 ? 0 : propReturn.overallWins / propReturn.overallTotal
+                    propReturn.homeAwayChance = propReturn.homeAwayTotal == 0 ? 0 : propReturn.homeAwayWins / propReturn.homeAwayTotal
+                    propReturn.teamChance = propReturn.teamTotal == 0 ? 0 : propReturn.teamWins / propReturn.teamTotal
+                    propReturn.last10Overall = overAllTableTemp.slice(0, 10)
+                    propReturn.last10HomeAway = homeAwayTableTemp.slice(0, 10)
+                    propReturn.last10Team = teamTableTemp.slice(0, 10)
+        
+                    propReturn.homeAway == "Home" ? homeTeamPropsFinal.push(propReturn) : awayTeamPropsFinal.push(propReturn)
+        
                 }
-                let spreadOverall = teamStats.map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
-                let spreadHomeAway = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
-                let spreadTeam = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
-                propReturn.lowOverall = spreadOverall.length > 0 ? Math.max(...spreadOverall) : 0
-                propReturn.highOverall = spreadOverall.length > 0 ? Math.min(...spreadOverall) : 0
-                propReturn.lowHomeAway = spreadHomeAway.length > 0 ? Math.max(...spreadHomeAway) : 0
-                propReturn.highHomeAway = spreadHomeAway.length > 0 ? Math.min(...spreadHomeAway) : 0
-                propReturn.lowTeam = spreadTeam.length > 0 ? Math.max(...spreadTeam) : 0
-                propReturn.highTeam = spreadTeam.length > 0 ? Math.min(...spreadTeam) : 0
-                propReturn.averageOverall = spreadOverall.length > 0 ? spreadOverall.reduce((a, b) => a + b) / spreadOverall.length : 0
-                propReturn.averageHomeAway = spreadHomeAway.length > 0 ? spreadHomeAway.reduce((a, b) => a + b) / spreadHomeAway.length : 0
-                propReturn.averageTeam = spreadTeam.length > 0 ? spreadTeam.reduce((a, b) => a + b) / spreadTeam.length : 0
-                propReturn.propType = 'spread'
             }
-            else if (teamProps[i].marketKey == 'h2h_p1') {
-                propReturn.overallWins = teamStats.filter(e => e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod).length;
-                propReturn.homeAwayWins = teamStats.filter(e => (e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod) && e.homeOrAway == propReturn.homeAway).length;
-                propReturn.teamWins = teamStats.filter(e => (e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod) && e.teamAgainstId == propReturn.teamAgainstId).length;
-                for (let j = 0; j < teamStats.length; j++) {
-                    overAllTableTemp.push({
-                        teamAgainstName: teamStats[j].teamAgainstName,
-                        gameDate: teamStats[j].gameDate,
-                        pointsScoredOverall: teamStats[j].pointsScoredFirstPeriod,
-                        pointsAllowedOverall: teamStats[j].pointsAllowedFirstPeriod,
-                        homeAway: teamStats[j].homeOrAway
-                    })
-                    if (teamStats[j].homeOrAway == propReturn.homeAway) {
-                        homeAwayTableTemp.push({
-                            teamAgainstName: teamStats[j].teamAgainstName,
-                            gameDate: teamStats[j].gameDate,
-                            pointsScoredOverall: teamStats[j].pointsScoredFirstPeriod,
-                            pointsAllowedOverall: teamStats[j].pointsAllowedFirstPeriod,
-                            homeAway: teamStats[j].homeOrAway
-                        })
-                    }
-                    if (teamStats[j].teamAgainstId == propReturn.teamAgainstId) {
-                        teamTableTemp.push({
-                            teamAgainstName: teamStats[j].teamAgainstName,
-                            gameDate: teamStats[j].gameDate,
-                            pointsScoredOverall: teamStats[j].pointsScoredFirstPeriod,
-                            pointsAllowedOverall: teamStats[j].pointsAllowedFirstPeriod,
-                            homeAway: teamStats[j].homeOrAway
-                        })
-                    }
-                }
-                propReturn.propType = 'h2h'
-            }
-            propReturn.overallChance = propReturn.overallTotal == 0 ? 0 : propReturn.overallWins / propReturn.overallTotal
-            propReturn.homeAwayChance = propReturn.homeAwayTotal == 0 ? 0 : propReturn.homeAwayWins / propReturn.homeAwayTotal
-            propReturn.teamChance = propReturn.teamTotal == 0 ? 0 : propReturn.teamWins / propReturn.teamTotal
-            propReturn.last10Overall = overAllTableTemp.slice(0, 10)
-            propReturn.last10HomeAway = homeAwayTableTemp.slice(0, 10)
-            propReturn.last10Team = teamTableTemp.slice(0, 10)
-
-            propReturn.homeAway == "Home" ? homeTeamPropsFinal.push(propReturn) : awayTeamPropsFinal.push(propReturn)
-
         }
+        
 
         let homeTeamOverUnderFinal = []
         let awayTeamOverUnderFinal = []
-        console.log(overUnderProps)
-        for (let j = 0; j < overUnderProps.length; j++) {
+        console.log(overUnderTotalProps)
+        for (let j = 0; j < overUnderTotalProps.length; j++) {
             let homeProp: TeamPropDto = {
-                gameBookData: overUnderProps[j],
+                gameBookData: overUnderTotalProps[j],
                 teamName: homeTeam.teamNameAbvr,
                 teamId: homeTeam.teamId,
                 teamAgainstName: awayTeam.teamNameAbvr,
@@ -398,7 +578,7 @@ export class NhlService {
                 last10Team: [],
             }
             let awayProp: TeamPropDto = {
-                gameBookData: overUnderProps[j],
+                gameBookData: overUnderTotalProps[j],
                 teamName: awayTeam.teamNameAbvr,
                 teamId: awayTeam.teamId,
                 teamAgainstName: homeTeam.teamNameAbvr,
@@ -440,13 +620,13 @@ export class NhlService {
             let overAllTableTemp = []
             let homeAwayTableTemp = []
             let teamTableTemp = []
-            if (overUnderProps[j].teamName == 'Over') {
+            if (overUnderTotalProps[j].description == 'Over') {
                 teamStats = homeTeamStats
-                homeProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderProps[j].point).length;
+                homeProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 homeProp.overallTotal = teamStats.length
-                homeProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == homeProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderProps[j].point).length;
+                homeProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == homeProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 homeProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == homeProp.homeAway).length
-                homeProp.teamWins = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderProps[j].point).length;
+                homeProp.teamWins = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 homeProp.teamTotal = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId).length
                 for (let j = 0; j < teamStats.length; j++) {
                     overAllTableTemp.push({
@@ -495,11 +675,11 @@ export class NhlService {
                 homeProp.last10Team = teamTableTemp.slice(0, 10)
 
                 teamStats = awayTeamStats
-                awayProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderProps[j].point).length;
+                awayProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 awayProp.overallTotal = teamStats.length
-                awayProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == awayProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderProps[j].point).length;
+                awayProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == awayProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 awayProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == awayProp.homeAway).length
-                awayProp.teamWins = teamStats.filter(e => e.teamAgainstId == awayProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderProps[j].point).length;
+                awayProp.teamWins = teamStats.filter(e => e.teamAgainstId == awayProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 awayProp.teamTotal = teamStats.filter(e => e.teamAgainstId == awayProp.teamAgainstId).length
                 for (let j = 0; j < teamStats.length; j++) {
                     overAllTableTemp.push({
@@ -549,11 +729,11 @@ export class NhlService {
             }
             else {
                 teamStats = homeTeamStats
-                homeProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderProps[j].point).length;
+                homeProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length;
                 homeProp.overallTotal = teamStats.length
-                homeProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == homeProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderProps[j].point).length;
+                homeProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == homeProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length;
                 homeProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == homeProp.homeAway).length
-                homeProp.teamWins = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderProps[j].point).length;
+                homeProp.teamWins = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length;
                 homeProp.teamTotal = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId).length
                 for (let j = 0; j < teamStats.length; j++) {
                     overAllTableTemp.push({
@@ -602,11 +782,11 @@ export class NhlService {
                 homeProp.last10Team = teamTableTemp.slice(0, 10)
 
                 teamStats = awayTeamStats
-                awayProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderProps[j].point).length;
+                awayProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length;
                 awayProp.overallTotal = teamStats.length
-                awayProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == awayProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderProps[j].point).length;
+                awayProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == awayProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length;
                 awayProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == awayProp.homeAway).length
-                awayProp.teamWins = teamStats.filter(e => e.teamAgainstId == awayProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderProps[j].point).length;
+                awayProp.teamWins = teamStats.filter(e => e.teamAgainstId == awayProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length;
                 awayProp.teamTotal = teamStats.filter(e => e.teamAgainstId == awayProp.teamAgainstId).length
                 for (let j = 0; j < teamStats.length; j++) {
                     overAllTableTemp.push({
@@ -665,6 +845,9 @@ export class NhlService {
 
         }
 
+
+
+
         homeTeamPropsFinal.push(homeTeamOverUnderFinal)
         homeTeamPropsFinal[homeTeamPropsFinal.length - 1].propType = 'total'
         homeTeamPropsFinal[homeTeamPropsFinal.length - 1].overUnder = false
@@ -691,7 +874,7 @@ export class NhlService {
 
         let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
 
-        for(let i = 0; i < allPlayerStats.length; i++){
+        for (let i = 0; i < allPlayerStats.length; i++) {
             allPlayerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(allPlayerStats[i].gameDate)
         }
 
@@ -703,12 +886,12 @@ export class NhlService {
             let homePlayerProps: any[] = []
             let awayPlayerProps: any[] = []
             let uniquePlayersWithinProp = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j]).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
-             for (let m = 0; m < uniquePlayersWithinProp.length; m++) {
-                try{
+            for (let m = 0; m < uniquePlayersWithinProp.length; m++) {
+                try {
                     let specificProps = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j] && e.playerName == uniquePlayersWithinProp[m])
                     let playerPropStats: any = []
                     for (let i = 0; i < specificProps.length; i++) {
-                        try{
+                        try {
                             let playerStats = allPlayerStats.filter(e => e.playerName == specificProps[i].playerName)
                             let playerInfo = allPlayerInfo.filter(e => e.playerId == playerStats[0].playerId)
                             let playerTeamNameLong = allTeamInfo.filter(e => e.teamNameAbvr == playerInfo[0].teamName)
@@ -750,13 +933,13 @@ export class NhlService {
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
                             let teamTableTemp = []
-        
+
                             if (specificProps[i].marketKey == 'player_points') {
                                 if (specificProps[i].description == 'Over') {
                                     playerPropObj.overallWins = playerStats.filter(e => e.points > specificProps[i].point).length;
                                     playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.points > specificProps[i].point).length;
                                     playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.points > specificProps[i].point).length;
-        
+
                                 }
                                 else {
                                     playerPropObj.overallWins = playerStats.filter(e => e.points < specificProps[i].point).length;
@@ -803,14 +986,14 @@ export class NhlService {
                                     }
                                 }
                                 playerPropObj.propType = 'OU'
-        
+
                             }
                             else if (specificProps[i].marketKey == 'player_assists') {
                                 if (specificProps[i].description == 'Over') {
                                     playerPropObj.overallWins = playerStats.filter(e => e.assists > specificProps[i].point).length;
                                     playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.assists > specificProps[i].point).length;
                                     playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.assists > specificProps[i].point).length;
-        
+
                                 }
                                 else {
                                     playerPropObj.overallWins = playerStats.filter(e => e.assists < specificProps[i].point).length;
@@ -863,7 +1046,7 @@ export class NhlService {
                                     playerPropObj.overallWins = playerStats.filter(e => e.shots > specificProps[i].point).length;
                                     playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length;
                                     playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length;
-        
+
                                 }
                                 else {
                                     playerPropObj.overallWins = playerStats.filter(e => e.shots < specificProps[i].point).length;
@@ -916,7 +1099,7 @@ export class NhlService {
                                     playerPropObj.overallWins = playerStats.filter(e => e.blocks > specificProps[i].point).length;
                                     playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.blocks > specificProps[i].point).length;
                                     playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.blocks > specificProps[i].point).length;
-        
+
                                 }
                                 else {
                                     playerPropObj.overallWins = playerStats.filter(e => e.blocks < specificProps[i].point).length;
@@ -969,7 +1152,7 @@ export class NhlService {
                                     playerPropObj.overallWins = playerStats.filter(e => e.saves > specificProps[i].point).length;
                                     playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.saves > specificProps[i].point).length;
                                     playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.saves > specificProps[i].point).length;
-        
+
                                 }
                                 else {
                                     playerPropObj.overallWins = playerStats.filter(e => e.saves < specificProps[i].point).length;
@@ -1022,7 +1205,7 @@ export class NhlService {
                                     playerPropObj.overallWins = playerStats.filter(e => e.shots > specificProps[i].point).length;
                                     playerPropObj.homeAwayWins = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length;
                                     playerPropObj.teamWins = playerStats.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length;
-        
+
                                 }
                                 else {
                                     playerPropObj.overallWins = playerStats.filter(e => e.shots < specificProps[i].point).length;
@@ -1073,27 +1256,27 @@ export class NhlService {
                             playerPropObj.last10Overall = overAllTableTemp.slice(0, 10)
                             playerPropObj.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                             playerPropObj.last10Team = teamTableTemp.slice(0, 10)
-        
+
                             playerPropObj.overallChance = playerPropObj.overallTotal == 0 ? 0 : playerPropObj.overallWins / playerPropObj.overallTotal
                             playerPropObj.homeAwayChance = playerPropObj.homeAwayTotal == 0 ? 0 : playerPropObj.homeAwayWins / playerPropObj.homeAwayTotal
                             playerPropObj.teamChance = playerPropObj.teamTotal == 0 ? 0 : playerPropObj.teamWins / playerPropObj.teamTotal
-        
+
                             playerPropStats.push(playerPropObj)
                         }
-                        catch(error:any){
+                        catch (error: any) {
                             console.log("Error in NhlService add player: " + error.message)
                         }
-                        
-    
+
+
                     }
                     if (playerPropStats[0].propType == 'OU') {
                         if (playerPropStats[0].playerBookData.description == 'Over') {
                             let zero = JSON.parse(JSON.stringify(playerPropStats[0]))
                             let one = JSON.parse(JSON.stringify(playerPropStats[1]))
-    
+
                             playerPropStats[1] = zero
                             playerPropStats[0] = one
-    
+
                         }
                         playerPropStats.overUnder = false;
                     }
@@ -1101,13 +1284,13 @@ export class NhlService {
                         playerPropStats.sort((a: { playerBookData: { point: any; }; }, b: { playerBookData: { point: any; }; }) => a.playerBookData.point - b.playerBookData.point)
                         playerPropStats.index = 0;
                     }
-    
+
                     playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
                 }
-                catch(error:any){
+                catch (error: any) {
                     console.log('Nhl Service player: ' + uniquePlayersWithinProp[m] + ' ' + error.message)
                 }
-                
+
             }
             propArray.push(awayPlayerProps);
             propArray[0].teamName = awayTeam
@@ -1149,13 +1332,13 @@ export class NhlService {
             let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
             teamTotals.season = teamStats[0].season;
             for (let j = 0; j < teamStats.length; j++) {
-                if(teamStats[j].result == 'W'){
+                if (teamStats[j].result == 'W') {
                     teamTotals.wins++
                 }
-                else if(teamStats[j].result == 'L'){
+                else if (teamStats[j].result == 'L') {
                     teamTotals.loss++
                 }
-                else if(teamStats[j].result == 'OTL'){
+                else if (teamStats[j].result == 'OTL') {
                     teamTotals.otl++
                 }
                 teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
@@ -1311,27 +1494,27 @@ export class NhlService {
                 playerTotal.blocks += playerStats[j].blocks;
                 playerTotal.saves += playerStats[j].saves;
             }
-            playerTotal.goals = playerTotal.goals/playerStats.length;
-            playerTotal.assists = playerTotal.assists/playerStats.length;
-            playerTotal.pim = playerTotal.pim/playerStats.length;
-            playerTotal.shots = playerTotal.shots/playerStats.length;
-            playerTotal.hits = playerTotal.hits/playerStats.length;
-            playerTotal.powerPlayGoals = playerTotal.powerPlayGoals/playerStats.length;
-            playerTotal.powerPlayPoints = playerTotal.powerPlayPoints/playerStats.length;
-            playerTotal.plusMinus = playerTotal.plusMinus/playerStats.length;
-            playerTotal.points = playerTotal.points/playerStats.length;
-            playerTotal.blocks = playerTotal.blocks/playerStats.length;
-            playerTotal.saves = playerTotal.saves/playerStats.length;
+            playerTotal.goals = playerTotal.goals / playerStats.length;
+            playerTotal.assists = playerTotal.assists / playerStats.length;
+            playerTotal.pim = playerTotal.pim / playerStats.length;
+            playerTotal.shots = playerTotal.shots / playerStats.length;
+            playerTotal.hits = playerTotal.hits / playerStats.length;
+            playerTotal.powerPlayGoals = playerTotal.powerPlayGoals / playerStats.length;
+            playerTotal.powerPlayPoints = playerTotal.powerPlayPoints / playerStats.length;
+            playerTotal.plusMinus = playerTotal.plusMinus / playerStats.length;
+            playerTotal.points = playerTotal.points / playerStats.length;
+            playerTotal.blocks = playerTotal.blocks / playerStats.length;
+            playerTotal.saves = playerTotal.saves / playerStats.length;
             finalArray.push(playerTotal)
         }
         return finalArray
     }
 
-    static cleanNhlPlayerNames(playerName: string): string{
-        if(playerName.includes('è')){
+    static cleanNhlPlayerNames(playerName: string): string {
+        if (playerName.includes('è')) {
             playerName = playerName.replaceAll('è', 'e')
         }
-        if(playerName == 'Pat Maroon'){
+        if (playerName == 'Pat Maroon') {
             playerName = 'Patrick Maroon'
         }
         return playerName
