@@ -185,7 +185,7 @@ export class NhlService {
         let homeTeamPropsFinal: any[] = []
         let awayTeamPropsFinal: any[] = []
         let teamProps = props.filter(e => {
-            return e.teamName != '';
+            return e.teamName != 'Both';
         })
         let overUnderTotalProps = props.filter(e => {
             return e.teamName == 'Both';
