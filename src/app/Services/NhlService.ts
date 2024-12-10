@@ -366,16 +366,16 @@ export class NhlService {
                 }
             }
             else{
-                for (let i = 0; i < teamProps.length; i++) {
-                    let teamStats = teamProps[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
-                    let teamAgainstStats = teamProps[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
+                for (let i = 0; i < filteredPropsOnMarketKey.length; i++) {
+                    let teamStats = filteredPropsOnMarketKey[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
+                    let teamAgainstStats = filteredPropsOnMarketKey[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
         
                     let propReturn: TeamPropDto = {
-                        gameBookData: teamProps[i],
-                        teamName: homeTeam.teamNameFull == teamProps[i].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
-                        teamId: homeTeam.teamNameFull == teamProps[i].teamName ? homeTeam.teamId : awayTeam.teamId,
-                        teamAgainstName: homeTeam.teamNameFull == teamProps[i].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
-                        teamAgainstId: homeTeam.teamNameFull == teamProps[i].teamName ? awayTeam.teamId : homeTeam.teamId,
+                        gameBookData: filteredPropsOnMarketKey[i],
+                        teamName: homeTeam.teamNameFull == filteredPropsOnMarketKey[i].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
+                        teamId: homeTeam.teamNameFull == filteredPropsOnMarketKey[i].teamName ? homeTeam.teamId : awayTeam.teamId,
+                        teamAgainstName: homeTeam.teamNameFull == filteredPropsOnMarketKey[i].teamName ? awayTeam.teamNameAbvr : homeTeam.teamNameAbvr,
+                        teamAgainstId: homeTeam.teamNameFull == filteredPropsOnMarketKey[i].teamName ? awayTeam.teamId : homeTeam.teamId,
                         homeAway: homeTeam.teamNameAbvr == teamStats[0].teamName ? 'Home' : 'Away',
                         propType: '',
                         overallChance: 0,
@@ -412,7 +412,7 @@ export class NhlService {
                     let overAllTableTemp = []
                     let homeAwayTableTemp = []
                     let teamTableTemp = []
-                    if (teamProps[i].marketKey == 'h2h') {
+                    if (filteredPropsOnMarketKey[i].marketKey == 'h2h') {
                         propReturn.overallWins = teamStats.filter(e => e.result == 'W').length;
                         propReturn.homeAwayWins = teamStats.filter(e => e.result == 'W' && e.homeOrAway == propReturn.homeAway).length;
                         propReturn.teamWins = teamStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamAgainstId).length;
@@ -445,10 +445,10 @@ export class NhlService {
                         }
                         propReturn.propType = 'h2h';
                     }
-                    else if (teamProps[i].marketKey == 'spreads') {
-                        propReturn.overallWins = teamStats.filter(e => e.result == 'W' && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
-                        propReturn.homeAwayWins = teamStats.filter(e => e.result == 'W' && e.homeOrAway == propReturn.homeAway && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
-                        propReturn.teamWins = teamStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamAgainstId && (e.pointsAllowedOverall - e.pointsScoredOverall) < teamProps[i].point).length;
+                    else if (filteredPropsOnMarketKey[i].marketKey == 'spreads') {
+                        propReturn.overallWins = teamStats.filter(e => e.result == 'W' && (e.pointsAllowedOverall - e.pointsScoredOverall) < filteredPropsOnMarketKey[i].point).length;
+                        propReturn.homeAwayWins = teamStats.filter(e => e.result == 'W' && e.homeOrAway == propReturn.homeAway && (e.pointsAllowedOverall - e.pointsScoredOverall) < filteredPropsOnMarketKey[i].point).length;
+                        propReturn.teamWins = teamStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamAgainstId && (e.pointsAllowedOverall - e.pointsScoredOverall) < filteredPropsOnMarketKey[i].point).length;
                         for (let j = 0; j < teamStats.length; j++) {
                             overAllTableTemp.push({
                                 teamAgainstName: teamStats[j].teamAgainstName,
@@ -490,7 +490,7 @@ export class NhlService {
                         propReturn.averageTeam = spreadTeam.length > 0 ? spreadTeam.reduce((a, b) => a + b) / spreadTeam.length : 0
                         propReturn.propType = 'spread'
                     }
-                    else if (teamProps[i].marketKey == 'h2h_p1') {
+                    else if (filteredPropsOnMarketKey[i].marketKey == 'h2h_p1') {
                         propReturn.overallWins = teamStats.filter(e => e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod).length;
                         propReturn.homeAwayWins = teamStats.filter(e => (e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod) && e.homeOrAway == propReturn.homeAway).length;
                         propReturn.teamWins = teamStats.filter(e => (e.pointsAllowedFirstPeriod < e.pointsScoredFirstPeriod) && e.teamAgainstId == propReturn.teamAgainstId).length;

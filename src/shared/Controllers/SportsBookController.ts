@@ -74,7 +74,7 @@ export class SportsBookController {
         //loop through each of the props for that book id
         for(let individualProp of propDataMathcedOnBookId){
           //find the prop from the database that matches the incoming prop
-          let matchedProp = databaseBookSeqZero.filter(e => e.marketKey == individualProp.marketKey && e.teamName == individualProp.teamName)[0]
+          let matchedProp = databaseBookSeqZero.filter(e => e.marketKey == individualProp.marketKey && e.teamName == individualProp.teamName && e.point == individualProp.point && e.description == individualProp.description)[0]
           //update the databasebookseqZero
           
           await taskRepo.save({...matchedProp, price: individualProp.price, point: individualProp.point})
