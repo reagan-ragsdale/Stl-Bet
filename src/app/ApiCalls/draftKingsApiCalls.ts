@@ -182,7 +182,7 @@ export class draftKingsApiController {
                 bookMaker: selectedSportsData[i].bookmakers[j].title,
                 marketKey: selectedSportsData[i].bookmakers[j].markets[k].key,
                 teamName: (selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Over' || selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Under') ? 'Both' : this.cleanTeamName(selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name),
-                description: '',
+                description: (selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Over' || selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Under') ? selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name : '',
                 price: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
                 point: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
                 bookSeq: nextBookSeq
