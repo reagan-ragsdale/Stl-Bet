@@ -37,6 +37,9 @@ export class DbGameBookData {
   @Fields.string()
   teamName = ''
 
+  @Fields.string()
+  description = ''
+
   @Fields.number()
   price = 0
 

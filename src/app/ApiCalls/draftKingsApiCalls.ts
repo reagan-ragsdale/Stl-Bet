@@ -48,12 +48,12 @@ export class draftKingsApiController {
     const promise = await fetch(urlNew);
     const processedResponse = await promise.json();
     this.playerProps = processedResponse;
-    try{
+    try {
       this.playerPropData = await this.convertPropDataToInterface(sport, game)
-    }catch(error:any){
+    } catch (error: any) {
       console.log("Player prop " + error.message)
     }
-    
+
     return this.playerPropData
   }
 
@@ -69,16 +69,16 @@ export class draftKingsApiController {
     const promise = await fetch(urlNew);
     const processedResponse = await promise.json();
     this.playerProps = processedResponse;
-    try{
+    try {
       this.playerPropData = await this.convertPropDataToInterface(sport, game)
-    }catch(error:any){
+    } catch (error: any) {
       console.log("Player prop " + error.message)
     }
-    
+
     return this.playerPropData
   }
 
-  
+
 
   static async convertPropDataToInterface(sport: string, game: string) {
     var tempData: DbPlayerPropData[] = [];
@@ -86,10 +86,10 @@ export class draftKingsApiController {
     for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
       for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
         for (let m = 0; m < this.playerProps.bookmakers[j].markets[k].outcomes.length; m++) {
-          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description) && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name).map(e => e.bookSeq).filter((value,index,array) => array.indexOf(value) === index)
+          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description) && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name).map(e => e.bookSeq).filter((value, index, array) => array.indexOf(value) === index)
           let highestBookSeq = 0
           filteredPlayer.forEach(e => {
-            if(e > highestBookSeq){
+            if (e > highestBookSeq) {
               highestBookSeq = e
             }
           })
@@ -181,7 +181,8 @@ export class draftKingsApiController {
                 commenceTime: selectedSportsData[i].commence_time,
                 bookMaker: selectedSportsData[i].bookmakers[j].title,
                 marketKey: selectedSportsData[i].bookmakers[j].markets[k].key,
-                teamName: this.cleanTeamName(selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name),
+                teamName: (selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Over' || selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Under') ? 'Both' : this.cleanTeamName(selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name),
+                description: '',
                 price: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
                 point: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
                 bookSeq: nextBookSeq
@@ -203,15 +204,15 @@ export class draftKingsApiController {
 
   }
 
-  static cleanTeamName(name: string): string{
+  static cleanTeamName(name: string): string {
     let finalReturn = name
-    finalReturn = finalReturn.replaceAll('é','e')
+    finalReturn = finalReturn.replaceAll('é', 'e')
     return finalReturn
   }
 
-  static cleanPlayerName(name: string): string{
+  static cleanPlayerName(name: string): string {
     let finalReturn = name
-    finalReturn = finalReturn.replaceAll('é','e')
+    finalReturn = finalReturn.replaceAll('é', 'e')
     finalReturn = finalReturn.replaceAll('è', 'e')
     return finalReturn
   }
@@ -253,8 +254,9 @@ export class draftKingsApiController {
               awayTeam: this.selectedSportsData.away_team,
               commenceTime: this.selectedSportsData.commence_time,
               bookMaker: this.selectedSportsData.bookmakers[j].title,
-              marketKey: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].key + " " + this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : this.selectedSportsData.bookmakers[j].markets[k].key,
-              teamName: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description : this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name,
+              marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
+              teamName: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description) : this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name),
+              description: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : '',
               price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
               point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
               bookSeq: nextBookSeq
@@ -303,7 +305,8 @@ export class draftKingsApiController {
             commenceTime: this.selectedSportsData.commence_time,
             bookMaker: this.selectedSportsData.bookmakers[j].title,
             marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
-            teamName: this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name),
+            teamName: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description) : this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name),
+            description: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : '',
             price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
             point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
             bookSeq: nextBookSeq
@@ -406,7 +409,7 @@ export class draftKingsApiController {
      
    */
 
-  static nhlTeamAlternateProps: string = 'h2h_p1,h2h_p2,h2h_p3,team_totals'
+  static nhlTeamAlternateProps: string = 'h2h_p1,h2h_p2,h2h_p3,team_totals,alternate_team_totals'
   static mlbTeamAlternateProps: string = 'h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings,team_totals'
 
   static async getAlternateTeamProps(sport: string, bookId: string): Promise<DbGameBookData[]> {
@@ -415,22 +418,22 @@ export class draftKingsApiController {
     if (sport == 'MLB') {
       teamAlternateProps = this.mlbTeamAlternateProps
     }
-    else if(sport == 'NHL'){
+    else if (sport == 'NHL') {
       teamAlternateProps = this.nhlTeamAlternateProps
     }
-    else if(sport == 'NFL'){
+    else if (sport == 'NFL') {
       teamAlternateProps = ''
     }
-      try {
-        const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/events/" + bookId + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=" + teamAlternateProps + "&bookmakers=draftkings&oddsFormat=american";
-        const promise = await fetch(apiCall);
-        const processedResponse = await promise.json();
-        this.selectedSportsData = processedResponse;
-        this.sportsBookData = await this.convertSportsDataToInterface()
-      } catch (error: any) {
-        console.log(error.message)
-      }
-    
+    try {
+      const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/events/" + bookId + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=" + teamAlternateProps + "&bookmakers=draftkings&oddsFormat=american";
+      const promise = await fetch(apiCall);
+      const processedResponse = await promise.json();
+      this.selectedSportsData = processedResponse;
+      this.sportsBookData = await this.convertSportsDataToInterface()
+    } catch (error: any) {
+      console.log(error.message)
+    }
+
 
 
     return this.sportsBookData;
