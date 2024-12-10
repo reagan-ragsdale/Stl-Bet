@@ -362,7 +362,19 @@ export class NhlService {
                         }
                         teamArray.push(pointArray)
                     }
-                    teamArray[0][0].homeAway == "Home" ? homeTeamPropsFinal.push(teamArray) : awayTeamPropsFinal.push(teamArray)
+                    if(teamArray[0][0].homeAway == "Home"){
+                        homeTeamPropsFinal.push(teamArray)
+                        if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
+                            homeTeamPropsFinal[homeTeamPropsFinal.length -1].propType = 'altTotal'
+                        }
+                    }
+                    else{
+                        awayTeamPropsFinal.push(teamArray)
+                        if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
+                            awayTeamPropsFinal[awayTeamPropsFinal.length -1].propType = 'altTotal'
+                        }
+                    }
+                    
                 }
             }
             else{

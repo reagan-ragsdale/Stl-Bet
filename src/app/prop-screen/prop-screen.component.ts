@@ -651,12 +651,18 @@ export class PropScreenComponent implements OnInit {
     return propType
   }
 
-  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Game Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings", "team_totals Over": "Team Total", "team_totals Under": "Team Total", "h2h_p1": "Moneyline First Period", "h2h_p2": "Moneyline Second Period", "h2h_p3": "Moneyline Third Period" }
+  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Game Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings", "team_totals Over": "Team Total", "team_totals Under": "Team Total", "h2h_p1": "Moneyline First Period", "h2h_p2": "Moneyline Second Period", "h2h_p3": "Moneyline Third Period", "alternate_team_totals": 'Alternate Team Total' }
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings", 'h2h_p1', 'h2h_p2', 'h2h_p3']
   displayPropTitle(prop: any): string {
     let finalReturn = ''
     if (prop.length > 1) {
-      finalReturn = this.listOfTeamProps[prop[0].gameBookData.marketKey]
+      if(prop[0].length > 1){
+        finalReturn = this.listOfTeamProps[prop[0][0].gameBookData.marketKey]
+      }
+      else{
+        finalReturn = this.listOfTeamProps[prop[0].gameBookData.marketKey]
+      }
+      
     }
     else {
       finalReturn = this.listOfTeamProps[prop.gameBookData.marketKey]
@@ -672,20 +678,32 @@ export class PropScreenComponent implements OnInit {
     let finalReturn = ''
 
     if (prop.length > 1) {
-      if (prop[0].gameBookData.marketKey == 'totals') {
-        let propOver = prop[0].gameBookData.price > 0 ? '+' : ''
-        let one = prop[0].gameBookData.teamName + " " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
-        propOver = prop[1].price > 0 ? '+' : ''
-        let two = prop[1].gameBookData.teamName + " " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
-        finalReturn = one + " " + two
+      if(prop[0].length > 1){
+        if(prop[0][0].gameBookData.marketKey == 'alternate_team_totals'){
+          let propOver = prop[0][0].gameBookData.price > 0 ? '+' : ''
+          let one = prop[0][0].gameBookData.teamName + " " + prop[0][0].gameBookData.point + " | " + propOver + prop[0][0].gameBookData.price
+          propOver = prop[0][1].price > 0 ? '+' : ''
+          let two = prop[0][1].gameBookData.teamName + " " + prop[0][1].gameBookData.point + " | " + propOver + prop[0][1].gameBookData.price
+          finalReturn = one + " " + two
+        }
       }
-      else if (prop[0].gameBookData.marketKey == ('team_totals Over') || prop[0].gameBookData.marketKey == ('team_totals Under')) {
-        let propOver = prop[0].gameBookData.price > 0 ? '+' : ''
-        let one = "Over " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
-        propOver = prop[1].gameBookData.price > 0 ? '+' : ''
-        let two = "Under " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
-        finalReturn = one + " " + two
+      else{
+        if (prop[0].gameBookData.marketKey == 'totals') {
+          let propOver = prop[0].gameBookData.price > 0 ? '+' : ''
+          let one = prop[0].gameBookData.teamName + " " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
+          propOver = prop[1].price > 0 ? '+' : ''
+          let two = prop[1].gameBookData.teamName + " " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
+          finalReturn = one + " " + two
+        }
+        else if (prop[0].gameBookData.marketKey == ('team_totals Over') || prop[0].gameBookData.marketKey == ('team_totals Under')) {
+          let propOver = prop[0].gameBookData.price > 0 ? '+' : ''
+          let one = "Over " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
+          propOver = prop[1].gameBookData.price > 0 ? '+' : ''
+          let two = "Under " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
+          finalReturn = one + " " + two
+        }
       }
+      
 
 
     }
