@@ -138,11 +138,22 @@
                     <mat-panel-title style="max-width:fit-content;">
                       {{displayPropTitle(prop)}}:
                     </mat-panel-title>
-                    <mat-panel-description style="display:flex; gap:1rem;">
+                    <mat-panel-description *ngIf="prop.propType != 'altTotal'" style="display:flex; gap:1rem;">
                       {{displayPropDescription(prop)}}
                       <button [color]="'primary'" [disabled]="prop.isDisabled == true"
                         (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
                         style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>Parlay</button>
+                    </mat-panel-description>
+                    <mat-panel-description *ngIf="prop.propType == 'altTotal'" style="display:flex; gap:1rem;">
+                      <mat-button-toggle-group style="margin-left:1rem;">
+                        <mat-button-toggle  *ngFor="let bet of prop; let i = index;" (change)="prop.index = i" (click)="handleClick($event)" [checked]="i == prop.index">{{bet.playerBookData.point}}</mat-button-toggle>
+                      </mat-button-toggle-group>
+                      <button [color]="'primary'" [disabled]="prop.isDisabled == true"
+                        (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
+                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>Under</button>
+                        <button [color]="'primary'" [disabled]="prop.isDisabled == true"
+                        (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
+                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>Over</button>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-card>
@@ -155,7 +166,7 @@
                         <mat-tab style=" color: white; display: flex; height: 100%;" label="Prop Stats">
                           <!-- <ng-template matTabContent> -->
                           <div class="full-body" style="width:100%; height:100%; display: flex; flex-direction:column;">
-                            <div *ngIf="prop.propType == 'total'"
+                            <div *ngIf="prop.propType == 'total' || prop.propType == 'altTotal'"
                               style="margin-left:1rem; display:flex; margin-top: .5rem">
                               <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
                               <mat-slide-toggle [(ngModel)]="prop.overUnder"></mat-slide-toggle>
@@ -171,10 +182,12 @@
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
-                                  <h3 style="margin:auto" *ngIf="prop.propType != 'total'">
+                                  <h3 style="margin:auto" *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
                                     {{prop.overallWins}} - {{prop.overallTotal - prop.overallWins}}</h3>
                                   <h3 style="margin:auto" *ngIf="prop.propType == 'total'">
                                     {{prop[prop.overUnder ? 0 : 1].overallWins}} - {{prop[prop.overUnder ? 0 : 1].overallTotal - prop[prop.overUnder ? 0 : 1].overallWins}}</h3>
+                                    <h3 style="margin:auto" *ngIf="prop.propType == 'altTotal'">
+                                      {{prop[prop.index][prop.overUnder ? 0 : 1].overallWins}} - {{prop[prop.index][prop.overUnder ? 0 : 1].overallTotal - prop[prop.index][prop.overUnder ? 0 : 1].overallWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>

@@ -366,12 +366,15 @@ export class NhlService {
                         homeTeamPropsFinal.push(teamArray)
                         if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
                             homeTeamPropsFinal[homeTeamPropsFinal.length -1].propType = 'altTotal'
+                            homeTeamPropsFinal[homeTeamPropsFinal.length -1].index = 0
+
                         }
                     }
                     else{
                         awayTeamPropsFinal.push(teamArray)
                         if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
                             awayTeamPropsFinal[awayTeamPropsFinal.length -1].propType = 'altTotal'
+                            awayTeamPropsFinal[awayTeamPropsFinal.length -1].index = 0
                         }
                     }
                     
