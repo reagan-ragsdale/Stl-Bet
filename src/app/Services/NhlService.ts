@@ -249,11 +249,11 @@ export class NhlService {
                             let teamTableTemp = []
                             if(filteredPointsProps[m].marketKey == 'alternate_team_totals'){
                                 if (filteredPointsProps[m].description == 'Over') {
-                                    teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > filteredPointsProps[m].point).length;
+                                    teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
                                     teamProp.overallTotal = teamStats.length
-                                    teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) > filteredPointsProps[m].point).length;
+                                    teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
                                     teamProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).length
-                                    teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > filteredPointsProps[m].point).length;
+                                    teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
                                     teamProp.teamTotal = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).length
                                     for (let j = 0; j < teamStats.length; j++) {
                                         overAllTableTemp.push({
@@ -282,9 +282,9 @@ export class NhlService {
                                             })
                                         }
                                     }
-                                    let totalOverall = teamStats.map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
-                                    let totalHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
-                                    let totalTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    let totalOverall = teamStats.map(e => (e.pointsScoredOverall))
+                                    let totalHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsScoredOverall))
+                                    let totalTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsScoredOverall))
                                     teamProp.lowOverall = totalOverall.length > 0 ? Math.min(...totalOverall) : 0
                                     teamProp.highOverall = totalOverall.length > 0 ? Math.max(...totalOverall) : 0
                                     teamProp.lowHomeAway = totalHomeAway.length > 0 ? Math.min(...totalHomeAway) : 0
@@ -302,11 +302,11 @@ export class NhlService {
                                     teamProp.last10Team = teamTableTemp.slice(0, 10)
                                 }
                                 else {
-                                    teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < filteredPointsProps[m].point).length;
+                                    teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall) < filteredPointsProps[m].point).length;
                                     teamProp.overallTotal = teamStats.length
-                                    teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) < filteredPointsProps[m].point).length;
+                                    teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && (e.pointsScoredOverall) < filteredPointsProps[m].point).length;
                                     teamProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).length
-                                    teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) < filteredPointsProps[m].point).length;
+                                    teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && (e.pointsScoredOverall) < filteredPointsProps[m].point).length;
                                     teamProp.teamTotal = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).length
                                     for (let j = 0; j < teamStats.length; j++) {
                                         overAllTableTemp.push({
@@ -335,9 +335,9 @@ export class NhlService {
                                             })
                                         }
                                     }
-                                    let totalOverall = teamStats.map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
-                                    let totalHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
-                                    let totalTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsAllowedOverall + e.pointsScoredOverall))
+                                    let totalOverall = teamStats.map(e => (e.pointsScoredOverall))
+                                    let totalHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsScoredOverall))
+                                    let totalTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsScoredOverall))
                                     teamProp.lowOverall = totalOverall.length > 0 ? Math.min(...totalOverall) : 0
                                     teamProp.highOverall = totalOverall.length > 0 ? Math.max(...totalOverall) : 0
                                     teamProp.lowHomeAway = totalHomeAway.length > 0 ? Math.min(...totalHomeAway) : 0
