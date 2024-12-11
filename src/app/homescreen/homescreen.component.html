@@ -326,9 +326,9 @@
                 <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .2rem; justify-content: center;">
                   <mat-card-title style="font-size:small; height: inherit">
                     <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap; margin-left: auto; margin-right: auto;">
-                      <a class="teamLink" (click)="gameClick(game[0][0][0].bookId)" >{{game[0][0][0].awayTeam}} &#64; {{game[0][0][0].homeTeam}}</a>
+                      <a class="teamLink" (click)="gameClick(game[0][0].bookId)" >{{game[0][0].awayTeam}} &#64; {{game[0][0].homeTeam}}</a>
                       
-                      <h5 style="margin-top: 0; margin-bottom: 0;">{{game[0][0][0].commenceTime | getDayAndTime}}</h5>
+                      <h5 style="margin-top: 0; margin-bottom: 0;">{{game[0][0].commenceTime | getDayAndTime}}</h5>
                     </div>
                     </mat-card-title>
                 </mat-card-header>
@@ -345,19 +345,19 @@
                     <ng-container matColumnDef="Team">
                       <th mat-header-cell *matHeaderCellDef >  </th>
                       <td mat-cell *matCellDef="let element; let j = index;">
-                        <a class="teamLink" (click)="onTeamClick(element[0][0].teamName)">{{element[0][0].teamName | transforFromFullTeamNameToAbvr | async}}</a>
+                        <a class="teamLink" (click)="onTeamClick(element[0].teamName)">{{element[0].teamName | transforFromFullTeamNameToAbvr | async}}</a>
                       </td>
                     </ng-container>
       
                     <ng-container matColumnDef="ML">
                       <th mat-header-cell *matHeaderCellDef > H2H </th>
-                      <td mat-cell *matCellDef="let element"> {{element[0][0].price > 0 ? '+' : ''}}{{element[0][0].price}}
+                      <td mat-cell *matCellDef="let element"> {{element[0].price > 0 ? '+' : ''}}{{element[0].price}}
                       </td>
                     </ng-container>
       
                     <ng-container matColumnDef="Spread">
                       <th mat-header-cell *matHeaderCellDef > Spread </th>
-                      <td mat-cell *matCellDef="let element" style="display:flex; flex-direction: column; padding-bottom:11px;"> <div>{{element[0][1].point > 0 ? '+' : ''}}{{element[0][1].point}}</div> <div>{{element[0][1].price > 0 ? '+' : ''}}{{element[0][1].price}}</div> </td>
+                      <td mat-cell *matCellDef="let element" style="display:flex; flex-direction: column; padding-bottom:11px;"> <div>{{element[1].point > 0 ? '+' : ''}}{{element[1].point}}</div> <div>{{element[1].price > 0 ? '+' : ''}}{{element[1].price}}</div> </td>
                     </ng-container>
 
                     <ng-container matColumnDef="OverUnder">
@@ -365,10 +365,10 @@
                       <td mat-cell *matCellDef="let element">
                         <div style="display:flex; gap:2px;">
                           <div style="display: flex; flex-direction: column;">
-                            <div>{{element[1][0].point}}</div>
-                            <div>{{element[1][0].price > 0 ? '+' : ''}}{{element[1][0].price}}</div>
+                            <div>{{element[2].point}}</div>
+                            <div>{{element[2].price > 0 ? '+' : ''}}{{element[2].price}}</div>
                           </div>
-                          <div style="align-content: center;">{{element[1][0].teamName == 'Over' ? 'O' : 'U'}}</div>
+                          <div style="align-content: center;">{{element[2].description == 'Over' ? 'O' : 'U'}}</div>
                         </div>   
                        </td>
                     </ng-container>
