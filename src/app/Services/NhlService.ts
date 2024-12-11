@@ -360,6 +360,7 @@ export class NhlService {
                             }
                             pointArray.push(teamProp)
                         }
+                        pointArray.sort((a: any,b: any) => a.sportsBookData.point - b.sportsBookData.point)
                         teamArray.push(pointArray)
                     }
                     if(teamArray[0][0].homeAway == "Home"){
