@@ -386,57 +386,24 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
       let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
       let teamArray: any[] = []
+      let teamNames = distinctTeams.filter(e => e.teamName != 'Both')
 
 
-      console.log('distinct teams below')
-      console.log(distinctTeams)
+      let awayTeam = allOfBook.filter(e => e.teamName == allOfBook[0].awayTeam)
+      let homeTeam = allOfBook.filter(e => e.teamName == allOfBook[0].homeTeam)
+      awayTeam.push(allOfBook.filter(e => e.teamName == 'Both' && e.description == 'Over')[0])
+      homeTeam.push(allOfBook.filter(e => e.teamName == 'Both' && e.description == 'Under')[0])
+      console.log('home away team')
+      console.log(homeTeam)
+      console.log(awayTeam)
 
-      distinctTeams.forEach(team => {
-        let allOfTeam = allOfBook.filter(e => e.teamName == team)
-        //console.log(allOfTeam)
-        if (allOfTeam.length > 1) {
-          for (let i = 0; i < allOfTeam.length; i++) {
-            teamArray.push(allOfTeam[i])
-          }
-        }
-        else {
-          if (allOfTeam.length > 0) {
-            teamArray.push(allOfTeam)
-          }
-        }
-
-
-      })
-      console.log('teamarray below')
-      console.log(teamArray)
       let teamArrayFinal: any[] = []
-      if (teamArray.length > 0) {
-        //console.log(teamArray)
-        if (teamArray[0].length > 0) {
-          if (teamArray[0][0].awayTeam != teamArray[0][0].teamName) {
-            teamArrayFinal.push(teamArray[1])
-            teamArrayFinal.push(teamArray[0])
-            teamArrayFinal.push(teamArray[2])
-            teamArrayFinal.push(teamArray[3])
-          }
-          else { teamArrayFinal = teamArray }
-
-        }
-
-
-
-      }
-      console.log('team array final below')
+      teamArrayFinal.push([awayTeam, homeTeam])
       console.log(teamArrayFinal)
-      //teamArrayFinal[0][0].commenceTime = reusedFunctions.formatDateString(teamArrayFinal[0][0].commenceTime.toString() )
-      if (teamArrayFinal[0].length == 2 && teamArrayFinal[1].length == 2 && teamArrayFinal[2].length == 1 && teamArrayFinal[3].length == 1) {
-        let team1 = [teamArrayFinal[0], teamArrayFinal[2]]
-        let team2 = [teamArrayFinal[1], teamArrayFinal[3]]
-        let team: any[] = [team1, team2]
-        this.gameDataAllFinal.push(team)
-      }
 
+      this.gameDataAllFinal.push(teamArray)
     })
+    console.log('game data allo final')
     console.log(this.gameDataAllFinal)
     if (this.selectedSport == 'NFL') {
       console.log("here in slice")
