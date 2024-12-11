@@ -24,17 +24,17 @@ import { BestBetController } from '../../shared/Controllers/BestBetController';
 import { NhlController } from '../../shared/Controllers/NhlController';
 
 @Component({
-    selector: 'home-screen',
-    templateUrl: './homescreen.component.html',
-    styleUrls: ['./homescreen.component.scss'],
-    //encapsulation: ViewEncapsulation.None,
+  selector: 'home-screen',
+  templateUrl: './homescreen.component.html',
+  styleUrls: ['./homescreen.component.scss'],
+  //encapsulation: ViewEncapsulation.None,
 })
 export class HomeScreenComponent implements OnDestroy, OnInit {
-  
-  constructor(private router: Router) { 
+
+  constructor(private router: Router) {
   }
 
-  
+
   title = 'angulardemo1';
   opened = false;
   clicked = false;
@@ -57,7 +57,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   betCheats: any[] = []
 
-  betCheatsColumns: string[] = ["Name", "Game", "Prop","Point","Price","OverallChance","HomeAwayChance","TeamChance"]
+  betCheatsColumns: string[] = ["Name", "Game", "Prop", "Point", "Price", "OverallChance", "HomeAwayChance", "TeamChance"]
 
   upcomingGamePropColumns: string[] = ["Team", "ML", "Spread", "OverUnder"]
 
@@ -88,8 +88,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     this.router.navigate([`/props/${this.selectedSport}`])
   }
 
-  async onTeamClick(team: string){
-    if(team.length > 3){
+  async onTeamClick(team: string) {
+    if (team.length > 3) {
       team = MlbService.mlbTeamNameToAbvr[team]
     }
     console.log(team)
@@ -104,31 +104,31 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   async onSportsListClick(sport: string) {
-    if(this.selectedSport != sport){
+    if (this.selectedSport != sport) {
       this.selectedSport = sport
       let selected = this.gamesList.filter(e => e.name == sport)
       this.gamesList.forEach(e => e.selected = false)
       selected[0].selected = true
       await this.getData(sport)
     }
-    
+
   }
 
   async onPlayerStatsClick(stat: string) {
-    if(this.selectedSport == "NBA"){
+    if (this.selectedSport == "NBA") {
       this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat)
     }
-    else if(this.selectedSport == "MLB"){
+    else if (this.selectedSport == "MLB") {
       this.playerData = await MlbController.mlbGetPlayerStatTotals(stat, 2024)
     }
-    else if(this.selectedSport == "NFL"){
+    else if (this.selectedSport == "NFL") {
       this.playerData = await NflController.nflGetPlayerStatTotals(stat, 2024)
     }
-    else if(this.selectedSport == 'NHL'){
+    else if (this.selectedSport == 'NHL') {
       this.playerData = await NhlController.NhlGetPlayerGameStatTotals(stat, 2024)
     }
-    
-    
+
+
 
     //stat.selected = true;
     //this.playerStatsButtons.filter(e => e.dbName != stat).forEach(d => d.selected = false);
@@ -137,10 +137,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
 
-  
-  
 
-  unsubscribe = () => {}
+
+
+  unsubscribe = () => { }
   async getData(sport: string) {
     if (sport == "NBA") {
       this.playerAverageColumns = this.playerAverageColumnsNba
@@ -190,51 +190,51 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         let distinctTeamsNew: any[] = []
         let teamsName = distinctTeams.filter(e => e != 'Over')
         let bothTeams = teamsName.filter(f => f != 'Under')
-        if(teamsName.length > 0){
+        if (teamsName.length > 0) {
           distinctTeamsNew.push(bothTeams[0])
         }
-        if(bothTeams.length > 0){
+        if (bothTeams.length > 0) {
           distinctTeamsNew.push(bothTeams[1])
         }
-        
-        
+
+
         let teamsNameOver = distinctTeams.filter(e => e == "Over")
-        if(teamsNameOver.length > 0){
+        if (teamsNameOver.length > 0) {
           distinctTeamsNew.push(teamsNameOver[0])
         }
-       
+
         let teamsNameUnder = distinctTeams.filter(e => e == "Under")
-       
-        if(teamsNameUnder.length > 0){
-         distinctTeamsNew.push(teamsNameUnder[0])
+
+        if (teamsNameUnder.length > 0) {
+          distinctTeamsNew.push(teamsNameUnder[0])
         }
-        
-        
+
+
         distinctTeamsNew.forEach(team => {
           let allOfTeam = allOfBook.filter(e => e.teamName == team)
-          if(allOfTeam.length > 0){
+          if (allOfTeam.length > 0) {
             teamArray.push(allOfTeam)
           }
-          
+
         })
         let teamArrayFinal: any[] = []
-        if(teamArray.length > 0){
-          if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+        if (teamArray.length > 0) {
+          if (teamArray[0][0].awayTeam != teamArray[0][0].teamName) {
             teamArrayFinal.push(teamArray[1])
             teamArrayFinal.push(teamArray[0])
             teamArrayFinal.push(teamArray[2])
             teamArrayFinal.push(teamArray[3])
           }
-          else{teamArrayFinal = teamArray}
+          else { teamArrayFinal = teamArray }
         }
-        
-        
+
+
         this.gameDataAllFinal.push(teamArrayFinal)
 
       })
-      
+
       this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
-      
+
     }
     else if (sport == "MLB") {
       //var unsubscribe = () => {}
@@ -278,11 +278,11 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         }
       ]
 
-       
+
       this.playerAverageColumns = this.playerAverageColumnsMlb
     }
     else if (sport == "NFL") {
-      
+
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNfl
       this.gameDataAllFinal = []
@@ -320,11 +320,11 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         }
       ]
 
-       
+
       this.playerAverageColumns = this.playerAverageColumnsNfl
     }
     else if (sport == "NHL") {
-      
+
       //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNhl
       this.playerAverageColumns = this.playerAverageColumnsNhl
@@ -363,86 +363,89 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         }
       ]
 
-       
-      
+
+
     }
     var taskRepo = remult.repo(DbGameBookData)
     this.unsubscribe = taskRepo
       .liveQuery({
-        where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({sport: sport}), orderBy: {createdAt: "asc"}
+        where: DbGameBookData.allSportFilterByMAxBookSeqBigThree({ sport: sport }), orderBy: { createdAt: "asc" }
       })
-      .subscribe(info => this.loadProps(info.items)) 
+      .subscribe(info => this.loadProps(info.items))
 
   }
 
-  loadProps(change: any){
+  loadProps(change: any) {
     console.log(change)
     this.gameDataAll = change
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
+    console.log('distinct games below')
+    console.log(distinctGames)
     distinctGames.forEach(book => {
       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
       let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
       let teamArray: any[] = []
-      
-      
-     
-      
-      
+
+
+      console.log('distinct teams below')
+      console.log(distinctTeams)
+
       distinctTeams.forEach(team => {
         let allOfTeam = allOfBook.filter(e => e.teamName == team)
         //console.log(allOfTeam)
-        if(allOfTeam.length > 1){
-          for(let i = 0; i < allOfTeam.length; i++){
+        if (allOfTeam.length > 1) {
+          for (let i = 0; i < allOfTeam.length; i++) {
             teamArray.push(allOfTeam[i])
           }
         }
-        else{
-          if(allOfTeam.length > 0){
+        else {
+          if (allOfTeam.length > 0) {
             teamArray.push(allOfTeam)
           }
         }
-        
-        
+
+
       })
+      console.log('teamarray below')
       console.log(teamArray)
       let teamArrayFinal: any[] = []
-      if(teamArray.length > 0){
+      if (teamArray.length > 0) {
         //console.log(teamArray)
-        if(teamArray[0].length > 0){
-          if(teamArray[0][0].awayTeam != teamArray[0][0].teamName){
+        if (teamArray[0].length > 0) {
+          if (teamArray[0][0].awayTeam != teamArray[0][0].teamName) {
             teamArrayFinal.push(teamArray[1])
             teamArrayFinal.push(teamArray[0])
             teamArrayFinal.push(teamArray[2])
             teamArrayFinal.push(teamArray[3])
           }
-          else{teamArrayFinal = teamArray}
-          
+          else { teamArrayFinal = teamArray }
+
         }
-        
-        
-        
+
+
+
       }
       //teamArrayFinal[0][0].commenceTime = reusedFunctions.formatDateString(teamArrayFinal[0][0].commenceTime.toString() )
-      if(teamArrayFinal[0].length == 2 && teamArrayFinal[1].length == 2 && teamArrayFinal[2].length == 1 && teamArrayFinal[3].length == 1){
+      if (teamArrayFinal[0].length == 2 && teamArrayFinal[1].length == 2 && teamArrayFinal[2].length == 1 && teamArrayFinal[3].length == 1) {
         let team1 = [teamArrayFinal[0], teamArrayFinal[2]]
         let team2 = [teamArrayFinal[1], teamArrayFinal[3]]
         let team: any[] = [team1, team2]
         this.gameDataAllFinal.push(team)
       }
-      
+
     })
     console.log(this.gameDataAllFinal)
-    if(this.selectedSport == 'NFL'){
+    if (this.selectedSport == 'NFL') {
       console.log("here in slice")
       let today = new Date()
       let dayOfWeek = today.getDay()
-      const daysToAdd = (2 - dayOfWeek + 7) % 7; 
-    const nextTuesday = new Date(today);
-    nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
-    let gameTemp: any[] = []
-      this.gameDataAllFinal.forEach(e =>  {
-        if(e[0][0][0].commenceTime < nextTuesday){
+      const daysToAdd = (2 - dayOfWeek + 7) % 7;
+      const nextTuesday = new Date(today);
+      nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
+      let gameTemp: any[] = []
+      this.gameDataAllFinal.forEach(e => {
+        if (e[0][0][0].commenceTime < nextTuesday) {
           gameTemp.push(e)
         }
       })
@@ -454,21 +457,21 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   teamClicked(teamName: string) {
   }
 
-  
+
 
 
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
-    
-    
+
+
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.unsubscribe()
   }
 
-  
+
 
 
 
