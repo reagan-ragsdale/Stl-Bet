@@ -397,11 +397,11 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       console.log(homeTeam)
       console.log(awayTeam)
 
-      let teamArrayFinal: any[] = []
-      teamArrayFinal.push()
-      console.log(teamArrayFinal)
-
-      this.gameDataAllFinal.push([awayTeam, homeTeam])
+      
+      if(awayTeam[0].length == 3 && awayTeam[1].length == 3 && homeTeam[0].length == 3 && homeTeam[1].length == 3){
+        this.gameDataAllFinal.push([awayTeam, homeTeam])
+      }
+      
     })
     console.log('game data allo final')
     console.log(this.gameDataAllFinal)
