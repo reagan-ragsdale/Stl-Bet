@@ -401,7 +401,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       teamArrayFinal.push([awayTeam, homeTeam])
       console.log(teamArrayFinal)
 
-      this.gameDataAllFinal.push(teamArray)
+      this.gameDataAllFinal.push(teamArrayFinal)
     })
     console.log('game data allo final')
     console.log(this.gameDataAllFinal)
