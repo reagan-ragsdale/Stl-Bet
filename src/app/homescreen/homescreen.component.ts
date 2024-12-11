@@ -376,6 +376,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   loadProps(change: any){
+    console.log(change)
     this.gameDataAll = change
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
@@ -383,37 +384,28 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
       let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
       let teamArray: any[] = []
-      let distinctTeamsNew: any[] = []
-      let teamsName = distinctTeams.filter(e => e != 'Over')
-      let bothTeams = teamsName.filter(f => f != 'Under')
-      if(teamsName.length > 0){
-        distinctTeamsNew.push(bothTeams[0])
-      }
-      if(bothTeams.length > 0){
-        distinctTeamsNew.push(bothTeams[1])
-      }
       
       
-      let teamsNameOver = distinctTeams.filter(e => e == "Over")
-      if(teamsNameOver.length > 0){
-        distinctTeamsNew.push(teamsNameOver[0])
-      }
      
-      let teamsNameUnder = distinctTeams.filter(e => e == "Under")
-     
-      if(teamsNameUnder.length > 0){
-       distinctTeamsNew.push(teamsNameUnder[0])
-      }
       
       
-      distinctTeamsNew.forEach(team => {
+      distinctTeams.forEach(team => {
         let allOfTeam = allOfBook.filter(e => e.teamName == team)
         //console.log(allOfTeam)
-        if(allOfTeam.length > 0){
-          teamArray.push(allOfTeam)
+        if(allOfTeam.length > 1){
+          for(let i = 0; i < allOfTeam.length; i++){
+            teamArray.push(allOfTeam[i])
+          }
+        }
+        else{
+          if(allOfTeam.length > 0){
+            teamArray.push(allOfTeam)
+          }
         }
         
+        
       })
+      console.log(teamArray)
       let teamArrayFinal: any[] = []
       if(teamArray.length > 0){
         //console.log(teamArray)
