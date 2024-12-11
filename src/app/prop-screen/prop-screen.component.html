@@ -146,7 +146,7 @@
                     </mat-panel-description>
                     <mat-panel-description *ngIf="prop.propType == 'altTotal'" style="display:flex; gap:1rem;">
                       <mat-button-toggle-group style="margin-left:1rem;">
-                        <mat-button-toggle  *ngFor="let bet of prop; let i = index;" (change)="prop.index = i" (click)="handleClick($event)" [checked]="i == prop.index">{{bet.playerBookData.point}}</mat-button-toggle>
+                        <mat-button-toggle  *ngFor="let bet of prop; let i = index;" (change)="prop.index = i" (click)="handleClick($event)" [checked]="i == prop.index">{{bet[0].playerBookData.point}}</mat-button-toggle>
                       </mat-button-toggle-group>
                       <button [color]="'primary'" [disabled]="prop.isDisabled == true"
                         (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
