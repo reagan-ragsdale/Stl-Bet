@@ -298,12 +298,12 @@ export class PropScreenComponent implements OnInit {
       currentGame[0][0].selected = true;
 
     }
-    /* this.selectedSportGamesFinal.forEach(e => {
+     this.selectedSportGamesFinal.forEach(e => {
       let awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)
       let homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)
       e[0][0].awayTeam = awayTeamInfo[0].teamNameAbvr;
       e[0][0].homeTeam = homeTeamInfo[0].teamNameAbvr;
-    }) */
+    }) 
     await this.onGameClick(this.selectedGame)
   }
 
