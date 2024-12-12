@@ -219,6 +219,7 @@ export class draftKingsApiController {
     let finalReturn = name
     finalReturn = finalReturn.replaceAll('é', 'e')
     finalReturn = finalReturn.replaceAll('è', 'e')
+    console.log(finalReturn)
     return finalReturn
   }
 
