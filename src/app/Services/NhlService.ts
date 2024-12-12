@@ -886,7 +886,7 @@ export class NhlService {
         let finalReturn: any[] = []
 
         let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
-
+        console.log('herherhehrehrherhehrhe')
         let homeTeam = playerPropData[0].homeTeam
         let awayTeam = playerPropData[0].awayTeam
         console.log('ahsdfasdfasdhf')
