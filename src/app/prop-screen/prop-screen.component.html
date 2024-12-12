@@ -148,10 +148,10 @@
                       {{prop[0].gameBookData.point}}
                       <button [color]="'primary'" [disabled]="prop.isDisabled == true"
                         (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
-                        style=" margin-left: auto; width:auto;" mat-raised-button>{{prop[0].gameBookData.price > 0 ? '+' : ''}}{{prop[0].gameBookData.price}} U</button>
+                        style=" margin-left: auto; width:auto;" mat-raised-button>U {{prop[0].gameBookData.price > 0 ? '+' : ''}}{{prop[0].gameBookData.price}}</button>
                         <button [color]="'primary'" [disabled]="prop.isDisabled == true"
                         (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
-                        style="margin-right:1rem; width:auto;" mat-raised-button>{{prop[1].gameBookData.price > 0 ? '+' : ''}}{{prop[1].gameBookData.price}} O</button>
+                        style="margin-right:1rem; width:auto;" mat-raised-button>O {{prop[1].gameBookData.price > 0 ? '+' : ''}}{{prop[1].gameBookData.price}}</button>
                     </mat-panel-description>
                     <mat-panel-description *ngIf="prop.propType == 'altTotal'" style="display:flex; gap:.5rem;">
                       <mat-button-toggle-group>
@@ -159,10 +159,10 @@
                       </mat-button-toggle-group>
                       <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style=" width:auto; margin-left:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][0].gameBookData.price}} U</button>
+                        style=" width:min-content; margin-left:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][0].gameBookData.price}} U</button>
                         <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style=" width:auto; margin-right:1rem;" mat-raised-button>{{prop[prop.index][1].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][1].gameBookData.price}} O</button>
+                        style=" width:min-content; margin-right:1rem;" mat-raised-button>{{prop[prop.index][1].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][1].gameBookData.price}} O</button>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-card>
