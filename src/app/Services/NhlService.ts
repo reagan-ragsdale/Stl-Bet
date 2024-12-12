@@ -889,6 +889,7 @@ export class NhlService {
 
         let homeTeam = playerPropData[0].homeTeam
         let awayTeam = playerPropData[0].awayTeam
+        console.log('ahsdfasdfasdhf')
 
         let uniquePlayerProps = playerPropData.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
 
