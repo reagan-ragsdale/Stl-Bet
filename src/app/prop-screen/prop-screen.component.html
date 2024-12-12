@@ -745,7 +745,7 @@
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
                               style=" width:auto; max-width:40px; margin-left:auto; margin-right:5px;"
-                              mat-raised-button>{{player[player.index].playerBookData.price > 0 ? '+': ''}}{{player[player.index].playerBookData.price}}{{player[player.index].playerBookData.description == 'Over' ? 'O' : 'U'}}</button>
+                              mat-raised-button>{{player[player.index].playerBookData.price > 0 ? '+': ''}}{{player[player.index].playerBookData.price}}{{player[player.index].playerBookData.description == 'Over' ? ' O' : ' U'}}</button>
                             </div>
                             
                           </mat-panel-title>
