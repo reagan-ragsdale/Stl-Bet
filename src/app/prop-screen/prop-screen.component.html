@@ -138,11 +138,18 @@
                     <mat-panel-title style="max-width:fit-content;">
                       {{displayPropTitle(prop)}}:
                     </mat-panel-title>
-                    <mat-panel-description *ngIf="prop.propType != 'altTotal'" style="display:flex; gap:1rem;">
-                      {{displayPropDescription(prop)}}
+                    <mat-panel-description *ngIf="prop.propType != 'altTotal' && prop.propType != 'total'" style="display:flex; gap:1rem;">
                       <button [color]="'primary'" [disabled]="prop.isDisabled == true"
                         (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
-                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>Parlay</button>
+                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>{{displayPropDescription(prop)}}</button>
+                    </mat-panel-description>
+                    <mat-panel-description *ngIf="prop.propType == 'total'" style="display:flex; gap:1rem;">
+                      <button [color]="'primary'" [disabled]="prop.isDisabled == true"
+                        (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
+                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>{{prop[0].gameBookData.point}} | {{prop[0].gameBookData.price > 0 ? '+' : ''}}{{prop[0].gameBookData.price}} U</button>
+                        <button [color]="'primary'" [disabled]="prop.isDisabled == true"
+                        (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
+                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>{{prop[1].gameBookData.point}} | {{prop[1].gameBookData.price > 0 ? '+' : ''}}{{prop[1].gameBookData.price}} O</button>
                     </mat-panel-description>
                     <mat-panel-description *ngIf="prop.propType == 'altTotal'" style="display:flex; gap:.5rem;">
                       <mat-button-toggle-group>
@@ -150,10 +157,10 @@
                       </mat-button-toggle-group>
                       <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style=" width:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][0].gameBookData.price}}</button>
+                        style=" width:auto; margin-left:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][0].gameBookData.price}} U</button>
                         <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style=" width:auto;" mat-raised-button>{{prop[prop.index][1].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][1].gameBookData.price}}</button>
+                        style=" width:auto; margin-right:1rem;" mat-raised-button>{{prop[prop.index][1].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][1].gameBookData.price}} O</button>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-card>

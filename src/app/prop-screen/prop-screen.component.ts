@@ -690,9 +690,9 @@ export class PropScreenComponent implements OnInit {
       else{
         if (prop[0].gameBookData.marketKey == 'totals') {
           let propOver = prop[0].gameBookData.price > 0 ? '+' : ''
-          let one = prop[0].gameBookData.teamName + " " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
+          let one = prop[0].gameBookData.description + " " + prop[0].gameBookData.point + " | " + propOver + prop[0].gameBookData.price
           propOver = prop[1].price > 0 ? '+' : ''
-          let two = prop[1].gameBookData.teamName + " " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
+          let two = prop[1].gameBookData.description + " " + prop[1].gameBookData.point + " | " + propOver + prop[1].gameBookData.price
           finalReturn = one + " " + two
         }
         else if (prop[0].gameBookData.marketKey == ('team_totals Over') || prop[0].gameBookData.marketKey == ('team_totals Under')) {
