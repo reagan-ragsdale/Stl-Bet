@@ -83,40 +83,45 @@ export class draftKingsApiController {
   static async convertPropDataToInterface(sport: string, game: string) {
     var tempData: DbPlayerPropData[] = [];
     let allOfPlayersBook = await PlayerPropController.loadPlayerPropData(sport, game)
-    for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
-      for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
-        for (let m = 0; m < this.playerProps.bookmakers[j].markets[k].outcomes.length; m++) {
-          let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description) && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name).map(e => e.bookSeq).filter((value, index, array) => array.indexOf(value) === index)
-          let highestBookSeq = 0
-          filteredPlayer.forEach(e => {
-            if (e > highestBookSeq) {
-              highestBookSeq = e
+    try{
+      for (let j = 0; j < this.playerProps.bookmakers.length; j++) {
+        for (let k = 0; k < this.playerProps.bookmakers[j].markets.length; k++) {
+          for (let m = 0; m < this.playerProps.bookmakers[j].markets[k].outcomes.length; m++) {
+            let filteredPlayer = allOfPlayersBook.filter(e => e.playerName == this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description) && e.marketKey == this.playerProps.bookmakers[j].markets[k].key && e.description == this.playerProps.bookmakers[j].markets[k].outcomes[m].name).map(e => e.bookSeq).filter((value, index, array) => array.indexOf(value) === index)
+            let highestBookSeq = 0
+            filteredPlayer.forEach(e => {
+              if (e > highestBookSeq) {
+                highestBookSeq = e
+              }
+            })
+            let newBookSeq = 0
+            if (filteredPlayer.length > 0) {
+              newBookSeq = highestBookSeq + 1
             }
-          })
-          let newBookSeq = 0
-          if (filteredPlayer.length > 0) {
-            newBookSeq = highestBookSeq + 1
+  
+            tempData.push({
+              bookId: this.playerProps.id,
+              sportKey: this.playerProps.sport_key,
+              sportTitle: this.playerProps.sport_title,
+              homeTeam: this.cleanTeamName(this.playerProps.home_team),
+              awayTeam: this.cleanTeamName(this.playerProps.away_team),
+              commenceTime: this.playerProps.commence_time,
+              bookMaker: this.playerProps.bookmakers[j].title,
+              marketKey: this.playerProps.bookmakers[j].markets[k].key,
+              description: this.playerProps.bookmakers[j].markets[k].outcomes[m].name,
+              playerName: this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description),
+              price: this.playerProps.bookmakers[j].markets[k].outcomes[m].price,
+              point: this.playerProps.bookmakers[j].markets[k].outcomes[m].point != null ? this.playerProps.bookmakers[j].markets[k].outcomes[m].point : 0,
+              bookSeq: newBookSeq
+            });
           }
-
-          tempData.push({
-            bookId: this.playerProps.id,
-            sportKey: this.playerProps.sport_key,
-            sportTitle: this.playerProps.sport_title,
-            homeTeam: this.cleanTeamName(this.playerProps.home_team),
-            awayTeam: this.cleanTeamName(this.playerProps.away_team),
-            commenceTime: this.playerProps.commence_time,
-            bookMaker: this.playerProps.bookmakers[j].title,
-            marketKey: this.playerProps.bookmakers[j].markets[k].key,
-            description: this.playerProps.bookmakers[j].markets[k].outcomes[m].name,
-            playerName: this.cleanPlayerName(this.playerProps.bookmakers[j].markets[k].outcomes[m].description),
-            price: this.playerProps.bookmakers[j].markets[k].outcomes[m].price,
-            point: this.playerProps.bookmakers[j].markets[k].outcomes[m].point != null ? this.playerProps.bookmakers[j].markets[k].outcomes[m].point : 0,
-            bookSeq: newBookSeq
-          });
         }
+  
       }
-
+    }catch(error:any){
+      console.log('add player prop data error: ' + error.message)
     }
+    
     return tempData;
   }
   static convertSport(sport: any) {
