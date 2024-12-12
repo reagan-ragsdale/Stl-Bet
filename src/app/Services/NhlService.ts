@@ -358,7 +358,11 @@ export class NhlService {
                             else if(filteredPointsProps[m].marketKey == 'alternate_spreads'){
 
                             }
+                            
                             pointArray.push(teamProp)
+                        }
+                        if(pointArray[0].gameBookData.marketKey == 'alternate_team_totals'){
+                            pointArray.sort((a:any,b:any) => a.gameBookData.description.toLocaleString() - b.gameBookData.description.toLocaleString())
                         }
                         pointArray.sort((a: any,b: any) => a.gameBookData.point - b.gameBookData.point)
                         teamArray.push(pointArray)
