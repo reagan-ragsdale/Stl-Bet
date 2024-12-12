@@ -144,16 +144,16 @@
                         (click)="$event.stopPropagation()" (click)="addPropToParlay(prop)"
                         style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>Parlay</button>
                     </mat-panel-description>
-                    <mat-panel-description *ngIf="prop.propType == 'altTotal'" style="display:flex; gap:1rem;">
+                    <mat-panel-description *ngIf="prop.propType == 'altTotal'" style="display:flex; gap:.5rem;">
                       <mat-button-toggle-group style="margin-left:1rem;">
                         <mat-button-toggle  *ngFor="let bet of prop; let i = index;" (change)="prop.index = i" (click)="handleClick($event)" [checked]="i == prop.index">{{bet[0].gameBookData.point}}</mat-button-toggle>
                       </mat-button-toggle-group>
                       <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>Under</button>
+                        style=" width:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price}}</button>
                         <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style="margin-right:1rem; margin-left: auto; width:auto;" mat-raised-button>Over</button>
+                        style=" width:auto;" mat-raised-button>{{prop[prop.index][1].gameBookData.price}}</button>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-card>
