@@ -198,7 +198,7 @@
                                   <h3 style="margin:auto" *ngIf="prop.propType == 'total'">
                                     {{prop[prop.overUnder ? 0 : 1].overallWins}} - {{prop[prop.overUnder ? 0 : 1].overallTotal - prop[prop.overUnder ? 0 : 1].overallWins}}</h3>
                                     <h3 style="margin:auto" *ngIf="prop.propType == 'altTotal'">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].overallWins}} - {{prop[prop.index][prop.overUnder ? 0 : 1].overallTotal - prop[prop.index][prop.overUnder ? 0 : 1].overallWins}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].overallWins}} - {{prop[prop.index][prop.overUnder ? 1 : 0].overallTotal - prop[prop.index][prop.overUnder ? 1 : 0].overallWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -207,7 +207,7 @@
                                   <h3 style="margin:auto" *ngIf="prop.propType == 'total'">
                                     {{prop[prop.overUnder ? 0 : 1].overallChance | percent: '2.2-2'}}</h3>
                                     <h3 style="margin:auto" *ngIf="prop.propType == 'altTotal'">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].overallChance | percent: '2.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].overallChance | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Weighted</h3>
@@ -217,7 +217,7 @@
                                     *ngIf="prop.propType == 'total'">
                                     {{prop[prop.overUnder ? 0 : 1].overallWeighted | percent: '2.2-2'}}</h3>
                                     <h3 style="margin:auto" *ngIf="prop.propType == 'altTotal'">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].overallWeighted | percent: '2.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].overallWeighted | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
@@ -226,7 +226,7 @@
                                     <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                       {{prop[prop.overUnder ? 0 : 1].averageOverall | number: '1.2-2'}}</h3>
                                       <h3 style="margin:auto" *ngIf="prop.propType == 'altTotal'">
-                                        {{prop[prop.index][prop.overUnder ? 0 : 1].averageOverall | number: '1.2-2'}}</h3>
+                                        {{prop[prop.index][prop.overUnder ? 1 : 0].averageOverall | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
@@ -235,7 +235,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].highOverall | number: '1.2-2'}}</h3>
                                     <h3 style="margin:auto" *ngIf="prop.propType == 'altTotal'">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].highOverall | number: '1.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].highOverall | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
@@ -244,7 +244,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].lowOverall | number: '1.2-2'}}</h3>
                                     <h3 style="margin:auto" *ngIf="prop.propType == 'altTotal'">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].lowOverall | number: '1.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].lowOverall | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                               <div class="homeaway-stats"
@@ -253,7 +253,7 @@
                                   style=" width: 96%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                                   <h3 *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'" style="margin:auto">{{prop.homeAway}}</h3>
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">{{prop[prop.overUnder ? 0 : 1].homeAway}}</h3>
-                                  <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">{{prop[prop.index][prop.overUnder ? 0 : 1].homeAway}}</h3>
+                                  <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">{{prop[prop.index][prop.overUnder ? 1 : 0].homeAway}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
@@ -266,7 +266,7 @@
                                     {{prop[prop.overUnder ? 0 : 1].homeAwayWins}} - {{prop[prop.overUnder ? 0 : 1].homeAwayTotal - prop[prop.overUnder ? 0 : 1].homeAwayWins}}</h3>
                                     <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'altTotal'">
-                                    {{prop[prop.index][prop.overUnder ? 0 : 1].homeAwayWins}} - {{prop[prop.index][prop.overUnder ? 0 : 1].homeAwayTotal - prop[prop.index][prop.overUnder ? 0 : 1].homeAwayWins}}</h3>
+                                    {{prop[prop.index][prop.overUnder ? 1 : 0].homeAwayWins}} - {{prop[prop.index][prop.overUnder ? 1 : 0].homeAwayTotal - prop[prop.index][prop.overUnder ? 1 : 0].homeAwayWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -279,7 +279,7 @@
                                     {{prop[prop.overUnder ? 0 : 1].homeAwayChance | percent: '2.2-2'}}</h3>
                                     <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'altTotal'">
-                                    {{prop[prop.index][prop.overUnder ? 0 : 1].homeAwayChance | percent: '2.2-2'}}</h3>
+                                    {{prop[prop.index][prop.overUnder ? 1 : 0].homeAwayChance | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Weighted</h3>
@@ -290,7 +290,7 @@
                                     {{prop[prop.overUnder ? 0 : 1].homeAwayWeighted | percent: '2.2-2'}}</h3>
                                     <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'altTotal'">
-                                    {{prop[prop.index][prop.overUnder ? 0 : 1].homeAwayWeighted | percent: '2.2-2'}}</h3>
+                                    {{prop[prop.index][prop.overUnder ? 1 : 0].homeAwayWeighted | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
@@ -299,7 +299,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].averageHomeAway | number: '1.2-2'}}</h3>
                                     <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].averageHomeAway | number: '1.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].averageHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
@@ -308,7 +308,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].highHomeAway | number: '1.2-2'}}</h3>
                                     <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].highHomeAway | number: '1.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].highHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
@@ -317,7 +317,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].lowHomeAway | number: '1.2-2'}}</h3>
                                     <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].lowHomeAway | number: '1.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].lowHomeAway | number: '1.2-2'}}</h3>
                                 </div>
                               </div>
                               <div class="team-stats"
@@ -326,7 +326,7 @@
                                   style=" width: 94%; margin-left:auto; margin-right:auto; margin-top:5px; display:flex;">
                                   <h3 *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'" style="margin:auto">Vs {{prop.teamAgainstName}}</h3>
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">Vs {{prop[prop.overUnder ? 0 : 1].teamAgainstName}}</h3>
-                                  <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">Vs {{prop[prop.index][prop.overUnder ? 0 : 1].teamAgainstName}}</h3>
+                                  <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">Vs {{prop[prop.index][prop.overUnder ? 1 : 0].teamAgainstName}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Record</h3>
@@ -338,7 +338,7 @@
                                     {{prop[prop.overUnder ? 0 : 1].teamWins}} - {{prop[prop.overUnder ? 0 : 1].teamTotal}}</h3>
                                     <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'altTotal'">
-                                    {{prop[prop.index][prop.overUnder ? 0 : 1].teamWins}} - {{prop[prop.overUnder ? 0 : 1].teamTotal}}</h3>
+                                    {{prop[prop.index][prop.overUnder ? 1 : 0].teamWins}} - {{prop[prop.overUnder ? 0 : 1].teamTotal}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
@@ -350,7 +350,7 @@
                                     {{prop[prop.overUnder ? 0 : 1].teamChance | percent: '2.2-2'}}</h3>
                                     <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'altTotal'">
-                                    {{prop[prop.index][prop.overUnder ? 0 : 1].teamChance | percent: '2.2-2'}}</h3>
+                                    {{prop[prop.index][prop.overUnder ? 1 : 0].teamChance | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Weighted</h3>
@@ -362,7 +362,7 @@
                                     {{prop[prop.overUnder ? 0 : 1].teamWeighted | percent: '2.2-2'}}</h3>
                                     <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'altTotal'">
-                                    {{prop[prop.index][prop.overUnder ? 0 : 1].teamWeighted | percent: '2.2-2'}}</h3>
+                                    {{prop[prop.index][prop.overUnder ? 1 : 0].teamWeighted | percent: '2.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Avg</h3>
@@ -371,7 +371,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].averageTeam | number: '1.2-2' }}</h3>
                                     <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].averageTeam | number: '1.2-2' }}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].averageTeam | number: '1.2-2' }}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">High</h3>
@@ -380,7 +380,7 @@
                                     <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                       {{prop[prop.overUnder ? 0 : 1].highTeam | number: '1.2-2'}}</h3>
                                       <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">
-                                        {{prop[prop.index][prop.overUnder ? 0 : 1].highTeam | number: '1.2-2'}}</h3>
+                                        {{prop[prop.index][prop.overUnder ? 1 : 0].highTeam | number: '1.2-2'}}</h3>
                                 </div>
                                 <div *ngIf="prop.propType != 'h2h'" [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Low</h3>
@@ -389,7 +389,7 @@
                                   <h3 *ngIf="prop.propType == 'total'" style="margin:auto">
                                     {{prop[prop.overUnder ? 0 : 1].lowTeam | number:'1.2-2'}}</h3>
                                     <h3 *ngIf="prop.propType == 'altTotal'" style="margin:auto">
-                                      {{prop[prop.index][prop.overUnder ? 0 : 1].lowTeam | number:'1.2-2'}}</h3>
+                                      {{prop[prop.index][prop.overUnder ? 1 : 0].lowTeam | number:'1.2-2'}}</h3>
                                 </div>
                               </div>
                             </div>
@@ -422,7 +422,7 @@
                               [ngTemplateOutletContext]="{ $implicit: prop[prop.overUnder ? 0 : 1].last10Overall}">
                             </ng-container>
                             <ng-container *ngIf="prop.propType == 'altTotal'" [ngTemplateOutlet]="gameLog"
-                              [ngTemplateOutletContext]="{ $implicit: prop[prop.index][prop.overUnder ? 0 : 1].last10Overall}">
+                              [ngTemplateOutletContext]="{ $implicit: prop[prop.index][prop.overUnder ? 1 : 0].last10Overall}">
                             </ng-container>
                           </div>
                         </div>
@@ -435,7 +435,7 @@
                             {{prop[prop.overUnder ? 0 : 1].homeAway}}
                           </div>
                           <div *ngIf="prop.propType == 'altTotal'" style="text-align: center;">
-                            {{prop[prop.index][prop.overUnder ? 0 : 1].homeAway}}
+                            {{prop[prop.index][prop.overUnder ? 1 : 0].homeAway}}
                           </div>
                           <div style="border-right: 1px solid black;">
                             <ng-container *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'" [ngTemplateOutlet]="gameLog"
@@ -445,7 +445,7 @@
                               [ngTemplateOutletContext]="{ $implicit: prop[prop.overUnder ? 0 : 1].last10HomeAway}">
                             </ng-container>
                             <ng-container *ngIf="prop.propType == 'altTotal'" [ngTemplateOutlet]="gameLog"
-                              [ngTemplateOutletContext]="{ $implicit: prop[prop.index][prop.overUnder ? 0 : 1].last10HomeAway}">
+                              [ngTemplateOutletContext]="{ $implicit: prop[prop.index][prop.overUnder ? 1 : 0].last10HomeAway}">
                             </ng-container>
                           </div>
                         </div>
@@ -458,7 +458,7 @@
                             vs {{prop[prop.overUnder ? 0 : 1].teamAgainstName}}
                           </div>
                           <div *ngIf="prop.propType == 'altTotal'" style="text-align: center;">
-                            vs {{prop[prop.index][prop.overUnder ? 0 : 1].teamAgainstName}}
+                            vs {{prop[prop.index][prop.overUnder ? 1 : 0].teamAgainstName}}
                           </div>
                           <div>
                             <ng-container *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'" style="width:25%;" [ngTemplateOutlet]="gameLog"
@@ -468,7 +468,7 @@
                               [ngTemplateOutletContext]="{ $implicit: prop[prop.overUnder ? 0 : 1].last10Team}">
                             </ng-container>
                             <ng-container *ngIf="prop.propType == 'altTotal'" style="width:25%;" [ngTemplateOutlet]="gameLog"
-                              [ngTemplateOutletContext]="{ $implicit: prop[prop.index][prop.overUnder ? 0 : 1].last10Team}">
+                              [ngTemplateOutletContext]="{ $implicit: prop[prop.index][prop.overUnder ? 1 : 0].last10Team}">
                             </ng-container>
                           </div>
                         </div>
