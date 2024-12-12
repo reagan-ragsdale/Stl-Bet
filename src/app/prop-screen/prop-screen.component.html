@@ -150,10 +150,10 @@
                       </mat-button-toggle-group>
                       <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style=" width:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price}}</button>
+                        style=" width:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][0].gameBookData.price}}</button>
                         <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
-                        style=" width:auto;" mat-raised-button>{{prop[prop.index][1].gameBookData.price}}</button>
+                        style=" width:auto;" mat-raised-button>{{prop[prop.index][1].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][1].gameBookData.price}}</button>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-card>
