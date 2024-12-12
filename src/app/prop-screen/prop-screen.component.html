@@ -335,10 +335,10 @@
                                     {{prop.teamWins}} - {{prop.teamTotal - prop.teamWins}}</h3>
                                   <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'total'">
-                                    {{prop[prop.overUnder ? 0 : 1].teamWins}} - {{prop[prop.overUnder ? 0 : 1].teamTotal}}</h3>
+                                    {{prop[prop.overUnder ? 0 : 1].teamWins}} - {{prop[prop.overUnder ? 0 : 1].teamTotal - prop[prop.overUnder ? 0 : 1].teamWins}}</h3>
                                     <h3 style="margin:auto"
                                     *ngIf="prop.propType == 'altTotal'">
-                                    {{prop[prop.index][prop.overUnder ? 1 : 0].teamWins}} - {{prop[prop.overUnder ? 0 : 1].teamTotal}}</h3>
+                                    {{prop[prop.index][prop.overUnder ? 1 : 0].teamWins}} - {{prop[prop.index][prop.overUnder ? 1 : 0].teamTotal - prop[prop.index][prop.overUnder ? 1 : 0].teamWins}}</h3>
                                 </div>
                                 <div [ngClass]="'ml-stat'">
                                   <h3 style="margin:auto">Win</h3>
