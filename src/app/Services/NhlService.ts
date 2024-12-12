@@ -300,6 +300,7 @@ export class NhlService {
                                     teamProp.last10Overall = overAllTableTemp.slice(0, 10)
                                     teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                                     teamProp.last10Team = teamTableTemp.slice(0, 10)
+                                    teamProp.propType = 'atlTotal'
                                 }
                                 else {
                                     teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall) < filteredPointsProps[m].point).length;
@@ -353,6 +354,7 @@ export class NhlService {
                                     teamProp.last10Overall = overAllTableTemp.slice(0, 10)
                                     teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                                     teamProp.last10Team = teamTableTemp.slice(0, 10)
+                                    teamProp.propType = 'atlTotal'
                                 }
                             }
                             else if(filteredPointsProps[m].marketKey == 'alternate_spreads'){

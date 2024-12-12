@@ -503,7 +503,7 @@
                 <mat-card-header>
                   <mat-card-title><a style="text-decoration: none; " (click)="onTeamClick(bet.teamName)">{{bet.teamName
                       }}</a> | {{displayPropTitle(bet)}} | {{bet.propType == 'spread' ? (bet.gameBookData.point > 0 ? ('+' +
-                    bet.gameBookData.point): bet.gameBookData.point) : ((bet.propType == 'total' || bet.propType == 'altTotal') ? (bet.gameBookData.description + " | " + bet.gameBookData.point) : 'hjhh')}}</mat-card-title>
+                    bet.gameBookData.point): bet.gameBookData.point) : ((bet.propType == 'total' || bet.propType == 'altTotal') ? (bet.gameBookData.description + " | " + bet.gameBookData.point) : '')}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content style="min-height:400px; padding: 0;">
                   <mat-tab-group [backgroundColor]="'primary'" style="width:100%; height:100%;"
