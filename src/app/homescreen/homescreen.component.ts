@@ -361,6 +361,12 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           name: "Losses",
           dbName: "loss"
         }
+        ,
+        {
+          selected: false,
+          name: "Otl",
+          dbName: "otl"
+        }
       ]
 
 

@@ -296,14 +296,19 @@
               </ng-container>
 
               <ng-container matColumnDef="Wins">
-                <th mat-header-cell *matHeaderCellDef> Wins </th>
+                <th mat-header-cell *matHeaderCellDef> W </th>
                 <td mat-cell *matCellDef="let element"> {{element.wins}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="Losses">
-                <th mat-header-cell *matHeaderCellDef> Losses </th>
+                <th mat-header-cell *matHeaderCellDef> L </th>
                 <td mat-cell *matCellDef="let element"> {{element.loss}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Losses">
+                <th mat-header-cell *matHeaderCellDef> OTL </th>
+                <td mat-cell *matCellDef="let element"> {{element.otl}} </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>

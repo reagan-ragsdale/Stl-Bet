@@ -323,6 +323,9 @@ mat-mdc-tab-body-content{
       min-width:100px;
       margin-top:auto;
       margin-bottom:auto;
+      font-size: x-small;
+      padding-top:3px;
+      padding-bottom:3px;
 
     }
     .commence-time{
@@ -333,11 +336,9 @@ mat-mdc-tab-body-content{
       
     }
     .record1{
-      width:33% !important;
       margin-left:auto;
     }
     .record2{
-      width:33% !important;
       margin-left:auto;
     }
     .player-dropdown{
