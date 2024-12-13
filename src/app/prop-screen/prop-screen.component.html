@@ -134,8 +134,8 @@
             <div style="width: 100%; display: flex; flex-wrap:wrap; justify-content:space-evenly;">
               <mat-accordion style="width:94%">
                 <mat-expansion-panel *ngFor="let prop of team; let i = index;">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title style="max-width:fit-content;">
+                  <mat-expansion-panel-header class="player-prop-header">
+                    <mat-panel-title style="max-width:fit-content;" class="prop-hover">
                       {{displayPropTitle(prop)}}:
                     </mat-panel-title>
                     <mat-panel-description *ngIf="prop.propType != 'altTotal' && prop.propType != 'total'" style="display:flex; gap:1rem;">
@@ -157,12 +157,12 @@
                     </mat-panel-description>
                     <mat-panel-description *ngIf="prop.propType == 'altTotal'" style="display:flex; gap:.5rem;">
                       <mat-button-toggle-group>
-                        <mat-button-toggle  *ngFor="let bet of prop; let i = index;" (change)="prop.index = i" (click)="handleClick($event)" [checked]="i == prop.index">{{bet[0].gameBookData.point}}</mat-button-toggle>
+                        <mat-button-toggle class="alt-buttons"  *ngFor="let bet of prop; let i = index;" (change)="prop.index = i" (click)="handleClick($event)" [checked]="i == prop.index">{{bet[0].gameBookData.point}}</mat-button-toggle>
                       </mat-button-toggle-group>
-                      <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
+                      <button class="alt-price-button" [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
                         style=" width:min-content; margin-left:auto;" mat-raised-button>{{prop[prop.index][0].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][0].gameBookData.price}} U</button>
-                        <button [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
+                        <button class="alt-price-button" [color]="'primary'" [disabled]="prop[0][0].isDisabled == true"
                         (click)="$event.stopPropagation()" 
                         style=" width:min-content; margin-right:1rem;" mat-raised-button>{{prop[prop.index][1].gameBookData.price > 0 ? '+' : ''}}{{prop[prop.index][1].gameBookData.price}} O</button>
                     </mat-panel-description>
