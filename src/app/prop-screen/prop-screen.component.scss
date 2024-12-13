@@ -384,5 +384,22 @@ mat-mdc-tab-body-content{
     ::ng-deep .mat-mdc-card-content{
       padding: 0 !important;
     }
+    .player-prop-header{
+      padding-left:3px !important;
+    }
+    .link-hover{
+      font-size: smaller;
+    }
+    .alt-buttons{
+      font-size: smaller;
+    }
+    .alt-price-button{
+      font-size: smaller;
+    }
+    .player-best-bets-card{
+      width:96%;
+      margin-left:auto;
+      margin-right:auto;
+    }
   }
    

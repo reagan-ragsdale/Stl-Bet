@@ -717,7 +717,7 @@
                     <mat-accordion *ngFor="let player of homeAway; let i = index;" class="specific-class"
                       style="margin-bottom:.5rem;">
                       <mat-expansion-panel *ngIf="homeAway.length > 0" style="margin-bottom:.5rem;">
-                        <mat-expansion-panel-header>
+                        <mat-expansion-panel-header class="player-prop-header">
                           <mat-panel-title style="min-width: fit-content">
                             <div *ngIf="player[0].propType == 'OU'" style="display:flex;width:100%; align-items: center; ">
                             <a (click)="playerClicked(player[0].playerId)" class="link-hover"
@@ -739,9 +739,9 @@
                               <a (click)="playerClicked(player[0].playerId)" class="link-hover"
                               style="text-decoration: none;">{{player[0].playerName }}</a>
                               <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color" style="margin-left:1rem;">
-                                <mat-button-toggle  *ngFor="let prop of player; let i = index;" (change)="player.index = i" (click)="handleClick($event)" [checked]="i == player.index">{{prop.playerBookData.point}}</mat-button-toggle>
+                                <mat-button-toggle class="alt-buttons"  *ngFor="let prop of player; let i = index;" (change)="player.index = i" (click)="handleClick($event)" [checked]="i == player.index">{{prop.playerBookData.point}}</mat-button-toggle>
                               </mat-button-toggle-group>
-                              <button [color]="'primary'"
+                              <button [color]="'primary'" class="alt-price-button"
                               (click)="$event.stopPropagation()"
                               (click)="addPropToParlay(player[0])"
                               style=" width:auto; max-width:40px; margin-left:auto; margin-right:5px;"
@@ -970,7 +970,7 @@
           <div class="team-best-bets-body"
             style="width:100%; display:flex; gap:1rem; margin-left:auto; margin-right:auto; flex-wrap:wrap; justify-content: space-evenly; margin-bottom: 1rem;">
             <div *ngFor="let bet of playerBestBets; let i = index;">
-              <mat-card>
+              <mat-card class="player-best-bets-card">
                 <mat-card-header>
                   <mat-card-title class="name-link"><a class="name-link"
                       (click)="playerClicked(bet.playerId)">{{bet.playerName
