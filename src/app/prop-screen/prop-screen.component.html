@@ -168,7 +168,7 @@
                           [checked]="i == prop.index">{{bet[0].gameBookData.point}}</mat-button-toggle>
                       </mat-button-toggle-group> -->
                       {{prop[prop.index][0].gameBookData.point}}
-                      <div style="display: flex; flex-direction: column;">
+                      <div style="display: flex; flex-direction: column; gap:5px;">
                         <button style="height: 50%; min-width: min-content;" (click)="$event.stopPropagation()" 
                         mat-raised-button
                         [disabled]="prop.index == prop.length-1"
