@@ -368,7 +368,9 @@ export class NhlService {
                         }
                         pointArray.sort((a: any,b: any) => a.gameBookData.point - b.gameBookData.point)
                         teamArray.push(pointArray)
+                        
                     }
+                    teamArray.sort((a:any,b:any) => a[0].gameBookData.point - b[0].gameBookData.point)
                     if(teamArray[0][0].homeAway == "Home"){
                         homeTeamPropsFinal.push(teamArray)
                         if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
