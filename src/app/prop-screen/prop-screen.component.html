@@ -167,14 +167,14 @@
                           (change)="prop.index = i" (click)="handleClick($event)"
                           [checked]="i == prop.index">{{bet[0].gameBookData.point}}</mat-button-toggle>
                       </mat-button-toggle-group> -->
-                      <button style=" max-width: fit-content;" (click)="$event.stopPropagation()" 
+                      <button style="padding-left: 0; padding-right:0; min-width:40px; width:20px;" (click)="$event.stopPropagation()" 
                         mat-raised-button
                         [disabled]="prop.index == 0"
                         (click)="prop.index = prop.index-1">
                         <mat-icon  class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="keyboard_arrow_left"></mat-icon>
                       </button> 
                       {{prop[prop.index][0].gameBookData.point}}
-                      <button style=" max-width: fit-content;" (click)="$event.stopPropagation()" 
+                      <button style="padding-left: 0; padding-right:0; min-width:40px; width:20px;" (click)="$event.stopPropagation()" 
                       mat-raised-button
                       [disabled]="prop.index == prop.length-1"
                       (click)="prop.index = prop.index+1">
