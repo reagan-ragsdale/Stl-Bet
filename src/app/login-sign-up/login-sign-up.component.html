@@ -2,7 +2,7 @@
     <div class="form-container">
         <mat-card class="form-card">
             <mat-card-header>
-                <mat-toolbar color="primary">
+                <mat-toolbar style="border-radius:6px; background-color: #007bff; color:white;" >
                     <span>{{isLoginMode ? 'Login' : 'Sign Up'}}</span>
                 </mat-toolbar>
             </mat-card-header>
@@ -20,7 +20,7 @@
                         <mat-label>Confirm Password</mat-label>
                         <input matInput type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
                     </mat-form-field>
-                    <button mat-raised-button color="primary" type="submit" class="full-width">{{isLoginMode ? 'Login' :
+                    <button mat-raised-button style="background-color: #007bff;" type="submit" class="full-width">{{isLoginMode ? 'Login' :
                         'Sign Up'}}</button>
                     <div class="toggle-link" (click)="toggleMode()">{{isLoginMode ? signUpMessage : loginMessage}}</div>
                 </form>
