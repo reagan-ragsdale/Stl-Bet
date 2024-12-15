@@ -20,7 +20,7 @@
                         <mat-label>Confirm Password</mat-label>
                         <input matInput type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
                     </mat-form-field>
-                    <button mat-raised-button style="background-color: #007bff;" type="submit" class="full-width">{{isLoginMode ? 'Login' :
+                    <button mat-raised-button style="background-color: #007bff; color:white;" type="submit" class="full-width">{{isLoginMode ? 'Login' :
                         'Sign Up'}}</button>
                     <div class="toggle-link" (click)="toggleMode()">{{isLoginMode ? signUpMessage : loginMessage}}</div>
                 </form>
