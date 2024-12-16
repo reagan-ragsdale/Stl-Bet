@@ -47,17 +47,27 @@
             <div class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion style="width:94%">
-                        <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;">
+                        <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;" style="display:flex; flex-direction: column;">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
                                     {{displayPropTitle(prop)}}
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <!-- <div *ngFor="let team of prop">
-                                <span>{{team.teamName}}</span>
-                                <span>{{team.point}}</span>
-                                <span>{{team.price}}</span>
-                            </div> -->
+                            <div *ngFor="let team of prop">
+                                <div style="display:flex;" *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
+                                    <span>{{team.teamName}}</span>
+                                    <span>{{team.point}}</span>
+                                    <span>{{team.price}}</span>
+                                </div>
+                                <div style="display:flex;" *ngIf="prop.propType == 'total'">
+                                    <span>{{team[0].teamName}}</span>
+                                    <span>{{team[0].point}}</span>
+                                    <span>{{team[0].price}}</span>
+                                    <span>{{team[1].point}}</span>
+                                    <span>{{team[1].price}}</span>
+                                </div>
+                                
+                            </div>
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
