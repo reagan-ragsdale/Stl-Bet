@@ -8,7 +8,7 @@ import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 @Component({
   selector: 'app-prop-screen-new',
   templateUrl: './prop-screen-new.component.html',
-  styleUrls: ['./prop-screen-new.component.sass']
+  styleUrls: ['./prop-screen-new.component.scss']
 })
 export class PropScreenNewComponent implements OnInit {
 

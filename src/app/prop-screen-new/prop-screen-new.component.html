@@ -1,27 +1,27 @@
 <div class="body">
     <div class="games-list">
-
+        <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
+            <mat-chip-option *ngFor="let game of selectedSportGamesFinal" style="height:50px; width:auto;" [selectable]="false"
+                [selected]="game[0].selected" (click)="onGameClick(game[0][0].bookId)">
+                <div style="display:flex; flex-direction: column;">
+                    <div>
+                      {{game[0][0].awayTeam}} &#64; {{game[0][0].homeTeam}}
+                    </div>
+                    <div>
+                      {{game[0][0].commenceTime | getDayAndTime}}
+                    </div>
+                  </div>
+            </mat-chip-option>
+        </mat-chip-listbox>
 
     </div>
     <div class="prop-section">
         <div class="game-info">
-            <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
-                <mat-chip-option *ngFor="let game of selectedSportGamesFinal" style="height:40px; width:85%;" [selectable]="false"
-                    [selected]="game[0].selected" (click)="onGameClick(game[0][0].bookId)">
-                    <div style="display:flex; flex-direction: column;">
-                        <div>
-                          {{game[0][0].awayTeam}} &#64; {{game[0][0].homeTeam}}
-                        </div>
-                        <div>
-                          {{game[0][0].commenceTime | getDayAndTime}}
-                        </div>
-                      </div>
-                </mat-chip-option>
-            </mat-chip-listbox>
+            asd at asd
         </div>
         <div class="prop-type-section">
             <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
-                <mat-chip-option *ngFor="let prop of listOfProps" style="height:40px; width:85%;" [selectable]="false"
+                <mat-chip-option *ngFor="let prop of listOfProps" style="height:40px; width:auto;" [selectable]="false"
                     [selected]="prop.selected" (click)="onPropChange(prop.type)">
                     {{prop.type}}
                 </mat-chip-option>
