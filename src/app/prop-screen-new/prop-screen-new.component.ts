@@ -4,6 +4,7 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
 import { DbTeamInfo } from 'src/shared/dbTasks/DBTeamInfo';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
+import { NhlService } from '../Services/NhlService';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -43,6 +44,9 @@ export class PropScreenNewComponent implements OnInit {
   selectedSportGames: DbGameBookData[] = []
   selectedGame: string = ''
   selectedSportGamesFinal: any[] = []
+  teamPropFinnal: any[] = []
+  awayTeamStatsDisplay: any = []
+  homeTeamStatsDisplay: any = []
 
 
 
@@ -128,21 +132,48 @@ export class PropScreenNewComponent implements OnInit {
     selectedGameClicked[0][0].selected = true
     this.selectedPropType = this.listOfProps[0].type
 
-   // this.displayProp();
+    await this.displayProp();
   }
+  async displayProp() {
+    let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
+    this.teamPropFinnal = await NhlService.getTeamPropData(gameProps, this.allSportTeamInfo)
+    console.log("new prop array below")
+    console.log(this.teamPropFinnal)
+    this.teamPropFinnal[0].forEach((e: any) => {
+      if (e.length > 1) {
 
+      }
+      else {
+        if (e.gameBookData.marketKey == 'h2h') {
+          this.awayTeamStatsDisplay = e
+        }
+      }
+
+    })
+    this.teamPropFinnal[1].forEach((e: any) => {
+      if (e.length > 1) {
+
+      }
+      else {
+        if (e.gameBookData.marketKey == 'h2h') {
+          this.homeTeamStatsDisplay = e
+        }
+      }
+
+    })
+  }
 
 
   onPropChange(propType: string) {
     this.selectedPropType = propType
-    for(let prop of this.listOfProps){
-      if(prop.type != this.selectedPropType){
+    for (let prop of this.listOfProps) {
+      if (prop.type != this.selectedPropType) {
         prop.selected = false;
       }
-      else{
+      else {
         prop.selected = true;
       }
-      
+
     }
   }
 

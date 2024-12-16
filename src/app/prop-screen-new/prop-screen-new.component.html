@@ -1,23 +1,38 @@
 <div class="body">
     <div class="games-list">
         <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box games-list-box" aria-label="Color selection">
-            <mat-chip-option *ngFor="let game of selectedSportGamesFinal" style="height:50px; width:auto; margin-left:auto; margin-right:auto;" [selectable]="false"
+            <mat-chip-option *ngFor="let game of selectedSportGamesFinal"
+                style="height:50px; width:auto; margin-left:auto; margin-right:auto;" [selectable]="false"
                 [selected]="game[0].selected" (click)="onGameClick(game[0][0].bookId)">
                 <div style="display:flex; flex-direction: column;">
                     <div>
-                      {{game[0][0].awayTeam}} &#64; {{game[0][0].homeTeam}}
+                        {{game[0][0].awayTeam}} &#64; {{game[0][0].homeTeam}}
                     </div>
                     <div>
-                      {{game[0][0].commenceTime | getDayAndTime}}
+                        {{game[0][0].commenceTime | getDayAndTime}}
                     </div>
-                  </div>
+                </div>
             </mat-chip-option>
         </mat-chip-listbox>
 
     </div>
+    <!-- onTeamClick(homeTeamStatsDisplay.teamName) -->
     <div class="prop-section">
         <div class="game-info">
-            asd at asd
+            <a class="team-name">
+                <h2 (click)="false">{{awayTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
+            </a>
+            <h2 class="record1" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.overallWins}} -
+                {{awayTeamStatsDisplay.overallTotal - awayTeamStatsDisplay.overallWins}})</h2>
+        </div>
+        <h2 style="width: 4%; text-align: center;">&#64;</h2>
+        <div class="team-and-record">
+            <a class="team-name">
+                <h2 (click)="false">{{homeTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
+            </a>
+            <h2 class="record2" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.overallWins}} -
+                {{homeTeamStatsDisplay.overallTotal - homeTeamStatsDisplay.overallWins}})</h2>
+
         </div>
         <div class="prop-type-section">
             <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
