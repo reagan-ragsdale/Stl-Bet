@@ -135,6 +135,15 @@ export class PropScreenNewComponent implements OnInit {
 
   onPropChange(propType: string) {
     this.selectedPropType = propType
+    for(let prop of this.listOfProps){
+      if(prop.type != this.selectedPropType){
+        prop.selected = false;
+      }
+      else{
+        prop.selected = true;
+      }
+      
+    }
   }
 
 
