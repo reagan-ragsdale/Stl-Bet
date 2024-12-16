@@ -115,10 +115,10 @@ export class PropScreenNewComponent implements OnInit {
 
     }
     this.selectedSportGamesFinal.forEach(e => {
-      this.awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)
-      this.homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)
-      e[0][0].awayTeam = this.awayTeamInfo[0].teamNameAbvr;
-      e[0][0].homeTeam = this.homeTeamInfo[0].teamNameAbvr;
+      let awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)
+      let homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)
+      e[0][0].awayTeam = awayTeamInfo[0].teamNameAbvr;
+      e[0][0].homeTeam = homeTeamInfo[0].teamNameAbvr;
     })
     await this.onGameClick(this.selectedGame)
   }
@@ -129,10 +129,13 @@ export class PropScreenNewComponent implements OnInit {
     this.router.navigate([`/propsNew/${this.selectedSport}/${this.selectedGame}`])
     this.selectedSportGamesFinal.forEach(e => {
       e[0].selected = false;
+      
 
     })
     let selectedGameClicked = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
     selectedGameClicked[0][0].selected = true
+    this.awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == selectedGameClicked[0][0][0].awayTeam)
+    this.homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == selectedGameClicked[0][0][0].homeTeam)
     this.selectedPropType = this.listOfProps[0].type
 
     await this.displayProp();
@@ -142,7 +145,9 @@ export class PropScreenNewComponent implements OnInit {
     this.teamPropFinnal = await NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo)
     console.log("new prop array below")
     console.log(this.teamPropFinnal)
+    console.log([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr])
     let teamTotals = await NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)
+    console.log(teamTotals)
     this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
     this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
     
