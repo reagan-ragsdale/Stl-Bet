@@ -22,7 +22,7 @@
 }
 .prop-section{
     width:100%;
-    box-shadow: -10px 10px 5px #EEEEEE;
+    box-shadow: -6px 10px 5px #EEEEEE;
 }
 .prop-display{
     margin-top:.5rem;
@@ -46,4 +46,11 @@
 .prop-display{
     height:100%;
     width:100%;
+}
+::ng-deep .mat-expansion-panel-body{
+ padding: 10px 12px 10px !important;
+}
+.team-prop-div:hover{
+    background-color: #EEEEEE;
+    cursor: pointer;
 }

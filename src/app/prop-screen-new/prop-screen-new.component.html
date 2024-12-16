@@ -23,7 +23,8 @@
                 <a class="team-name" style="text-decoration: none;">
                     <h2 (click)="false">{{awayTeamStatsDisplay.teamName + " "}}</h2>
                 </a>
-                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.wins}}
+                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">
+                    ({{awayTeamStatsDisplay.wins}}
                     - {{awayTeamStatsDisplay.loss}} - {{awayTeamStatsDisplay.otl}})</h2>
             </div>
 
@@ -32,7 +33,8 @@
                 <a class="team-name" style="text-decoration: none;">
                     <h2 (click)="false">{{homeTeamStatsDisplay.teamName + " "}}</h2>
                 </a>
-                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.wins}}
+                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">
+                    ({{homeTeamStatsDisplay.wins}}
                     - {{homeTeamStatsDisplay.loss}} - {{homeTeamStatsDisplay.otl}})</h2>
 
             </div>
@@ -47,36 +49,40 @@
             <div class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion>
-                        <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;" style="display:flex; flex-direction: column;">
+                        <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;"
+                            style="display:flex; flex-direction: column;">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
                                     {{displayPropTitle(prop)}}
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <div *ngFor="let team of prop">
-                                <div style="display:flex;" *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
-                                    <span>{{team.teamName}}</span>
-                                    <span *ngIf="team.propType != 'h2h'" >{{team.gameBookData.point}}</span>
-                                    <span>{{team.gameBookData.price}}</span>
+                            <div style="display:flex; flex-direction: column; gap: .5rem;">
+                                <div *ngFor="let team of prop" class="team-prop-div">
+                                    <div style="display:flex;"
+                                        *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
+                                        <span>{{team.teamName}}</span>
+                                        <span *ngIf="team.propType != 'h2h'">{{team.gameBookData.point}}</span>
+                                        <span style="margin-left:auto;">{{team.gameBookData.price}}</span>
+                                    </div>
+                                    <div style="display:flex;" *ngIf="prop.propType == 'total'">
+                                        <span>{{team[0].teamName}}</span>
+                                        <span>{{team[0].gameBookData.point}}</span>
+                                        <span>{{team[0].gameBookData.price}}</span>
+                                        <span>{{team[1].gameBookData.price}}</span>
+                                    </div>
+                                    <div style="display:flex;" *ngIf="prop.propType == 'altTotal'">
+                                        <span>{{team[team.index][0].teamName}}</span>
+                                        <span>{{team[team.index][0].gameBookData.point}}</span>
+                                        <span>{{team[team.index][0].gameBookData.price}}</span>
+                                        <span>{{team[team.index][1].gameBookData.price}}</span>
+                                    </div>
+
                                 </div>
-                                <div style="display:flex;" *ngIf="prop.propType == 'total'">
-                                    <span>{{team[0].teamName}}</span>
-                                    <span>{{team[0].gameBookData.point}}</span>
-                                    <span>{{team[0].gameBookData.price}}</span>
-                                    <span>{{team[1].gameBookData.price}}</span>
-                                </div>
-                                <div style="display:flex;" *ngIf="prop.propType == 'altTotal'">
-                                    <span>{{team[team.index][0].teamName}}</span>
-                                    <span>{{team[team.index][0].gameBookData.point}}</span>
-                                    <span>{{team[team.index][0].gameBookData.price}}</span>
-                                    <span>{{team[team.index][1].gameBookData.price}}</span>
-                                </div>
-                                
                             </div>
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
-                <div class="prop-stats-panel">  
+                <div class="prop-stats-panel">
                     <!-- <h2>{{selectedProp.teamName + " " + selectedProp.propName}}</h2>
                     <div>
 
