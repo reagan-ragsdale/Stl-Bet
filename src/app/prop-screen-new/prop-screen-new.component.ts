@@ -134,8 +134,8 @@ export class PropScreenNewComponent implements OnInit {
     })
     let selectedGameClicked = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
     selectedGameClicked[0][0].selected = true
-    this.awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == selectedGameClicked[0][0][0].awayTeam)
-    this.homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == selectedGameClicked[0][0][0].homeTeam)
+    this.awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameAbvr == selectedGameClicked[0][0][0].awayTeam)
+    this.homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameAbvr == selectedGameClicked[0][0][0].homeTeam)
     this.selectedPropType = this.listOfProps[0].type
 
     await this.displayProp();
