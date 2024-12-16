@@ -56,15 +56,15 @@
                             <div *ngFor="let team of prop">
                                 <div style="display:flex;" *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
                                     <span>{{team.teamName}}</span>
-                                    <span>{{team.point}}</span>
-                                    <span>{{team.price}}</span>
+                                    <span>{{team.gameBookData.point}}</span>
+                                    <span>{{team.gameBookData.price}}</span>
                                 </div>
                                 <div style="display:flex;" *ngIf="prop.propType == 'total'">
                                     <span>{{team[0].teamName}}</span>
-                                    <span>{{team[0].point}}</span>
-                                    <span>{{team[0].price}}</span>
-                                    <span>{{team[1].point}}</span>
-                                    <span>{{team[1].price}}</span>
+                                    <span>{{team[0].gameBookData.point}}</span>
+                                    <span>{{team[0].gameBookData.price}}</span>
+                                    <span>{{team[1].gameBookData.point}}</span>
+                                    <span>{{team[1].gameBookData.price}}</span>
                                 </div>
                                 
                             </div>
