@@ -1610,7 +1610,7 @@ export class NhlService {
         finalReturn.push(awayTeamPropsFinal)
         finalReturn.push(homeTeamPropsFinal) */
         finalReturn.push(propTypeArray)
-        return finalReturn
+        return propTypeArray
     }
 
     static async getPlayerPropData(bookId: string, allTeamInfo: DbTeamInfo[]): Promise<any[]> {
