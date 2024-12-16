@@ -30,7 +30,7 @@
             <h2 style="width: 4%; text-align: center;">&#64;</h2>
             <div class="team-and-record">
                 <a class="team-name" style="text-decoration: none;">
-                    <h2 (click)="false">{{homeTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
+                    <h2 (click)="false">{{homeTeamStatsDisplay.teamName + " "}}</h2>
                 </a>
                 <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">{{homeTeamStatsDisplay.wins}}
                     - {{homeTeamStatsDisplay.loss}} - {{homeTeamStatsDisplay.otl}}</h2>
