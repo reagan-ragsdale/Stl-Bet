@@ -1,9 +1,12 @@
 .body {
+    height: calc(100vh - 60px);
     display: flex;
 }
 
 .games-list {
+    height:100%;
     width: 150px;
+    min-width:150px;
 }
 
 .games-list-box {
@@ -14,8 +17,22 @@
 .game-info{
     width:100%; 
     display:flex;
-    
+    justify-content: space-evenly;
+
 }
 .team-and-record{
     display:flex;
+}
+.team-name{
+    text-decoration: none;
+}
+.team-name:hover{
+    cursor: pointer;
+}
+.prop-type-section{
+    width: 100%;
+}
+.prop-display{
+    height:100%;
+    width:100%;
 }

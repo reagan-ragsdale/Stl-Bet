@@ -20,7 +20,7 @@
     <div class="prop-section">
         <div class="game-info">
             <div class="team-and-record">
-                <a class="team-name">
+                <a class="team-name" style="text-decoration: none;">
                     <h2 (click)="false">{{awayTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
                 </a>
                 <h2 class="record1" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.overallWins}}
@@ -29,7 +29,7 @@
 
             <h2 style="width: 4%; text-align: center;">&#64;</h2>
             <div class="team-and-record">
-                <a class="team-name">
+                <a class="team-name" style="text-decoration: none;">
                     <h2 (click)="false">{{homeTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
                 </a>
                 <h2 class="record2" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.overallWins}}
@@ -44,8 +44,8 @@
                     {{prop.type}}
                 </mat-chip-option>
             </mat-chip-listbox>
-            <div class="prop-display">
-                <!-- <div class="list-of-props">
+           <!--  <div class="prop-display">
+                <div class="list-of-props">
                     <mat-accordion style="width:94%">
                         <mat-expansion-panel *ngFor="let prop of availableProps; let i = index;">
                             <mat-expansion-panel-header>
@@ -66,8 +66,8 @@
                     <div>
 
                     </div>
-                </div> -->
-            </div>
+                </div>
+            </div> -->
         </div>
     </div>
 </div>

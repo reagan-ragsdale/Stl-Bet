@@ -21,11 +21,11 @@ export class PropScreenNewComponent implements OnInit {
 
   listOfProps: any = [
     {
-      type: 'Game Props',
+      type: 'Team Props',
       selected: true
     },
     {
-      type: 'Team Props',
+      type: 'Game Props',
       selected: false
     },
     {
@@ -136,7 +136,7 @@ export class PropScreenNewComponent implements OnInit {
   }
   async displayProp() {
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
-    this.teamPropFinnal = await NhlService.getTeamPropData(gameProps, this.allSportTeamInfo)
+    this.teamPropFinnal = await NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo)
     console.log("new prop array below")
     console.log(this.teamPropFinnal)
     this.teamPropFinnal[0].forEach((e: any) => {
@@ -161,6 +161,11 @@ export class PropScreenNewComponent implements OnInit {
       }
 
     })
+    //this.getTeamBestBets()
+  }
+
+  getTeamBestBets(){
+
   }
 
 
