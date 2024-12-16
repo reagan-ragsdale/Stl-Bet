@@ -19,20 +19,23 @@
     <!-- onTeamClick(homeTeamStatsDisplay.teamName) -->
     <div class="prop-section">
         <div class="game-info">
-            <a class="team-name">
-                <h2 (click)="false">{{awayTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
-            </a>
-            <h2 class="record1" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.overallWins}} -
-                {{awayTeamStatsDisplay.overallTotal - awayTeamStatsDisplay.overallWins}})</h2>
-        </div>
-        <h2 style="width: 4%; text-align: center;">&#64;</h2>
-        <div class="team-and-record">
-            <a class="team-name">
-                <h2 (click)="false">{{homeTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
-            </a>
-            <h2 class="record2" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.overallWins}} -
-                {{homeTeamStatsDisplay.overallTotal - homeTeamStatsDisplay.overallWins}})</h2>
+            <div class="team-and-record">
+                <a class="team-name">
+                    <h2 (click)="false">{{awayTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
+                </a>
+                <h2 class="record1" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.overallWins}}
+                    - {{awayTeamStatsDisplay.overallTotal - awayTeamStatsDisplay.overallWins}})</h2>
+            </div>
 
+            <h2 style="width: 4%; text-align: center;">&#64;</h2>
+            <div class="team-and-record">
+                <a class="team-name">
+                    <h2 (click)="false">{{homeTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
+                </a>
+                <h2 class="record2" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.overallWins}}
+                    - {{homeTeamStatsDisplay.overallTotal - homeTeamStatsDisplay.overallWins}})</h2>
+
+            </div>
         </div>
         <div class="prop-type-section">
             <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
