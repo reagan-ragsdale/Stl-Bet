@@ -1108,6 +1108,11 @@ export class NhlService {
                     
                 }
                 propTypeArray.push([awayTeamPropsFinal[0],  homeTeamPropsFinal[0]])
+                if(awayTeamPropsFinal[0][0][0].gameBookData.marketKey == 'alternate_team_totals'){
+                    propTypeArray[propTypeArray.length - 1].propType = 'altTotal'
+                    propTypeArray[propTypeArray.length - 1].index = 0
+
+                }
                 awayTeamPropsFinal = []
                 homeTeamPropsFinal = []
             }

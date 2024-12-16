@@ -21,10 +21,10 @@
         <div class="game-info">
             <div class="team-and-record">
                 <a class="team-name" style="text-decoration: none;">
-                    <h2 (click)="false">{{awayTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
+                    <h2 (click)="false">{{awayTeamStatsDisplay.teamName + " "}}</h2>
                 </a>
-                <h2 class="record1" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.overallWins}}
-                    - {{awayTeamStatsDisplay.overallTotal - awayTeamStatsDisplay.overallWins}})</h2>
+                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">{{awayTeamStatsDisplay.wins}}
+                    - {{awayTeamStatsDisplay.loss}} - {{awayTeamStatsDisplay.otl}}</h2>
             </div>
 
             <h2 style="width: 4%; text-align: center;">&#64;</h2>
@@ -32,8 +32,8 @@
                 <a class="team-name" style="text-decoration: none;">
                     <h2 (click)="false">{{homeTeamStatsDisplay.gameBookData.teamName + " "}}</h2>
                 </a>
-                <h2 class="record2" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.overallWins}}
-                    - {{homeTeamStatsDisplay.overallTotal - homeTeamStatsDisplay.overallWins}})</h2>
+                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">{{homeTeamStatsDisplay.wins}}
+                    - {{homeTeamStatsDisplay.loss}} - {{homeTeamStatsDisplay.otl}}</h2>
 
             </div>
         </div>

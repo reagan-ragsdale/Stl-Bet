@@ -5,6 +5,7 @@ import { TeamInfoController } from '../../shared/Controllers/TeamInfoController'
 import { DbTeamInfo } from 'src/shared/dbTasks/DBTeamInfo';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 import { NhlService } from '../Services/NhlService';
+import { NhlController } from 'src/shared/Controllers/NhlController';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -47,6 +48,8 @@ export class PropScreenNewComponent implements OnInit {
   teamPropFinnal: any[] = []
   awayTeamStatsDisplay: any = []
   homeTeamStatsDisplay: any = []
+  awayTeamInfo: DbTeamInfo[] = []
+  homeTeamInfo: DbTeamInfo[] = []
 
 
 
@@ -112,10 +115,10 @@ export class PropScreenNewComponent implements OnInit {
 
     }
     this.selectedSportGamesFinal.forEach(e => {
-      let awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)
-      let homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)
-      e[0][0].awayTeam = awayTeamInfo[0].teamNameAbvr;
-      e[0][0].homeTeam = homeTeamInfo[0].teamNameAbvr;
+      this.awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].awayTeam)
+      this.homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameFull == e[0][0].homeTeam)
+      e[0][0].awayTeam = this.awayTeamInfo[0].teamNameAbvr;
+      e[0][0].homeTeam = this.homeTeamInfo[0].teamNameAbvr;
     })
     await this.onGameClick(this.selectedGame)
   }
@@ -139,28 +142,10 @@ export class PropScreenNewComponent implements OnInit {
     this.teamPropFinnal = await NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo)
     console.log("new prop array below")
     console.log(this.teamPropFinnal)
-    this.teamPropFinnal[0].forEach((e: any) => {
-      if (e.length > 1) {
-
-      }
-      else {
-        if (e.gameBookData.marketKey == 'h2h') {
-          this.awayTeamStatsDisplay = e
-        }
-      }
-
-    })
-    this.teamPropFinnal[1].forEach((e: any) => {
-      if (e.length > 1) {
-
-      }
-      else {
-        if (e.gameBookData.marketKey == 'h2h') {
-          this.homeTeamStatsDisplay = e
-        }
-      }
-
-    })
+    let teamTotals = await NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)
+    this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)
+    this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)
+    
     //this.getTeamBestBets()
   }
 
