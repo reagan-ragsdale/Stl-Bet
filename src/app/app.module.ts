@@ -56,6 +56,7 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { RemoveHeading } from './customPipes/reomveHeading.pipe';
 import { GetDayAndTime } from './customPipes/getDayAndTime.pipe';
 import { ConvertGameDateToMonthDay } from './customPipes/convertGameDateToMonthDay.pipe';
+import { PropScreenNewComponent } from './prop-screen-new/prop-screen-new.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { ConvertGameDateToMonthDay } from './customPipes/convertGameDateToMonthD
         TeamStatsComponent,
         LoginScreenComponent,
         PropTrendComponent,
-        LoginSignUpComponent
+        LoginSignUpComponent,
+        PropScreenNewComponent
     ],
     providers: [
       { provide: APP_INITIALIZER, useFactory: initApp, multi: true },

@@ -157,7 +157,6 @@ export class PropScreenComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private nhlApiController: nhlApiController,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog

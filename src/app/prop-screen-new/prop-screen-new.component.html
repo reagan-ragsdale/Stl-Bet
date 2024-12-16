@@ -1,0 +1,43 @@
+<div class="body">
+    <div class="games-list">
+
+
+    </div>
+    <div class="prop-section">
+        <div class="game-info">
+
+        </div>
+        <div class="prop-type-section">
+            <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
+                <mat-chip-option *ngFor="let prop of listOfProps" style="height:40px; width:85%;" [selectable]="false"
+                    [selected]="prop.selected" (click)="onPropChange(prop.type)">
+                    {{prop.type}}
+                </mat-chip-option>
+            </mat-chip-listbox>
+            <div class="prop-display">
+                <!-- <div class="list-of-props">
+                    <mat-accordion style="width:94%">
+                        <mat-expansion-panel *ngFor="let prop of availableProps; let i = index;">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    {{prop.propName}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div *ngFor="let team of prop">
+                                <span>{{team.teamName}}</span>
+                                <span>{{team.point}}</span>
+                                <span>{{team.price}}</span>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+                <div class="prop-stats-panel">  
+                    <h2>{{selectedProp.teamName + " " + selectedProp.propName}}</h2>
+                    <div>
+
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
