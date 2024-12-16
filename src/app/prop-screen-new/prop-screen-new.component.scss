@@ -1,3 +1,13 @@
-.body{
-    display:flex;
+.body {
+    display: flex;
+}
+
+.games-list {
+    width: 150px;
+}
+
+.games-list-box {
+    overflow-y: scroll;
+    scrollbar-width: none;
+
 }
