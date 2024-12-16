@@ -23,8 +23,8 @@
                 <a class="team-name" style="text-decoration: none;">
                     <h2 (click)="false">{{awayTeamStatsDisplay.teamName + " "}}</h2>
                 </a>
-                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">{{awayTeamStatsDisplay.wins}}
-                    - {{awayTeamStatsDisplay.loss}} - {{awayTeamStatsDisplay.otl}}</h2>
+                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">({{awayTeamStatsDisplay.wins}}
+                    - {{awayTeamStatsDisplay.loss}} - {{awayTeamStatsDisplay.otl}})</h2>
             </div>
 
             <h2 style="width: 4%; text-align: center;">&#64;</h2>
@@ -32,8 +32,8 @@
                 <a class="team-name" style="text-decoration: none;">
                     <h2 (click)="false">{{homeTeamStatsDisplay.teamName + " "}}</h2>
                 </a>
-                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">{{homeTeamStatsDisplay.wins}}
-                    - {{homeTeamStatsDisplay.loss}} - {{homeTeamStatsDisplay.otl}}</h2>
+                <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">({{homeTeamStatsDisplay.wins}}
+                    - {{homeTeamStatsDisplay.loss}} - {{homeTeamStatsDisplay.otl}})</h2>
 
             </div>
         </div>
@@ -44,30 +44,30 @@
                     {{prop.type}}
                 </mat-chip-option>
             </mat-chip-listbox>
-           <!--  <div class="prop-display">
+            <div class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion style="width:94%">
-                        <mat-expansion-panel *ngFor="let prop of availableProps; let i = index;">
+                        <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
-                                    {{prop.propName}}
+                                    {{displayPropTitle(prop)}}
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <div *ngFor="let team of prop">
+                            <!-- <div *ngFor="let team of prop">
                                 <span>{{team.teamName}}</span>
                                 <span>{{team.point}}</span>
                                 <span>{{team.price}}</span>
-                            </div>
+                            </div> -->
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
                 <div class="prop-stats-panel">  
-                    <h2>{{selectedProp.teamName + " " + selectedProp.propName}}</h2>
+                    <!-- <h2>{{selectedProp.teamName + " " + selectedProp.propName}}</h2>
                     <div>
 
-                    </div>
+                    </div> -->
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </div>
