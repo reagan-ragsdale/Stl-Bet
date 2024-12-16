@@ -1590,15 +1590,15 @@ export class NhlService {
 
             homeTeamOverUnderFinal.push(homeProp)
             awayTeamOverUnderFinal.push(awayProp)
-            propTypeArray.push([homeTeamOverUnderFinal[0],awayTeamOverUnderFinal[0]])
-            propTypeArray[propTypeArray.length - 1].propType = 'total'
-            propTypeArray[propTypeArray.length - 1].overUnder = false
-            homeTeamOverUnderFinal = []
-            awayTeamOverUnderFinal = []
+            
 
         }
 
-
+        propTypeArray.push([homeTeamOverUnderFinal,awayTeamOverUnderFinal])
+        propTypeArray[propTypeArray.length - 1].propType = 'total'
+        propTypeArray[propTypeArray.length - 1].overUnder = false
+        homeTeamOverUnderFinal = []
+        awayTeamOverUnderFinal = []
 
 
         /* homeTeamPropsFinal.push(homeTeamOverUnderFinal)
