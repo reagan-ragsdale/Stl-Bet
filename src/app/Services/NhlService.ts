@@ -1110,7 +1110,6 @@ export class NhlService {
                 propTypeArray.push([awayTeamPropsFinal[0],  homeTeamPropsFinal[0]])
                 if(awayTeamPropsFinal[0][0][0].gameBookData.marketKey == 'alternate_team_totals'){
                     propTypeArray[propTypeArray.length - 1].propType = 'altTotal'
-                    propTypeArray[propTypeArray.length - 1].index = 0
 
                 }
                 awayTeamPropsFinal = []
@@ -1291,8 +1290,8 @@ export class NhlService {
         }
         
 
-        let homeTeamOverUnderFinal = []
-        let awayTeamOverUnderFinal = []
+        let homeTeamOverUnderFinal: any = []
+        let awayTeamOverUnderFinal: any = []
         for (let j = 0; j < overUnderTotalProps.length; j++) {
             let homeProp: TeamPropDto = {
                 gameBookData: overUnderTotalProps[j],
@@ -1597,11 +1596,12 @@ export class NhlService {
             
 
         }
-        homeTeamOverUnderFinal.sort((a,b) => b.gameBookData.description.localeCompare(a.gameBookData.description))
-
+        homeTeamOverUnderFinal.sort((a: any,b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+        awayTeamOverUnderFinal.sort((a: any,b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+        homeTeamOverUnderFinal.propType = 'total'
+        awayTeamOverUnderFinal.propType = 'total'
         propTypeArray.push([awayTeamOverUnderFinal,homeTeamOverUnderFinal])
         propTypeArray[propTypeArray.length - 1].propType = 'total'
-        propTypeArray[propTypeArray.length - 1].overUnder = false
         homeTeamOverUnderFinal = []
         awayTeamOverUnderFinal = []
 

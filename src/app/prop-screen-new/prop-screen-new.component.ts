@@ -51,7 +51,10 @@ export class PropScreenNewComponent implements OnInit {
   awayTeamInfo: DbTeamInfo[] = []
   homeTeamInfo: DbTeamInfo[] = []
   selectedProp: any = {}
+  selectedDisplayProp: any = {}
   showSpinner: boolean = false;
+  overUnderSlide: boolean = false;
+  index: number = 0
 
 
 
@@ -144,7 +147,7 @@ export class PropScreenNewComponent implements OnInit {
     await this.displayProp();
   }
   async displayProp() {
-    
+    this.overUnderSlide = false;
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
     let results = await Promise.all([NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo),NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)])
     this.teamPropFinnal = results[0]
@@ -153,6 +156,7 @@ export class PropScreenNewComponent implements OnInit {
     this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
     this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
     this.selectedProp = this.teamPropFinnal[0][0]
+    this.selectedDisplayProp = this.teamPropFinnal[0][0]
     this.showSpinner = false;
     
     //this.getTeamBestBets()
@@ -184,18 +188,20 @@ export class PropScreenNewComponent implements OnInit {
 
 
   onPropClicked(prop:any){
-    if(prop.length > 1){
-      if(prop[0].length > 1){
-        this.selectedProp = prop[0][0]
+    this.overUnderSlide = false;
+    this.selectedProp = prop
+    if(this.selectedProp.length > 1){
+      if(this.selectedProp[0].length > 1){
+        this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
       }
       else{
-        this.selectedProp = prop[0]
+        this.selectedDisplayProp = this.selectedProp[this.overUnderSlide ? 1 : 0]
       }
     }
     else{
-      this.selectedProp = prop;
+      this.selectedDisplayProp = this.selectedProp;
     }
-    
+
     
   }
   onPropChange(propType: string) {
@@ -209,6 +215,16 @@ export class PropScreenNewComponent implements OnInit {
       }
 
     }
+  }
+
+  updateOverUnder(){
+    if(this.selectedProp[0].length > 1){
+      this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
+    }
+    else{
+      this.selectedDisplayProp = this.selectedProp[this.overUnderSlide ? 1 : 0]
+    }
+    
   }
 
   getPropNameFromMarketKey(marketKey: string): string{
