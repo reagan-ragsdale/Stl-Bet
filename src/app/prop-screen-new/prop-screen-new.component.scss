@@ -46,6 +46,7 @@
 .prop-display{
     height:100%;
     width:100%;
+    display:flex;
 }
 ::ng-deep .mat-expansion-panel-body{
  padding: 10px 12px 10px !important;
