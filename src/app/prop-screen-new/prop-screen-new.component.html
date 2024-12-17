@@ -81,13 +81,13 @@
                                             ''}}{{team[1].gameBookData.price}}</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
-                                        <span>{{team[team.index][0].teamName}}</span>
+                                        <span>{{team[index][0].teamName}}</span>
                                         <span
                                             style="margin-left:auto;">{{team[team.index][0].gameBookData.point}}</span>
-                                        <span>{{team[team.index][0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[team.index][0].gameBookData.price}}</span>
-                                        <span>{{team[team.index][1].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[team.index][1].gameBookData.price}}</span>
+                                        <span>{{team[index][0].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[index][0].gameBookData.price}}</span>
+                                        <span>{{team[index][1].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[index][1].gameBookData.price}}</span>
                                     </div>
 
                                 </div>
@@ -99,7 +99,7 @@
                     <div class="top-prop-panel" style="display:flex; gap:.5rem; align-items:center;">
                         <h2 style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
                         <h3 style="margin-bottom:0;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
-                        <div style="display:flex;">
+                        <div style="display:flex; align-items: center; gap:.4rem;">
                             <button *ngIf="selectedDisplayProp.propType == 'altTotal'"
                             style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                             (click)="$event.stopPropagation()" mat-raised-button [disabled]="index == 0"
