@@ -108,12 +108,25 @@
                         </button>
                         <h3 style="margin-bottom:0;" *ngIf="selectedDisplayProp.propType != 'h2h'">
                             {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
-                        <button *ngIf="selectedDisplayProp.propType == 'altTotal'" style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
+                        <div>
+                            <button *ngIf="selectedDisplayProp.propType == 'altTotal'"
+                            style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
+                            (click)="$event.stopPropagation()" mat-raised-button [disabled]="index == 0"
+                            (click)="updatePropIndex('Down')">
+                            <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"
+                                fontIcon="keyboard_arrow_left"></mat-icon>
+                        </button>
+                        <h3 style="margin-bottom:0;" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                            {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
+                        
+                            <button *ngIf="selectedDisplayProp.propType == 'altTotal'" style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                             (click)="$event.stopPropagation()" mat-raised-button
                             [disabled]="index == selectedProp.length-1" (click)="updatePropIndex('Up')">
                             <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"
                                 fontIcon="keyboard_arrow_right"></mat-icon>
                         </button>
+                        </div>
+                            
                         <h3 style="margin-bottom:0;">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
                         <div *ngIf="selectedDisplayProp.propType == 'total' || selectedDisplayProp.propType == 'altTotal'"
                             style="display:flex;">
