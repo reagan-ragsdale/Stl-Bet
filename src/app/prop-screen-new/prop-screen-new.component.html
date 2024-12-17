@@ -85,9 +85,9 @@
                                         <span
                                             style="margin-left:auto;">{{team[team.index][0].gameBookData.point}}</span>
                                         <span>{{team[team.index][0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[team.index][0].gameBookData.price}}O</span>
+                                            ''}}{{team[team.index][0].gameBookData.price}}</span>
                                         <span>{{team[team.index][1].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[team.index][1].gameBookData.price}}U</span>
+                                            ''}}{{team[team.index][1].gameBookData.price}}</span>
                                     </div>
 
                                 </div>
@@ -108,7 +108,7 @@
                         </button>
                         <h3 style="margin-bottom:0;" *ngIf="selectedDisplayProp.propType != 'h2h'">
                             {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
-                        <button style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
+                        <button *ngIf="selectedDisplayProp.propType == 'altTotal'" style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                             (click)="$event.stopPropagation()" mat-raised-button
                             [disabled]="index == selectedProp.length-1" (click)="updatePropIndex('Up')">
                             <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"
