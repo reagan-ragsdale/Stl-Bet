@@ -179,6 +179,9 @@ export class PropScreenNewComponent implements OnInit {
   }
 
 
+  onPropClicked(prop:any){
+    console.log(prop)
+  }
   onPropChange(propType: string) {
     this.selectedPropType = propType
     for (let prop of this.listOfProps) {
