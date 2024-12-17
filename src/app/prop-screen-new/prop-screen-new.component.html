@@ -17,7 +17,10 @@
 
     </div>
     <!-- onTeamClick(homeTeamStatsDisplay.teamName) -->
-    <div class="prop-section">
+    <div *ngIf="showSpinner" style="height:100%; width: 100%; background-color: white;">
+        <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
+      </div>
+    <div class="prop-section" *ngIf="!showSpinner">
         <div class="game-info">
             <div class="team-and-record">
                 <a class="team-name" style="text-decoration: none;">
@@ -46,10 +49,8 @@
                     {{prop.type}}
                 </mat-chip-option>
             </mat-chip-listbox>
-            <div *ngIf="showSpinner" style="height:100%; width: 100%; background-color: white;">
-                <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
-              </div>
-            <div class="prop-display" *ngIf="!showSpinner">
+            
+            <div class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion>
                         <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;"
