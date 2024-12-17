@@ -126,6 +126,7 @@ export class PropScreenNewComponent implements OnInit {
   }
 
   async onGameClick(game: string) {
+    this.showSpinner = true;
     this.selectedGame = game;
 
     this.router.navigate([`/propsNew/${this.selectedSport}/${this.selectedGame}`])
@@ -143,7 +144,7 @@ export class PropScreenNewComponent implements OnInit {
     await this.displayProp();
   }
   async displayProp() {
-    this.showSpinner = true;
+    
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
     this.teamPropFinnal = await NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo)
     let teamTotals = await NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)
@@ -201,6 +202,7 @@ export class PropScreenNewComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.showSpinner = true;
     this.selectedPropType = this.listOfProps[0].type
     await this.initializeUrl()
     await this.initializeData()
