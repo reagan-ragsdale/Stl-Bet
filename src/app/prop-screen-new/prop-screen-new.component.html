@@ -19,7 +19,7 @@
     <!-- onTeamClick(homeTeamStatsDisplay.teamName) -->
     <div *ngIf="showSpinner" style="height:100%; width: 100%; background-color: white;">
         <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
-      </div>
+    </div>
     <div class="prop-section" *ngIf="!showSpinner">
         <div class="game-info">
             <div class="team-and-record">
@@ -49,7 +49,7 @@
                     {{prop.type}}
                 </mat-chip-option>
             </mat-chip-listbox>
-            
+
             <div class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion>
@@ -65,20 +65,29 @@
                                     <div style="display:flex; gap:1rem;"
                                         *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
                                         <span>{{team.teamName}}</span>
-                                        <span *ngIf="team.propType != 'h2h'" style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' : ''}}{{team.gameBookData.point}}</span>
-                                        <span [ngStyle]="{'margin-left': (team.propType == 'h2h') ? 'auto' : 'none'}">{{team.gameBookData.price > 0 ? '+' : ''}}{{team.gameBookData.price}}</span>
+                                        <span *ngIf="team.propType != 'h2h'"
+                                            style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' :
+                                            ''}}{{team.gameBookData.point}}</span>
+                                        <span
+                                            [ngStyle]="{'margin-left': (team.propType == 'h2h') ? 'auto' : 'none'}">{{team.gameBookData.price
+                                            > 0 ? '+' : ''}}{{team.gameBookData.price}}</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'total'">
                                         <span>{{team[0].teamName}}</span>
                                         <span style="margin-left:auto;">{{team[0].gameBookData.point}}</span>
-                                        <span>{{team[0].gameBookData.price > 0 ? '+' : ''}}{{team[0].gameBookData.price}}</span>
-                                        <span>{{team[1].gameBookData.price > 0 ? '+' : ''}}{{team[1].gameBookData.price}}</span>
+                                        <span>{{team[0].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[0].gameBookData.price}}</span>
+                                        <span>{{team[1].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[1].gameBookData.price}}</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
                                         <span>{{team[team.index][0].teamName}}</span>
-                                        <span style="margin-left:auto;">{{team[team.index][0].gameBookData.point}}</span>
-                                        <span>{{team[team.index][0].gameBookData.price > 0 ? '+' : ''}}{{team[team.index][0].gameBookData.price}}O</span>
-                                        <span>{{team[team.index][1].gameBookData.price > 0 ? '+' : ''}}{{team[team.index][1].gameBookData.price}}U</span>
+                                        <span
+                                            style="margin-left:auto;">{{team[team.index][0].gameBookData.point}}</span>
+                                        <span>{{team[team.index][0].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[team.index][0].gameBookData.price}}O</span>
+                                        <span>{{team[team.index][1].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[team.index][1].gameBookData.price}}U</span>
                                     </div>
 
                                 </div>
@@ -89,18 +98,37 @@
                 <div class="prop-stats-panel">
                     <div class="top-prop-panel" style="display:flex; gap:.5rem; align-items:center;">
                         <h2 style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
-                        <h3 style="margin-bottom:0;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
-                        <h3 style="margin-bottom:0;" *ngIf="selectedDisplayProp.propType != 'h2h'">{{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
-                        <h3 style="margin-bottom:0;">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
-                        <div *ngIf="selectedDisplayProp.propType == 'total' || selectedDisplayProp.propType == 'altTotal'" style="display:flex;">
+                        <h3 style="margin-bottom:0;">
+                            {{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
+                        <button *ngIf="selectedDisplayProp.propType == 'altTotal'"
+                            style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
+                            (click)="$event.stopPropagation()" mat-raised-button [disabled]="selectedProp.index == 0"
+                            (click)="updatePropIndex('Down')">
+                            <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"
+                                fontIcon="keyboard_arrow_left"></mat-icon>
+                        </button>
+                        <h3 style="margin-bottom:0;" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                            {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ?
+                            '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
+                        <button style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
+                            (click)="$event.stopPropagation()" mat-raised-button
+                            [disabled]="selectedProp.index == selectedProp.length-1" (click)="updatePropIndex('Up')">
+                            <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"
+                                fontIcon="keyboard_arrow_right"></mat-icon>
+                        </button>
+                        <h3 style="margin-bottom:0;">{{selectedDisplayProp.gameBookData.price > 0 ? '+' :
+                            ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
+                        <div *ngIf="selectedDisplayProp.propType == 'total' || selectedDisplayProp.propType == 'altTotal'"
+                            style="display:flex;">
                             <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
-                            <mat-slide-toggle (change)="updateOverUnder()"  [(ngModel)]="overUnderSlide"></mat-slide-toggle>
+                            <mat-slide-toggle (change)="updateOverUnder()"
+                                [(ngModel)]="overUnderSlide"></mat-slide-toggle>
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                     </div>
-                    
+
                     <div>
-                        
+
                     </div>
                 </div>
             </div>
