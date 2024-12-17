@@ -196,6 +196,7 @@ export class PropScreenNewComponent implements OnInit {
       this.selectedProp = prop;
     }
     
+    
   }
   onPropChange(propType: string) {
     this.selectedPropType = propType

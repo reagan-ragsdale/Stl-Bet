@@ -89,8 +89,11 @@
                 <div class="prop-stats-panel">
                     <h2>{{selectedProp.teamName + " " + getPropNameFromMarketKey(selectedProp.gameBookData.marketKey)}}</h2>
                     <div>
-                        {{selectedProp.gameBookData.point}}
-                        {{selectedProp.gameBookData.price}}
+                        <div *ngIf="selectedProp.propType == 'total' || selectedProp.propType == 'altTotal'">
+                            <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
+                            <mat-slide-toggle [(ngModel)]="selectedProp.overUnder"></mat-slide-toggle>
+                            <h4 style="margin-bottom: auto">Over</h4>
+                        </div>
                     </div>
                 </div>
             </div>

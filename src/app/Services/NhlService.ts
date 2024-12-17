@@ -1597,8 +1597,9 @@ export class NhlService {
             
 
         }
+        homeTeamOverUnderFinal.sort((a,b) => b.gameBookData.description.localeCompare(a.gameBookData.description))
 
-        propTypeArray.push([homeTeamOverUnderFinal,awayTeamOverUnderFinal])
+        propTypeArray.push([awayTeamOverUnderFinal,homeTeamOverUnderFinal])
         propTypeArray[propTypeArray.length - 1].propType = 'total'
         propTypeArray[propTypeArray.length - 1].overUnder = false
         homeTeamOverUnderFinal = []
