@@ -1293,7 +1293,6 @@ export class NhlService {
 
         let homeTeamOverUnderFinal = []
         let awayTeamOverUnderFinal = []
-        console.log(overUnderTotalProps)
         for (let j = 0; j < overUnderTotalProps.length; j++) {
             let homeProp: TeamPropDto = {
                 gameBookData: overUnderTotalProps[j],

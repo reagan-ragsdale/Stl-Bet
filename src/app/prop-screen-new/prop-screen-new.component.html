@@ -53,7 +53,7 @@
             <div class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion>
-                        <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;"
+                        <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;" [expanded]="i == 0"
                             style="display:flex; flex-direction: column;">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
@@ -70,13 +70,13 @@
                                     </div>
                                     <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'total'">
                                         <span>{{team[0].teamName}}</span>
-                                        <span style="margin-left:auto;">{{team[0].gameBookData.point > 0 ? '+' : ''}}{{team[0].gameBookData.point}}</span>
+                                        <span style="margin-left:auto;">{{team[0].gameBookData.point}}</span>
                                         <span>{{team[0].gameBookData.price > 0 ? '+' : ''}}{{team[0].gameBookData.price}}</span>
                                         <span>{{team[1].gameBookData.price > 0 ? '+' : ''}}{{team[1].gameBookData.price}}</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
                                         <span>{{team[team.index][0].teamName}}</span>
-                                        <span style="margin-left:auto;">{{team[team.index][0].gameBookData.point > 0 ? '+' : ''}}{{team[team.index][0].gameBookData.point}}</span>
+                                        <span style="margin-left:auto;">{{team[team.index][0].gameBookData.point}}</span>
                                         <span>{{team[team.index][0].gameBookData.price > 0 ? '+' : ''}}{{team[team.index][0].gameBookData.price}}</span>
                                         <span>{{team[team.index][1].gameBookData.price > 0 ? '+' : ''}}{{team[team.index][1].gameBookData.price}}</span>
                                     </div>
