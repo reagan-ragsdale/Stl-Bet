@@ -94,7 +94,7 @@
                         <h3 style="margin-bottom:0;">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
                         <div *ngIf="selectedDisplayProp.propType == 'total' || selectedDisplayProp.propType == 'altTotal'" style="display:flex;">
                             <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
-                            <mat-slide-toggle (ngModelChange)="updateOverUnder()" [(ngModel)]="overUnderSlide"></mat-slide-toggle>
+                            <mat-slide-toggle (change)="updateOverUnder()"  [(ngModel)]="overUnderSlide"></mat-slide-toggle>
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                     </div>
