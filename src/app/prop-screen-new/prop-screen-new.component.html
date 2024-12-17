@@ -98,26 +98,23 @@
                 <div class="prop-stats-panel">
                     <div class="top-prop-panel" style="display:flex; gap:.5rem; align-items:center;">
                         <h2 style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
-                        <h3 style="margin-bottom:0;">
-                            {{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
+                        <h3 style="margin-bottom:0;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
                         <button *ngIf="selectedDisplayProp.propType == 'altTotal'"
                             style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
-                            (click)="$event.stopPropagation()" mat-raised-button [disabled]="selectedProp.index == 0"
+                            (click)="$event.stopPropagation()" mat-raised-button [disabled]="index == 0"
                             (click)="updatePropIndex('Down')">
                             <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"
                                 fontIcon="keyboard_arrow_left"></mat-icon>
                         </button>
                         <h3 style="margin-bottom:0;" *ngIf="selectedDisplayProp.propType != 'h2h'">
-                            {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ?
-                            '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
+                            {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
                         <button style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                             (click)="$event.stopPropagation()" mat-raised-button
-                            [disabled]="selectedProp.index == selectedProp.length-1" (click)="updatePropIndex('Up')">
+                            [disabled]="index == selectedProp.length-1" (click)="updatePropIndex('Up')">
                             <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"
                                 fontIcon="keyboard_arrow_right"></mat-icon>
                         </button>
-                        <h3 style="margin-bottom:0;">{{selectedDisplayProp.gameBookData.price > 0 ? '+' :
-                            ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
+                        <h3 style="margin-bottom:0;">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
                         <div *ngIf="selectedDisplayProp.propType == 'total' || selectedDisplayProp.propType == 'altTotal'"
                             style="display:flex;">
                             <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>

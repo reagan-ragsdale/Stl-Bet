@@ -230,6 +230,20 @@ export class PropScreenNewComponent implements OnInit {
     
   }
 
+  updatePropIndex(direction: string){
+    if(direction == 'Down'){
+      if(this.index != 0){
+        this.index -= 1;
+      }
+    }
+    else{
+      if(this.index != this.selectedProp.length-1){
+        this.index += 1;
+      }
+    }
+    this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
+  }
+
   getPropNameFromMarketKey(marketKey: string): string{
     return this.listOfTeamProps[marketKey]
   }
