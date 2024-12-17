@@ -46,7 +46,10 @@
                     {{prop.type}}
                 </mat-chip-option>
             </mat-chip-listbox>
-            <div class="prop-display">
+            <div *ngIf="showSpinner" style="height:100%; width: 100%; background-color: white;">
+                <mat-spinner [mode]="'indeterminate'" style="margin:auto;"></mat-spinner>
+              </div>
+            <div class="prop-display" *ngIf="!showSpinner">
                 <div class="list-of-props">
                     <mat-accordion>
                         <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;"
