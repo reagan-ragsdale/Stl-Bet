@@ -180,6 +180,7 @@ export class PropScreenNewComponent implements OnInit {
 
 
   onPropClicked(prop:any){
+    console.log('prop below')
     console.log(prop)
   }
   onPropChange(propType: string) {
