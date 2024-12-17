@@ -144,13 +144,10 @@ export class PropScreenNewComponent implements OnInit {
   async displayProp() {
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
     this.teamPropFinnal = await NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo)
-    console.log("new prop array below")
-    console.log(this.teamPropFinnal)
-    console.log([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr])
     let teamTotals = await NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)
-    console.log(teamTotals)
     this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
     this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
+    this.selectedProp = this.teamPropFinnal[0][0]
     
     //this.getTeamBestBets()
   }
