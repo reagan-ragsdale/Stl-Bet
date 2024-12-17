@@ -184,7 +184,18 @@ export class PropScreenNewComponent implements OnInit {
 
 
   onPropClicked(prop:any){
-    this.selectedProp = prop;
+    if(prop.length > 1){
+      if(prop[0].length > 1){
+        this.selectedProp = prop[0][0]
+      }
+      else{
+        this.selectedProp = prop[0]
+      }
+    }
+    else{
+      this.selectedProp = prop;
+    }
+    
   }
   onPropChange(propType: string) {
     this.selectedPropType = propType
