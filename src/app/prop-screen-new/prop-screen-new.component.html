@@ -87,13 +87,20 @@
                     </mat-accordion>
                 </div>
                 <div class="prop-stats-panel">
-                    <h2>{{selectedProp.teamName + " " + getPropNameFromMarketKey(selectedProp.gameBookData.marketKey)}}</h2>
-                    <div>
-                        <div *ngIf="selectedProp.propType == 'total' || selectedProp.propType == 'altTotal'">
+                    <div class="top-prop-panel" style="display:flex; gap:.5rem;">
+                        <h2>{{selectedProp.teamName}}</h2>
+                        <h3>{{getPropNameFromMarketKey(selectedProp.gameBookData.marketKey)}}</h3>
+                        <h3 *ngIf="selectedProp.propType != 'h2h'">{{(selectedProp.propType == 'spread') ? (selectedProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedProp.gameBookData.point}}</h3>
+                        <h3>{{selectedProp.gameBookData.price > 0 ? '+' : ''}}{{selectedProp.gameBookData.price}}</h3>
+                        <div *ngIf="selectedProp.propType == 'total' || selectedProp.propType == 'altTotal'" style="display:flex;">
                             <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
                             <mat-slide-toggle [(ngModel)]="selectedProp.overUnder"></mat-slide-toggle>
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
+                    </div>
+                    
+                    <div>
+                        
                     </div>
                 </div>
             </div>
