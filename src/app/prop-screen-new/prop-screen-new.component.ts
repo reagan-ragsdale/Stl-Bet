@@ -50,6 +50,7 @@ export class PropScreenNewComponent implements OnInit {
   homeTeamStatsDisplay: any = []
   awayTeamInfo: DbTeamInfo[] = []
   homeTeamInfo: DbTeamInfo[] = []
+  selectedProp: any = {}
 
 
 
@@ -180,8 +181,7 @@ export class PropScreenNewComponent implements OnInit {
 
 
   onPropClicked(prop:any){
-    console.log('prop below')
-    console.log(prop)
+    this.selectedProp = prop;
   }
   onPropChange(propType: string) {
     this.selectedPropType = propType
@@ -196,6 +196,9 @@ export class PropScreenNewComponent implements OnInit {
     }
   }
 
+  getPropNameFromMarketKey(marketKey: string): string{
+    return this.listOfTeamProps[marketKey]
+  }
 
   async ngOnInit() {
     this.selectedPropType = this.listOfProps[0].type
