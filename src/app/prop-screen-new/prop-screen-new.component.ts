@@ -51,6 +51,7 @@ export class PropScreenNewComponent implements OnInit {
   awayTeamInfo: DbTeamInfo[] = []
   homeTeamInfo: DbTeamInfo[] = []
   selectedProp: any = {}
+  showSpinner: boolean = false;
 
 
 
@@ -142,12 +143,14 @@ export class PropScreenNewComponent implements OnInit {
     await this.displayProp();
   }
   async displayProp() {
+    this.showSpinner = true;
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
     this.teamPropFinnal = await NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo)
     let teamTotals = await NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)
     this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
     this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
     this.selectedProp = this.teamPropFinnal[0][0]
+    this.showSpinner = false;
     
     //this.getTeamBestBets()
   }
