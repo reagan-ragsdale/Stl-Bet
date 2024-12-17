@@ -58,21 +58,21 @@
                             </mat-expansion-panel-header>
                             <div style="display:flex; flex-direction: column; gap: .5rem;">
                                 <div *ngFor="let team of prop" class="team-prop-div">
-                                    <div style="display:flex;"
+                                    <div style="display:flex; gap:1rem;"
                                         *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
                                         <span>{{team.teamName}}</span>
-                                        <span *ngIf="team.propType != 'h2h'">{{team.gameBookData.point}}</span>
-                                        <span style="margin-left:auto;">{{team.gameBookData.price}}</span>
+                                        <span *ngIf="team.propType != 'h2h'" style="margin-left:auto;">{{team.gameBookData.point}}</span>
+                                        <span [ngStyle]="{'margin-left': (team.propType == 'h2h') ? 'auto' : 'none'}">{{team.gameBookData.price}}</span>
                                     </div>
-                                    <div style="display:flex;" *ngIf="prop.propType == 'total'">
+                                    <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'total'">
                                         <span>{{team[0].teamName}}</span>
-                                        <span>{{team[0].gameBookData.point}}</span>
+                                        <span style="margin-left:auto;">{{team[0].gameBookData.point}}</span>
                                         <span>{{team[0].gameBookData.price}}</span>
                                         <span>{{team[1].gameBookData.price}}</span>
                                     </div>
-                                    <div style="display:flex;" *ngIf="prop.propType == 'altTotal'">
+                                    <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
                                         <span>{{team[team.index][0].teamName}}</span>
-                                        <span>{{team[team.index][0].gameBookData.point}}</span>
+                                        <span style="margin-left:auto;">{{team[team.index][0].gameBookData.point}}</span>
                                         <span>{{team[team.index][0].gameBookData.price}}</span>
                                         <span>{{team[team.index][1].gameBookData.price}}</span>
                                     </div>
