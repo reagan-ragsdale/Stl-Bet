@@ -148,6 +148,7 @@ export class PropScreenNewComponent implements OnInit {
   }
   async displayProp() {
     this.overUnderSlide = false;
+    this.index = 0;
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
     let results = await Promise.all([NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo),NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)])
     this.teamPropFinnal = results[0]
@@ -189,6 +190,7 @@ export class PropScreenNewComponent implements OnInit {
 
   onPropClicked(prop:any){
     this.overUnderSlide = false;
+    this.index = 0;
     this.selectedProp = prop
     if(this.selectedProp.length > 1){
       if(this.selectedProp[0].length > 1){
