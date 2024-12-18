@@ -138,10 +138,20 @@ mat-slide-toggle {
     width:100%;
     padding-top:.5rem;
 }
-.records{
+.records-all{
     width:max-content;
     display:grid;
     grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    background-color: #f0f0f0;
+    padding: .5rem 1rem;
+    border-radius: 6px;
+}
+.records-h2h{
+    width:max-content;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
     background-color: #f0f0f0;
