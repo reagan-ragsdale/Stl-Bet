@@ -127,9 +127,21 @@
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                     </div>
-
-                    <div>
-
+                    <div class="stat-body">
+                        <div class="records">
+                            <div class="record-columns">
+                                <h3>Overall</h3>
+                                <h4>{{selectedDisplayProp.overallWins}} - {{selectedDisplayProp.overalTotal - selectedDisplayProp.overallWins}}</h4>
+                            </div>
+                            <div class="record-columns">
+                                <h3>{{selectedDisplayProp.homeAway}}</h3>
+                                <h4>{{selectedDisplayProp.homeAwayWins}} - {{selectedDisplayProp.homeAwayTotal - selectedDisplayProp.homeAwayWins}}</h4>
+                            </div>
+                            <div class="record-columns">
+                                <h3>Vs {{selectedDisplayProp.teamAgainstName}}</h3>
+                                <h4>{{selectedDisplayProp.teamWins}} - {{selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins}}</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
