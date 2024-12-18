@@ -129,7 +129,7 @@
                     </div>
                     <div class="stat-body">
                         <div class="records">
-                                <div class="stat-div">
+                                <div class="stat-div" style="grid-column-start: 2;">
                                     <h4>Record</h4>
                                 </div>
                                 <div class="stat-div">
@@ -149,27 +149,21 @@
                                 </div>
                                 <h3 style="font-weight: bold;">Overall</h3>
                                 <div class="stat-div">
-                                    <h4>Record</h4>
                                     <h4>{{selectedDisplayProp.overallWins}} - {{selectedDisplayProp.overallTotal - selectedDisplayProp.overallWins}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>Chance</h4>
                                     <h4>{{selectedDisplayProp.overallChance | percent: '2.2-2'}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>Weighted</h4>
                                     <h4>{{selectedDisplayProp.overallWeighted | percent: '2.2-2'}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>Avg</h4>
                                     <h4>{{selectedDisplayProp.averageOverall | number: '1.2-2'}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>High</h4>
                                     <h4>{{selectedDisplayProp.highOverall | number: '1.2-2'}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>Low</h4>
                                     <h4>{{selectedDisplayProp.lowOverall | number: '1.2-2'}}</h4>
                                 </div>
                                 <h3 style="font-weight: bold;">{{selectedDisplayProp.homeAway}}</h3>
