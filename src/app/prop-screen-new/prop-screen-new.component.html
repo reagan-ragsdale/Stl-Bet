@@ -129,7 +129,28 @@
                     </div>
                     <div class="stat-body">
                         <div class="records">
-                            <div class="record-columns">
+                            <div class="record-column-0">
+                                <h3 style="font-weight: bold;">Overall</h3>
+                                <div class="stat-div">
+                                    <h4>Record</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>Chance</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>Weighted</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>Avg</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>High</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>Low</h4>
+                                </div>
+                            </div>
+                            <div class="record-column-1">
                                 <h3 style="font-weight: bold;">Overall</h3>
                                 <div class="stat-div">
                                     <h4>Record</h4>
@@ -156,7 +177,7 @@
                                     <h4>{{selectedDisplayProp.lowOverall | number: '1.2-2'}}</h4>
                                 </div>
                             </div>
-                            <div class="record-columns">
+                            <div class="record-column-2">
                                 <h3 style="font-weight: bold;">{{selectedDisplayProp.homeAway}}</h3>
                                 <div class="stat-div">
                                     <h4>Record</h4>
@@ -184,14 +205,14 @@
                                 </div>
                                 
                             </div>
-                            <div class="record-columns">
+                            <div class="record-column-3">
                                 <h3 style="font-weight: bold;">Vs {{selectedDisplayProp.teamAgainstName}}</h3>
                                 <div class="stat-div">
                                     <h4>Record</h4>
                                     <h4>{{selectedDisplayProp.teamWins}} - {{selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>Record</h4>
+                                    <h4>Chance</h4>
                                     <h4>{{selectedDisplayProp.teamChance | percent: '2.2-2'}}</h4>
                                 </div>
                                 <div class="stat-div">
