@@ -116,9 +116,12 @@ h3 {
 }
 
 /* Add spacing between the prop name, price, and toggle */
-.top-prop-panel h3, .toggle-container h4 {
-    //border-left: 1px solid #ddd;
-    //padding-left: 1rem;
+.top-prop-panel h3 {
+    border-left: 1px solid #ddd;
+    padding-left: 1rem;
+}
+.buttons h3{
+    border-left:none;
 }
 
 /* Button styling for hovered/active states */
