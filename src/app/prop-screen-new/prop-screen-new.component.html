@@ -99,7 +99,7 @@
                     <div class="top-prop-panel">
                         <h2 style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
                         <h3 class="prop-type" style="margin-bottom:0;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
-                        <div class="buttons" style="display:flex; align-items: center; gap:.4rem;">
+                        <div *ngIf="selectedDisplayProp.propType != 'h2h'" class="buttons" style="display:flex; align-items: center; gap:.4rem;">
                             <button *ngIf="selectedDisplayProp.propType == 'altTotal'"
                             style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                             (click)="$event.stopPropagation()" mat-raised-button [disabled]="index == 0"

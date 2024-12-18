@@ -10,6 +10,8 @@
 }
 
 .games-list-box {
+    height:100%;
+    padding-bottom:1rem;
     overflow-y: scroll;
     scrollbar-width: none;
 
@@ -42,6 +44,7 @@
 .prop-type-section{
     width: 100%;
     padding-left:.5rem;
+    padding-top:.5rem;
 }
 .prop-display{
     height:100%;
@@ -114,8 +117,8 @@ h3 {
 
 /* Add spacing between the prop name, price, and toggle */
 .top-prop-panel h3, .toggle-container h4 {
-    border-left: 1px solid #ddd;
-    padding-left: 1rem;
+    //border-left: 1px solid #ddd;
+    //padding-left: 1rem;
 }
 
 /* Button styling for hovered/active states */
