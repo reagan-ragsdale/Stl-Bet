@@ -52,7 +52,7 @@
 
             <div class="prop-display">
                 <div class="list-of-props">
-                    <mat-accordion>
+                    <mat-accordion style="display: flex; width: max-content;flex-direction: column;">
                         <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;" [expanded]="i == 0"
                             style="display:flex; flex-direction: column;">
                             <mat-expansion-panel-header>
