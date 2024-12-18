@@ -58,3 +58,71 @@
 .prop-stats-panel{
     padding-left: 1rem;
 }
+
+
+
+
+.top-prop-panel {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background-color: #f0f0f0; /* Light background color */
+    padding: 0.5rem 1rem; /* Add padding inside the bar */
+    border-radius: 8px; /* Rounded corners for the entire panel */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
+    border: 1px solid #ddd; /* Slight border around the whole panel */
+}
+
+h2, h3, h4 {
+    margin: 0; /* Remove default margins */
+    padding: 0;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-right: 1px solid #ddd; /* Border between buttons and the next section */
+    padding-right: 1rem;
+}
+
+.buttons button {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 40px;
+    width: 20px;
+}
+
+h3 {
+    margin-bottom: 0;
+}
+
+h3, .buttons, .toggle-container {
+    padding: 0 1rem;
+    border-left: 1px solid #ddd; /* Border between elements */
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toggle-container h4 {
+    margin-bottom: 0;
+}
+
+/* Add spacing between the prop name, price, and toggle */
+.top-prop-panel h3, .toggle-container h4 {
+    border-left: 1px solid #ddd;
+    padding-left: 1rem;
+}
+
+/* Button styling for hovered/active states */
+button:hover {
+    background-color: #e0e0e0;
+}
+
+mat-slide-toggle {
+    margin: 0 1rem;
+}
