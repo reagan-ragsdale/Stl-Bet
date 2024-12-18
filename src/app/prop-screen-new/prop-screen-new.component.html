@@ -138,13 +138,13 @@
                                 <div class="stat-div">
                                     <h4>Weighted</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>Avg</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>High</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>Low</h4>
                                 </div>
                                 <h3 style="font-weight: bold; border-bottom: 1px solid #ddd;">Overall</h3>
@@ -157,13 +157,13 @@
                                 <div class="stat-div">
                                     <h4>{{selectedDisplayProp.overallWeighted | percent: '2.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.averageOverall | number: '1.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.highOverall | number: '1.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.lowOverall | number: '1.2-2'}}</h4>
                                 </div>
                                 <h3 style="font-weight: bold; border-bottom: 1px solid #ddd;">{{selectedDisplayProp.homeAway}}</h3>
@@ -176,13 +176,13 @@
                                 <div class="stat-div">
                                     <h4>{{selectedDisplayProp.homeAwayWeighted | percent: '2.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.averageHomeAway | number: '1.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.highHomeAway | number: '1.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.lowHomeAway | number: '1.2-2'}}</h4>
                                 </div>
                                 
@@ -196,13 +196,13 @@
                                 <div class="stat-div">
                                     <h4>{{selectedDisplayProp.teamWeighted | percent: '2.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.averageTeam | number: '1.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.highTeam | number: '1.2-2'}}</h4>
                                 </div>
-                                <div class="stat-div">
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.lowTeam | number: '1.2-2'}}</h4>
                                 </div>
                         </div>
