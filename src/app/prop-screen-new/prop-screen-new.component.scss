@@ -137,6 +137,9 @@ mat-slide-toggle {
 .stat-body{
     width:100%;
     padding-top:.5rem;
+    box-shadow: 0 2px 4px #0000001a;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 .records-all{
     width:max-content;
@@ -146,7 +149,7 @@ mat-slide-toggle {
     grid-auto-rows: minmax(auto, auto);
     background-color: #f0f0f0;
     padding: .5rem 1rem;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 .records-h2h{
     width:max-content;
