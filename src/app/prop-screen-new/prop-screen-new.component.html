@@ -131,15 +131,25 @@
                         <div class="records">
                             <div class="record-columns">
                                 <h3>Overall</h3>
-                                <h4>{{selectedDisplayProp.overallWins}} - {{selectedDisplayProp.overallTotal - selectedDisplayProp.overallWins}}</h4>
+                                <div class="stat-div">
+                                    <h4>Record</h4>
+                                    <h4>{{selectedDisplayProp.overallWins}} - {{selectedDisplayProp.overallTotal - selectedDisplayProp.overallWins}}</h4>
+                                </div>
                             </div>
                             <div class="record-columns">
                                 <h3>{{selectedDisplayProp.homeAway}}</h3>
-                                <h4>{{selectedDisplayProp.homeAwayWins}} - {{selectedDisplayProp.homeAwayTotal - selectedDisplayProp.homeAwayWins}}</h4>
+                                <div class="stat-div">
+                                    <h4>Record</h4>
+                                    <h4>{{selectedDisplayProp.homeAwayWins}} - {{selectedDisplayProp.homeAwayTotal - selectedDisplayProp.homeAwayWins}}</h4>
+                                </div>
+                                
                             </div>
                             <div class="record-columns">
                                 <h3>Vs {{selectedDisplayProp.teamAgainstName}}</h3>
-                                <h4>{{selectedDisplayProp.teamWins}} - {{selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins}}</h4>
+                                <div class="stat-div">
+                                    <h4>Record</h4>
+                                    <h4>{{selectedDisplayProp.teamWins}} - {{selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins}}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>

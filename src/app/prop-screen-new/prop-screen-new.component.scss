@@ -74,6 +74,7 @@
     border-radius: 8px; /* Rounded corners for the entire panel */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
     border: 1px solid #ddd; /* Slight border around the whole panel */
+    width: fit-content;
 }
 
 h2, h3, h4 {
@@ -146,5 +147,11 @@ mat-slide-toggle {
     border-radius: 6px;
 }
 .records-columns{
-    padding: .5rem .5rem
+    padding: .5rem;
+}
+.record-columns h3{
+    border-bottom: 1px solid #ddd;
+}
+.stat-div{
+    border-bottom:1px solid #ddd;
 }
