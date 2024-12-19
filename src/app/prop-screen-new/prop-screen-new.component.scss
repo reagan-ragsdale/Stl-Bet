@@ -192,3 +192,14 @@ mat-slide-toggle {
     grid-column: 1 / 8;
   grid-row: 4 / 5;
 }
+.trends{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background-color: #f0f0f0; /* Light background color */
+    padding: 0.5rem 1rem; /* Add padding inside the bar */
+    border-radius: 8px; /* Rounded corners for the entire panel */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
+    border: 1px solid #ddd; /* Slight border around the whole panel */
+    width: fit-content;
+}
