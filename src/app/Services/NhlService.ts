@@ -243,6 +243,7 @@ export class NhlService {
                                 last10Overall: [],
                                 last10HomeAway: [],
                                 last10Team: [],
+                                trends: []
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -429,6 +430,7 @@ export class NhlService {
                         last10Overall: [],
                         last10HomeAway: [],
                         last10Team: [],
+                        trends: []
                     }
                     propReturn.overallTotal = teamStats.length;
                     propReturn.homeAwayTotal = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).length;
@@ -600,6 +602,7 @@ export class NhlService {
                 last10Overall: [],
                 last10HomeAway: [],
                 last10Team: [],
+                trends: []
             }
             let awayProp: TeamPropDto = {
                 gameBookData: overUnderTotalProps[j],
@@ -636,6 +639,7 @@ export class NhlService {
                 last10Overall: [],
                 last10HomeAway: [],
                 last10Team: [],
+                trends: []
             }
             let teamStats: DbNhlTeamGameStats[] = []
             //do home first
@@ -971,6 +975,7 @@ export class NhlService {
                                 last10Overall: [],
                                 last10HomeAway: [],
                                 last10Team: [],
+                                trends: []
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -1197,6 +1202,7 @@ export class NhlService {
                         last10Overall: [],
                         last10HomeAway: [],
                         last10Team: [],
+                        trends: []
                     }
 
                     let teamAgainstOverallTotal = teamAgainstStats.length
@@ -1217,6 +1223,32 @@ export class NhlService {
                         teamAgainstOverallWins = teamAgainstStats.filter(e => e.result == 'W').length;
                         teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.result == 'W' && e.homeOrAway != propReturn.homeAway).length;
                         teamAgainstTeamWins = teamAgainstStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamId).length;
+                        let backToBackWinCount = 0
+                        let backToBackWinTotal = 0
+                        if(propReturn.homeAway == 'Home' && isHomeBackToBack){
+                            for(let i = teamStats.length - 1; i > 1; i--){
+                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i - 1].gameDate))){
+                                    backToBackWinTotal++;
+                                    if(teamStats[i].result == 'W'){
+                                        backToBackWinCount++;
+                                    }
+                                }
+                            }
+                        }
+                        else if(propReturn.homeAway == 'Away' && isAwayBackToBack){
+                            for(let i = teamStats.length - 1; i > 1; i--){
+                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i - 1].gameDate))){
+                                    backToBackWinTotal++;
+                                    if(teamStats[i].result == 'W'){
+                                        backToBackWinCount++;
+                                    }
+                                }
+                            }
+                        }
+                        let backToBackWinChance = backToBackWinTotal == 0 ? 0 : backToBackWinCount / backToBackWinTotal
+                        if(backToBackWinTotal > 0){
+                            propReturn.trends.push(propReturn.teamName + ' wins ' + (backToBackWinChance * 100).toFixed(2) + '% of 2nd back to back games.')
+                        }
                         
 
                         for (let j = 0; j < teamStats.length; j++) {
@@ -1394,6 +1426,7 @@ export class NhlService {
                 last10Overall: [],
                 last10HomeAway: [],
                 last10Team: [],
+                trends: []
             }
             let awayProp: TeamPropDto = {
                 gameBookData: overUnderTotalProps[j],
@@ -1430,6 +1463,7 @@ export class NhlService {
                 last10Overall: [],
                 last10HomeAway: [],
                 last10Team: [],
+                trends: []
             }
             let teamStats: DbNhlTeamGameStats[] = []
             let teamAgainstStats: DbNhlTeamGameStats[] = []
@@ -2425,6 +2459,8 @@ export class NhlService {
         // Check if the difference is exactly one day
         return diffInMilliseconds === oneDayInMilliseconds;
     }
+
+
 
 
 }
