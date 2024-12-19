@@ -1016,6 +1016,9 @@ export class NhlService {
                                     let totalOverall = teamStats.map(e => (e.pointsScoredOverall))
                                     let totalHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsScoredOverall))
                                     let totalTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsScoredOverall))
+                                    teamAgainstOverallChance = teamAgainstOverallTotal == 0 ? 0 : teamAgainstOverallWins / teamAgainstOverallTotal
+                                    teamAgainstHomeAwayChance = teamAgainstHomeAwayTotal == 0 ? 0 : teamAgainstHomeAwayWins / teamAgainstHomeAwayTotal
+                                    teamAgasintTeamChance = teamAgainstTeamTotal == 0 ? 0 : teamAgainstTeamWins / teamAgainstTeamTotal
                                     teamProp.lowOverall = totalOverall.length > 0 ? Math.min(...totalOverall) : 0
                                     teamProp.highOverall = totalOverall.length > 0 ? Math.max(...totalOverall) : 0
                                     teamProp.lowHomeAway = totalHomeAway.length > 0 ? Math.min(...totalHomeAway) : 0
