@@ -1522,9 +1522,9 @@ export class NhlService {
                 teamAgainstOverallTotal = teamAgainstStats.length
                 teamAgainstHomeAwayTotal = teamAgainstStats.filter(e => e.homeOrAway != awayProp.homeAway).length
                 teamAgainstTeamTotal = teamAgainstStats.filter(e => e.teamAgainstId == awayProp.teamId).length
-                teamAgainstOverallWins = teamAgainstStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length
-                teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != awayProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length
-                teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == awayProp.teamId && (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length
+                teamAgainstOverallWins = teamAgainstStats.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length
+                teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != awayProp.homeAway && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length
+                teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == awayProp.teamId && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length
                 for (let j = 0; j < teamStats.length; j++) {
                     overAllTableTemp.push({
                         teamAgainstName: teamStats[j].teamAgainstName,
