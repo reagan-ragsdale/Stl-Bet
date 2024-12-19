@@ -207,7 +207,7 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="trends">
+                    <div *ngIf="selectedDisplayProp.trends.length > 0" class="trends">
                         <h3 *ngFor="let trend of selectedDisplayProp.trends">{{trend}}</h3>
                     </div>
                 </div>
