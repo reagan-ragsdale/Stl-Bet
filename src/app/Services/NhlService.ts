@@ -1371,9 +1371,9 @@ export class NhlService {
                     propReturn.overallChance = propReturn.overallTotal == 0 ? 0 : propReturn.overallWins / propReturn.overallTotal
                     propReturn.homeAwayChance = propReturn.homeAwayTotal == 0 ? 0 : propReturn.homeAwayWins / propReturn.homeAwayTotal
                     propReturn.teamChance = propReturn.teamTotal == 0 ? 0 : propReturn.teamWins / propReturn.teamTotal
-                    propReturn.overallWeighted = (propReturn.overallChance * (1 - teamAgainstOverallChance)) / ((propReturn.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * ( 1 - propReturn.overallChance)))
-                    propReturn.homeAwayWeighted = (propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * ( 1 - propReturn.homeAwayChance)))
-                    propReturn.teamWeighted = (propReturn.teamChance * (1 - teamAgasintTeamChance)) / ((propReturn.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * ( 1 - propReturn.teamChance)))
+                    propReturn.overallWeighted = ((propReturn.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * ( 1 - propReturn.overallChance))) == 0 ? 0 : (propReturn.overallChance * (1 - teamAgainstOverallChance)) / ((propReturn.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * ( 1 - propReturn.overallChance)))
+                    propReturn.homeAwayWeighted = ((propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * ( 1 - propReturn.homeAwayChance))) == 0 ? 0 : (propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * ( 1 - propReturn.homeAwayChance)))
+                    propReturn.teamWeighted = ((propReturn.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * ( 1 - propReturn.teamChance))) == 0 ? 0 : (propReturn.teamChance * (1 - teamAgasintTeamChance)) / ((propReturn.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * ( 1 - propReturn.teamChance)))
                     propReturn.last10Overall = overAllTableTemp.slice(0, 10)
                     propReturn.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                     propReturn.last10Team = teamTableTemp.slice(0, 10)
