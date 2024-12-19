@@ -1235,7 +1235,10 @@ export class NhlService {
                                 }
                             }
                         }
-                        else if(propReturn.homeAway == 'Away' && isAwayBackToBack){
+                        else if(propReturn.homeAway == 'Home' && isAwayBackToBack){
+
+                        }
+                        if(propReturn.homeAway == 'Away' && isAwayBackToBack){
                             for(let i = 0; i < teamStats.length - 2; i++){
                                 if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))){
                                     backToBackWinTotal++;
@@ -1245,6 +1248,9 @@ export class NhlService {
                                 }
                             }
                         }
+                        else if(propReturn.homeAway == 'Away' && isHomeBackToBack){
+                            
+                        }
                         let backToBackWinChance = backToBackWinTotal == 0 ? 0 : backToBackWinCount / backToBackWinTotal
                         if(backToBackWinTotal > 0){
 
@@ -1253,7 +1259,7 @@ export class NhlService {
                                 backToBackWinChance = 1 - backToBackWinChance
                                 winLose = ' loses '
                             }
-                            propReturn.trends.push('Back To Back Game: ' + propReturn.teamName + winLose + (backToBackWinChance * 100).toFixed(2) + '% of 2nd back to back games.')
+                            propReturn.trends.push('Back To Back Game: ' + propReturn.teamName + winLose + (backToBackWinChance * 100).toFixed(2) + '% of 2nd games in a back to back series.')
                         }
                         
 
