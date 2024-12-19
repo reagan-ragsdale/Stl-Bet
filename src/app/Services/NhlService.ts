@@ -889,6 +889,9 @@ export class NhlService {
         let homeTeam = teamsInfo.filter(e => e.teamNameFull == props[0].homeTeam)[0]
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
         let teamStatsCombined = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([homeTeam.teamNameAbvr, awayTeam.teamNameAbvr], 2024)
+        let currentDate = new Date()
+        let isHomeBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), currentDate)
+        let isAwayBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), currentDate)
         for (let i = 0; i < teamStatsCombined.length; i++) {
             teamStatsCombined[i].gameDate = reusedFunctions.convertGameDateToMonthDay(teamStatsCombined[i].gameDate)
         }
@@ -902,9 +905,7 @@ export class NhlService {
             return e.teamName == 'Both';
         })
 
-        let currentDate = new Date()
-        let isHomeBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), currentDate)
-        let isAwayBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), currentDate)
+        
 
         console.log([isHomeBackToBack,isAwayBackToBack])
         let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v,i,a) => a.indexOf(v) === i)
