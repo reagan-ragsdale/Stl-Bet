@@ -1226,8 +1226,8 @@ export class NhlService {
                         let backToBackWinCount = 0
                         let backToBackWinTotal = 0
                         if(propReturn.homeAway == 'Home' && isHomeBackToBack){
-                            for(let i = teamStats.length - 1; i > 1; i--){
-                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i - 1].gameDate))){
+                            for(let i = 0; i < teamStats.length - 2; i++){
+                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))){
                                     backToBackWinTotal++;
                                     if(teamStats[i].result == 'W'){
                                         backToBackWinCount++;
@@ -1236,8 +1236,8 @@ export class NhlService {
                             }
                         }
                         else if(propReturn.homeAway == 'Away' && isAwayBackToBack){
-                            for(let i = teamStats.length - 1; i > 1; i--){
-                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i - 1].gameDate))){
+                            for(let i = 0; i < teamStats.length - 2; i++){
+                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))){
                                     backToBackWinTotal++;
                                     if(teamStats[i].result == 'W'){
                                         backToBackWinCount++;
