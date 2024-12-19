@@ -902,6 +902,11 @@ export class NhlService {
             return e.teamName == 'Both';
         })
 
+        let currentDate = new Date()
+        let isHomeBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), currentDate)
+        let isAwayBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), currentDate)
+
+        console.log([isHomeBackToBack,isAwayBackToBack])
         let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v,i,a) => a.indexOf(v) === i)
         for(let i = 0; i < distinctTeamProps.length; i++){
             //let 
@@ -2401,6 +2406,19 @@ export class NhlService {
             playerName = 'Patrick Maroon'
         }
         return playerName
+    }
+
+
+    static isBackToBackGame(game1: Date, game2: Date): boolean{
+        const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));
+        const normalizedDate2 = new Date(Date.UTC(game2.getUTCFullYear(), game2.getUTCMonth(), game2.getUTCDate()));
+
+        // Calculate the difference in days
+        const diffInMilliseconds = Math.abs(normalizedDate1.getTime() - normalizedDate2.getTime());
+        const oneDayInMilliseconds = 1000 * 60 * 60 * 24; // Milliseconds in a day
+
+        // Check if the difference is exactly one day
+        return diffInMilliseconds === oneDayInMilliseconds;
     }
 
 

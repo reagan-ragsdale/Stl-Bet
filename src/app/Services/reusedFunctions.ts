@@ -281,6 +281,21 @@ export class reusedFunctions {
     return finalThing
   }
 
+  static convertToDateFromStringToDate(dateString: string): Date {
+    // Ensure the input string is exactly 8 characters
+    if (dateString.length !== 8) {
+      throw new Error("Invalid date format. Expected 'yyyymmdd'.");
+    }
+  
+    // Extract year, month, and day from the date string
+    const year = parseInt(dateString.substring(0, 4), 10); // 'yyyy'
+    const month = parseInt(dateString.substring(4, 6), 10) - 1; // 'mm' (months are 0-indexed in JavaScript)
+    const day = parseInt(dateString.substring(6, 8), 10); // 'dd'
+  
+    // Return the Date object
+    return new Date(year, month, day);
+  }
+
   
 
 }
