@@ -243,5 +243,5 @@ mat-slide-toggle {
     cursor: pointer;
 }
 ::ng-deep .list-of-props .mdc-evolution-chip__action--primary{
-    padding-right:0;
+    padding-right:0 !important;
 }
