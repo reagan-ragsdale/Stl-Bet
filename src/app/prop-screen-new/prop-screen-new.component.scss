@@ -26,9 +26,7 @@
     width:100%;
     box-shadow: -6px 10px 5px #EEEEEE;
 }
-.prop-display{
-    margin-top:.5rem;
-}
+
 .list-of-props{
     width: fit-content;
 }
@@ -50,6 +48,7 @@
     height:100%;
     width:100%;
     display:flex;
+    margin-top:1rem;
 }
 ::ng-deep .mat-expansion-panel-body{
  padding: 10px 12px 10px !important;
