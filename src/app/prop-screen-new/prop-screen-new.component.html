@@ -222,22 +222,22 @@
                                 
                                 <h3 style="font-weight: bold;">Vs {{selectedDisplayProp.teamAgainstName}}</h3>
                                 <div class="last-stat-div">
-                                    <h4>{{selectedDisplayProp.teamWins}} - {{selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins}}</h4>
+                                    <h4>{{selectedDisplayProp.totalTeam == 0 ? '--' : (selectedDisplayProp.teamWins + '-' + (selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins))}}</h4>
                                 </div>
                                 <div class="last-stat-div">
-                                    <h4>{{selectedDisplayProp.teamChance | percent: '2.2-2'}}</h4>
+                                    <h4>{{selectedDisplayProp.totalTeam == 0 ? '--' : (selectedDisplayProp.teamChance | percent: '2.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div">
-                                    <h4>{{selectedDisplayProp.teamWeighted | percent: '2.2-2'}}</h4>
+                                    <h4>{{selectedDisplayProp.totalTeam == 0 ? '--' : (selectedDisplayProp.teamWeighted | percent: '2.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
-                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.averageTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.averageTeam | number: '1.2-2'}}</h4>
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.averageTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.totalTeam == 0 ? '--' : (selectedDisplayProp.averageTeam | number: '1.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
-                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.highTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.highTeam | number: '1.2-2'}}</h4>
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.highTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.totalTeam == 0 ? '--' : (selectedDisplayProp.highTeam | number: '1.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
-                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowTeam | number: '1.2-2'}}</h4>
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.totalTeam == 0 ? '--' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
                                 </div>
                         </div>
                         <div class="game-log">
