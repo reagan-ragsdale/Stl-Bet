@@ -143,7 +143,7 @@ mat-slide-toggle {
     width:fit-content;
     margin-top:1rem;
     box-shadow: 0 2px 4px #0000001a;
-    border: 1px solid #ddd;
+    gap:1rem;
     border-radius: 8px;
     display:flex;
 }
@@ -156,6 +156,7 @@ mat-slide-toggle {
     background-color: #f0f0f0;
     padding: .5rem 1rem;
     border-radius: 8px;
+    border: 1px solid #ddd;
 }
 .records-h2h{
     width:max-content;
@@ -166,6 +167,7 @@ mat-slide-toggle {
     background-color: #f0f0f0;
     padding: .5rem 1rem;
     border-radius: 6px;
+    border: 1px solid #ddd;
 }
 /* .record-columns{
     padding: .5rem;
@@ -213,4 +215,8 @@ mat-slide-toggle {
 .game-log{
     display:flex;
     gap:1rem;
+    background-color: #f0f0f0;
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
 }
