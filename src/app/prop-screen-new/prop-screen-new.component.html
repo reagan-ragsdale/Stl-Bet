@@ -241,15 +241,27 @@
                                 </div>
                         </div>
                         <div class="game-log">
-                            <ng-container
-                            [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: selectedDisplayProp.last10Overall}">
-                          </ng-container>
-                          <ng-container
-                            [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: selectedDisplayProp.last10HomeAway}">
-                          </ng-container>
-                          <ng-container
-                            [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: selectedDisplayProp.last10Team}">
-                          </ng-container>
+                            <div>
+                                <span>Overall</span>
+                                <ng-container
+                                [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: selectedDisplayProp.last10Overall}">
+                              </ng-container>
+                            </div>
+                            
+                            <div>
+                                <span>{{selectedDisplayProp.homeAway}}</span>
+                                <ng-container
+                                [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: selectedDisplayProp.last10HomeAway}">
+                              </ng-container>
+                            </div>
+                          
+                            <div>
+                                <span>Vs {{selectedDisplayProp.teamAgainstName}}</span>
+                                <ng-container
+                                [ngTemplateOutlet]="gameLog" [ngTemplateOutletContext]="{ $implicit: selectedDisplayProp.last10Team}">
+                              </ng-container>
+                            </div>
+                          
                         </div>
                     </div>
                     <div *ngIf="selectedDisplayProp.trends.length > 0" class="trends">
