@@ -229,3 +229,6 @@ mat-slide-toggle {
     display:flex;
     flex-direction:column;
 }
+.mat-expansion-panel-header.mat-expanded{
+    height: 40px !important;
+}
