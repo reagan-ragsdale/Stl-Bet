@@ -163,8 +163,7 @@
                     </div>
                     <div class="stat-body">
                         <div [ngClass]="selectedDisplayProp.propType == 'h2h' ? 'records-h2h' : 'records-all'">
-                                <h3 style="font-weight: bold;">Stats</h3>
-                                <div class="stat-div" >
+                                <div class="stat-div" style="grid-column-start: 2;">
                                     <h4>Record</h4>
                                 </div>
                                 <div class="stat-div">
@@ -242,6 +241,7 @@
                                 </div>
                         </div>
                         <div class="game-log">
+                            <span style="text-align:center; font-weight: bold;">Last 10 Games</span>
                             <div>
                                 <span>Overall</span>
                                 <ng-container
