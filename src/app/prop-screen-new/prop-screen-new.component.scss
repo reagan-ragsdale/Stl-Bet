@@ -53,11 +53,7 @@
 ::ng-deep .mat-expansion-panel-body{
  padding: 10px 12px 10px !important;
 }
-.team-prop-div{
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: .25rem .5rem;
-}
+
 .team-prop-div:hover{
     background-color: #b3b3b3;
     cursor: pointer;
@@ -232,3 +228,13 @@ mat-slide-toggle {
  .mat-expansion-panel-header.mat-expanded{
     height: 40px !important;
 } 
+.selected-prop-button{
+    background-color: #6ea4f0;
+    border-radius: 8px;
+    padding: .25rem .5rem;
+}
+.unselected-prop-button{
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: .25rem .5rem;
+}

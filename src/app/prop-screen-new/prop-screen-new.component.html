@@ -95,7 +95,7 @@
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div style="display:flex; flex-direction: column; gap: .5rem;">
-                                <div *ngFor="let team of prop" class="team-prop-div" (click)="onPropClicked(team)">
+                                <div *ngFor="let team of prop; let j = index;" [ngClass]="(i == selectedBetIndexes[0] && j == selectedBetIndexes[1]) ? 'selected-prop-button' : 'unselected-prop-button'"  (click)="onPropClicked(team, i, j)">
                                     <div style="display:flex; gap:1rem;"
                                         *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
                                         <span>{{team.teamName}}</span>

@@ -56,6 +56,7 @@ export class PropScreenNewComponent implements OnInit {
   overUnderSlide: boolean = false;
   index: number = 0
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
+  selectedBetIndexes: number[] = [0,0]
 
 
 
@@ -189,10 +190,11 @@ export class PropScreenNewComponent implements OnInit {
   }
 
 
-  onPropClicked(prop:any){
+  onPropClicked(prop:any, panel: number, bet: number){
     this.overUnderSlide = false;
     this.index = 0;
     this.selectedProp = prop
+    this.selectedBetIndexes = [panel, bet]
     if(this.selectedProp.length > 1){
       if(this.selectedProp[0].length > 1){
         this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
