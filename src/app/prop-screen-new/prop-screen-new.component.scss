@@ -145,6 +145,7 @@ mat-slide-toggle {
     box-shadow: 0 2px 4px #0000001a;
     border: 1px solid #ddd;
     border-radius: 8px;
+    display:flex;
 }
 .records-all{
     width:max-content;
@@ -208,4 +209,8 @@ mat-slide-toggle {
     border: 1px solid #ddd; /* Slight border around the whole panel */
     width: fit-content;
     margin-top:1rem;
+}
+.game-log{
+    display:flex;
+    gap:1rem;
 }
