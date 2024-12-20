@@ -96,7 +96,7 @@
                             </mat-expansion-panel-header>
                             <div style="display:flex; flex-direction: column; gap: .5rem;">
                                 <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
-                                    <mat-chip-option *ngFor="let team of prop; let j = index;" [selectable]="false"
+                                    <mat-chip-option *ngFor="let team of prop; let j = index;" [highlighted]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j"
                                         [selected]="prop.selected" (click)="onPropClicked(team, i, j)">
                                         <div style="display:flex; gap:1rem;"
                                         *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
@@ -254,22 +254,22 @@
                                 
                                 <h3 style="font-weight: bold;">Vs {{selectedDisplayProp.teamAgainstName}}</h3>
                                 <div class="last-stat-div">
-                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '--' : (selectedDisplayProp.teamWins + '-' + (selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins))}}</h4>
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.teamWins + '-' + (selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins))}}</h4>
                                 </div>
                                 <div class="last-stat-div">
-                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '--' : (selectedDisplayProp.teamChance | percent: '2.2-2')}}</h4>
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.teamChance | percent: '2.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div">
-                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '--' : (selectedDisplayProp.teamWeighted | percent: '2.2-2')}}</h4>
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.teamWeighted | percent: '2.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
-                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.averageTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '--' : (selectedDisplayProp.averageTeam | number: '1.2-2')}}</h4>
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.averageTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.averageTeam | number: '1.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
-                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.highTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '--' : (selectedDisplayProp.highTeam | number: '1.2-2')}}</h4>
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.highTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.highTeam | number: '1.2-2')}}</h4>
                                 </div>
                                 <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
-                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '--' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
                                 </div>
                         </div>
                         <div class="game-log">
