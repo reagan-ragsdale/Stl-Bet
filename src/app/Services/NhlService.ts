@@ -1249,17 +1249,10 @@ export class NhlService {
                             }
                         }
                         else if(propReturn.homeAway == 'Away' && isHomeBackToBack){
-                            
-                        }
-                        let backToBackWinChance = backToBackWinTotal == 0 ? 0 : backToBackWinCount / backToBackWinTotal
-                        if(backToBackWinTotal > 0){
 
-                            let winLose = ' wins '
-                            if((backToBackWinChance * 100) < 50){
-                                backToBackWinChance = 1 - backToBackWinChance
-                                winLose = ' loses '
-                            }
-                            propReturn.trends.push('Back To Back Game: ' + propReturn.teamName + winLose + (backToBackWinChance * 100).toFixed(2) + '% of 2nd games in a back to back series.')
+                        }
+                        if(backToBackWinTotal > 0){
+                            propReturn.trends.push('Back To Back Game: ' + propReturn.teamName + ' is ' + backToBackWinCount  + '-' + (backToBackWinTotal - backToBackWinCount) + ' in 2nd games in a back to back series.')
                         }
                         
 
