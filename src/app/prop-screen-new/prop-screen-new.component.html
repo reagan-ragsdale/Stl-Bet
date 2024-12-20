@@ -89,8 +89,8 @@
                     <mat-accordion style="display: flex; width: max-content;flex-direction: column;" [hideToggle]="true" [multi]="true" [displayMode]="'flat'">
                         <mat-expansion-panel *ngFor="let prop of teamPropFinnal; let i = index;" [expanded]="true" [disabled]="true"
                             style="display:flex; flex-direction: column;">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
+                            <mat-expansion-panel-header style="cursor: auto;">
+                                <mat-panel-title style="color:black; font-size: larger;">
                                     {{displayPropTitle(prop)}}
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
