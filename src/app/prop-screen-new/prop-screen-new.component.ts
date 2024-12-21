@@ -56,7 +56,7 @@ export class PropScreenNewComponent implements OnInit {
   overUnderSlide: boolean = false;
   index: number = 0
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
-  selectedBetIndexes: number[] = []
+  selectedBetIndexes: number[] = [0,0]
 
 
 
