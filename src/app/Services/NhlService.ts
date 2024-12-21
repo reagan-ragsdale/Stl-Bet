@@ -191,11 +191,11 @@ export class NhlService {
             return e.teamName == 'Both';
         })
 
-        let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v,i,a) => a.indexOf(v) === i)
-        for(let i = 0; i < distinctTeamProps.length; i++){
-            
+        let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v, i, a) => a.indexOf(v) === i)
+        for (let i = 0; i < distinctTeamProps.length; i++) {
+
             let filteredPropsOnMarketKey = teamProps.filter(e => e.marketKey == distinctTeamProps[i])
-            if(this.alternatePropNames.includes(distinctTeamProps[i])){
+            if (this.alternatePropNames.includes(distinctTeamProps[i])) {
                 let distictTeams = filteredPropsOnMarketKey.map(e => e.teamName).filter((v, i, a) => a.indexOf(v) === i)
                 let propArray: any = []
                 for (let i = 0; i < distictTeams.length; i++) {
@@ -248,7 +248,7 @@ export class NhlService {
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
                             let teamTableTemp = []
-                            if(filteredPointsProps[m].marketKey == 'alternate_team_totals'){
+                            if (filteredPointsProps[m].marketKey == 'alternate_team_totals') {
                                 if (filteredPointsProps[m].description == 'Over') {
                                     teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
                                     teamProp.overallTotal = teamStats.length
@@ -358,43 +358,43 @@ export class NhlService {
                                     teamProp.propType = 'altTotal'
                                 }
                             }
-                            else if(filteredPointsProps[m].marketKey == 'alternate_spreads'){
+                            else if (filteredPointsProps[m].marketKey == 'alternate_spreads') {
 
                             }
-                            
+
                             pointArray.push(teamProp)
                         }
-                        if(pointArray[0].gameBookData.marketKey == 'alternate_team_totals'){
-                            pointArray.sort((a:any,b:any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+                        if (pointArray[0].gameBookData.marketKey == 'alternate_team_totals') {
+                            pointArray.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
                         }
-                        pointArray.sort((a: any,b: any) => a.gameBookData.point - b.gameBookData.point)
+                        pointArray.sort((a: any, b: any) => a.gameBookData.point - b.gameBookData.point)
                         teamArray.push(pointArray)
-                        
+
                     }
-                    teamArray.sort((a:any,b:any) => a[0].gameBookData.point - b[0].gameBookData.point)
-                    if(teamArray[0][0].homeAway == "Home"){
+                    teamArray.sort((a: any, b: any) => a[0].gameBookData.point - b[0].gameBookData.point)
+                    if (teamArray[0][0].homeAway == "Home") {
                         homeTeamPropsFinal.push(teamArray)
-                        if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
-                            homeTeamPropsFinal[homeTeamPropsFinal.length -1].propType = 'altTotal'
-                            homeTeamPropsFinal[homeTeamPropsFinal.length -1].index = 0
+                        if (teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals') {
+                            homeTeamPropsFinal[homeTeamPropsFinal.length - 1].propType = 'altTotal'
+                            homeTeamPropsFinal[homeTeamPropsFinal.length - 1].index = 0
 
                         }
                     }
-                    else{
+                    else {
                         awayTeamPropsFinal.push(teamArray)
-                        if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
-                            awayTeamPropsFinal[awayTeamPropsFinal.length -1].propType = 'altTotal'
-                            awayTeamPropsFinal[awayTeamPropsFinal.length -1].index = 0
+                        if (teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals') {
+                            awayTeamPropsFinal[awayTeamPropsFinal.length - 1].propType = 'altTotal'
+                            awayTeamPropsFinal[awayTeamPropsFinal.length - 1].index = 0
                         }
                     }
-                    
+
                 }
             }
-            else{
+            else {
                 for (let i = 0; i < filteredPropsOnMarketKey.length; i++) {
                     let teamStats = filteredPropsOnMarketKey[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
                     let teamAgainstStats = filteredPropsOnMarketKey[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
-        
+
                     let propReturn: TeamPropDto = {
                         gameBookData: filteredPropsOnMarketKey[i],
                         teamName: homeTeam.teamNameFull == filteredPropsOnMarketKey[i].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
@@ -555,13 +555,13 @@ export class NhlService {
                     propReturn.last10Overall = overAllTableTemp.slice(0, 10)
                     propReturn.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                     propReturn.last10Team = teamTableTemp.slice(0, 10)
-        
+
                     propReturn.homeAway == "Home" ? homeTeamPropsFinal.push(propReturn) : awayTeamPropsFinal.push(propReturn)
-        
+
                 }
             }
         }
-        
+
 
         let homeTeamOverUnderFinal = []
         let awayTeamOverUnderFinal = []
@@ -888,7 +888,7 @@ export class NhlService {
         return finalReturn
     }
 
-    static async getTeamPropDataNew(props: DbGameBookData[], teamsInfo: DbTeamInfo[]): Promise<any[]>{
+    static async getTeamPropDataNew(props: DbGameBookData[], teamsInfo: DbTeamInfo[]): Promise<any[]> {
         let finalReturn: any[] = []
         let homeTeam = teamsInfo.filter(e => e.teamNameFull == props[0].homeTeam)[0]
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
@@ -904,8 +904,8 @@ export class NhlService {
         for (let i = 0; i < awayTeamStats.length; i++) {
             awayTeamStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(teamStatsCombined[i].gameDate)
         } */
-        
-        
+
+
         let teamProps = props.filter(e => {
             return e.teamName != 'Both';
         })
@@ -913,21 +913,21 @@ export class NhlService {
             return e.teamName == 'Both';
         })
 
-        
 
-        console.log([isHomeBackToBack,isAwayBackToBack])
-        let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v,i,a) => a.indexOf(v) === i)
-        for(let i = 0; i < distinctTeamProps.length; i++){
+
+        console.log([isHomeBackToBack, isAwayBackToBack])
+        let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v, i, a) => a.indexOf(v) === i)
+        for (let i = 0; i < distinctTeamProps.length; i++) {
             //let 
         }
         let propTypeArray: any = []
         let homeTeamPropsFinal: any[] = []
         let awayTeamPropsFinal: any[] = []
-        for(let i = 0; i < distinctTeamProps.length; i++){
+        for (let i = 0; i < distinctTeamProps.length; i++) {
             homeTeamPropsFinal = []
             awayTeamPropsFinal = []
             let filteredPropsOnMarketKey = teamProps.filter(e => e.marketKey == distinctTeamProps[i])
-            if(this.alternatePropNames.includes(distinctTeamProps[i])){
+            if (this.alternatePropNames.includes(distinctTeamProps[i])) {
                 let distictTeams = filteredPropsOnMarketKey.map(e => e.teamName).filter((v, i, a) => a.indexOf(v) === i)
                 let propArray: any = []
                 for (let i = 0; i < distictTeams.length; i++) {
@@ -990,7 +990,7 @@ export class NhlService {
                             let teamAgainstOverallChance = 0
                             let teamAgainstHomeAwayChance = 0
                             let teamAgasintTeamChance = 0
-                            if(filteredPointsProps[m].marketKey == 'alternate_team_totals'){
+                            if (filteredPointsProps[m].marketKey == 'alternate_team_totals') {
                                 if (filteredPointsProps[m].description == 'Over') {
                                     teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
                                     teamProp.overallTotal = teamStats.length
@@ -1046,9 +1046,9 @@ export class NhlService {
                                     teamProp.overallChance = teamProp.overallTotal == 0 ? 0 : teamProp.overallWins / teamProp.overallTotal
                                     teamProp.homeAwayChance = teamProp.homeAwayTotal == 0 ? 0 : teamProp.homeAwayWins / teamProp.homeAwayTotal
                                     teamProp.teamChance = teamProp.teamTotal == 0 ? 0 : teamProp.teamWins / teamProp.teamTotal
-                                    teamProp.overallWeighted = (teamProp.overallChance * (1 - teamAgainstOverallChance)) / ((teamProp.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * ( 1 - teamProp.overallChance)))
-                                    teamProp.homeAwayWeighted = (teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * ( 1 - teamProp.homeAwayChance)))
-                                    teamProp.teamWeighted = (teamProp.teamChance * (1 - teamAgasintTeamChance)) / ((teamProp.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * ( 1 - teamProp.teamChance)))
+                                    teamProp.overallWeighted = (teamProp.overallChance * (1 - teamAgainstOverallChance)) / ((teamProp.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * (1 - teamProp.overallChance)))
+                                    teamProp.homeAwayWeighted = (teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * (1 - teamProp.homeAwayChance)))
+                                    teamProp.teamWeighted = (teamProp.teamChance * (1 - teamAgasintTeamChance)) / ((teamProp.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * (1 - teamProp.teamChance)))
                                     teamProp.last10Overall = overAllTableTemp.slice(0, 10)
                                     teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                                     teamProp.last10Team = teamTableTemp.slice(0, 10)
@@ -1109,56 +1109,56 @@ export class NhlService {
                                     teamProp.overallChance = teamProp.overallTotal == 0 ? 0 : teamProp.overallWins / teamProp.overallTotal
                                     teamProp.homeAwayChance = teamProp.homeAwayTotal == 0 ? 0 : teamProp.homeAwayWins / teamProp.homeAwayTotal
                                     teamProp.teamChance = teamProp.teamTotal == 0 ? 0 : teamProp.teamWins / teamProp.teamTotal
-                                    teamProp.overallWeighted = (teamProp.overallChance * (1 - teamAgainstOverallChance)) / ((teamProp.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * ( 1 - teamProp.overallChance)))
-                                    teamProp.homeAwayWeighted = (teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * ( 1 - teamProp.homeAwayChance)))
-                                    teamProp.teamWeighted = (teamProp.teamChance * (1 - teamAgasintTeamChance)) / ((teamProp.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * ( 1 - teamProp.teamChance)))
+                                    teamProp.overallWeighted = (teamProp.overallChance * (1 - teamAgainstOverallChance)) / ((teamProp.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * (1 - teamProp.overallChance)))
+                                    teamProp.homeAwayWeighted = (teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * (1 - teamProp.homeAwayChance)))
+                                    teamProp.teamWeighted = (teamProp.teamChance * (1 - teamAgasintTeamChance)) / ((teamProp.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * (1 - teamProp.teamChance)))
                                     teamProp.last10Overall = overAllTableTemp.slice(0, 10)
                                     teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                                     teamProp.last10Team = teamTableTemp.slice(0, 10)
                                     teamProp.propType = 'altTotal'
                                 }
                             }
-                            else if(filteredPointsProps[m].marketKey == 'alternate_spreads'){
+                            else if (filteredPointsProps[m].marketKey == 'alternate_spreads') {
 
                             }
-                            
+
                             pointArray.push(teamProp)
                         }
-                        if(pointArray[0].gameBookData.marketKey == 'alternate_team_totals'){
-                            pointArray.sort((a:any,b:any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+                        if (pointArray[0].gameBookData.marketKey == 'alternate_team_totals') {
+                            pointArray.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
                         }
-                        pointArray.sort((a: any,b: any) => a.gameBookData.point - b.gameBookData.point)
+                        pointArray.sort((a: any, b: any) => a.gameBookData.point - b.gameBookData.point)
                         teamArray.push(pointArray)
-                        
+
                     }
-                    teamArray.sort((a:any,b:any) => a[0].gameBookData.point - b[0].gameBookData.point)
-                    if(teamArray[0][0].homeAway == "Home"){
+                    teamArray.sort((a: any, b: any) => a[0].gameBookData.point - b[0].gameBookData.point)
+                    if (teamArray[0][0].homeAway == "Home") {
                         homeTeamPropsFinal.push(teamArray)
-                        if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
-                            homeTeamPropsFinal[homeTeamPropsFinal.length -1].propType = 'altTotal'
-                            homeTeamPropsFinal[homeTeamPropsFinal.length -1].index = 0
+                        if (teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals') {
+                            homeTeamPropsFinal[homeTeamPropsFinal.length - 1].propType = 'altTotal'
+                            homeTeamPropsFinal[homeTeamPropsFinal.length - 1].index = 0
 
                         }
                     }
-                    else{
+                    else {
                         awayTeamPropsFinal.push(teamArray)
-                        if(teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals'){
-                            awayTeamPropsFinal[awayTeamPropsFinal.length -1].propType = 'altTotal'
-                            awayTeamPropsFinal[awayTeamPropsFinal.length -1].index = 0
+                        if (teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals') {
+                            awayTeamPropsFinal[awayTeamPropsFinal.length - 1].propType = 'altTotal'
+                            awayTeamPropsFinal[awayTeamPropsFinal.length - 1].index = 0
                         }
                     }
-                    
-                    
+
+
                 }
-                propTypeArray.push([awayTeamPropsFinal[0],  homeTeamPropsFinal[0]])
-                if(awayTeamPropsFinal[0][0][0].gameBookData.marketKey == 'alternate_team_totals'){
+                propTypeArray.push([awayTeamPropsFinal[0], homeTeamPropsFinal[0]])
+                if (awayTeamPropsFinal[0][0][0].gameBookData.marketKey == 'alternate_team_totals') {
                     propTypeArray[propTypeArray.length - 1].propType = 'altTotal'
 
                 }
                 awayTeamPropsFinal = []
                 homeTeamPropsFinal = []
             }
-            else{
+            else {
                 for (let i = 0; i < filteredPropsOnMarketKey.length; i++) {
                     let teamStats = filteredPropsOnMarketKey[i].teamName == homeTeam.teamNameFull ? homeTeamStats : awayTeamStats
                     let teamAgainstStats = filteredPropsOnMarketKey[i].teamName == homeTeam.teamNameFull ? awayTeamStats : homeTeamStats
@@ -1166,7 +1166,7 @@ export class NhlService {
                     let teamAgainstOverallWins = 0
                     let teamAgainstHomeAwayWins = 0
                     let teamAgainstTeamWins = 0
-        
+
                     let propReturn: TeamPropDto = {
                         gameBookData: filteredPropsOnMarketKey[i],
                         teamName: homeTeam.teamNameFull == filteredPropsOnMarketKey[i].teamName ? homeTeam.teamNameAbvr : awayTeam.teamNameAbvr,
@@ -1223,37 +1223,9 @@ export class NhlService {
                         teamAgainstOverallWins = teamAgainstStats.filter(e => e.result == 'W').length;
                         teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.result == 'W' && e.homeOrAway != propReturn.homeAway).length;
                         teamAgainstTeamWins = teamAgainstStats.filter(e => e.result == 'W' && e.teamAgainstId == propReturn.teamId).length;
-                        let backToBackWinCount = 0
-                        let backToBackWinTotal = 0
-                        if(propReturn.homeAway == 'Home' && isHomeBackToBack){
-                            for(let i = 0; i < teamStats.length - 2; i++){
-                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))){
-                                    backToBackWinTotal++;
-                                    if(teamStats[i].result == 'W'){
-                                        backToBackWinCount++;
-                                    }
-                                }
-                            }
-                        }
-                        else if(propReturn.homeAway == 'Home' && isAwayBackToBack){
 
-                        }
-                        if(propReturn.homeAway == 'Away' && isAwayBackToBack){
-                            for(let i = 0; i < teamStats.length - 2; i++){
-                                if(this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate),reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))){
-                                    backToBackWinTotal++;
-                                    if(teamStats[i].result == 'W'){
-                                        backToBackWinCount++;
-                                    }
-                                }
-                            }
-                        }
-                        else if(propReturn.homeAway == 'Away' && isHomeBackToBack){
-
-                        }
-                        if(backToBackWinTotal > 0){
-                            propReturn.trends.push('Back To Back Game: ' + propReturn.teamName + ' is ' + backToBackWinCount  + '-' + (backToBackWinTotal - backToBackWinCount) + ' in 2nd games in a back to back series.')
-                        }
+                        let backToBack = propReturn.homeAway == 'Home' ? isHomeBackToBack : isAwayBackToBack
+                        propReturn.trends = this.findTrends(propReturn.gameBookData, backToBack,'h2h', propReturn.homeAway,teamStats, teamAgainstStats)
                         
 
                         for (let j = 0; j < teamStats.length; j++) {
@@ -1376,22 +1348,22 @@ export class NhlService {
                     propReturn.overallChance = propReturn.overallTotal == 0 ? 0 : propReturn.overallWins / propReturn.overallTotal
                     propReturn.homeAwayChance = propReturn.homeAwayTotal == 0 ? 0 : propReturn.homeAwayWins / propReturn.homeAwayTotal
                     propReturn.teamChance = propReturn.teamTotal == 0 ? 0 : propReturn.teamWins / propReturn.teamTotal
-                    propReturn.overallWeighted = ((propReturn.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * ( 1 - propReturn.overallChance))) == 0 ? 0 : (propReturn.overallChance * (1 - teamAgainstOverallChance)) / ((propReturn.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * ( 1 - propReturn.overallChance)))
-                    propReturn.homeAwayWeighted = ((propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * ( 1 - propReturn.homeAwayChance))) == 0 ? 0 : (propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * ( 1 - propReturn.homeAwayChance)))
-                    propReturn.teamWeighted = ((propReturn.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * ( 1 - propReturn.teamChance))) == 0 ? 0 : (propReturn.teamChance * (1 - teamAgasintTeamChance)) / ((propReturn.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * ( 1 - propReturn.teamChance)))
+                    propReturn.overallWeighted = ((propReturn.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * (1 - propReturn.overallChance))) == 0 ? 0 : (propReturn.overallChance * (1 - teamAgainstOverallChance)) / ((propReturn.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * (1 - propReturn.overallChance)))
+                    propReturn.homeAwayWeighted = ((propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * (1 - propReturn.homeAwayChance))) == 0 ? 0 : (propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((propReturn.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * (1 - propReturn.homeAwayChance)))
+                    propReturn.teamWeighted = ((propReturn.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * (1 - propReturn.teamChance))) == 0 ? 0 : (propReturn.teamChance * (1 - teamAgasintTeamChance)) / ((propReturn.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * (1 - propReturn.teamChance)))
                     propReturn.last10Overall = overAllTableTemp.slice(0, 10)
                     propReturn.last10HomeAway = homeAwayTableTemp.slice(0, 10)
                     propReturn.last10Team = teamTableTemp.slice(0, 10)
-        
+
                     propReturn.homeAway == "Home" ? homeTeamPropsFinal.push(propReturn) : awayTeamPropsFinal.push(propReturn)
-        
+
                 }
-                propTypeArray.push([awayTeamPropsFinal[0],  homeTeamPropsFinal[0]])
+                propTypeArray.push([awayTeamPropsFinal[0], homeTeamPropsFinal[0]])
                 awayTeamPropsFinal = []
                 homeTeamPropsFinal = []
             }
         }
-        
+
 
         let homeTeamOverUnderFinal: any = []
         let awayTeamOverUnderFinal: any = []
@@ -1484,7 +1456,7 @@ export class NhlService {
             let teamAgainstTeamChance = 0
             //do home first
             teamStats = homeTeamStats
-            
+
 
             let overAllTableTemp = []
             let homeAwayTableTemp = []
@@ -1768,14 +1740,14 @@ export class NhlService {
 
             homeTeamOverUnderFinal.push(homeProp)
             awayTeamOverUnderFinal.push(awayProp)
-            
+
 
         }
-        homeTeamOverUnderFinal.sort((a: any,b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
-        awayTeamOverUnderFinal.sort((a: any,b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+        homeTeamOverUnderFinal.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+        awayTeamOverUnderFinal.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
         homeTeamOverUnderFinal.propType = 'total'
         awayTeamOverUnderFinal.propType = 'total'
-        propTypeArray.push([awayTeamOverUnderFinal,homeTeamOverUnderFinal])
+        propTypeArray.push([awayTeamOverUnderFinal, homeTeamOverUnderFinal])
         propTypeArray[propTypeArray.length - 1].propType = 'total'
         homeTeamOverUnderFinal = []
         awayTeamOverUnderFinal = []
@@ -2453,7 +2425,7 @@ export class NhlService {
     }
 
 
-    static isBackToBackGame(game1: Date, game2: Date): boolean{
+    static isBackToBackGame(game1: Date, game2: Date): boolean {
         const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));
         const normalizedDate2 = new Date(Date.UTC(game2.getUTCFullYear(), game2.getUTCMonth(), game2.getUTCDate()));
 
@@ -2463,6 +2435,37 @@ export class NhlService {
 
         // Check if the difference is exactly one day
         return diffInMilliseconds === oneDayInMilliseconds;
+    }
+
+    static findTrends(bookData: DbGameBookData, backToBack: boolean, type: string, homeAway: string, teamStats: DbNhlTeamGameStats[], teamAgainstGameStats: DbNhlTeamGameStats[]): string[] {
+        let finalReturn: string[] = []
+
+        let backToBackWinCount = 0
+        let backToBackWinTotal = 0
+        if(backToBack){
+            if(type == 'h2h'){
+                for (let i = 0; i < teamStats.length - 2; i++) {
+                    if (this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
+                        backToBackWinTotal++;
+                        if (teamStats[i].result == 'W') {
+                            backToBackWinCount++;
+                        }
+                    }
+                }
+            }
+
+
+
+            if (backToBackWinTotal > 0) {
+                finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' in 2nd games in a back to back series.')
+            }
+            
+            
+        }
+        
+        
+
+        return finalReturn;
     }
 
 

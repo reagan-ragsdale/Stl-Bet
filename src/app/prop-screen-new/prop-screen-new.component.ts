@@ -56,7 +56,7 @@ export class PropScreenNewComponent implements OnInit {
   overUnderSlide: boolean = false;
   index: number = 0
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
-  selectedBetIndexes: number[] = [0,0]
+  selectedBetIndexes: number[] = []
 
 
 
@@ -160,6 +160,7 @@ export class PropScreenNewComponent implements OnInit {
     this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
     this.selectedProp = this.teamPropFinnal[0][0]
     this.selectedDisplayProp = this.teamPropFinnal[0][0]
+    this.selectedBetIndexes = [0,0]
     this.showSpinner = false;
     
     //this.getTeamBestBets()
