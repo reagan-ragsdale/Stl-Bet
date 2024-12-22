@@ -2446,6 +2446,7 @@ export class NhlService {
 
         let backToBackWinCount = 0
         let backToBackWinTotal = 0
+        console.log([teamStats[0].teamName, backToBack])
         if(backToBack){
             if(type == 'h2h'){
                 for (let i = 0; i < teamStats.length - 2; i++) {
