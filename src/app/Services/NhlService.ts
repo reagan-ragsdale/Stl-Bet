@@ -896,6 +896,7 @@ export class NhlService {
         let currentDate = new Date()
         let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
         let awayTeamStats = teamStatsCombined.filter(e => e.teamName == awayTeam.teamNameAbvr)
+        console.log([reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), currentDate])
         let isHomeBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), currentDate)
         let isAwayBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), currentDate)
         /* for (let i = 0; i < homeTeamStats.length; i++) {
