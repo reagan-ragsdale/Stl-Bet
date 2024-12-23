@@ -247,3 +247,10 @@ mat-slide-toggle {
 ::ng-deep .list-of-props .mdc-evolution-chip__action--primary{
     padding-right:0 !important;
 }
+.team-full-game-log{
+    max-height: 600px;
+    margin-left: auto;
+    margin-right: 1rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
