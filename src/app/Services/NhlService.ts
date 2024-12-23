@@ -1034,9 +1034,7 @@ export class NhlService {
                                     teamProp.overallWeighted = (teamProp.overallChance * (1 - teamAgainstOverallChance)) / ((teamProp.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * (1 - teamProp.overallChance)))
                                     teamProp.homeAwayWeighted = (teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * (1 - teamProp.homeAwayChance)))
                                     teamProp.teamWeighted = (teamProp.teamChance * (1 - teamAgasintTeamChance)) / ((teamProp.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * (1 - teamProp.teamChance)))
-                                    teamProp.last10Overall = overAllTableTemp.slice(0, 10)
-                                    teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
-                                    teamProp.last10Team = teamTableTemp.slice(0, 10)
+                                    
                                     teamProp.propType = 'altTotal'
                                 }
                                 else {
@@ -1081,9 +1079,7 @@ export class NhlService {
                                     teamProp.overallWeighted = (teamProp.overallChance * (1 - teamAgainstOverallChance)) / ((teamProp.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * (1 - teamProp.overallChance)))
                                     teamProp.homeAwayWeighted = (teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * (1 - teamProp.homeAwayChance)))
                                     teamProp.teamWeighted = (teamProp.teamChance * (1 - teamAgasintTeamChance)) / ((teamProp.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * (1 - teamProp.teamChance)))
-                                    teamProp.last10Overall = overAllTableTemp.slice(0, 10)
-                                    teamProp.last10HomeAway = homeAwayTableTemp.slice(0, 10)
-                                    teamProp.last10Team = teamTableTemp.slice(0, 10)
+                                    
                                     teamProp.propType = 'altTotal'
                                 }
                             }
