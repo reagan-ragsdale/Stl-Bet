@@ -55,7 +55,7 @@ export class PropScreenNewComponent implements OnInit {
   showSpinner: boolean = false;
   overUnderSlide: boolean = false;
   index: number = 0
-  moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Score"]
+  moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Result", "Score"]
   selectedBetIndexes: number[] = [0,0]
 
 

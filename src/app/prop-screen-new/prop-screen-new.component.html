@@ -316,6 +316,43 @@
                         <h3 *ngFor="let trend of selectedDisplayProp.trends">{{trend}}</h3>
                     </div>
                 </div>
+                <div class="team-full-game-log">
+                    <table mat-table [dataSource]="selectedDisplayProp.fullGameLog" style="background-color: #f0f0f0 !important;">
+                        <ng-container matColumnDef="TeamAgainst">
+                          <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;">Team </th>
+                          <td mat-cell *matCellDef="let element; let i = seasonArrayTable; let j = index;"
+                            style="padding-left:5px; padding-right:5px; text-align: center;">
+                            {{element.homeAway == 'Away' ? '@' : ''}}{{element.teamAgainstName}}
+                          </td>
+                        </ng-container>
+                  
+                        <ng-container matColumnDef="Date">
+                          <th mat-header-cell *matHeaderCellDef style="padding:0;text-align: center;"> Date </th>
+                          <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;">
+                            {{element.gameDate | convertGameDateToMonthDay}}
+                          </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Result">
+                            <th mat-header-cell *matHeaderCellDef style="padding:0;text-align: center;"> Result </th>
+                            <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;">
+                              {{element.result}}
+                            </td>
+                          </ng-container>
+                  
+                        <ng-container matColumnDef="Score">
+                          <th mat-header-cell *matHeaderCellDef style="padding:0; text-align: center;"> Score </th>
+                          <td mat-cell *matCellDef="let element" style="padding-left:5px; padding-right:5px; text-align: center;">
+                            {{element.pointsScoredOverall}} -
+                            {{element.pointsAllowedOverall}} </td>
+                        </ng-container>
+                  
+                        <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"
+                          style="width:auto; height:auto; font-size: medium; text-align:center"></tr>
+                        <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
+                          style="height:auto; text-align:center"></tr>
+                      </table>
+                </div>
             </div>
         </div>
     </div>
