@@ -236,7 +236,7 @@
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowOverall > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowOverall | number: '1.2-2'}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>{{selectedDisplayProp.last10Overall[0]}}-{{selectedDisplayProp.last10Overall[1]}}</h4>
+                                    <h4>{{selectedDisplayProp.last10Overall[0]}}-{{selectedDisplayProp.last10Overall[1] - selectedDisplayProp.last10Overall[0]}}</h4>
                                 </div>
                                 <h3 style="font-weight: bold; border-bottom: 1px solid #ddd;">{{selectedDisplayProp.homeAway}}</h3>
                                 <div class="stat-div">
@@ -258,7 +258,7 @@
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowHomeAway > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowHomeAway | number: '1.2-2'}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>{{selectedDisplayProp.last10HomeAway[0]}}-{{selectedDisplayProp.last10HomeAway[1]}}</h4>
+                                    <h4>{{selectedDisplayProp.last10HomeAway[0]}}-{{selectedDisplayProp.last10HomeAway[1] - selectedDisplayProp.last10HomeAway[0]}}</h4>
                                 </div>
                                 
                                 <h3 style="font-weight: bold;">Vs {{selectedDisplayProp.teamAgainstName}}</h3>
@@ -281,7 +281,7 @@
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>{{selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.last10Team[1]}}</h4>
+                                    <h4>{{selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.last10Team[1] - selectedDisplayProp.last10Team[0]}}</h4>
                                 </div>
                         </div>
                         <!-- <div class="game-log">
