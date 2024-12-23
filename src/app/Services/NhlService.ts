@@ -2433,6 +2433,7 @@ export class NhlService {
     static isBackToBackGame(game1: Date, game2: Date): boolean {
         const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));
         const normalizedDate2 = new Date(Date.UTC(game2.getUTCFullYear(), game2.getUTCMonth(), game2.getUTCDate()));
+        console.log([normalizedDate1, normalizedDate2])
 
         // Calculate the difference in days
         const diffInMilliseconds = Math.abs(normalizedDate1.getTime() - normalizedDate2.getTime());
