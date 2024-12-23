@@ -213,6 +213,9 @@
                                 <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>Low</h4>
                                 </div>
+                                <div class="stat-div">
+                                    <h4>Last 10</h4>
+                                </div>
                                 <h3 style="font-weight: bold; border-bottom: 1px solid #ddd;">Overall</h3>
                                 <div class="stat-div">
                                     <h4>{{selectedDisplayProp.overallWins}} - {{selectedDisplayProp.overallTotal - selectedDisplayProp.overallWins}}</h4>
@@ -232,6 +235,12 @@
                                 <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowOverall > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowOverall | number: '1.2-2'}}</h4>
                                 </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowOverall > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowOverall | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.last10Overall[0]}}-{{selectedDisplayProp.last10Overall[1]}}</h4>
+                                </div>
                                 <h3 style="font-weight: bold; border-bottom: 1px solid #ddd;">{{selectedDisplayProp.homeAway}}</h3>
                                 <div class="stat-div">
                                     <h4>{{selectedDisplayProp.homeAwayWins}} - {{selectedDisplayProp.homeAwayTotal - selectedDisplayProp.homeAwayWins}}</h4>
@@ -250,6 +259,9 @@
                                 </div>
                                 <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowHomeAway > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowHomeAway | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.last10HomeAway[0]}}-{{selectedDisplayProp.last10HomeAway[1]}}</h4>
                                 </div>
                                 
                                 <h3 style="font-weight: bold;">Vs {{selectedDisplayProp.teamAgainstName}}</h3>
@@ -271,8 +283,11 @@
                                 <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
                                 </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.last10Team[1]}}</h4>
+                                </div>
                         </div>
-                        <div class="game-log">
+                        <!-- <div class="game-log">
                             <span style="text-align:center; font-weight: bold;">Last 10 Games</span>
                             <div style="display:flex; flex-direction:row; gap:1rem;">
                                 <div>
@@ -298,7 +313,7 @@
                             </div>
                             
                           
-                        </div>
+                        </div> -->
                     </div>
                     <div *ngIf="selectedDisplayProp.trends.length > 0" class="trends">
                         <h3 *ngFor="let trend of selectedDisplayProp.trends">{{trend}}</h3>
