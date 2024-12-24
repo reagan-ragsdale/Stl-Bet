@@ -898,7 +898,7 @@ export class NhlService {
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
         let teamStatsCombined = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([homeTeam.teamNameAbvr, awayTeam.teamNameAbvr], 2024)
         let currentDate = new Date(props[0].commenceTime)
-        let newCurrent = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDay())
+        let newCurrent = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())
         console.log(newCurrent)
         let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
         let awayTeamStats = teamStatsCombined.filter(e => e.teamName == awayTeam.teamNameAbvr)
