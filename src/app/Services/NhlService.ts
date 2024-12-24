@@ -920,7 +920,6 @@ export class NhlService {
 
 
 
-        console.log([isHomeBackToBack, isAwayBackToBack])
         let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v, i, a) => a.indexOf(v) === i)
         for (let i = 0; i < distinctTeamProps.length; i++) {
             //let 
@@ -2389,10 +2388,13 @@ export class NhlService {
     static isBackToBackGame(game1: Date, game2: Date): boolean {
         const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));
         const normalizedDate2 = new Date(Date.UTC(game2.getUTCFullYear(), game2.getUTCMonth(), game2.getUTCDate()));
+        console.log('isBackToBackGame()')
         console.log([normalizedDate1, normalizedDate2])
 
         // Calculate the difference in days
         const diffInMilliseconds = Math.abs(normalizedDate1.getTime() - normalizedDate2.getTime());
+        console.log('diffInMilliseconds')
+        console.log(diffInMilliseconds)
         const oneDayInMilliseconds = 1000 * 60 * 60 * 24; // Milliseconds in a day
 
         // Check if the difference is exactly one day
@@ -2404,7 +2406,6 @@ export class NhlService {
 
         let backToBackWinCount = 0
         let backToBackWinTotal = 0
-        console.log([teamStats[0].teamName, backToBack])
         if (backToBack) {
             if (type == 'h2h') {
                 for (let i = 0; i < teamStats.length - 2; i++) {
