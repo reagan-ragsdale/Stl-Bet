@@ -118,6 +118,9 @@ export class PropScreenNewComponent implements OnInit {
         this.selectedSportGamesFinal.push(teamArray)
       })
       let currentGame = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
+      if(currentGame.length == 0){
+        //throw error for the game not being available anymore
+      }
       currentGame[0][0].selected = true;
 
     }
