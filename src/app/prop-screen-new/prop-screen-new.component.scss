@@ -139,7 +139,7 @@ mat-slide-toggle {
 .stat-body{
     width:fit-content;
     margin-top:1rem;
-    gap:1rem;
+    background-color: #f0f0f0;
     border-radius: 8px;
     display:flex;
 }
@@ -150,7 +150,9 @@ mat-slide-toggle {
     gap: 10px;
     grid-auto-rows: minmax(auto, auto);
     background-color: #f0f0f0;
-    padding: .5rem 1rem;
+    padding-left: 1rem;
+    padding-right:1rem;
+    padding-bottom:.5rem;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px #0000001a;
@@ -162,7 +164,9 @@ mat-slide-toggle {
     gap: 10px;
     grid-auto-rows: minmax(auto, auto);
     background-color: #f0f0f0;
-    padding: .5rem 1rem;
+    padding-left: 1rem;
+    padding-right:1rem;
+    padding-bottom:.5rem;
     border-radius: 6px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px #0000001a;

@@ -194,7 +194,9 @@
                         </div>
                     </div>
                     <div class="stat-body">
-                        <div>
+                        <div style="text-align: center;
+                        padding-top: .5rem;
+                        padding-bottom: .5rem;">
                             <h3>Prop Stats</h3>
                         </div>
                         <div [ngClass]="selectedDisplayProp.propType == 'h2h' ? 'records-h2h' : 'records-all'">
@@ -321,7 +323,7 @@
                 </div>
                 <div class="team-full-game-log">
                     <div class="table-div">
-                        <h3>Game Log</h3>
+                        <h3 style="text-align:center;">Game Log</h3>
                         <table mat-table [dataSource]="selectedDisplayProp.fullGameLog" style="background-color: unset !important;">
                             <ng-container matColumnDef="TeamAgainst">
                               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Team </th>
