@@ -194,6 +194,9 @@
                         </div>
                     </div>
                     <div class="stat-body">
+                        <div>
+                            <h3>Prop Stats</h3>
+                        </div>
                         <div [ngClass]="selectedDisplayProp.propType == 'h2h' ? 'records-h2h' : 'records-all'">
                                 <div class="stat-div" style="grid-column-start: 2;">
                                     <h4>Record</h4>
@@ -318,6 +321,7 @@
                 </div>
                 <div class="team-full-game-log">
                     <div class="table-div">
+                        <h3>Game Log</h3>
                         <table mat-table [dataSource]="selectedDisplayProp.fullGameLog" style="background-color: unset !important;">
                             <ng-container matColumnDef="TeamAgainst">
                               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Team </th>

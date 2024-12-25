@@ -259,4 +259,8 @@ mat-slide-toggle {
     background-color: #f0f0f0 !important;
     border-radius: 8px;
     width:fit-content;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px #0000001a;
+    display:flex;
+    flex-direction: column;
 }
