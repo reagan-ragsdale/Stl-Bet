@@ -142,6 +142,7 @@ mat-slide-toggle {
     background-color: #f0f0f0;
     border-radius: 8px;
     display:flex;
+    flex-direction:column;
 }
 .records-all{
     width:max-content;
