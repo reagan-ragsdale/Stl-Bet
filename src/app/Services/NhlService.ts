@@ -2529,7 +2529,7 @@ export class NhlService {
                 let winLossCheck: boolean[] = []
                 for (let j = 1; j < winLossCount; j++) {
                     if (lastGameWinLoss) {
-                        if (teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall < bookData.point) {
+                        if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) < bookData.point) {
                             winLossCheck.push(true)
                         }
                         else {
@@ -2537,7 +2537,7 @@ export class NhlService {
                         }
                     }
                     else {
-                        if (teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall > bookData.point) {
+                        if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) > bookData.point) {
                             winLossCheck.push(true)
                         }
                         else {
@@ -2547,7 +2547,7 @@ export class NhlService {
                 }
                 if (!winLossCheck.includes(false)) {
                     winLossTotal++
-                    winLossNumber += (teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall < bookData.point) ? 1 : 0
+                    winLossNumber += ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) ? 1 : 0
                 }
             }
             if (winLossTotal > 0) {
