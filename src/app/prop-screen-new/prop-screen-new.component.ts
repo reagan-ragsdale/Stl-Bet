@@ -6,6 +6,7 @@ import { DbTeamInfo } from 'src/shared/dbTasks/DBTeamInfo';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 import { NhlService } from '../Services/NhlService';
 import { NhlController } from 'src/shared/Controllers/NhlController';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -58,7 +59,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Result", "Score"]
   selectedBetIndexes: number[] = [0,0]
   playerPropData: any[] = []
-
+  selectedDisplayArray: any[] = []
 
 
   constructor(
@@ -160,6 +161,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.teamPropFinnal = results[0]
     let teamTotals = results[1]
     console.log(this.teamPropFinnal)
+    this.selectedDisplayArray = this.teamPropFinnal
     this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
     this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
     this.selectedProp = this.teamPropFinnal[0][0]
@@ -202,6 +204,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.index = 0;
     this.selectedProp = prop
     this.selectedBetIndexes = [panel, bet]
+    console.log(this.selectedBetIndexes)
     if(this.selectedProp.length > 1){
       if(this.selectedProp[0].length > 1){
         this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
@@ -226,6 +229,12 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         prop.selected = true;
       }
 
+    }
+    if(this.selectedPropType == 'Team Props'){
+      this.selectedDisplayArray = this.teamPropFinnal
+    }
+    else if(this.selectedPropType == 'Player Props'){
+      this.selectedDisplayArray = this.playerPropData
     }
   }
 

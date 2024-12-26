@@ -1746,7 +1746,7 @@ export class NhlService {
 
         //create an array for each prop that has a home and away array that contains an array for each player props
         for (let j = 0; j < uniquePlayerProps.length; j++) {
-            let propArray: any[] = []
+            let propArray: any = []
             let homePlayerProps: any[] = []
             let awayPlayerProps: any[] = []
             let uniquePlayersWithinProp = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j]).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
@@ -2160,6 +2160,7 @@ export class NhlService {
             propArray[0].teamName = awayTeam
             propArray.push(homePlayerProps);
             propArray[1].teamName = homeTeam
+            propArray.propType = uniquePlayerProps[j]
             finalReturn.push(propArray)
 
 
