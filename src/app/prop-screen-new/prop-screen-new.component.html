@@ -141,10 +141,10 @@
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div style="display:flex; flex-direction: column; gap: .5rem;">
-                                    <mat-chip-listbox  *ngFor="let team of prop" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
-                                        <h4>{{team.teamName}}</h4>
-                                        <mat-chip-option style="min-width:inherit;" *ngFor="let player of team; let j = index;" [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
-                                             (click)="onPropClicked(team, i, j)">
+                                    <mat-chip-listbox  *ngFor="let player of prop" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
+                                        
+                                        <mat-chip-option style="min-width:inherit;"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
+                                             (click)="onPropClicked(player, i, j)">
                                             <div style="display:flex; gap:1rem;">
                                             <span>{{player[index].playerName}}</span>
                                             <!-- <span *ngIf="team.propType != 'h2h'"
