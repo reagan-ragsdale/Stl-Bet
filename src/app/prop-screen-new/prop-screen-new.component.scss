@@ -30,7 +30,10 @@
 }
 
 .list-of-props{
-    width: fit-content;
+    max-height: 1000px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    min-width: fit-content;
 }
 .team-and-record{
     display:flex;
