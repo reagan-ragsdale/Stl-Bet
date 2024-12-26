@@ -267,3 +267,7 @@ mat-slide-toggle {
     display:flex;
     flex-direction: column;
 }
+
+::ng-deep .mat-chip-option.mat-selected .mat-chip-trailing-icon {
+    display: none;
+  }
