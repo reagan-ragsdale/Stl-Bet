@@ -1256,8 +1256,9 @@ export class NhlService {
                         teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != propReturn.homeAway && (e.pointsScoredOverall - e.pointsAllowedOverall) > filteredPropsOnMarketKey[i].point).length;
                         teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == propReturn.teamId && (e.pointsScoredOverall - e.pointsAllowedOverall) > filteredPropsOnMarketKey[i].point).length;
 
-                        //let backToBack = propReturn.homeAway == 'Home' ? isHomeBackToBack : isAwayBackToBack
-                        //propReturn.trends = this.findTrends(propReturn.gameBookData, backToBack,'spread', propReturn.homeAway, teamStats, teamAgainstStats)
+                        let backToBack = propReturn.homeAway == 'Home' ? isHomeBackToBack : isAwayBackToBack
+                        propReturn.trends = this.findTrends(propReturn.gameBookData, backToBack, 'spread', propReturn.homeAway, teamStats, teamAgainstStats)
+
                         overAllTableTemp = teamStats.slice(0, 10)
                         homeAwayTableTemp = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).slice(0, 10)
                         teamTableTemp = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).slice(0, 10)
@@ -2414,6 +2415,16 @@ export class NhlService {
                     if (this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
                         backToBackWinTotal++;
                         if (teamStats[i].result == 'W') {
+                            backToBackWinCount++;
+                        }
+                    }
+                }
+            }
+            else if(type == 'spread'){
+                for (let i = 0; i < teamStats.length - 2; i++) {
+                    if (this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
+                        backToBackWinTotal++;
+                        if ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) {
                             backToBackWinCount++;
                         }
                     }
