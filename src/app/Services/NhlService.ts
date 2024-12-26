@@ -2526,8 +2526,10 @@ export class NhlService {
             //if so add to total and add result to result total
             
             for (let i = 0; i < teamStats.length - winLossCount; i++) {
+                console.log(teamStats[i])
                 let winLossCheck: boolean[] = []
                 for (let j = 1; j < winLossCount; j++) {
+                    console.log(teamStats[i + j])
                     if (lastGameWinLoss) {
                         if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) < bookData.point) {
                             winLossCheck.push(true)
