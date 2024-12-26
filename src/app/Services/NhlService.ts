@@ -920,9 +920,7 @@ export class NhlService {
 
 
         let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v, i, a) => a.indexOf(v) === i)
-        for (let i = 0; i < distinctTeamProps.length; i++) {
-            //let 
-        }
+        
         let propTypeArray: any = []
         let homeTeamPropsFinal: any[] = []
         let awayTeamPropsFinal: any[] = []
@@ -1341,6 +1339,7 @@ export class NhlService {
                 awayTeamPropsFinal = []
                 homeTeamPropsFinal = []
             }
+            propTypeArray[propTypeArray.length - 1].propName = distinctTeamProps[i]
         }
 
 
@@ -1709,6 +1708,7 @@ export class NhlService {
         awayTeamOverUnderFinal.propType = 'total'
         propTypeArray.push([awayTeamOverUnderFinal, homeTeamOverUnderFinal])
         propTypeArray[propTypeArray.length - 1].propType = 'total'
+        propTypeArray[propTypeArray.length - 1].propName = overUnderTotalProps[0].marketKey
         homeTeamOverUnderFinal = []
         awayTeamOverUnderFinal = []
 
