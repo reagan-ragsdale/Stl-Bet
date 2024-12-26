@@ -2440,62 +2440,122 @@ export class NhlService {
 
         }
 
-        let lastGameWinLoss = teamStats[0].result
+        let lastGameWinLoss
         let winLossCount = 1
-        //find the number of games in a row with the total win loss
-        // Ex 3 game loss streak
-        for (let i = 1; i < teamStats.length; i++) {
-            if (lastGameWinLoss == 'W' || lastGameWinLoss == 'L') {
-                if (teamStats[i].result == lastGameWinLoss) {
-                    winLossCount++;
-                }
-                else {
-                    break;
-                }
-            }
-            else {
-                if (teamStats[i].result == lastGameWinLoss || teamStats[i].result == 'L') {
-                    winLossCount++;
-                }
-                else {
-                    break;
-                }
-            }
-        }
-        //find the result on every game given the win loss streak
-        // Ex win every game when coming off of a three game loss streak
-        //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
-        //if so add to total and add result to result total
         let winLossTotal = 0
         let winLossNumber = 0
-        for (let i = 0; i < teamStats.length - winLossCount; i++) {
-            let winLossCheck: boolean[] = []
-            for (let j = 1; j < winLossCount; j++) {
-                if (lastGameWinLoss == 'L' || lastGameWinLoss == 'OTL') {
-                    if (teamStats[i + j].result == 'L' || teamStats[i + j].result == 'OTL') {
-                        winLossCheck.push(true)
+        //find the number of games in a row with the total win loss
+        // Ex 3 game loss streak
+        if(type == 'h2h'){
+            lastGameWinLoss = teamStats[0].result
+            for (let i = 1; i < teamStats.length; i++) {
+                if (lastGameWinLoss == 'W' || lastGameWinLoss == 'L') {
+                    if (teamStats[i].result == lastGameWinLoss) {
+                        winLossCount++;
                     }
                     else {
-                        winLossCheck.push(false)
+                        break;
                     }
                 }
                 else {
-                    if (teamStats[i + j].result == lastGameWinLoss) {
-                        winLossCheck.push(true)
+                    if (teamStats[i].result == lastGameWinLoss || teamStats[i].result == 'L') {
+                        winLossCount++;
                     }
                     else {
-                        winLossCheck.push(false)
+                        break;
                     }
                 }
             }
-            if (!winLossCheck.includes(false)) {
-                winLossTotal++
-                winLossNumber += teamStats[i].result == 'W' ? 1 : 0
+            //find the result on every game given the win loss streak
+            // Ex win every game when coming off of a three game loss streak
+            //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
+            //if so add to total and add result to result total
+            
+            for (let i = 0; i < teamStats.length - winLossCount; i++) {
+                let winLossCheck: boolean[] = []
+                for (let j = 1; j < winLossCount; j++) {
+                    if (lastGameWinLoss == 'L' || lastGameWinLoss == 'OTL') {
+                        if (teamStats[i + j].result == 'L' || teamStats[i + j].result == 'OTL') {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                    else {
+                        if (teamStats[i + j].result == lastGameWinLoss) {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                }
+                if (!winLossCheck.includes(false)) {
+                    winLossTotal++
+                    winLossNumber += teamStats[i].result == 'W' ? 1 : 0
+                }
+            }
+            if (winLossTotal > 0) {
+                finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (lastGameWinLoss == 'W' ? 'win' : 'loss') + ' streak')
             }
         }
-        if (winLossTotal > 0) {
-            finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (lastGameWinLoss == 'W' ? 'win' : 'loss') + ' streak')
+        else if(type == 'spread'){
+            lastGameWinLoss = (teamStats[0].pointsAllowedOverall - teamStats[0].pointsScoredOverall) < bookData.point
+            for (let i = 1; i < teamStats.length; i++) {
+                if (lastGameWinLoss) {
+                    if ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) {
+                        winLossCount++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                else {
+                    if ((teamStats[0].pointsAllowedOverall - teamStats[0].pointsScoredOverall) > bookData.point) {
+                        winLossCount++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            //find the result on every game given the win loss streak
+            // Ex win every game when coming off of a three game loss streak
+            //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
+            //if so add to total and add result to result total
+            
+            for (let i = 0; i < teamStats.length - winLossCount; i++) {
+                let winLossCheck: boolean[] = []
+                for (let j = 1; j < winLossCount; j++) {
+                    if (lastGameWinLoss) {
+                        if (teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall < bookData.point) {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                    else {
+                        if (teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall > bookData.point) {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                }
+                if (!winLossCheck.includes(false)) {
+                    winLossTotal++
+                    winLossNumber += (teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall < bookData.point) ? 1 : 0
+                }
+            }
+            if (winLossTotal > 0) {
+                finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (lastGameWinLoss ? 'win' : 'loss') + ' streak')
+            }
         }
+        
+        
 
 
 
