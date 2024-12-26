@@ -2601,11 +2601,12 @@ export class NhlService {
                 }
 
             }
+            let fullArray = awayPlayerProps.concat(homePlayerProps)
             propArray.push(awayPlayerProps);
             propArray[0].teamName = awayTeam
             propArray.push(homePlayerProps);
             propArray[1].teamName = homeTeam
-            finalReturn.push(propArray)
+            finalReturn.push(fullArray)
 
 
         }
