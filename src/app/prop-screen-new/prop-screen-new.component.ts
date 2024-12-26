@@ -193,6 +193,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.selectedProp = prop
     this.selectedBetIndexes = [panel, bet]
     console.log(this.selectedBetIndexes)
+
     if(this.selectedProp.length > 1){
       if(this.selectedProp[0].length > 1){
         this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
@@ -205,7 +206,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
       this.selectedDisplayProp = this.selectedProp;
     }
 
-    
+    console.log(this.selectedDisplayArray)
   }
   onPropChange(propType: string) {
     this.selectedPropType = propType
