@@ -127,36 +127,6 @@
                                     </div>
                                     </mat-chip-option>
                                 </mat-chip-listbox>
-                                <!-- <div *ngFor="let team of prop; let j = index;" [ngClass]="(i == selectedBetIndexes[0] && j == selectedBetIndexes[1]) ? 'selected-prop-button' : 'unselected-prop-button'"  (click)="onPropClicked(team, i, j)">
-                                    <div style="display:flex; gap:1rem;"
-                                        *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
-                                        <span>{{team.teamName}}</span>
-                                        <span *ngIf="team.propType != 'h2h'"
-                                            style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' :
-                                            ''}}{{team.gameBookData.point}}</span>
-                                        <span
-                                            [ngStyle]="{'margin-left': (team.propType == 'h2h') ? 'auto' : 'none'}">{{team.gameBookData.price
-                                            > 0 ? '+' : ''}}{{team.gameBookData.price}}</span>
-                                    </div>
-                                    <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'total'">
-                                        <span>{{team[0].teamName}}</span>
-                                        <span style="margin-left:auto;">{{team[0].gameBookData.point}}</span>
-                                        <span>{{team[0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[0].gameBookData.price}}</span>
-                                        <span>{{team[1].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[1].gameBookData.price}}</span>
-                                    </div>
-                                    <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
-                                        <span>{{team[index][0].teamName}}</span>
-                                        <span
-                                            style="margin-left:auto;">{{team[index][0].gameBookData.point}}</span>
-                                        <span>{{team[index][0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[index][0].gameBookData.price}}</span>
-                                        <span>{{team[index][1].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[index][1].gameBookData.price}}</span>
-                                    </div>
-
-                                </div> -->
                             </div>
                         </mat-expansion-panel>
                     </mat-accordion>

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
@@ -12,7 +12,7 @@ import { NhlController } from 'src/shared/Controllers/NhlController';
   templateUrl: './prop-screen-new.component.html',
   styleUrls: ['./prop-screen-new.component.scss']
 })
-export class PropScreenNewComponent implements OnInit {
+export class PropScreenNewComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
@@ -256,7 +256,7 @@ export class PropScreenNewComponent implements OnInit {
   getPropNameFromMarketKey(marketKey: string): string{
     return this.listOfTeamProps[marketKey]
   }
-  ngAfterViewChecked(){
+  ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]
   }
 
