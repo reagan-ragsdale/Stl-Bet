@@ -2549,7 +2549,7 @@ export class NhlService {
                 }
             }
             if (winLossTotal > 0) {
-                finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (lastGameWinLoss ? 'win' : 'loss') + ' streak')
+                finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (bookData.point > 0 ? '+' : '') + bookData.point + (lastGameWinLoss ? ' win' : ' loss') + ' streak')
             }
         }
         
