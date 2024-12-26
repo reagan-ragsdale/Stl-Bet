@@ -207,7 +207,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
       this.selectedDisplayProp = this.selectedProp;
     }
 
-    console.log(this.selectedDisplayArray)
+    console.log(this.selectedDisplayProp)
   }
   onPropChange(propType: string) {
     this.selectedPropType = propType
