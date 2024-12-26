@@ -127,40 +127,6 @@
                                     </div>
                                     </mat-chip-option>
                                 </mat-chip-listbox>
-                                <div *ngIf="selectedPropType == 'Player Props'">
-                                    <mat-chip-listbox  *ngFor="let team of prop" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
-                                        <h4>{{team.teamName}}</h4>
-                                        <mat-chip-option style="min-width:inherit;" *ngFor="let player of team; let j = index;" [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
-                                             (click)="onPropClicked(team, i, j)">
-                                            <div style="display:flex; gap:1rem;">
-                                            <span>{{player[index].playerName}}</span>
-                                            <!-- <span *ngIf="team.propType != 'h2h'"
-                                                style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' :
-                                                ''}}{{team.gameBookData.point}}</span>
-                                            <span
-                                                [ngStyle]="{'margin-left': (team.propType == 'h2h') ? 'auto' : 'none'}">{{team.gameBookData.price
-                                                > 0 ? '+' : ''}}{{team.gameBookData.price}}</span> -->
-                                        </div>
-                                        <!-- <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'total'">
-                                            <span>{{team[0].teamName}}</span>
-                                            <span style="margin-left:auto;">{{team[0].gameBookData.point}}</span>
-                                            <span>{{team[0].gameBookData.price > 0 ? '+' :
-                                                ''}}{{team[0].gameBookData.price}}</span>
-                                            <span>{{team[1].gameBookData.price > 0 ? '+' :
-                                                ''}}{{team[1].gameBookData.price}}</span>
-                                        </div>
-                                        <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
-                                            <span>{{team[index][0].teamName}}</span>
-                                            <span
-                                                style="margin-left:auto;">{{team[index][0].gameBookData.point}}</span>
-                                            <span>{{team[index][0].gameBookData.price > 0 ? '+' :
-                                                ''}}{{team[index][0].gameBookData.price}}</span>
-                                            <span>{{team[index][1].gameBookData.price > 0 ? '+' :
-                                                ''}}{{team[index][1].gameBookData.price}}</span>
-                                        </div> -->
-                                        </mat-chip-option>
-                                    </mat-chip-listbox>
-                                </div>
                                 
                             </div>
                         </mat-expansion-panel>
@@ -175,7 +141,6 @@
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div style="display:flex; flex-direction: column; gap: .5rem;">
-                                <div *ngIf="selectedPropType == 'Player Props'">
                                     <mat-chip-listbox  *ngFor="let team of prop" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                         <h4>{{team.teamName}}</h4>
                                         <mat-chip-option style="min-width:inherit;" *ngFor="let player of team; let j = index;" [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
@@ -208,7 +173,6 @@
                                         </div> -->
                                         </mat-chip-option>
                                     </mat-chip-listbox>
-                                </div>
                                 
                             </div>
                         </mat-expansion-panel>
