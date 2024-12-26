@@ -95,8 +95,8 @@
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div style="display:flex; flex-direction: column; gap: .5rem;">
-                                <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
-                                    <mat-chip-option style="min-width:inherit;" *ngFor="let team of prop; let j = index;"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
+                                <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" >
+                                    <mat-chip-option style="min-width:inherit;" *ngFor="let team of prop; let j = index;"   [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                         [selected]="prop.selected" (click)="onPropClicked(team, i, j)">
                                         <div style="display:flex; gap:1rem;"
                                         *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
@@ -326,7 +326,7 @@
                         <div>
                             <h3 style="text-align:center;">Game Log</h3>
                         </div>
-                        <div style="height:inherit; overflow-y: scroll;">
+                        <div style="height:inherit; overflow-y: scroll; scrollbar-width: none;">
                             <table mat-table [dataSource]="selectedDisplayProp.fullGameLog" style="background-color: unset !important;">
                                 <ng-container matColumnDef="TeamAgainst">
                                   <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Team </th>

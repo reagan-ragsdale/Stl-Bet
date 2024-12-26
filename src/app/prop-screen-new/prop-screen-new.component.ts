@@ -256,6 +256,9 @@ export class PropScreenNewComponent implements OnInit {
   getPropNameFromMarketKey(marketKey: string): string{
     return this.listOfTeamProps[marketKey]
   }
+  ngAfterViewChecked(){
+    this.selectedBetIndexes = [0,0]
+  }
 
   async ngOnInit() {
     this.showSpinner = true;
