@@ -188,6 +188,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
 
 
   onPropClicked(prop:any, panel: number, bet: number){
+    console.log(prop)
     this.overUnderSlide = false;
     this.index = 0;
     this.selectedProp = prop
