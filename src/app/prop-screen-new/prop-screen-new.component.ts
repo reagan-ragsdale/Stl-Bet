@@ -168,7 +168,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.selectedDisplayProp = this.teamPropFinnal[0][0]
     this.selectedBetIndexes = [0,0]
     this.showSpinner = false;
-    this.playerPropData = await NhlService.getPlayerPropData(this.selectedGame, this.allSportTeamInfo)
+    this.playerPropData = await NhlService.getPlayerPropDataNew(this.selectedGame, this.allSportTeamInfo)
     console.log(this.playerPropData)
     
     //this.getTeamBestBets()
