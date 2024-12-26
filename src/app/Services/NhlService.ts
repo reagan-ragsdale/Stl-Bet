@@ -2560,7 +2560,7 @@ export class NhlService {
                                         })
                                     }
                                 }
-                                playerPropObj.propType = 'Alt'
+                                playerPropObj.propType = 'altTotal'
                             }
                             playerPropObj.last10Overall = overAllTableTemp.slice(0, 10)
                             playerPropObj.last10HomeAway = homeAwayTableTemp.slice(0, 10)
@@ -2589,7 +2589,7 @@ export class NhlService {
                         }
                         playerPropStats.overUnder = false;
                     }
-                    else if (playerPropStats[0].propType = 'Alt') {
+                    else if (playerPropStats[0].propType = 'altTotal') {
                         playerPropStats.sort((a: { playerBookData: { point: any; }; }, b: { playerBookData: { point: any; }; }) => a.playerBookData.point - b.playerBookData.point)
                         playerPropStats.index = 0;
                     }
