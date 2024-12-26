@@ -2468,7 +2468,7 @@ export class NhlService {
             
             for (let i = 0; i < teamStats.length - winLossCount; i++) {
                 let winLossCheck: boolean[] = []
-                for (let j = 1; j < winLossCount; j++) {
+                for (let j = 1; j <= winLossCount; j++) {
                     if (lastGameWinLoss == 'L' || lastGameWinLoss == 'OTL') {
                         if (teamStats[i + j].result == 'L' || teamStats[i + j].result == 'OTL') {
                             winLossCheck.push(true)
