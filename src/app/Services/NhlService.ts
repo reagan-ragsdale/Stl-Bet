@@ -567,7 +567,6 @@ export class NhlService {
 
         let homeTeamOverUnderFinal = []
         let awayTeamOverUnderFinal = []
-        console.log(overUnderTotalProps)
         for (let j = 0; j < overUnderTotalProps.length; j++) {
             let homeProp: TeamPropDto = {
                 gameBookData: overUnderTotalProps[j],
@@ -899,10 +898,8 @@ export class NhlService {
         let teamStatsCombined = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([homeTeam.teamNameAbvr, awayTeam.teamNameAbvr], 2024)
         let currentDate = new Date(props[0].commenceTime)
         let newCurrent = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())
-        console.log(newCurrent)
         let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
         let awayTeamStats = teamStatsCombined.filter(e => e.teamName == awayTeam.teamNameAbvr)
-        console.log([reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), newCurrent])
         let isHomeBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), newCurrent)
         let isAwayBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), newCurrent)
         /* for (let i = 0; i < homeTeamStats.length; i++) {
@@ -2391,13 +2388,11 @@ export class NhlService {
     static isBackToBackGame(game1: Date, game2: Date): boolean {
         const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));
         const normalizedDate2 = new Date(Date.UTC(game2.getUTCFullYear(), game2.getUTCMonth(), game2.getUTCDate()));
-        console.log('isBackToBackGame()')
-        console.log([normalizedDate1, normalizedDate2])
+        
 
         // Calculate the difference in days
         const diffInMilliseconds = Math.abs(normalizedDate1.getTime() - normalizedDate2.getTime());
-        console.log('diffInMilliseconds')
-        console.log(diffInMilliseconds)
+        
         const oneDayInMilliseconds = 1000 * 60 * 60 * 24; // Milliseconds in a day
 
         // Check if the difference is exactly one day
@@ -2520,16 +2515,17 @@ export class NhlService {
                     }
                 }
             }
+            console.log(winLossCount)
             //find the result on every game given the win loss streak
             // Ex win every game when coming off of a three game loss streak
             //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
             //if so add to total and add result to result total
             
             for (let i = 0; i < teamStats.length - winLossCount; i++) {
-                console.log(teamStats[i])
+                console.log(['i loop',teamStats[i]])
                 let winLossCheck: boolean[] = []
                 for (let j = 1; j < winLossCount; j++) {
-                    console.log(teamStats[i + j])
+                    console.log(['j loop',teamStats[i + j]])
                     if (lastGameWinLoss) {
                         if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) < bookData.point) {
                             winLossCheck.push(true)
