@@ -133,7 +133,7 @@
                                         <mat-chip-option style="min-width:inherit;" *ngFor="let player of team; let j = index;" [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(team, i, j)">
                                             <div style="display:flex; gap:1rem;">
-                                            <span>{{player.playerName}}</span>
+                                            <span>{{player[index].playerName}}</span>
                                             <!-- <span *ngIf="team.propType != 'h2h'"
                                                 style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' :
                                                 ''}}{{team.gameBookData.point}}</span>
