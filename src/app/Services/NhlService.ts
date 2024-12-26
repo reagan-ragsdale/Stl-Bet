@@ -2160,7 +2160,7 @@ export class NhlService {
             propArray[0].teamName = awayTeam
             propArray.push(homePlayerProps);
             propArray[1].teamName = homeTeam
-            propArray.propType = uniquePlayerProps[j]
+            propArray.propName = uniquePlayerProps[j]
             finalReturn.push(propArray)
 
 
