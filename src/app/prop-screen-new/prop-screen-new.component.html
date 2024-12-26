@@ -132,8 +132,8 @@
                         </mat-expansion-panel>
                         
                     </mat-accordion>
-                    <mat-accordion *ngIf="selectedPropType == 'Player Props'" style="display: flex; max-width: min-content;flex-direction: column;" [hideToggle]="false" [multi]="false" [displayMode]="'flat'">
-                        <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="false" [disabled]="true"
+                    <mat-accordion *ngIf="selectedPropType == 'Player Props'" style="display: flex; max-width: min-content;flex-direction: column;" [hideToggle]="false" [multi]="false" >
+                        <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="false" [disabled]="false"
                             style="display:flex; flex-direction: column;">
                             <mat-expansion-panel-header style="cursor: auto; min-width:max-content;">
                                 <mat-panel-title style="color:black; font-size: larger;">
