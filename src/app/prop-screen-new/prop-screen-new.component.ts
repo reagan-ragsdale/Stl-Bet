@@ -253,6 +253,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   }
 
   getPropNameFromMarketKey(marketKey: string): string{
+    console.log(marketKey)
     return this.listOfTeamProps[marketKey]
   }
   ngAfterViewInit(){
