@@ -192,6 +192,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.index = 0;
     this.selectedProp = prop
     this.selectedBetIndexes = [panel, bet]
+    console.log(this.selectedProp)
 
     if(this.selectedProp.length > 1){
       if(this.selectedProp[0].length > 1){
