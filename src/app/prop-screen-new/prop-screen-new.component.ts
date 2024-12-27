@@ -204,6 +204,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     else{
       this.selectedDisplayProp = this.selectedProp;
     }
+    console.log(this.selectedDisplayProp)
 
   }
   onPropChange(propType: string) {
@@ -226,9 +227,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   }
 
   updateOverUnder(){
-    console.log(this.overUnderSlide)
-    console.log(this.selectedProp)
-    console.log(this.selectedDisplayProp)
     if(this.selectedProp[0].length > 1){
       this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
     }
