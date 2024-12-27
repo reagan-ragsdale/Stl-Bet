@@ -226,7 +226,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     else if(this.selectedPropType == 'Player Props'){
       this.selectedDisplayArray = this.playerPropData
+      this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
     }
+    
   }
 
   updateOverUnder(){
