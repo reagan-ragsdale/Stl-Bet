@@ -1793,6 +1793,7 @@ export class NhlService {
                                 last10Overall: [],
                                 last10HomeAway: [],
                                 last10Team: [],
+                                trends:[]
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -2238,6 +2239,7 @@ export class NhlService {
                                 last10Overall: [],
                                 last10HomeAway: [],
                                 last10Team: [],
+                                trends: []
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
