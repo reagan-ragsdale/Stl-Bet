@@ -208,6 +208,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
 
   }
   onPropChange(propType: string) {
+    this.overUnderSlide = false;
+    this.index = 0;
+    this.selectedBetIndexes = [0, 0]
     this.selectedPropType = propType
     for (let prop of this.listOfProps) {
       if (prop.type != this.selectedPropType) {
