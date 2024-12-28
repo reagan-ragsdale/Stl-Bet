@@ -2187,7 +2187,7 @@ export class NhlService {
         let playerCall = await Promise.all([NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024),PlayerInfoController.loadActivePlayerInfoBySport("NHL")])
         let allPlayerStats = playerCall[0] 
         let allPlayerInfo = playerCall[1] 
-        
+
         //create an array for each prop that has a home and away array that contains an array for each player props
         for (let j = 0; j < uniquePlayerProps.length; j++) {
             let propArray: any[] = []
@@ -2561,7 +2561,7 @@ export class NhlService {
         }
 
 
-
+        console.log("end player service")
         return finalReturn
     }
 
