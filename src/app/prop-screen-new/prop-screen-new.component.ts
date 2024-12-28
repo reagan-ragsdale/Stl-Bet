@@ -263,6 +263,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     else{
       this.selectedDisplayProp = this.selectedProp[this.index]
     }
+    console.log(this.selectedProp)
     console.log(this.index)
     console.log(this.selectedDisplayProp)
     
