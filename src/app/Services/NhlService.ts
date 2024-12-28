@@ -16,7 +16,7 @@ import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGam
 import { reusedFunctions } from "./reusedFunctions";
 import { Injectable } from "@angular/core";
 
-@Injectable({providedIn: 'root'})
+
 export class NhlService {
 
     static convertPlayerInfoToDb(playerInfo: any[]): DbPlayerInfo[] {
