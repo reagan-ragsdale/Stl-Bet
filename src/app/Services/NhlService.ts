@@ -2177,6 +2177,7 @@ export class NhlService {
         let finalReturn: any[] = []
 
         let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
+        console.log('here 1')
         let homeTeam = playerPropData[0].homeTeam
         let awayTeam = playerPropData[0].awayTeam
 
@@ -2186,12 +2187,13 @@ export class NhlService {
 
         
         let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
+        console.log('here 2')
         let allPlayerInfo = await PlayerInfoController.loadActivePlayerInfoBySport("NHL")
+        console.log('here 3')
 
         /* let playerCall = await Promise.all([NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024),PlayerInfoController.loadActivePlayerInfoBySport("NHL")])
         let allPlayerStats = playerCall[0] 
         let allPlayerInfo = playerCall[1]  */
-        console.log('here 1')
         //create an array for each prop that has a home and away array that contains an array for each player props
         for (let j = 0; j < uniquePlayerProps.length; j++) {
             let propArray: any[] = []
@@ -2200,7 +2202,7 @@ export class NhlService {
             let uniquePlayersWithinProp = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j]).map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
             for (let m = 0; m < uniquePlayersWithinProp.length; m++) {
                 try {
-                    console.log('here 2')
+                    
                     let specificProps = playerPropData.filter(e => e.marketKey == uniquePlayerProps[j] && e.playerName == uniquePlayersWithinProp[m])
                     let playerPropStats: any = []
                     for (let i = 0; i < specificProps.length; i++) {
