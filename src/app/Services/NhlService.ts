@@ -6,7 +6,6 @@ import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
 import { TeamPropDto } from "../Dtos/TeamPropsDto";
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
 import { NhlController } from "../../shared/Controllers/NhlController";
-import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { PlayerPropController } from "../../shared/Controllers/PlayerPropController";
 import { PlayerPropDto } from "../Dtos/PlayerPropsDto";
 import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController";
@@ -14,11 +13,10 @@ import { DbNhlTeamGameStatTotals } from "../../shared/dbTasks/DbNhlTeamGameStatT
 import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameStatTotals";
 import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
 import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGameStatAverages";
-import { MatGridTileHeaderCssMatStyler } from "@angular/material/grid-list";
 import { reusedFunctions } from "./reusedFunctions";
-import { filter } from "compression";
+import { Injectable } from "@angular/core";
 
-
+@Injectable({providedIn: 'root'})
 export class NhlService {
 
     static convertPlayerInfoToDb(playerInfo: any[]): DbPlayerInfo[] {
