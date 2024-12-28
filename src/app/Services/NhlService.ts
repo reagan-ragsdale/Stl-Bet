@@ -2186,9 +2186,7 @@ export class NhlService {
 
         let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
 
-        for (let i = 0; i < allPlayerStats.length; i++) {
-            allPlayerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(allPlayerStats[i].gameDate)
-        }
+        
 
         let allPlayerInfo = await PlayerInfoController.loadActivePlayerInfoBySport("NHL")
 
