@@ -2173,6 +2173,7 @@ export class NhlService {
         return finalReturn
     }
     static async getPlayerPropDataNew(bookId: string, allTeamInfo: DbTeamInfo[]): Promise<any[]> {
+        console.log("start player service")
         let finalReturn: any[] = []
 
         let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
