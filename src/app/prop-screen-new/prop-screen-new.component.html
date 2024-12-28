@@ -209,7 +209,7 @@
                             
                         <h3 style="margin-bottom:0;" *ngIf="selectedPropType == 'Team Props'">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
                         <h3 style="margin-bottom:0;" *ngIf="selectedPropType == 'Player Props'">{{selectedDisplayProp.playerBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.playerBookData.price}}</h3>
-                        <div class="toggle-container" *ngIf="(selectedDisplayProp.propType == 'total' || selectedDisplayProp.propType == 'altTotal') && selectedPropType == 'Team Props'"
+                        <div class="toggle-container" *ngIf="selectedDisplayProp.propType == 'total' || (selectedDisplayProp.propType == 'altTotal' && selectedPropType == 'Team Props')"
                             style="display:flex;">
                             <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
                             <mat-slide-toggle (change)="updateOverUnder()"
