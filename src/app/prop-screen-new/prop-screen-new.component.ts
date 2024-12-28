@@ -5,7 +5,7 @@ import { TeamInfoController } from '../../shared/Controllers/TeamInfoController'
 import { DbTeamInfo } from 'src/shared/dbTasks/DBTeamInfo';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 import { NhlService } from '../Services/NhlService';
-import { NhlController } from 'src/shared/Controllers/NhlController';
+import { NhlController } from '../../shared/Controllers/NhlController';
 import { ThisReceiver } from '@angular/compiler';
 
 @Component({
