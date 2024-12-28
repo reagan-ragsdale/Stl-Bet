@@ -146,7 +146,7 @@
                                         <mat-chip-option style="min-width:inherit;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
                                             <div style="display:flex; gap:1rem;">
-                                            <span>{{player[index].playerName}}</span>
+                                            <span>{{player[0].playerName}}</span>
                                             <!-- <span *ngIf="team.propType != 'h2h'"
                                                 style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' :
                                                 ''}}{{team.gameBookData.point}}</span>
@@ -182,7 +182,7 @@
                 <div class="prop-stats-panel">
                     <div class="top-prop-panel">
                         <h2 *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
-                        <h2 *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0;">hhsdf</h2>
+                        <h2 *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0;">{{selectedDisplayProp.playerName}}</h2>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.playerBookData.marketKey)}}</h3>
                         <div *ngIf="selectedDisplayProp.propType != 'h2h'" class="buttons" style="display:flex; align-items: center; gap:.4rem;">
