@@ -158,9 +158,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.overUnderSlide = false;
     this.index = 0;
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
-    let results = await Promise.all([NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo),NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024)])
+    let results = await Promise.all([NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo),NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024),NhlService.getPlayerPropDataNew(this.selectedGame, this.allSportTeamInfo)])
     this.teamPropFinnal = results[0]
     let teamTotals = results[1]
+    this.playerPropData = results[2]
     console.log(this.teamPropFinnal)
     this.selectedDisplayArray = this.teamPropFinnal
     this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
@@ -169,7 +170,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.selectedDisplayProp = this.teamPropFinnal[0][0]
     this.selectedBetIndexes = [0,0]
     this.showSpinner = false;
-    this.playerPropData = await NhlService.getPlayerPropDataNew(this.selectedGame, this.allSportTeamInfo)
     console.log(this.playerPropData)
     
     //this.getTeamBestBets()
