@@ -11,7 +11,6 @@ import { ThisReceiver } from '@angular/compiler';
 @Component({
   selector: 'app-prop-screen-new',
   templateUrl: './prop-screen-new.component.html',
-  providers: [NhlService,NhlController],
   styleUrls: ['./prop-screen-new.component.scss']
 })
 export class PropScreenNewComponent implements OnInit, AfterViewInit {

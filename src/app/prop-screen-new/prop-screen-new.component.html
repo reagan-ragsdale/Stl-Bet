@@ -209,7 +209,7 @@
                             
                         <h3 style="margin-bottom:0;" *ngIf="selectedPropType == 'Team Props'">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
                         <h3 style="margin-bottom:0;" *ngIf="selectedPropType == 'Player Props'">{{selectedDisplayProp.playerBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.playerBookData.price}}</h3>
-                        <div class="toggle-container" *ngIf="selectedDisplayProp.propType == 'total' || (selectedDisplayProp.propType == 'altTotal' && selectedPropType == 'Team Props')"
+                        <div class="toggle-container" *ngIf="(selectedDisplayProp.propType == 'total' || selectedDisplayProp.propType == 'altTotal') && selectedPropType == 'Team Props'"
                             style="display:flex;">
                             <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
                             <mat-slide-toggle (change)="updateOverUnder()"
@@ -325,7 +325,7 @@
                         <div>
                             <h3 style="text-align:center;">Game Log</h3>
                         </div>
-                        <div ngIf="selectedPropType == 'Team Props'" style="height:inherit; overflow-y: scroll; scrollbar-width: none;">
+                        <div *ngIf="selectedPropType == 'Team Props'" style="height:inherit; overflow-y: scroll; scrollbar-width: none;">
                             <table mat-table [dataSource]="selectedDisplayProp.fullGameLog" style="background-color: unset !important;">
                                 <ng-container matColumnDef="TeamAgainst">
                                   <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Team </th>
@@ -362,7 +362,7 @@
                                   style="height:auto; text-align:center"></tr>
                               </table>
                         </div>
-                       <!--  <div ngIf="selectedPropType == 'Player Props'" style="height:inherit; overflow-y: scroll; scrollbar-width: none;">
+                        <div *ngIf="selectedPropType == 'Player Props'" style="height:inherit; overflow-y: scroll; scrollbar-width: none;">
                             <table mat-table [dataSource]="selectedDisplayProp.fullGameLog" style="background-color: unset !important;">
                                 <ng-container matColumnDef="TeamAgainst">
                                   <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Team </th>
@@ -390,7 +390,7 @@
                                 <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTablePlayerColumns; "
                                   style="height:auto; text-align:center"></tr>
                               </table>
-                        </div> -->
+                        </div>
                         
                     </div>
                     
