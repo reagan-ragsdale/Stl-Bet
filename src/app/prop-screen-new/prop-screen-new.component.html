@@ -216,7 +216,7 @@
                                 [(ngModel)]="overUnderSlide"></mat-slide-toggle>
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
-                        <h3 *ngIf="selectedPropType == 'Player Props'">{{selectedDisplayProp.playerBookData.description}}</h3>
+                        <h3 *ngIf="selectedPropType == 'Player Props' && selectedDisplayProp.propType == 'altTotal'">{{selectedDisplayProp.playerBookData.description}}</h3>
                     </div>
                     <div class="stat-body">
                         <div style="text-align: center;
