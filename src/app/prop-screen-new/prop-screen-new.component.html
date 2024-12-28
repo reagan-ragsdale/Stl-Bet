@@ -385,9 +385,9 @@
                                     {{element.propNumber}} </td>
                                 </ng-container>
                           
-                                <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"
+                                <tr mat-header-row *matHeaderRowDef="moneyLineTablePlayerColumns; sticky:true"
                                   style="width:auto; height:auto; font-size: medium; text-align:center; background-color:#ddd;"></tr>
-                                <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
+                                <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTablePlayerColumns; "
                                   style="height:auto; text-align:center"></tr>
                               </table>
                         </div>
