@@ -57,6 +57,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   overUnderSlide: boolean = false;
   index: number = 0
   moneyLineTableColumns: string[] = ["TeamAgainst", "Date", "Result", "Score"]
+  moneyLineTablePlayerColumns: string[] = ["TeamAgainst", "Date", "Score"]
   selectedBetIndexes: number[] = [0,0]
   playerPropData: any[] = []
   selectedDisplayArray: any[] = []
@@ -253,7 +254,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         this.index += 1;
       }
     }
-    this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
+    if(this.selectedProp[this.index].length > 1){
+      this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
+    }
+    else{
+      this.selectedDisplayProp = this.selectedProp[this.index]
+    }
+    
   }
 
   getPropNameFromMarketKey(marketKey: string): string{
