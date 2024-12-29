@@ -154,11 +154,11 @@
                                                 ''}}{{player[1].playerBookData.price}} O</span>
                                         </div>
                                         <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'altTotal'">
-                                            <span>{{player[index].playerName}}</span>
+                                            <span>{{player[0].playerName}}</span>
                                             <span
-                                                style="margin-left:auto;">{{player[index].playerBookData.point}}</span>
-                                            <span style="padding-right:1rem;">{{player[index].playerBookData.price > 0 ? '+' :
-                                                ''}}{{player[index].playerBookData.price}}{{player[index].playerBookData.description == 'Over' ? ' O' : ' U'}}</span>
+                                                style="margin-left:auto;">{{player[player.index].playerBookData.point}}</span>
+                                            <span style="padding-right:1rem;">{{player[player.index].playerBookData.price > 0 ? '+' :
+                                                ''}}{{player[player.index].playerBookData.price}}{{player[player.index].playerBookData.description == 'Over' ? ' O' : ' U'}}</span>
                                             
                                         </div>
                                         </mat-chip-option>

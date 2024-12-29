@@ -249,6 +249,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   }
 
   updatePropIndex(direction: string){
+
     if(direction == 'Down'){
       if(this.index != 0){
         this.index -= 1;
@@ -264,7 +265,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     else{
       this.selectedDisplayProp = this.selectedProp[this.index]
+      this.selectedProp.index = this.index
     }
+
+    
     console.log(this.selectedProp)
     console.log(this.index)
     console.log(this.selectedDisplayProp)
