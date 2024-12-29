@@ -27,15 +27,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
       selected: true
     },
     {
-      type: 'Game Props',
-      selected: false
-    },
-    {
       type: 'Player Props',
       selected: false
     },
     {
       type: 'Live Props',
+      selected: false
+    },{
+      type: 'Best Bets',
       selected: false
     }
   ]
