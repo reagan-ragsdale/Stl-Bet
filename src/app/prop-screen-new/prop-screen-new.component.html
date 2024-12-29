@@ -145,7 +145,7 @@
                                         
                                         <mat-chip-option style="min-width:inherit;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
-                                        <div style="display:flex; gap:1rem;" *ngIf="player[0].propType == 'total'">
+                                        <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'total'">
                                             <span>{{player[0].playerName}}</span>
                                             <span style="margin-left:auto;">{{player[0].playerBookData.point}}</span>
                                             <span>{{player[0].playerBookData.price > 0 ? '+' :
@@ -153,13 +153,13 @@
                                             <span>{{player[1].playerBookData.price > 0 ? '+' :
                                                 ''}}{{player[1].playerBookData.price}} O</span>
                                         </div>
-                                        <div style="display:flex; gap:1rem;" *ngIf="player[0].propType == 'altTotal'">
+                                        <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'altTotal'">
                                             <span>{{player[index].playerName}}</span>
                                             <span
                                                 style="margin-left:auto;">{{player[index].playerBookData.point}}</span>
                                             <span>{{player[index].playerBookData.price > 0 ? '+' :
-                                                ''}}{{player[index].playerBookData.price}}</span>
-                                                <span>{{player[index].playerBookData.description == 'Over' ? 'O' : 'U'}}</span>
+                                                ''}}{{player[index].playerBookData.price}}{{player[index].playerBookData.description == 'Over' ? 'O' : 'U'}}</span>
+                                            
                                         </div>
                                         </mat-chip-option>
                                     </mat-chip-listbox>
