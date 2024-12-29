@@ -112,18 +112,18 @@
                                         <span>{{team[0].teamName}}</span>
                                         <span style="margin-left:auto;">{{team[0].gameBookData.point}}</span>
                                         <span>{{team[0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[0].gameBookData.price}}U</span>
+                                            ''}}{{team[0].gameBookData.price}} U</span>
                                         <span>{{team[1].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[1].gameBookData.price}}O</span>
+                                            ''}}{{team[1].gameBookData.price}} O</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
                                         <span>{{team[index][0].teamName}}</span>
                                         <span
                                             style="margin-left:auto;">{{team[index][0].gameBookData.point}}</span>
                                         <span>{{team[index][0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[index][0].gameBookData.price}}</span>
+                                            ''}}{{team[index][0].gameBookData.price}} U</span>
                                         <span>{{team[index][1].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[index][1].gameBookData.price}}</span>
+                                            ''}}{{team[index][1].gameBookData.price}} O</span>
                                     </div>
                                     </mat-chip-option>
                                 </mat-chip-listbox>
@@ -145,15 +145,15 @@
                                         
                                         <mat-chip-option style="min-width:inherit;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
-                                        <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'total'">
+                                        <div style="display:flex; gap:1rem;" *ngIf="player.propType == 'total'">
                                             <span>{{player[0].playerName}}</span>
                                             <span style="margin-left:auto;">{{player[0].playerBookData.point}}</span>
                                             <span>{{player[0].playerBookData.price > 0 ? '+' :
-                                                ''}}{{player[0].playerBookData.price}}U</span>
+                                                ''}}{{player[0].playerBookData.price}} U</span>
                                             <span>{{player[1].playerBookData.price > 0 ? '+' :
-                                                ''}}{{player[1].playerBookData.price}}O</span>
+                                                ''}}{{player[1].playerBookData.price}} O</span>
                                         </div>
-                                        <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
+                                        <div style="display:flex; gap:1rem;" *ngIf="player.propType == 'altTotal'">
                                             <span>{{player[index].playerName}}</span>
                                             <span
                                                 style="margin-left:auto;">{{player[index].playerBookData.point}}</span>
