@@ -150,7 +150,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameAbvr == selectedGameClicked[0][0][0].awayTeam)
     this.homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameAbvr == selectedGameClicked[0][0][0].homeTeam)
     
-    this.onPropChange(this.listOfProps[0].type)
+    
 
     await this.displayProp();
   }
@@ -171,6 +171,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.selectedBetIndexes = [0,0]
     this.showSpinner = false;
     console.log(this.playerPropData)
+    this.onPropChange(this.listOfProps[0].type)
     
     //this.getTeamBestBets()
   }
