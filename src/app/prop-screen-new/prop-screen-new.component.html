@@ -98,31 +98,31 @@
                                 <mat-chip-listbox *ngIf="selectedPropType == 'Team Props'" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                     <mat-chip-option style="min-width:inherit;" *ngFor="let team of prop; let j = index;" [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                          (click)="onPropClicked(team, i, j)">
-                                        <div style="display:flex; gap:1rem;"
+                                        <div style="display:flex; gap:1rem;font-size:smaller;"
                                         *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
                                         <span>{{team.teamName}}</span>
                                         <span *ngIf="team.propType != 'h2h'"
                                             style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' :
                                             ''}}{{team.gameBookData.point}}</span>
                                         <span
-                                            [ngStyle]="{'margin-left': (team.propType == 'h2h') ? 'auto' : 'none'}">{{team.gameBookData.price
+                                            [ngStyle]="{'margin-left': (team.propType == 'h2h') ? 'auto' : 'none'}" style="padding-right:1rem;">{{team.gameBookData.price
                                             > 0 ? '+' : ''}}{{team.gameBookData.price}}</span>
                                     </div>
-                                    <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'total'">
+                                    <div style="display:flex; gap:1rem;font-size:smaller;" *ngIf="prop.propType == 'total'">
                                         <span>{{team[0].teamName}}</span>
                                         <span style="margin-left:auto;">{{team[0].gameBookData.point}}</span>
                                         <span>{{team[0].gameBookData.price > 0 ? '+' :
                                             ''}}{{team[0].gameBookData.price}} U</span>
-                                        <span>{{team[1].gameBookData.price > 0 ? '+' :
+                                        <span style="padding-right:1rem;">{{team[1].gameBookData.price > 0 ? '+' :
                                             ''}}{{team[1].gameBookData.price}} O</span>
                                     </div>
-                                    <div style="display:flex; gap:1rem;" *ngIf="prop.propType == 'altTotal'">
+                                    <div style="display:flex; gap:1rem;font-size:smaller;" *ngIf="prop.propType == 'altTotal'">
                                         <span>{{team[index][0].teamName}}</span>
                                         <span
                                             style="margin-left:auto;">{{team[index][0].gameBookData.point}}</span>
                                         <span>{{team[index][0].gameBookData.price > 0 ? '+' :
                                             ''}}{{team[index][0].gameBookData.price}} U</span>
-                                        <span>{{team[index][1].gameBookData.price > 0 ? '+' :
+                                        <span style="padding-right:1rem;">{{team[index][1].gameBookData.price > 0 ? '+' :
                                             ''}}{{team[index][1].gameBookData.price}} O</span>
                                     </div>
                                     </mat-chip-option>
