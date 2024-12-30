@@ -60,6 +60,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   selectedBetIndexes: number[] = [0,0]
   playerPropData: any[] = []
   selectedDisplayArray: any[] = []
+  bestBets: any[] = []
 
 
   constructor(
@@ -173,12 +174,36 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     console.log(this.playerPropData)
     this.onPropChange(this.listOfProps[0].type)
     
-    //this.getTeamBestBets()
+    this.getBestBets()
   }
 
-  getTeamBestBets(){
+  getBestBets(){
+    for(let i = 0; i < this.teamPropFinnal.length; i++){
+      for(let j = 0; j < this.teamPropFinnal[i].length; j++){
+        if(this.teamPropFinnal[i][j].length > 1){
+          for(let k = 0; k < this.teamPropFinnal[i][j].length; k++){
+            if(this.teamPropFinnal[i][j][k].length > 1){
+              for(let m = 0; m < this.teamPropFinnal[i][j][k].length; m++){
+                this.bestBets.push(this.teamPropFinnal[i][j][k][m])
+              }
+            }
+            else{
+              this.bestBets.push(this.teamPropFinnal[i][j][k])
+            }
+            
+          }
 
+        }
+        else{
+          this.bestBets.push(this.teamPropFinnal[i][j])
+        }
+      }
+    }
+    console.log('best bets below')
+    console.log(this.bestBets)
   }
+
+  
 
   public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Game Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings", "team_totals Over": "Team Total", "team_totals Under": "Team Total", "h2h_p1": "Moneyline First Period", "h2h_p2": "Moneyline Second Period", "h2h_p3": "Moneyline Third Period", "alternate_team_totals": 'Alternate Team Total', 'player_shots_on_goal_alternate': 'Alternate Shots', 'player_shots_on_goal': 'Shots', 'player_points': 'Points', 'player_assists': 'Assists' }
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings", 'h2h_p1', 'h2h_p2', 'h2h_p3']
