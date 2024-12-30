@@ -84,7 +84,7 @@
                 </mat-chip-option>
             </mat-chip-listbox>
 
-            <div class="prop-display">
+            <div *ngIf="isTeamOrPlayerProps()" class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion *ngIf="selectedPropType == 'Team Props'" style="display: flex; max-width: min-content;flex-direction: column;" [hideToggle]="true" [multi]="true" [displayMode]="'flat'">
                         <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="true" [disabled]="true"

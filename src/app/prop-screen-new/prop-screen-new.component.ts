@@ -279,6 +279,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     console.log(marketKey)
     return this.listOfTeamProps[marketKey]
   }
+  isTeamOrPlayerProps(){
+    return (this.selectedPropType == 'Team Props' || this.selectedPropType == 'Player Props')
+  }
   ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]
   }
