@@ -209,8 +209,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     this.findBestBets()
     
-    console.log('best bets below')
-    console.log(this.arrayOfAllBets)
   }
   findBestBets(){
     for(let i = 0; i < this.arrayOfAllBets.length; i++){
@@ -218,6 +216,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         this.bestBets.push(this.arrayOfAllBets[i])
       }
     }
+    console.log('best bets below')
+    console.log(this.bestBets)
   }
 
   
