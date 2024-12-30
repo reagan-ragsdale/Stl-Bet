@@ -207,9 +207,17 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    this.findBestBets()
     
     console.log('best bets below')
     console.log(this.arrayOfAllBets)
+  }
+  findBestBets(){
+    for(let i = 0; i < this.arrayOfAllBets.length; i++){
+      if(this.arrayOfAllBets[i].overallChance > .9 || this.arrayOfAllBets[i].overallWeighted > .9){
+        this.bestBets.push(this.arrayOfAllBets[i])
+      }
+    }
   }
 
   
