@@ -60,6 +60,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   selectedBetIndexes: number[] = [0,0]
   playerPropData: any[] = []
   selectedDisplayArray: any[] = []
+  arrayOfAllBets: any[] = []
   bestBets: any[] = []
 
 
@@ -184,24 +185,31 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
           for(let k = 0; k < this.teamPropFinnal[i][j].length; k++){
             if(this.teamPropFinnal[i][j][k].length > 1){
               for(let m = 0; m < this.teamPropFinnal[i][j][k].length; m++){
-                this.bestBets.push(this.teamPropFinnal[i][j][k][m])
+                this.arrayOfAllBets.push(this.teamPropFinnal[i][j][k][m])
               }
             }
             else{
-              this.bestBets.push(this.teamPropFinnal[i][j][k])
+              this.arrayOfAllBets.push(this.teamPropFinnal[i][j][k])
             }
             
           }
 
         }
         else{
-          this.bestBets.push(this.teamPropFinnal[i][j])
+          this.arrayOfAllBets.push(this.teamPropFinnal[i][j])
+        }
+      }
+    }
+    for(let i = 0; i < this.playerPropData.length; i++){
+      for(let j = 0; j < this.playerPropData[i].length; j++){
+        for(let k = 0; k < this.playerPropData[i][j].length; k++){
+          this.arrayOfAllBets.push(this.playerPropData[i][j][k])
         }
       }
     }
     
     console.log('best bets below')
-    console.log(this.bestBets)
+    console.log(this.arrayOfAllBets)
   }
 
   
