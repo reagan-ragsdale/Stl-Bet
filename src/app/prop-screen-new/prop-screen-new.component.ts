@@ -199,6 +199,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    
     console.log('best bets below')
     console.log(this.bestBets)
   }
