@@ -62,6 +62,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   selectedDisplayArray: any[] = []
   arrayOfAllBets: any[] = []
   bestBets: any[] = []
+  bestBetDisplay: any[] = []
 
 
   constructor(
@@ -240,6 +241,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
       playerBetsFinal.push(filteredPlayerBets)
     }
     bestBestFinal.push(teamBetsFinal,playerBetsFinal)
+    this.bestBetDisplay = bestBestFinal
     console.log('best bets below')
     console.log(bestBestFinal)
   }
@@ -298,6 +300,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
       this.selectedDisplayArray = this.playerPropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
     }
+    else if(this.selectedPropType == 'Best Bets'){
+      this.selectedDisplayArray = this.bestBetDisplay
+    }
     
   }
 
@@ -347,6 +352,24 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   }
   isTeamOrPlayerProps(){
     return (this.selectedPropType == 'Team Props' || this.selectedPropType == 'Player Props')
+  }
+  isTeamTruePlayerFalse(prop: any){
+    if(prop.length > 1){
+      if(Object.hasOwn(prop[0], 'gameBookData')){
+        return true
+      }
+      else{
+        return false
+      }
+    }
+    else{
+      if(Object.hasOwn(prop, 'gameBookData')){
+        return true
+      }
+      else{
+        return false
+      }
+    }
   }
   ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]

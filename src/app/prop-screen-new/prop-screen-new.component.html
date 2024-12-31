@@ -387,7 +387,45 @@
                 </div>
             </div>
             <div *ngIf="selectedPropType == 'Best Bets'" class="prop-display">
-                
+                <div class="list-of-props">
+                    <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
+                        <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
+                            style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
+                            <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: white;padding-bottom: .5rem; padding-top:.5rem;">
+                                <mat-panel-title style="color:black; font-size: larger;">
+                                    {{displayPropTitle(prop)}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="player-chip" style="display:flex; flex-direction: column;">
+                                    <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
+                                        
+                                        <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
+                                             (click)="onPropClicked(player, i, j)">
+                                             <span>{{isTeamTruePlayerFalse(player) ? player.teamName : 1}}</span>
+                                        <!-- <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'total'">
+                                            <span>{{player[0].playerName}}</span>
+                                            <span style="margin-left:auto;">{{player[0].playerBookData.point}}</span>
+                                            <span>{{player[0].playerBookData.price > 0 ? '+' :
+                                                ''}}{{player[0].playerBookData.price}} U</span>
+                                            <span style="padding-right:1rem;">{{player[1].playerBookData.price > 0 ? '+' :
+                                                ''}}{{player[1].playerBookData.price}} O</span>
+                                        </div>
+                                        <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'altTotal'">
+                                            <span>{{player[0].playerName}}</span>
+                                            <span
+                                                style="margin-left:auto;">{{player[player.index].playerBookData.point}}</span>
+                                            <span style="padding-right:1rem;">{{player[player.index].playerBookData.price > 0 ? '+' :
+                                                ''}}{{player[player.index].playerBookData.price}}{{player[player.index].playerBookData.description == 'Over' ? ' O' : ' U'}}</span>
+                                            
+                                        </div> -->
+                                        </mat-chip-option>
+                                    </mat-chip-listbox>
+                                
+                            </div>
+                        </mat-expansion-panel>
+                        
+                    </mat-accordion>
+                </div>
             </div>
         </div>
     </div>
