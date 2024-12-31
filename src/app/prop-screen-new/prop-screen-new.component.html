@@ -401,7 +401,6 @@
                                         
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
-                                             <span>{{isTeamTruePlayerFalse(player) ? player.teamName : 1}}</span>
                                         <div style="display:flex; gap:1rem; font-size:smaller;">
                                             <span>{{isTeamTruePlayerFalse(player) ? player.teamName : player.playerName}}</span>
                                             <span style="margin-left:auto;">{{isTeamTruePlayerFalse(player) ? player.gameBookData.point : player.playerBookData.point}}</span>
