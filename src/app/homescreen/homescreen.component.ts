@@ -77,15 +77,15 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   teamAverageColumnsNhl: string[] = ["Team", "Wins", "Losses", "OTL"]
 
   propClicked() {
-    this.router.navigate(["/props"])
+    this.router.navigate(["/propsNew"])
   }
 
   gameClick(bookId: string): void {
-    this.router.navigate([`/props/${this.selectedSport}/${bookId}`])
+    this.router.navigate([`/propsNew/${this.selectedSport}/${bookId}`])
   }
 
   sportProps(): void {
-    this.router.navigate([`/props/${this.selectedSport}`])
+    this.router.navigate([`/propsNew/${this.selectedSport}`])
   }
 
   async onTeamClick(team: string) {
