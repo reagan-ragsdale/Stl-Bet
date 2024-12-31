@@ -401,7 +401,7 @@
                                         
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
-                                             <span>{{isTeamTruePlayerFalse(player) ? 0 : 1}}</span>
+                                             <span>{{isTeamTruePlayerFalse(player) ? player.teamName : 1}}</span>
                                         <!-- <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'total'">
                                             <span>{{player[0].playerName}}</span>
                                             <span style="margin-left:auto;">{{player[0].playerBookData.point}}</span>

@@ -232,13 +232,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     let distinctTeamBets = teamBets.map(e => e.gameBookData.marketKey).filter((v,i,a) => a.indexOf(v) === i)
     for(let i = 0; i < distinctTeamBets.length; i++){
       let filteredTeamBets = teamBets.filter(e => e.gameBookData.marketKey == distinctTeamBets[i])
-      let distinctTeams = filteredTeamBets.map(e => e.teamName).filter((v,i,a) => a.indexOf(v) === i)
-      let teamArray: any[] = []
-      for(let j = 0; j < distinctTeams.length; j++){
-        let filteredTeam = filteredTeamBets.filter(e => e.teamName == distinctTeams[j])
-        teamArray.push(filteredTeam)
-      }
       this.bestBetDisplay.push(filteredTeamBets)
+      this.bestBetDisplay[this.bestBetDisplay.length - 1].propType = filteredTeamBets[0].propType
+      this.bestBetDisplay[this.bestBetDisplay.length - 1].propName = filteredTeamBets[0].gameBookData.marketKey
     }
     let playerBetsFinal: any[] = []
     let distinctPlayerBets = playerBets.map(e => e.playerBookData.marketKey).filter((v,i,a) => a.indexOf(v) === i)
