@@ -303,6 +303,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     else if(this.selectedPropType == 'Best Bets'){
       this.selectedDisplayArray = this.bestBetDisplay
+      this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
     }
     
   }

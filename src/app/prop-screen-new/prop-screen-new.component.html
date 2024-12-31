@@ -419,6 +419,122 @@
                         
                     </mat-accordion>
                 </div>
+                <div class="prop-stats-panel">
+                    <div class="top-prop-panel">
+                        <h2  style="margin-bottom:0;">{{isTeamTruePlayerFalse(selectedDisplayProp) ? selectedDisplayProp.teamName : selectedDisplayProp.playerName}}</h2>
+                        <h3 class="prop-type" style="margin-bottom:0; width:max-content;">{{isTeamTruePlayerFalse(selectedDisplayProp) ? getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey) : getPropNameFromMarketKey(selectedDisplayProp.playerBookData.marketKey)}}</h3>
+                        <div *ngIf="selectedDisplayProp.propType != 'h2h'" class="buttons" style="display:flex; align-items: center; gap:.4rem;">
+                            <h3 style="margin-bottom:0;">
+                                {{isTeamTruePlayerFalse(selectedDisplayProp) ? ((selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '') + selectedDisplayProp.gameBookData.point : ((selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.playerBookData.point > 0 ? '+' : '') : '') + selectedDisplayProp.playerBookData.point}}
+                            </h3>
+                        </div>
+                            
+                        <h3 style="margin-bottom:0;" >{{isTeamTruePlayerFalse(selectedDisplayProp) ? ((selectedDisplayProp.gameBookData.price > 0 ? '+' : '') + selectedDisplayProp.gameBookData.price) : ((selectedDisplayProp.playerBookData.price > 0 ? '+' : '') + selectedDisplayProp.playerBookData.price)}}</h3>
+                        
+                        <h3 *ngIf="isPropTotal(selectedDisplayProp)">{{isTeamTruePlayerFalse(selectedDisplayProp) ? selectedDisplayProp.gameBookData.description : selectedDisplayProp.playerBookData.description}}</h3>
+                    </div>
+                    <div class="stat-body">
+                        <div style="text-align: center;
+                        padding-top: .5rem;
+                        padding-bottom: .5rem;">
+                            <h3>Prop Stats</h3>
+                        </div>
+                        <div [ngClass]="selectedDisplayProp.propType == 'h2h' ? 'records-h2h' : 'records-all'">
+                                <div class="stat-div" style="grid-column-start: 2;">
+                                    <h4>Record</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>Chance</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>Weighted</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>Avg</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>High</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>Low</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>Last 10</h4>
+                                </div>
+                                <h3 style="font-weight: bold; border-bottom: 1px solid #ddd;">Overall</h3>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.overallWins}} - {{selectedDisplayProp.overallTotal - selectedDisplayProp.overallWins}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.overallChance | percent: '2.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.overallWeighted | percent: '2.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.averageOverall > 0 ? '+' : '') : ''}}{{selectedDisplayProp.averageOverall | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.highOverall > 0 ? '+' : '') : ''}}{{selectedDisplayProp.highOverall | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowOverall > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowOverall | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.last10Overall[0]}}-{{selectedDisplayProp.last10Overall[1] - selectedDisplayProp.last10Overall[0]}}</h4>
+                                </div>
+                                <h3 style="font-weight: bold; border-bottom: 1px solid #ddd;">{{selectedDisplayProp.homeAway}}</h3>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.homeAwayWins}} - {{selectedDisplayProp.homeAwayTotal - selectedDisplayProp.homeAwayWins}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.homeAwayChance | percent: '2.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.homeAwayWeighted | percent: '2.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.averageHomeAway > 0 ? '+' : '') : ''}}{{selectedDisplayProp.averageHomeAway | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.highHomeAway > 0 ? '+' : '') : ''}}{{selectedDisplayProp.highHomeAway | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowHomeAway > 0 ? '+' : '') : ''}}{{selectedDisplayProp.lowHomeAway | number: '1.2-2'}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.last10HomeAway[0]}}-{{selectedDisplayProp.last10HomeAway[1] - selectedDisplayProp.last10HomeAway[0]}}</h4>
+                                </div>
+                                
+                                <h3 style="font-weight: bold;">Vs {{selectedDisplayProp.teamAgainstName}}</h3>
+                                <div class="last-stat-div">
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.teamWins + '-' + (selectedDisplayProp.teamTotal - selectedDisplayProp.teamWins))}}</h4>
+                                </div>
+                                <div class="last-stat-div">
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.teamChance | percent: '2.2-2')}}</h4>
+                                </div>
+                                <div class="last-stat-div">
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.teamWeighted | percent: '2.2-2')}}</h4>
+                                </div>
+                                <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.averageTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.averageTeam | number: '1.2-2')}}</h4>
+                                </div>
+                                <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.highTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.highTeam | number: '1.2-2')}}</h4>
+                                </div>
+                                <div class="last-stat-div" *ngIf="selectedDisplayProp.propType != 'h2h'">
+                                    <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
+                                </div>
+                                <div class="stat-div">
+                                    <h4>{{selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.last10Team[1] - selectedDisplayProp.last10Team[0]}}</h4>
+                                </div>
+                        </div>
+                        
+                    </div>
+                    <div *ngIf="selectedDisplayProp.trends.length > 0" class="trends">
+                        <h3 *ngFor="let trend of selectedDisplayProp.trends">{{trend}}</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
