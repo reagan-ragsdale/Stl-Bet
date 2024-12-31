@@ -216,6 +216,16 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         this.bestBets.push(this.arrayOfAllBets[i])
       }
     }
+    let bestBestFinal: any[] = []
+    
+    for(let i = 0; i < this.bestBets.length; i++){
+      if(Object.hasOwn(this.bestBets[i], 'gameBookData')){
+
+      }
+      else{
+
+      }
+    }
     console.log('best bets below')
     console.log(this.bestBets)
   }
