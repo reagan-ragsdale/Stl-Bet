@@ -301,7 +301,7 @@
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.last10Team[1] - selectedDisplayProp.last10Team[0]}}</h4>
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- ' : selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.teamTotal == 0 ? '-' : selectedDisplayProp.last10Team[1] - selectedDisplayProp.last10Team[0]}}</h4>
                                 </div>
                         </div>
                         
@@ -526,7 +526,7 @@
                                     <h4>{{selectedDisplayProp.propType == 'spread' ? (selectedDisplayProp.lowTeam > 0 ? '+' : '') : ''}}{{selectedDisplayProp.teamTotal == 0 ? '- -' : (selectedDisplayProp.lowTeam | number: '1.2-2')}}</h4>
                                 </div>
                                 <div class="stat-div">
-                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- -' : selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.last10Team[1] - selectedDisplayProp.last10Team[0]}}</h4>
+                                    <h4>{{selectedDisplayProp.teamTotal == 0 ? '- ' : selectedDisplayProp.last10Team[0]}}-{{selectedDisplayProp.teamTotal == 0 ? '-' : (selectedDisplayProp.last10Team[1] - selectedDisplayProp.last10Team[0])}}</h4>
                                 </div>
                         </div>
                         
