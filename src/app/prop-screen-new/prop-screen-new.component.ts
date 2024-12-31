@@ -232,7 +232,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     let distinctTeamBets = teamBets.map(e => e.gameBookData.marketKey).filter((v,i,a) => a.indexOf(v) === i)
     for(let i = 0; i < distinctTeamBets.length; i++){
       let filteredTeamBets = teamBets.filter(e => e.gameBookData.marketKey == distinctTeamBets[i])
-      this.bestBetDisplay.push(filteredTeamBets)
+      let distinctTeams = filteredTeamBets.map(e => e.teamName).filter((v,i,a) => a.indexOf(v) === i)
+      let teamArray: any[] = []
+      for(let j = 0; j < distinctTeams.length; j++){
+        let filteredTeam = filteredTeamBets.filter(e => e.teamName == distinctTeams[j])
+        teamArray.push(filteredTeam)
+      }
+      this.bestBetDisplay.push(teamArray)
     }
     let playerBetsFinal: any[] = []
     let distinctPlayerBets = playerBets.map(e => e.playerBookData.marketKey).filter((v,i,a) => a.indexOf(v) === i)
@@ -240,9 +246,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
       let filteredPlayerBets = playerBets.filter(e => e.playerBookData.marketKey == distinctPlayerBets[i])
       this.bestBetDisplay.push(filteredPlayerBets)
     }
+    console.log('best bets belwo')
+    console.log(this.bestBetDisplay)
     
-    console.log('best bets below')
-    console.log(bestBestFinal)
   }
 
   
