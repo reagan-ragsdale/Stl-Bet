@@ -372,6 +372,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  isPropTotal(prop:any){
+    if(prop.propType == 'total' || prop.propType == 'altTotal') return true
+    else return false
+  }
   ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]
   }

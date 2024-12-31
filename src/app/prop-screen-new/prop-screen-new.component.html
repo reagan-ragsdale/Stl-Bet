@@ -403,11 +403,12 @@
                                              (click)="onPropClicked(player, i, j)">
                                         <div style="display:flex; gap:1rem; font-size:smaller;">
                                             <span>{{isTeamTruePlayerFalse(player) ? player.teamName : player.playerName}}</span>
-                                            <span style="margin-left:auto;">{{isTeamTruePlayerFalse(player) ? player.gameBookData.point : player.playerBookData.point}}</span>
-                                            <span>{{player.gameBookData.price > 0 ? '+' :
-                                                ''}}{{player.gameBookData.price}}</span>
-                                            <span style="padding-right:1rem;">{{player.gameBookData.description == 'Over' ? 'O' :
-                                                'U'}}</span>
+                                            <span style="margin-left:auto;">{{isTeamTruePlayerFalse(player) ? (player.propType == 'h2h' ? '' : player.gameBookData.point) : player.playerBookData.point}}</span>
+                                            <span>{{isTeamTruePlayerFalse(player) ? ((player.gameBookData.price > 0 ? '+' :
+                                                '') + player.gameBookData.price) : ((player.playerBookData.price > 0 ? '+' : '') + player.playerBookData.price)}}</span>
+                                            <span style="padding-right:1rem;">{{isTeamTruePlayerFalse(player) ? (isPropTotal(player) ? (player.gameBookData.description == 'Over' ? 'O' :
+                                                'U') : '') : (isPropTotal(player) ? (player.playerBookData.description == 'Over' ? 'O' :
+                                                'U') : '')}}</span>
                                         </div>
                                         
                                         </mat-chip-option>
