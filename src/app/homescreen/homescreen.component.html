@@ -2,7 +2,7 @@
 
     <div class="game-list" >
       <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
-        <mat-chip-option *ngFor="let game of gamesList" style="height:40px; width:85%; background-color: #007bff" [selectable]="false" [selected]="game.selected"  [disabled]="game.disabled == true"
+        <mat-chip-option *ngFor="let game of gamesList" style="height:40px; width:85%;" [selectable]="false" [selected]="game.selected"  [disabled]="game.disabled == true"
          (click)="onSportsListClick(game.name)">
           {{game.name}}
         </mat-chip-option>
@@ -15,7 +15,7 @@
         style=" height: 100%; text-align: start;  font-weight: 500; color:#240605; font-size: xx-large; margin-top:auto; margin-bottom: auto;">
         {{selectedSport}} Dashboard</h1>
       <div style="height: 100%; display:flex; align-items: center; justify-content: flex-end; margin-left:auto;">
-        <button mat-button style=" background-color: #007bff; color: #F0ECE5 " (click)="sportProps()">Go to
+        <button mat-button style=" background-color: #22577A; color: #F0ECE5 " (click)="sportProps()">Go to
           {{selectedSport}} Props</button>
       </div>
 
