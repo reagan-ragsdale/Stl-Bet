@@ -241,6 +241,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     for(let i = 0; i < distinctPlayerBets.length; i++){
       let filteredPlayerBets = playerBets.filter(e => e.playerBookData.marketKey == distinctPlayerBets[i])
       this.bestBetDisplay.push(filteredPlayerBets)
+      this.bestBetDisplay[this.bestBetDisplay.length - 1].propType = filteredPlayerBets[0].propType
+      this.bestBetDisplay[this.bestBetDisplay.length - 1].propName = filteredPlayerBets[0].playerBookData.marketKey
     }
     console.log('best bets belwo')
     console.log(this.bestBetDisplay)
