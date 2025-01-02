@@ -54,6 +54,7 @@
     width:100%;
     display:flex;
     margin-top:1rem;
+    flex-wrap: wrap;
 }
 ::ng-deep .mat-expansion-panel-body{
  padding: 10px 12px 10px !important;
@@ -281,8 +282,3 @@ mat-chip-option{
     border-radius:8px;
 }
 
-@media screen and (max-width: 1330px) {
-    .prop-display{
-        flex-direction: column;
-    }
-}
