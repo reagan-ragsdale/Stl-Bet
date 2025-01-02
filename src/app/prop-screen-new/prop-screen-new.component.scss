@@ -280,3 +280,9 @@ mat-slide-toggle {
 mat-chip-option{
     border-radius:8px;
 }
+
+@media screen and (max-width: 1330px) {
+    .prop-display{
+        flex-direction: column;
+    }
+}
