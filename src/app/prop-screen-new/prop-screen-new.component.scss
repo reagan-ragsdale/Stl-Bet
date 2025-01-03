@@ -335,5 +335,30 @@ mat-chip-option{
     .panel-props-expansion{
         min-width: min-content;
     }
+    .prop-stats-panel{
+        padding-left:0;
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+    }
+    .team-full-game-log{
+        padding-top: 1rem;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .records-h2h{
+        width:fit-content;
+        gap:2px;
+    }
+    .records-all{
+        width:fit-content;
+        gap:2px;
+    }
+    .stat-div h4{
+        font-size:smaller;
+    }
 }
 
