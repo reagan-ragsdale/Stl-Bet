@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="prop-type-section">
-            <mat-chip-listbox style="overflow-x: scroll; scrollbar-width: none;" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
+            <mat-chip-listbox style="overflow-x: scroll; scrollbar-width: none;" class="mat-mdc-chip-set-stacked chip-box prop-type-list-box" aria-label="Color selection">
                 <mat-chip-option *ngFor="let prop of listOfProps" style="height:40px; width:auto;" [selectable]="false"
                     [selected]="prop.selected" (click)="onPropChange(prop.type)">
                     {{prop.type}}
