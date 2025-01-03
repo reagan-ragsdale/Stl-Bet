@@ -375,5 +375,31 @@ mat-chip-option{
     .table-div{
         margin-left:0;
     }
+    .top-prop-panel{
+        gap:5px; 
+        padding: .25rem .5rem;
+    }
+    .top-prop-panel h2{
+        font-size:smaller;
+    }
+    .top-prop-panel h3{
+        font-size: smaller;
+        padding-left:5px;
+    }
+    .buttons{
+        padding: 0 2px;
+    }
+    .button button{
+        min-width:30px;
+    }
+    .toggle-container{
+        gap:5px;
+    }
+    .toggle-container h4{
+        margin-right: 0;
+    }
+    mat-slide-toggle{
+        margin:0
+    }
 }
 
