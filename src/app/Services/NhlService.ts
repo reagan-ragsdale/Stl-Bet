@@ -2807,6 +2807,9 @@ export class NhlService {
                         }
                     }
                 }
+                if (backToBackWinTotal > 0) {
+                    finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' in 2nd games in a back to back series.')
+                }
             }
             else if (type == 'spread') {
                 for (let i = 0; i < teamStats.length - 2; i++) {
@@ -2817,13 +2820,14 @@ export class NhlService {
                         }
                     }
                 }
+                if (backToBackWinTotal > 0) {
+                    finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' with spread of ' + (bookData.point > 0 ? '+' : '') + bookData.point + ' in 2nd games in a back to back series.')
+                }
             }
 
 
 
-            if (backToBackWinTotal > 0) {
-                finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' in 2nd games in a back to back series.')
-            }
+            
 
 
         }
