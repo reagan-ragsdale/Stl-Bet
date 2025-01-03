@@ -4,7 +4,7 @@ import { draftKingsApiController } from "../ApiCalls/draftKingsApiCalls";
 export const cronSportsBookHourly = async () => {
 
 
-    const listOfActiveSports: string[] = ["NHL"]
+    const listOfActiveSports: string[] = ["NHL", "NFL"]
 
     const listOfMlbExtraGameProps: string = "alternate_spreads,alternate_totals"
 
