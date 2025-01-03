@@ -281,3 +281,35 @@ mat-chip-option{
     border-radius:8px;
 }
 
+@media screen and (max-width: 440px) {
+    .body{
+        flex-direction:column;
+    }
+    .games-list{
+        width:100%;
+    }
+    .games-list-box{
+        display:flex;
+        overflow-x: scroll;
+        flex-direction: row;
+        gap: .5em;
+        padding-left: 1em;
+        padding-bottom: .5em;
+    }
+    .list-of-props{
+        overflow-x:scroll;
+        min-width:100%;
+    }
+    .props-list-box{
+        display: flex;
+        max-width: min-content;
+        flex-direction: row;
+    }
+    .props-list-box .mdc-evolution-chip-set__chips{
+        flex-direction: column;
+    }
+    .panel-props-expansion{
+        min-width: min-content;
+    }
+}
+

@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="prop-type-section">
-            <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
+            <mat-chip-listbox style="overflow-x: scroll; scrollbar-width: none;" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection">
                 <mat-chip-option *ngFor="let prop of listOfProps" style="height:40px; width:auto;" [selectable]="false"
                     [selected]="prop.selected" (click)="onPropChange(prop.type)">
                     {{prop.type}}
@@ -87,7 +87,7 @@
             <div *ngIf="isTeamOrPlayerProps()" class="prop-display">
                 <div class="list-of-props">
                     <mat-accordion *ngIf="selectedPropType == 'Team Props'" style="display: flex; max-width: min-content;flex-direction: column;" [hideToggle]="true" [multi]="true" [displayMode]="'flat'">
-                        <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="true" [disabled]="true"
+                        <mat-expansion-panel class="panel-props-expansion"  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="true" [disabled]="true"
                             style="display:flex; flex-direction: column;">
                             <mat-expansion-panel-header style="cursor: auto; min-width:max-content;">
                                 <mat-panel-title style="color:black; font-size: larger;">
@@ -95,7 +95,7 @@
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div style="display:flex; flex-direction: column; gap: .5rem;">
-                                <mat-chip-listbox *ngIf="selectedPropType == 'Team Props'" class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
+                                <mat-chip-listbox *ngIf="selectedPropType == 'Team Props'" class="mat-mdc-chip-set-stacked chip-box props-list-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                     <mat-chip-option style="min-width:inherit;border-radius:8px;" *ngFor="let team of prop; let j = index;" [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                          (click)="onPropClicked(team, i, j)">
                                         <div style="display:flex; gap:1rem;font-size:smaller;"
