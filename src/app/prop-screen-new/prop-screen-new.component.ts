@@ -7,6 +7,7 @@ import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
 import { NhlService } from '../Services/NhlService';
 import { NhlController } from '../../shared/Controllers/NhlController';
 import { ThisReceiver } from '@angular/compiler';
+import { reusedFunctions } from '../Services/reusedFunctions';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -161,7 +162,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.overUnderSlide = false;
     this.index = 0;
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
-    let results = await Promise.all([NhlService.getTeamPropDataNew(gameProps, this.allSportTeamInfo),NhlController.NhlGetTeamsGameStatTotals([this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], 2024),NhlService.getPlayerPropDataNew(this.selectedGame, this.allSportTeamInfo)])
+    let results = await reusedFunctions.getPropDataBySport(this.selectedSport, gameProps, this.allSportTeamInfo, [this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], this.selectedGame)
     this.teamPropFinnal = results[0]
     let teamTotals = results[1]
     this.playerPropData = results[2]

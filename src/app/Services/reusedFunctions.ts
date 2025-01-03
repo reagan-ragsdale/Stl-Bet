@@ -1,4 +1,8 @@
 import { parse } from "path";
+import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
+import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo";
+import { NhlService } from "./NhlService";
+import { NhlController } from "../../shared/Controllers/NhlController";
 
 
 
@@ -294,6 +298,16 @@ export class reusedFunctions {
   
     // Return the Date object
     return new Date(year, month, day);
+  }
+
+  static async getPropDataBySport(sport: string, gameProps: DbGameBookData[], allTeamInfo: DbTeamInfo[], teamNames: string[], selectedGame: string): Promise<any[]>{
+    let finalReturn: any = []
+
+    if(sport == 'NHL'){
+      finalReturn = Promise.all([NhlService.getTeamPropDataNew(gameProps, allTeamInfo),NhlController.NhlGetTeamsGameStatTotals(teamNames, 2024),NhlService.getPlayerPropDataNew(selectedGame, allTeamInfo)])
+    }
+
+    return finalReturn
   }
 
   
