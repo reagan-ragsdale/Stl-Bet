@@ -357,11 +357,17 @@ mat-chip-option{
         width:fit-content;
         gap:2px;
     }
-    .records-all, .records-h2h h3{
+    .records-all h3{
         font-size: smaller;
     }
-    .stat-div,.last-stat-div h4{
+    .records-h2h h3{
+        font-size: smaller;
+    }
+    .stat-div h4{
         font-size:smaller;
+    }
+    .last-stat-div h4 {
+        font-size: smaller;
     }
 }
 
