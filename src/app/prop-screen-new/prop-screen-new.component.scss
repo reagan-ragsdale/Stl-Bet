@@ -389,7 +389,7 @@ mat-chip-option{
     .buttons{
         padding: 0 2px;
     }
-    .button button{
+    .buttons button{
         min-width:30px;
     }
     .toggle-container{
@@ -402,6 +402,9 @@ mat-chip-option{
     }
     mat-slide-toggle{
         margin:0
+    }
+    .prop-type{
+        padding:0
     }
 }
 
