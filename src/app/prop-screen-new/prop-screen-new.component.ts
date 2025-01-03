@@ -181,6 +181,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   }
 
   getBestBets(){
+    this.arrayOfAllBets = []
     for(let i = 0; i < this.teamPropFinnal.length; i++){
       for(let j = 0; j < this.teamPropFinnal[i].length; j++){
         if(this.teamPropFinnal[i][j].length > 1){
@@ -213,6 +214,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     
   }
   findBestBets(){
+    this.bestBets = []
+    this.bestBetDisplay = []
     for(let i = 0; i < this.arrayOfAllBets.length; i++){
       if(this.arrayOfAllBets[i].overallChance > .9 || this.arrayOfAllBets[i].overallWeighted > .9){
         this.bestBets.push(this.arrayOfAllBets[i])
