@@ -86,7 +86,7 @@
 
             <div *ngIf="isTeamOrPlayerProps()" class="prop-display">
                 <div class="list-of-props">
-                    <mat-accordion *ngIf="selectedPropType == 'Team Props'" style="display: flex; max-width: min-content;flex-direction: column;" [hideToggle]="true" [multi]="true" [displayMode]="'flat'">
+                    <mat-accordion class="list-of-prop-accordion" *ngIf="selectedPropType == 'Team Props'" [hideToggle]="true" [multi]="true" [displayMode]="'flat'">
                         <mat-expansion-panel class="panel-props-expansion"  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="true" [disabled]="true"
                             style="display:flex; flex-direction: column;">
                             <mat-expansion-panel-header style="cursor: auto; min-width:max-content;">

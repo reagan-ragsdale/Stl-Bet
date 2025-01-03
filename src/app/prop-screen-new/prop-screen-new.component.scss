@@ -280,7 +280,18 @@ mat-slide-toggle {
 mat-chip-option{
     border-radius:8px;
 }
+.list-of-prop-accordion{
+    display: flex; 
+    max-width: min-content;
+    flex-direction: column;
+}
 
+::ng-deep .props-list-box .mdc-evolution-chip-set__chips{
+    @media screen and (max-width: 440px) {
+        flex-direction: column;
+    }
+    
+}
 @media screen and (max-width: 440px) {
     .body{
         flex-direction:column;
@@ -296,18 +307,23 @@ mat-chip-option{
         padding-left: 1em;
         padding-bottom: .5em;
     }
+    .games-list-box .mdc-evolution-chip-set__chips{
+        flex-wrap: nowrap;
+        gap:.5em;
+    }
     .list-of-props{
         overflow-x:scroll;
         min-width:100%;
+    }
+    .list-of-prop-accordion{
+        flex-direction: row;
     }
     .props-list-box{
         display: flex;
         max-width: min-content;
         flex-direction: row;
     }
-    .props-list-box .mdc-evolution-chip-set__chips{
-        flex-direction: column;
-    }
+    
     .panel-props-expansion{
         min-width: min-content;
     }
