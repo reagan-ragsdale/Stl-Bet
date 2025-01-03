@@ -318,6 +318,9 @@ mat-chip-option{
         padding-left: 1em;
         padding-bottom: .5em;
     }
+    .prop-type-section{
+        padding-right:.5rem;
+    }
     
     .list-of-props{
         overflow-x:scroll;
@@ -368,6 +371,9 @@ mat-chip-option{
     }
     .last-stat-div h4 {
         font-size: smaller;
+    }
+    .table-div{
+        margin-left:0;
     }
 }
 
