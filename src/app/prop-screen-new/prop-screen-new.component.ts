@@ -168,8 +168,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.playerPropData = results[2]
     console.log(this.teamPropFinnal)
     this.selectedDisplayArray = this.teamPropFinnal
-    this.awayTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
-    this.homeTeamStatsDisplay = teamTotals.filter(e => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
+    this.awayTeamStatsDisplay = teamTotals.filter((e: { teamName: string; }) => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
+    this.homeTeamStatsDisplay = teamTotals.filter((e: { teamName: string; }) => e.teamName == this.homeTeamInfo[0].teamNameAbvr)[0]
     this.selectedProp = this.teamPropFinnal[0][0]
     this.selectedDisplayProp = this.teamPropFinnal[0][0]
     this.selectedBetIndexes = [0,0]
