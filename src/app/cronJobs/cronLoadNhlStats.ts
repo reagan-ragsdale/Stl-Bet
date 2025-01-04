@@ -119,28 +119,7 @@ export const cronLoadNhlStats = async () => {
 
     
 
-    //let teams = await nhlApiController.getTeamInfo()
-    //TeamInfoController.setTeamInfo(teams)
-
-
-    //temp to update game stats for first to score
-   /*  let taskRepo = remult.repo(DbNhlTeamGameStats)
-    let allGames = await taskRepo.find()
-    let distinctGameIds = allGames.map(e => e.gameId).filter((value,index,array) => array.indexOf(value) === index)
-    for(let i = 0; i < distinctGameIds.length; i++){
-        try{
-            let teamToScoreFirst = await nhlApiController.findScoredFirst(distinctGameIds[i])
-            let filteredGames = allGames.filter(e => e.gameId == distinctGameIds[i])
-            let firstToScore = filteredGames.filter(e => e.teamName == teamToScoreFirst)[0]
-            let lastToScore = filteredGames.filter(e => e.teamName != teamToScoreFirst)[0]
-            await taskRepo.update(firstToScore.id!,{...firstToScore, scoredFirst: 'Y'})
-            await taskRepo.update(lastToScore.id!,{...lastToScore, scoredFirst: 'N'})
-        }
-        catch(error:any){
-            console.log('Error in nhl update game score first. Game id: ' + distinctGameIds[i] + " " + error.message)
-        }
-        
-    } */
+    
 
 
 

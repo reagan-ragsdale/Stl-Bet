@@ -62,7 +62,9 @@ export class draftKingsApiController {
     var playerProps = '';
     if (sport === "NHL") {
       playerProps = "player_shots_on_goal_alternate"
-
+    }
+    else if(sport == 'NFL'){
+      playerProps = 'player_pass_yds_alternate,player_reception_yds_alternate,player_rush_yds_alternate'
     }
     urlNew = "https://api.the-odds-api.com/v4/sports/" + this.convertSport(sport) + "/events/" + game + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=" + playerProps + "&bookmakers=draftkings&oddsFormat=american";
 
@@ -238,8 +240,7 @@ export class draftKingsApiController {
         for (let k = 0; k < this.selectedSportsData.bookmakers[j].markets.length; k++) {
 
           for (let m = 0; m < this.selectedSportsData.bookmakers[j].markets[k].outcomes.length; m++) {
-            let propName = this.selectedSportsData.bookmakers[j].markets[k].key == 'team_totals' ? this.selectedSportsData.bookmakers[j].markets[k].key + " " + this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : this.selectedSportsData.bookmakers[j].markets[k].key
-            let selectedProp = bookDb.filter(e => e.marketKey == propName)
+            let selectedProp = bookDb.filter(e => e.marketKey == this.selectedSportsData.bookmakers[j].markets[k].key)
             if (selectedProp.length == 0) {
               nextBookSeq = 0
             }
@@ -261,7 +262,7 @@ export class draftKingsApiController {
               commenceTime: this.selectedSportsData.commence_time,
               bookMaker: this.selectedSportsData.bookmakers[j].title,
               marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
-              teamName: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description) : this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name),
+              teamName: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? (Object.hasOwn(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m], 'description') ? this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description) : 'Both') : this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name),
               description: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : '',
               price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
               point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
@@ -417,6 +418,7 @@ export class draftKingsApiController {
 
   static nhlTeamAlternateProps: string = 'h2h_p1,h2h_p2,h2h_p3,team_totals,alternate_team_totals'
   static mlbTeamAlternateProps: string = 'h2h_1st_1_innings,h2h_1st_3_innings,h2h_1st_5_innings,h2h_1st_7_innings,team_totals'
+  static nflTeamAlternateProps: string = 'alternate_spreads,alternate_totals,team_totals,alternate_team_totals,h2h_q1,h2h_q2,h2h_q3,h2h_q4,h2h_h1,h2h_h2,spreads_q1,spreads_q2,spreads_q3,spreads_q4,spreads_h1,spreads_h2,totals_q1,totals_q2,totals_q3,totals_q4,totals_h1,totals_h2,team_totals_h1,team_totals_h2,team_totals_q1,team_totals_q2,team_totals_q3,team_totals_q4,alternate_team_totals_h1,alternate_team_totals_h2,alternate_team_totals_q1,alternate_team_totals_q2,alternate_team_totals_q3,alternate_team_totals_q4'
 
   static async getAlternateTeamProps(sport: string, bookId: string): Promise<DbGameBookData[]> {
     const sportNew = this.convertSport(sport);

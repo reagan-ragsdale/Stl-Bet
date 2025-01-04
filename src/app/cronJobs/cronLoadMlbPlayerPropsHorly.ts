@@ -12,7 +12,7 @@ export const cronLoadMlbPlayer = async () => {
       }
 
     console.log("running mlb player props")
-    const listOfActiveSports: string[] = ["NHL"]
+    const listOfActiveSports: string[] = ["NHL", "NFL"]
 
     const listOfMlbExtraGameProps: string = "alternate_spreads,alternate_totals"
     for(let sport of listOfActiveSports){
