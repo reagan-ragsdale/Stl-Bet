@@ -20,7 +20,7 @@ export const cronLoadMlbPlayer = async () => {
 
     const listOfMlbExtraGameProps: string = "alternate_spreads,alternate_totals"
     for(let sport of listOfActiveSports){
-
+        console.log('in: ' + sport)
         try {
             let bookIdsForToday = await draftKingsApiController.getEventsBySport(sportsToTitle[sport])
             for(let book of bookIdsForToday){
@@ -35,10 +35,11 @@ export const cronLoadMlbPlayer = async () => {
                 await PlayerPropController.addPlayerPropData(alternatePlayerProps)
                 await PlayerPropController.updateAlternatePlayerSeqZero(alternatePlayerProps)
             }
+            console.log('done: ' + sport)
         }
     
         catch (error: any) {
-            console.log(error.message)
+            console.log('error in player props: ' + error.message)
         }
         console.log("finished mlb player props")
     }
