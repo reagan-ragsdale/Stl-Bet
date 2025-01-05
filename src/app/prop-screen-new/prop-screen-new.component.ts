@@ -8,6 +8,8 @@ import { NhlService } from '../Services/NhlService';
 import { NhlController } from '../../shared/Controllers/NhlController';
 import { ThisReceiver } from '@angular/compiler';
 import { reusedFunctions } from '../Services/reusedFunctions';
+import { remult } from 'remult';
+import { DBNflPlayerGameStats } from 'src/shared/dbTasks/DbNflPlayerGameStats';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -210,10 +212,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    this.findBestBets()
+   this.findBestBets()
     
   }
-  findBestBets(){
+  async findBestBets(){
     this.bestBets = []
     this.bestBetDisplay = []
     for(let i = 0; i < this.arrayOfAllBets.length; i++){
@@ -247,6 +249,57 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     console.log('best bets belwo')
     console.log(this.bestBetDisplay)
+    let taskRepo = remult.repo(DBNflPlayerGameStats)
+    let allNflPlayerStats = await taskRepo.find()
+    console.log('number of nfl player stats below')
+    console.log(allNflPlayerStats.length)
+    
+    console.log('here 2')
+    let newInsertArray: DBNflPlayerGameStats[] = []
+    for(let i = 0; i < allNflPlayerStats.length; i++){
+        let newStat: DBNflPlayerGameStats = {
+                playerId: allNflPlayerStats[i].playerId,
+                playerName: allNflPlayerStats[i].playerName,
+                teamName: allNflPlayerStats[i].teamName,
+                teamId: allNflPlayerStats[i].teamId,
+                teamAgainstName: allNflPlayerStats[i].teamAgainstName,
+                teamAgainstId: allNflPlayerStats[i].teamAgainstId,
+                gameId: allNflPlayerStats[i].gameId,
+                gameDate: allNflPlayerStats[i].gameDate,
+                homeOrAway: reusedFunctions.getHomeAwayFromGameId(allNflPlayerStats[i].gameId,allNflPlayerStats[i].teamName),
+                season: allNflPlayerStats[i].season,
+                qbCompletions: allNflPlayerStats[i].qbCompletions,
+                qbPassingAttempts: allNflPlayerStats[i].qbPassingAttempts,
+                qbPassingYards: allNflPlayerStats[i].qbPassingYards,
+                qbYardsPerPassAttempt: allNflPlayerStats[i].qbYardsPerPassAttempt,
+                qbPassingTouchdowns: allNflPlayerStats[i].qbPassingTouchdowns,
+                qbInterceptions: allNflPlayerStats[i].qbInterceptions,
+                qbsacks: allNflPlayerStats[i].qbsacks,
+                qBRating: allNflPlayerStats[i].qBRating,
+                adjQBR: allNflPlayerStats[i].adjQBR,
+                rushingAttempts: allNflPlayerStats[i].rushingAttempts,
+                rushingYards: allNflPlayerStats[i].rushingYards,
+                yardsPerRushAttempt: allNflPlayerStats[i].yardsPerRushAttempt,
+                rushingTouchdowns: allNflPlayerStats[i].rushingTouchdowns,
+                longRushing: allNflPlayerStats[i].longRushing,
+                receptions: allNflPlayerStats[i].receptions,
+                receivingTargets: allNflPlayerStats[i].receivingTargets,
+                receivingYards: allNflPlayerStats[i].receivingYards,
+                yardsPerReception: allNflPlayerStats[i].yardsPerReception,
+                receivingTouchdowns: allNflPlayerStats[i].receivingTouchdowns,
+                longReception: allNflPlayerStats[i].longReception,
+                totalTackles: allNflPlayerStats[i].totalTackles,
+                sacks: allNflPlayerStats[i].sacks
+        }
+        newInsertArray.push(newStat)
+        
+    }
+    console.log('here 3')
+    for(let i = 0; i < allNflPlayerStats.length; i++){
+        await taskRepo.delete(allNflPlayerStats[i].id!)
+    }
+    console.log('here 4')
+    await taskRepo.insert(newInsertArray)
     
   }
 
