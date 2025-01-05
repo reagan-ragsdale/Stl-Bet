@@ -221,7 +221,6 @@ export class draftKingsApiController {
     let finalReturn = name
     finalReturn = finalReturn.replaceAll('é', 'e')
     finalReturn = finalReturn.replaceAll('è', 'e')
-    console.log(finalReturn)
     return finalReturn
   }
 
@@ -430,7 +429,7 @@ export class draftKingsApiController {
       teamAlternateProps = this.nhlTeamAlternateProps
     }
     else if (sport == 'NFL') {
-      teamAlternateProps = ''
+      teamAlternateProps = this.nflTeamAlternateProps
     }
     try {
       const apiCall = "https://api.the-odds-api.com/v4/sports/" + sportNew + "/events/" + bookId + "/odds/?apiKey=" + process.env['TheOddsApiKey'] + "&regions=us&markets=" + teamAlternateProps + "&bookmakers=draftkings&oddsFormat=american";
