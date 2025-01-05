@@ -44,12 +44,11 @@ export const cronLoadMlbPlayer = async () => {
         console.log("finished mlb player props")
     }
     console.log('here after the prosp aslfjas;df asdlkfa;sdfk')
-    let allNflPlayerStats = await NflController.nflGetAllPlayerGameStats()
+    let taskRepo = remult.repo(DBNflPlayerGameStats)
+    let allNflPlayerStats = await taskRepo.find()
     console.log('number of nfl player stats below')
     console.log(allNflPlayerStats.length)
-    let taskRepo = remult.repo(DBNflPlayerGameStats)
-    console.log('here 1')
-    await taskRepo.deleteMany({where:{playerId:{ "!=": 0}}})
+    
     console.log('here 2')
     let newInsertArray: DBNflPlayerGameStats[] = []
     for(let i = 0; i < allNflPlayerStats.length; i++){
@@ -91,6 +90,10 @@ export const cronLoadMlbPlayer = async () => {
         
     }
     console.log('here 3')
+    for(let i = 0; i < allNflPlayerStats.length; i++){
+        await taskRepo.delete(allNflPlayerStats[i].id!)
+    }
+    console.log('here 4')
     await taskRepo.insert(newInsertArray)
 
 
