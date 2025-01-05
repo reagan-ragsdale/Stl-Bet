@@ -250,7 +250,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     console.log('best bets belwo')
     console.log(this.bestBetDisplay)
     let taskRepo = remult.repo(DBNflPlayerGameStats)
-    let allNflPlayerStats = await taskRepo.find()
+    let allNflPlayerStats = await taskRepo.find({where:{playerId : {'!=': 0}}})
     console.log('number of nfl player stats below')
     console.log(allNflPlayerStats.length)
     
