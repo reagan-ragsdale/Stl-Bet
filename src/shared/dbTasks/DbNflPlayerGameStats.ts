@@ -4,6 +4,9 @@ import { Allow, Entity, Fields, Validators } from "remult"
     allowApiCrud: true
 })
 export class DBNflPlayerGameStats {
+    @Fields.cuid()
+    id? = ''
+
     @Fields.integer()
     playerId = 0
 
