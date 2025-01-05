@@ -44,6 +44,8 @@ export const cronLoadMlbPlayer = async () => {
     }
 
     let allNflPlayerStats = await NflController.nflGetAllPlayerGameStats()
+    console.log('number of nfl player stats below')
+    console.log(allNflPlayerStats.length)
     let taskRepo = remult.repo(DBNflPlayerGameStats)
     await taskRepo.deleteMany({where:{playerId:{ "!=":0 }}})
     let newInsertArray: DBNflPlayerGameStats[] = []
