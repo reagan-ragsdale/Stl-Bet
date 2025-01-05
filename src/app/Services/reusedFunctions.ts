@@ -3,6 +3,8 @@ import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
 import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo";
 import { NhlService } from "./NhlService";
 import { NhlController } from "../../shared/Controllers/NhlController";
+import { NflService } from "./NflService";
+import { NflController } from "../../shared/Controllers/NflController";
 
 
 
@@ -306,9 +308,26 @@ export class reusedFunctions {
     if(sport == 'NHL'){
       finalReturn = Promise.all([NhlService.getTeamPropDataNew(gameProps, allTeamInfo),NhlController.NhlGetTeamsGameStatTotals(teamNames, 2024),NhlService.getPlayerPropDataNew(selectedGame, allTeamInfo)])
     }
+    else if(sport == 'NFL'){
+      finalReturn = Promise.all([NflService.getTeamPropDataNew(gameProps, allTeamInfo),NflController.nflGetTeamsGameStatTotals(teamNames, 2024),NflService.getPlayerPropDataNew(selectedGame, allTeamInfo)])
+    }
 
     return finalReturn
   }
+
+  static isBackToBackGame(game1: Date, game2: Date): boolean {
+          const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));
+          const normalizedDate2 = new Date(Date.UTC(game2.getUTCFullYear(), game2.getUTCMonth(), game2.getUTCDate()));
+  
+  
+          // Calculate the difference in days
+          const diffInMilliseconds = Math.abs(normalizedDate1.getTime() - normalizedDate2.getTime());
+  
+          const oneDayInMilliseconds = 1000 * 60 * 60 * 24; // Milliseconds in a day
+  
+          // Check if the difference is exactly one day
+          return diffInMilliseconds === oneDayInMilliseconds;
+      }
 
   
 

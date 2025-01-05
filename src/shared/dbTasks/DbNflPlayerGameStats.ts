@@ -28,6 +28,9 @@ export class DBNflPlayerGameStats {
     @Fields.string()
     gameDate = ''
 
+    @Fields.string()
+    homeOrAway = ''
+
     @Fields.integer()
     season = 0
 

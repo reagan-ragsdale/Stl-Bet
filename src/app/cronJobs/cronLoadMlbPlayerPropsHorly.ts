@@ -1,6 +1,8 @@
+import { NflController } from "src/shared/Controllers/NflController";
 import { PlayerPropController } from "../../shared/Controllers/PlayerPropController";
 import { SportsBookController } from "../../shared/Controllers/SportsBookController";
 import { draftKingsApiController } from "../ApiCalls/draftKingsApiCalls";
+import { reusedFunctions } from "../Services/reusedFunctions";
 
 
 export const cronLoadMlbPlayer = async () => {
@@ -38,5 +40,11 @@ export const cronLoadMlbPlayer = async () => {
         }
         console.log("finished mlb player props")
     }
+
+    let allNflPlayerStats = await NflController.nflGetAllPlayerGameStats()
+    for(let i = 0; i < allNflPlayerStats.length; i++){
+        allNflPlayerStats[i].homeOrAway = reusedFunctions.getHomeAwayFromGameId(allNflPlayerStats[i].gameId, allNflPlayerStats[i].teamName)
+    }
+
 
 }

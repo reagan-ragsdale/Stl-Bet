@@ -898,8 +898,8 @@ export class NhlService {
         let newCurrent = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())
         let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
         let awayTeamStats = teamStatsCombined.filter(e => e.teamName == awayTeam.teamNameAbvr)
-        let isHomeBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), newCurrent)
-        let isAwayBackToBack: boolean = this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), newCurrent)
+        let isHomeBackToBack: boolean = reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), newCurrent)
+        let isAwayBackToBack: boolean = reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), newCurrent)
         /* for (let i = 0; i < homeTeamStats.length; i++) {
             homeTeamStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(teamStatsCombined[i].gameDate)
         }
@@ -2778,19 +2778,7 @@ export class NhlService {
     }
 
 
-    static isBackToBackGame(game1: Date, game2: Date): boolean {
-        const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));
-        const normalizedDate2 = new Date(Date.UTC(game2.getUTCFullYear(), game2.getUTCMonth(), game2.getUTCDate()));
-
-
-        // Calculate the difference in days
-        const diffInMilliseconds = Math.abs(normalizedDate1.getTime() - normalizedDate2.getTime());
-
-        const oneDayInMilliseconds = 1000 * 60 * 60 * 24; // Milliseconds in a day
-
-        // Check if the difference is exactly one day
-        return diffInMilliseconds === oneDayInMilliseconds;
-    }
+    
 
     static findTrends(bookData: DbGameBookData, backToBack: boolean, type: string, homeAway: string, teamStats: DbNhlTeamGameStats[], teamAgainstGameStats: DbNhlTeamGameStats[]): string[] {
         let finalReturn: string[] = []
@@ -2800,7 +2788,7 @@ export class NhlService {
         if (backToBack) {
             if (type == 'h2h') {
                 for (let i = 0; i < teamStats.length - 2; i++) {
-                    if (this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
+                    if (reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
                         backToBackWinTotal++;
                         if (teamStats[i].result == 'W') {
                             backToBackWinCount++;
@@ -2813,7 +2801,7 @@ export class NhlService {
             }
             else if (type == 'spread') {
                 for (let i = 0; i < teamStats.length - 2; i++) {
-                    if (this.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
+                    if (reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
                         backToBackWinTotal++;
                         if ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) {
                             backToBackWinCount++;

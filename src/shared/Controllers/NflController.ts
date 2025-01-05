@@ -61,6 +61,13 @@ export class NflController {
         const taskRepo = remult.repo(DBNflTeamGameStats)
         return await taskRepo.find({where:{teamId: id}})
     }
+    @BackendMethod({allowed: true})
+    static async nflGetAllTeamStatsByTeamNamesAndSeason(teams: string[], season: number): Promise<DBNflTeamGameStats[]>{
+        const taskRepo = remult.repo(DBNflTeamGameStats)
+        return await taskRepo.find({where:{teamName: teams, season: season}})
+    }
+
+    
 
     
     
@@ -87,6 +94,12 @@ export class NflController {
         
         await taskRepo.insert(teamTotal)
     }
+    @BackendMethod({allowed:true})
+    static async nflGetTeamsGameStatTotals(teams: string[], season: number): Promise<DBNflTeamGameStatTotals[]>{
+        const taskRepo = remult.repo(DBNflTeamGameStatTotals)
+        return await taskRepo.find({where:{teamName: teams, season: season}})
+    }
+    
     
 
     //player stats
@@ -144,6 +157,7 @@ export class NflController {
         const taskRepo = remult.repo(DBNflPlayerGameStats)
         return await taskRepo.find({where:{playerName: playerName, season: season},orderBy: {gameDate: 'desc'}})
     }
+    
 
     
 
