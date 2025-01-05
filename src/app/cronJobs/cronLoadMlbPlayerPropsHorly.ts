@@ -42,7 +42,7 @@ export const cronLoadMlbPlayer = async () => {
         }
         console.log("finished mlb player props")
     }
-
+    console.log('here after the prosp aslfjas;df asdlkfa;sdfk')
     let allNflPlayerStats = await NflController.nflGetAllPlayerGameStats()
     console.log('number of nfl player stats below')
     console.log(allNflPlayerStats.length)
