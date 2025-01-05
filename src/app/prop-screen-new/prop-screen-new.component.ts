@@ -252,7 +252,39 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
 
   
 
-  public listOfTeamProps: { [key: string]: string } = { "h2h": "Moneyline", "spreads": "Spread", "totals": "Game Total", "h2h_1st_3_innings": "Moneyline first 3 innings", "h2h_1st_5_innings": "Moneyline first 5 innings", "h2h_1st_7_innings": "Moneyline first 7 innings", "team_totals Over": "Team Total", "team_totals Under": "Team Total", "h2h_p1": "Moneyline First Period", "h2h_p2": "Moneyline Second Period", "h2h_p3": "Moneyline Third Period", "alternate_team_totals": 'Alternate Team Total', 'player_shots_on_goal_alternate': 'Alternate Shots', 'player_shots_on_goal': 'Shots', 'player_points': 'Points', 'player_assists': 'Assists' }
+  public listOfTeamProps: { [key: string]: string } = 
+  { "h2h": "Moneyline", 
+    "spreads": "Spread", 
+    "totals": "Game Total", 
+    "h2h_1st_3_innings": "Moneyline first 3 innings", 
+    "h2h_1st_5_innings": "Moneyline first 5 innings", 
+    "h2h_1st_7_innings": "Moneyline first 7 innings", 
+    "team_totals Over": "Team Total", 
+    "team_totals Under": "Team Total", 
+    "h2h_p1": "Moneyline First Period", 
+    "h2h_p2": "Moneyline Second Period", 
+    "h2h_p3": "Moneyline Third Period", 
+    "alternate_team_totals": 'Alternate Team Total', 
+    'player_shots_on_goal_alternate': 'Alternate Shots', 
+    'player_shots_on_goal': 'Shots', 
+    'player_points': 'Points', 
+    'player_assists': 'Assists', 
+    'h2h_h1': 'Moneyline First Half', 
+    'h2h_q1': 'Moneyline First Quarter', 
+    'spreads_h1': 'Spread First Half', 
+    'spreads_q1': 'Spread First Quarter',
+    'alternate_spreads': 'Alternate Spread',
+    'alternate_totals': 'Alternate Total',
+    'totals_h1': 'Total First Half',
+    'totals_q1': 'Total First Quarter',
+    'player_pass_tds': 'Pass Tds',
+    'player_pass_yds': 'Pass Yds',
+    'player_pass_yds_alternate': 'Alternate Pass Yds',
+    'player_reception_yds': 'Receiving Yds',
+    'player_reception_yds_alternate': "Alternate Receiving Yds",
+    'player_rush_yds': 'Rushing Yds',
+    'player_rush_yds_alternate': 'Alternate Rushing Yds'
+   }
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings", 'h2h_p1', 'h2h_p2', 'h2h_p3']
   displayPropTitle(prop: any): string {
     
