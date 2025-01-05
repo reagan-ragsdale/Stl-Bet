@@ -4,7 +4,7 @@ import { PlayerPropController } from "../../shared/Controllers/PlayerPropControl
 import { SportsBookController } from "../../shared/Controllers/SportsBookController";
 import { draftKingsApiController } from "../ApiCalls/draftKingsApiCalls";
 import { reusedFunctions } from "../Services/reusedFunctions";
-import { DBNflPlayerGameStats } from "src/shared/dbTasks/DbNflPlayerGameStats";
+import { DBNflPlayerGameStats } from "../../shared/dbTasks/DbNflPlayerGameStats";
 
 
 export const cronLoadMlbPlayer = async () => {
