@@ -345,7 +345,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     if(this.selectedPropType == 'Team Props'){
       this.selectedDisplayArray = this.teamPropFinnal
-      this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
+      this.onPropClicked(this.selectedDisplayArray[0],0,0)
     }
     else if(this.selectedPropType == 'Player Props'){
       this.selectedDisplayArray = this.playerPropData
