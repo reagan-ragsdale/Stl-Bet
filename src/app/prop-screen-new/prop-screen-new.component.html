@@ -126,12 +126,12 @@
                                             ''}}{{team[index][1].gameBookData.price}} O</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;font-size:smaller;" *ngIf="prop.propType == 'altSpread'">
-                                        <span>{{team[0][0].teamName}}</span>
+                                        <span>{{team[index][0].teamName}}</span>
                                         <span
-                                            style="margin-left:auto;">{{team[0][0].gameBookData.point > 0 ? '+' :
-                                            ''}}{{team[0][0].gameBookData.point}}</span>
-                                        <span>{{team[0][0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[0][0].gameBookData.price}}</span>
+                                            style="margin-left:auto;">{{team[index][0].gameBookData.point > 0 ? '+' :
+                                            ''}}{{team[index][0].gameBookData.point}}</span>
+                                        <span>{{team[index][0].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[index][0].gameBookData.price}}</span>
                                     </div>
                                     </mat-chip-option>
                                 </mat-chip-listbox>
@@ -184,7 +184,7 @@
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.playerBookData.marketKey)}}</h3>
                         <div *ngIf="selectedDisplayProp.propType != 'h2h'" class="buttons" style="display:flex; align-items: center; gap:.4rem;">
-                            <button *ngIf="selectedDisplayProp.propType == 'altTotal'"
+                            <button *ngIf="selectedDisplayProp.propType == 'altTotal' || selectedDisplayProp.propType == 'altSpread'"
                             style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                             (click)="$event.stopPropagation()" mat-raised-button [disabled]="index == 0"
                             (click)="updatePropIndex('Down')">
@@ -192,12 +192,12 @@
                                 fontIcon="keyboard_arrow_left"></mat-icon>
                             </button>
                             <h3 style="margin-bottom:0;" *ngIf="selectedDisplayProp.propType != 'h2h' && selectedPropType == 'Team Props'">
-                            {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
+                            {{(selectedDisplayProp.propType == 'spread' || selectedDisplayProp.propType == 'altSpread') ? (selectedDisplayProp.gameBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.gameBookData.point}}</h3>
                         
                             <h3 style="margin-bottom:0;" *ngIf="selectedPropType == 'Player Props'">
                                 {{(selectedDisplayProp.propType == 'spread') ? (selectedDisplayProp.playerBookData.point > 0 ? '+' : '') : '' }}{{selectedDisplayProp.playerBookData.point}}</h3>
                             
-                            <button *ngIf="selectedDisplayProp.propType == 'altTotal'" style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
+                            <button *ngIf="selectedDisplayProp.propType == 'altTotal' || selectedDisplayProp.propType == 'altSpread'" style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                             (click)="$event.stopPropagation()" mat-raised-button
                             [disabled]="index == selectedProp.length-1" (click)="updatePropIndex('Up')">
                             <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon"

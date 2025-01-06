@@ -632,7 +632,7 @@ export class NflService {
                                 teamProp.averageOverall = spreadOverall.length > 0 ? spreadOverall.reduce((a, b) => a + b) / spreadOverall.length : 0
                                 teamProp.averageHomeAway = spreadHomeAway.length > 0 ? spreadHomeAway.reduce((a, b) => a + b) / spreadHomeAway.length : 0
                                 teamProp.averageTeam = spreadTeam.length > 0 ? spreadTeam.reduce((a, b) => a + b) / spreadTeam.length : 0
-                                teamProp.propType = 'spread'
+                                teamProp.propType = 'altSpread'
                             }
 
                             pointArray.push(teamProp)
