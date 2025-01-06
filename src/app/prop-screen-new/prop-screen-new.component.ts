@@ -9,7 +9,7 @@ import { NhlController } from '../../shared/Controllers/NhlController';
 import { ThisReceiver } from '@angular/compiler';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { remult } from 'remult';
-import { DBNflPlayerGameStats } from 'src/shared/dbTasks/DbNflPlayerGameStats';
+import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -179,10 +179,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     console.log(this.playerPropData)
     this.onPropChange(this.listOfProps[0].type)
     
-    this.getBestBets()
+    await this.getBestBets()
   }
 
-  getBestBets(){
+  async getBestBets(){
     this.arrayOfAllBets = []
     for(let i = 0; i < this.teamPropFinnal.length; i++){
       for(let j = 0; j < this.teamPropFinnal[i].length; j++){
@@ -212,7 +212,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         }
       }
     }
-   this.findBestBets()
+   await this.findBestBets()
     
   }
   async findBestBets(){
