@@ -1004,6 +1004,100 @@ export class NflService {
                         propReturn.fullGameLog = teamGameLog
                         propReturn.propType = 'h2h'
                     }
+                    else if (filteredPropsOnMarketKey[i].marketKey == 'spreads_h1') {
+                        propReturn.overallWins = teamStats.filter(e => ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)) < filteredPropsOnMarketKey[i].point).length;
+                        propReturn.homeAwayWins = teamStats.filter(e => e.homeOrAway == propReturn.homeAway && ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)) < filteredPropsOnMarketKey[i].point).length;
+                        propReturn.teamWins = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId && ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)) < filteredPropsOnMarketKey[i].point).length;
+                        teamAgainstOverallWins = teamAgainstStats.filter(e => ((e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) - (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter)) > filteredPropsOnMarketKey[i].point).length;
+                        teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != propReturn.homeAway && ((e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) - (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter)) > filteredPropsOnMarketKey[i].point).length;
+                        teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == propReturn.teamId && ((e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) - (e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter)) > filteredPropsOnMarketKey[i].point).length;
+
+                        let backToBack = propReturn.homeAway == 'Home' ? isHomeBackToBack : isAwayBackToBack
+                        propReturn.trends = this.findTrends(propReturn.gameBookData, backToBack, 'spread', propReturn.homeAway, teamStats, teamAgainstStats)
+
+                        overAllTableTemp = teamStats.slice(0, 10)
+                        homeAwayTableTemp = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).slice(0, 10)
+                        teamTableTemp = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).slice(0, 10)
+                        let overallLast10Wins = overAllTableTemp.filter(e => ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)) < filteredPropsOnMarketKey[i].point).length
+                        propReturn.last10Overall = [overallLast10Wins, overAllTableTemp.length]
+                        let homeAwayLast10Wins = homeAwayTableTemp.filter(e => ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)) < filteredPropsOnMarketKey[i].point).length
+                        propReturn.last10HomeAway = [homeAwayLast10Wins, homeAwayTableTemp.length]
+                        let teamLast10Wins = teamTableTemp.filter(e => ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)) < filteredPropsOnMarketKey[i].point).length
+                        propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
+                        let teamGameLog = []
+                        for (let i = 0; i < teamStats.length; i++) {
+                            teamGameLog.push({
+                                teamAgainstName: teamStats[i].teamAgainstName,
+                                gameDate: teamStats[i].gameDate,
+                                result: teamStats[i].result,
+                                pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter,
+                                pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter,
+                                homeAway: teamStats[i].homeOrAway
+                            })
+                        }
+                        propReturn.fullGameLog = teamGameLog
+
+                        let spreadOverall = teamStats.map(e => ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)))
+                        let spreadHomeAway = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).map(e => ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)))
+                        let spreadTeam = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).map(e => ((e.pointsAllowedFirstQuarter + e.pointsAllowedSecondQuarter) - (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter)))
+                        propReturn.lowOverall = spreadOverall.length > 0 ? Math.max(...spreadOverall) : 0
+                        propReturn.highOverall = spreadOverall.length > 0 ? Math.min(...spreadOverall) : 0
+                        propReturn.lowHomeAway = spreadHomeAway.length > 0 ? Math.max(...spreadHomeAway) : 0
+                        propReturn.highHomeAway = spreadHomeAway.length > 0 ? Math.min(...spreadHomeAway) : 0
+                        propReturn.lowTeam = spreadTeam.length > 0 ? Math.max(...spreadTeam) : 0
+                        propReturn.highTeam = spreadTeam.length > 0 ? Math.min(...spreadTeam) : 0
+                        propReturn.averageOverall = spreadOverall.length > 0 ? spreadOverall.reduce((a, b) => a + b) / spreadOverall.length : 0
+                        propReturn.averageHomeAway = spreadHomeAway.length > 0 ? spreadHomeAway.reduce((a, b) => a + b) / spreadHomeAway.length : 0
+                        propReturn.averageTeam = spreadTeam.length > 0 ? spreadTeam.reduce((a, b) => a + b) / spreadTeam.length : 0
+                        propReturn.propType = 'spread'
+                    }
+                    else if (filteredPropsOnMarketKey[i].marketKey == 'spreads_q1') {
+                        propReturn.overallWins = teamStats.filter(e => (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter) < filteredPropsOnMarketKey[i].point).length;
+                        propReturn.homeAwayWins = teamStats.filter(e => e.homeOrAway == propReturn.homeAway && (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter) < filteredPropsOnMarketKey[i].point).length;
+                        propReturn.teamWins = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId && (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter) < filteredPropsOnMarketKey[i].point).length;
+                        teamAgainstOverallWins = teamAgainstStats.filter(e => (e.pointsScoredFirstQuarter - e.pointsAllowedFirstQuarter) > filteredPropsOnMarketKey[i].point).length;
+                        teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != propReturn.homeAway && (e.pointsScoredFirstQuarter - e.pointsAllowedFirstQuarter) > filteredPropsOnMarketKey[i].point).length;
+                        teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == propReturn.teamId && (e.pointsScoredFirstQuarter - e.pointsAllowedFirstQuarter) > filteredPropsOnMarketKey[i].point).length;
+
+                        let backToBack = propReturn.homeAway == 'Home' ? isHomeBackToBack : isAwayBackToBack
+                        propReturn.trends = this.findTrends(propReturn.gameBookData, backToBack, 'spread', propReturn.homeAway, teamStats, teamAgainstStats)
+
+                        overAllTableTemp = teamStats.slice(0, 10)
+                        homeAwayTableTemp = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).slice(0, 10)
+                        teamTableTemp = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).slice(0, 10)
+                        let overallLast10Wins = overAllTableTemp.filter(e => (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter) < filteredPropsOnMarketKey[i].point).length
+                        propReturn.last10Overall = [overallLast10Wins, overAllTableTemp.length]
+                        let homeAwayLast10Wins = homeAwayTableTemp.filter(e => (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter) < filteredPropsOnMarketKey[i].point).length
+                        propReturn.last10HomeAway = [homeAwayLast10Wins, homeAwayTableTemp.length]
+                        let teamLast10Wins = teamTableTemp.filter(e => (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter) < filteredPropsOnMarketKey[i].point).length
+                        propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
+                        let teamGameLog = []
+                        for (let i = 0; i < teamStats.length; i++) {
+                            teamGameLog.push({
+                                teamAgainstName: teamStats[i].teamAgainstName,
+                                gameDate: teamStats[i].gameDate,
+                                result: teamStats[i].result,
+                                pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter,
+                                pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter,
+                                homeAway: teamStats[i].homeOrAway
+                            })
+                        }
+                        propReturn.fullGameLog = teamGameLog
+
+                        let spreadOverall = teamStats.map(e => (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter))
+                        let spreadHomeAway = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).map(e => (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter))
+                        let spreadTeam = teamStats.filter(e => e.teamAgainstId == propReturn.teamAgainstId).map(e => (e.pointsAllowedFirstQuarter - e.pointsScoredFirstQuarter))
+                        propReturn.lowOverall = spreadOverall.length > 0 ? Math.max(...spreadOverall) : 0
+                        propReturn.highOverall = spreadOverall.length > 0 ? Math.min(...spreadOverall) : 0
+                        propReturn.lowHomeAway = spreadHomeAway.length > 0 ? Math.max(...spreadHomeAway) : 0
+                        propReturn.highHomeAway = spreadHomeAway.length > 0 ? Math.min(...spreadHomeAway) : 0
+                        propReturn.lowTeam = spreadTeam.length > 0 ? Math.max(...spreadTeam) : 0
+                        propReturn.highTeam = spreadTeam.length > 0 ? Math.min(...spreadTeam) : 0
+                        propReturn.averageOverall = spreadOverall.length > 0 ? spreadOverall.reduce((a, b) => a + b) / spreadOverall.length : 0
+                        propReturn.averageHomeAway = spreadHomeAway.length > 0 ? spreadHomeAway.reduce((a, b) => a + b) / spreadHomeAway.length : 0
+                        propReturn.averageTeam = spreadTeam.length > 0 ? spreadTeam.reduce((a, b) => a + b) / spreadTeam.length : 0
+                        propReturn.propType = 'spread'
+                    }
                     let teamAgainstOverallChance = teamAgainstOverallTotal == 0 ? 0 : teamAgainstOverallWins / teamAgainstOverallTotal
                     let teamAgainstHomeAwayChance = teamAgainstHomeAwayTotal == 0 ? 0 : teamAgainstHomeAwayWins / teamAgainstHomeAwayTotal
                     let teamAgasintTeamChance = teamAgainstTeamTotal == 0 ? 0 : teamAgainstTeamWins / teamAgainstTeamTotal
