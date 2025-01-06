@@ -10,13 +10,13 @@ import { DbPlayerInfo } from "../../shared/dbTasks/DbPlayerInfo";
 export const cronLoadNflGameStats = async () => {
     let count = 0
     console.log('Running cron nfl')
-    let teams = await TeamInfoController.getAllTeamInfo('NFL')
+    /* let teams = await TeamInfoController.getAllTeamInfo('NFL')
     let listOfPlayers: DbPlayerInfo[] = []
     for(let team of teams){
         let players = await nflApiController.loadTeamRoster(team.teamId)
         players.forEach(e => listOfPlayers.push(e))
     }
-    await PlayerInfoController.playerInfoAddPlayers(listOfPlayers)
+    await PlayerInfoController.playerInfoAddPlayers(listOfPlayers) */
     try{
         let currentGameIds = await NflController.nflGetDistinctGameIds(2024);
         let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
@@ -26,11 +26,12 @@ export const cronLoadNflGameStats = async () => {
         let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
         //console.log(newGameIds)
 
-        for(let game of newGameIds){
+        //change below back to new game ids
+        for(let game of incomingGameIds){
             try{
                 let gameStats = await nflApiController.getGameSummary(game)
                 count++
-                await NflController.addTeamGameStats(gameStats[0])
+                //await NflController.addTeamGameStats(gameStats[0])
                 await NflController.addPlayerGameStats(gameStats[1])
             }
             catch(error:any){
@@ -45,7 +46,7 @@ export const cronLoadNflGameStats = async () => {
         ErrorEmailController.sendEmailError("cron player and team stats: " + error.message)
         
     } 
-     try{
+     /* try{
         let players = await NflController.nflGetAllPlayerGameStatsBySeason(2024);
         let distinctPlayers = players.map(e => e.playerId).filter((value, index,array) => array.indexOf(value) === index)
         for(let player of distinctPlayers){
@@ -62,9 +63,9 @@ export const cronLoadNflGameStats = async () => {
         }
     }catch(error:any){
         ErrorEmailController.sendEmailError("cron player and team stat totals: " + error.message) 
-    } 
+    } */ 
 
-    if(count < 100){
+    /* if(count < 100){
         try{
             let currentGameIds = await NflController.nflGetDistinctGameIds(2023);
             let incomingGameIds = await nflApiController.loadAllNflGameIdsPostSeason(2023)
@@ -93,6 +94,6 @@ export const cronLoadNflGameStats = async () => {
             ErrorEmailController.sendEmailError("cron player and team stats: 2023" + error.message)
             
         }
-    }
+    } */
     
 }
