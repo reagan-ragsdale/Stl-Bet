@@ -313,6 +313,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         }
         
       }
+      else if(this.selectedProp[0].length == 1){
+        this.selectedDisplayProp = this.selectedProp[0][0]
+      }
       else{
         this.selectedDisplayProp = this.selectedProp[this.overUnderSlide ? 1 : 0]
       }
