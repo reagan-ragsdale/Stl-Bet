@@ -99,7 +99,7 @@
                                     <mat-chip-option style="min-width:inherit;border-radius:8px;" *ngFor="let team of prop; let j = index;" [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                          (click)="onPropClicked(team, i, j)">
                                         <div style="display:flex; gap:1rem;font-size:smaller;"
-                                        *ngIf="prop.propType != 'total' && prop.propType != 'altTotal'">
+                                        *ngIf="prop.propType != 'total' && prop.propType != 'altTotal' && prop.propType != 'altSpread'">
                                         <span>{{team.teamName}}</span>
                                         <span *ngIf="team.propType != 'h2h'"
                                             style="margin-left:auto;">{{team.gameBookData.point > 0 ? '+' :
@@ -124,6 +124,14 @@
                                             ''}}{{team[index][0].gameBookData.price}} U</span>
                                         <span style="padding-right:1rem;">{{team[index][1].gameBookData.price > 0 ? '+' :
                                             ''}}{{team[index][1].gameBookData.price}} O</span>
+                                    </div>
+                                    <div style="display:flex; gap:1rem;font-size:smaller;" *ngIf="prop.propType == 'altSpread'">
+                                        <span>{{team[0][0].teamName}}</span>
+                                        <span
+                                            style="margin-left:auto;">{{team[0][0].gameBookData.point > 0 ? '+' :
+                                            ''}}{{team[0][0].gameBookData.point}}</span>
+                                        <span>{{team[0][0].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[0][0].gameBookData.price}}</span>
                                     </div>
                                     </mat-chip-option>
                                 </mat-chip-listbox>

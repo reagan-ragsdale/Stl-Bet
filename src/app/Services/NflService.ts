@@ -652,7 +652,7 @@ export class NflService {
                             homeTeamPropsFinal[homeTeamPropsFinal.length - 1].index = 0
 
                         }
-                        else if(teamArray[0][0].gameBookData.marketKey == 'alternate_spread'){
+                        else if(teamArray[0][0].gameBookData.marketKey == 'alternate_spreads'){
                             homeTeamPropsFinal[homeTeamPropsFinal.length - 1].propType = 'altSpread'
                             homeTeamPropsFinal[homeTeamPropsFinal.length - 1].index = 0
                         }
@@ -663,7 +663,7 @@ export class NflService {
                             awayTeamPropsFinal[awayTeamPropsFinal.length - 1].propType = 'altTotal'
                             awayTeamPropsFinal[awayTeamPropsFinal.length - 1].index = 0
                         }
-                        else if(teamArray[0][0].gameBookData.marketKey == 'alternate_spread'){
+                        else if(teamArray[0][0].gameBookData.marketKey == 'alternate_spreads'){
                             awayTeamPropsFinal[awayTeamPropsFinal.length - 1].propType = 'altSpread'
                             awayTeamPropsFinal[awayTeamPropsFinal.length - 1].index = 0
                         }
@@ -676,7 +676,7 @@ export class NflService {
                     propTypeArray[propTypeArray.length - 1].propType = 'altTotal'
 
                 }
-                else if(awayTeamPropsFinal[0][0][0].gameBookData.marketKey == 'alternate_spread') {
+                else if(awayTeamPropsFinal[0][0][0].gameBookData.marketKey == 'alternate_spreads') {
                     propTypeArray[propTypeArray.length - 1].propType = 'altSpread'
 
                 }
