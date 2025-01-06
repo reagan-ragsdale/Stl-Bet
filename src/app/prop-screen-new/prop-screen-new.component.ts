@@ -305,7 +305,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
 
     if(this.selectedProp.length > 1){
       if(this.selectedProp[0].length > 1){
-        if(this.selectedProp[0][0].length > 1){
+        if(this.selectedProp[0][0].length > 0){
           this.selectedDisplayProp = this.selectedProp[this.index][0][0]
         }
         else{
