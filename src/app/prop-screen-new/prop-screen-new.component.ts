@@ -314,6 +314,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     else{
       this.selectedDisplayProp = this.selectedProp;
     }
+    console.log('selected prop below')
+    console.log(this.selectedProp)
+    console.log('selected display prop below')
     console.log(this.selectedDisplayProp)
 
   }
