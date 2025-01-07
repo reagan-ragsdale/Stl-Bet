@@ -2121,8 +2121,8 @@ export class NflService {
 
         }
 
-        homeTeamOverUnderFinal.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
-        awayTeamOverUnderFinal.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+        //homeTeamOverUnderFinal.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+        //awayTeamOverUnderFinal.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
         homeTeamOverUnderFinal.propType = 'total'
         awayTeamOverUnderFinal.propType = 'total'
         
