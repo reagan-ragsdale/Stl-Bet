@@ -117,21 +117,21 @@
                                             ''}}{{team[1].gameBookData.price}} O</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;font-size:smaller;" *ngIf="prop.propType == 'altTotal'">
-                                        <span>{{team[index][0].teamName}}</span>
+                                        <span>{{team[team.index][0].teamName}}</span>
                                         <span
                                             style="margin-left:auto;">{{team[index][0].gameBookData.point}}</span>
-                                        <span>{{team[index][0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[index][0].gameBookData.price}} U</span>
+                                        <span>{{team[team.index][0].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[team.index][0].gameBookData.price}} U</span>
                                         <span style="padding-right:1rem;">{{team[index][1].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[index][1].gameBookData.price}} O</span>
+                                            ''}}{{team[team.index][1].gameBookData.price}} O</span>
                                     </div>
                                     <div style="display:flex; gap:1rem;font-size:smaller;" *ngIf="prop.propType == 'altSpread'">
-                                        <span>{{team[index][0].teamName}}</span>
+                                        <span>{{team[team.index][0].teamName}}</span>
                                         <span
-                                            style="margin-left:auto;">{{team[index][0].gameBookData.point > 0 ? '+' :
-                                            ''}}{{team[index][0].gameBookData.point}}</span>
-                                        <span>{{team[index][0].gameBookData.price > 0 ? '+' :
-                                            ''}}{{team[index][0].gameBookData.price}}</span>
+                                            style="margin-left:auto;">{{team[team.index][0].gameBookData.point > 0 ? '+' :
+                                            ''}}{{team[team.index][0].gameBookData.point}}</span>
+                                        <span>{{team[team.index][0].gameBookData.price > 0 ? '+' :
+                                            ''}}{{team[team.index][0].gameBookData.price}}</span>
                                     </div>
                                     </mat-chip-option>
                                 </mat-chip-listbox>
