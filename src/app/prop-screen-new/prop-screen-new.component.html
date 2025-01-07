@@ -622,6 +622,40 @@
                     
                 </div>
             </div>
+            <div *ngIf="selectedPropType == 'Live Props'" class="prop-display"> 
+                <div class="list-of-props">
+                    <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
+                        <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
+                            style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
+                            <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: white;padding-bottom: .5rem; padding-top:.5rem;">
+                                <mat-panel-title style="color:black; font-size: larger;">
+                                    {{displayPropTitle(prop)}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="player-chip" style="display:flex; flex-direction: column;">
+                                    <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
+                                        
+                                        <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
+                                             (click)="onPropClicked(player, i, j)">
+                                        <div style="display:flex; gap:1rem; font-size:smaller;">
+                                            <span>{{isTeamTruePlayerFalse(player) ? player.teamName : player.playerName}}</span>
+                                            <span style="margin-left:auto;">{{isTeamTruePlayerFalse(player) ? (player.propType == 'h2h' ? '' : player.gameBookData.point) : player.playerBookData.point}}</span>
+                                            <span>{{isTeamTruePlayerFalse(player) ? ((player.gameBookData.price > 0 ? '+' :
+                                                '') + player.gameBookData.price) : ((player.playerBookData.price > 0 ? '+' : '') + player.playerBookData.price)}}</span>
+                                            <span style="padding-right:1rem;">{{isTeamTruePlayerFalse(player) ? (isPropTotal(player) ? (player.gameBookData.description == 'Over' ? 'O' :
+                                                'U') : '') : (isPropTotal(player) ? (player.playerBookData.description == 'Over' ? 'O' :
+                                                'U') : '')}}</span>
+                                        </div>
+                                        
+                                        </mat-chip-option>
+                                    </mat-chip-listbox>
+                                
+                            </div>
+                        </mat-expansion-panel>
+                        
+                    </mat-accordion>
+                </div> 
+            </div>
         </div>
     </div>
 </div>

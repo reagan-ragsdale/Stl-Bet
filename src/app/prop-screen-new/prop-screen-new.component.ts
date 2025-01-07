@@ -66,6 +66,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   arrayOfAllBets: any[] = []
   bestBets: any[] = []
   bestBetDisplay: any[] = []
+  livePropData: any[] = []
 
 
   constructor(
@@ -359,6 +360,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     else if(this.selectedPropType == 'Best Bets'){
       this.selectedDisplayArray = this.bestBetDisplay
+      this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
+    }
+    else if(this.selectedPropType == 'Live Props'){
+      this.selectedDisplayArray = this.livePropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
     }
     
