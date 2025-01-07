@@ -1135,6 +1135,7 @@ export class NflService {
             if (filteredBothTeamProp.length > 2) {
                 //find the specific points and create overunder for each pairing
                 let distinctPointsByProp = filteredBothTeamProp.map(e => e.point).filter((v, i, a) => a.indexOf(v) === i)
+                distinctPointsByProp.sort((a,b) => a-b)
                 let homeTeamPropArray: any[] = []
                 let awayTeamPropArray: any[] = []
                 for (let m = 0; m < distinctPointsByProp.length; m++) {
@@ -1495,6 +1496,8 @@ export class NflService {
                         homeTeamPointArray.push(homeProp)
                         awayTeamPointArray.push(awayProp)
                     }
+                    homeTeamPointArray.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+                    awayTeamPointArray.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
                     homeTeamOverUnderFinal.push(homeTeamPointArray)
                     awayTeamOverUnderFinal.push(awayTeamPointArray)
                     homeTeamOverUnderFinal.propType = 'altTotal'
