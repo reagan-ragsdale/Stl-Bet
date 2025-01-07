@@ -64,6 +64,7 @@ export class SportsBookController {
     //get each individual book id
     let individualBookIds = bookData.map(e => e.bookId).filter((value, index, array) => array.indexOf(value) === index)
     //loop through each book id
+    
     for(let book of individualBookIds){
       //find if there is already a entry in the db with bookseq 0
       let databaseBookSeqZero = await taskRepo.find({where: {bookId: book, bookSeq: 0}})
@@ -74,10 +75,15 @@ export class SportsBookController {
         //loop through each of the props for that book id
         for(let individualProp of propDataMathcedOnBookId){
           //find the prop from the database that matches the incoming prop
-          let matchedProp = databaseBookSeqZero.filter(e => e.marketKey == individualProp.marketKey && e.teamName == individualProp.teamName && e.point == individualProp.point && e.description == individualProp.description)[0]
+          try{
+            let matchedProp = databaseBookSeqZero.filter(e => e.marketKey == individualProp.marketKey && e.teamName == individualProp.teamName && e.point == individualProp.point && e.description == individualProp.description)[0]
           //update the databasebookseqZero
           
           await taskRepo.save({...matchedProp, price: individualProp.price, point: individualProp.point})
+          }
+          catch(error:any){
+            console.log('Update bookseq 0: ' + error.message)
+          }
         }
         
       }
