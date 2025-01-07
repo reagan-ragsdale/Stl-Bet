@@ -189,7 +189,7 @@ export class draftKingsApiController {
                 bookMaker: selectedSportsData[i].bookmakers[j].title,
                 marketKey: selectedSportsData[i].bookmakers[j].markets[k].key,
                 teamName: (selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Over' || selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Under') ? 'Both' : this.cleanTeamName(selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name),
-                description: (selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Over' || selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Under') ? selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name : '',
+                description: (selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Over' || selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name == 'Under') ? selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].name : 'I',
                 price: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].price,
                 point: selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point != null ? selectedSportsData[i].bookmakers[j].markets[k].outcomes[m].point : 0,
                 bookSeq: nextBookSeq
@@ -262,7 +262,7 @@ export class draftKingsApiController {
               bookMaker: this.selectedSportsData.bookmakers[j].title,
               marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
               teamName: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? (Object.hasOwn(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m], 'description') ? this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description) : 'Both') : this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name),
-              description: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : '',
+              description: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : 'I',
               price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
               point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
               bookSeq: nextBookSeq
