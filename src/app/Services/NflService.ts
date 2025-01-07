@@ -642,14 +642,16 @@ export class NflService {
                             pointArray.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
                             pointArray.sort((a: any, b: any) => a.gameBookData.point - b.gameBookData.point)
                         }
-                        else if(pointArray[0].gameBookData.marketKey == 'alternate_spreads'){
-                            pointArray.sort((a: any, b: any) => b.gameBookData.point - a.gameBookData.point)
-                        }
                         
                         teamArray.push(pointArray)
 
                     }
-                    teamArray.sort((a: any, b: any) => a[0].gameBookData.point - b[0].gameBookData.point)
+                    if(teamArray[0][0].gameBookData.marketKey == 'alternate_spreads'){
+                        teamArray.sort((a: any, b: any) => b[0].gameBookData.point - a[0].gameBookData.point)
+                    }
+                    else{
+                        teamArray.sort((a: any, b: any) => a[0].gameBookData.point - b[0].gameBookData.point)
+                    }
                     if (teamArray[0][0].homeAway == "Home") {
                         homeTeamPropsFinal.push(teamArray)
                         if (teamArray[0][0].gameBookData.marketKey == 'alternate_team_totals') {
