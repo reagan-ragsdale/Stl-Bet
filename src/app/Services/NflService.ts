@@ -1125,6 +1125,8 @@ export class NflService {
         let homeTeamOverUnderFinal: any = []
         let awayTeamOverUnderFinal: any = []
         //get each distinct prop with Both
+        console.log('overunder array below')
+        console.log(overUnderTotalProps)
         let distinctBothTeamBoth = overUnderTotalProps.map(e => e.marketKey).filter((v, i, a) => a.indexOf(v) === i)
         for (let k = 0; k < distinctBothTeamBoth.length; k++) {
             //filter on the specific prop
