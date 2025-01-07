@@ -75,7 +75,8 @@
                 <h2 class="record1" *ngIf="selectedSport == 'NHL'" style="text-align: center; margin-right:auto;">
                     ({{homeTeamStatsDisplay.wins}}
                     - {{homeTeamStatsDisplay.loss}} - {{homeTeamStatsDisplay.otl}})</h2>
-
+                <h2 class="record1" *ngIf="selectedSport != 'NHL'" style="text-align: center; margin-right:auto;">{{homeTeamStatsDisplay.wins}}
+                        - {{homeTeamStatsDisplay.losses}}</h2>
             </div>
         </div>
         <div class="prop-type-section">
@@ -132,7 +133,7 @@
                                         <span
                                             style="margin-left:auto;">{{team[team.index][0].gameBookData.point > 0 ? '+' :
                                             ''}}{{team[team.index][0].gameBookData.point}}</span>
-                                        <span>{{team[team.index][0].gameBookData.price > 0 ? '+' :
+                                        <span style="padding-right:1rem;">{{team[team.index][0].gameBookData.price > 0 ? '+' :
                                             ''}}{{team[team.index][0].gameBookData.price}}</span>
                                     </div>
                                     </mat-chip-option>
