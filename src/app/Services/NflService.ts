@@ -637,6 +637,12 @@ export class NflService {
                                 teamProp.averageOverall = spreadOverall.length > 0 ? spreadOverall.reduce((a, b) => a + b) / spreadOverall.length : 0
                                 teamProp.averageHomeAway = spreadHomeAway.length > 0 ? spreadHomeAway.reduce((a, b) => a + b) / spreadHomeAway.length : 0
                                 teamProp.averageTeam = spreadTeam.length > 0 ? spreadTeam.reduce((a, b) => a + b) / spreadTeam.length : 0
+                                teamProp.overallChance = teamProp.overallTotal == 0 ? 0 : teamProp.overallWins / teamProp.overallTotal
+                                teamProp.homeAwayChance = teamProp.homeAwayTotal == 0 ? 0 : teamProp.homeAwayWins / teamProp.homeAwayTotal
+                                teamProp.teamChance = teamProp.teamTotal == 0 ? 0 : teamProp.teamWins / teamProp.teamTotal
+                                teamProp.overallWeighted = (teamProp.overallChance * (1 - teamAgainstOverallChance)) / ((teamProp.overallChance * (1 - teamAgainstOverallChance)) + (teamAgainstOverallChance * (1 - teamProp.overallChance)))
+                                teamProp.homeAwayWeighted = (teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) / ((teamProp.homeAwayChance * (1 - teamAgainstHomeAwayChance)) + (teamAgainstHomeAwayChance * (1 - teamProp.homeAwayChance)))
+                                teamProp.teamWeighted = (teamProp.teamChance * (1 - teamAgasintTeamChance)) / ((teamProp.teamChance * (1 - teamAgasintTeamChance)) + (teamAgasintTeamChance * (1 - teamProp.teamChance)))
                                 teamProp.propType = 'altSpread'
                             }
 
