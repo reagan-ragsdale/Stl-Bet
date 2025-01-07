@@ -1500,11 +1500,11 @@ export class NflService {
                     homeTeamPointArray = []
                     awayTeamPointArray = []
                 }
-                homeTeamOverUnderFinal.push(homeTeamPropArray)
-                awayTeamOverUnderFinal.push(awayTeamPropArray)
+                homeTeamOverUnderFinal.push(homeTeamPropArray[0])
+                awayTeamOverUnderFinal.push(awayTeamPropArray[0])
                 homeTeamPropArray = []
                 awayTeamPropArray = []
-                propTypeArray.push([homeTeamPropArray, awayTeamPropArray])
+                propTypeArray.push([homeTeamOverUnderFinal, awayTeamOverUnderFinal])
                 homeTeamOverUnderFinal = []
                 awayTeamOverUnderFinal = []
             }
