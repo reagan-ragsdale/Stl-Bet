@@ -628,6 +628,9 @@ export class NflService {
                                 let spreadOverall = teamStats.map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
                                 let spreadHomeAway = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
                                 let spreadTeam = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).map(e => (e.pointsAllowedOverall - e.pointsScoredOverall))
+                                teamAgainstOverallChance = teamAgainstOverallTotal == 0 ? 0 : teamAgainstOverallWins / teamAgainstOverallTotal
+                                teamAgainstHomeAwayChance = teamAgainstHomeAwayTotal == 0 ? 0 : teamAgainstHomeAwayWins / teamAgainstHomeAwayTotal
+                                teamAgasintTeamChance = teamAgainstTeamTotal == 0 ? 0 : teamAgainstTeamWins / teamAgainstTeamTotal
                                 teamProp.lowOverall = spreadOverall.length > 0 ? Math.max(...spreadOverall) : 0
                                 teamProp.highOverall = spreadOverall.length > 0 ? Math.min(...spreadOverall) : 0
                                 teamProp.lowHomeAway = spreadHomeAway.length > 0 ? Math.max(...spreadHomeAway) : 0
