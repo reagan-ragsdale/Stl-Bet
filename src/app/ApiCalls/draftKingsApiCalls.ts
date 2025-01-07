@@ -262,7 +262,7 @@ export class draftKingsApiController {
               bookMaker: this.selectedSportsData.bookmakers[j].title,
               marketKey: this.selectedSportsData.bookmakers[j].markets[k].key,
               teamName: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? (Object.hasOwn(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m], 'description') ? this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description) : 'Both') : this.cleanTeamName(this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name),
-              description: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].description != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : '',
+              description: (this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Over' || this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name == 'Under') ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].name : '',
               price: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].price,
               point: this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point != null ? this.selectedSportsData.bookmakers[j].markets[k].outcomes[m].point : 0,
               bookSeq: nextBookSeq
