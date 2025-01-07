@@ -471,14 +471,18 @@ export class NflService {
                             let teamAgainstOverallChance = 0
                             let teamAgainstHomeAwayChance = 0
                             let teamAgasintTeamChance = 0
+
+                            teamProp.overallTotal = teamStats.length
+                            teamProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).length
+                            teamProp.teamTotal = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).length
                             if (filteredPointsProps[m].marketKey == 'alternate_team_totals') {
                                 if (filteredPointsProps[m].description == 'Over') {
                                     teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
-                                    teamProp.overallTotal = teamStats.length
+                                    
                                     teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
-                                    teamProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).length
+                                    
                                     teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && (e.pointsScoredOverall) > filteredPointsProps[m].point).length;
-                                    teamProp.teamTotal = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).length
+                                    
                                     teamAgainstOverallWins = teamAgainstStats.filter(e => e.pointsAllowedOverall < filteredPointsProps[m].point).length
                                     teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != teamProp.homeAway && e.pointsAllowedOverall < filteredPointsProps[m].point).length
                                     teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == teamProp.teamId && e.pointsAllowedOverall < filteredPointsProps[m].point).length
@@ -532,11 +536,11 @@ export class NflService {
                                 }
                                 else {
                                     teamProp.overallWins = teamStats.filter(e => (e.pointsScoredOverall) < filteredPointsProps[m].point).length;
-                                    teamProp.overallTotal = teamStats.length
+                                    
                                     teamProp.homeAwayWins = teamStats.filter(e => e.homeOrAway == teamProp.homeAway && e.pointsScoredOverall < filteredPointsProps[m].point).length;
-                                    teamProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == teamProp.homeAway).length
+                                    
                                     teamProp.teamWins = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId && e.pointsScoredOverall < filteredPointsProps[m].point).length;
-                                    teamProp.teamTotal = teamStats.filter(e => e.teamAgainstId == teamProp.teamAgainstId).length
+                                    
                                     teamAgainstOverallWins = teamAgainstStats.filter(e => e.pointsAllowedOverall > filteredPointsProps[m].point).length
                                     teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != teamProp.homeAway && e.pointsAllowedOverall > filteredPointsProps[m].point).length
                                     teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == teamProp.teamId && e.pointsAllowedOverall > filteredPointsProps[m].point).length
