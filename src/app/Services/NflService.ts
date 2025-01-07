@@ -640,8 +640,12 @@ export class NflService {
                         }
                         if (pointArray[0].gameBookData.marketKey == 'alternate_team_totals') {
                             pointArray.sort((a: any, b: any) => b.gameBookData.description.localeCompare(a.gameBookData.description))
+                            pointArray.sort((a: any, b: any) => a.gameBookData.point - b.gameBookData.point)
                         }
-                        pointArray.sort((a: any, b: any) => a.gameBookData.point - b.gameBookData.point)
+                        else if(pointArray[0].gameBookData.marketKey == 'alternate_spreads'){
+                            pointArray.sort((a: any, b: any) => b.gameBookData.point - a.gameBookData.point)
+                        }
+                        
                         teamArray.push(pointArray)
 
                     }
