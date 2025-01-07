@@ -1497,8 +1497,6 @@ export class NflService {
                     }
                     homeTeamPropArray.push(homeTeamPointArray)
                     awayTeamPropArray.push(awayTeamPointArray)
-                    homeTeamPointArray = []
-                    awayTeamPointArray = []
                 }
                 homeTeamOverUnderFinal.push(homeTeamPropArray[0])
                 awayTeamOverUnderFinal.push(awayTeamPropArray[0])
