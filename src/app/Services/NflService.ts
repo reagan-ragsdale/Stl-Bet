@@ -1497,12 +1497,16 @@ export class NflService {
                     }
                     homeTeamOverUnderFinal.push(homeTeamPointArray)
                     awayTeamOverUnderFinal.push(awayTeamPointArray)
+                    homeTeamOverUnderFinal.propType = 'altTotal'
+                    awayTeamOverUnderFinal.propType = 'altTotal'
                 }
                 //homeTeamOverUnderFinal.push(homeTeamPropArray)
                 //awayTeamOverUnderFinal.push(awayTeamPropArray)
                 homeTeamPropArray = []
                 awayTeamPropArray = []
                 propTypeArray.push([homeTeamOverUnderFinal, awayTeamOverUnderFinal])
+                propTypeArray[propTypeArray.length - 1].propName = distinctBothTeamBoth[k]
+                propTypeArray[propTypeArray.length - 1].propType = 'altTotal'
                 homeTeamOverUnderFinal = []
                 awayTeamOverUnderFinal = []
             }
@@ -2372,11 +2376,12 @@ export class NflService {
 
                     homeTeamOverUnderFinal.push(homeProp)
                     awayTeamOverUnderFinal.push(awayProp)
-                    propTypeArray.push([awayTeamOverUnderFinal, homeTeamOverUnderFinal])
-                    homeTeamOverUnderFinal = []
-                    awayTeamOverUnderFinal = []
+                    
 
                 }
+                propTypeArray.push([awayTeamOverUnderFinal, homeTeamOverUnderFinal])
+                    homeTeamOverUnderFinal = []
+                    awayTeamOverUnderFinal = []
             }
 
         }
