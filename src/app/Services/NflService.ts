@@ -1497,10 +1497,16 @@ export class NflService {
                     }
                     homeTeamPropArray.push(homeTeamPointArray)
                     awayTeamPropArray.push(awayTeamPointArray)
+                    homeTeamPointArray = []
+                    awayTeamPointArray = []
                 }
                 homeTeamOverUnderFinal.push(homeTeamPropArray)
                 awayTeamOverUnderFinal.push(awayTeamPropArray)
+                homeTeamPropArray = []
+                awayTeamPropArray = []
                 propTypeArray.push([awayTeamOverUnderFinal, homeTeamOverUnderFinal])
+                homeTeamOverUnderFinal = []
+                awayTeamOverUnderFinal = []
             }
             else {
                 for (let j = 0; j < filteredBothTeamProp.length; j++) {
@@ -2115,6 +2121,8 @@ export class NflService {
                     homeTeamOverUnderFinal.push(homeProp)
                     awayTeamOverUnderFinal.push(awayProp)
                     propTypeArray.push([awayTeamOverUnderFinal, homeTeamOverUnderFinal])
+                    homeTeamOverUnderFinal = []
+                    awayTeamOverUnderFinal = []
 
                 }
             }
@@ -2128,8 +2136,7 @@ export class NflService {
         
         propTypeArray[propTypeArray.length - 1].propType = 'total'
         propTypeArray[propTypeArray.length - 1].propName = overUnderTotalProps[0].marketKey
-        homeTeamOverUnderFinal = []
-        awayTeamOverUnderFinal = []
+        
 
 
 
