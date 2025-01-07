@@ -1507,7 +1507,9 @@ export class NflService {
                     homeTeamOverUnderFinal.push(homeTeamPointArray)
                     awayTeamOverUnderFinal.push(awayTeamPointArray)
                     homeTeamOverUnderFinal.propType = 'altTotal'
+                    homeTeamOverUnderFinal.index = 0
                     awayTeamOverUnderFinal.propType = 'altTotal'
+                    awayTeamOverUnderFinal.index = 0
                 }
                 //homeTeamOverUnderFinal.push(homeTeamPropArray)
                 //awayTeamOverUnderFinal.push(awayTeamPropArray)
