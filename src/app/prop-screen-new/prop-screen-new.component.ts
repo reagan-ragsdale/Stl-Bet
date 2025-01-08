@@ -179,7 +179,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.showSpinner = false;
     console.log(this.playerPropData)
     this.teamPropFinnal.sort((a,b) => this.findIndexOfKey(this.listOfTeamProps, a.propName) - this.findIndexOfKey(this.listOfTeamProps, b.propName))
-    
+    this.playerPropData.sort((a,b) => this.findIndexOfKey(this.listOfTeamProps, a.propName) - this.findIndexOfKey(this.listOfTeamProps, b.propName))
     this.onPropChange(this.listOfProps[0].type)
     
     await this.getBestBets()
