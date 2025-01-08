@@ -25,7 +25,7 @@ export const cronLoadNflGameStats = async () => {
         //find the ones that don't intersect
         let newGameIds = incomingGameIds.filter(game => !currentGameIds.includes(game))
         //console.log(newGameIds)
-
+        console.log('Here in nfl stuff')
         //change below back to new game ids
         for(let game of newGameIds){
             try{
