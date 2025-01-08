@@ -1331,14 +1331,14 @@ export class NflService {
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
 
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredFirstQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredFirstQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredFirstQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1382,14 +1382,14 @@ export class NflService {
                             let teamLast10Wins = teamTableTemp.filter(e => e.pointsScoredFirstQuarter < filteredPropsOnMarketKey[i].point).length
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredFirstQuarter < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredFirstQuarter < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredFirstQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1437,14 +1437,14 @@ export class NflService {
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
 
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredSecondQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredSecondQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredSecondQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredSecondQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedSecondQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1488,14 +1488,14 @@ export class NflService {
                             let teamLast10Wins = teamTableTemp.filter(e => e.pointsScoredSecondQuarter < filteredPropsOnMarketKey[i].point).length
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredSecondQuarter < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredSecondQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredSecondQuarter < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredSecondQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedSecondQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1543,14 +1543,14 @@ export class NflService {
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
 
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredThirdQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredThirdQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredThirdQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedThirdQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1594,14 +1594,14 @@ export class NflService {
                             let teamLast10Wins = teamTableTemp.filter(e => e.pointsScoredThirdQuarter < filteredPropsOnMarketKey[i].point).length
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredThirdQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredThirdQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredThirdQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedThirdQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1649,14 +1649,14 @@ export class NflService {
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
 
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredFourthQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredFourthQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredFourthQuarter > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredFourthQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFourthQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1700,14 +1700,14 @@ export class NflService {
                             let teamLast10Wins = teamTableTemp.filter(e => e.pointsScoredFourthQuarter < filteredPropsOnMarketKey[i].point).length
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: teamStats[i].pointsScoredFourthQuarter < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredFourthQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: teamStats[j].pointsScoredFourthQuarter < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredFourthQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFourthQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1755,14 +1755,14 @@ export class NflService {
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
 
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter) > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: (teamStats[j].pointsScoredFirstQuarter + teamStats[j].pointsScoredSecondQuarter) > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredFirstQuarter + teamStats[j].pointsScoredSecondQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter + teamStats[j].pointsAllowedSecondQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1806,14 +1806,14 @@ export class NflService {
                             let teamLast10Wins = teamTableTemp.filter(e => (e.pointsScoredFirstQuarter + e.pointsScoredSecondQuarter) < filteredPropsOnMarketKey[i].point).length
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter) < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: (teamStats[j].pointsScoredFirstQuarter + teamStats[j].pointsScoredSecondQuarter) < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredFirstQuarter + teamStats[j].pointsScoredSecondQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter + teamStats[j].pointsAllowedSecondQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1861,14 +1861,14 @@ export class NflService {
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
 
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter) > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: (teamStats[j].pointsScoredThirdQuarter + teamStats[j].pointsScoredFourthQuarter) > filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredThirdQuarter + teamStats[j].pointsScoredFourthQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter + teamStats[j].pointsAllowedFourthQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1912,14 +1912,14 @@ export class NflService {
                             let teamLast10Wins = teamTableTemp.filter(e => (e.pointsScoredThirdQuarter + e.pointsScoredFourthQuarter) < filteredPropsOnMarketKey[i].point).length
                             propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
                             let teamGameLog = []
-                            for (let i = 0; i < teamStats.length; i++) {
+                            for (let j = 0; j < teamStats.length; j++) {
                                 teamGameLog.push({
-                                    teamAgainstName: teamStats[i].teamAgainstName,
-                                    gameDate: teamStats[i].gameDate,
-                                    result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter) < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
-                                    pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter,
-                                    pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    teamAgainstName: teamStats[j].teamAgainstName,
+                                    gameDate: teamStats[j].gameDate,
+                                    result: (teamStats[j].pointsScoredThirdQuarter + teamStats[j].pointsScoredFourthQuarter) < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
+                                    pointsScoredOverall: teamStats[j].pointsScoredThirdQuarter + teamStats[j].pointsScoredFourthQuarter,
+                                    pointsAllowedOverall: teamStats[j].pointsAllowedThirdQuarter + teamStats[j].pointsAllowedFourthQuarter,
+                                    homeAway: teamStats[j].homeOrAway
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
