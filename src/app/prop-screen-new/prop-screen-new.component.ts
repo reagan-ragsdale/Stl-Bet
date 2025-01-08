@@ -178,9 +178,16 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.selectedBetIndexes = [0,0]
     this.showSpinner = false;
     console.log(this.playerPropData)
+    this.teamPropFinnal.sort((a,b) => this.findIndexOfKey(this.listOfTeamProps, a.propName) - this.findIndexOfKey(this.listOfTeamProps, b.propName))
+    
     this.onPropChange(this.listOfProps[0].type)
     
     await this.getBestBets()
+  }
+
+  findIndexOfKey(obj: { [key: string]: string }, key: string): number {
+    const keys = Object.keys(obj);
+    return keys.indexOf(key);
   }
 
   async getBestBets(){
@@ -266,11 +273,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     "h2h_p1": "Moneyline First Period", 
     "h2h_p2": "Moneyline Second Period", 
     "h2h_p3": "Moneyline Third Period", 
-    "alternate_team_totals": 'Alternate Team Total', 
-    'player_shots_on_goal_alternate': 'Alternate Shots', 
-    'player_shots_on_goal': 'Shots', 
-    'player_points': 'Points', 
-    'player_assists': 'Assists', 
     'h2h_h1': 'Moneyline First Half', 
     'h2h_h2': 'Moneyline Second Half',
     'h2h_q1': 'Moneyline First Quarter', 
@@ -283,8 +285,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     'spreads_q2': 'Spread Second Quarter',
     'spreads_q3': 'Spread Third Quarter',
     'spreads_q4': 'Spread Fourth Quarter',
-    'alternate_spreads': 'Alternate Spread',
-    'alternate_totals': 'Alternate Total',
     'totals_h1': 'Total First Half',
     'totals_h2': 'Total Second Half',
     'totals_q1': 'Total First Quarter',
@@ -297,12 +297,19 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     'team_totals_q2': 'Team Total Second Quarter',
     'team_totals_q3': 'Team Total Third Quarter',
     'team_totals_q4': 'Team Total Fourth Quarter',
+    'alternate_spreads': 'Alternate Spread',
+    'alternate_totals': 'Alternate Total',
+    "alternate_team_totals": 'Alternate Team Total', 
+    'player_shots_on_goal': 'Shots',
+    'player_points': 'Points', 
+    'player_assists': 'Assists', 
+    'player_shots_on_goal_alternate': 'Alternate Shots', 
     'player_pass_tds': 'Pass Tds',
     'player_pass_yds': 'Pass Yds',
-    'player_pass_yds_alternate': 'Alternate Pass Yds',
     'player_reception_yds': 'Receiving Yds',
-    'player_reception_yds_alternate': "Alternate Receiving Yds",
     'player_rush_yds': 'Rushing Yds',
+    'player_pass_yds_alternate': 'Alternate Pass Yds',
+    'player_reception_yds_alternate': "Alternate Receiving Yds",
     'player_rush_yds_alternate': 'Alternate Rushing Yds'
    }
   public listOfMoneylines: string[] = ["h2h", "h2h_1st_3_innings", "h2h_1st_5_innings", "h2h_1st_7_innings", 'h2h_p1', 'h2h_p2', 'h2h_p3']
