@@ -31,7 +31,7 @@ export const cronLoadNflGameStats = async () => {
             try{
                 let gameStats = await nflApiController.getGameSummary(game)
                 count++
-                //await NflController.addTeamGameStats(gameStats[0])
+                await NflController.addTeamGameStats(gameStats[0])
                 await NflController.addPlayerGameStats(gameStats[1])
             }
             catch(error:any){
