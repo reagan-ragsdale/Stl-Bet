@@ -401,8 +401,8 @@ export class NflService {
         let distinctTeamProps = teamProps.map(e => e.marketKey).filter((v, i, a) => a.indexOf(v) === i)
 
         let propTypeArray: any = []
-        let homeTeamPropsFinal: any[] = []
-        let awayTeamPropsFinal: any[] = []
+        let homeTeamPropsFinal: any = []
+        let awayTeamPropsFinal: any = []
         for (let i = 0; i < distinctTeamProps.length; i++) {
             homeTeamPropsFinal = []
             awayTeamPropsFinal = []
@@ -1959,6 +1959,10 @@ export class NflService {
 
                 }
                 if(isByTeam){
+                    awayTeamPropsFinal.propType = 'total'
+                    awayTeamPropsFinal.propName = distinctTeamProps[i]
+                    homeTeamPropsFinal.propType = 'total'
+                    homeTeamPropsFinal.propName = distinctTeamProps[i]
                     propTypeArray.push([awayTeamPropsFinal, homeTeamPropsFinal])
                 }
                 else{
