@@ -67,6 +67,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   bestBets: any[] = []
   bestBetDisplay: any[] = []
   livePropData: any[] = []
+  sliderValue: number = 90;
 
 
   constructor(
@@ -220,14 +221,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
         }
       }
     }
-   await this.findBestBets()
+    this.findBestBets()
     
   }
-  async findBestBets(){
+   findBestBets(){
     this.bestBets = []
     this.bestBetDisplay = []
     for(let i = 0; i < this.arrayOfAllBets.length; i++){
-      if(this.arrayOfAllBets[i].overallChance > .9 || this.arrayOfAllBets[i].overallWeighted > .9){
+      if(this.arrayOfAllBets[i].overallChance > (this.sliderValue / 100) || this.arrayOfAllBets[i].overallWeighted > (this.sliderValue / 100)){
         this.bestBets.push(this.arrayOfAllBets[i])
       }
     }
