@@ -3874,7 +3874,7 @@ export class NflService {
                             teamAgainstHomeAwayTotal = teamAgainstStats.filter(e => e.homeOrAway != homeProp.homeAway).length
                             teamAgainstTeamTotal = teamAgainstStats.filter(e => e.teamAgainstId == homeProp.teamId).length
                             teamAgainstOverallWins = teamAgainstStats.filter(e => (e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter) >= filteredBothTeamProp[j].point).length
-                            teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != homeProp.homeAway && (e.pointsThirdSecondQuarter + e.pointsAThirdSecondQuarter) >= filteredBothTeamProp[j].point).length
+                            teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != homeProp.homeAway && (e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter) >= filteredBothTeamProp[j].point).length
                             teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == homeProp.teamId && (e.pointsScoredThirdQuarter + e.pointsAllowedThirdQuarter) >= filteredBothTeamProp[j].point).length
     
                             overAllTableTemp = teamStats.slice(0, 10)
@@ -4128,7 +4128,7 @@ export class NflService {
                             teamAgainstHomeAwayTotal = teamAgainstStats.filter(e => e.homeOrAway != homeProp.homeAway).length
                             teamAgainstTeamTotal = teamAgainstStats.filter(e => e.teamAgainstId == homeProp.teamId).length
                             teamAgainstOverallWins = teamAgainstStats.filter(e => (e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter) >= filteredBothTeamProp[j].point).length
-                            teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != homeProp.homeAway && (e.pointsFourthSecondQuarter + e.pointsAFourthSecondQuarter) >= filteredBothTeamProp[j].point).length
+                            teamAgainstHomeAwayWins = teamAgainstStats.filter(e => e.homeOrAway != homeProp.homeAway && (e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter) >= filteredBothTeamProp[j].point).length
                             teamAgainstTeamWins = teamAgainstStats.filter(e => e.teamAgainstId == homeProp.teamId && (e.pointsScoredFourthQuarter + e.pointsAllowedFourthQuarter) >= filteredBothTeamProp[j].point).length
     
                             overAllTableTemp = teamStats.slice(0, 10)
