@@ -1974,6 +1974,10 @@ export class NflService {
                 homeTeamPropsFinal = []
             }
             propTypeArray[propTypeArray.length - 1].propName = distinctTeamProps[i]
+            if(propTypeArray[propTypeArray.length - 1][0].propType == 'total'){
+                propTypeArray[propTypeArray.length - 1].propType = 'total'
+            }
+            
         }
 
 
