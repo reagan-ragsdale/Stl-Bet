@@ -258,6 +258,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     console.log('best bets belwo')
     console.log(this.bestBetDisplay)
+    if(this.selectedPropType == 'Best Bets'){
+      this.selectedDisplayArray = this.bestBetDisplay
+    }
     
     
   }
