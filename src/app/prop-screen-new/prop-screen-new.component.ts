@@ -10,6 +10,8 @@ import { ThisReceiver } from '@angular/compiler';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { remult } from 'remult';
 import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
+import { Chart } from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -395,8 +397,31 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     else if(this.selectedPropType == 'Live Props'){
       this.selectedDisplayArray = this.livePropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
+      this.createChart()
     }
     
+  }
+  barChart: any
+  createChart(){
+    this.barChart = new Chart("MyChart", {
+            type: 'bar', //this denotes tha type of chart
+    
+            data: {// values on X-Axis
+    
+              labels: this.selectedDisplayProp.labels,
+              datasets: [
+                {
+                  label: this.selectedDisplayProp.propName,
+                  data: this.selectedDisplayProp.barData,
+                  backgroundColor: 'blue'
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.5
+            }
+    
+          });
   }
 
   
@@ -481,6 +506,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.showSpinner = true;
+    Chart.register(annotationPlugin);
     this.selectedPropType = this.listOfProps[0].type
     await this.initializeUrl()
     await this.initializeData()

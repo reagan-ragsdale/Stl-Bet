@@ -645,16 +645,10 @@
                             <div class="player-chip" style="display:flex; flex-direction: column;">
                                     <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                         
-                                        <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
-                                             (click)="onPropClicked(player, i, j)">
+                                        <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let team of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
+                                             (click)="onPropClicked(team, i, j)">
                                         <div style="display:flex; gap:1rem; font-size:smaller;">
-                                            <span>{{isTeamTruePlayerFalse(player) ? player.teamName : player.playerName}}</span>
-                                            <span style="margin-left:auto;">{{isTeamTruePlayerFalse(player) ? (player.propType == 'h2h' ? '' : player.gameBookData.point) : player.playerBookData.point}}</span>
-                                            <span>{{isTeamTruePlayerFalse(player) ? ((player.gameBookData.price > 0 ? '+' :
-                                                '') + player.gameBookData.price) : ((player.playerBookData.price > 0 ? '+' : '') + player.playerBookData.price)}}</span>
-                                            <span style="padding-right:1rem;">{{isTeamTruePlayerFalse(player) ? (isPropTotal(player) ? (player.gameBookData.description == 'Over' ? 'O' :
-                                                'U') : '') : (isPropTotal(player) ? (player.playerBookData.description == 'Over' ? 'O' :
-                                                'U') : '')}}</span>
+                                            <span>{{team.teamName}}</span>
                                         </div>
                                         
                                         </mat-chip-option>
@@ -665,6 +659,11 @@
                         
                     </mat-accordion>
                 </div> 
+                <div class="prop-stats-panel">
+                    <div class="chart-container" style="background-color: #ebebeb;">
+                        <canvas [attr.id]="'MyChart'">{{ barChart }}</canvas>
+                      </div>
+                </div>
             </div>
         </div>
     </div>
