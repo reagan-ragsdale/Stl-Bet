@@ -4883,6 +4883,69 @@ export class NflService {
 
         return finalReturn;
     }
+    static async getLiveBets(teamNames: string[]){
+        let finalTeamReturn: any[] = []
+        let listOfLivePropTypes: string[] = ['h2h']
+        let listOfTeamStats: DBNflTeamGameStats[] = await NflController.nflGetAllTeamStatsByTeamNamesAndSeason(teamNames, 2024)
+        let awayTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[0])
+        let homeTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[1])
+
+        //need an array for each prop type which has an array for each team
+        //each of the team arrays has:
+        //an array of each type of selection for the prop. Ex: winning by, winning after
+        // each element of the array needs to have a name of the above and an object with all the data for that graph
+
+        for(let i = 0; i < listOfLivePropTypes.length; i++){
+            let propTypeArray: any = []
+            let propName: string = ''
+            for(let j = 0; j < teamNames.length; j++){
+                let teamArray: any = []
+                if(listOfLivePropTypes[i] == 'h2h'){
+                    let teamStats = j == 0 ? awayTeamStats : homeTeamStats
+                    propName = 'Winning After'
+                    let labels: string[] = ['1', '2', '3']
+                    let barChartFinal: any = []
+                    for (let i = 1; i < 4; i++) {
+                        let totalQuarterChance = 0;
+                        let totalGames = 0
+                        let totalWins = 0
+                        if (i == 1) {
+                          let filteredGames: DBNflTeamGameStats[] = []
+                          filteredGames = teamStats.filter(game => game.pointsScoredFirstQuarter > game.pointsAllowedFirstQuarter)
+                          let gamesWon = filteredGames.filter(e => e.result == 'W')
+                          totalGames = filteredGames.length
+                          totalWins = gamesWon.length
+                        }
+                        else if (i == 2) {
+                          let filteredGames = teamStats.filter(game => (game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter) > (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter))
+                          let gamesWon = filteredGames.filter(e => e.result == 'W')
+                          totalGames = filteredGames.length
+                          totalWins = gamesWon.length
+                        }
+                        else if (i == 3) {
+                          let filteredGames = teamStats.filter(game => (game.pointsScoredFirstQuarter + game.pointsScoredSecondQuarter + game.pointsScoredThirdQuarter) > (game.pointsAllowedFirstQuarter + game.pointsAllowedSecondQuarter + game.pointsAllowedThirdQuarter))
+                          let gamesWon = filteredGames.filter(e => e.result == 'W')
+                          totalGames = filteredGames.length
+                          totalWins = gamesWon.length
+                        }
+            
+                        totalQuarterChance = totalGames == 0 ? 0 : totalWins / totalGames
+                        barChartFinal.push(totalQuarterChance * 100)
+                    }
+                    teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
+
+
+    
+                }
+                propTypeArray.push(teamArray)
+
+            }
+            finalTeamReturn.push(propTypeArray)
+            finalTeamReturn[finalTeamReturn.length - 1].propName = listOfLivePropTypes[i]
+        }
+        return finalTeamReturn
+        
+    }
 
 
 }

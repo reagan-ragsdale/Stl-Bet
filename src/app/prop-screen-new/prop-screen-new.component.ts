@@ -170,6 +170,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     this.teamPropFinnal = results[0]
     let teamTotals = results[1]
     this.playerPropData = results[2]
+    this.livePropData = results[3]
+    console.log('live prop data below')
+    console.log(this.livePropData)
     console.log(this.teamPropFinnal)
     this.selectedDisplayArray = this.teamPropFinnal
     this.awayTeamStatsDisplay = teamTotals.filter((e: { teamName: string; }) => e.teamName == this.awayTeamInfo[0].teamNameAbvr)[0]
@@ -395,6 +398,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     }
     
   }
+
+  
 
   updateOverUnder(){
     if(this.selectedProp[0].length > 1){
