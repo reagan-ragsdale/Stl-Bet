@@ -399,7 +399,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
       setTimeout(() => {
         
-      }, 1000);
+      }, 5000);
       this.createChart()
     }
     
