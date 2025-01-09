@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
@@ -18,7 +18,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
   templateUrl: './prop-screen-new.component.html',
   styleUrls: ['./prop-screen-new.component.scss']
 })
-export class PropScreenNewComponent implements OnInit, AfterViewInit {
+export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterContentInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
@@ -397,11 +397,11 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
     else if(this.selectedPropType == 'Live Props'){
       this.selectedDisplayArray = this.livePropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
-      this.createChart()
+      //this.createChart()
     }
     
   }
-  barChart: any
+  public barChart: any
   createChart(){
     this.barChart = new Chart("MyChart", {
             type: 'bar', //this denotes tha type of chart
@@ -502,6 +502,11 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]
+  }
+  ngAfterContentInit(){
+    if(this.selectedPropType == 'Live Props'){
+      this.createChart()
+    }
   }
 
   async ngOnInit() {
