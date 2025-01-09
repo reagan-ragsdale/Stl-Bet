@@ -4933,7 +4933,7 @@ export class NflService {
                         barChartFinal.push(totalQuarterChance * 100)
                     }
                     teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
-
+                    teamArray[teamArray.length -1].teamName = teamNames[j]
 
     
                 }
