@@ -632,7 +632,7 @@
                     
                 </div>
             </div>
-            <div [ngStyle]="{'display': (selectedPropType == 'Live Props') ? 'block' : 'none'}"  class="prop-display"> 
+            <div [ngClass]="selectedPropType == 'live Props' ? 'prop-display' : 'no-display'"> 
                 <div class="list-of-props">
                     <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
                         <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
