@@ -4898,9 +4898,11 @@ export class NflService {
         for(let i = 0; i < listOfLivePropTypes.length; i++){
             let propTypeArray: any = []
             let propName: string = ''
+            let selectionList: string[] = []
             for(let j = 0; j < teamNames.length; j++){
                 let teamArray: any = []
                 if(listOfLivePropTypes[i] == 'h2h'){
+                    selectionList = ['Winning after X', 'Scoring', 'Winning by X']
                     let teamStats = j == 0 ? awayTeamStats : homeTeamStats
                     propName = 'Chance of winning if winning after given quarter'
                     let labels: string[] = ['1st Qtr', '2nd Qtr', '3rd Qtr']
@@ -4942,6 +4944,7 @@ export class NflService {
             }
             finalTeamReturn.push(propTypeArray)
             finalTeamReturn[finalTeamReturn.length - 1].propName = listOfLivePropTypes[i]
+            finalTeamReturn[finalTeamReturn.length - 1].listOfSelections = selectionList
         }
         return finalTeamReturn
         
