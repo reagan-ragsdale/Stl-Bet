@@ -12,8 +12,8 @@ import { DbNhlTeamGameStats } from "../../shared/dbTasks/DbNhlTeamGameStats";
 
 export const cronLoadNhlStats = async () => {
     console.log("starting nhl stats")
-    //let players = await nhlApiController.getPlayerInfo()
-    //await PlayerInfoController.playerInfoAddPlayers(players)
+    let players = await nhlApiController.getPlayerInfo()
+    await PlayerInfoController.playerInfoAddPlayers(players)
 
     //set player stats
     const dates2023 = [
