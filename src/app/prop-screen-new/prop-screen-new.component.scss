@@ -111,14 +111,11 @@ h3 {
 }
 
 .prop-type, .buttons, .toggle-container {
-    padding: 0 1rem;
-    border-left: 1px solid #ddd; /* Border between elements */
 }
 
 .toggle-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
 }
 
 .toggle-container h4 {
@@ -127,8 +124,6 @@ h3 {
 
 /* Add spacing between the prop name, price, and toggle */
 .top-prop-panel h3 {
-    border-left: 1px solid #ddd;
-    padding-left: 1rem;
 }
 .buttons h3{
     border-left:none;
