@@ -402,6 +402,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     }
     
   }
+  onLivePropClicked(prop:any, panel: number, bet: number){
+    this.onPropClicked(prop,panel,bet)
+    this.destroyChart()
+    this.createChart()
+  }
+  destroyChart(){
+    this.barChart.destroy()
+  }
   public barChart: any
   createChart(){
     this.barChart = new Chart("MyChart", {

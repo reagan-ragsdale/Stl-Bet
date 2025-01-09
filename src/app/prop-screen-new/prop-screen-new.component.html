@@ -646,7 +646,7 @@
                                     <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                         
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let team of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
-                                             (click)="onPropClicked(team, i, j)">
+                                             (click)="onLivePropClicked(team, i, j)">
                                         <div style="display:flex; gap:1rem; font-size:smaller;">
                                             <span>{{team[0].teamName}}</span>
                                         </div>
