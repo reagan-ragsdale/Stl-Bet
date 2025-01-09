@@ -422,6 +422,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
             }
     
           });
+          console.log('after chart created')
   }
 
   
@@ -506,6 +507,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   ngAfterContentInit(){
     if(this.selectedPropType == 'Live Props'){
       this.createChart()
+
     }
   }
 
