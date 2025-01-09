@@ -503,6 +503,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   }
   ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]
+    if(this.selectedPropType == 'Live Props'){
+      this.createChart()
+
+    }
   }
   ngAfterContentInit(){
     if(this.selectedPropType == 'Live Props'){
