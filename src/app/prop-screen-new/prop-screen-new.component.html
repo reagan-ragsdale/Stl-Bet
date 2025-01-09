@@ -182,8 +182,8 @@
                 </div>
                 <div class="prop-stats-panel">
                     <div class="top-prop-panel">
-                        <h2 *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
-                        <h2 *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0;">{{selectedDisplayProp.playerName}}</h2>
+                        <h2 *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0; padding-right:10px;">{{selectedDisplayProp.teamName}}</h2>
+                        <h2 *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; padding-right:10px;">{{selectedDisplayProp.playerName}}</h2>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.playerBookData.marketKey)}}</h3>
                         <div *ngIf="selectedDisplayProp.propType != 'h2h'" class="buttons" style="display:flex; align-items: center; gap:.4rem;">
@@ -218,7 +218,7 @@
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                         <h3 *ngIf="selectedPropType == 'Player Props' && selectedDisplayProp.propType == 'altTotal'">{{selectedDisplayProp.playerBookData.description}}</h3>
-                        <button  mat-raised-button [disabled]="false" (click)="false">Parlay</button>
+                        <button *ngIf="false" style="margin-left:10px;"  mat-raised-button [disabled]="false" (click)="false">Parlay</button>
                     </div>
                     <div class="stat-body">
                         <div style="text-align: center;
