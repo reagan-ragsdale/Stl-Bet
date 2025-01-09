@@ -218,8 +218,6 @@
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                         <h3 *ngIf="selectedPropType == 'Player Props' && selectedDisplayProp.propType == 'altTotal'">{{selectedDisplayProp.playerBookData.description}}</h3>
-                    </div>
-                    <div>
                         <button  mat-raised-button [disabled]="false" (click)="false">Parlay</button>
                     </div>
                     <div class="stat-body">
@@ -406,7 +404,7 @@
                         <div>
                             <h4 style="max-width: 225px;text-align: center;">Find bets with chance of winning over: {{sliderValue}}%</h4>
                             <mat-slider class="example-margin" [color]="'warn'" [max]="99" [min]="51" style=" width:-webkit-fill-available !important;">
-                                <input matSliderThumb (ngModelChange)="findBestBets()" [(ngModel)]="sliderValue" #slider style="width:auto;">
+                                <input matSliderThumb (ngModelChange)="findBestBets()" [(ngModel)]="sliderValue" #slider style="width:auto !important;">
                             </mat-slider>
                         </div>
                         <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
