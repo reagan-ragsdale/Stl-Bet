@@ -4902,7 +4902,7 @@ export class NflService {
                 let teamArray: any = []
                 if(listOfLivePropTypes[i] == 'h2h'){
                     let teamStats = j == 0 ? awayTeamStats : homeTeamStats
-                    propName = 'Winning After'
+                    propName = 'Chance of winning if winning after given quarter'
                     let labels: string[] = ['1', '2', '3']
                     let barChartFinal: any = []
                     for (let i = 1; i < 4; i++) {
