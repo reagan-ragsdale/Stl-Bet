@@ -397,7 +397,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     else if(this.selectedPropType == 'Live Props'){
       this.selectedDisplayArray = this.livePropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
-      //this.createChart()
+      setTimeout(() => {
+        
+      }, 1000);
+      this.createChart()
     }
     
   }
