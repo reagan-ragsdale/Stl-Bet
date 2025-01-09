@@ -4903,7 +4903,7 @@ export class NflService {
                 if(listOfLivePropTypes[i] == 'h2h'){
                     let teamStats = j == 0 ? awayTeamStats : homeTeamStats
                     propName = 'Chance of winning if winning after given quarter'
-                    let labels: string[] = ['1', '2', '3']
+                    let labels: string[] = ['1st Qtr', '2nd Qtr', '3rd Qtr']
                     let barChartFinal: any = []
                     for (let i = 1; i < 4; i++) {
                         let totalQuarterChance = 0;
