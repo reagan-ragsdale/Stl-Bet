@@ -403,7 +403,7 @@
                         <div>
                             <h4 style="max-width: 225px;text-align: center;">Find bets with chance of winning over: {{sliderValue}}</h4>
                             <mat-slider class="example-margin" [color]="'warn'" [max]="99" [min]="51" style="max-width:225px; width:100%;">
-                                <input matSliderThumb (ngModelChange)="findBestBets()" [(ngModel)]="sliderValue" #slider>
+                                <input matSliderThumb (ngModelChange)="findBestBets()" [(ngModel)]="sliderValue" #slider style="width:auto;">
                             </mat-slider>
                         </div>
                         <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
