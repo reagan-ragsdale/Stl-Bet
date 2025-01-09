@@ -397,14 +397,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     else if(this.selectedPropType == 'Live Props'){
       this.selectedDisplayArray = this.livePropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
-      
+      this.destroyChart()
       this.createChart()
     }
     
   }
   onLivePropClicked(prop:any, panel: number, bet: number){
     this.onPropClicked(prop,panel,bet)
-    //this.destroyChart()
+    this.destroyChart()
     this.createChart()
   }
   destroyChart(){
