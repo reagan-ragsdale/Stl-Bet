@@ -661,7 +661,10 @@
                 </div> 
                 <div class="prop-stats-panel">
                     <div class="chart-container" style="background-color: #ebebeb;">
-                        <canvas  id="MyChart">{{ barChart }}</canvas>
+                        <ng-template>
+                            <canvas  id="MyChart">{{ barChart }}</canvas>
+                        </ng-template>
+                        
                       </div>
                 </div>
             </div>
