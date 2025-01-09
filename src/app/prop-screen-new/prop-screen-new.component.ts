@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, HostListener, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SportsBookController } from '../../shared/Controllers/SportsBookController';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
@@ -18,7 +18,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
   templateUrl: './prop-screen-new.component.html',
   styleUrls: ['./prop-screen-new.component.scss']
 })
-export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterContentInit {
+export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
@@ -515,6 +515,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       this.createChart()
 
     }
+  }
+  ngOnChanges(){
+    console.log('here ngOnChanges')
   }
 
   async ngOnInit() {
