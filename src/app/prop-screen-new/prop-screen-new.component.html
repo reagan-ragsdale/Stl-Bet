@@ -632,7 +632,7 @@
                     
                 </div>
             </div>
-            <div [ngClass]="selectedPropType == 'Live Props' ? 'prop-display' : 'no-display'"> 
+            <div *ngIf="selectedPropType == 'Live Props'"> 
                 <div class="list-of-props">
                     <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
                         <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
@@ -660,11 +660,12 @@
                     </mat-accordion>
                 </div> 
                 <div class="prop-stats-panel">
-                    <div class="chart-container" style="background-color: #ebebeb;">
-                        <canvas  id="MyChart">{{ barChart }}</canvas>
-                      </div>
+                    
                 </div>
             </div>
+            <div class="chart-container" style="background-color: #ebebeb;">
+                <canvas  id="MyChart">{{ barChart }}</canvas>
+              </div>
         </div>
     </div>
 </div>
