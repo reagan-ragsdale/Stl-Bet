@@ -648,7 +648,7 @@
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let team of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(team, i, j)">
                                         <div style="display:flex; gap:1rem; font-size:smaller;">
-                                            <span>{{team.teamName}}</span>
+                                            <span>{{team[0].teamName}}</span>
                                         </div>
                                         
                                         </mat-chip-option>
@@ -661,7 +661,7 @@
                 </div> 
                 <div class="prop-stats-panel">
                     <div class="chart-container" style="background-color: #ebebeb;">
-                        <canvas [attr.id]="'MyChart'">{{ barChart }}</canvas>
+                        <canvas id="MyChart">{{ barChart }}</canvas>
                       </div>
                 </div>
             </div>
