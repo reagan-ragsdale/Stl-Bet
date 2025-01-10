@@ -424,17 +424,17 @@
 
           <ng-container matColumnDef="OverallChance">
             <th mat-header-cell *matHeaderCellDef >Overall Chance </th>
-            <td mat-cell *matCellDef="let element">{{element.overallChance * 100}}</td>
+            <td mat-cell *matCellDef="let element">{{element.overallChance  | percent: '2.2-2'}}</td>
           </ng-container>
 
           <ng-container matColumnDef="HomeAwayChance">
             <th mat-header-cell *matHeaderCellDef >Home/Away Chance </th>
-            <td mat-cell *matCellDef="let element">{{element.homeAwayChance * 100}}</td>
+            <td mat-cell *matCellDef="let element">{{element.homeAwayChance  | percent: '2.2-2'}}</td>
           </ng-container>
 
           <ng-container matColumnDef="TeamChance">
             <th mat-header-cell *matHeaderCellDef >Team Chance </th>
-            <td mat-cell *matCellDef="let element">{{element.teamChance * 100}}</td>
+            <td mat-cell *matCellDef="let element">{{element.teamChance  | percent: '2.2-2'}}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="betCheatsColumns; sticky:false" class="tr-cheat" style="height:auto;" ></tr>
