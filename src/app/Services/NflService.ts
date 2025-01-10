@@ -4984,13 +4984,21 @@ export class NflService {
         
     }
 
-    static async getPlayerBestBetStats(listOfPlayerBets: DbPlayerPropData[]){
+    static async getPlayerBestBetStats(listOfPlayerBets: DbPlayerPropData[], listOfTeamBets: DbGameBookData[]){
         let finalReturn: any = []
         let allTeamInfo = await TeamInfoController.getAllTeamInfo('NFL')
         let distinctBookIds = listOfPlayerBets.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
         for(let i = 0; i < distinctBookIds.length; i++){
             let bookIdPlayerProps = await this.getPlayerPropDataNew(distinctBookIds[i], allTeamInfo)
             finalReturn.push(bookIdPlayerProps)
+        }
+
+        let finalTeamReturn: any = []
+        let distinctTeamBookIds = listOfTeamBets.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
+        for(let i = 0; i < distinctTeamBookIds.length; i++){
+            let filteredPropsByBookId = listOfTeamBets.filter(e => e.bookId == distinctTeamBookIds[i])
+            let bookIdTeamProps = await this.getTeamPropDataNew(filteredPropsByBookId, allTeamInfo)
+            finalTeamReturn.push(bookIdTeamProps)
         }
         
 
@@ -5028,8 +5036,46 @@ export class NflService {
                 finalBestBets.push(playerBestBest)
             }
         }
-        console.log('here is final best bets below')
-        console.log(finalBestBets)
+
+        let listOfTeamsInFormat = []
+        for(let i = 0; i < finalTeamReturn.length; i++){
+            for(let j = 0; j < finalTeamReturn[i].length; j++){
+              for(let k = 0; k < finalTeamReturn[i][j].length; k++){
+                    for(let m = 0; m < finalTeamReturn[i][j][k].length; m++){
+                        for(let n = 0; n < finalTeamReturn[i][j][k][m].length; n++){
+                            listOfTeamsInFormat.push(finalTeamReturn[i][j][k][m][n])
+                        }
+                    }
+                }
+            }
+        }
+
+        let finalTeamBets: any = []
+        for(let i = 0; i < listOfTeamsInFormat.length; i++){
+            if(listOfTeamsInFormat[i].overallChance > .9 || listOfTeamsInFormat[i].homeAwayChance > .9){
+                let playerBestBest: DbPlayerBestBets = {
+                      bookId: listOfTeamsInFormat[i].gameBookData.bookId,
+                      sportTitle: listOfTeamsInFormat[i].gameBookData.sportTitle,
+                      teamName: listOfTeamsInFormat[i].teamName,
+                      teamAgainstName: listOfTeamsInFormat[i].teamAgainstName,
+                      homeAway: listOfTeamsInFormat[i].homeAway,
+                      commenceTime: listOfTeamsInFormat[i].gameBookData.commenceTime,
+                      bookMaker: listOfTeamsInFormat[i].gameBookData.bookMaker,
+                      marketKey: listOfTeamsInFormat[i].gameBookData.marketKey,
+                      description: listOfTeamsInFormat[i].gameBookData.description,
+                      playerName: listOfTeamsInFormat[i].teamName,
+                      price: listOfTeamsInFormat[i].gameBookData.price,
+                      point: listOfTeamsInFormat[i].gameBookData.point,
+                      overallChance: listOfTeamsInFormat[i].overallChance,
+                      homeAwayChance: listOfTeamsInFormat[i].homeAwayChance,
+                      teamChance: listOfTeamsInFormat[i].teamChance
+                }
+                finalTeamBets.push(playerBestBest)
+            }
+        }
+
+        console.log('final team best bets add below')
+        console.log(finalTeamBets)
 
         return finalBestBets
     }

@@ -439,7 +439,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
-    
+    await cronLoadBestBets()
 
 
   }

@@ -6,6 +6,8 @@ import { DbPlayerBestBets } from "../../shared/dbTasks/DBPlayerBestBets"
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData"
 import { BestBetController } from "../../shared/Controllers/BestBetController"
 import { NflService } from "../Services/NflService"
+import { SportsBookController } from "src/shared/Controllers/SportsBookController"
+import { DbGameBookData } from "src/shared/dbTasks/DbGameBookData"
 
 
 
@@ -18,6 +20,7 @@ export const cronLoadBestBets = async () => {
     try {
         for (let sport of sports) {
             let playerProps = await PlayerPropController.loadAllCurrentPlayerPropDataBySport(sport)
+            let teamProps = await SportsBookController.loadAllBookDataBySport(sport)
             let today = new Date()
             let dayOfWeek = today.getDay()
             const daysToAdd = (2 - dayOfWeek + 7) % 7;
@@ -25,14 +28,22 @@ export const cronLoadBestBets = async () => {
             nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
 
             let newPlayers: DbPlayerPropData[] = []
+            let newTeams: DbGameBookData[] = []
             playerProps.forEach(e => {
                 let newDate = new Date(e.commenceTime)
                 if (newDate < nextTuesday) {
                     newPlayers.push(e)
                 }
             })
+            teamProps.forEach(e => {
+                let newDate = new Date(e.commenceTime)
+                if (newDate < nextTuesday) {
+                    newTeams.push(e)
+                }
+            })
 
-            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps)
+            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, teamProps)
+           
 
 
 
