@@ -8,6 +8,7 @@ import { BestBetController } from "../../shared/Controllers/BestBetController"
 import { NflService } from "../Services/NflService"
 import { SportsBookController } from "../../shared/Controllers/SportsBookController"
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData"
+import { remult } from "remult"
 
 
 
@@ -34,7 +35,12 @@ export const cronLoadBestBets = async () => {
                     newPlayers.push(e)
                 }
             })
-            let teamProps = await SportsBookController.loadAllBookDataBySportAndFilterByDate(sport, nextTuesday)
+            var taskRepo = remult.repo(DbGameBookData)
+
+            let teamProps = await taskRepo.find({
+                where: DbGameBookData.allSportFilterBySportAndDate({sport:sport, date: nextTuesday})
+            })
+             
             let distinctBookIds = teamProps.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
             console.log('distinct team best bet book ids below')
             console.log(distinctBookIds)

@@ -95,6 +95,17 @@ export class DbGameBookData {
 
   });
 
+  static allSportFilterBySportAndDate = Filter.createCustom<DbGameBookData[], { sport: string, date: Date }>(async ({ sport, date }) => {
+    
+    return {
+      bookSeq: 0,
+      sportTitle: sport,
+      commenceTime: { $gte: date }
+    }
+
+
+  });
+
   static allSportFilterByMaxBookSeqAndh2h = Filter.createCustom<DbGameBookData, { sport: string }>(async ({ sport }) => {
     //SqlDatabase.LogToConsole = true
     return SqlDatabase.rawFilter((whereFragment) => {
