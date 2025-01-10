@@ -2991,7 +2991,7 @@ export class NhlService {
                             teamArray[teamArray.length -1].teamName = teamNames[j]
 
                             propName = 'Chance of winning if scoring at least x goals'
-                            labels = ['1st', '2nd']
+                            labels = []
                             barChartFinal = []
                             let arrayOfGoals: number[] = []
                             for(let k = 0; k < teamStats.length; k++){
@@ -3000,6 +3000,9 @@ export class NhlService {
                                 }
                             }
                             arrayOfGoals.sort((a,b) => a-b)
+                            if(arrayOfGoals.includes(0)){
+                                arrayOfGoals.shift()
+                            }
                             for (let i = 0; i < arrayOfGoals.length; i++) {
                                 let totalGoalChance = 0;
                                 let totalGames = 0
@@ -3010,6 +3013,8 @@ export class NhlService {
                                 let gamesWon = filteredGames.filter(e => e.result == 'W')
                                 totalGames = filteredGames.length
                                 totalWins = gamesWon.length
+
+                                labels.push(arrayOfGoals[i].toString())
                                 
                     
                                 totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
