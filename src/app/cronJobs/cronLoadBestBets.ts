@@ -6,8 +6,8 @@ import { DbPlayerBestBets } from "../../shared/dbTasks/DBPlayerBestBets"
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData"
 import { BestBetController } from "../../shared/Controllers/BestBetController"
 import { NflService } from "../Services/NflService"
-import { SportsBookController } from "src/shared/Controllers/SportsBookController"
-import { DbGameBookData } from "src/shared/dbTasks/DbGameBookData"
+import { SportsBookController } from "../../shared/Controllers/SportsBookController"
+import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData"
 
 
 
