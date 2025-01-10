@@ -660,7 +660,7 @@
                     </mat-accordion>
                 </div> 
                 <div class="prop-stats-panel">
-                    <div>
+                    <div *ngIf="selectedPropType == 'Live Props'">
                         <mat-form-field style="width:min-content; margin-right:1rem;">
                             <mat-select placeholder="{{selectedDisplayArray[livePanelIndex].listOfSelections[0]}}" style="display: inline-block; width: auto;">
                               <mat-option *ngFor="let type of selectedDisplayArray[livePanelIndex].listOfSelections; let i = index;" (onSelectionChange)="updateLivePropGraphType(i)"
