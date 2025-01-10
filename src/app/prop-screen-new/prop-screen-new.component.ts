@@ -425,7 +425,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   public barChart: any
   createChart(){
     let chartInstance = Chart.getChart("MyChart")
-    if(chartInstance == undefined){
+    if(chartInstance != undefined){
       this.barChart.destroy()
     }
     this.barChart = new Chart("MyChart", {
