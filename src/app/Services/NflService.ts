@@ -5070,12 +5070,10 @@ export class NflService {
                       homeAwayChance: listOfTeamsInFormat[i].homeAwayChance,
                       teamChance: listOfTeamsInFormat[i].teamChance
                 }
-                finalTeamBets.push(playerBestBest)
+                finalBestBets.push(playerBestBest)
             }
         }
 
-        console.log('final team best bets add below')
-        console.log(finalTeamBets)
 
         return finalBestBets
     }
