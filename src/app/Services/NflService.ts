@@ -14,6 +14,8 @@ import { PlayerPropController } from "../../shared/Controllers/PlayerPropControl
 import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController";
 import { PlayerPropDto } from "../Dtos/PlayerPropsDto";
 import { filter } from "compression";
+import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
+import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
 
 
 export class NflService {
@@ -4902,7 +4904,7 @@ export class NflService {
             for(let j = 0; j < teamNames.length; j++){
                 let teamArray: any = []
                 if(listOfLivePropTypes[i] == 'h2h'){
-                    selectionList = ['Winning after X', 'Scoring', 'Winning by X After X']
+                    selectionList = ['Winning after X', 'Scoring']
                     let teamStats = j == 0 ? awayTeamStats : homeTeamStats
 
 
@@ -4979,6 +4981,20 @@ export class NflService {
         }
         return finalTeamReturn
         
+    }
+
+    static async getPlayerBestBetStats(listOfPlayerBets: DbPlayerPropData[]){
+        let finalReturn: any = []
+        let allTeamInfo = await TeamInfoController.getAllTeamInfo('NFL')
+        let distinctBookIds = listOfPlayerBets.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
+        for(let i = 0; i < distinctBookIds.length; i++){
+            let bookIdPlayerProps = await this.getPlayerPropDataNew(distinctBookIds[i], allTeamInfo)
+            finalReturn.push(bookIdPlayerProps)
+        }
+        console.log('here is final from best bets cron below')
+        console.log(finalReturn)
+
+        return finalReturn
     }
 
 

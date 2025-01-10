@@ -22,6 +22,7 @@ import { NflController } from '../../shared/Controllers/NflController';
 import { NflService } from '../Services/NflService';
 import { BestBetController } from '../../shared/Controllers/BestBetController';
 import { NhlController } from '../../shared/Controllers/NhlController';
+import { cronLoadBestBets } from '../cronJobs/cronLoadBestBets';
 
 @Component({
   selector: 'home-screen',
@@ -438,6 +439,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
+    await cronLoadBestBets()
 
 
   }
