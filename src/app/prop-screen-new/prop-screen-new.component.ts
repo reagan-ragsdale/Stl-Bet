@@ -406,11 +406,15 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   onLivePropClicked(prop:any, panel: number, bet: number){
     this.onPropClicked(prop,panel,bet)
     this.livePanelIndex = panel
-    this.destroyChart()
-    this.createChart()
+    this.updateChart()
+    /* this.destroyChart()
+    this.createChart() */
   }
   destroyChart(){
     this.barChart.destroy()
+  }
+  updateChart(){
+    this.barChart.update()
   }
   updateLivePropGraphType(type: number){
     console.log(type)
@@ -432,7 +436,12 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               ]
             },
             options: {
-              aspectRatio: 2.5
+              aspectRatio: 2.5,
+              scales:{
+                y:{
+                  max:100
+                }
+              }
             }
     
           });
