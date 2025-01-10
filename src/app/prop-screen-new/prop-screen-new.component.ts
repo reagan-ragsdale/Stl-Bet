@@ -414,6 +414,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.barChart.destroy()
   }
   updateChart(){
+    this.barChart.labels = this.selectedDisplayProp.labels
+    this.barChart.datasets.label = this.selectedDisplayProp.propName
+    this.barChart.datasets.data = this.selectedDisplayProp.barData
     this.barChart.update()
   }
   updateLivePropGraphType(type: number){
@@ -421,6 +424,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   }
   public barChart: any
   createChart(){
+    let chartInstance = Chart.getChart("MyChart")
+    if(chartInstance == undefined){
+      this.barChart.destroy()
+    }
     this.barChart = new Chart("MyChart", {
             type: 'bar', //this denotes tha type of chart
     
