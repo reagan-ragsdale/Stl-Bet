@@ -12,6 +12,7 @@ import { NflService } from "../Services/NflService"
 export const cronLoadBestBets = async () => {
     console.log("HEre is load best bets")
     let sports: string[] = ['NFL']
+    let listOfPropsFinal: DbPlayerBestBets[] = []
 
     let listOfBetsToAdd: DbPlayerBestBets[] = []
     try {
@@ -31,15 +32,14 @@ export const cronLoadBestBets = async () => {
                 }
             })
 
-            let listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps)
+            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps)
 
 
 
 
-            
+            BestBetController.addBestBet(listOfPropsFinal, sport)
         }
-        console.log(listOfBetsToAdd.length)
-        //BestBetController.addBestBet(listOfBetsToAdd)
+        
     } catch (error: any) {
         console.log(error.message)
     }

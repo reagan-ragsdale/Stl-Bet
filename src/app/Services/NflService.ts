@@ -5007,7 +5007,7 @@ export class NflService {
 
         let finalBestBets: DbPlayerBestBets[] = []
         for(let i = 0; i < listOfPlayersInFormat.length; i++){
-            if(listOfPlayersInFormat[i].overallChance > .9 || listOfPlayersInFormat[i].homeAwayChance > .9 || listOfPlayersInFormat[i].teamChance > .9){
+            if(listOfPlayersInFormat[i].overallChance > .9 || listOfPlayersInFormat[i].homeAwayChance > .9){
                 let playerBestBest: DbPlayerBestBets = {
                       bookId: listOfPlayersInFormat[i].playerBookData.bookId,
                       sportTitle: listOfPlayersInFormat[i].playerBookData.sportTitle,
@@ -5031,7 +5031,7 @@ export class NflService {
         console.log('here is final best bets below')
         console.log(finalBestBets)
 
-        return finalReturn
+        return finalBestBets
     }
 
 

@@ -4,8 +4,9 @@ import { DbPlayerBestBets } from "../dbTasks/DBPlayerBestBets"
 export class BestBetController {
 
     @BackendMethod({ allowed: true})
-    static async addBestBet(playerStats: DbPlayerBestBets[]){
+    static async addBestBet(playerStats: DbPlayerBestBets[], sport: string){
       const taskRepo = remult.repo(DbPlayerBestBets)
+      await taskRepo.deleteMany({where: {sportTitle : sport}})
       await taskRepo.insert(playerStats)
     }
     @BackendMethod({ allowed: true})
