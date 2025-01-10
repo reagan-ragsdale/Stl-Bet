@@ -4902,8 +4902,10 @@ export class NflService {
             for(let j = 0; j < teamNames.length; j++){
                 let teamArray: any = []
                 if(listOfLivePropTypes[i] == 'h2h'){
-                    selectionList = ['Winning after X', 'Scoring', 'Winning by X']
+                    selectionList = ['Winning after X', 'Scoring', 'Winning by X After X']
                     let teamStats = j == 0 ? awayTeamStats : homeTeamStats
+
+
                     propName = 'Chance of winning if winning after given quarter'
                     let labels: string[] = ['1st Qtr', '2nd Qtr', '3rd Qtr']
                     let barChartFinal: any = []
@@ -4933,6 +4935,39 @@ export class NflService {
             
                         totalQuarterChance = totalGames == 0 ? 0 : totalWins / totalGames
                         barChartFinal.push(totalQuarterChance * 100)
+                    }
+                    teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
+                    teamArray[teamArray.length -1].teamName = teamNames[j]
+
+
+                    propName = 'Chance of winning if scoring at least X'
+                    labels = []
+                    barChartFinal = []
+                    let arrayOfScore: number[] = []
+                    for(let k = 0; k < teamStats.length; k++){
+                        if(!arrayOfScore.includes(teamStats[k].pointsScoredOverall)){
+                            arrayOfScore.push(teamStats[k].pointsScoredOverall)
+                        }
+                    }
+                    arrayOfScore.sort((a,b) => a-b)
+                    if(arrayOfScore.includes(0)){
+                        arrayOfScore.shift()
+                    }
+                    for (let i = 0; i < arrayOfScore.length; i++) {
+                        let totalScoringChance = 0;
+                        let totalGames = 0
+                        let totalWins = 0
+                    
+                        let filteredGames: DBNflTeamGameStats[] = []
+                        filteredGames = teamStats.filter(game => game.pointsScoredOverall >= arrayOfScore[i])
+                        let gamesWon = filteredGames.filter(e => e.result == 'W')
+                        totalGames = filteredGames.length
+                        totalWins = gamesWon.length
+                    
+                        labels.push(arrayOfScore[i].toString())
+            
+                        totalScoringChance = totalGames == 0 ? 0 : totalWins / totalGames
+                        barChartFinal.push(totalScoringChance * 100)
                     }
                     teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
                     teamArray[teamArray.length -1].teamName = teamNames[j]
