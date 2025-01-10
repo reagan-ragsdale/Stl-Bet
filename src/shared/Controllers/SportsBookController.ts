@@ -130,7 +130,7 @@ export class SportsBookController {
   @BackendMethod({ allowed: true })
   static async loadAllBookDataBySportAndFilterByDate(sport: string, date: Date): Promise<DbGameBookData[]> {
     const taskRepo = remult.repo(DbGameBookData)
-    return await taskRepo.find({where: {sportTitle: sport, commenceTime: {$gte: date.toUTCString()}}})
+    return await taskRepo.find({where: {sportTitle: sport, commenceTime: {$gte: date.toISOString()}}})
   }
   
 
