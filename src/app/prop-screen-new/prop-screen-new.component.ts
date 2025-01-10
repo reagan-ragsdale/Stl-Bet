@@ -396,7 +396,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     }
     else if(this.selectedPropType == 'Live Props'){
       this.selectedDisplayArray = this.livePropData
-      this.onPropClicked(this.selectedDisplayArray[0],0,0)
+      this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
       
       this.createChart()
     }
@@ -406,6 +406,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   livePropGraphIndex = 0
   onLivePropClicked(prop:any, panel: number, bet: number){
     this.onPropClicked(prop,panel,bet)
+    if(this.livePanelIndex != panel){
+      this.livePropGraphIndex = 0
+    }
     this.livePanelIndex = panel
     this.updateLivePropGraphType(this.livePropGraphIndex)
     //this.updateChart()
