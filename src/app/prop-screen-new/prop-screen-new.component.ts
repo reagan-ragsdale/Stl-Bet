@@ -419,6 +419,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   }
   updateLivePropGraphType(type: number){
     this.selectedDisplayProp = this.selectedProp[type]
+    this.updateChart()
   }
   public barChart: any
   createChart(){
