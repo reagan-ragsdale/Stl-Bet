@@ -394,7 +394,7 @@
         <h2 style="text-align: center;">Weekly Cheat Sheet</h2>
         <table mat-table [dataSource]="betCheats" class="mat-elevation-z8">
           <ng-container matColumnDef="Name">
-            <th mat-header-cell *matHeaderCellDef> Player </th>
+            <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element; let j = index;">
              {{element.playerName}}
             </td>
@@ -403,13 +403,13 @@
           <ng-container matColumnDef="Game">
             <th mat-header-cell *matHeaderCellDef> Game</th>
             <td mat-cell *matCellDef="let element; let j = index;">
-             {{element.homeAway == 'home' ? element.teamAgainstName + " @ " + element.teamName : element.teamName + ' @ ' + element.teamAgainstName}}
+             {{(element.homeAway | lowercase) == 'home' ? element.teamAgainstName + " @ " + element.teamName : element.teamName + ' @ ' + element.teamAgainstName}}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="Prop">
             <th mat-header-cell *matHeaderCellDef>Prop</th>
-            <td mat-cell *matCellDef="let element">{{element.marketKey | removeUnderScore | removeHeading | titlecase}} {{" " + element.description}}</td>
+            <td mat-cell *matCellDef="let element">{{element.marketKey | removeUnderScore | removeHeading | titlecase}} {{element.description == 'I' ? '' : " " + element.description}}</td>
           </ng-container>
 
           <ng-container matColumnDef="Point">
