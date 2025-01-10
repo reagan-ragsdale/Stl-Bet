@@ -57,7 +57,7 @@ export const cronLoadBestBets = async () => {
 
     console.log('Stuff below')
     let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
-    let filteredGameId = incomingGameIds.filter(e => e.gameId == '20241124_MIN@CHI')
+    let filteredGameId = incomingGameIds.filter(e => e == '20241124_MIN@CHI')
     console.log(filteredGameId)
     let gameSummary = await nflApiController.getGameSummary('20241124_MIN@CHI')
     console.log(gameSummary)
