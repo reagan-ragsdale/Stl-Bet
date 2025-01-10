@@ -2942,6 +2942,66 @@ export class NhlService {
         return finalReturn;
     }
 
+    static async getLiveBets(teamNames: string[]){
+         let finalTeamReturn: any[] = []
+                let listOfLivePropTypes: string[] = ['h2h']
+                let listOfTeamStats: DbNhlTeamGameStats[] = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason(teamNames, 2024)
+                let awayTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[0])
+                let homeTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[1])
+        
+                //need an array for each prop type which has an array for each team
+                //each of the team arrays has:
+                //an array of each type of selection for the prop. Ex: winning by, winning after
+                // each element of the array needs to have a name of the above and an object with all the data for that graph
+        
+                for(let i = 0; i < listOfLivePropTypes.length; i++){
+                    let propTypeArray: any = []
+                    let propName: string = ''
+                    let selectionList: string[] = []
+                    for(let j = 0; j < teamNames.length; j++){
+                        let teamArray: any = []
+                        if(listOfLivePropTypes[i] == 'h2h'){
+                            selectionList = ['Winning after X', 'Scoring', 'Winning by X']
+                            let teamStats = j == 0 ? awayTeamStats : homeTeamStats
+                            propName = 'Chance of winning if winning after given Period'
+                            let labels: string[] = ['1st', '2nd']
+                            let barChartFinal: any = []
+                            for (let i = 1; i < 3; i++) {
+                                let totalQuarterChance = 0;
+                                let totalGames = 0
+                                let totalWins = 0
+                                if (i == 1) {
+                                  let filteredGames: DbNhlTeamGameStats[] = []
+                                  filteredGames = teamStats.filter(game => game.pointsScoredFirstPeriod > game.pointsAllowedFirstPeriod)
+                                  let gamesWon = filteredGames.filter(e => e.result == 'W')
+                                  totalGames = filteredGames.length
+                                  totalWins = gamesWon.length
+                                }
+                                else if (i == 2) {
+                                  let filteredGames = teamStats.filter(game => (game.pointsScoredFirstPeriod + game.pointsScoredSecondPeriod) > (game.pointsAllowedFirstPeriod + game.pointsAllowedSecondPeriod))
+                                  let gamesWon = filteredGames.filter(e => e.result == 'W')
+                                  totalGames = filteredGames.length
+                                  totalWins = gamesWon.length
+                                }
+                    
+                                totalQuarterChance = totalGames == 0 ? 0 : totalWins / totalGames
+                                barChartFinal.push(totalQuarterChance * 100)
+                            }
+                            teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
+                            teamArray[teamArray.length -1].teamName = teamNames[j]
+        
+            
+                        }
+                        propTypeArray.push(teamArray)
+        
+                    }
+                    finalTeamReturn.push(propTypeArray)
+                    finalTeamReturn[finalTeamReturn.length - 1].propName = listOfLivePropTypes[i]
+                    finalTeamReturn[finalTeamReturn.length - 1].listOfSelections = selectionList
+                }
+                return finalTeamReturn
+    }
+
 
 
 

@@ -306,7 +306,7 @@ export class reusedFunctions {
     let finalReturn: any = []
 
     if(sport == 'NHL'){
-      finalReturn = Promise.all([NhlService.getTeamPropDataNew(gameProps, allTeamInfo),NhlController.NhlGetTeamsGameStatTotals(teamNames, 2024),NhlService.getPlayerPropDataNew(selectedGame, allTeamInfo)])
+      finalReturn = Promise.all([NhlService.getTeamPropDataNew(gameProps, allTeamInfo),NhlController.NhlGetTeamsGameStatTotals(teamNames, 2024),NhlService.getPlayerPropDataNew(selectedGame, allTeamInfo), NhlService.getLiveBets(teamNames)])
     }
     else if(sport == 'NFL'){
       finalReturn = Promise.all([NflService.getTeamPropDataNew(gameProps, allTeamInfo),NflController.nflGetTeamsGameStatTotals(teamNames, 2024),NflService.getPlayerPropDataNew(selectedGame, allTeamInfo), NflService.getLiveBets(teamNames)])
