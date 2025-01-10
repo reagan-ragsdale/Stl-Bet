@@ -42,7 +42,7 @@ export const cronLoadBestBets = async () => {
                 }
             })
 
-            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, teamProps)
+            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, newTeams)
            
 
 
