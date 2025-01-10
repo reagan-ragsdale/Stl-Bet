@@ -410,6 +410,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       this.livePropGraphIndex = 0
     }
     this.livePanelIndex = panel
+    console.log('here in onLivePropClicked')
     this.updateLivePropGraphType(this.livePropGraphIndex)
     //this.updateChart()
   }
