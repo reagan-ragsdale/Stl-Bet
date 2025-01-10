@@ -93,9 +93,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     if (team.length > 3) {
       team = MlbService.mlbTeamNameToAbvr[team]
     }
-    console.log(team)
     let teamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
-    console.log(teamInfo)
     let teamId = teamInfo.filter(e => e.teamNameAbvr == team)[0]
     this.router.navigate([`/teamStats/${this.selectedSport}/${teamId.teamId}`])
   }
@@ -383,12 +381,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   loadProps(change: any) {
-    console.log(change)
     this.gameDataAll = change
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
-    console.log('distinct games below')
-    console.log(distinctGames)
     distinctGames.forEach(book => {
       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
       let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
@@ -400,9 +395,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       let homeTeam = allOfBook.filter(e => e.teamName == allOfBook[0].homeTeam)
       awayTeam.push(allOfBook.filter(e => e.teamName == 'Both' && e.description == 'Over')[0])
       homeTeam.push(allOfBook.filter(e => e.teamName == 'Both' && e.description == 'Under')[0])
-      console.log('home away team')
-      console.log(homeTeam)
-      console.log(awayTeam)
 
       
       if(awayTeam.length == 3 && homeTeam.length == 3){
@@ -410,10 +402,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       }
       
     })
-    console.log('game data allo final')
-    console.log(this.gameDataAllFinal)
     if (this.selectedSport == 'NFL') {
-      console.log("here in slice")
       let today = new Date()
       let dayOfWeek = today.getDay()
       const daysToAdd = (2 - dayOfWeek + 7) % 7;
@@ -427,7 +416,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       })
       this.gameDataAllFinal = gameTemp
     }
-    console.log(this.gameDataAllFinal)
   }
 
   teamClicked(teamName: string) {
@@ -439,6 +427,12 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
+
+    console.log('Stuff below')
+    let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
+    console.log(incomingGameIds)
+    let gameSummary = await nflApiController.getGameSummary('20241124_MIN@CHI')
+    console.log(gameSummary)
 
 
   }
