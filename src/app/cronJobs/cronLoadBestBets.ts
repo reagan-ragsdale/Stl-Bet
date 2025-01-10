@@ -37,21 +37,24 @@ export const cronLoadBestBets = async () => {
             })
             var taskRepo = remult.repo(DbGameBookData)
 
-            let teamProps = await taskRepo.find({
-                where: DbGameBookData.allSportFilterBySportAndDate({sport:sport, date: nextTuesday})
-            })
-             
-            let distinctBookIds = teamProps.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
-            console.log('distinct team best bet book ids below')
-            console.log(distinctBookIds)
-
-            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, teamProps)
            
+            let unsubscribe = () => { }
+            unsubscribe = taskRepo
+                .liveQuery({
+                    where: DbGameBookData.allSportFilterBySportAndDate({ sport: sport, date: nextTuesday }), orderBy: { commenceTime: "asc" }
+                })
+                .subscribe(async info => {
+                    let distinctBookIds = info.items.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
+                    console.log('distinct team best bet book ids below')
+                    console.log(distinctBookIds)
+                    listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, info.items)
+                    BestBetController.addBestBet(listOfPropsFinal, sport)
+                })
 
-
-
-
-            BestBetController.addBestBet(listOfPropsFinal, sport)
+                unsubscribe()
+            
+            
+            
         }
         
     } catch (error: any) {
