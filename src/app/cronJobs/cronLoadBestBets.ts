@@ -19,7 +19,7 @@ export const cronLoadBestBets = async () => {
     let listOfPropsFinal: DbPlayerBestBets[] = []
 
     let listOfBetsToAdd: DbPlayerBestBets[] = []
-    /* try {
+    try {
         for (let sport of sports) {
             let playerProps = await PlayerPropController.loadAllCurrentPlayerPropDataBySport(sport)
             let today = new Date()
@@ -52,15 +52,16 @@ export const cronLoadBestBets = async () => {
         
     } catch (error: any) {
         console.log(error.message)
-    } */
+    }
 
 
-    console.log('Stuff below')
+    /* console.log('Stuff below')
     let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
     let filteredGameId = incomingGameIds.filter(e => e == '20241124_MIN@CHI')
     console.log(filteredGameId)
     let gameSummary = await nflApiController.getGameSummary('20241124_MIN@CHI')
-    console.log(gameSummary)
+
+    console.log(gameSummary[1]) */
 
 
 
