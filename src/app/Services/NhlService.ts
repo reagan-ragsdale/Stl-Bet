@@ -2989,9 +2989,38 @@ export class NhlService {
                             }
                             teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
                             teamArray[teamArray.length -1].teamName = teamNames[j]
+
+                            propName = 'Chance of winning if scoring at least x goals'
+                            labels = ['1st', '2nd']
+                            barChartFinal = []
+                            let arrayOfGoals: number[] = []
+                            for(let k = 0; k < teamStats.length; k++){
+                                if(!arrayOfGoals.includes(teamStats[k].pointsScoredOverall)){
+                                    arrayOfGoals.push(teamStats[k].pointsScoredOverall)
+                                }
+                            }
+                            arrayOfGoals.sort((a,b) => a-b)
+                            for (let i = 0; i < arrayOfGoals.length; i++) {
+                                let totalGoalChance = 0;
+                                let totalGames = 0
+                                let totalWins = 0
+
+                                let filteredGames: DbNhlTeamGameStats[] = []
+                                filteredGames = teamStats.filter(game => game.pointsScoredOverall >= arrayOfGoals[i])
+                                let gamesWon = filteredGames.filter(e => e.result == 'W')
+                                totalGames = filteredGames.length
+                                totalWins = gamesWon.length
+                                
+                    
+                                totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
+                                barChartFinal.push(totalGoalChance * 100)
+                            }
+                            teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
+                            teamArray[teamArray.length -1].teamName = teamNames[j]
         
             
                         }
+                    
                         propTypeArray.push(teamArray)
         
                     }
