@@ -12,6 +12,6 @@ export class BestBetController {
     @BackendMethod({ allowed: true})
     static async getBestBets(sport: string): Promise<DbPlayerBestBets[]>{
       const taskRepo = remult.repo(DbPlayerBestBets)
-      return await taskRepo.find({where: {sportTitle:sport}})
+      return await taskRepo.find({where: {sportTitle:sport}, orderBy: {commenceTime: 'asc'}})
     }
 }

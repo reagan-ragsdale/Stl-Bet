@@ -403,7 +403,7 @@
           <ng-container matColumnDef="Game">
             <th mat-header-cell *matHeaderCellDef> Game</th>
             <td mat-cell *matCellDef="let element; let j = index;">
-             {{element.homeAway == 'Home' ? element.teamAgainstName + " @ " + element.teamName : element.teamName + ' @ ' + element.teamAgainstName}}
+             {{element.homeAway == 'home' ? element.teamAgainstName + " @ " + element.teamName : element.teamName + ' @ ' + element.teamAgainstName}}
             </td>
           </ng-container>
 
