@@ -2961,8 +2961,11 @@ export class NhlService {
                     for(let j = 0; j < teamNames.length; j++){
                         let teamArray: any = []
                         if(listOfLivePropTypes[i] == 'h2h'){
-                            selectionList = ['Winning after X', 'Scoring', 'Winning by X']
+                            selectionList = ['Winning after X', 'Scoring', 'Scoring First']
                             let teamStats = j == 0 ? awayTeamStats : homeTeamStats
+
+
+                            
                             propName = 'Chance of winning if winning after given Period'
                             let labels: string[] = ['1st', '2nd']
                             let barChartFinal: any = []
@@ -2989,6 +2992,10 @@ export class NhlService {
                             }
                             teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
                             teamArray[teamArray.length -1].teamName = teamNames[j]
+
+
+
+
 
                             propName = 'Chance of winning if scoring at least x goals'
                             labels = []
@@ -3020,6 +3027,34 @@ export class NhlService {
                                 totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
                                 barChartFinal.push(totalGoalChance * 100)
                             }
+                            teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
+                            teamArray[teamArray.length -1].teamName = teamNames[j]
+
+
+
+
+                            propName = 'Chance of winning if scoring first/last'
+                            labels = ['Scored first', 'Not first to score']
+                            barChartFinal = []
+                            
+                            let totalGoalChance = 0;
+                            let totalGames = 0
+                            let totalWins = 0
+
+                            let filteredGames: DbNhlTeamGameStats[] = []
+                            filteredGames = teamStats.filter(game => game.scoredFirst == 'Y')
+                            let gamesWon = filteredGames.filter(e => e.result == 'W')
+                            totalGames = filteredGames.length
+                            totalWins = gamesWon.length
+                            totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
+                            barChartFinal.push(totalGoalChance * 100)
+
+                            filteredGames = teamStats.filter(game => game.scoredFirst == 'N')
+                            gamesWon = filteredGames.filter(e => e.result == 'W')
+                            totalGames = filteredGames.length
+                            totalWins = gamesWon.length
+                            totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
+                            barChartFinal.push(totalGoalChance * 100)
                             teamArray.push({propName: propName, labels: labels, barData: barChartFinal})
                             teamArray[teamArray.length -1].teamName = teamNames[j]
         
