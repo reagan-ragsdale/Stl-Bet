@@ -414,9 +414,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.barChart.destroy()
   }
   updateChart(){
-    this.barChart.labels = this.selectedDisplayProp.labels
-    this.barChart.datasets.label = this.selectedDisplayProp.propName
-    this.barChart.datasets.data = this.selectedDisplayProp.barData
+    this.barChart.data.labels = this.selectedDisplayProp.labels
+    this.barChart.data.datasets[0].label = this.selectedDisplayProp.propName
+    this.barChart.data.datasets[0].data = this.selectedDisplayProp.barData
     this.barChart.update()
   }
   updateLivePropGraphType(type: number){
