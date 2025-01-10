@@ -4943,28 +4943,24 @@ export class NflService {
                     propName = 'Chance of winning if scoring at least X'
                     labels = []
                     barChartFinal = []
-                    let arrayOfScore: number[] = []
+                    let highestScore: number = 0
                     for(let k = 0; k < teamStats.length; k++){
-                        if(!arrayOfScore.includes(teamStats[k].pointsScoredOverall)){
-                            arrayOfScore.push(teamStats[k].pointsScoredOverall)
+                        if(highestScore < teamStats[k].pointsScoredOverall){
+                            highestScore = teamStats[k].pointsScoredOverall
                         }
                     }
-                    arrayOfScore.sort((a,b) => a-b)
-                    if(arrayOfScore.includes(0)){
-                        arrayOfScore.shift()
-                    }
-                    for (let i = 0; i < arrayOfScore.length; i++) {
+                    for (let i = 2; i <= highestScore; i++) {
                         let totalScoringChance = 0;
                         let totalGames = 0
                         let totalWins = 0
                     
                         let filteredGames: DBNflTeamGameStats[] = []
-                        filteredGames = teamStats.filter(game => game.pointsScoredOverall >= arrayOfScore[i])
+                        filteredGames = teamStats.filter(game => game.pointsScoredOverall >= i)
                         let gamesWon = filteredGames.filter(e => e.result == 'W')
                         totalGames = filteredGames.length
                         totalWins = gamesWon.length
                     
-                        labels.push(arrayOfScore[i].toString())
+                        labels.push(i.toString())
             
                         totalScoringChance = totalGames == 0 ? 0 : totalWins / totalGames
                         barChartFinal.push(totalScoringChance * 100)
