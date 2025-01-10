@@ -20,7 +20,6 @@ export const cronLoadBestBets = async () => {
     try {
         for (let sport of sports) {
             let playerProps = await PlayerPropController.loadAllCurrentPlayerPropDataBySport(sport)
-            let teamProps = await SportsBookController.loadAllBookDataBySport(sport)
             let today = new Date()
             let dayOfWeek = today.getDay()
             const daysToAdd = (2 - dayOfWeek + 7) % 7;
@@ -35,14 +34,12 @@ export const cronLoadBestBets = async () => {
                     newPlayers.push(e)
                 }
             })
-            teamProps.forEach(e => {
-                let newDate = new Date(e.commenceTime)
-                if (newDate < nextTuesday) {
-                    newTeams.push(e)
-                }
-            })
+            let teamProps = await SportsBookController.loadAllBookDataBySportAndFilterByDate(sport, nextTuesday)
+            let distinctBookIds = teamProps.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
+            console.log('distinct team best bet book ids below')
+            console.log(distinctBookIds)
 
-            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, newTeams)
+            listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, teamProps)
            
 
 
