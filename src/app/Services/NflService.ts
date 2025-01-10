@@ -69,7 +69,6 @@ export class NflService {
             });
         }
         let team2 = await taskRepo.find({ where: { teamId: gameSummary.teamStats.home.teamID, gameId: gameSummary.gameID } })
-        console.log("pushed team one")
         if (team2.length == 0) {
             teamStats.push({
                 teamName: gameSummary.teamStats.home.teamAbv,
@@ -108,8 +107,6 @@ export class NflService {
 
             })
         }
-
-        console.log("pushed team two")
         finalReturn.push(teamStats);
 
 
@@ -163,10 +160,9 @@ export class NflService {
 
             }
             catch (error: any) {
-                ErrorEmailController.sendEmailError("player stats push" + error.message)
+                ErrorEmailController.sendEmailError("player stats push" + error.message + ' : ' + player.longName)
             }
 
-            console.log("pushed:" + player.longName)
 
         }
 
