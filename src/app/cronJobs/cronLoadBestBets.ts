@@ -36,8 +36,10 @@ export const cronLoadBestBets = async () => {
                 }
             })
             var taskRepo = remult.repo(DbGameBookData)
-            let teamsData = await taskRepo.find({where: {sportTitle: sport, bookSeq: 0, commenceTime: {$gte: nextTuesday.toDateString()}}})
+            let teamsData = await taskRepo.find({where: {sportTitle: sport, bookSeq: 0}})
            
+            
+            teamsData.filter(e => new Date(e.commenceTime) < nextTuesday)
             let distinctBookIds = teamsData.map(e => e.bookId).filter((v,i,a) => a.indexOf(v) === i)
             console.log('distinct team best bet book ids below')
             console.log(distinctBookIds)
