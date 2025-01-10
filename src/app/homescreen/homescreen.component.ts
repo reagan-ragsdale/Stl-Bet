@@ -428,11 +428,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
     await this.getData(this.selectedSport)
 
-    console.log('Stuff below')
-    let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
-    console.log(incomingGameIds)
-    let gameSummary = await nflApiController.getGameSummary('20241124_MIN@CHI')
-    console.log(gameSummary)
+    
 
 
   }

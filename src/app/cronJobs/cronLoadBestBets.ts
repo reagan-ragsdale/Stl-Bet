@@ -9,6 +9,7 @@ import { NflService } from "../Services/NflService"
 import { SportsBookController } from "../../shared/Controllers/SportsBookController"
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData"
 import { remult } from "remult"
+import { nflApiController } from "../ApiCalls/nflApiCalls"
 
 
 
@@ -18,7 +19,7 @@ export const cronLoadBestBets = async () => {
     let listOfPropsFinal: DbPlayerBestBets[] = []
 
     let listOfBetsToAdd: DbPlayerBestBets[] = []
-    try {
+    /* try {
         for (let sport of sports) {
             let playerProps = await PlayerPropController.loadAllCurrentPlayerPropDataBySport(sport)
             let today = new Date()
@@ -51,7 +52,16 @@ export const cronLoadBestBets = async () => {
         
     } catch (error: any) {
         console.log(error.message)
-    }
+    } */
+
+
+    console.log('Stuff below')
+    let incomingGameIds = await nflApiController.loadAllNflGameIds(2024)
+    console.log(incomingGameIds)
+    let gameSummary = await nflApiController.getGameSummary('20241124_MIN@CHI')
+    console.log(gameSummary)
+
+
 
 
 }
