@@ -403,10 +403,12 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     
   }
   livePanelIndex = 0
+  livePropGraphIndex = 0
   onLivePropClicked(prop:any, panel: number, bet: number){
     this.onPropClicked(prop,panel,bet)
     this.livePanelIndex = panel
-    this.updateChart()
+    this.updateLivePropGraphType(this.livePropGraphIndex)
+    //this.updateChart()
   }
   destroyChart(){
     this.barChart.destroy()
@@ -418,6 +420,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.barChart.update()
   }
   updateLivePropGraphType(type: number){
+    this.livePropGraphIndex = type
     this.selectedDisplayProp = this.selectedProp[type]
     this.updateChart()
   }
