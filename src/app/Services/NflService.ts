@@ -16,6 +16,7 @@ import { PlayerPropDto } from "../Dtos/PlayerPropsDto";
 import { filter } from "compression";
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
+import { DbPlayerBestBets } from "src/shared/dbTasks/DBPlayerBestBets";
 
 
 export class NflService {
@@ -4991,8 +4992,44 @@ export class NflService {
             let bookIdPlayerProps = await this.getPlayerPropDataNew(distinctBookIds[i], allTeamInfo)
             finalReturn.push(bookIdPlayerProps)
         }
-        console.log('here is final from best bets cron below')
-        console.log(finalReturn)
+        
+
+        let listOfPlayersInFormat = []
+        for(let i = 0; i < finalReturn.length; i++){
+            for(let j = 0; j < finalReturn[i].length; j++){
+              for(let k = 0; k < finalReturn[i][j].length; k++){
+                    for(let m = 0; m < finalReturn[i][j][k].length; m++){
+                        listOfPlayersInFormat.push(finalReturn[i][j][k][m])
+                    }
+                }
+            }
+        }
+
+        let finalBestBets: DbPlayerBestBets[] = []
+        for(let i = 0; i < listOfPlayersInFormat.length; i++){
+            if(listOfPlayersInFormat[i].overallChance > .9 || listOfPlayersInFormat[i].homeAwayChance > .9 || listOfPlayersInFormat[i].teamChance > .9){
+                let playerBestBest: DbPlayerBestBets = {
+                      bookId: listOfPlayersInFormat[i].playerBookData.bookId,
+                      sportTitle: listOfPlayersInFormat[i].playerBookData.sportTitle,
+                      teamName: listOfPlayersInFormat[i].teamName,
+                      teamAgainstName: listOfPlayersInFormat[i].teamAgainstName,
+                      homeAway: listOfPlayersInFormat[i].homeAway,
+                      commenceTime: listOfPlayersInFormat[i].playerBookData.commenceTime,
+                      bookMaker: listOfPlayersInFormat[i].playerBookData.bookMaker,
+                      marketKey: listOfPlayersInFormat[i].playerBookData.marketKey,
+                      description: listOfPlayersInFormat[i].playerBookData.description,
+                      playerName: listOfPlayersInFormat[i].playerName,
+                      price: listOfPlayersInFormat[i].playerBookData.price,
+                      point: listOfPlayersInFormat[i].playerBookData.point,
+                      overallChance: listOfPlayersInFormat[i].overallChance,
+                      homeAwayChance: listOfPlayersInFormat[i].homeAwayChance,
+                      teamChance: listOfPlayersInFormat[i].teamChance
+                }
+                finalBestBets.push(playerBestBest)
+            }
+        }
+        console.log('here is final best bets below')
+        console.log(finalBestBets)
 
         return finalReturn
     }
