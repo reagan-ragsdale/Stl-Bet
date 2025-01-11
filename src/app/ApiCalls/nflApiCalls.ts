@@ -52,7 +52,7 @@ export class nflApiController {
     }
 
     static async loadAllNflGameIds(year: number) {
-        const url = `https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLGamesForWeek?week=all&seasonType=reg&season=${year}`;
+        const url = `https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLGamesForWeek?week=all&seasonType=post&season=${year}`;
         const options = {
             method: 'GET',
             headers: {
