@@ -2,7 +2,7 @@ import { DbNhlTeamGameStats } from "../../shared/dbTasks/DbNhlTeamGameStats";
 import { DbPlayerInfo } from "../../shared/dbTasks/DbPlayerInfo";
 import { remult } from "remult";
 import { DbNhlPlayerGameStats } from "../../shared/dbTasks/DbNhlPlayerGameStats";
-import { DbTeamInfo } from "src/shared/dbTasks/DBTeamInfo";
+import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo";
 import { TeamPropDto } from "../Dtos/TeamPropsDto";
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData";
 import { NhlController } from "../../shared/Controllers/NhlController";
@@ -15,7 +15,7 @@ import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameSta
 import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGameStatAverages";
 import { reusedFunctions } from "./reusedFunctions";
 import { Injectable } from "@angular/core";
-import { ErrorEmailController } from "src/shared/Controllers/ErrorEmailController";
+import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 
 
 export class NhlService {
