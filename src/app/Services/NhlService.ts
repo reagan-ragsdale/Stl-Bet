@@ -2519,7 +2519,8 @@ export class NhlService {
                             playerPropStats.push(playerPropObj)
                         }
                         catch (error: any) {
-                            console.log("Error in NhlService add player: " + error.message)
+                            ErrorEmailController.sendEmailError('Error in nhlService add player props: ' + error.message + ' - ' + specificProps)
+                            
                         }
 
 
