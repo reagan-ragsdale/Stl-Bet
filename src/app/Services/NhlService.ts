@@ -2544,7 +2544,7 @@ export class NhlService {
                     playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
                 }
                 catch (error: any) {
-                    console.log('Nhl Service player: ' + uniquePlayersWithinProp[m] + ' ' + error.message)
+                    ErrorEmailController.sendEmailError('Nhl Service player 2: ' + uniquePlayersWithinProp[m] + ' ' + error.message)
                 }
 
             }
