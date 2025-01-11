@@ -460,6 +460,18 @@ export class PlayerStatsComponent {
       this.playerTotalDataSet = this.playerTotalDataSetMlb
     }
     else if (this.selectedSport == 'NFL') {
+      let callArray = await Promise.all([NflController.nflGetAllPlayerGameStatsBySpecificPlayerNameAndSeason(this.playerName, 2024), NflController.nflGetPlayerStatTotalsByPlayerIdAndSeason(this.playerId, 2024)])
+      this.playerStats = callArray[0]
+      this.playerTotalStats = callArray[1]
+      for (let i = 0; i < this.playerStats.length; i++) {
+        this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
+      }
+      this.distinctSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+
+      this.distinctSeasons.sort(function (a, b) {
+        return a - b;
+      });
+      this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
       this.fullDataset = [
         {
           label: "Pass TD",
