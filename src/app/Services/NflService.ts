@@ -339,7 +339,7 @@ export class NflService {
     static convertGameIdsToArray(gameIds: any): string[] {
         let finalGameIds: string[] = []
         for (let gameId of gameIds) {
-            if (gameId.gameStatus == 'Final') {
+            if (gameId.gameStatus == 'Final' || gameId.gameStatus == 'Final/OT') {
                 finalGameIds.push(gameId.gameID)
             }
 
