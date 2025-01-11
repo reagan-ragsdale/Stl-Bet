@@ -15,6 +15,7 @@ import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameSta
 import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGameStatAverages";
 import { reusedFunctions } from "./reusedFunctions";
 import { Injectable } from "@angular/core";
+import { ErrorEmailController } from "src/shared/Controllers/ErrorEmailController";
 
 
 export class NhlService {
@@ -2128,7 +2129,7 @@ export class NhlService {
                             playerPropStats.push(playerPropObj)
                         }
                         catch (error: any) {
-                            console.log("Error in NhlService add player: " + error.message)
+                            ErrorEmailController.sendEmailError('Error in NhlService add player alternate props: ' + error.message + ' : ' + specificProps[i])
                         }
 
 
@@ -2965,7 +2966,7 @@ export class NhlService {
                             let teamStats = j == 0 ? awayTeamStats : homeTeamStats
 
 
-                            
+
                             propName = 'Chance of winning if winning after given Period'
                             let labels: string[] = ['1st', '2nd']
                             let barChartFinal: any = []
