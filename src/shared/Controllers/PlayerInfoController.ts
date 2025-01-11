@@ -12,12 +12,10 @@ export class PlayerInfoController {
   static async playerInfoAddPlayers(playerInfo: DbPlayerInfo[]) {
     const taskRepo = remult.repo(DbPlayerInfo)
 
-    var dbToDelete = await taskRepo.find({ where: { sport: playerInfo[0].sport } })
-    if (dbToDelete.length > 0) {
-      for (const d of dbToDelete) {
-        await taskRepo.delete(d)
-      }
-    }
+    
+    
+      await taskRepo.deleteMany({where:{sport: playerInfo[0].sport}})
+    
 
     await taskRepo.insert(playerInfo)
 
