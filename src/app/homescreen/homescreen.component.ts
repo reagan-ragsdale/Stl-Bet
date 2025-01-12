@@ -95,9 +95,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     if (team.length > 3) {
       team = MlbService.mlbTeamNameToAbvr[team]
     }
-    let teamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
+   /*  let teamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
     let teamId = teamInfo.filter(e => e.teamNameAbvr == team)[0]
-    this.router.navigate([`/teamStats/${this.selectedSport}/${teamId.teamId}`])
+    this.router.navigate([`/teamStats/${this.selectedSport}/${teamId.teamId}`]) */
   }
 
   playerStatsClicked(playerId: number) {
