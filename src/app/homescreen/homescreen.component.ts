@@ -24,6 +24,7 @@ import { BestBetController } from '../../shared/Controllers/BestBetController';
 import { NhlController } from '../../shared/Controllers/NhlController';
 import { cronLoadBestBets } from '../cronJobs/cronLoadBestBets';
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
+import { sportController } from '../Services/sportController';
 
 @Component({
   selector: 'home-screen',
@@ -50,7 +51,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   public gamesList: any[] = [{ name: "NBA", disabled: true, selected: false }, { name: "NHL", disabled: false, selected: true }, { name: "MLB", disabled: true, selected: false }, { name: "NFL", disabled: false, selected: false }];
   public selectedSport = ''
   public playerDataFinal: any[] = []
-  public playerData: any[] = []
+  public playerData: any[] | 0 = []
   public teamData: any[] = []
   public gameData: any[] = []
   public gameDataAll: any[] = []
@@ -115,25 +116,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   }
 
   async onPlayerStatsClick(stat: string) {
-    if (this.selectedSport == "NBA") {
-      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5(stat)
-    }
-    else if (this.selectedSport == "MLB") {
-      this.playerData = await MlbController.mlbGetPlayerStatTotals(stat, 2024)
-    }
-    else if (this.selectedSport == "NFL") {
-      this.playerData = await NflController.nflGetPlayerStatTotals(stat, 2024)
-    }
-    else if (this.selectedSport == 'NHL') {
-      this.playerData = await NhlController.NhlGetPlayerGameStatTotals(stat, 2024)
-    }
-
-
-
-    //stat.selected = true;
-    //this.playerStatsButtons.filter(e => e.dbName != stat).forEach(d => d.selected = false);
-
-
+    this.playerData = await sportController.getDashboardPlayerData(this.selectedSport, stat)
   }
 
 
@@ -142,13 +125,17 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   listOfAllTeams: DbTeamInfo[] = []
   unsubscribe = () => { }
   async getData(sport: string) {
+    let callResult = await Promise.all([sportController.getDashboardData(this.selectedSport), TeamInfoController.getAllTeamInfoBySports(this.gamesList.filter(e => e.disabled == false).map(e => e.name))])
+    if(callResult[0] != 0){
+      this.playerData = callResult[0][0]
+      this.teamData = callResult[0][1]
+      this.betCheats = callResult[0][2]
+    }
+    this.listOfAllTeams = callResult[1]
     
     if (sport == "NBA") {
       this.playerAverageColumns = this.playerAverageColumnsNba
       this.teamAverageColumns = this.teamAverageColumnsNba
-      this.gameDataAll = []
-      this.gameDataAllFinal = []
-      this.playerData = await NbaController.nbaGetPlayerStatAverageTop5("points")
 
       this.playerStatsButtons = [
         {
@@ -167,7 +154,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           dbName: "rebounds"
         },
       ]
-      this.teamData = await NbaController.nbaGetTeamStatAverageTop5("wins")
       this.teamStatsButtons = [
         {
           selected: true,
@@ -180,70 +166,9 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
           dbName: "pointsScored"
         }
       ]
-      this.gameData = await SportsBookController.loadSportBookByH2H(sport)
-      this.gameDataAll = await SportsBookController.loadAllBookDataBySportAndMaxBookSeq(sport)
-
-      var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
-      distinctGames.forEach(book => {
-        let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
-        let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
-        let teamArray: any[] = []
-        let distinctTeamsNew: any[] = []
-        let teamsName = distinctTeams.filter(e => e != 'Over')
-        let bothTeams = teamsName.filter(f => f != 'Under')
-        if (teamsName.length > 0) {
-          distinctTeamsNew.push(bothTeams[0])
-        }
-        if (bothTeams.length > 0) {
-          distinctTeamsNew.push(bothTeams[1])
-        }
-
-
-        let teamsNameOver = distinctTeams.filter(e => e == "Over")
-        if (teamsNameOver.length > 0) {
-          distinctTeamsNew.push(teamsNameOver[0])
-        }
-
-        let teamsNameUnder = distinctTeams.filter(e => e == "Under")
-
-        if (teamsNameUnder.length > 0) {
-          distinctTeamsNew.push(teamsNameUnder[0])
-        }
-
-
-        distinctTeamsNew.forEach(team => {
-          let allOfTeam = allOfBook.filter(e => e.teamName == team)
-          if (allOfTeam.length > 0) {
-            teamArray.push(allOfTeam)
-          }
-
-        })
-        let teamArrayFinal: any[] = []
-        if (teamArray.length > 0) {
-          if (teamArray[0][0].awayTeam != teamArray[0][0].teamName) {
-            teamArrayFinal.push(teamArray[1])
-            teamArrayFinal.push(teamArray[0])
-            teamArrayFinal.push(teamArray[2])
-            teamArrayFinal.push(teamArray[3])
-          }
-          else { teamArrayFinal = teamArray }
-        }
-
-
-        this.gameDataAllFinal.push(teamArrayFinal)
-
-      })
-
-      this.gameDataFinal = [...new Map(this.gameData.map(item => [item["bookId"], item])).values()]
-
     }
     else if (sport == "MLB") {
-      //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsMlb
-      this.gameDataAllFinal = []
-      let result = await Promise.all([MlbController.mlbGetPlayerStatTotals('homeRuns', 2024), MlbController.mlbGetTeamStatAverageTop5("wins", 2024)])
-      this.playerData = result[0]
-      this.teamData = result[1]
       this.playerStatsButtons = [
         {
           selected: true,
@@ -284,13 +209,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     }
     else if (sport == "NFL") {
 
-      //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNfl
       this.gameDataAllFinal = []
-      let result = await Promise.all([NflController.nflGetPlayerStatTotals('touchdowns', 2024), NflController.nflGetTeamStatTotals("wins", 2024), BestBetController.getBestBets('NFL')])
-      this.playerData = result[0]
-      this.teamData = result[1]
-      this.betCheats = result[2]
       this.playerStatsButtons = [
         {
           selected: true,
@@ -325,15 +245,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       this.playerAverageColumns = this.playerAverageColumnsNfl
     }
     else if (sport == "NHL") {
-
-      //var unsubscribe = () => {}
       this.teamAverageColumns = this.teamAverageColumnsNhl
       this.playerAverageColumns = this.playerAverageColumnsNhl
-      this.gameDataAllFinal = []
-      let result = await Promise.all([NhlController.NhlGetPlayerGameStatTotals('points', 2024), NhlController.NhlGetTeamGameStatTotals("wins", 2024)])
-      this.playerData = result[0]
-      this.teamData = result[1]
-      //this.betCheats = result[2]
       this.playerStatsButtons = [
         {
           selected: true,
@@ -411,8 +324,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       const nextTuesday = new Date(today);
       nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
       let gameTemp: any[] = []
-      let gameDataTemp = JSON.parse(JSON.stringify(this.gameDataAllFinal))
-      console.log(gameDataTemp)
       this.gameDataAllFinal.forEach(e => {
         if (e[0][0].commenceTime < nextTuesday) {
           gameTemp.push(e)
@@ -434,7 +345,6 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
-    this.listOfAllTeams = await TeamInfoController.getAllTeamInfoBySports(this.gamesList.filter(e => e.disabled == false).map(e => e.name))
     await this.getData(this.selectedSport)
 
     
