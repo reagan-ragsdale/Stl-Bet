@@ -414,7 +414,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       let gameDataTemp = JSON.parse(JSON.stringify(this.gameDataAllFinal))
       console.log(gameDataTemp)
       this.gameDataAllFinal.forEach(e => {
-        if (e[0][0][0].commenceTime < nextTuesday) {
+        if (e[0][0].commenceTime < nextTuesday) {
           gameTemp.push(e)
         }
       })
