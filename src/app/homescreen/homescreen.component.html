@@ -347,7 +347,7 @@
                     <ng-container matColumnDef="Team">
                       <th mat-header-cell *matHeaderCellDef >  </th>
                       <td mat-cell *matCellDef="let element; let j = index;">
-                        <a class="teamLink" (click)="onTeamClick(element[0].teamName)">{{element[0].teamName | transforFromFullTeamNameToAbvr | async}}</a>
+                        <a class="teamLink" (click)="onTeamClick(element[0].teamName)">{{getTeamAbvr(element[0].teamName)}}</a>
                       </td>
                     </ng-container>
       

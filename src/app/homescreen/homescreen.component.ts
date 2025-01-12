@@ -23,6 +23,7 @@ import { NflService } from '../Services/NflService';
 import { BestBetController } from '../../shared/Controllers/BestBetController';
 import { NhlController } from '../../shared/Controllers/NhlController';
 import { cronLoadBestBets } from '../cronJobs/cronLoadBestBets';
+import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 
 @Component({
   selector: 'home-screen',
@@ -138,9 +139,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
 
 
-
+  listOfAllTeams: DbTeamInfo[] = []
   unsubscribe = () => { }
   async getData(sport: string) {
+    
     if (sport == "NBA") {
       this.playerAverageColumns = this.playerAverageColumnsNba
       this.teamAverageColumns = this.teamAverageColumnsNba
@@ -409,6 +411,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       const nextTuesday = new Date(today);
       nextTuesday.setDate(today.getDate() + (daysToAdd === 0 ? 7 : daysToAdd));
       let gameTemp: any[] = []
+      console.log(this.gameDataAllFinal)
       this.gameDataAllFinal.forEach(e => {
         if (e[0][0][0].commenceTime < nextTuesday) {
           gameTemp.push(e)
@@ -416,6 +419,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
       })
       this.gameDataAllFinal = gameTemp
     }
+  }
+
+  getTeamAbvr(teamName: string): string{
+    return this.listOfAllTeams.filter(e => e.teamNameFull == teamName)[0].teamNameAbvr
   }
 
   teamClicked(teamName: string) {
@@ -426,6 +433,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   async ngOnInit() {
     this.selectedSport = this.gamesList.filter(e => e.selected == true)[0].name
+    this.listOfAllTeams = await TeamInfoController.getAllTeamInfoBySports(this.gamesList.filter(e => e.disabled == false).map(e => e.name))
     await this.getData(this.selectedSport)
 
     
