@@ -35,6 +35,6 @@ export class sportController {
           else if (sport == 'NHL') {
             return await NhlController.NhlGetPlayerGameStatTotals(stat, 2024)
           }
-          else return 0
+          else return []
     }
 }
