@@ -1018,10 +1018,11 @@ export class NhlService {
                                         teamGameLog.push({
                                             teamAgainstName: teamStats[i].teamAgainstName,
                                             gameDate: teamStats[i].gameDate,
-                                            result: teamStats[i].result,
+                                            result: teamStats[i].pointsScoredOverall > filteredPointsProps[m].point ? 'W' : 'L',
                                             pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                             pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                            homeAway: teamStats[i].homeOrAway
+                                            homeAway: teamStats[i].homeOrAway,
+                                            gameId: teamStats[i].gameId
                                         })
                                     }
                                     teamProp.fullGameLog = teamGameLog
@@ -1075,10 +1076,11 @@ export class NhlService {
                                         teamGameLog.push({
                                             teamAgainstName: teamStats[i].teamAgainstName,
                                             gameDate: teamStats[i].gameDate,
-                                            result: teamStats[i].result,
+                                            result: teamStats[i].pointsScoredOverall < filteredPointsProps[m].point ? 'W' : 'L',
                                             pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                             pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                            homeAway: teamStats[i].homeOrAway
+                                            homeAway: teamStats[i].homeOrAway,
+                                            gameId: teamStats[i].gameId
                                         })
                                     }
                                     teamProp.fullGameLog = teamGameLog
@@ -1236,7 +1238,8 @@ export class NhlService {
                                 result: teamStats[i].result,
                                 pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                 pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                homeAway: teamStats[i].homeOrAway
+                                homeAway: teamStats[i].homeOrAway,
+                                gameId: teamStats[i].gameId
                             })
                         }
                         propReturn.fullGameLog = teamGameLog
@@ -1263,14 +1266,15 @@ export class NhlService {
                         let teamLast10Wins = teamTableTemp.filter(e => (e.pointsAllowedOverall - e.pointsScoredOverall) < filteredPropsOnMarketKey[i].point).length
                         propReturn.last10Team = [teamLast10Wins, teamTableTemp.length]
                         let teamGameLog = []
-                        for (let i = 0; i < teamStats.length; i++) {
+                        for (let z = 0; z < teamStats.length; z++) {
                             teamGameLog.push({
-                                teamAgainstName: teamStats[i].teamAgainstName,
-                                gameDate: teamStats[i].gameDate,
-                                result: teamStats[i].result,
-                                pointsScoredOverall: teamStats[i].pointsScoredOverall,
-                                pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                homeAway: teamStats[i].homeOrAway
+                                teamAgainstName: teamStats[z].teamAgainstName,
+                                gameDate: teamStats[z].gameDate,
+                                result: (teamStats[z].pointsAllowedOverall - teamStats[z].pointsScoredOverall) < filteredPropsOnMarketKey[i].point,
+                                pointsScoredOverall: teamStats[z].pointsScoredOverall,
+                                pointsAllowedOverall: teamStats[z].pointsAllowedOverall,
+                                homeAway: teamStats[z].homeOrAway,
+                                gameId: teamStats[z].gameId
                             })
                         }
                         propReturn.fullGameLog = teamGameLog
@@ -1313,7 +1317,8 @@ export class NhlService {
                                 result: teamStats[i].pointsScoredFirstPeriod > teamStats[i].pointsAllowedFirstPeriod ? 'W' : 'L',
                                 pointsScoredOverall: teamStats[i].pointsScoredFirstPeriod,
                                 pointsAllowedOverall: teamStats[i].pointsAllowedFirstPeriod,
-                                homeAway: teamStats[i].homeOrAway
+                                homeAway: teamStats[i].homeOrAway,
+                                gameId: teamStats[i].gameId
                             })
                         }
                         propReturn.fullGameLog = teamGameLog
@@ -1476,7 +1481,8 @@ export class NhlService {
                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) > overUnderTotalProps[j].point ? 'W' : 'L',
                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                        homeAway: teamStats[i].homeOrAway
+                        homeAway: teamStats[i].homeOrAway,
+                        gameId: teamStats[i].gameId
                     })
                 }
                 homeProp.fullGameLog = teamGameLog
@@ -1538,7 +1544,8 @@ export class NhlService {
                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) > overUnderTotalProps[j].point ? 'W' : 'L',
                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                        homeAway: teamStats[i].homeOrAway
+                        homeAway: teamStats[i].homeOrAway,
+                        gameId: teamStats[i].gameId
                     })
                 }
                 awayProp.fullGameLog = teamGameLog
@@ -1601,7 +1608,8 @@ export class NhlService {
                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) < overUnderTotalProps[j].point ? 'W' : 'L',
                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                        homeAway: teamStats[i].homeOrAway
+                        homeAway: teamStats[i].homeOrAway,
+                        gameId: teamStats[i].gameId
                     })
                 }
                 homeProp.fullGameLog = teamGameLog
@@ -1663,7 +1671,8 @@ export class NhlService {
                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) > overUnderTotalProps[j].point ? 'W' : 'L',
                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                        homeAway: teamStats[i].homeOrAway
+                        homeAway: teamStats[i].homeOrAway,
+                        gameId: teamStats[i].gameId
                     })
                 }
                 awayProp.fullGameLog = teamGameLog
