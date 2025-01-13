@@ -58,6 +58,7 @@ import { GetDayAndTime } from './customPipes/getDayAndTime.pipe';
 import { ConvertGameDateToMonthDay } from './customPipes/convertGameDateToMonthDay.pipe';
 import { PropScreenNewComponent } from './prop-screen-new/prop-screen-new.component';
 import { ParlayPopupComponent } from './prop-screen-new/parlay-popup/parlay-popup.component';
+import { AuthGuard } from './app-auth-guard';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { ParlayPopupComponent } from './prop-screen-new/parlay-popup/parlay-popu
     ],
     providers: [
       { provide: APP_INITIALIZER, useFactory: initApp, multi: true },
+      AuthGuard
     ],
     bootstrap: [AppComponent],
     imports: [

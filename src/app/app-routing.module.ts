@@ -18,7 +18,7 @@ const routes: Routes = [
           path: 'props', title: 'props', component: PropScreenComponent
         }
       ]*/}, 
-  { path: 'sports', component: HomeScreenComponent, canActivate: [ new AuthGuard( new Router)]},
+  { path: 'sports', component: HomeScreenComponent, canActivate: [AuthGuard]},
   { path: 'props', component: PropScreenComponent, canActivate: [AuthGuard]},
   { path: 'props/:sport', component: PropScreenComponent, canActivate: [AuthGuard]},
   { path: 'props/:sport/:game', component: PropScreenComponent, canActivate: [AuthGuard]},
