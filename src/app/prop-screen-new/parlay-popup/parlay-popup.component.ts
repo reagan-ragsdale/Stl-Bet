@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 
 @Component({
   selector: 'app-parlay-popup',
   templateUrl: './parlay-popup.component.html',
   styleUrls: ['./parlay-popup.component.scss']
 })
-export class ParlayPopupComponent {
+export class ParlayPopupComponent implements OnChanges{
 
   
   @Input()
@@ -76,6 +76,7 @@ export class ParlayPopupComponent {
   noGamesVsTeam = false
   teamSameGameChance = 0
 
+
   remove(prop: any){
     prop.isDisabled = false;
     this.listOfProps = this.listOfProps.filter(item => item != prop);
@@ -97,5 +98,28 @@ export class ParlayPopupComponent {
     else{
       return prop.playerBookData[key]
     }
+  }
+
+  calculateChance(){
+    if(this.listOfProps.length == 1){
+      this.overallChance = this.listOfProps[0].overallChance
+    }
+    else if(this.listOfProps.length > 1){
+      let separateTeams = false
+      let listOfTeams: string[] = []
+      for(let i = 0; i < this.listOfProps.length; i++){
+        if(!listOfTeams.includes(this.listOfProps[i].teamName)){
+          listOfTeams.push(this.listOfProps[i].teamName)
+        }
+      }
+      if(listOfTeams.length > 1){
+        separateTeams = true
+      }
+      console.log(separateTeams)
+    }
+  }
+
+  ngOnChanges(){
+    this.calculateChance();
   }
 }
