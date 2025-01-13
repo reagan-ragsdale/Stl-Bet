@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { HomeScreenComponent } from './homescreen/homescreen.component';
 import { PropScreenComponent } from './prop-screen/prop-screen.component';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
@@ -9,6 +9,7 @@ import { LoginSignUpComponent } from './login-sign-up/login-sign-up.component';
 import { PropScreenNewComponent } from './prop-screen-new/prop-screen-new.component';
 import { AuthGuard } from './app-auth-guard';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', title:'home', component: WelcomeScreenComponent,
@@ -17,7 +18,7 @@ const routes: Routes = [
           path: 'props', title: 'props', component: PropScreenComponent
         }
       ]*/}, 
-  { path: 'sports', component: HomeScreenComponent, canActivate: [AuthGuard]},
+  { path: 'sports', component: HomeScreenComponent, canActivate: [ new AuthGuard( new Router)]},
   { path: 'props', component: PropScreenComponent, canActivate: [AuthGuard]},
   { path: 'props/:sport', component: PropScreenComponent, canActivate: [AuthGuard]},
   { path: 'props/:sport/:game', component: PropScreenComponent, canActivate: [AuthGuard]},
