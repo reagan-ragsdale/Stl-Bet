@@ -136,7 +136,7 @@ export class ParlayPopupComponent implements OnChanges{
       for(let i = 0; i < commonGameIds.length; i++){
         let arrayOfResults: string[] = []
         for(let j = 0; j < this.listOfProps.length; j++){
-          arrayOfResults.push(this.listOfProps[j].filter((e: { gameId: any; }) => e.gameId == commonGameIds[i])[0].result)
+          arrayOfResults.push(this.listOfProps[j].fullGameLog.filter((e: { gameId: any; }) => e.gameId == commonGameIds[i])[0].result)
         }
         if(!arrayOfResults.includes('L')){
           sameGameWins++
