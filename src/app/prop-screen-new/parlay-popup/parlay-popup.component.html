@@ -9,11 +9,11 @@
       <ng-template matExpansionPanelContent >
         <div style="padding-top:1rem; padding-left:1rem;">
           <div *ngFor="let prop of listOfProps" style="display:flex; gap:1rem; margin-bottom:10px;">
-            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{prop.propVariables.playerOrTeam == 'Player' ? prop.propVariables.playerName : prop.propVariables.teamName}}</h4>
-            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{(prop.propVariables.playerOrTeam == 'Player' ? prop.propVariables.marketKey : prop.propVariables.convertedMarketKey) | removeUnderScore | removeHeading | titlecase}}</h4>
-            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propVariables.propType == 'total' || prop.propVariables.playerOrTeam == 'Player'">{{prop.propVariables.overUnder == false ? 'Under' : 'Over'}}</h4>
-            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propVariables.propType != 'h2h'">{{prop.propVariables.propType == 'spread' ? (prop.propVariables.propPoint > 0 ? '+' : '') : ''}}{{prop.propVariables.propPoint}}</h4>
-            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{prop.propVariables.propPrice > 0 ? '+' : ''}}{{prop.propVariables.propPrice}}</h4>
+            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{isTeamTruePlayerFalse(prop) ? prop.teamName : prop.playerName}}</h4>
+            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{getSpecificBookDataFromProp(prop, 'marketKey')}}</h4>
+            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propType == 'total' || prop.propType == 'altTotal'">{{getSpecificBookDataFromProp(prop, 'description')}}</h4>
+            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propType != 'h2h'">{{prop.propType == 'spread' ? (getSpecificBookDataFromProp(prop, 'point') > 0 ? '+' : '') : ''}}{{getSpecificBookDataFromProp(prop, 'point')}}</h4>
+            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{getSpecificBookDataFromProp(prop, 'price') > 0 ? '+' : ''}}{{getSpecificBookDataFromProp(prop, 'price')}}</h4>
             <button [color]="'primary'" (click)="$event.stopPropagation()" (click)="remove(prop)" style="margin-right:1rem; margin-left: auto; min-width:auto;"  mat-raised-button>X</button>
           </div>
           <div style="display: flex;margin-top:1rem; border-top:1px solid black; gap:1rem;">
