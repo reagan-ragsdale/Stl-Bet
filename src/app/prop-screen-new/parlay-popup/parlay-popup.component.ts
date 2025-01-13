@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import cookieSession from 'cookie-session';
 
 @Component({
   selector: 'app-parlay-popup',
@@ -69,12 +70,12 @@ export class ParlayPopupComponent implements OnChanges{
   }
   panelOpenState: boolean = false;
   overallProbability: number = 0
-  overallChance = 0
+  overallChance = 1
   noGamesPlayedTogether = false
-  sameGameChance = 0
+  sameGameChance = 1
   isSameGameTeam = false
   noGamesVsTeam = false
-  teamSameGameChance = 0
+  teamSameGameChance = 1
 
 
   remove(prop: any){
@@ -107,7 +108,10 @@ export class ParlayPopupComponent implements OnChanges{
     else if(this.listOfProps.length > 1){
       let separateTeams = false
       let listOfTeams: string[] = []
+      let listOfPropsDistinctGameIds: any[] = []
       for(let i = 0; i < this.listOfProps.length; i++){
+        this.overallChance *= this.listOfProps[i].overallChance
+        listOfPropsDistinctGameIds.push(this.listOfProps[i].fullGameLog.map((e: { gameId: string; }) => e.gameId))
         if(!listOfTeams.includes(this.listOfProps[i].teamName)){
           listOfTeams.push(this.listOfProps[i].teamName)
         }
@@ -115,7 +119,11 @@ export class ParlayPopupComponent implements OnChanges{
       if(listOfTeams.length > 1){
         separateTeams = true
       }
-      console.log(separateTeams)
+      let commonGameIds = listOfPropsDistinctGameIds.reduce((p,c) => p.filter((e: any) => c.includes(e)));
+      console.log(commonGameIds)
+      if(separateTeams){
+
+      }
     }
   }
 
