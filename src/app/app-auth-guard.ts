@@ -2,9 +2,7 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Remult } from "remult";
 
-@Injectable({
-    providedIn: 'root'
-  })
+
 export class AuthGuard implements CanActivate{
 
     constructor(private remult: Remult, private router: Router) {}
