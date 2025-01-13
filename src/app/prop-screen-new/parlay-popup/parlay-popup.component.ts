@@ -119,6 +119,7 @@ export class ParlayPopupComponent implements OnChanges{
       if(listOfTeams.length > 1){
         separateTeams = true
       }
+      console.log(listOfPropsDistinctGameIds)
       let commonGameIds = listOfPropsDistinctGameIds.reduce((p,c) => p.filter((e: any) => c.includes(e)));
       console.log(commonGameIds)
       if(separateTeams){
