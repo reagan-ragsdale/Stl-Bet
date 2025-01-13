@@ -10,7 +10,7 @@
         <div style="padding-top:1rem; padding-left:1rem;">
           <div *ngFor="let prop of listOfProps" style="display:flex; gap:1rem; margin-bottom:10px;">
             <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{isTeamTruePlayerFalse(prop) ? prop.teamName : prop.playerName}}</h4>
-            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{getSpecificBookDataFromProp(prop, 'marketKey')}}</h4>
+            <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{getMarketKey(getSpecificBookDataFromProp(prop, 'marketKey'))}}</h4>
             <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propType == 'total' || prop.propType == 'altTotal'">{{getSpecificBookDataFromProp(prop, 'description')}}</h4>
             <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;" *ngIf="prop.propType != 'h2h'">{{prop.propType == 'spread' ? (getSpecificBookDataFromProp(prop, 'point') > 0 ? '+' : '') : ''}}{{getSpecificBookDataFromProp(prop, 'point')}}</h4>
             <h4 class="parlay-text" style="margin-top:auto; margin-bottom:auto;">{{getSpecificBookDataFromProp(prop, 'price') > 0 ? '+' : ''}}{{getSpecificBookDataFromProp(prop, 'price')}}</h4>

@@ -77,7 +77,9 @@ export class ParlayPopupComponent {
   teamSameGameChance = 0
 
   remove(prop: any){
-
+    prop.isDisabled = false;
+    this.listOfProps = this.listOfProps.filter(item => item != prop);
+    this.length.emit(this.listOfProps)
   }
   isTeamTruePlayerFalse(prop: any): boolean{
     if(Object.hasOwn(prop, 'gameBookData')) return true
