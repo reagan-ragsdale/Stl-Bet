@@ -2286,7 +2286,7 @@ export class NhlService {
                                         propPoint: playerStats[z].points,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'P',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].points > specificProps[i].point) : (playerStats[z].points < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].points > specificProps[i].point ? 'W' : 'L') : (playerStats[z].points < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -2332,7 +2332,7 @@ export class NhlService {
                                         propPoint: playerStats[z].assists,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'A',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].assists > specificProps[i].point) : (playerStats[z].assists < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].assists > specificProps[i].point ? 'W' : 'L') : (playerStats[z].assists < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -2377,7 +2377,7 @@ export class NhlService {
                                         propPoint: playerStats[z].shots,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'S',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].shots > specificProps[i].point) : (playerStats[z].shots < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].shots > specificProps[i].point ? 'W' : 'L') : (playerStats[z].shots < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -2422,7 +2422,7 @@ export class NhlService {
                                         propPoint: playerStats[z].blocks,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'B',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].blocks > specificProps[i].point) : (playerStats[z].blocks < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].blocks > specificProps[i].point ? 'W' : 'L') : (playerStats[z].blocks < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -2467,7 +2467,7 @@ export class NhlService {
                                         propPoint: playerStats[z].saves,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'S',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].saves > specificProps[i].point) : (playerStats[z].saves < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].saves > specificProps[i].point ? 'W' : 'L') : (playerStats[z].saves < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -2512,7 +2512,7 @@ export class NhlService {
                                         propPoint: playerStats[z].shots,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'S',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].shots > specificProps[i].point) : (playerStats[z].shots < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].shots > specificProps[i].point ? 'W' : 'L') : (playerStats[z].shots < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }

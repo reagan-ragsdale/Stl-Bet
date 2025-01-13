@@ -123,8 +123,10 @@ export class ParlayPopupComponent implements OnChanges{
       let commonGameIds = listOfPropsDistinctGameIds.reduce((p,c) => p.filter((e: any) => c.includes(e)));
       for(let i = 0; i < this.listOfProps.length; i++){
         let commonGameStats = this.listOfProps[i].fullGameLog.filter((e: { gameId: any; }) => commonGameIds.includes(e.gameId))
+        console.log('common game stats below')
+        console.log(commonGameStats)
         let commonGameWins = commonGameStats.filter((e: { result: string; }) => e.result == 'W')
-        let propCommonGameChance = commonGameStats == 0 ? 0 : commonGameWins.length / commonGameStats.length
+        let propCommonGameChance = commonGameStats.length == 0 ? 0 : commonGameWins.length / commonGameStats.length
         this.sameGameChance *= propCommonGameChance
       }
       console.log(this.sameGameChance)

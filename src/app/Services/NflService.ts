@@ -4400,7 +4400,7 @@ export class NflService {
                                         propPoint: playerStats[z].qbPassingTouchdowns,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'TD',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingTouchdowns > specificProps[i].point) : (playerStats[z].qbPassingTouchdowns < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingTouchdowns > specificProps[i].point ? 'W' : 'L') : (playerStats[z].qbPassingTouchdowns < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -4446,7 +4446,7 @@ export class NflService {
                                         propPoint: playerStats[z].qbPassingYards,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingYards > specificProps[i].point) : (playerStats[z].qbPassingYards < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[z].qbPassingYards < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -4491,7 +4491,7 @@ export class NflService {
                                         propPoint: playerStats[z].receivingYards,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].receivingYards > specificProps[i].point) : (playerStats[z].receivingYards < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].receivingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[z].receivingYards < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -4536,7 +4536,7 @@ export class NflService {
                                         propPoint: playerStats[i].rushingYards,
                                         homeAway: playerStats[i].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].rushingYards > specificProps[i].point) : (playerStats[i].rushingYards < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].rushingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[i].rushingYards < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[i].gameId
                                     })
                                 }
@@ -4581,7 +4581,7 @@ export class NflService {
                                         propPoint: playerStats[z].qbPassingYards,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingYards > specificProps[i].point) : (playerStats[z].qbPassingYards < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[z].qbPassingYards < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -4626,7 +4626,7 @@ export class NflService {
                                         propPoint: playerStats[z].receivingYards,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].receivingYards > specificProps[i].point) : (playerStats[z].receivingYards < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].receivingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[z].receivingYards < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
@@ -4671,7 +4671,7 @@ export class NflService {
                                         propPoint: playerStats[z].rushingYards,
                                         homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[z].rushingYards > specificProps[i].point) : (playerStats[z].rushingYards < specificProps[i].point),
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].rushingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[z].rushingYards < specificProps[i].point ? 'W' : 'L'),
                                         gameId: playerStats[z].gameId
                                     })
                                 }
