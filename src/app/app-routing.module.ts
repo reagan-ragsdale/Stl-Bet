@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'playerStats', component: PlayerStatsComponent, canActivate: [AuthGuard]},
   { path: 'teamStats', component: TeamStatsComponent, canActivate: [AuthGuard]},
   { path: 'teamStats/:team/:id', component: TeamStatsComponent, canActivate: [AuthGuard]},
-  { path: 'signup', component: LoginSignUpComponent, canActivate: [AuthGuard]},
+  { path: 'signup', component: LoginSignUpComponent},
 
   { path: 'playerStats/:sport/:id', component: PlayerStatsComponent, canActivate: [AuthGuard]},
 ];
