@@ -7,6 +7,7 @@ import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.componen
 import { TeamStatsComponent } from './team-stats/team-stats.component';
 import { LoginSignUpComponent } from './login-sign-up/login-sign-up.component';
 import { PropScreenNewComponent } from './prop-screen-new/prop-screen-new.component';
+import { AuthGuard } from './app-auth-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -16,18 +17,18 @@ const routes: Routes = [
           path: 'props', title: 'props', component: PropScreenComponent
         }
       ]*/}, 
-  { path: 'sports', component: HomeScreenComponent},
-  { path: 'props', component: PropScreenComponent},
-  { path: 'props/:sport', component: PropScreenComponent},
-  { path: 'props/:sport/:game', component: PropScreenComponent},
-  { path: 'propsNew/:sport', component: PropScreenNewComponent},
-  { path: 'propsNew/:sport/:game', component: PropScreenNewComponent},
-  { path: 'playerStats', component: PlayerStatsComponent},
-  { path: 'teamStats', component: TeamStatsComponent},
-  { path: 'teamStats/:team/:id', component: TeamStatsComponent},
-  { path: 'signup', component: LoginSignUpComponent},
+  { path: 'sports', component: HomeScreenComponent, canActivate: [AuthGuard]},
+  { path: 'props', component: PropScreenComponent, canActivate: [AuthGuard]},
+  { path: 'props/:sport', component: PropScreenComponent, canActivate: [AuthGuard]},
+  { path: 'props/:sport/:game', component: PropScreenComponent, canActivate: [AuthGuard]},
+  { path: 'propsNew/:sport', component: PropScreenNewComponent, canActivate: [AuthGuard]},
+  { path: 'propsNew/:sport/:game', component: PropScreenNewComponent, canActivate: [AuthGuard]},
+  { path: 'playerStats', component: PlayerStatsComponent, canActivate: [AuthGuard]},
+  { path: 'teamStats', component: TeamStatsComponent, canActivate: [AuthGuard]},
+  { path: 'teamStats/:team/:id', component: TeamStatsComponent, canActivate: [AuthGuard]},
+  { path: 'signup', component: LoginSignUpComponent, canActivate: [AuthGuard]},
 
-  { path: 'playerStats/:sport/:id', component: PlayerStatsComponent},
+  { path: 'playerStats/:sport/:id', component: PlayerStatsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

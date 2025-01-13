@@ -218,7 +218,7 @@
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                         <h3 *ngIf="selectedPropType == 'Player Props' && selectedDisplayProp.propType == 'altTotal'">{{selectedDisplayProp.playerBookData.description}}</h3>
-                        <button *ngIf="false" style="margin-left:10px;"  mat-raised-button [disabled]="false" (click)="false">Parlay</button>
+                        <button style="margin-left:10px;" *ngIf="false"  mat-raised-button [disabled]="false" (click)="addPropToParlay(selectedDisplayProp)">Parlay</button>
                     </div>
                     <div class="stat-body">
                         <div style="text-align: center;
@@ -679,3 +679,6 @@
         </div>
     </div>
 </div>
+
+<app-prop-checkout [listOfProps]="listOfParlays" (exitSend)="isExit($any($event))"
+    (length)="getArrayLength($event)" *ngIf="listOfParlays.length > 0 && exit"></app-prop-checkout>

@@ -57,6 +57,7 @@ import { RemoveHeading } from './customPipes/reomveHeading.pipe';
 import { GetDayAndTime } from './customPipes/getDayAndTime.pipe';
 import { ConvertGameDateToMonthDay } from './customPipes/convertGameDateToMonthDay.pipe';
 import { PropScreenNewComponent } from './prop-screen-new/prop-screen-new.component';
+import { ParlayPopupComponent } from './prop-screen-new/parlay-popup/parlay-popup.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { PropScreenNewComponent } from './prop-screen-new/prop-screen-new.compon
         LoginScreenComponent,
         PropTrendComponent,
         LoginSignUpComponent,
-        PropScreenNewComponent
+        PropScreenNewComponent,
+        ParlayPopupComponent
     ],
     providers: [
       { provide: APP_INITIALIZER, useFactory: initApp, multi: true },

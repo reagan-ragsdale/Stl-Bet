@@ -512,6 +512,23 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     
   }
 
+  listOfParlays: any[] = []
+  checkoutArray: any[] = []
+  exit: boolean = true;
+  addPropToParlay(prop: any){
+    prop.isDisabled = true
+    this.listOfParlays.push(prop)
+    this.listOfParlays = this.listOfParlays.slice()
+  }
+  getArrayLength(event: any){
+    this.listOfParlays = event;
+  }
+
+  isExit(event: any) {
+    this.checkoutArray.forEach((e) => e.isDisabled = false)
+    this.checkoutArray = [];
+  }
+
   getPropNameFromMarketKey(marketKey: string): string{
     console.log(marketKey)
     return this.listOfTeamProps[marketKey]
