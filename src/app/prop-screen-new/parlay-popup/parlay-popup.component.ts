@@ -124,14 +124,25 @@ export class ParlayPopupComponent implements OnChanges{
         separateTeams = true
       }
       let commonGameIds = listOfPropsDistinctGameIds.reduce((p,c) => p.filter((e: any) => c.includes(e)));
-      for(let i = 0; i < this.listOfProps.length; i++){
+      /* for(let i = 0; i < this.listOfProps.length; i++){
         let commonGameStats = this.listOfProps[i].fullGameLog.filter((e: { gameId: any; }) => commonGameIds.includes(e.gameId))
         console.log('common game stats below')
         console.log(commonGameStats)
         let commonGameWins = commonGameStats.filter((e: { result: string; }) => e.result == 'W')
         let propCommonGameChance = commonGameStats.length == 0 ? 0 : commonGameWins.length / commonGameStats.length
         this.sameGameChance *= propCommonGameChance
+      } */
+      let sameGameWins = 0
+      for(let i = 0; i < commonGameIds.length; i++){
+        let arrayOfResults: string[] = []
+        for(let j = 0; j < this.listOfProps.length; j++){
+          arrayOfResults.push(this.listOfProps[j].filter((e: { gameId: any; }) => e.gameId == commonGameIds[i])[0].result)
+        }
+        if(!arrayOfResults.includes('L')){
+          sameGameWins++
+        }
       }
+      this.sameGameChance = sameGameWins / commonGameIds.length
       console.log(this.sameGameChance)
       if(separateTeams){
 
