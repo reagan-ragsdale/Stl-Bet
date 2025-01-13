@@ -111,7 +111,8 @@ export class ParlayPopupComponent implements OnChanges{
       let listOfPropsDistinctGameIds: any[] = []
       for(let i = 0; i < this.listOfProps.length; i++){
         this.overallChance *= this.listOfProps[i].overallChance
-        listOfPropsDistinctGameIds.push(this.listOfProps[i].fullGameLog.map((e: { gameId: string; }) => e.gameId))
+        let listOfGameIds = this.isTeamTruePlayerFalse(this.listOfProps[i]) ? this.listOfProps[i].teamStats.map((e: { gameId: string; }) => e.gameId) : this.listOfProps[i].playeStats.map((e: { gameId: string; }) => e.gameId)
+        listOfPropsDistinctGameIds.push(listOfGameIds)
         if(!listOfTeams.includes(this.listOfProps[i].teamName)){
           listOfTeams.push(this.listOfProps[i].teamName)
         }
