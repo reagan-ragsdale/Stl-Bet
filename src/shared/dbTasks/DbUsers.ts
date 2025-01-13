@@ -14,6 +14,9 @@ export class DbUsers {
     @Fields.string({ includeInApi: false })
     userPass = ""
 
+    @Fields.boolean()
+    isAdmin = false
+
     
 
     @Fields.createdAt()

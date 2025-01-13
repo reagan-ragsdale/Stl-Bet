@@ -34,7 +34,7 @@ export class UsersController {
       return setSessionUser({
         id: user.id!,
         name: user.userName!,
-        roles: []
+        roles: user.isAdmin ? ['admin'] : []
       })
     }
 
@@ -53,7 +53,7 @@ export class UsersController {
     return setSessionUser({
       id: user.id!,
       name: user.userName!,
-      roles: []
+      roles: user.isAdmin ? ['admin'] : []
     })
   }
   @BackendMethod({ allowed: true })

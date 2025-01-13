@@ -70,6 +70,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   bestBetDisplay: any[] = []
   livePropData: any[] = []
   sliderValue: number = 90;
+  remult = remult;
 
 
   constructor(
