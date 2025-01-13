@@ -680,5 +680,5 @@
     </div>
 </div>
 
-<app-prop-checkout [listOfProps]="listOfParlays" (exitSend)="isExit($any($event))"
-    (length)="getArrayLength($event)" *ngIf="listOfParlays.length > 0 && exit"></app-prop-checkout>
+<app-parlay-popup [listOfProps]="listOfParlays" (exitSend)="isExit($any($event))"
+    (length)="getArrayLength($event)" *ngIf="listOfParlays.length > 0 && exit"></app-parlay-popup>
