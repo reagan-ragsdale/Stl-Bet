@@ -2279,15 +2279,15 @@ export class NhlService {
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].points,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].points,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'P',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].points > specificProps[i].point) : (playerStats[i].points < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].points > specificProps[i].point) : (playerStats[z].points < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2325,15 +2325,15 @@ export class NhlService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].assists,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].assists,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'A',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].assists > specificProps[i].point) : (playerStats[i].assists < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].assists > specificProps[i].point) : (playerStats[z].assists < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2370,15 +2370,15 @@ export class NhlService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].shots,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].shots,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'S',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].shots > specificProps[i].point) : (playerStats[i].shots < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].shots > specificProps[i].point) : (playerStats[z].shots < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2415,15 +2415,15 @@ export class NhlService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].blocks,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].blocks,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'B',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].blocks > specificProps[i].point) : (playerStats[i].blocks < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].blocks > specificProps[i].point) : (playerStats[z].blocks < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2460,15 +2460,15 @@ export class NhlService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].saves,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].saves,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'S',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].saves > specificProps[i].point) : (playerStats[i].saves < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].saves > specificProps[i].point) : (playerStats[z].saves < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2505,15 +2505,15 @@ export class NhlService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].shots,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].shots,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'S',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].shots > specificProps[i].point) : (playerStats[i].shots < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].shots > specificProps[i].point) : (playerStats[z].shots < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog

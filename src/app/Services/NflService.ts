@@ -4393,15 +4393,15 @@ export class NflService {
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
 
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].qbPassingTouchdowns,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].qbPassingTouchdowns,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'TD',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].qbPassingTouchdowns > specificProps[i].point) : (playerStats[i].qbPassingTouchdowns < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingTouchdowns > specificProps[i].point) : (playerStats[z].qbPassingTouchdowns < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4439,15 +4439,15 @@ export class NflService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
                                         teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].qbPassingYards,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].qbPassingYards,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].qbPassingYards > specificProps[i].point) : (playerStats[i].qbPassingYards < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingYards > specificProps[i].point) : (playerStats[z].qbPassingYards < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4484,15 +4484,15 @@ export class NflService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].receivingYards,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].receivingYards,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].receivingYards > specificProps[i].point) : (playerStats[i].receivingYards < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].receivingYards > specificProps[i].point) : (playerStats[z].receivingYards < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4574,15 +4574,15 @@ export class NflService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].qbPassingYards,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].qbPassingYards,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].qbPassingYards > specificProps[i].point) : (playerStats[i].qbPassingYards < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].qbPassingYards > specificProps[i].point) : (playerStats[z].qbPassingYards < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4619,15 +4619,15 @@ export class NflService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].receivingYards,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].receivingYards,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].receivingYards > specificProps[i].point) : (playerStats[i].receivingYards < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].receivingYards > specificProps[i].point) : (playerStats[z].receivingYards < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4664,15 +4664,15 @@ export class NflService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].rushingYards,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].rushingYards,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].rushingYards > specificProps[i].point) : (playerStats[i].rushingYards < specificProps[i].point),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].rushingYards > specificProps[i].point) : (playerStats[z].rushingYards < specificProps[i].point),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
