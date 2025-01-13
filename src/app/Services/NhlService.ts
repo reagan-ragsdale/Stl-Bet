@@ -2285,7 +2285,9 @@ export class NhlService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].points,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'P'
+                                        propName: 'P',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].points > specificProps[i].point) : (playerStats[i].points < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2329,7 +2331,9 @@ export class NhlService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].assists,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'A'
+                                        propName: 'A',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].assists > specificProps[i].point) : (playerStats[i].assists < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2372,7 +2376,9 @@ export class NhlService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].shots,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'S'
+                                        propName: 'S',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].shots > specificProps[i].point) : (playerStats[i].shots < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2415,7 +2421,9 @@ export class NhlService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].blocks,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'B'
+                                        propName: 'B',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].blocks > specificProps[i].point) : (playerStats[i].blocks < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2458,7 +2466,9 @@ export class NhlService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].saves,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'S'
+                                        propName: 'S',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].saves > specificProps[i].point) : (playerStats[i].saves < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -2501,7 +2511,9 @@ export class NhlService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].shots,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'S'
+                                        propName: 'S',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].shots > specificProps[i].point) : (playerStats[i].shots < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog

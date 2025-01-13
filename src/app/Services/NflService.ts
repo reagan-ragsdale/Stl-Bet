@@ -4399,7 +4399,9 @@ export class NflService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].qbPassingTouchdowns,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'TD'
+                                        propName: 'TD',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].qbPassingTouchdowns > specificProps[i].point) : (playerStats[i].qbPassingTouchdowns < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4443,7 +4445,9 @@ export class NflService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].qbPassingYards,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'Y'
+                                        propName: 'Y',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].qbPassingYards > specificProps[i].point) : (playerStats[i].qbPassingYards < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4486,7 +4490,9 @@ export class NflService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].receivingYards,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'Y'
+                                        propName: 'Y',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].receivingYards > specificProps[i].point) : (playerStats[i].receivingYards < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4529,7 +4535,9 @@ export class NflService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].rushingYards,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'Y'
+                                        propName: 'Y',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].rushingYards > specificProps[i].point) : (playerStats[i].rushingYards < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4572,7 +4580,9 @@ export class NflService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].qbPassingYards,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'Y'
+                                        propName: 'Y',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].qbPassingYards > specificProps[i].point) : (playerStats[i].qbPassingYards < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4615,7 +4625,9 @@ export class NflService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].receivingYards,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'Y'
+                                        propName: 'Y',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].receivingYards > specificProps[i].point) : (playerStats[i].receivingYards < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
@@ -4658,7 +4670,9 @@ export class NflService {
                                         gameDate: playerStats[i].gameDate,
                                         propPoint: playerStats[i].rushingYards,
                                         homeAway: playerStats[i].homeOrAway,
-                                        propName: 'Y'
+                                        propName: 'Y',
+                                        result: specificProps[i].description == 'Over' ? (playerStats[i].rushingYards > specificProps[i].point) : (playerStats[i].rushingYards < specificProps[i].point),
+                                        gameId: playerStats[i].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
