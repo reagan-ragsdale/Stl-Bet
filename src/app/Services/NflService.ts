@@ -2159,7 +2159,8 @@ export class NflService {
                                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) > filteredPropsByPoint[n].point ? 'W' : 'L',
                                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                        homeAway: teamStats[i].homeOrAway
+                                        homeAway: teamStats[i].homeOrAway,
+                                        gameId: teamStats[i].gameId
                                     })
                                 }
                                 homeProp.fullGameLog = teamGameLog
@@ -2221,7 +2222,8 @@ export class NflService {
                                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) > filteredPropsByPoint[n].point ? 'W' : 'L',
                                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                        homeAway: teamStats[i].homeOrAway
+                                        homeAway: teamStats[i].homeOrAway,
+                                        gameId: teamStats[i].gameId
                                     })
                                 }
                                 awayProp.fullGameLog = teamGameLog
@@ -2284,7 +2286,8 @@ export class NflService {
                                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) < filteredPropsByPoint[n].point ? 'W' : 'L',
                                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                        homeAway: teamStats[i].homeOrAway
+                                        homeAway: teamStats[i].homeOrAway,
+                                        gameId: teamStats[i].gameId
                                     })
                                 }
                                 homeProp.fullGameLog = teamGameLog
@@ -2346,7 +2349,8 @@ export class NflService {
                                         result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) < filteredPropsByPoint[n].point ? 'W' : 'L',
                                         pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                         pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                        homeAway: teamStats[i].homeOrAway
+                                        homeAway: teamStats[i].homeOrAway,
+                                        gameId: teamStats[i].gameId
                                     })
                                 }
                                 awayProp.fullGameLog = teamGameLog
@@ -2531,7 +2535,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) > filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -2593,7 +2598,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) > overUnderTotalProps[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -2656,7 +2662,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -2718,7 +2725,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredOverall + teamStats[i].pointsAllowedOverall) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -2785,7 +2793,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter) > filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -2847,7 +2856,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter) > overUnderTotalProps[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -2910,7 +2920,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -2972,7 +2983,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter + teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3039,7 +3051,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter) > filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3101,7 +3114,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter) > overUnderTotalProps[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3164,7 +3178,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3226,7 +3241,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter + teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3293,7 +3309,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsAllowedFirstQuarter) > filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3355,7 +3372,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsAllowedFirstQuarter) > overUnderTotalProps[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3418,7 +3436,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsAllowedFirstQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3480,7 +3499,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFirstQuarter + teamStats[i].pointsAllowedFirstQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFirstQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFirstQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3547,7 +3567,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedSecondQuarter) > filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3609,7 +3630,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedSecondQuarter) > overUnderTotalProps[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3672,7 +3694,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedSecondQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3734,7 +3757,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredSecondQuarter + teamStats[i].pointsAllowedSecondQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedSecondQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3801,7 +3825,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsAllowedThirdQuarter) > filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3863,7 +3888,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsAllowedThirdQuarter) > overUnderTotalProps[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -3926,7 +3952,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsAllowedThirdQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -3988,7 +4015,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredThirdQuarter + teamStats[i].pointsAllowedThirdQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredThirdQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedThirdQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -4055,7 +4083,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedFourthQuarter) > filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -4117,7 +4146,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedFourthQuarter) > overUnderTotalProps[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
@@ -4180,7 +4210,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedFourthQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             homeProp.fullGameLog = teamGameLog
@@ -4242,7 +4273,8 @@ export class NflService {
                                     result: (teamStats[i].pointsScoredFourthQuarter + teamStats[i].pointsAllowedFourthQuarter) < filteredBothTeamProp[j].point ? 'W' : 'L',
                                     pointsScoredOverall: teamStats[i].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[i].pointsAllowedFourthQuarter,
-                                    homeAway: teamStats[i].homeOrAway
+                                    homeAway: teamStats[i].homeOrAway,
+                                    gameId: teamStats[i].gameId
                                 })
                             }
                             awayProp.fullGameLog = teamGameLog
