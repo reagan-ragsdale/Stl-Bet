@@ -71,10 +71,10 @@ export class ParlayPopupComponent implements OnChanges{
   panelOpenState: boolean = false;
   overallProbability: number = 0
   overallChance = 1
-  noGamesPlayedTogether = false
+  noGamesPlayedTogether = true
   sameGameChance = 1
   isSameGameTeam = false
-  noGamesVsTeam = false
+  noGamesVsTeam = true
   teamSameGameChance = 1
 
 
@@ -124,19 +124,24 @@ export class ParlayPopupComponent implements OnChanges{
         separateTeams = true
       }
       let commonGameIds = listOfPropsDistinctGameIds.reduce((p,c) => p.filter((e: any) => c.includes(e)));
-      let sameGameWins = 0
-      for(let i = 0; i < commonGameIds.length; i++){
-        let arrayOfResults: string[] = []
-        for(let j = 0; j < this.listOfProps.length; j++){
-          arrayOfResults.push(this.listOfProps[j].fullGameLog.filter((e: { gameId: any; }) => e.gameId == commonGameIds[i])[0].result)
+      if(commonGameIds.length > 0){
+        this.noGamesPlayedTogether = false
+        let sameGameWins = 0
+        for(let i = 0; i < commonGameIds.length; i++){
+          let arrayOfResults: string[] = []
+          for(let j = 0; j < this.listOfProps.length; j++){
+            arrayOfResults.push(this.listOfProps[j].fullGameLog.filter((e: { gameId: any; }) => e.gameId == commonGameIds[i])[0].result)
+          }
+          if(!arrayOfResults.includes('L')){
+            sameGameWins++
+          }
         }
-        if(!arrayOfResults.includes('L')){
-          sameGameWins++
-        }
+        this.sameGameChance = sameGameWins / commonGameIds.length
       }
-      this.sameGameChance = sameGameWins / commonGameIds.length
+      
       
       if(!separateTeams){
+        this.isSameGameTeam = true
         let arrayOfHasPlayedOtherTeam = []
         for(let i = 0; i < this.listOfProps.length; i++){
           if(this.listOfProps[i].last10Team[1] == 0){
@@ -152,8 +157,22 @@ export class ParlayPopupComponent implements OnChanges{
             arrayOfGamesPlayedVsOtherTeam.push(this.listOfProps[i].fullGameLog.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[i].teamAgainstName).map((e: { gameId: any; }) => e.gameId))
           }
           console.log('games played against other team')
+          let sameGameTeamWins = 0
           let commonTeamGameIds = arrayOfGamesPlayedVsOtherTeam.reduce((p,c) => p.filter((e: any) => c.includes(e)));
-          console.log(commonTeamGameIds)
+          if(commonTeamGameIds.length > 0){
+            this.noGamesVsTeam = false;
+            for(let j = 0; j < commonTeamGameIds.length; j++){
+              let arrayOfTeamAgainstResult: string[] = []
+              for(let k = 0; k < this.listOfProps.length; k++){
+                arrayOfTeamAgainstResult.push(this.listOfProps[j].fullGameLog.filter((e: { gameId: any; }) => e.gameId == commonTeamGameIds[j])[0].result)
+              }
+              if(!arrayOfTeamAgainstResult.includes('L')){
+                sameGameTeamWins++
+              }
+            }
+            this.teamSameGameChance = sameGameTeamWins / commonTeamGameIds.length
+          }
+          
         }
       }
     }
