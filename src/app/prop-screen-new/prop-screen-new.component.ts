@@ -519,6 +519,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   addPropToParlay(prop: any){
     prop.isDisabled = true
     this.listOfParlays.push(prop)
+    let filteredProp = this.arrayOfAllBets.filter(e => e == prop)
+    filteredProp[0].isDisabled = true
     this.listOfParlays = this.listOfParlays.slice()
   }
   getArrayLength(event: any){
