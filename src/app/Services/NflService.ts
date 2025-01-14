@@ -501,7 +501,7 @@ export class NflService {
                                         teamGameLog.push({
                                             teamAgainstName: teamStats[i].teamAgainstName,
                                             gameDate: teamStats[i].gameDate,
-                                            result: teamStats[i].result,
+                                            result: teamStats[i].pointsScoredOverall > filteredPointsProps[m].point ? 'W' : 'L',
                                             pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                             pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
                                             homeAway: teamStats[i].homeOrAway,
@@ -559,7 +559,7 @@ export class NflService {
                                         teamGameLog.push({
                                             teamAgainstName: teamStats[i].teamAgainstName,
                                             gameDate: teamStats[i].gameDate,
-                                            result: teamStats[i].result,
+                                            result: teamStats[i].pointsScoredOverall < filteredPointsProps[m].point ? 'W' : 'L',
                                             pointsScoredOverall: teamStats[i].pointsScoredOverall,
                                             pointsAllowedOverall: teamStats[i].pointsAllowedOverall,
                                             homeAway: teamStats[i].homeOrAway,
