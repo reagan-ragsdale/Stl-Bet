@@ -10,6 +10,7 @@ import { SportsBookController } from "../../shared/Controllers/SportsBookControl
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData"
 import { remult } from "remult"
 import { nflApiController } from "../ApiCalls/nflApiCalls"
+import { NhlService } from "../Services/NhlService"
 
 
 
@@ -74,7 +75,7 @@ export const cronLoadBestBets = async () => {
         let distinctBookIds = teamsData.map(e => e.bookId).filter((v, i, a) => a.indexOf(v) === i)
         console.log('distinct team best bet book ids below')
         console.log(distinctBookIds)
-        listOfPropsFinal = await NflService.getPlayerBestBetStats(playerProps, teamsData)
+        listOfPropsFinal = await NhlService.getPlayerBestBetStats(playerProps, teamsData)
         BestBetController.addBestBet(listOfPropsFinal, 'NHL')
     }catch(error: any){
         console.log(error.message)

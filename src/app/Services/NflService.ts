@@ -55,8 +55,8 @@ export class NflService {
                 fumblesLost: gameSummary.teamStats.away.fumblesLost,
                 firstDowns: gameSummary.teamStats.away.firstDowns,
                 sacksAgainst: Number(gameSummary.teamStats.away.sacksAndYardsLost.slice(0, gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-'))),
-                passCompletions: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(0, gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-'))),
-                passAttempts: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(gameSummary.teamStats.away.sacksAndYardsLost.indexOf('-') + 1)),
+                passCompletions: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(0, gameSummary.teamStats.away.passCompletionsAndAttempts.indexOf('-'))),
+                passAttempts: Number(gameSummary.teamStats.away.passCompletionsAndAttempts.slice(gameSummary.teamStats.away.passCompletionsAndAttempts.indexOf('-') + 1)),
                 pointsAllowedOverall: gameSummary.lineScore.home.totalPts,
                 pointsAllowedFirstQuarter: gameSummary.lineScore.home.Q1,
                 pointsAllowedSecondQuarter: gameSummary.lineScore.home.Q2,
@@ -4585,15 +4585,15 @@ export class NflService {
                                 playerPropObj.averageHomeAway = totalHomeAway.length > 0 ? totalHomeAway.reduce((a, b) => a + b) / totalHomeAway.length : 0
                                 playerPropObj.averageTeam = totalTeam.length > 0 ? totalTeam.reduce((a, b) => a + b) / totalTeam.length : 0
                                 let playerGameLog = []
-                                for (let i = 0; i < playerStats.length; i++) {
+                                for (let z = 0; z < playerStats.length; z++) {
                                     playerGameLog.push({
-                                        teamAgainstName: playerStats[i].teamAgainstName,
-                                        gameDate: playerStats[i].gameDate,
-                                        propPoint: playerStats[i].rushingYards,
-                                        homeAway: playerStats[i].homeOrAway,
+                                        teamAgainstName: playerStats[z].teamAgainstName,
+                                        gameDate: playerStats[z].gameDate,
+                                        propPoint: playerStats[z].rushingYards,
+                                        homeAway: playerStats[z].homeOrAway,
                                         propName: 'Y',
-                                        result: specificProps[i].description == 'Over' ? (playerStats[i].rushingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[i].rushingYards < specificProps[i].point ? 'W' : 'L'),
-                                        gameId: playerStats[i].gameId
+                                        result: specificProps[i].description == 'Over' ? (playerStats[z].rushingYards > specificProps[i].point ? 'W' : 'L') : (playerStats[z].rushingYards < specificProps[i].point ? 'W' : 'L'),
+                                        gameId: playerStats[z].gameId
                                     })
                                 }
                                 playerPropObj.fullGameLog = playerGameLog
