@@ -105,6 +105,8 @@ export class ParlayPopupComponent implements OnChanges{
     this.overallChance = 1
     this.sameGameChance = 1
     this.teamSameGameChance = 1
+    this.noGamesPlayedTogether = true
+    this.noGamesVsTeam = true
     if(this.listOfProps.length == 1){
       this.overallChance = this.listOfProps[0].overallChance
     }
