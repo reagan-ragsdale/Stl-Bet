@@ -124,14 +124,6 @@ export class ParlayPopupComponent implements OnChanges{
         separateTeams = true
       }
       let commonGameIds = listOfPropsDistinctGameIds.reduce((p,c) => p.filter((e: any) => c.includes(e)));
-      /* for(let i = 0; i < this.listOfProps.length; i++){
-        let commonGameStats = this.listOfProps[i].fullGameLog.filter((e: { gameId: any; }) => commonGameIds.includes(e.gameId))
-        console.log('common game stats below')
-        console.log(commonGameStats)
-        let commonGameWins = commonGameStats.filter((e: { result: string; }) => e.result == 'W')
-        let propCommonGameChance = commonGameStats.length == 0 ? 0 : commonGameWins.length / commonGameStats.length
-        this.sameGameChance *= propCommonGameChance
-      } */
       let sameGameWins = 0
       for(let i = 0; i < commonGameIds.length; i++){
         let arrayOfResults: string[] = []
@@ -143,9 +135,26 @@ export class ParlayPopupComponent implements OnChanges{
         }
       }
       this.sameGameChance = sameGameWins / commonGameIds.length
-      console.log(this.sameGameChance)
-      if(separateTeams){
-
+      
+      if(!separateTeams){
+        let arrayOfHasPlayedOtherTeam = []
+        for(let i = 0; i < this.listOfProps.length; i++){
+          if(this.listOfProps[i].last10Team[1] == 0){
+            arrayOfHasPlayedOtherTeam.push(false)
+          }
+          else{
+            arrayOfHasPlayedOtherTeam.push(true)
+          }
+        }
+        if(!arrayOfHasPlayedOtherTeam.includes(false)){
+          let arrayOfGamesPlayedVsOtherTeam = []
+          for(let i = 0; i < this.listOfProps.length; i++){
+            arrayOfGamesPlayedVsOtherTeam.push(this.listOfProps[i].fullGameLog.filter((e: { teamAgainstName: any; }) => e.teamAgainstName == this.listOfProps[i].teamAgainstName).map((e: { gameId: any; }) => e.gameId))
+          }
+          console.log('games played against other team')
+          let commonTeamGameIds = arrayOfGamesPlayedVsOtherTeam.reduce((p,c) => p.filter((e: any) => c.includes(e)));
+          console.log(commonTeamGameIds)
+        }
       }
     }
   }
