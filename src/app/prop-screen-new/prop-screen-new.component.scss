@@ -335,6 +335,8 @@ mat-chip-option{
     .list-of-props{
         overflow-x:scroll;
         min-width:100%;
+        display: flex;
+        justify-content: center;
     }
     .list-of-prop-accordion{
         flex-direction: row;
