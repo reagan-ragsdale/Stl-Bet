@@ -182,7 +182,7 @@
                 </div>
                 <div class="prop-stats-panel">
                     <div class="top-prop-panel">
-                        <h2 *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0; padding-right:10px;">{{selectedDisplayProp.teamName}}</h2>
+                        <h2 *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
                         <h2 *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; padding-right:10px;">{{selectedDisplayProp.playerName}}</h2>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.playerBookData.marketKey)}}</h3>
@@ -217,7 +217,7 @@
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                         <h3 *ngIf="selectedPropType == 'Player Props' && selectedDisplayProp.propType == 'altTotal'">{{selectedDisplayProp.playerBookData.description}}</h3>
-                        <button style="margin-bottom:0;" *ngIf="selectedPropType == 'Team Props'" mat-raised-button [disabled]="selectedDisplayProp.isDisabled" (click)="addPropToParlay(selectedDisplayProp)">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</button>
+                        <button style="margin-bottom:0; margin-left:auto;" *ngIf="selectedPropType == 'Team Props'" mat-raised-button [disabled]="selectedDisplayProp.isDisabled" (click)="addPropToParlay(selectedDisplayProp)">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</button>
                         <button style="margin-bottom:0; margin-left:auto;" *ngIf="selectedPropType == 'Player Props'" mat-raised-button [disabled]="selectedDisplayProp.isDisabled" (click)="addPropToParlay(selectedDisplayProp)">{{selectedDisplayProp.playerBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.playerBookData.price}}</button>
                      
                     </div>
