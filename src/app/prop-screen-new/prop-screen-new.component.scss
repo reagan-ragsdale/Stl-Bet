@@ -73,6 +73,14 @@
     flex-direction: column;
     gap: 1rem;
 }
+.link{
+    color: #3a86ff!important;
+    text-decoration: none;
+}
+.link :hover{
+    cursor: pointer;
+    color: #fb8501 !important;
+}
 
 
 
@@ -337,7 +345,6 @@ mat-chip-option{
         overflow-x:scroll;
         min-width:100%;
         display: flex;
-        justify-content: center;
     }
     .list-of-prop-accordion{
         flex-direction: row;

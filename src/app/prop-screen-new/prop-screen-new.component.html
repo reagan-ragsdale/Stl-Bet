@@ -143,7 +143,7 @@
                         </mat-expansion-panel>
                         
                     </mat-accordion>
-                    <mat-accordion *ngIf="selectedPropType == 'Player Props'" style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
+                    <mat-accordion *ngIf="selectedPropType == 'Player Props'" style="display: flex; max-width: min-content;flex-direction: column; gap:.25rem; " [hideToggle]="false" [multi]="false" >
                         <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
                             style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
                             <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: white;padding-bottom: .5rem; padding-top:.5rem;">
@@ -157,7 +157,7 @@
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
                                         <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'total'">
-                                            <span>{{player[0].playerName}}</span>
+                                            <span class="link">{{player[0].playerName}}</span>
                                             <span style="margin-left:auto;">{{player[0].playerBookData.point}}</span>
                                             <span>{{player[0].playerBookData.price > 0 ? '+' :
                                                 ''}}{{player[0].playerBookData.price}} U</span>
@@ -165,7 +165,7 @@
                                                 ''}}{{player[1].playerBookData.price}} O</span>
                                         </div>
                                         <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'altTotal'">
-                                            <span>{{player[0].playerName}}</span>
+                                            <span class="link">{{player[0].playerName}}</span>
                                             <span
                                                 style="margin-left:auto;">{{player[player.index].playerBookData.point}}</span>
                                             <span style="padding-right:1rem;">{{player[player.index].playerBookData.price > 0 ? '+' :
@@ -182,8 +182,8 @@
                 </div>
                 <div class="prop-stats-panel">
                     <div class="top-prop-panel">
-                        <h2 *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
-                        <h2 *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; padding-right:10px;">{{selectedDisplayProp.playerName}}</h2>
+                        <h2 class="link" *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0;">{{selectedDisplayProp.teamName}}</h2>
+                        <h2 class="link" *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; padding-right:10px;">{{selectedDisplayProp.playerName}}</h2>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Team Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.gameBookData.marketKey)}}</h3>
                         <h3 class="prop-type" *ngIf="selectedPropType == 'Player Props'" style="margin-bottom:0; width:max-content;">{{getPropNameFromMarketKey(selectedDisplayProp.playerBookData.marketKey)}}</h3>
                         <div *ngIf="selectedDisplayProp.propType != 'h2h'" class="buttons" style="display:flex; align-items: center; gap:.4rem;">
