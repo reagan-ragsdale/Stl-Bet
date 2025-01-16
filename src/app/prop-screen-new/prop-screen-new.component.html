@@ -208,8 +208,7 @@
                         </button>
                         </div>
                             
-                        <h3 style="margin-bottom:0;" *ngIf="selectedPropType == 'Team Props'">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</h3>
-                        <h3 style="margin-bottom:0;" *ngIf="selectedPropType == 'Player Props'">{{selectedDisplayProp.playerBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.playerBookData.price}}</h3>
+                        
                         <div class="toggle-container" *ngIf="selectedDisplayProp.propType == 'total' || (selectedDisplayProp.propType == 'altTotal' && selectedPropType == 'Team Props')"
                             style="display:flex;">
                             <h4 style="margin-bottom: auto; margin-right: 5px">Under</h4>
@@ -218,7 +217,9 @@
                             <h4 style="margin-bottom: auto">Over</h4>
                         </div>
                         <h3 *ngIf="selectedPropType == 'Player Props' && selectedDisplayProp.propType == 'altTotal'">{{selectedDisplayProp.playerBookData.description}}</h3>
-                        <button style="margin-left:10px;"  mat-raised-button [disabled]="selectedDisplayProp.isDisabled" (click)="addPropToParlay(selectedDisplayProp)">Parlay</button>
+                        <button style="margin-bottom:0;" *ngIf="selectedPropType == 'Team Props'" mat-raised-button [disabled]="selectedDisplayProp.isDisabled" (click)="addPropToParlay(selectedDisplayProp)">{{selectedDisplayProp.gameBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.gameBookData.price}}</button>
+                        <button style="margin-bottom:0; margin-left:auto;" *ngIf="selectedPropType == 'Player Props'" mat-raised-button [disabled]="selectedDisplayProp.isDisabled" (click)="addPropToParlay(selectedDisplayProp)">{{selectedDisplayProp.playerBookData.price > 0 ? '+' : ''}}{{selectedDisplayProp.playerBookData.price}}</button>
+                     
                     </div>
                     <div class="stat-body">
                         <div style="text-align: center;
