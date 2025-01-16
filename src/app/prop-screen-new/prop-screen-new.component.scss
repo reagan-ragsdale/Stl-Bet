@@ -296,7 +296,8 @@ mat-chip-option{
 
 ::ng-deep .props-list-box .mdc-evolution-chip-set__chips{
     @media screen and (max-width: 440px) {
-        flex-direction: column;
+        flex-direction: column !important;
+        flex-flow: wrap !important;
     }
     
 }
@@ -311,6 +312,7 @@ mat-chip-option{
         flex-flow:nowrap;
     }
 }
+
 @media screen and (max-width: 440px) {
     .body{
         flex-direction:column;
