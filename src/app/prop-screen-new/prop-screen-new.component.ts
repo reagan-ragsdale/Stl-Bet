@@ -12,6 +12,8 @@ import { remult } from 'remult';
 import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
 import { Chart } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
+import { TeamPropDto } from '../Dtos/TeamPropsDto';
+import { PlayerPropDto } from '../Dtos/PlayerPropsDto';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -511,6 +513,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     console.log(this.index)
     console.log(this.selectedDisplayProp)
     
+  }
+
+  onTeamClick(prop: TeamPropDto){
+    this.router.navigate([`/teamStats/${this.selectedSport}/${prop.teamId}`])
+  }
+  onPlayerClick(prop: PlayerPropDto){
+    this.router.navigate([`/playerStats/${this.selectedSport}/${prop.playerId}`])
   }
 
   listOfParlays: any[] = []
