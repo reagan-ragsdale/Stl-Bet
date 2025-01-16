@@ -1273,7 +1273,7 @@ export class NhlService {
                             teamGameLog.push({
                                 teamAgainstName: teamStats[z].teamAgainstName,
                                 gameDate: teamStats[z].gameDate,
-                                result: (teamStats[z].pointsAllowedOverall - teamStats[z].pointsScoredOverall) < filteredPropsOnMarketKey[i].point,
+                                result: (teamStats[z].pointsAllowedOverall - teamStats[z].pointsScoredOverall) < filteredPropsOnMarketKey[i].point ? 'W' : 'L',
                                 pointsScoredOverall: teamStats[z].pointsScoredOverall,
                                 pointsAllowedOverall: teamStats[z].pointsAllowedOverall,
                                 homeAway: teamStats[z].homeOrAway,

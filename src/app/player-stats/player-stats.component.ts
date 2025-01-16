@@ -652,6 +652,7 @@ export class PlayerStatsComponent {
     this.playerSeasons = []
 
     this.playerProps = []
+    this.playerPropArray = []
     this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
     console.log(this.playerProps)
     let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
