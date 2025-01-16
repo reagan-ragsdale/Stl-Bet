@@ -157,7 +157,7 @@
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
                                         <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'total'">
-                                            <span class="link">{{player[0].playerName}}</span>
+                                            <span>{{player[0].playerName}}</span>
                                             <span style="margin-left:auto;">{{player[0].playerBookData.point}}</span>
                                             <span>{{player[0].playerBookData.price > 0 ? '+' :
                                                 ''}}{{player[0].playerBookData.price}} U</span>
@@ -165,7 +165,7 @@
                                                 ''}}{{player[1].playerBookData.price}} O</span>
                                         </div>
                                         <div style="display:flex; gap:1rem; font-size:smaller;" *ngIf="player[0].propType == 'altTotal'">
-                                            <span class="link">{{player[0].playerName}}</span>
+                                            <span>{{player[0].playerName}}</span>
                                             <span
                                                 style="margin-left:auto;">{{player[player.index].playerBookData.point}}</span>
                                             <span style="padding-right:1rem;">{{player[player.index].playerBookData.price > 0 ? '+' :
