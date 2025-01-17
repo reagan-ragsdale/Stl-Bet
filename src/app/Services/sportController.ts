@@ -3,6 +3,7 @@ import { BestBetController } from "../../shared/Controllers/BestBetController"
 import { NflController } from "../../shared/Controllers/NflController"
 import { MlbController } from "../../shared/Controllers/MlbController"
 import { NbaController } from "../../shared/Controllers/NbaController"
+import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController"
 
 
 export class sportController {
@@ -36,5 +37,21 @@ export class sportController {
             return await NhlController.NhlGetPlayerGameStatTotals(stat, 2024)
           }
           else return []
+    }
+    
+    static async getPlayerStatScreenInfo(sport: string, playerId: number, ){
+      if(sport == 'NHL'){
+        return await Promise.all([PlayerInfoController.loadActivePlayerInfoBySport('NHL'), NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(playerId, 2024), NhlController.NhlGetPlayerGameStatAveragesByPlayerId(playerId)])
+      }
+      else if(sport == 'NFL'){
+        return await Promise.all([PlayerInfoController.loadActivePlayerInfoBySport('NFL'), NflController.nflGetPlayerGameStatsByPlayerId(playerId), NflController.nflGetPlayerStatTotalsByPlayerIdAndSeason(playerId,2024)])
+      }
+      else if(sport == 'MLB'){
+        return []
+      }
+      else if(sport == 'NBA'){
+        return []
+      }
+      else return []
     }
 }

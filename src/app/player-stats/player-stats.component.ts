@@ -27,6 +27,7 @@ import { reusedFunctions } from '../Services/reusedFunctions';
 import { DBMlbPlayerGameStatTotals } from '../../shared/dbTasks/DbMlbPlayerGameStatTotals';
 import { NflController } from 'src/shared/Controllers/NflController';
 import { NhlController } from 'src/shared/Controllers/NhlController';
+import { sportController } from '../Services/sportController';
 
 
 interface statSearch {
@@ -412,13 +413,23 @@ export class PlayerStatsComponent {
 
   playerPropArray: any[] = []
   async getPlayerInfo() {
-    //what to fetch for this screen
-    //all stats for the player
-    //player averages
-    //player props
-    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
+    let playerCall = await sportController.getPlayerStatScreenInfo(this.selectedSport, this.playerId)
+    this.playerInfo = playerCall[0]
+    this.playerStats = playerCall[1]
+    this.playerTotalStats = playerCall[2]
+
     this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)
     this.playerName = this.selectedPlayer[0].playerName
+
+    for (let i = 0; i < this.playerStats.length; i++) {
+      this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
+    }
+    this.distinctSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+
+    this.distinctSeasons.sort(function (a, b) {
+      return a - b;
+    });
+    this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
 
     if (this.selectedSport == 'MLB') {
       this.fullDataset = [
@@ -460,18 +471,6 @@ export class PlayerStatsComponent {
       this.playerTotalDataSet = this.playerTotalDataSetMlb
     }
     else if (this.selectedSport == 'NFL') {
-      let callArray = await Promise.all([NflController.nflGetAllPlayerGameStatsBySpecificPlayerNameAndSeason(this.playerName, 2024), NflController.nflGetPlayerStatTotalsByPlayerIdAndSeason(this.playerId, 2024)])
-      this.playerStats = callArray[0]
-      this.playerTotalStats = callArray[1]
-      for (let i = 0; i < this.playerStats.length; i++) {
-        this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
-      }
-      this.distinctSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-
-      this.distinctSeasons.sort(function (a, b) {
-        return a - b;
-      });
-      this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
       this.fullDataset = [
         {
           label: "Pass TD",
@@ -549,21 +548,89 @@ export class PlayerStatsComponent {
       this.playerTotalDataSet = this.playerTotalDataSetNfl
     }
     else if (this.selectedSport == 'NHL') {
-      let callArray = await Promise.all([NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(this.playerId, 2024), NhlController.NhlGetPlayerGameStatAveragesByPlayerId(this.playerId)])
-      this.playerStats = callArray[0]
-      this.playerTotalStats = callArray[1]
-      for (let i = 0; i < this.playerStats.length; i++) {
-        this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
-      }
-      this.distinctSeasons = this.playerStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+      this.fullDataset = [
+        {
+          label: "Points",
+          data: [],
+          backgroundColor: 'rgba(50,0,255,0.2)',
+          showLine: true,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(25, 208, 192)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
+          dataName: 'points'
 
-      this.distinctSeasons.sort(function (a, b) {
-        return a - b;
-      });
-      this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
+        },
+        {
+          label: "Goals",
+          data: [],
+          backgroundColor: 'rgba(0,255,255,0.2)',
+          showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(200, 100, 150)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
+          dataName: 'goals'
+
+        },
+        {
+          label: "Assists",
+          data: [],
+          backgroundColor: 'rgba(0,0,255,0.2)',
+          showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(25, 25, 100)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
+          dataName: 'assists'
+
+        },
+        {
+          label: "Shots",
+          data: [],
+          backgroundColor: 'rgba(0,255,0,0.2)',
+          showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(225, 50, 125)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
+          dataName: 'shots'
+        },
+        {
+          label: "Blocks",
+          data: [],
+          backgroundColor: 'rgba(0,200,25,0.2)',
+          showLine: false,
+          borderColor: 'rgb(75, 192, 192)',
+          fill: true, // This makes the area under the line filled with color
+          tension: 0.4, // Smooth curve
+          pointBackgroundColor: 'rgb(89, 106, 209)', // Point color
+          pointBorderColor: '#fff', // Point border color
+          pointBorderWidth: 3, // Point border width
+          pointRadius: 5, // Point size
+          dataName: 'blocks'
+        }
+      ]
+      this.displayedColumns = this.displayedColumnsNhl
+      this.displayedColumnsValues = this.displayedColumnsValuesNhl
+      this.playerTotalStatColumns = this.playerTotalStatColumnsNhl
+      this.playerTotalDataSet = this.playerTotalDataSetNhl
 
 
-
+    }
+    else if (this.selectedSport == 'NBA') {
       this.fullDataset = [
         {
           label: "Points",
