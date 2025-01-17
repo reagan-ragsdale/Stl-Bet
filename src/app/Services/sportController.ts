@@ -4,6 +4,12 @@ import { NflController } from "../../shared/Controllers/NflController"
 import { MlbController } from "../../shared/Controllers/MlbController"
 import { NbaController } from "../../shared/Controllers/NbaController"
 import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController"
+import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData"
+import { NhlService } from "./NhlService"
+import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData"
+import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo"
+import { NflService } from "./NflService"
+import { TeamInfoController } from "src/shared/Controllers/TeamInfoController"
 
 
 export class sportController {
@@ -53,5 +59,32 @@ export class sportController {
         return []
       }
       else return []
+    }
+
+    static async getSinglePlayerProps(playerProps: DbPlayerPropData[], sport: string, playerId: number){
+      let allTeamInfo = await TeamInfoController.getAllTeamInfo(sport)
+      if(sport == 'NHL'){
+        return await Promise.all([NhlService.getSinglePlayerPropDataNew(playerProps, allTeamInfo, playerId)])
+      }
+      else if(sport == 'NFL'){
+
+      }
+      else if(sport == 'NBA'){
+        return []
+      }
+      else if(sport == 'MLB'){
+        return []
+      }
+      return []
+    }
+
+    static async getPropDataBySport(sport: string, gameProps: DbGameBookData[], allTeamInfo: DbTeamInfo[], teamNames: string[], selectedGame: string): Promise<any[]>{
+      if(sport == 'NHL'){
+        return await Promise.all([NhlService.getTeamPropDataNew(gameProps, allTeamInfo),NhlController.NhlGetTeamsGameStatTotals(teamNames, 2024),NhlService.getPlayerPropDataNew(selectedGame, allTeamInfo), NhlService.getLiveBets(teamNames)])
+      }
+      else if(sport == 'NFL'){
+        return await Promise.all([NflService.getTeamPropDataNew(gameProps, allTeamInfo),NflController.nflGetTeamsGameStatTotals(teamNames, 2024),NflService.getPlayerPropDataNew(selectedGame, allTeamInfo), NflService.getLiveBets(teamNames)])
+      }
+      return []
     }
 }

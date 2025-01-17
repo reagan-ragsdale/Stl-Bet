@@ -302,18 +302,7 @@ export class reusedFunctions {
     return new Date(year, month, day);
   }
 
-  static async getPropDataBySport(sport: string, gameProps: DbGameBookData[], allTeamInfo: DbTeamInfo[], teamNames: string[], selectedGame: string): Promise<any[]>{
-    let finalReturn: any = []
-
-    if(sport == 'NHL'){
-      finalReturn = Promise.all([NhlService.getTeamPropDataNew(gameProps, allTeamInfo),NhlController.NhlGetTeamsGameStatTotals(teamNames, 2024),NhlService.getPlayerPropDataNew(selectedGame, allTeamInfo), NhlService.getLiveBets(teamNames)])
-    }
-    else if(sport == 'NFL'){
-      finalReturn = Promise.all([NflService.getTeamPropDataNew(gameProps, allTeamInfo),NflController.nflGetTeamsGameStatTotals(teamNames, 2024),NflService.getPlayerPropDataNew(selectedGame, allTeamInfo), NflService.getLiveBets(teamNames)])
-    }
-
-    return finalReturn
-  }
+  
 
   static isBackToBackGame(game1: Date, game2: Date): boolean {
           const normalizedDate1 = new Date(Date.UTC(game1.getUTCFullYear(), game1.getUTCMonth(), game1.getUTCDate()));

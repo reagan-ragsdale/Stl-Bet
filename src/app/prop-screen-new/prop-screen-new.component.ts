@@ -14,6 +14,7 @@ import { Chart } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { TeamPropDto } from '../Dtos/TeamPropsDto';
 import { PlayerPropDto } from '../Dtos/PlayerPropsDto';
+import { sportController } from '../Services/sportController';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -171,7 +172,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.overUnderSlide = false;
     this.index = 0;
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
-    let results = await reusedFunctions.getPropDataBySport(this.selectedSport, gameProps, this.allSportTeamInfo, [this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], this.selectedGame)
+    let results = await sportController.getPropDataBySport(this.selectedSport, gameProps, this.allSportTeamInfo, [this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], this.selectedGame)
     this.teamPropFinnal = results[0]
     let teamTotals = results[1]
     this.playerPropData = results[2]
