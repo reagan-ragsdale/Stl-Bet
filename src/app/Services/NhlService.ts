@@ -2588,7 +2588,7 @@ export class NhlService {
         console.log("end player service")
         return finalReturn
     }
-    static async getSinglePlayerPropDataNew(playerProps: DbPlayerPropData[], allTeamInfo: DbTeamInfo[], playerId: number): Promise<any[]> {
+    static async getSinglePlayerPropDataNew(playerProps: DbPlayerPropData[], allTeamInfo: DbTeamInfo[], playerId: number, playerInfo: DbPlayerInfo, playerStats: DbNhlPlayerGameStats[]): Promise<any[]> {
         console.log("start player service")
         let finalReturn: any[] = []
 
@@ -2597,10 +2597,6 @@ export class NhlService {
 
         let uniquePlayerProps = playerProps.map(e => e.marketKey).filter((value, index, array) => array.indexOf(value) === index)
 
-
-        let playerCall = await Promise.all([NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(playerId, 2024), PlayerInfoController.loadPlayerInfoBySportAndId("NHL", playerId)])
-        let playerStats = playerCall[0]
-        let playerInfo = playerCall[1]
 
         //create an array for each prop that has a home and away array that contains an array for each player props
         for (let j = 0; j < uniquePlayerProps.length; j++) {
@@ -2612,14 +2608,14 @@ export class NhlService {
             let playerPropStats: any = []
             for (let i = 0; i < specificProps.length; i++) {
                 try {
-                    let playerTeamNameLong = allTeamInfo.filter(e => e.teamNameAbvr == playerInfo[0].teamName)
+                    let playerTeamNameLong = allTeamInfo.filter(e => e.teamNameAbvr == playerInfo.teamName)
                     let playerTeamAgainst = playerTeamNameLong[0].teamNameFull == specificProps[i].awayTeam ? allTeamInfo.filter(e => e.teamNameFull == specificProps[i].homeTeam) : allTeamInfo.filter(e => e.teamNameFull == specificProps[i].awayTeam)
                     let playerPropObj: PlayerPropDto = {
                         playerBookData: specificProps[i],
-                        playerName: playerInfo[0].playerName,
-                        playerId: playerInfo[0].playerId,
-                        teamName: playerInfo[0].teamName,
-                        teamId: playerInfo[0].teamId,
+                        playerName: playerInfo.playerName,
+                        playerId: playerInfo.playerId,
+                        teamName: playerInfo.teamName,
+                        teamId: playerInfo.teamId,
                         teamAgainstName: playerTeamAgainst[0].teamNameAbvr,
                         teamAgainstId: playerTeamAgainst[0].teamId,
                         homeAway: playerTeamNameLong[0].teamNameFull == specificProps[i].awayTeam ? 'Away' : 'Home',

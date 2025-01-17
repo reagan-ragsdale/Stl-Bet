@@ -712,7 +712,7 @@ export class PlayerStatsComponent {
     this.playerProps = []
     this.playerPropArray = []
     this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.selectedPlayer!.playerName)
-    this.playerPropArray = await sportController.getSinglePlayerProps(this.playerProps, this.selectedPlayer!.sport, this.selectedPlayer!.playerId)
+    this.playerPropArray = await sportController.getSinglePlayerProps(this.playerProps, this.selectedPlayer!.sport, this.selectedPlayer!.playerId, this.selectedPlayer!, this.playerStats)
     /* console.log(this.playerPropArray)
     let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
     if (numberOfBookIds.length > 1) {

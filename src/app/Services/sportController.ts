@@ -10,6 +10,7 @@ import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData"
 import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo"
 import { NflService } from "./NflService"
 import { TeamInfoController } from "src/shared/Controllers/TeamInfoController"
+import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo"
 
 
 export class sportController {
@@ -61,10 +62,10 @@ export class sportController {
       else return []
     }
 
-    static async getSinglePlayerProps(playerProps: DbPlayerPropData[], sport: string, playerId: number){
+    static async getSinglePlayerProps(playerProps: DbPlayerPropData[], sport: string, playerId: number, playerInfo: DbPlayerInfo, playerStats: any[]){
       let allTeamInfo = await TeamInfoController.getAllTeamInfo(sport)
       if(sport == 'NHL'){
-        return await NhlService.getSinglePlayerPropDataNew(playerProps, allTeamInfo, playerId)
+        return await NhlService.getSinglePlayerPropDataNew(playerProps, allTeamInfo, playerId, playerInfo, playerStats)
       }
       else if(sport == 'NFL'){
 
