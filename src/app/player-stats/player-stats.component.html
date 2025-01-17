@@ -66,14 +66,14 @@
         <div style="margin-left: auto; margin-right: auto;">
           <h2>Upcoming Games and Props</h2>
         </div>
-        <div style="display:flex; padding: 0 1rem; overflow-x:scroll; scrollbar-width:none;">
+        <div style="display:flex; padding: 0 1rem; overflow-x:scroll; scrollbar-width:none; gap:1rem;">
 
 
           <div style="width:20%">
-            <div style="display:flex; flex-direction: column;">
-              <h2 *ngIf="playerPropArray[0][0].homeAway == 'Away'">{{playerPropArray[0][0].teamName}} &#64; {{playerPropArray[0][0].teamAgainstName}}</h2>
-              <h2 *ngIf="playerPropArray[0][0].homeAway == 'Home'">{{playerPropArray[0][0].teamAgainstName}} &#64; {{playerPropArray[0][0].teamName}}</h2>
-              <span>{{playerPropArray[0][0].playerBookData.commenceTime | getDayAndTime}}</span>
+            <div style="display:flex; flex-direction: column;background-color: darkslateblue;border-radius: 8px;color: white;">
+              <h2 style="margin-bottom:0; text-align: center;" *ngIf="playerPropArray[0][0].homeAway == 'Away'">{{playerPropArray[0][0].teamName}} &#64; {{playerPropArray[0][0].teamAgainstName}}</h2>
+              <h2 style="margin-bottom:0; text-align: center;" *ngIf="playerPropArray[0][0].homeAway == 'Home'">{{playerPropArray[0][0].teamAgainstName}} &#64; {{playerPropArray[0][0].teamName}}</h2>
+              <span style="text-align: center;">{{playerPropArray[0][0].playerBookData.commenceTime | getDayAndTime}}</span>
             </div>
           </div>
           <div class="player-props">
