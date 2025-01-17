@@ -75,7 +75,7 @@
           <div class="player-props">
             <div  *ngFor="let prop of playerPropArray">
               <div class="player-prop-body" *ngIf="prop.propType == 'total'">
-                <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[0].playerBookData.marketKey | removeUnderScore
+                <h3 style="margin-top:auto; margin-bottom: auto; ">{{prop[0].playerBookData.marketKey | removeUnderScore
                   |
                   titlecase}}:</h3>
                 <h4 class="prop-point">{{prop[0].playerBookData.point}}</h4>
@@ -91,10 +91,10 @@
                 </div>
               </div>
               <div class="player-prop-body" *ngIf="prop.propType == 'altTotal'">
-                <h3 style="margin-top:auto; margin-bottom: auto; margin-left:1rem;">{{prop[prop.index].playerBookData.marketKey | removeUnderScore
+                <h3 style="margin-top:auto; margin-bottom: auto;">{{prop[prop.index].playerBookData.marketKey | removeUnderScore
                   |
                   titlecase}}:</h3>
-                  <div>
+                  <div style="display:flex; align-items: center; gap:5px;">
                     <button 
                     style="padding-left: 0; padding-right:0; min-width:40px; width:20px;"
                     (click)="$event.stopPropagation()" mat-raised-button [disabled]="prop.index == 0"
