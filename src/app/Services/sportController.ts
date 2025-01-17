@@ -64,7 +64,7 @@ export class sportController {
     static async getSinglePlayerProps(playerProps: DbPlayerPropData[], sport: string, playerId: number){
       let allTeamInfo = await TeamInfoController.getAllTeamInfo(sport)
       if(sport == 'NHL'){
-        return await Promise.all([NhlService.getSinglePlayerPropDataNew(playerProps, allTeamInfo, playerId)])
+        return await NhlService.getSinglePlayerPropDataNew(playerProps, allTeamInfo, playerId)
       }
       else if(sport == 'NFL'){
 
