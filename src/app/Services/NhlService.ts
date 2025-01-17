@@ -2957,10 +2957,12 @@ export class NhlService {
 
                 }
                 playerPropStats.overUnder = false;
+                playerPropStats.propType = 'total'
             }
             else if (playerPropStats[0].propType = 'altTotal') {
                 playerPropStats.sort((a: { playerBookData: { point: any; }; }, b: { playerBookData: { point: any; }; }) => a.playerBookData.point - b.playerBookData.point)
                 playerPropStats.index = 0;
+                playerPropStats.propType = 'altTotal'
             }
 
             playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
@@ -2971,10 +2973,11 @@ export class NhlService {
             propArray[1].teamName = homeTeam
 
             fullArray.propName = uniquePlayerProps[j]
+            fullArray.propType = 
             finalReturn.push(fullArray)
         }
         console.log("end player service")
-        return finalReturn
+        return finalReturn[0]
 }
 
 
