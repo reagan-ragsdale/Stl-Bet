@@ -2965,14 +2965,15 @@ export class NhlService {
                 playerPropStats.propType = 'altTotal'
             }
 
-            playerPropStats[0].homeAway == 'Home' ? homePlayerProps.push(playerPropStats) : awayPlayerProps.push(playerPropStats)
-            let fullArray: any = awayPlayerProps.concat(homePlayerProps)
+            
+            let fullArray: any = playerPropStats
             propArray.push(awayPlayerProps);
             propArray[0].teamName = awayTeam
             propArray.push(homePlayerProps);
             propArray[1].teamName = homeTeam
 
             fullArray.propName = uniquePlayerProps[j]
+            fullArray.propType = playerPropStats[0].propType
             finalReturn.push(fullArray)
         }
         console.log("end player service")
