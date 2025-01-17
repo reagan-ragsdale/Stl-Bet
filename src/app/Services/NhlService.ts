@@ -2977,7 +2977,7 @@ export class NhlService {
             finalReturn.push(fullArray)
         }
         console.log("end player service")
-        return finalReturn[0]
+        return finalReturn
 }
 
 
