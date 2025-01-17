@@ -417,6 +417,7 @@ export class PlayerStatsComponent {
   async getPlayerInfo() {
     this.sharedCaching.currentPlayerInfo.subscribe(data => {
       if(data){
+        console.log('data for player below')
         console.log(data)
       }
     })
