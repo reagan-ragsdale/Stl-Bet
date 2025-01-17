@@ -71,6 +71,11 @@
 
           <div>
             <h1>Games</h1>
+            <div>
+              <span *ngIf="playerPropArray[0][0].homeAway == 'Away'">{{playerPropArray[0][0].teamName}} &#64; {{playerPropArray[0][0].teamAgainstName}}</span>
+              <span *ngIf="playerPropArray[0][0].homeAway == 'Home'">{{playerPropArray[0][0].teamAgainstName}} &#64; {{playerPropArray[0][0].teamName}}</span>
+              <span>{{playerPropArray[0][0].playerBookData.commenceTime | getDayAndTime}}</span>
+            </div>
           </div>
           <div class="player-props">
             <div  *ngFor="let prop of playerPropArray">
