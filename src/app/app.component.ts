@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
 import { FormControl } from '@angular/forms';
+import { SharedCaching } from './Services/shared-caching';
+import { DbPlayerInfo } from 'src/shared/dbTasks/DbPlayerInfo';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,7 @@ import { FormControl } from '@angular/forms';
   //encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  constructor(zone: NgZone, private router: Router) {
+  constructor(zone: NgZone, private router: Router, private sharedCache: SharedCaching) {
     remult.apiClient.wrapMessageHandling = handler => zone.run(() => handler())
   }
   remult = remult;
@@ -38,6 +40,8 @@ export class AppComponent {
   }
 
   loadNewPlayer(playerId: number, sport: string){
+    let player = this.playerInfo.filter(e => e.playerId == playerId && e.sport == sport)[0]
+    this.sharedCache.changeCurrentPlayerInfo({playerId: player.playerId, playerName: player.playerName, teamId: player.teamId, teamName: player.teamName, sport: player.sport})
     this.router.navigate([`/playerStats/${sport}/${playerId}`])
   }
   
@@ -52,7 +56,7 @@ export class AppComponent {
     }
   }
   myControl = new FormControl('');
-  playerInfo: any[] = []
+  playerInfo: DbPlayerInfo[] = []
   async ngOnInit(){
     this.playerInfo = await PlayerInfoController.loadAllSportPlayerInfo()
     this.filteredSearch = this.playerInfo

@@ -25,6 +25,7 @@ import { NhlController } from '../../shared/Controllers/NhlController';
 import { cronLoadBestBets } from '../cronJobs/cronLoadBestBets';
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { sportController } from '../Services/sportController';
+import { SharedCaching } from '../Services/shared-caching';
 
 @Component({
   selector: 'home-screen',
@@ -34,7 +35,10 @@ import { sportController } from '../Services/sportController';
 })
 export class HomeScreenComponent implements OnDestroy, OnInit {
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private sharedCache: SharedCaching
+  ) {
   }
 
 
@@ -100,7 +104,8 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
     this.router.navigate([`/teamStats/${this.selectedSport}/${teamId.teamId}`]) */
   }
 
-  playerStatsClicked(playerId: number) {
+  playerStatsClicked(playerId: number, playerName: string, teamId: number, teamName: string) {
+    this.sharedCache.changeCurrentPlayerInfo({playerId: playerId, playerName: playerName, teamId: teamId, teamName: teamName, sport: this.selectedSport})
     this.router.navigate([`/playerStats/${this.selectedSport}/${playerId}`])
   }
 
