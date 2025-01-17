@@ -373,7 +373,7 @@ export class PlayerStatsComponent {
   //all
 
   public playerInfo: DbPlayerInfo[] = []
-  public selectedPlayer: DbPlayerInfo[] = []
+  public selectedPlayer: DbPlayerInfo | null = null
   public playerStats: any[] = []
   public playerSeasonStats: any[] = []
 
@@ -382,52 +382,35 @@ export class PlayerStatsComponent {
 
 
   async initialize() {
+    this.sharedCaching.currentPlayerInfo.subscribe(async data => {
+      if (data) {
+        this.selectedPlayer = data
+      }
+    })
     this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
       this.selectedSport = params.get('sport') == null ? 'all' : params.get('sport')
       this.playerId = params.get('id') == null ? 0 : params.get('id')
       this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
-      try{
-        this.destroyGraphs()
-      }
-      catch(error:any){
-        
-      }
-      await this.loadData()
+      let playerData = await PlayerInfoController.loadPlayerInfoBySportAndId(this.selectedSport, this.playerId)
+      this.selectedPlayer = playerData[0]
     })
+    this.destroyGraphs()
+    await this.loadData()
   }
 
   async loadData() {
-
-
-    this.selectedSport = this.route.snapshot.paramMap.get('sport')
-    this.playerId = this.route.snapshot.paramMap.get('id')
     await this.getPlayerInfo()
     this.createChart()
-
-
-
-
-
-
   }
 
 
 
   playerPropArray: any[] = []
   async getPlayerInfo() {
-    this.sharedCaching.currentPlayerInfo.subscribe(data => {
-      if(data){
-        console.log('data for player below')
-        console.log(data)
-      }
-    })
-    let playerCall = await sportController.getPlayerStatScreenInfo(this.selectedSport, this.playerId)
-    this.playerInfo = playerCall[0]
-    this.playerStats = playerCall[1]
-    this.playerTotalStats = playerCall[2]
 
-    this.selectedPlayer = this.playerInfo.filter(e => e.playerId == this.playerId)
-    this.playerName = this.selectedPlayer[0].playerName
+    let playerCall = await sportController.getPlayerStatScreenInfo(this.selectedSport, this.playerId)
+    this.playerStats = playerCall[0]
+    this.playerTotalStats = playerCall[1]
 
     for (let i = 0; i < this.playerStats.length; i++) {
       this.playerStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.playerStats[i].gameDate)
@@ -722,14 +705,14 @@ export class PlayerStatsComponent {
 
     }
 
-    
+
 
     this.playerSeasons = []
 
     this.playerProps = []
     this.playerPropArray = []
-    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.playerStats[0].playerName)
-    this.playerPropArray = await sportController.getSinglePlayerProps(this.playerProps, this.selectedSport, this.playerId)
+    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.selectedPlayer!.playerName)
+    this.playerPropArray = await sportController.getSinglePlayerProps(this.playerProps, this.selectedPlayer!.sport, this.selectedPlayer!.playerId)
     /* console.log(this.playerPropArray)
     let numberOfBookIds = this.playerProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
     if (numberOfBookIds.length > 1) {
@@ -747,11 +730,7 @@ export class PlayerStatsComponent {
 
 
 
-  loadNewPlayer(id: number, sport: string) {
-    this.destroyGraphs()
-    this.router.navigate([`/playerStats/${sport}/${id}`])
-    this.formArray = []
-  }
+
 
 
 
@@ -1156,8 +1135,8 @@ export class PlayerStatsComponent {
             grid: {
               display: false // Hides grid lines on the y-axis
             },
-            ticks:{
-              stepSize:1
+            ticks: {
+              stepSize: 1
             }
           },
           x: {
@@ -1187,9 +1166,10 @@ export class PlayerStatsComponent {
   }
 
   destroyGraphs() {
-    this.chart.destroy()
-    //this.chart2.destroy()
-    //this.chart3.destroy()
+    let chartInstance = Chart.getChart("lineChart")
+    if (chartInstance != undefined) {
+      this.chart.destroy()
+    }
   }
 
 

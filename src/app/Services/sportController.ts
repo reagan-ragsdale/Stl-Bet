@@ -47,10 +47,10 @@ export class sportController {
     
     static async getPlayerStatScreenInfo(sport: string, playerId: number, ){
       if(sport == 'NHL'){
-        return await Promise.all([PlayerInfoController.loadActivePlayerInfoBySport('NHL'), NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(playerId, 2024), NhlController.NhlGetPlayerGameStatAveragesByPlayerId(playerId)])
+        return await Promise.all([NhlController.nhlGetAllPlayerStatsByPlayerIdAndSeason(playerId, 2024), NhlController.NhlGetPlayerGameStatAveragesByPlayerId(playerId)])
       }
       else if(sport == 'NFL'){
-        return await Promise.all([PlayerInfoController.loadActivePlayerInfoBySport('NFL'), NflController.nflGetPlayerGameStatsByPlayerId(playerId), NflController.nflGetPlayerStatTotalsByPlayerIdAndSeason(playerId,2024)])
+        return await Promise.all([NflController.nflGetPlayerGameStatsByPlayerId(playerId), NflController.nflGetPlayerStatTotalsByPlayerIdAndSeason(playerId,2024)])
       }
       else if(sport == 'MLB'){
         return []
