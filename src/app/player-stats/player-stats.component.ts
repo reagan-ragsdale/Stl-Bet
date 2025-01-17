@@ -393,6 +393,7 @@ export class PlayerStatsComponent {
       this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
       let playerData = await PlayerInfoController.loadPlayerInfoBySportAndId(this.selectedSport, this.playerId)
       this.selectedPlayer = playerData[0]
+      console.log(this.selectedPlayer)
     })
     this.destroyGraphs()
     await this.loadData()
