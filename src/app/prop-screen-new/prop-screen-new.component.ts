@@ -15,6 +15,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 import { TeamPropDto } from '../Dtos/TeamPropsDto';
 import { PlayerPropDto } from '../Dtos/PlayerPropsDto';
 import { sportController } from '../Services/sportController';
+import { SharedCaching } from '../Services/shared-caching';
 
 @Component({
   selector: 'app-prop-screen-new',
@@ -79,6 +80,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private sharedCaching: SharedCaching
     //private dialog: MatDialog
   ) {
 
@@ -520,6 +522,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.router.navigate([`/teamStats/${this.selectedSport}/${prop.teamId}`])
   }
   onPlayerClick(prop: PlayerPropDto){
+    this.sharedCaching.changeCurrentPlayerInfo({playerId: prop.playerId, playerName: prop.playerName, teamId: prop.teamId, teamName: prop.teamName, sport: this.selectedSport})
     this.router.navigate([`/playerStats/${this.selectedSport}/${prop.playerId}`])
   }
 

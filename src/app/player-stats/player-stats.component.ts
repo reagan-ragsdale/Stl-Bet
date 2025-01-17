@@ -28,6 +28,7 @@ import { DBMlbPlayerGameStatTotals } from '../../shared/dbTasks/DbMlbPlayerGameS
 import { NflController } from 'src/shared/Controllers/NflController';
 import { NhlController } from 'src/shared/Controllers/NhlController';
 import { sportController } from '../Services/sportController';
+import { SharedCaching } from '../Services/shared-caching';
 
 
 interface statSearch {
@@ -51,6 +52,7 @@ export class PlayerStatsComponent {
     private router: Router,
     private route: ActivatedRoute,
     private nhlApiController: nhlApiController,
+    private sharedCaching: SharedCaching
     //private draftKingsApiController: draftKingsApiController
   ) { }
 
@@ -413,6 +415,11 @@ export class PlayerStatsComponent {
 
   playerPropArray: any[] = []
   async getPlayerInfo() {
+    this.sharedCaching.currentPlayerInfo.subscribe(data => {
+      if(data){
+        console.log(data)
+      }
+    })
     let playerCall = await sportController.getPlayerStatScreenInfo(this.selectedSport, this.playerId)
     this.playerInfo = playerCall[0]
     this.playerStats = playerCall[1]
