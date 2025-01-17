@@ -2973,7 +2973,6 @@ export class NhlService {
             propArray[1].teamName = homeTeam
 
             fullArray.propName = uniquePlayerProps[j]
-            fullArray.propType = 
             finalReturn.push(fullArray)
         }
         console.log("end player service")
