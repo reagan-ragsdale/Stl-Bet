@@ -152,7 +152,7 @@
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div class="player-chip" style="display:flex; flex-direction: column;">
-                                    <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
+                                    <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box props-list-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                         
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onPropClicked(player, i, j)">
@@ -424,7 +424,7 @@
                                     </mat-panel-title>
                                 </mat-expansion-panel-header>
                                 <div class="player-chip" style="display:flex; flex-direction: column;">
-                                        <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
+                                        <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box props-list-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                             
                                             <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let player of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                                  (click)="onPropClicked(player, i, j)">
@@ -658,7 +658,7 @@
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div class="player-chip" style="display:flex; flex-direction: column;">
-                                    <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
+                                    <mat-chip-listbox   class="mat-mdc-chip-set-stacked chip-box props-list-box" aria-label="Color selection" [hideSingleSelectionIndicator]="true" [required]="true" [multiple]="false">
                                         
                                         <mat-chip-option style="min-width:inherit; border-radius:8px;" *ngFor="let team of prop; let j = index"  [selected]="selectedBetIndexes[0] == i && selectedBetIndexes[1] == j" 
                                              (click)="onLivePropClicked(team, i, j)">
