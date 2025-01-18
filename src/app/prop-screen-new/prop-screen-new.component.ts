@@ -158,15 +158,11 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.router.navigate([`/propsNew/${this.selectedSport}/${this.selectedGame}`])
     this.selectedSportGamesFinal.forEach(e => {
       e[0].selected = false;
-      
-
     })
     let selectedGameClicked = this.selectedSportGamesFinal.filter(e => e[0][0].bookId == this.selectedGame)
     selectedGameClicked[0][0].selected = true
     this.awayTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameAbvr == selectedGameClicked[0][0][0].awayTeam)
     this.homeTeamInfo = this.allSportTeamInfo.filter(f => f.teamNameAbvr == selectedGameClicked[0][0][0].homeTeam)
-    
-    
 
     await this.displayProp();
   }

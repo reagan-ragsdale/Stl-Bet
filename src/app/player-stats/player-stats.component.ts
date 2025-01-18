@@ -382,18 +382,19 @@ export class PlayerStatsComponent {
 
 
   async initialize() {
-    this.sharedCaching.currentPlayerInfo.subscribe(async data => {
+    this.sharedCaching.currentPlayerInfo.subscribe( data => {
       if (data) {
         this.selectedPlayer = data
       }
-    })
-    this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
-      this.selectedSport = params.get('sport') == null ? 'all' : params.get('sport')
-      this.playerId = params.get('id') == null ? 0 : params.get('id')
-      this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
-      let playerData = await PlayerInfoController.loadPlayerInfoBySportAndId(this.selectedSport, this.playerId)
-      this.selectedPlayer = playerData[0]
-      console.log(this.selectedPlayer)
+      else{
+        this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
+          this.selectedSport = params.get('sport')
+          this.playerId = params.get('id')
+          this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
+          let playerData = await PlayerInfoController.loadPlayerInfoBySportAndId(this.selectedSport, this.playerId)
+          this.selectedPlayer = playerData[0]
+        })
+      }
     })
     this.destroyGraphs()
     await this.loadData()

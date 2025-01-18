@@ -58,6 +58,11 @@ export class NhlController{
         
         
     }
+    @BackendMethod({allowed:true})
+    static async NhlGetTeamGameStatTotalsByTeamIdAndSeason(teamId: number, season: number){
+        const taskRepo = remult.repo(DbNhlTeamGameStatTotals)
+        return await taskRepo.find({where: {teamId: teamId, season: season}})
+    }
     
     //team stat averages
     @BackendMethod({allowed:true})

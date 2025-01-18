@@ -1,33 +1,16 @@
 import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { NbaController } from 'src/shared/Controllers/NbaController';
-import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
-import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
+import { ActivatedRoute, Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import { filter } from 'compression';
-
-import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { DbNbaTeamLogos } from '../../shared/dbTasks/DbNbaTeamLogos';
-import { MlbController } from '../../shared/Controllers/MlbController';
-import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
-import { DbPlayerInfo } from 'src/shared/dbTasks/DbPlayerInfo';
-import { PlayerPropController } from 'src/shared/Controllers/PlayerPropController';
-import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
-import { reusedFunctions } from '../Services/reusedFunctions';
-import { DBMlbPlayerGameStatTotals } from 'src/shared/dbTasks/DbMlbPlayerGameStatTotals';
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
-import { DbMlbTeamGameStatAverages } from '../../shared/dbTasks/DbMlbTeamGameStatAverages';
-import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
-import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
-import { NflController } from 'src/shared/Controllers/NflController';
+import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
+import { sportController } from '../Services/sportController';
+import { reusedFunctions } from '../Services/reusedFunctions';
+import { SharedCaching } from '../Services/shared-caching';
 
 
 
@@ -47,11 +30,12 @@ interface statSearch {
   styleUrls: ['./team-stats.component.scss']
 })
 export class TeamStatsComponent {
-  
+
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sharedCache: SharedCaching
     //private draftKingsApiController: draftKingsApiController
   ) { }
 
@@ -84,34 +68,82 @@ export class TeamStatsComponent {
 
   public displayedColumnsMlb: string[] = ["Game", "Date", "HR", "H", "RBI"]
   public displayedColumnsNfl: string[] = ["Game", "Date", "Points", "Rush Yds", "Pass Yds"]
+  public displayedColumnsNba: string[] = ["Game", "Date", "Points"]
+  public displayedColumnsNhl: string[] = ["Game", "Date", "Points"]
 
-public displayedColumnsValuesMlb: any[] = [
-  {name: 'Game',
-    value: 'teamAgainstName'
-  }, 
-  {name: 'Date',
-    value: 'gameDate'},
-  {name: 'HR',
-    value: 'totalHomeRunsScored'},
-  {name: 'H',
-    value: 'totalHitsScored'},
-  {name: 'RBI',
-    value: 'totalRbisScored'}
-]
+  public displayedColumnsValuesMlb: any[] = [
+    {
+      name: 'Game',
+      value: 'teamAgainstName'
+    },
+    {
+      name: 'Date',
+      value: 'gameDate'
+    },
+    {
+      name: 'HR',
+      value: 'totalHomeRunsScored'
+    },
+    {
+      name: 'H',
+      value: 'totalHitsScored'
+    },
+    {
+      name: 'RBI',
+      value: 'totalRbisScored'
+    }
+  ]
 
-public displayedColumnsValuesNfl: any[] = [
-  {name: 'Game',
-    value: 'teamAgainstName'
-  }, 
-  {name: 'Date',
-    value: 'gameDate'},
-  {name: 'Points',
-    value: 'pointsScoredOverall'},
-  {name: 'Rush Yds',
-    value: 'totalRushingYards'},
-  {name: 'Pass Yds',
-    value: 'totalPassingYards'}
-]
+  public displayedColumnsValuesNfl: any[] = [
+    {
+      name: 'Game',
+      value: 'teamAgainstName'
+    },
+    {
+      name: 'Date',
+      value: 'gameDate'
+    },
+    {
+      name: 'Points',
+      value: 'pointsScoredOverall'
+    },
+    {
+      name: 'Rush Yds',
+      value: 'totalRushingYards'
+    },
+    {
+      name: 'Pass Yds',
+      value: 'totalPassingYards'
+    }
+  ]
+  public displayedColumnsValuesNhl: any[] = [
+    {
+      name: 'Game',
+      value: 'teamAgainstName'
+    },
+    {
+      name: 'Date',
+      value: 'gameDate'
+    },
+    {
+      name: 'Points',
+      value: 'pointsScoredOverall'
+    }
+  ]
+  public displayedColumnsValuesNba: any[] = [
+    {
+      name: 'Game',
+      value: 'teamAgainstName'
+    },
+    {
+      name: 'Date',
+      value: 'gameDate'
+    },
+    {
+      name: 'Points',
+      value: 'pointsScoredOverall'
+    }
+  ]
 
   public fullDataset: any[] = [
     {
@@ -172,7 +204,7 @@ public displayedColumnsValuesNfl: any[] = [
   teamTotalDataSet: any[] = []
 
   public teamTotalDataSetMlb: any[] = [
-    
+
     {
       name: 'Home Runs',
       data: 'totalHomeRunsScored'
@@ -197,7 +229,7 @@ public displayedColumnsValuesNfl: any[] = [
 
   ]
   public teamTotalDataSetNfl: any[] = [
-    
+
     {
       name: 'Pts Scored',
       data: 'pointsScoredOverall'
@@ -296,88 +328,68 @@ public displayedColumnsValuesNfl: any[] = [
 
   isCombineStats: boolean = false
 
-  public seasonArray: any[] = []
-  public seasonArrayTable: any[] = []
 
-  //nba
-  public nbaPlayerInfo: NbaPlayerInfoDb[] = []
-  public nbaPlayerStatsInfo2022: DbNbaGameStats[] = []
-  public nbaPlayerStatsInfo2023: DbNbaGameStats[] = []
-  public nbaAllPlayerInfo: NbaPlayerInfoDb[] = []
-  public nbaPlayerStatsInfo2023TableTemp: any[] = []
-  public nbaPlayerStatsInfo2023Table: any[] = []
-  public nbaPlayerStatsInfo2022TableTemp: any[] = []
-  public nbaPlayerStatsInfo2022Table: any[] = []
-  public teamSeasons: number[] = []
-  public teamSeason: number = 2024
 
   @ViewChild(MatTable)
   table!: MatTable<any>;
+  public distinctSeasons: number[] = []
+  public selectedSeasonTeamStats: any[] = []
 
-  //nhl
-  public nhlPlayerStatsInfo2022: DbNhlPlayerGameStats[] = []
-  public nhlPlayerStatsInfo2023: DbNhlPlayerGameStats[] = []
-
-
-  //all
-  public isNull: boolean = false
-  public allSportTeamList: any[] = []
-
-  public teamInfo: DbTeamInfo[] = []
-  public selectedTeam: any = []
+  public teamInfo: DbTeamInfo | null = null
+  public selectedTeam: DbTeamInfo | null = null
   public teamStats: any[] = []
   public teamSeasonStats: any[] = []
 
-  public teamProps: DbPlayerPropData[] = []
+  public teamProps: DbGameBookData[] = []
   public teamTotalStats: any[] = []
+  teamSeason: number = 0
 
 
-  async initialize(){
-    this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
-      this.selectedSport = params.get('team') == null ? 'all' : params.get('team')
-      this.teamId = params.get('id') == null ? 0 : params.get('id')
-      this.router.navigate([`/teamStats/${this.selectedSport}/${this.teamId}`])
-      await this.loadData()
+
+  async initialize() {
+    this.sharedCache.currentTeamInfo.subscribe( data => {
+      if (data) {
+        this.selectedTeam = data
+      }
+      else{
+        this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
+          this.selectedSport = params.get('team')
+          this.teamId = params.get('id')
+          this.router.navigate([`/teamStats/${this.selectedSport}/${this.teamId}`])
+          let teamInfoNew = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
+          this.teamInfo = teamInfoNew[0]
+          
+        })
+      }
     })
+    await this.loadData()
+    
   }
-  
+
 
   async loadData() {
-    
-    if (this.route.snapshot.paramMap.get('team') != 'all') {
-      this.selectedSport = this.route.snapshot.paramMap.get('team')
-      this.teamId = this.route.snapshot.paramMap.get('id')
-      await this.getTeamInfo()
-      //await this.getAllPlayerInfo()
-      //this.calculateMeanAndStd()
-      this.createChart()
-      //this.createChart2()
-      //this.createNormalDistChart()
-    }
-    else if (this.route.snapshot.paramMap.get('team') == 'all') {
-    
-      this.isNull = true
-      await this.getAllSportTeams()
-    }
-
-
-
-
-
+    await this.getTeamInfo()
+    this.createChart()
   }
 
-  async getAllSportTeams(){
-    
-    //let teams = await TeamInfoController.getAllTeamInfo('MLB')
-    let teams = await TeamInfoController.getAllTeamInfoBySports(['MLB', 'NFL'])
-    this.allSportTeamList = teams
-    this.searchName = ""
-    this.filteredSearch = this.allSportTeamList
-  }
+
   teamPropArray: any[] = []
   async getTeamInfo() {
+    let playerCall = await sportController.getTeamStatScreenInfo(this.selectedSport, this.teamId)
+    this.teamStats = playerCall[0]
+    this.teamTotalStats = playerCall[1]
 
-    if(this.selectedSport == 'MLB'){
+    for (let i = 0; i < this.teamStats.length; i++) {
+      this.teamStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(this.teamStats[i].gameDate)
+    }
+    this.distinctSeasons = this.teamStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
+
+    this.distinctSeasons.sort(function (a, b) {
+      return a - b;
+    });
+    this.selectedSeasonTeamStats = this.teamStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
+    this.teamSeason = this.distinctSeasons[0]
+    if (this.selectedSport == 'MLB') {
       this.fullDataset = [
         {
           label: "Hits",
@@ -385,7 +397,7 @@ public displayedColumnsValuesNfl: any[] = [
           backgroundColor: 'blue',
           showLine: true,
           dataName: 'totalHitsScored'
-    
+
         },
         {
           label: "Home Runs",
@@ -400,7 +412,7 @@ public displayedColumnsValuesNfl: any[] = [
           backgroundColor: 'red',
           showLine: false,
           dataName: 'totalPointsScored'
-    
+
         },
         {
           label: "Rbis",
@@ -408,13 +420,16 @@ public displayedColumnsValuesNfl: any[] = [
           backgroundColor: 'yellow',
           showLine: false,
           dataName: 'totalRbisScored'
-    
+
         }
       ]
-      this.allSportTeamList = await TeamInfoController.getAllTeamInfo('MLB')
-    this.teamInfo = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
+      this.displayedColumns = this.displayedColumnsMlb
+      this.displayedColumnsValues = this.displayedColumnsValuesMlb
+      this.teamTotalDataSet = this.teamTotalDataSetMlb
+      this.teamTotalStatColumns = this.teamTotalStatColumnsMlb
+
     }
-    else if(this.selectedSport == 'NFL'){
+    else if (this.selectedSport == 'NFL') {
       this.fullDataset = [
         {
           label: "Points",
@@ -422,7 +437,7 @@ public displayedColumnsValuesNfl: any[] = [
           backgroundColor: 'blue',
           showLine: true,
           dataName: 'totalPointsScored'
-    
+
         },
         {
           label: "Rush Yds",
@@ -437,139 +452,92 @@ public displayedColumnsValuesNfl: any[] = [
           backgroundColor: 'red',
           showLine: false,
           dataName: 'totalPassingYards'
-    
+
         }
       ]
-      this.allSportTeamList = await TeamInfoController.getAllTeamInfo('NFL')
-    this.teamInfo = await TeamInfoController.getTeamInfo(this.selectedSport, this.teamId)
-    }
-
-    
-
-    this.teamSeasons = []
-    if (this.selectedSport == "NBA") {
-     
-
-
-
-
-    }
-    else if (this.selectedSport == "NHL") {
-    }
-    else if(this.selectedSport == "MLB"){
-      this.displayedColumns = this.displayedColumnsMlb
-      this.displayedColumnsValues = this.displayedColumnsValuesMlb
-      this.teamTotalDataSet = this.teamTotalDataSetMlb
-      this.teamTotalStatColumns = this.teamTotalStatColumnsMlb
-      this.teamStats = await MlbController.mlbGetAllTeamGameStatsByTeamId(this.teamInfo[0].teamId)
-      console.log(this.teamStats)
-      
-      let allSeasons = this.teamStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-      allSeasons.forEach(e => this.teamSeasonStats.push(this.teamStats.filter(i => i.season == e))) 
-      
-      allSeasons.sort(function(a, b) {
-        return a - b;
-      });
-      allSeasons.forEach(e => this.teamSeasons.push(e))
-      this.seasonArray = this.teamStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
-
-      this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
-      this.nbaPlayerStatsInfo2023TableTemp.reverse()
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
-      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
-
-      console.log(this.teamSeasons)
-      this.teamTotalStats = await MlbController.mlbGetSpecificTeamStatAverage(this.teamId)
-      
-    }
-    else if(this.selectedSport == 'NFL'){
       this.displayedColumns = this.displayedColumnsNfl
       this.displayedColumnsValues = this.displayedColumnsValuesNfl
       this.teamTotalDataSet = this.teamTotalDataSetNfl
       this.teamTotalStatColumns = this.teamTotalStatColumnsNfl
-      this.teamStats = await NflController.nflGetAllTeamGameStatsById(this.teamInfo[0].teamId)
-      console.log(this.teamStats)
-      
-      let allSeasons = this.teamStats.map(e => e.season).filter((value, index, array) => array.indexOf(value) === index)
-      allSeasons.forEach(e => this.teamSeasonStats.push(this.teamStats.filter(i => i.season == e))) 
-      
-      allSeasons.sort(function(a, b) {
-        return a - b;
-      });
-      allSeasons.forEach(e => this.teamSeasons.push(e))
-      this.seasonArray = this.teamStats.filter(e => e.season == allSeasons[allSeasons.length - 1])
+    }
+    else if (this.selectedSport == "NBA") {
+      this.fullDataset = [
+        {
+          label: "Points",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: true,
+        },
+        {
+          label: "Assists",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'assists'
+        },
+        {
+          label: "Rebounds",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'rebounds'
+        },
+        {
+          label: "Threes",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'threes'
+        }
+      ]
+      this.displayedColumns = this.displayedColumnsNba
+      this.displayedColumnsValues = this.displayedColumnsValuesNba
+      //this.teamTotalDataSet = this.teamTotalDataSetNba
+      //this.teamTotalStatColumns = this.teamTotalStatColumnsNba
+    }
+    else if (this.selectedSport == "NHL") {
+      this.fullDataset = [
+        {
+          label: "Points",
+          data: [],
+          backgroundColor: 'blue',
+          showLine: true,
+          dataName: 'totalPointsScored'
 
-      this.nbaPlayerStatsInfo2023TableTemp = JSON.parse(JSON.stringify((this.seasonArray)))
-      this.nbaPlayerStatsInfo2023TableTemp.reverse()
-      this.nbaPlayerStatsInfo2023Table = this.nbaPlayerStatsInfo2023TableTemp 
-      this.nbaPlayerStatsInfo2023Table.forEach((e) => e.isHighlighted = false)
-      this.seasonArrayTable = this.nbaPlayerStatsInfo2023Table
+        },
+        {
+          label: "Rush Yds",
+          data: [],
+          backgroundColor: 'green',
+          showLine: false,
+          dataName: 'totalRushingYards'
+        },
+        {
+          label: "Pass Yds",
+          data: [],
+          backgroundColor: 'red',
+          showLine: false,
+          dataName: 'totalPassingYards'
 
-      console.log(this.teamSeasons)
-      this.teamTotalStats = await NflController.nflGetSpecificTeamStatTotals(this.teamId, 2024)
+        }
+      ]
+      this.displayedColumns = this.displayedColumnsNhl
+      this.displayedColumnsValues = this.displayedColumnsValuesNhl
+      //this.teamTotalDataSet = this.teamTotalDataSetNhl
+      //this.teamTotalStatColumns = this.teamTotalStatColumnsNhl
     }
 
     this.teamProps = []
-    /* this.teamProps = await SportsBookController.
-    console.log(this.teamProps)
-    let numberOfBookIds = this.teamProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
-    if(numberOfBookIds.length > 1){
-      //add if there is more than one game that day
-    }
-    else{
-      let numberOfProps = this.teamProps.map(x => x.marketKey).filter((value, index, array) => array.indexOf(value) === index)
-      for(let prop of numberOfProps){
-        let filteredProp = this.teamProps.filter(e => e.marketKey == prop)
-        this.teamPropArray.push(filteredProp)
-      }
-    } */
 
-    //this.teamProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.teamStats[0].playerName)
-    
-    /* let numberOfBookIds = this.teamProps.map(x => x.bookId).filter((value, index, array) => array.indexOf(value) === index)
-    if(numberOfBookIds.length > 1){
-      //add if there is more than one game that day
-    }
-    else{
-      
-
-    } */
   }
 
-  /* async getAllPlayerInfo() {
-    if (this.selectedSport == "NBA") {
-      this.nbaAllPlayerInfo = await NbaController.nbaLoadAllPlayerInfo()
-      this.filteredSearch = this.nbaAllPlayerInfo.filter((e) => e.playerName == this.searchName)
 
-    }
-    this.playerInfo = await PlayerInfoController.loadActivePlayerInfoBySport(this.selectedSport)
-    
-  } */
 
-  loadNewPlayer(id: number, sport: string) {
-    if(this.selectedSport != 'all'){
-      this.destroyGraphs()
-    }
-    this.isNull = false
-    this.router.navigate([`/teamStats/${sport}/${id}`])
-    this.formArray = []  
-  }
 
-  loadFindHomeAwayFromGameId(gameId: string, teamName: string): string{
-    //console.log(gameId)
-    //console.log(teamName)
-    return reusedFunctions.getHomeAwayFromGameId(gameId, teamName)
-  }
 
-  calculateMeanAndStd() {
-    this.playerAverage = (this.seasonArray.map(t => t.points).reduce((acc, value) => acc + value, 0)) / this.seasonArray.length
-    let summedData: number = 0
-    this.seasonArray.forEach(e => summedData += (e.points - this.playerAverage) ** 2)
-    summedData = summedData / this.seasonArray.length
-    summedData = Math.sqrt(summedData)
-    this.playerStd = summedData
-  }
+
+
+
   totalNumberHighlighted: number = 0;
   isSearched: boolean = false;
   searchNumberSubmit() {
@@ -578,64 +546,49 @@ public displayedColumnsValuesNfl: any[] = [
     //for now we're going to make this just over and single stats
     this.totalNumberHighlighted = 0;
     // later we can add over or under and combined stats
-    if(this.formArray.length > 0){
-      for (let i = 0; i < this.seasonArrayTable.length; i++) {
+    if (this.formArray.length > 0) {
+      for (let i = 0; i < this.selectedSeasonTeamStats.length; i++) {
         for (let j = 0; j < this.formArray.length; j++) {
-  
-          if(this.formArray[j].overUnder){
-            if (this.seasonArrayTable[i][this.formArray[j].dataName] > this.formArray[j].number) {
-              this.seasonArrayTable[i].isHighlighted = true
+
+          if (this.formArray[j].overUnder) {
+            if (this.selectedSeasonTeamStats[i][this.formArray[j].dataName] > this.formArray[j].number) {
+              this.selectedSeasonTeamStats[i].isHighlighted = true
             }
             else {
-              this.seasonArrayTable[i].isHighlighted = false
+              this.selectedSeasonTeamStats[i].isHighlighted = false
               break
             }
           }
-          else{
-            if (this.seasonArrayTable[i][this.formArray[j].dataName] < this.formArray[j].number) {
-              this.seasonArrayTable[i].isHighlighted = true
+          else {
+            if (this.selectedSeasonTeamStats[i][this.formArray[j].dataName] < this.formArray[j].number) {
+              this.selectedSeasonTeamStats[i].isHighlighted = true
             }
             else {
-              this.seasonArrayTable[i].isHighlighted = false
+              this.selectedSeasonTeamStats[i].isHighlighted = false
               break
             }
           }
-          
+
         }
       }
-      for(let game of this.seasonArrayTable){
-        if(game.isHighlighted){
+      for (let game of this.selectedSeasonTeamStats) {
+        if (game.isHighlighted) {
           this.totalNumberHighlighted++;
         }
       }
     }
-    
-   
+
+
   }
 
   clearSearch() {
-    this.seasonArrayTable.forEach((e) => {
+    this.selectedSeasonTeamStats.forEach((e) => {
       e.isHighlighted = false
     })
   }
 
-  filterSearch() {
-    if(this.isNull){
-      if(this.searchName != ""){
-        this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
-        console.log(this.filteredSearch)
-      }
-      
-    }
-    else{
-      this.filteredSearch = this.allSportTeamList.filter((e) => e.teamNameFull.toLowerCase().includes(this.searchName.toLowerCase()))
-    }
-    
-  }
+  
 
-  setSearchEmpty() {
-    this.searchName = this.teamName
-  }
 
   addStatForm() {
     this.formArray.push({
@@ -655,93 +608,96 @@ public displayedColumnsValuesNfl: any[] = [
   deleteformArray(form: statSearch) {
     this.formArray = this.formArray.filter((e) => e != form)
     this.searchNumberSubmit()
-    if(this.formArray.length ==0){
+    if (this.formArray.length == 0) {
       this.isSearched = false;
     }
   }
-
-  getTotalCost(stat: string) {
-    var num = this.seasonArrayTable.map(t => t[stat]).reduce((acc, value) => acc + value, 0);
-    return (num / this.seasonArrayTable.length).toFixed(2)
-  }
-  updateSeasonsDisplayed(season: number) {
+  updateSeasonsDisplayed(season: number){
     this.teamSeason = season
-
-    this.seasonArrayTable = JSON.parse(JSON.stringify(this.teamStats.filter(e => e.season == this.teamSeason)))
-    this.seasonArrayTable.reverse()
-    this.seasonArray = this.teamStats.filter(e => e.season == this.teamSeason)
-
-    this.seasonArrayTable.forEach((e) => e.isHighlighted = false)
-    this.table.renderRows()
-    this.reDrawLineGraph()
+    
   }
+
 
 
   createChart() {
     var arrayOFpoints: any[] = []
     var dataPoint: string[] = []
-    if(this.selectedSport == 'NBA'){
+    if (this.selectedSport == 'NBA') {
       var points: number[] = []
       var assists: number[] = []
       var rebounds: number[] = []
       var blocks: number[] = []
       var threes: number[] = []
       var doubleDoubles: number[] = []
-  
-      
+
+
       var index = 1
-      this.seasonArray.forEach((e) => {
+      this.selectedSeasonTeamStats.forEach((e) => {
         points.push(e.points)
         assists.push(e.assists)
         rebounds.push(e.totReb)
         blocks.push(e.blocks)
         threes.push(e.tpm)
         doubleDoubles.push(e.doubleDouble)
-  
+
         dataPoint.push(index.toString())
         index++
       })
       arrayOFpoints = [points, assists, rebounds, blocks, threes, doubleDoubles]
     }
-    else if(this.selectedSport == 'MLB'){
+    else if (this.selectedSport == 'MLB') {
       var hits: number[] = []
       var homeRuns: number[] = []
       var points: number[] = []
       var rbis: number[] = []
-  
+
       var index = 1
-      this.seasonArray.forEach((e) => {
+      this.selectedSeasonTeamStats.forEach((e) => {
         hits.push(e.totalHitsScored)
         homeRuns.push(e.totalHomeRunsScored)
         points.push(e.totalPointsScored)
         rbis.push(e.totalRbisScored)
-  
+
         dataPoint.push(index.toString())
         index++
       })
-      
+
       arrayOFpoints = [hits, homeRuns, points, rbis]
-      
+
     }
-    else if(this.selectedSport == 'NFL'){
+    else if (this.selectedSport == 'NFL') {
       var points: number[] = []
       var rushYds: number[] = []
       var passYds: number[] = []
-  
+
       var index = 1
-      this.seasonArray.forEach((e) => {
+      this.selectedSeasonTeamStats.forEach((e) => {
         points.push(e.pointsScoredOverall)
         rushYds.push(e.totalRushingYards)
         passYds.push(e.totalPassingYards)
-  
+
         dataPoint.push(index.toString())
         index++
       })
-      
+
       arrayOFpoints = [points, rushYds, passYds]
-      
+
     }
-    
+    else if (this.selectedSport == 'NHL') {
+      var points: number[] = []
+
+      var index = 1
+      this.selectedSeasonTeamStats.forEach((e) => {
+        points.push(e.pointsScoredOverall)
+
+        dataPoint.push(index.toString())
+        index++
+      })
+
+      arrayOFpoints = [points]
+
+    }
+
 
     for (let i = 0; i < arrayOFpoints.length; i++) {
       this.fullDataset[i].data = arrayOFpoints[i]
@@ -754,7 +710,7 @@ public displayedColumnsValuesNfl: any[] = [
 
       }
     })
-    
+
     var finalDataSet: any[] = []
     var finalDataSetResult: any[] = []
     filteredDataSet.forEach((e) => {
@@ -812,7 +768,7 @@ public displayedColumnsValuesNfl: any[] = [
         max = e
       }
     })
-    max = (max + (max/4))
+    max = (max + (max / 4))
     if (max.toString().includes(".")) {
       var maxNew = max.toString().split(".")
       max = parseInt(maxNew[0]) + 1
@@ -928,269 +884,7 @@ public displayedColumnsValuesNfl: any[] = [
     });
   }
 
-  createChart2() {
-    var points: number[] = []
-    var assists: number[] = []
-    var rebounds: number[] = []
-    var blocks: number[] = []
-    var threes: number[] = []
-    var doubleDoubles: number[] = []
 
-    var dataPoint: number[] = []
-    var pointsFinal: number[] = []
-    var assistsFinal: number[] = []
-    var reboundsFinal: number[] = []
-    var blocksFinal: number[] = []
-    var thressFinal: number[] = []
-    var doubleDoublesFinal: number[] = []
-    var combinedArrays: any[] = []
-
-    var index = 1
-    for (let i = 0; i < 100; i++) {
-      dataPoint.push(i)
-    }
-    this.seasonArray.forEach((e) => {
-      points.push(e.points)
-      assists.push(e.assists)
-      rebounds.push(e.totReb)
-      blocks.push(e.blocks)
-      threes.push(e.tpm)
-      doubleDoubles.push(e.doubleDouble)
-
-      //dataPoint.push(index)
-      index++
-    })
-
-
-    var arrayOFunfiltered = [points, assists, rebounds, blocks, threes, doubleDoubles]
-    for (let i = 0; i < 100; i++) {
-      let num = points.filter((e) => e == i)
-      pointsFinal.push(num.length)
-      let num2 = assists.filter((e) => e == i)
-      assistsFinal.push(num2.length)
-      let num3 = rebounds.filter((e) => e == i)
-      reboundsFinal.push(num3.length)
-      let num4 = blocks.filter((e) => e == i)
-      blocksFinal.push(num4.length)
-      let num5 = threes.filter((e) => e == i)
-      thressFinal.push(num5.length)
-      let num6 = doubleDoubles.filter((e) => e == i)
-      doubleDoublesFinal.push(num6.length)
-    }
-    var arrayOFpoints = [pointsFinal, assistsFinal, reboundsFinal, blocksFinal, thressFinal, doubleDoublesFinal]
-
-    for (let i = 0; i < arrayOFpoints.length; i++) {
-      this.fullDataset[i].data = arrayOFpoints[i]
-      this.fullDataset[i].unfilteredData = arrayOFunfiltered[i]
-    }
-
-    var filteredDataSet: any[] = []
-    this.fullDataset.forEach((e) => {
-      if (e.showLine) {
-        filteredDataSet.push(e)
-        combinedArrays.push(e.unfilteredData)
-      }
-    })
-    var combinedArrayFinal: any[] = []
-
-    for (let i = 0; i < combinedArrays[0].length; i++) {
-      let sum = 0
-      for (let j = 0; j < combinedArrays.length; j++) {
-
-        sum += combinedArrays[j][i]
-      }
-      combinedArrayFinal.push(sum)
-    }
-    var newFilteredData: any[] = []
-    for (let i = 0; i < 100; i++) {
-      let temp = combinedArrayFinal.filter((e) => e == i)
-      newFilteredData.push(temp.length)
-    }
-    var stringOfPoints: string = ''
-    var count = 0
-    filteredDataSet.forEach((e) => {
-
-      if (filteredDataSet.length == 1 || count == 0) {
-        stringOfPoints += e.label
-        count++
-      }
-      else { stringOfPoints += " + " + e.label }
-
-    })
-    if (this.isCombineStats) {
-      filteredDataSet = [{
-        label: stringOfPoints,
-        data: newFilteredData,
-        backgroundColor: 'blue',
-        showLine: true
-      }]
-    }
-    this.chart2 = new Chart("barChart", {
-      type: 'bar',
-
-      data: {// values on X-Axis
-        labels: dataPoint,
-        datasets: filteredDataSet
-      },
-      options: {
-        datasets: {
-          bar: {
-            barPercentage: 1,
-            barThickness: 'flex'
-          }
-        },
-        scales: {
-          y: {
-            min: 0,
-            max: 10
-          }
-
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: 'Distrbution'
-          },
-        },
-
-        maintainAspectRatio: false
-      }
-
-    });
-  }
-
-  createNormalDistChart() {
-    var points: number[] = []
-    var assists: number[] = []
-    var rebounds: number[] = []
-    var blocks: number[] = []
-    var threes: number[] = []
-    var doubleDoubles: number[] = []
-
-    var dataPoint: number[] = []
-    var pointsFinal: number[] = []
-    var assistsFinal: number[] = []
-    var reboundsFinal: number[] = []
-    var blocksFinal: number[] = []
-    var thressFinal: number[] = []
-    var doubleDoublesFinal: number[] = []
-    var combinedArrays: any[] = []
-
-    var index = 1
-    for (let i = 0; i < 100; i++) {
-      dataPoint.push(i)
-    }
-    this.seasonArray.forEach((e) => {
-      points.push(e.points)
-      assists.push(e.assists)
-      rebounds.push(e.totReb)
-      blocks.push(e.blocks)
-      threes.push(e.tpm)
-      doubleDoubles.push(e.doubleDouble)
-
-      //dataPoint.push(index)
-      index++
-    })
-
-
-    var arrayOFunfiltered = [points, assists, rebounds, blocks, threes, doubleDoubles]
-    for (let i = 0; i < 100; i++) {
-      let num = points.filter((e) => e == i)
-      pointsFinal.push(num.length)
-      let num2 = assists.filter((e) => e == i)
-      assistsFinal.push(num2.length)
-      let num3 = rebounds.filter((e) => e == i)
-      reboundsFinal.push(num3.length)
-      let num4 = blocks.filter((e) => e == i)
-      blocksFinal.push(num4.length)
-      let num5 = threes.filter((e) => e == i)
-      thressFinal.push(num5.length)
-      let num6 = doubleDoubles.filter((e) => e == i)
-      doubleDoublesFinal.push(num6.length)
-    }
-    var arrayOFpoints = [pointsFinal, assistsFinal, reboundsFinal, blocksFinal, thressFinal, doubleDoublesFinal]
-
-    for (let i = 0; i < arrayOFpoints.length; i++) {
-      this.fullDataset[i].data = arrayOFpoints[i]
-      this.fullDataset[i].unfilteredData = arrayOFunfiltered[i]
-    }
-
-    var filteredDataSet: any[] = []
-    this.fullDataset.forEach((e) => {
-      if (e.showLine) {
-        filteredDataSet.push(e)
-        combinedArrays.push(e.unfilteredData)
-      }
-    })
-    var combinedArrayFinal: any[] = []
-
-    for (let i = 0; i < combinedArrays[0].length; i++) {
-      let sum = 0
-      for (let j = 0; j < combinedArrays.length; j++) {
-
-        sum += combinedArrays[j][i]
-      }
-      combinedArrayFinal.push(sum)
-    }
-    combinedArrayFinal = [5, 5, 5, 5, 8, 8, 8, 8, 12, 12, 12, 12, 12, 12, 12, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 56, 56, 56, 56, 56, 56, 56, 62, 62, 62, 62, 65, 65]
-
-    var newFilteredData: any[] = []
-    for (let i = 0; i < 100; i++) {
-      let temp = combinedArrayFinal.filter((e) => e == i)
-      newFilteredData.push(temp.length)
-    }
-    var stringOfPoints: string = ''
-    var count = 0
-    filteredDataSet.forEach((e) => {
-
-      if (filteredDataSet.length == 1 || count == 0) {
-        stringOfPoints += e.label
-        count++
-      }
-      else { stringOfPoints += " + " + e.label }
-
-    })
-    if (this.isCombineStats) {
-      filteredDataSet = [{
-        label: stringOfPoints,
-        data: newFilteredData,
-        backgroundColor: 'blue',
-        showLine: true
-      }]
-    }
-    this.chart3 = new Chart("NormalDistChart", {
-
-      type: 'line',
-
-      data: {// values on X-Axis
-        labels: dataPoint,
-        datasets: filteredDataSet,
-
-      },
-      options: {
-        elements: {
-          line: {
-            tension: .4
-          },
-          point: {
-            radius: 5
-          }
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: 'Normal Distribution'
-          },
-
-
-
-        },
-
-        maintainAspectRatio: false
-      }
-
-    });
-  }
 
 
   reDrawLineGraph() {
@@ -1202,7 +896,7 @@ public displayedColumnsValuesNfl: any[] = [
     //this.createNormalDistChart()
   }
 
-  destroyGraphs(){
+  destroyGraphs() {
     this.chart.destroy()
     //this.chart2.destroy()
     //this.chart3.destroy()
@@ -1217,7 +911,7 @@ public displayedColumnsValuesNfl: any[] = [
     Chart.register(annotationPlugin);
     await this.initialize()
     //await this.loadData()
-    
+
   }
 
 

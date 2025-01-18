@@ -62,13 +62,29 @@ export class sportController {
       else return []
     }
 
+    static async getTeamStatScreenInfo(sport: string, teamId: number){
+      if(sport == 'NHL'){
+        return await Promise.all([NhlController.nhlGetAllTeamStatsByTeamIdAndSeason(teamId, 2024), NhlController.NhlGetTeamGameStatTotalsByTeamIdAndSeason(teamId,2024)])
+      }
+      else if(sport == 'NFL'){
+        return await Promise.all([NflController.nflGetAllTeamGameStatsById(teamId), NflController.nflGetSpecificTeamStatTotals(teamId,2024)])
+      }
+      else if(sport == 'MLB'){
+        return []
+      }
+      else if(sport == 'NBA'){
+        return []
+      }
+      else return []
+    }
+
     static async getSinglePlayerProps(playerProps: DbPlayerPropData[], sport: string, playerId: number, playerInfo: DbPlayerInfo, playerStats: any[]){
       let allTeamInfo = await TeamInfoController.getAllTeamInfo(sport)
       if(sport == 'NHL'){
         return await NhlService.getSinglePlayerPropDataNew(playerProps, allTeamInfo, playerId, playerInfo, playerStats)
       }
       else if(sport == 'NFL'){
-
+        return await NhlService.getSinglePlayerPropDataNew(playerProps, allTeamInfo, playerId, playerInfo, playerStats)
       }
       else if(sport == 'NBA'){
         return []
