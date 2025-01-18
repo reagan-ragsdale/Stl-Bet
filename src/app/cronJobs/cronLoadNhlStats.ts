@@ -78,9 +78,8 @@ export const cronLoadNhlStats = async () => {
 
     // Combine them into the yyyymmdd format
     let yesterday = `${year}${month}${day}`;
-    let date = '20250109'
 
-     let gamesToday = await nhlApiController.getDailySchedule(date)
+     let gamesToday = await nhlApiController.getDailySchedule(yesterday)
     if (gamesToday.length > 0) {
         for (let game of gamesToday) {
             try {
