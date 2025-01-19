@@ -1,11 +1,11 @@
-.root {
+:root{
     --main-bg-color: #1F1E1F;
     --secondary-color: #3C3E3D;
     --main-border-color: hsl(18, 12%, 48%);
     --main-text-color: #DBD4D1;
     --main-green-color: #54C964;
     --main-red-color: #CF3A3A;
-  }
+}
 
 
 .body {
@@ -104,21 +104,21 @@
 .top-prop-panel {
     display: flex;
     align-items: center;
-    background-color: var(--secondary-color); /* Light background color */
+    background-color: #3C3E3D; /* Light background color */
     padding: 0.5rem 1rem; /* Add padding inside the bar */
     border-radius: 8px; /* Rounded corners for the entire panel */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
-    border: 1px solid var(--main-border-color); /* Slight border around the whole panel */
+    border: 1px solid hsl(18, 12%, 48%); /* Slight border around the whole panel */
     width: fit-content;
 }
 .top-prop-panel button{
-    background-color: var(--main-text-color);
+    background-color: #DBD4D1;
 }
 
 h2, h3, h4 {
     margin: 0; /* Remove default margins */
     padding: 0;
-    color: var(--main-text-color);
+    color: #DBD4D1;
 }
 
 .buttons {
@@ -176,7 +176,7 @@ mat-slide-toggle {
 }
 .stat-body{
     width:fit-content;
-    background-color: var(--secondary-color);
+    background-color: #3C3E3D;
     border-radius: 8px;
     display:flex;
     flex-direction:column;
@@ -187,7 +187,7 @@ mat-slide-toggle {
     grid-template-columns: repeat(8, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(auto, auto);
-    background-color: var(--secondary-color);
+    background-color: #3C3E3D;
     padding-left: 1rem;
     padding-right:1rem;
     padding-bottom:.5rem;
@@ -201,7 +201,7 @@ mat-slide-toggle {
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(auto, auto);
-    background-color: var(--secondary-color);
+    background-color: #3C3E3D;
     padding-left: 1rem;
     padding-right:1rem;
     padding-bottom:.5rem;
@@ -210,7 +210,7 @@ mat-slide-toggle {
     box-shadow: 0 2px 4px #0000001a;
 }
 .panel-props-expansion{
-    background-color: var(--secondary-color);
+    background-color: #3C3E3D;
 }
 /* .record-columns{
     padding: .5rem;
@@ -247,7 +247,7 @@ mat-slide-toggle {
     display: flex;
     flex-direction:column;
     gap: 1rem;
-    background-color: var(--secondary-color); /* Light background color */
+    background-color: #3C3E3D; /* Light background color */
     padding: 0.5rem 1rem; /* Add padding inside the bar */
     border-radius: 8px; /* Rounded corners for the entire panel */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
@@ -258,10 +258,10 @@ mat-slide-toggle {
     display:flex;
     flex-direction: column;
     gap:1rem;
-    background-color: var(--secondary-color);
+    background-color: #3C3E3D;
     padding: .5rem 1rem;
     border-radius: 6px;
-    border: 1px solid var(--main-border-color);
+    border: 1px solid hsl(18, 12%, 48%);
     box-shadow: 0 2px 4px #0000001a;
 }
 .game-log span{
@@ -377,7 +377,7 @@ mat-chip-option{
     
     .panel-props-expansion{
         min-width: min-content;
-        background-color: var(--secondary-color);
+        background-color: #3C3E3D;
     }
     .prop-stats-panel{
         padding-left:0;
