@@ -3200,7 +3200,7 @@ export class NhlService {
     let backToBackWinTotal = 0
     if (backToBack) {
         if (type == 'h2h') {
-            for (let i = 0; i < teamStats.length - 2; i++) {
+            for (let i = 0; i < teamStats.length - 1; i++) {
                 if (reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
                     backToBackWinTotal++;
                     if (teamStats[i].result == 'W') {

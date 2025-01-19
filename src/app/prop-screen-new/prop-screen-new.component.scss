@@ -1,3 +1,13 @@
+:root {
+    --main-bg-color: #1F1E1F;
+    --secondary-color: #3C3E3D;
+    --main-border-color: hsl(18, 12%, 48%);
+    --main-text-color: #DBD4D1;
+    --main-green-color: #54C964;
+    --main-red-color: #CF3A3A;
+  }
+
+
 .body {
     height: calc(100vh - 60px);
     display: flex;
@@ -7,6 +17,7 @@
     height:100%;
     width: 150px;
     min-width:150px;
+    background-color: #1F1E1F;
 }
 
 .games-list-box {
@@ -20,13 +31,14 @@
     width:100%; 
     display:flex;
     justify-content: center;
-    background-color: #ddd;
+    background-color: #1F1E1F;
     border-radius: 8px;
 
 }
 .prop-section{
     width:100%;
-    box-shadow: -6px 10px 5px #EEEEEE;
+    background-color:#1F1E1F;
+    border-left: hsl(12,18%,48%);
 }
 
 .list-of-props{
@@ -37,6 +49,7 @@
 }
 .team-and-record{
     display:flex;
+    color:#DBD4D1;
 }
 .team-name{
     text-decoration: none;
@@ -61,6 +74,9 @@
 }
 ::ng-deep .mat-expansion-panel-body{
  padding: 10px 12px 10px !important;
+}
+::ng-deep .mat-expansion-panel{
+
 }
 
 .team-prop-div:hover{
@@ -88,17 +104,21 @@
 .top-prop-panel {
     display: flex;
     align-items: center;
-    background-color: #f0f0f0; /* Light background color */
+    background-color: var(--secondary-color); /* Light background color */
     padding: 0.5rem 1rem; /* Add padding inside the bar */
     border-radius: 8px; /* Rounded corners for the entire panel */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
-    border: 1px solid #ddd; /* Slight border around the whole panel */
+    border: 1px solid var(--main-border-color); /* Slight border around the whole panel */
     width: fit-content;
+}
+.top-prop-panel button{
+    background-color: var(--main-text-color);
 }
 
 h2, h3, h4 {
     margin: 0; /* Remove default margins */
     padding: 0;
+    color: var(--main-text-color)
 }
 
 .buttons {
@@ -156,7 +176,7 @@ mat-slide-toggle {
 }
 .stat-body{
     width:fit-content;
-    background-color: #f0f0f0;
+    background-color: var(--secondary-color);
     border-radius: 8px;
     display:flex;
     flex-direction:column;
@@ -167,7 +187,7 @@ mat-slide-toggle {
     grid-template-columns: repeat(8, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(auto, auto);
-    background-color: #f0f0f0;
+    background-color: var(--secondary-color);
     padding-left: 1rem;
     padding-right:1rem;
     padding-bottom:.5rem;
@@ -181,13 +201,16 @@ mat-slide-toggle {
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(auto, auto);
-    background-color: #f0f0f0;
+    background-color: var(--secondary-color);
     padding-left: 1rem;
     padding-right:1rem;
     padding-bottom:.5rem;
     border-radius: 6px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px #0000001a;
+}
+.panel-props-expansion{
+    background-color: var(--secondary-color);
 }
 /* .record-columns{
     padding: .5rem;
@@ -224,7 +247,7 @@ mat-slide-toggle {
     display: flex;
     flex-direction:column;
     gap: 1rem;
-    background-color: #f0f0f0; /* Light background color */
+    background-color: var(--secondary-color); /* Light background color */
     padding: 0.5rem 1rem; /* Add padding inside the bar */
     border-radius: 8px; /* Rounded corners for the entire panel */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
@@ -235,10 +258,10 @@ mat-slide-toggle {
     display:flex;
     flex-direction: column;
     gap:1rem;
-    background-color: #f0f0f0;
+    background-color: var(--secondary-color);
     padding: .5rem 1rem;
     border-radius: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--main-border-color);
     box-shadow: 0 2px 4px #0000001a;
 }
 .game-log span{
@@ -354,6 +377,7 @@ mat-chip-option{
     
     .panel-props-expansion{
         min-width: min-content;
+        background-color: var(--secondary-color);
     }
     .prop-stats-panel{
         padding-left:0;
