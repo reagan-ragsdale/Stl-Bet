@@ -43,8 +43,6 @@
 
 .list-of-props{
     max-height: 80vh;
-    overflow-y: scroll;
-    scrollbar-width: thin;
     min-width: fit-content;
 }
 .team-and-record{
@@ -75,7 +73,8 @@
 ::ng-deep .mat-expansion-panel-body{
  padding: 10px 12px 10px !important;
 }
-::ng-deep .mat-chip-option{
+::ng-deep mat-chip-option{
+    border-radius: 8px;
     background-color: #3C3E3D !important;
     border: 1px solid hsl(18, 12%, 48%) !important;
 }
@@ -88,6 +87,9 @@
 ::ng-deep .mat-expansion-panel{
     border-radius:8px;
     border:1px solid hsl(12,18%,48%);
+}
+::ng-deep .mdc-evolution-chip__text-label{
+ color: #DBD4D1 !important;
 }
 
 .team-prop-div:hover{
@@ -324,11 +326,14 @@ mat-slide-toggle {
 }
 mat-chip-option{
     border-radius:8px;
+    background-color: #3C3E3D !important;
+    border: 1px solid hsl(18, 12%, 48%) !important;
 }
 .list-of-prop-accordion{
     display: flex; 
     max-width: min-content;
     flex-direction: column;
+    gap:.5rem;
 }
 
 ::ng-deep .props-list-box .mdc-evolution-chip-set__chips{
