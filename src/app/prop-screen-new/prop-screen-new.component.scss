@@ -75,8 +75,19 @@
 ::ng-deep .mat-expansion-panel-body{
  padding: 10px 12px 10px !important;
 }
+::ng-deep .mat-chip-option{
+    background-color: #3C3E3D !important;
+    border: 1px solid hsl(18, 12%, 48%) !important;
+}
+::ng-deep .mat-mdc-standard-chip{
+    color: #DBD4D1 !important;
+}
+::ng-deep .mat-expansion-panel-header-title{
+    color: #DBD4D1 !important;
+}
 ::ng-deep .mat-expansion-panel{
-
+    border-radius:8px;
+    border:1px solid hsl(12,18%,48%);
 }
 
 .team-prop-div:hover{
@@ -140,8 +151,6 @@ h2, h3, h4 {
 
 h3 {
     margin-bottom: 0;
-}
-.prop-type, .buttons, .toggle-container {
 }
 
 .toggle-container {
