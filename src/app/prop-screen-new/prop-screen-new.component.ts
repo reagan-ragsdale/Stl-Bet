@@ -472,6 +472,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 }
               },
               onHover(event, elements, chart) {
+                console.log('event')
+                console.log(event)
                 let index = elements[0].datasetIndex
                 let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
                 let totalNumberOfIndexes = indexes![0].data.length
@@ -482,13 +484,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   }
                 }
                 for(let i = 0; i < indexArray.length; i++){
-                  indexes![0].data[i].options['backgroundColor'] = 'hsl(128,52%,68%)'
+                  indexes![0].data[i].options['backgroundColor'] = '#64CE72'
                 }
-                //elements[0].element.options['backgroundColor'] = '#ddd';
               },
-             backgroundColor(ctx, options) {
-               return '#54C964'
-             },
+              
               
             }
     
