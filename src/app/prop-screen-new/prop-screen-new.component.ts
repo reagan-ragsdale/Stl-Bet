@@ -18,6 +18,7 @@ import { sportController } from '../Services/sportController';
 import { SharedCaching } from '../Services/shared-caching';
 import { Interaction } from 'chart.js';
 import { getRelativePosition } from 'chart.js/helpers';
+import { ieNoOpen } from 'helmet';
 declare module 'chart.js' {
   interface InteractionModeMap {
     myCustomMode: InteractionModeFunction;
@@ -461,10 +462,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   data: this.selectedDisplayProp.barData,
                   backgroundColor: '#54C964',
                   hoverBackgroundColor(ctx, options) {
-                    console.log('ctx')
-                    console.log(ctx)
-                    console.log('options')
-                    console.log(options)
+                    let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas()
+                    console.log('indexes')
+                    console.log(indexes)
                     return '#54C964'
                   },
                 }
