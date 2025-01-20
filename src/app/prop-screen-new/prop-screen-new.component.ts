@@ -459,7 +459,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 {
                   label: this.selectedDisplayProp.propName,
                   data: this.selectedDisplayProp.barData,
-                  backgroundColor: '#54C964'
+                  backgroundColor: '#54C964',
+                  hoverBackgroundColor(ctx, options) {
+                    console.log('ctx')
+                    console.log(ctx)
+                    console.log('options')
+                    console.log(options)
+                    return '#54C964'
+                  },
                 }
               ]
             },
@@ -473,7 +480,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               onHover(event, elements, chart) {
                 console.log(elements)
                 let index = elements[0].datasetIndex
-                elements[0].element.options['backgroundColor'] = '#ddd';
+                //elements[0].element.options['backgroundColor'] = '#ddd';
               },
             }
     
