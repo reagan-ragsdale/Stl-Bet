@@ -355,7 +355,7 @@ mat-chip-option{
     gap:.5rem;
 }
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
-    background-color: #3C3E3D;
+    background-color: #3C3E3D !important;
 }
 ::ng-deep .mat-mdc-select-placeholder{
     color: #DBD4D1 !important;

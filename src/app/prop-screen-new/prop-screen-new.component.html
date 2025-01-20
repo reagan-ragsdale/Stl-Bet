@@ -408,9 +408,9 @@
             </div>
             <div *ngIf="selectedPropType == 'Best Bets'" class="prop-display">
                 <div class="list-of-props">
-                    <div>
-                        <div style="background-color: #3C3E3D;">
-                            <h4 style="max-width: 225px;text-align: center;">Find bets with chance of winning over: {{sliderValue}}%</h4>
+                    <div style="background-color: #3C3E3D; border-radius: 8px;">
+                        <div >
+                            <h4 style="max-width: 225px;text-align: center; padding-top:.5rem">Find bets with chance of winning over: {{sliderValue}}%</h4>
                             <mat-slider class="example-margin" [color]="'warn'" [max]="99" [min]="51" style=" width:-webkit-fill-available !important;">
                                 <input matSliderThumb (ngModelChange)="findBestBets()" [(ngModel)]="sliderValue" #slider style="width:auto !important;">
                             </mat-slider>
@@ -685,8 +685,8 @@
                             </mat-select>
                           </mat-form-field>
                     </div>
-                    <div class="chart-container" style="background-color: #ebebeb; width: 1000px;">
-                        <canvas style="background-color: #1F1E1F; border: 1px solid hsl(12, 18%, 60%);"  id="MyChart">{{ barChart }}</canvas>
+                    <div class="chart-container" style="background-color: #1F1E1F; border: 1px solid hsl(12, 18%, 60%); width:1000px;">
+                        <canvas id="MyChart">{{ barChart }}</canvas>
                     </div>
                 </div>
             </div>
