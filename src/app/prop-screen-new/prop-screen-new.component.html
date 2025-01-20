@@ -146,7 +146,7 @@
                     <mat-accordion *ngIf="selectedPropType == 'Player Props'" style="display: flex; max-width: min-content;flex-direction: column; gap:.25rem; " [hideToggle]="false" [multi]="false" >
                         <mat-expansion-panel class="panel-props-expansion"  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
                             style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
-                            <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: white;padding-bottom: .5rem; padding-top:.5rem;">
+                            <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: #3C3E3D;padding-bottom: .5rem; padding-top:.5rem;">
                                 <mat-panel-title style="color:black; font-size: larger;">
                                     {{displayPropTitle(prop)}}
                                 </mat-panel-title>
@@ -409,7 +409,7 @@
             <div *ngIf="selectedPropType == 'Best Bets'" class="prop-display">
                 <div class="list-of-props">
                     <div>
-                        <div>
+                        <div style="background-color: #3C3E3D;">
                             <h4 style="max-width: 225px;text-align: center;">Find bets with chance of winning over: {{sliderValue}}%</h4>
                             <mat-slider class="example-margin" [color]="'warn'" [max]="99" [min]="51" style=" width:-webkit-fill-available !important;">
                                 <input matSliderThumb (ngModelChange)="findBestBets()" [(ngModel)]="sliderValue" #slider style="width:auto !important;">
@@ -418,7 +418,7 @@
                         <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
                             <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
                                 style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
-                                <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: white;padding-bottom: .5rem; padding-top:.5rem;">
+                                <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: #3C3E3D;padding-bottom: .5rem; padding-top:.5rem;">
                                     <mat-panel-title style="color:black; font-size: larger;">
                                         {{displayPropTitle(prop)}}
                                     </mat-panel-title>
@@ -652,7 +652,7 @@
                     <mat-accordion  style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
                         <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
                             style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
-                            <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: white;padding-bottom: .5rem; padding-top:.5rem;">
+                            <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: #3C3E3D;padding-bottom: .5rem; padding-top:.5rem;">
                                 <mat-panel-title style="color:black; font-size: larger;">
                                     {{displayPropTitle(prop)}}
                                 </mat-panel-title>
