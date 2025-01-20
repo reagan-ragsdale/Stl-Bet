@@ -1,7 +1,7 @@
 :root{
     --main-bg-color: #1F1E1F;
     --secondary-color: #3C3E3D;
-    --main-border-color: hsl(18, 12%, 48%);
+    --main-border-color: hsl(18, 12%, 60%);
     --main-text-color: #DBD4D1;
     --main-green-color: #54C964;
     --main-red-color: #CF3A3A;
@@ -38,7 +38,7 @@
 .prop-section{
     width:100%;
     background-color:#1F1E1F;
-    border-left: hsl(12,18%,48%);
+    border-left: hsl(12,18%,60%);
 }
 
 .list-of-props{
@@ -76,7 +76,7 @@
 ::ng-deep mat-chip-option{
     border-radius: 8px;
     background-color: #3C3E3D !important;
-    border: 1px solid hsl(18, 12%, 48%) !important;
+    border: 1px solid hsl(18, 12%, 60%) !important;
 }
 ::ng-deep .mat-mdc-standard-chip{
     color: #DBD4D1 !important;
@@ -86,7 +86,7 @@
 }
 ::ng-deep .mat-expansion-panel{
     border-radius:8px;
-    border:1px solid hsl(12,18%,48%);
+    border:1px solid hsl(12,18%,60%);
 }
 ::ng-deep .mdc-evolution-chip__text-label{
  color: #DBD4D1 !important;
@@ -121,7 +121,7 @@
     padding: 0.5rem 1rem; /* Add padding inside the bar */
     border-radius: 8px; /* Rounded corners for the entire panel */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
-    border: 1px solid hsl(18, 12%, 48%); /* Slight border around the whole panel */
+    border: 1px solid hsl(18, 12%, 60%); /* Slight border around the whole panel */
     width: fit-content;
 }
 .top-prop-panel button{
@@ -191,6 +191,7 @@ mat-slide-toggle {
     border-radius: 8px;
     display:flex;
     flex-direction:column;
+    border: 1px solid hsl(12,18%,60%);
 }
 .records-all{
     width:max-content;
@@ -203,7 +204,7 @@ mat-slide-toggle {
     padding-right:1rem;
     padding-bottom:.5rem;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid hsl(12,18%,60%);
     box-shadow: 0 2px 4px #0000001a;
 }
 .records-h2h{
@@ -217,7 +218,7 @@ mat-slide-toggle {
     padding-right:1rem;
     padding-bottom:.5rem;
     border-radius: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid hsl(12,18%,60%);
     box-shadow: 0 2px 4px #0000001a;
 }
 .panel-props-expansion{
@@ -273,7 +274,7 @@ mat-slide-toggle {
     background-color: #3C3E3D;
     padding: .5rem 1rem;
     border-radius: 6px;
-    border: 1px solid hsl(18, 12%, 48%);
+    border: 1px solid hsl(18, 12%, 60%);
     box-shadow: 0 2px 4px #0000001a;
 }
 .game-log span{
@@ -310,7 +311,7 @@ mat-slide-toggle {
     max-height: 600px;
     margin-left: auto;
     margin-right: 1rem;
-    background-color: #f0f0f0 !important;
+    background-color: #3C3E3D !important;
     border-radius: 8px;
     width:fit-content;
     border: 1px solid #ddd;
@@ -328,7 +329,7 @@ mat-slide-toggle {
 mat-chip-option{
     border-radius:8px;
     background-color: #3C3E3D !important;
-    border: 1px solid hsl(18, 12%, 48%) !important;
+    border: 1px solid hsl(18, 12%, 60%) !important;
 }
 .list-of-prop-accordion{
     display: flex; 
