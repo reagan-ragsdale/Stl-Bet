@@ -473,6 +473,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               onHover(event, elements, chart) {
                 console.log(elements)
                 let index = elements[0].datasetIndex
+                elements[0].element.options['backgroundColor'] = '#ddd';
               },
             }
     
