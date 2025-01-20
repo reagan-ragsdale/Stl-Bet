@@ -482,10 +482,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   }
                 }
                 for(let i = 0; i < indexArray.length; i++){
-                  indexes![0].data[i].options['backgroundColor'] = 'hsl(128,52%,80%)'
+                  indexes![0].data[i].options['backgroundColor'] = 'hsl(128,52%,68%)'
                 }
                 //elements[0].element.options['backgroundColor'] = '#ddd';
               },
+             backgroundColor(ctx, options) {
+               return '#54C964'
+             },
+              
             }
     
           });
