@@ -474,18 +474,28 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               onHover(event, elements, chart) {
                 console.log('event')
                 console.log(event)
-                let index = elements[0].datasetIndex
-                let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
-                let totalNumberOfIndexes = indexes![0].data.length
-                let indexArray = []
-                for(let i = 0; i < totalNumberOfIndexes; i++){
-                  if(i != index){
-                    indexArray.push(i)
+                if(event.type == 'mousemove'){
+                  let index = elements[0].datasetIndex
+                  let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                  let totalNumberOfIndexes = indexes![0].data.length
+                  let indexArray = []
+                  for(let i = 0; i < totalNumberOfIndexes; i++){
+                    if(i != index){
+                      indexArray.push(i)
+                    }
+                  }
+                  for(let i = 0; i < indexArray.length; i++){
+                    indexes![0].data[i].options['backgroundColor'] = '#64CE72'
                   }
                 }
-                for(let i = 0; i < indexArray.length; i++){
-                  indexes![0].data[i].options['backgroundColor'] = '#64CE72'
+                else if(event.type == 'mouseout'){
+                  let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                  let totalNumberOfIndexes = indexes![0].data.length
+                  for(let i = 0; i < totalNumberOfIndexes; i++){
+                    indexes![0].data[i].options['backgroundColor'] = '#54C964'
+                  }
                 }
+                
               },
               
               
