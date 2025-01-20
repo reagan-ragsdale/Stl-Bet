@@ -91,6 +91,9 @@
 ::ng-deep .mdc-evolution-chip__text-label{
  color: #DBD4D1 !important;
 }
+::ng-deep .mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary{
+    border: 2px solid #54C964 !important;
+}
 
 .team-prop-div:hover{
     background-color: #b3b3b3;
@@ -264,7 +267,7 @@ mat-slide-toggle {
     padding: 0.5rem 1rem; /* Add padding inside the bar */
     border-radius: 8px; /* Rounded corners for the entire panel */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
-    border: 1px solid #ddd; /* Slight border around the whole panel */
+    border: 1px solid hsl(12,18%,60%); /* Slight border around the whole panel */
     width: fit-content;
 }
 .game-log{
