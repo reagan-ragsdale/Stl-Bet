@@ -360,7 +360,7 @@
                                 </ng-container>
                           
                                 <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"
-                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(18, 12%, 60%); color: #DBD4D1;"></tr>
+                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(18, 12%, 60%); color: #3C3E3D;"></tr>
                                 <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
                                   style="height:auto; text-align:center"></tr>
                               </table>
@@ -396,7 +396,7 @@
                                 </ng-container>
                           
                                 <tr mat-header-row *matHeaderRowDef="moneyLineTablePlayerColumns; sticky:true"
-                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(18, 12%, 60%); color: #DBD4D1;"></tr>
+                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(18, 12%, 60%); color: #3C3E3D;"></tr>
                                 <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTablePlayerColumns; "
                                   style="height:auto; text-align:center"></tr>
                               </table>
@@ -416,7 +416,7 @@
                             </mat-slider>
                         </div>
                         <mat-accordion style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
-                            <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
+                            <mat-expansion-panel class="panel-props-expansion"  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
                                 style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
                                 <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: #3C3E3D;padding-bottom: .5rem; padding-top:.5rem;">
                                     <mat-panel-title style="color:black; font-size: larger;">
@@ -601,7 +601,7 @@
                                 </ng-container>
                           
                                 <tr mat-header-row *matHeaderRowDef="moneyLineTableColumns; sticky:true"
-                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(12, 18%,60%); color: #DBD4D1;"></tr>
+                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(12, 18%,60%); color: #3C3E3D;"></tr>
                                 <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTableColumns; "
                                   style="height:auto; text-align:center; color: #DBD4D1;"></tr>
                               </table>
@@ -637,7 +637,7 @@
                                 </ng-container>
                           
                                 <tr mat-header-row *matHeaderRowDef="moneyLineTablePlayerColumns; sticky:true"
-                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(12, 18%,60%); color: #DBD4D1;"></tr>
+                                  style="width:auto; height:auto; font-size: medium; text-align:center; background-color:hsl(12, 18%,60%); color: #3C3E3D;"></tr>
                                 <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" *matRowDef="let row; columns: moneyLineTablePlayerColumns; "
                                   style="height:auto; text-align:center; color: #DBD4D1;"></tr>
                               </table>
@@ -650,7 +650,7 @@
             <div [hidden]="selectedPropType != 'Live Props'" class="prop-display"> 
                 <div *ngIf="selectedPropType == 'Live Props'" class="list-of-props">
                     <mat-accordion  style="display: flex; max-width: min-content;flex-direction: column; " [hideToggle]="false" [multi]="false" >
-                        <mat-expansion-panel  *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
+                        <mat-expansion-panel class="panel-props-expansion" *ngFor="let prop of selectedDisplayArray; let i = index;" [expanded]="i == 0" [disabled]="false"
                             style="display:flex; flex-direction: column; overflow-y:scroll; scrollbar-width: none; max-height:400px;">
                             <mat-expansion-panel-header style="cursor: auto; min-width:max-content;position: sticky;top: 0; z-index: 2;background-color: #3C3E3D;padding-bottom: .5rem; padding-top:.5rem;">
                                 <mat-panel-title style="color:black; font-size: larger;">
@@ -686,7 +686,7 @@
                           </mat-form-field>
                     </div>
                     <div class="chart-container" style="background-color: #ebebeb; width: 1000px;">
-                        <canvas   id="MyChart">{{ barChart }}</canvas>
+                        <canvas style="background-color: #1F1E1F; border: 1px solid hsl(12, 18%, 60%);"  id="MyChart">{{ barChart }}</canvas>
                     </div>
                 </div>
             </div>

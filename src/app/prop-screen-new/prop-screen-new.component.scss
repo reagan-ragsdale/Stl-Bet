@@ -358,10 +358,10 @@ mat-chip-option{
     background-color: #3C3E3D;
 }
 ::ng-deep .mat-mdc-select-placeholder{
-    color: #DBD4D1;
+    color: #DBD4D1 !important;
 }
 ::ng-deep .mat-mdc-select-arrow{
-    color: #DBD4D1;
+    color: #DBD4D1 !important;
 }
 ::ng-deep .props-list-box .mdc-evolution-chip-set__chips{
     @media screen and (max-width: 440px) {
