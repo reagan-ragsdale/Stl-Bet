@@ -471,9 +471,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 }
               },
               onHover(event, elements, chart) {
-                console.log(event)
-                console.log(elements)
-                console.log(chart)
+                console.log(chart.data.datasets)
               },
             }
     
