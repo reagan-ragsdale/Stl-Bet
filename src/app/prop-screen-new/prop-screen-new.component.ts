@@ -450,7 +450,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 {
                   label: this.selectedDisplayProp.propName,
                   data: this.selectedDisplayProp.barData,
-                  backgroundColor: 'blue'
+                  backgroundColor: '#54C964'
                 }
               ]
             },

@@ -109,6 +109,15 @@
     background-color: #54C964 !important;
 }
 
+::ng-deep .cdk-overlay-pane:not(.mat-mdc-select-panel-above){
+    background-color: #3C3E3D !important;
+}
+:ng-deep .mdc-list-item__primary-text{
+    color: #DBD4D1 !important;
+}
+::ng-deep .mat-mdc-select-value-text{
+    color: #DBD4D1 !important;
+}
 .team-prop-div:hover{
     background-color: #b3b3b3;
     cursor: pointer;
@@ -323,6 +332,7 @@ mat-slide-toggle {
 }
 .team-full-game-log{
     margin-left:auto;
+    margin-right:auto;
 }
 .table-div{
     max-height: 600px;
