@@ -10,13 +10,19 @@ import { ThisReceiver } from '@angular/compiler';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { remult } from 'remult';
 import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
-import { Chart } from 'chart.js';
+import { Chart, InteractionModeFunction } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { TeamPropDto } from '../Dtos/TeamPropsDto';
 import { PlayerPropDto } from '../Dtos/PlayerPropsDto';
 import { sportController } from '../Services/sportController';
 import { SharedCaching } from '../Services/shared-caching';
-
+import { Interaction } from 'chart.js';
+import { getRelativePosition } from 'chart.js/helpers';
+declare module 'chart.js' {
+  interface InteractionModeMap {
+    myCustomMode: InteractionModeFunction;
+  }
+}
 @Component({
   selector: 'app-prop-screen-new',
   templateUrl: './prop-screen-new.component.html',
@@ -440,6 +446,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     if(chartInstance != undefined){
       this.barChart.destroy()
     }
+    const customMode = function(){
+
+    }
     this.barChart = new Chart("MyChart", {
             type: 'bar', //this denotes tha type of chart
     
@@ -460,7 +469,12 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 y:{
                   max:100
                 }
-              }
+              },
+              onHover(event, elements, chart) {
+                console.log(event)
+                console.log(elements)
+                console.log(chart)
+              },
             }
     
           });
@@ -570,6 +584,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     if(prop.propType == 'total' || prop.propType == 'altTotal') return true
     else return false
   }
+  
   ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]
   }
