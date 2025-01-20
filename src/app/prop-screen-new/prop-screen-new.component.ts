@@ -461,12 +461,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   label: this.selectedDisplayProp.propName,
                   data: this.selectedDisplayProp.barData,
                   backgroundColor: '#54C964',
-                  hoverBackgroundColor(ctx, options) {
-                    let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas()
-                    console.log('indexes')
-                    console.log(indexes)
-                    return '#54C964'
-                  },
                 }
               ]
             },
@@ -478,8 +472,18 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 }
               },
               onHover(event, elements, chart) {
-                console.log(elements)
                 let index = elements[0].datasetIndex
+                let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                let totalNumberOfIndexes = indexes![0].data.length
+                let indexArray = []
+                for(let i = 0; i < totalNumberOfIndexes; i++){
+                  if(i != index){
+                    indexArray.push(i)
+                  }
+                }
+                for(let i = 0; i < indexArray.length; i++){
+                  indexes![0].data[i].options['backgroundColor'] = 'hsl(128,52%,80%)'
+                }
                 //elements[0].element.options['backgroundColor'] = '#ddd';
               },
             }
