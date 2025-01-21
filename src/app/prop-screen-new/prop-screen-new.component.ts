@@ -475,18 +475,28 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 console.log('event')
                 console.log(event)
                 if(event.type == 'mousemove'){
-                  let index = elements[0].datasetIndex
-                  let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
-                  let totalNumberOfIndexes = indexes![0].data.length
-                  let indexArray = []
-                  for(let i = 0; i < totalNumberOfIndexes; i++){
-                    if(i != index){
-                      indexArray.push(i)
+                  try{
+                    let index = elements[0].datasetIndex
+                    let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                    let totalNumberOfIndexes = indexes![0].data.length
+                    let indexArray = []
+                    for(let i = 0; i < totalNumberOfIndexes; i++){
+                      if(i != index){
+                        indexArray.push(i)
+                      }
+                    }
+                    for(let i = 0; i < indexArray.length; i++){
+                      indexes![0].data[i].options['backgroundColor'] = '#64CE72'
                     }
                   }
-                  for(let i = 0; i < indexArray.length; i++){
-                    indexes![0].data[i].options['backgroundColor'] = '#64CE72'
+                  catch(error:any){
+                    let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                    let totalNumberOfIndexes = indexes![0].data.length
+                    for(let i = 0; i < totalNumberOfIndexes; i++){
+                      indexes![0].data[i].options['backgroundColor'] = '#54C964'
+                    }
                   }
+                  
                 }
                 else if(event.type == 'mouseout'){
                   let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
