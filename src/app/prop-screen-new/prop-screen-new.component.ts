@@ -486,7 +486,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                     }
                     console.log('here in try')
                     for(let i = 0; i < indexArray.length; i++){
-                      indexes![0].data[i].options['backgroundColor'] = '#64CE72'
+                      indexes![0].data[i].options['backgroundColor'] = '#E0F5E3'
+                      //#64CE72
                     }
                   }
                   catch(error:any){
