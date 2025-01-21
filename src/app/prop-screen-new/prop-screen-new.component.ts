@@ -472,8 +472,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 }
               },
               onHover(event, elements, chart) {
-                console.log('event')
-                console.log(event)
                 if(event.type == 'mousemove'){
                   try{
                     let index = elements[0].datasetIndex
@@ -485,11 +483,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                         indexArray.push(i)
                       }
                     }
+                    console.log('here in try')
                     for(let i = 0; i < indexArray.length; i++){
                       indexes![0].data[i].options['backgroundColor'] = '#64CE72'
                     }
                   }
                   catch(error:any){
+                    console.log('here in catch')
                     let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
                     let totalNumberOfIndexes = indexes![0].data.length
                     for(let i = 0; i < totalNumberOfIndexes; i++){
