@@ -473,7 +473,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                 }
               },
               onHover(event, elements, chart) {
-                if(event.type == 'mousemove'){
+                /* if(event.type == 'mousemove'){
                   try{
                     let index = elements[0].datasetIndex
                     let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
@@ -506,7 +506,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   for(let i = 0; i < totalNumberOfIndexes; i++){
                     indexes![0].data[i].options['backgroundColor'] = '#54C964'
                   }
-                }
+                } */
                 
               },
               
