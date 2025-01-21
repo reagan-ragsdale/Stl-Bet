@@ -461,6 +461,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   label: this.selectedDisplayProp.propName,
                   data: this.selectedDisplayProp.barData,
                   backgroundColor: '#54C964',
+                  hoverBackgroundColor: '#54C964'
                 }
               ]
             },
