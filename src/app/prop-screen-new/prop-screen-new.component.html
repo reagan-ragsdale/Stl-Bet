@@ -678,7 +678,7 @@
                     <div *ngIf="selectedPropType == 'Live Props'">
                         <mat-chip-listbox class="mat-mdc-chip-set-stacked chip-box" aria-label="Color selection" >
                             <mat-chip-option *ngFor="let type of selectedDisplayArray[livePanelIndex].listOfSelections; let i = index;"
-                                style="height:50px; width:auto; margin-left:auto; margin-right:auto; background-color: #3C3E3D; border: 1px solid hsl(12, 18%, 48%);" [selectable]="false"
+                                style="height:50px; width:auto; min-width:min-content; background-color: #3C3E3D; border: 1px solid hsl(12, 18%, 48%);" [selectable]="false"
                                 [selected]="i == livePropGraphIndex" (click)="updateLivePropGraphType(i)">
                                 {{type}}
                             </mat-chip-option>
