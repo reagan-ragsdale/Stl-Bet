@@ -196,6 +196,10 @@ table {
     flex-direction: column;
     background-color: #3C3E3D;
 }
+::ng-deep .mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary{
+    border: 2px solid #54C964 !important;
+}
+
 
 .game-card {
     width: 15%;
