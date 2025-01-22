@@ -396,7 +396,9 @@ export class PlayerStatsComponent {
           this.selectedSport = this.route.snapshot.params['sport']
           this.playerId = this.route.snapshot.params['id']
           //this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
+          console.log(this.playerId)
           let playerData = await PlayerInfoController.loadPlayerInfoBySportAndId(this.selectedSport, this.playerId)
+          console.log(playerData)
           this.selectedPlayer = playerData[0]
         //})
       }
