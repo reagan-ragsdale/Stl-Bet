@@ -383,6 +383,7 @@ export class PlayerStatsComponent {
 
   async initialize() {
     this.sharedCaching.currentPlayerInfo.subscribe( data => {
+      console.log(data)
       if (data) {
         this.selectedPlayer = data
       }
@@ -409,7 +410,7 @@ export class PlayerStatsComponent {
 
   playerPropArray: any[] = []
   async getPlayerInfo() {
-
+    console.log(this.selectedPlayer)
     let playerCall = await sportController.getPlayerStatScreenInfo(this.selectedSport, this.playerId)
     this.playerStats = playerCall[0]
     this.playerTotalStats = playerCall[1]
