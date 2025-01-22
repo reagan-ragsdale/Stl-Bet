@@ -411,7 +411,8 @@ export class PlayerStatsComponent {
   playerPropArray: any[] = []
   async getPlayerInfo() {
     console.log(this.selectedPlayer)
-    let playerCall = await sportController.getPlayerStatScreenInfo(this.selectedSport, this.playerId)
+    let playerCall = await sportController.getPlayerStatScreenInfo(this.selectedPlayer!.sport, this.selectedPlayer!.playerId)
+    console.log(playerCall)
     this.playerStats = playerCall[0]
     this.playerTotalStats = playerCall[1]
 
