@@ -385,9 +385,11 @@ export class PlayerStatsComponent {
     this.sharedCaching.currentPlayerInfo.subscribe( data => {
       console.log(data)
       if (data) {
+        console.log('here in data')
         this.selectedPlayer = data
       }
       else{
+        console.log('here in else')
         this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
           this.selectedSport = params.get('sport')
           this.playerId = params.get('id')
