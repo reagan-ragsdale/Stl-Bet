@@ -199,6 +199,9 @@ table {
 ::ng-deep .mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary{
     border: 2px solid #54C964 !important;
 }
+::ng-deep .mdc-evolution-chip__text-label{
+    color: #DBD4D1 !important;
+   }
 
 
 .game-card {
