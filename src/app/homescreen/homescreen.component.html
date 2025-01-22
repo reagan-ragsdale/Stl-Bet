@@ -12,10 +12,10 @@
     <div style=" display: flex; align-items: center;   margin-top: 1rem; margin-bottom: 1rem; width:96%; margin-left:auto; margin-right:auto;">
       
       <h1
-        style=" height: 100%; text-align: start;  font-weight: 500; color:#3C3E3D; font-size: xx-large; margin-top:auto; margin-bottom: auto;">
+        style=" height: 100%; text-align: start;  font-weight: 500; color:#DBD4D1; font-size: xx-large; margin-top:auto; margin-bottom: auto;">
         {{selectedSport}} Dashboard</h1>
       <div style="height: 100%; display:flex; align-items: center; justify-content: flex-end; margin-left:auto;">
-        <button mat-button style=" background-color: #22577A; color: #DBD4D1 " (click)="sportProps()">Go to
+        <button mat-button style=" background-color: #54C964; color: #3C3E3D;" (click)="sportProps()">Go to
           {{selectedSport}} Props</button>
       </div>
 
@@ -326,7 +326,7 @@
               style="width: 100%; margin-right: auto; margin-left: auto; display: flex; gap: 1rem; flex-wrap:wrap;  padding: 1rem; justify-content: space-evenly;">
               <mat-card *ngFor="let game of gameDataAllFinal"  class="game-card" >
                 <mat-card-header style="border-bottom: 2px solid #31304d;  text-align: center; padding: .2rem; justify-content: center;">
-                  <mat-card-title style="font-size:small; height: inherit">
+                  <mat-card-title style="font-size:small; height: inherit; color:#DBD4D1;">
                     <div style="height: inherit; width: auto; font-size:11px; text-wrap:wrap; margin-left: auto; margin-right: auto;">
                       <a class="teamLink" (click)="gameClick(game[0][0].bookId)" >{{game[0][0].awayTeam}} &#64; {{game[0][0].homeTeam}}</a>
                       
@@ -343,7 +343,7 @@
                     <a class="teamLink" (click)="onTeamClick(game[0][0].homeTeam)"><p class="team-name">{{game[0][0].homeTeam | transforFromFullTeamNameToAbvr | async }}</p></a><p *ngIf="game[1][0]" class="team-prop">{{game[1][0].price > 0 ? '+' : ''}}{{game[1][0].price}}</p><div *ngIf="game[1][1]" class="spread-prop" ><p>{{game[1][1].point > 0 ? '+' : ''}}{{game[1][1].point}}</p><p>{{game[1][1].price > 0 ? '+' : ''}}{{game[1][1].price}}</p></div><div *ngIf="game[3][0]" class="spread-prop" ><p>{{game[3][0].point}}</p><p>{{game[3][0].price > 0 ? '+' : ''}}{{game[3][0].price}}</p></div><span *ngIf="game[3][0]" style="margin-bottom: auto;
                     margin-top: auto;">U</span>
                   </div> -->
-                  <table mat-table [dataSource]="game" class="mat-elevation-z8">
+                  <table mat-table [dataSource]="game" class="mat-elevation-z8" style="background-color:#4d4f4e;">
                     <ng-container matColumnDef="Team">
                       <th mat-header-cell *matHeaderCellDef >  </th>
                       <td mat-cell *matCellDef="let element; let j = index;">
@@ -375,8 +375,8 @@
                        </td>
                     </ng-container>
       
-                    <tr mat-header-row *matHeaderRowDef="upcomingGamePropColumns; sticky:false" style="height:auto;" ></tr>
-                    <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
+                    <tr mat-header-row *matHeaderRowDef="upcomingGamePropColumns; sticky:false" style="height:auto; color:#DBD4D1;" ></tr>
+                    <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" style="color:#DBD4D1;"
                       *matRowDef="let row; columns: upcomingGamePropColumns; " ></tr>
                   </table>
                   
@@ -391,9 +391,9 @@
         </div>
       </div>
       <div style="width:98%; margin-right:auto; margin-left: auto; margin-bottom:1rem;">
-        <h2 *ngIf="selectedSport == 'NFL'" style="text-align: center;">Weekly Cheat Sheet</h2>
-        <h2 *ngIf="selectedSport != 'NFL'" style="text-align: center;">Daily Cheat Sheet</h2>
-        <table mat-table [dataSource]="betCheats" class="mat-elevation-z8">
+        <h2 *ngIf="selectedSport == 'NFL'" style="text-align: center;color:#DBD4D1;">Weekly Cheat Sheet</h2>
+        <h2 *ngIf="selectedSport != 'NFL'" style="text-align: center; color:#DBD4D1;">Daily Cheat Sheet</h2>
+        <table mat-table [dataSource]="betCheats" class="mat-elevation-z8" style="background-color:#3C3E3D;">
           <ng-container matColumnDef="Name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element; let j = index;">
@@ -438,9 +438,9 @@
             <td mat-cell *matCellDef="let element">{{element.teamChance  | percent: '2.2-2'}}</td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="betCheatsColumns; sticky:false" class="tr-cheat" style="height:auto;" ></tr>
+          <tr mat-header-row *matHeaderRowDef="betCheatsColumns; sticky:false" class="tr-cheat" style="height:auto; color:#DBD4D1;" ></tr>
           <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
-            *matRowDef="let row; columns: betCheatsColumns; " class="tr-cheat"></tr>
+            *matRowDef="let row; columns: betCheatsColumns; " class="tr-cheat" style="color:#DBD4D1;"></tr>
         </table>
       </div>
 
