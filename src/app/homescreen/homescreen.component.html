@@ -33,7 +33,7 @@
 
           <div style="height: 85%; width: 96%; margin-left: auto; margin-right: auto; margin-bottom: 1rem;">
 
-            <table *ngIf="this.selectedSport == 'NBA'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width:98%;">
+            <table *ngIf="this.selectedSport == 'NBA'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width:98%;background-color: #4d4f4e;">
 
               <ng-container matColumnDef="Player">
                 <th mat-header-cell *matHeaderCellDef> Player </th>
@@ -63,10 +63,10 @@
 
               <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false"></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
-                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;color: #DBD4D1;"></tr>
             </table>
 
-            <table *ngIf="this.selectedSport == 'MLB'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            <table *ngIf="this.selectedSport == 'MLB'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width: 98%;background-color: #4d4f4e;">
 
               <ng-container matColumnDef="Player">
                 <th  mat-header-cell *matHeaderCellDef> Player </th>
@@ -76,34 +76,34 @@
               </ng-container>
 
               <ng-container matColumnDef="Home Runs" >
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button style="padding-left: 0;"  (click)="onPlayerStatsClick('homeRuns')">HR</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('homeRuns')">HR</button> </th>
                 <td mat-cell *matCellDef="let element" > {{element.batterHomeRuns | number: '1.0-2'}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="Rbi's">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;" (click)="onPlayerStatsClick('rbis')">RBI</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;color: #DBD4D1;" (click)="onPlayerStatsClick('rbis')">RBI</button> </th>
                 <td mat-cell *matCellDef="let element"> {{element.batterRbis | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Hits">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;"  (click)="onPlayerStatsClick('hits')">H</button>  </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('hits')">H</button>  </th>
                 <td mat-cell *matCellDef="let element"> {{element.batterHits | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Total Bases">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header"> <button mat-button style="padding-left: 0;" (click)="onPlayerStatsClick('totalBases')">TB</button>  </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header"> <button mat-button style="padding-left: 0;color: #DBD4D1;" (click)="onPlayerStatsClick('totalBases')">TB</button>  </th>
                 <td mat-cell *matCellDef="let element"> {{element.batterTotalBases | number: '1.0-2'}} </td>
               </ng-container>
 
 
 
-              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header"></tr>
+              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header" style="color: #DBD4D1;"></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
-                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;color: #DBD4D1;"></tr>
             </table>
 
-            <table *ngIf="this.selectedSport == 'NFL'" mat-table [dataSource]="playerData" class="mat-elevation-z8 nfl-table" style="height: 100%; width: 98%;">
+            <table *ngIf="this.selectedSport == 'NFL'" mat-table [dataSource]="playerData" class="mat-elevation-z8 nfl-table" style="height: 100%; width: 98%;background-color: #4d4f4e;">
 
               <ng-container matColumnDef="Player">
                 <th  mat-header-cell *matHeaderCellDef> Player </th>
@@ -113,41 +113,41 @@
               </ng-container>
 
               <ng-container matColumnDef="Pass Tds" >
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button class="player-table-button" style="padding-left: 0;"  (click)="onPlayerStatsClick('qbpassingtouchdowns')">Pass Tds</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button class="player-table-button" style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('qbpassingtouchdowns')">Pass Tds</button> </th>
                 <td mat-cell *matCellDef="let element" > {{element.qbPassingTouchdowns | number: '1.0-2'}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="Rush Tds" >
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button class="player-table-button" style="padding-left: 0;"  (click)="onPlayerStatsClick('rushingtouchdowns')">Rush Tds</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button class="player-table-button" style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('rushingtouchdowns')">Rush Tds</button> </th>
                 <td mat-cell *matCellDef="let element" > {{element.rushingTouchdowns | number: '1.0-2'}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="Rec Tds" >
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button class="player-table-button" style="padding-left: 0;"  (click)="onPlayerStatsClick('receivingtouchdowns')">Rec Tds</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button class="player-table-button" style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('receivingtouchdowns')">Rec Tds</button> </th>
                 <td mat-cell *matCellDef="let element" > {{element.receivingTouchdowns | number: '1.0-2'}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="Rushing Yards">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button class="player-table-button" style="padding-left: 0;" (click)="onPlayerStatsClick('rushingYards')">Rush Yds</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button class="player-table-button" style="padding-left: 0;color: #DBD4D1;" (click)="onPlayerStatsClick('rushingYards')">Rush Yds</button> </th>
                 <td mat-cell *matCellDef="let element"> {{element.rushingYards | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Receiving Yards">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button class="player-table-button" style="padding-left: 0;"  (click)="onPlayerStatsClick('receivingYards')">Rec Yds</button>  </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button class="player-table-button" style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('receivingYards')">Rec Yds</button>  </th>
                 <td mat-cell *matCellDef="let element"> {{element.receivingYards | number: '1.0-2'}} </td>
               </ng-container>
 
 
 
-              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header"></tr>
+              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header" style="color: #DBD4D1;"></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
-                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;color: #DBD4D1;"></tr>
             </table>
 
-            <table *ngIf="this.selectedSport == 'NHL'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            <table *ngIf="this.selectedSport == 'NHL'" mat-table [dataSource]="playerData" class="mat-elevation-z8" style="height: 100%; width: 98%;background-color: #4d4f4e;">
 
               <ng-container matColumnDef="Player">
                 <th  mat-header-cell *matHeaderCellDef> Player </th>
@@ -157,31 +157,31 @@
               </ng-container>
 
               <ng-container matColumnDef="Points" >
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button style="padding-left: 0;"  (click)="onPlayerStatsClick('points')">Points</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef class="click-header" [ngClass]="'click-header'"> <button mat-button style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('points')">Points</button> </th>
                 <td mat-cell *matCellDef="let element" > {{element.points | number: '1.0-2'}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="Goals">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;" (click)="onPlayerStatsClick('goals')">Goals</button> </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;color: #DBD4D1;" (click)="onPlayerStatsClick('goals')">Goals</button> </th>
                 <td mat-cell *matCellDef="let element"> {{element.goals | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Assists">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;"  (click)="onPlayerStatsClick('assists')">Assists</button>  </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header">  <button mat-button style="padding-left: 0;color: #DBD4D1;"  (click)="onPlayerStatsClick('assists')">Assists</button>  </th>
                 <td mat-cell *matCellDef="let element"> {{element.assists | number: '1.0-2'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Shots">
-                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header"> <button mat-button style="padding-left: 0;" (click)="onPlayerStatsClick('shots')">Shots</button>  </th>
+                <th style="padding-left: 0;" mat-header-cell *matHeaderCellDef  class="click-header"> <button mat-button style="padding-left: 0;color: #DBD4D1;" (click)="onPlayerStatsClick('shots')">Shots</button>  </th>
                 <td mat-cell *matCellDef="let element"> {{element.shots | number: '1.0-2'}} </td>
               </ng-container>
 
 
 
-              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header"></tr>
+              <tr mat-header-row *matHeaderRowDef="playerAverageColumns; sticky:false" class="click-header" style=" color: #DBD4D1;"></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
-                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: playerAverageColumns; " style="height:auto; color: #DBD4D1;"></tr>
             </table>
 
           </div>
@@ -195,7 +195,7 @@
             
           </div>
           <div style="height: 100%; width: 96%;  margin-left: auto; margin-right: auto; margin-bottom: 1rem; ">
-            <table *ngIf="this.selectedSport == 'NBA'" mat-table [dataSource]="teamData" [fixedLayout]="false" class="mat-elevation-z8" style="height: 100%; width:98%">
+            <table *ngIf="this.selectedSport == 'NBA'" mat-table [dataSource]="teamData" [fixedLayout]="false" class="mat-elevation-z8" style="height: 100%; width:98%;background-color: #4d4f4e;">
 
               <ng-container matColumnDef="Team">
                 <th mat-header-cell *matHeaderCellDef> Team </th>
@@ -226,12 +226,12 @@
               </ng-container>
 
 
-              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" style="color: #DBD4D1;" ></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
-                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;color: #DBD4D1;"></tr>
             </table>
 
-            <table *ngIf="this.selectedSport == 'MLB'" mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            <table *ngIf="this.selectedSport == 'MLB'" mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%; width: 98%;background-color: #4d4f4e;">
             
               <ng-container matColumnDef="Team">
                 <th mat-header-cell *matHeaderCellDef> Team </th>
@@ -251,13 +251,13 @@
                 <td mat-cell *matCellDef="let element"> {{element.losses}} </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" style="color: #DBD4D1;" ></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
-                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;color: #DBD4D1;"></tr>
 
             </table>
 
-            <table *ngIf="this.selectedSport == 'NFL'" mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            <table *ngIf="this.selectedSport == 'NFL'" mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%; width: 98%;background-color: #4d4f4e;">
             
               <ng-container matColumnDef="Team">
                 <th mat-header-cell *matHeaderCellDef> Team </th>
@@ -277,13 +277,13 @@
                 <td mat-cell *matCellDef="let element"> {{element.losses}} </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" style="color: #DBD4D1;"></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
-                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto; color: #DBD4D1;"></tr>
 
             </table>
 
-            <table *ngIf="this.selectedSport == 'NHL'" mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%; width: 98%;">
+            <table *ngIf="this.selectedSport == 'NHL'" mat-table [dataSource]="teamData" class="mat-elevation-z8" style="height: 100%; width: 98%;background-color: #4d4f4e;">
             
               <ng-container matColumnDef="Team">
                 <th mat-header-cell *matHeaderCellDef> Team </th>
@@ -308,9 +308,9 @@
                 <td mat-cell *matCellDef="let element"> {{element.otl}} </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" ></tr>
+              <tr mat-header-row *matHeaderRowDef="teamAverageColumns; sticky:false" style="color: #DBD4D1;" ></tr>
               <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted" 
-                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;"></tr>
+                *matRowDef="let row; columns: teamAverageColumns; " style="height:auto;color: #DBD4D1;"></tr>
 
             </table>
           </div>
