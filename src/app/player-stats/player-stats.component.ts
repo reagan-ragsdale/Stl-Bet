@@ -382,7 +382,7 @@ export class PlayerStatsComponent {
 
 
   async initialize() {
-    this.sharedCaching.currentPlayerInfo.subscribe( data => {
+    this.sharedCaching.currentPlayerInfo.subscribe(async data => {
       console.log(data)
       if (data) {
         console.log('here in data')
@@ -390,15 +390,15 @@ export class PlayerStatsComponent {
       }
       else{
         console.log('here in else')
-        this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
+        //this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
           //this.selectedSport = params.get('sport')
           //this.playerId = params.get('id')
           this.selectedSport = this.route.snapshot.params['sport']
           this.playerId = this.route.snapshot.params['id']
-          this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
+          //this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
           let playerData = await PlayerInfoController.loadPlayerInfoBySportAndId(this.selectedSport, this.playerId)
           this.selectedPlayer = playerData[0]
-        })
+        //})
       }
     })
     this.destroyGraphs()
