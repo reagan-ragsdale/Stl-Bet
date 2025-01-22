@@ -390,16 +390,9 @@ export class PlayerStatsComponent {
       this.selectedPlayer = playerIncoming
     }
     else{
-      console.log('here in else')
-      //this.route.paramMap.subscribe(async (params: { get: (arg0: string) => any; }) => {
-        //this.selectedSport = params.get('sport')
-        //this.playerId = params.get('id')
         this.selectedSport = this.route.snapshot.params['sport']
         this.playerId = this.route.snapshot.params['id']
-        //this.router.navigate([`/playerStats/${this.selectedSport}/${this.playerId}`])
-        console.log(this.playerId)
         let playerData = await PlayerInfoController.loadPlayerInfoBySportAndId(this.selectedSport, this.playerId)
-        console.log(playerData)
         this.selectedPlayer = playerData[0]
     }
     

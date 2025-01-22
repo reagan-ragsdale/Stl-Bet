@@ -1,7 +1,7 @@
 <div style="height: 100%; width:100%; background-color:#1F1E1F;" class="main-body">
 
   <div style="height:100%; display:flex; flex-direction:column">
-    <div class="top-bar">
+    <div *ngIf="selectedPlayer != null" class="top-bar">
       <div class="player-name">
         <h1 class="player-name-name">{{selectedPlayer!.playerName}}: </h1>
         <h1 class="player-name-team">{{selectedPlayer!.teamName}}</h1>
