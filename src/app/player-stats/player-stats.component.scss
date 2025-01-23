@@ -51,7 +51,7 @@
   .chart-toggles{
     width:12%; 
     margin-top:2rem; 
-    border-left: 2px solid black; 
+    border-left: 2px solid hsl(18, 12%, 60%); 
     padding-left: 10px;
   }
   .nfl-chart-toggles{
@@ -106,10 +106,10 @@
   }
   .player-prop-body{
     width:325px; 
-    background-color: darkslateblue; 
+    background-color: #3C3E3D; 
     display:flex; 
     gap:10px; 
-    color:white;
+    color:#DBD4D1;
     padding: 0.5rem;
     border-radius: 8px;
   }
@@ -140,6 +140,9 @@
   }
   ::ng-deep .mdc-data-table__cell{
     text-align:center !important;
+  }
+  ::ng-deep .mdc-form-field{
+    color: #DBD4D1 !important;
   }
 
   @media screen and (max-width: 970px) {
