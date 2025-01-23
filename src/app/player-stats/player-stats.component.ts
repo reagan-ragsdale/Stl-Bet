@@ -871,7 +871,7 @@ export class PlayerStatsComponent {
       })
       arrayOFpoints = [points, assists, rebounds, blocks, threes, doubleDoubles]
     }
-    else if (this.selectedSport == 'MLB') {
+    else if (this.selectedPlayer!.sport == 'MLB') {
       var hits: number[] = []
       var homeRuns: number[] = []
       var totalBases: number[] = []
@@ -891,7 +891,7 @@ export class PlayerStatsComponent {
       arrayOFpoints = [hits, homeRuns, totalBases, rbis]
 
     }
-    else if (this.selectedSport == 'NFL') {
+    else if (this.selectedPlayer!.sport == 'NFL') {
       var passTd: number[] = []
       var passYds: number[] = []
       var rushingTd: number[] = []
@@ -921,7 +921,7 @@ export class PlayerStatsComponent {
 
       arrayOFpoints = [passTd, passYds, completions, rushingTd, rushYds, carries, recTd, recYds, receptions]
     }
-    else if (this.selectedSport == 'NHL') {
+    else if (this.selectedPlayer!.sport == 'NHL') {
       var points: number[] = []
       var goals: number[] = []
       var assists: number[] = []
@@ -929,6 +929,8 @@ export class PlayerStatsComponent {
       var blocks: number[] = []
 
       var index = 1
+      console.log('here in nhl')
+      console.log(this.selectedSeasonPlayerStats)
       this.selectedSeasonPlayerStats.forEach((e) => {
         points.push(e.points)
         goals.push(e.goals)
