@@ -388,6 +388,8 @@ export class PlayerStatsComponent {
     })
     if(playerIncoming != null){
       this.selectedPlayer = playerIncoming
+      console.log('here in sub')
+      console.log(this.selectedPlayer)
     }
     else{
         this.selectedSport = this.route.snapshot.params['sport']
