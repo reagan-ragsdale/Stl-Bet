@@ -425,7 +425,10 @@ export class PlayerStatsComponent {
     this.distinctSeasons.sort(function (a, b) {
       return a - b;
     });
+    console.log(this.distinctSeasons)
+    
     this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
+    console.log(this.selectedSeasonPlayerStats)
 
     if (this.selectedSport == 'MLB') {
       this.fullDataset = [
