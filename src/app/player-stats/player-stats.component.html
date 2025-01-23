@@ -130,11 +130,11 @@
 
       </div>
       <div style="width:100%;">
-        <h1 style="text-align: center;"> Stats</h1>
+        <h1 style="text-align: center; color:#DBD4D1"> Stats</h1>
       </div>
       <div class="table-body">
         <div class="table">
-          <table mat-table [dataSource]="selectedSeasonPlayerStats" class="mat-elevation-z8" style="height: inherit;">
+          <table mat-table [dataSource]="selectedSeasonPlayerStats" class="mat-elevation-z8" style="height: inherit; background-color:#3C3E3D;">
 
             <ng-container *ngFor="let col of displayedColumnsValues" matColumnDef="{{col.name}}">
               <th mat-header-cell *matHeaderCellDef>{{col.name}}</th>
