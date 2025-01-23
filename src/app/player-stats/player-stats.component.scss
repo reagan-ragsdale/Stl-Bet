@@ -106,13 +106,13 @@
     height:max-content;
   }
   .player-prop-body{
-    width:325px; 
+    width:max-content; 
     background-color: #3C3E3D; 
     border: 1px solid hsl(18, 12%, 60%);
     display:flex; 
     gap:10px; 
     color:#DBD4D1;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 8px;
     height:100%;
   }
@@ -146,6 +146,9 @@
   }
   ::ng-deep .mdc-form-field{
     color: #DBD4D1 !important;
+  }
+  ::ng-deep .table>:not(caption)>*>*{
+    background-color: #3C3E3D !important;
   }
 
   @media screen and (max-width: 970px) {
