@@ -143,9 +143,9 @@
                 '' : ''}}{{element[col.value]}}
               </td>
             </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" style="color:#DBD4D1"></tr>
             <tr mat-row [class.demo-row-is-clicked]="row.isHighlighted"
-              *matRowDef="let row; columns: displayedColumns; " style="height:auto;">
+              *matRowDef="let row; columns: displayedColumns; " style="height:auto; color:#DBD4D1;">
             </tr>
 
           </table>
