@@ -714,9 +714,8 @@ export class PlayerStatsComponent {
 
     this.playerProps = []
     this.playerPropArray = []
-    console.log(this.selectedSport)
     console.log(this.selectedPlayer!.playerName)
-    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedSport, this.selectedPlayer!.playerName)
+    this.playerProps = await PlayerPropController.loadCurrentPlayerPropData(this.selectedPlayer!.sport, this.selectedPlayer!.playerName)
     console.log('player props below')
     console.log(this.playerProps)
     if(this.playerProps.length > 0){
