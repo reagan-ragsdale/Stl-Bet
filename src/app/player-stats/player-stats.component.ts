@@ -430,7 +430,7 @@ export class PlayerStatsComponent {
     this.selectedSeasonPlayerStats = this.playerStats.filter(e => e.season == this.distinctSeasons[this.distinctSeasons.length - 1])
     console.log(this.selectedSeasonPlayerStats)
 
-    if (this.selectedSport == 'MLB') {
+    if (this.selectedPlayer!.sport == 'MLB') {
       this.fullDataset = [
         {
           label: "Hits",
@@ -469,7 +469,7 @@ export class PlayerStatsComponent {
       this.playerTotalStatColumns = this.playerTotalStatColumnsMlb
       this.playerTotalDataSet = this.playerTotalDataSetMlb
     }
-    else if (this.selectedSport == 'NFL') {
+    else if (this.selectedPlayer!.sport == 'NFL') {
       this.fullDataset = [
         {
           label: "Pass TD",
@@ -546,7 +546,7 @@ export class PlayerStatsComponent {
       this.playerTotalStatColumns = this.playerTotalStatColumnsNfl
       this.playerTotalDataSet = this.playerTotalDataSetNfl
     }
-    else if (this.selectedSport == 'NHL') {
+    else if (this.selectedPlayer!.sport == 'NHL') {
       this.fullDataset = [
         {
           label: "Points",
@@ -629,7 +629,7 @@ export class PlayerStatsComponent {
 
 
     }
-    else if (this.selectedSport == 'NBA') {
+    else if (this.selectedPlayer!.sport == 'NBA') {
       this.fullDataset = [
         {
           label: "Points",
@@ -848,7 +848,7 @@ export class PlayerStatsComponent {
   createChart() {
     var arrayOFpoints: any[] = []
     var dataPoint: string[] = []
-    if (this.selectedSport == 'NBA') {
+    if (this.selectedPlayer!.sport == 'NBA') {
       var points: number[] = []
       var assists: number[] = []
       var rebounds: number[] = []
