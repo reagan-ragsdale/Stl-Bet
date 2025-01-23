@@ -103,15 +103,18 @@
     width:100%; 
     gap:1rem;
     display:flex;
+    height:max-content;
   }
   .player-prop-body{
     width:325px; 
     background-color: #3C3E3D; 
+    border: 1px solid hsl(18, 12%, 60%);
     display:flex; 
     gap:10px; 
     color:#DBD4D1;
     padding: 0.5rem;
     border-radius: 8px;
+    height:100%;
   }
   .prop-point{
     margin-top:auto; 
