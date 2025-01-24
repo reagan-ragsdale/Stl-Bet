@@ -525,7 +525,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     
             data: {// values on X-Axis
     
-              labels: this.selectedDisplayProp.propTrendLabels,
+              labels: this.selectedDisplayProp.propTrendData,
               datasets: [
                 {
                   label: this.selectedDisplayProp.propTrendLabels,
@@ -703,16 +703,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   }
   counter = 0
   ngAfterContentChecked(){
-    console.log('here in ngAfterContentChecked')
     const element = document.getElementById("myChart2");
-    console.log(element)
     if(element && this.counter == 0){
       this.createChart2()
       this.counter++
     }
   }
   ngAfterViewChecked(){
-    console.log('here ngAfterViewChecked()')
   }
 
   async ngOnInit() {
