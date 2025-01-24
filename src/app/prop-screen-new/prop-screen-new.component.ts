@@ -621,8 +621,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   
   ngAfterViewInit(){
     this.selectedBetIndexes = [0,0]
+    console.log('ngAfterViewInit')
   }
   ngAfterContentInit(){
+    console.log('ngAfterContentInit')
   }
   ngOnChanges(){
     console.log('here ngOnChanges')
