@@ -393,7 +393,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       else{
         this.onPropClicked(this.selectedDisplayArray[0],0,0)
       }
-      this.createChart2()
       
     }
     else if(this.selectedPropType == 'Player Props'){
