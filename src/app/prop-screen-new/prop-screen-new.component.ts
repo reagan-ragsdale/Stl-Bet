@@ -393,11 +393,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       else{
         this.onPropClicked(this.selectedDisplayArray[0],0,0)
       }
+      this.createChart2()
       
     }
     else if(this.selectedPropType == 'Player Props'){
       this.selectedDisplayArray = this.playerPropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
+      this.createChart2()
     }
     else if(this.selectedPropType == 'Best Bets'){
       this.selectedDisplayArray = this.bestBetDisplay
@@ -410,7 +412,6 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       this.createChart()
     }
     console.log('here after prop clicked')
-    this.createChart()
     
   }
   livePanelIndex = 0
