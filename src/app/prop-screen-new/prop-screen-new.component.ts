@@ -706,7 +706,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     const element = document.getElementById("myChart2");
     console.log(element)
     if(element){
-      console.log('here in element')
+      this.createChart2()
     }
   }
   ngAfterViewChecked(){
