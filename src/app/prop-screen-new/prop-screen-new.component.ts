@@ -393,12 +393,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       else{
         this.onPropClicked(this.selectedDisplayArray[0],0,0)
       }
+      this.counter = 0
       
     }
     else if(this.selectedPropType == 'Player Props'){
       this.selectedDisplayArray = this.playerPropData
       this.onPropClicked(this.selectedDisplayArray[0][0],0,0)
-      
+      this.counter = 0
     }
     else if(this.selectedPropType == 'Best Bets'){
       this.selectedDisplayArray = this.bestBetDisplay
@@ -700,12 +701,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   ngOnChanges(){
     console.log('here ngOnChanges')
   }
+  counter = 0
   ngAfterContentChecked(){
     console.log('here in ngAfterContentChecked')
     const element = document.getElementById("myChart2");
     console.log(element)
-    if(element){
+    if(element && this.counter == 0){
       this.createChart2()
+      this.counter++
     }
   }
   ngAfterViewChecked(){
