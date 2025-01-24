@@ -515,7 +515,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
           console.log('after chart created')
   }
   createChart2(){
-    let chartInstance = Chart.getChart("yChart2")
+    let chartInstance = Chart.getChart("myChart2")
     if(chartInstance != undefined){
       this.trendChart.destroy()
     }
