@@ -515,11 +515,11 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
           console.log('after chart created')
   }
   createChart2(){
-    let chartInstance = Chart.getChart("MyChart2")
+    let chartInstance = Chart.getChart("yChart2")
     if(chartInstance != undefined){
       this.trendChart.destroy()
     }
-    this.trendChart = new Chart("MyChart2", {
+    this.trendChart = new Chart("myChart2", {
             type: 'bar', //this denotes tha type of chart
     
             data: {// values on X-Axis
