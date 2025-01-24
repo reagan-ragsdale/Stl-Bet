@@ -100,7 +100,6 @@ export class draftKingsApiController {
             if (filteredPlayer.length > 0) {
               newBookSeq = highestBookSeq + 1
             }
-  
             tempData.push({
               bookId: this.playerProps.id,
               sportKey: this.playerProps.sport_key,

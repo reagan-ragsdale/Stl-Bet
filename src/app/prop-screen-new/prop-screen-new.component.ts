@@ -524,11 +524,11 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     
             data: {// values on X-Axis
     
-              labels: this.selectedDisplayProp.labels,
+              labels: this.selectedDisplayProp.propTrendLabels,
               datasets: [
                 {
-                  label: this.selectedDisplayProp.propName,
-                  data: this.selectedDisplayProp.barData,
+                  label: this.selectedDisplayProp.propTrendLabels,
+                  data: this.selectedDisplayProp.propTrendData,
                   backgroundColor: '#54C964',
                   hoverBackgroundColor: '#54C964'
                 }
