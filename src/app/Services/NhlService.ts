@@ -2255,7 +2255,8 @@ export class NhlService {
                                 last10Team: [],
                                 fullGameLog: [],
                                 trends: [],
-                                propTrendLabels: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey).map(e => e.commenceTime),
+                                propTrendLabels:playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey),
+                                // playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey).map(e => e.commenceTime),
                                 propTrendData: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey).map(e => e.price)
                             }
                             let overAllTableTemp = playerStats.slice(0, 10)
