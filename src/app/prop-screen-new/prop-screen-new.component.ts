@@ -531,7 +531,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   label: this.selectedDisplayProp.propTrendLabels,
                   data: this.selectedDisplayProp.propTrendData,
                   backgroundColor: '#54C964',
-                  hoverBackgroundColor: '#54C964'
+                  hoverBackgroundColor: '#54C964',
+                  borderColor: '#DBD4D1'
                 }
               ]
             },
