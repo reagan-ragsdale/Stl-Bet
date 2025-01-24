@@ -322,6 +322,9 @@
                     <div *ngIf="selectedDisplayProp.trends.length > 0" class="trends">
                         <h3 *ngFor="let trend of selectedDisplayProp.trends">{{trend}}</h3>
                     </div>
+                    <div>
+                        <canvas id="MyChart">{{ barChart }}</canvas>
+                    </div>
                 </div>
                 <div class="team-full-game-log">
                     <div class="table-div">
