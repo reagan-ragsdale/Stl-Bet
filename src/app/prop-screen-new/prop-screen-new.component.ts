@@ -521,7 +521,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       this.trendChart.destroy()
     }
     this.trendChart = new Chart("myChart2", {
-            type: 'bar', //this denotes tha type of chart
+            type: 'line', //this denotes tha type of chart
     
             data: {// values on X-Axis
     
