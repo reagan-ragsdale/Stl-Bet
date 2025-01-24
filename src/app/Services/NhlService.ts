@@ -1805,7 +1805,9 @@ export class NhlService {
                                 last10HomeAway: [],
                                 last10Team: [],
                                 fullGameLog: [],
-                                trends: []
+                                trends: [],
+                                propTrendLabels: [],
+                                propTrendData: []
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -2187,7 +2189,9 @@ export class NhlService {
         console.log("start player service")
         let finalReturn: any[] = []
 
-        let playerPropData = await PlayerPropController.loadPlayerPropData('NHL', bookId)
+        let playerPropDataAll = await PlayerPropController.loadPlayerPropData('NHL', bookId)
+        let playerPropData = playerPropDataAll.filter(e => e.bookSeq == 0)
+        let playerPropDataPropTrend = playerPropDataAll.filter(e => e.bookSeq != 0)
         let homeTeam = playerPropData[0].homeTeam
         let awayTeam = playerPropData[0].awayTeam
 
@@ -2250,7 +2254,9 @@ export class NhlService {
                                 last10HomeAway: [],
                                 last10Team: [],
                                 fullGameLog: [],
-                                trends: []
+                                trends: [],
+                                propTrendLabels: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey).map(e => e.commenceTime),
+                                propTrendData: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey).map(e => e.price)
                             }
                             let overAllTableTemp = playerStats.slice(0, 10)
                             let homeAwayTableTemp = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway).slice(0, 10)
@@ -2644,7 +2650,9 @@ export class NhlService {
                         last10HomeAway: [],
                         last10Team: [],
                         fullGameLog: [],
-                        trends: []
+                        trends: [],
+                        propTrendLabels: [],
+                        propTrendData: []
                     }
                     let overAllTableTemp = playerStats.slice(0, 10)
                     let homeAwayTableTemp = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway).slice(0, 10)

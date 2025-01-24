@@ -4408,7 +4408,9 @@ export class NflService {
                                 last10HomeAway: [],
                                 last10Team: [],
                                 fullGameLog: [],
-                                trends: []
+                                trends: [],
+                                propTrendLabels: [],
+                                propTrendData:[]
                             }
                             let overAllTableTemp = playerStats.slice(0, 10)
                             let homeAwayTableTemp = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway).slice(0, 10)
@@ -4845,7 +4847,9 @@ export class NflService {
                         last10HomeAway: [],
                         last10Team: [],
                         fullGameLog: [],
-                        trends: []
+                        trends: [],
+                        propTrendLabels: [],
+                        propTrendData: []
                     }
                     let overAllTableTemp = playerStats.slice(0, 10)
                     let homeAwayTableTemp = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway).slice(0, 10)

@@ -34,5 +34,7 @@ export interface PlayerPropDto {
     last10HomeAway: any[],
     last10Team: any[],
     fullGameLog: any[],
-    trends: any[]
+    trends: any[],
+    propTrendLabels: any[],
+    propTrendData: any[]
 }

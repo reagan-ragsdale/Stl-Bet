@@ -442,15 +442,84 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     
   }
   public barChart: any
+  public trendChart: any
   createChart(){
     let chartInstance = Chart.getChart("MyChart")
     if(chartInstance != undefined){
       this.barChart.destroy()
     }
-    const customMode = function(){
-
-    }
     this.barChart = new Chart("MyChart", {
+            type: 'bar', //this denotes tha type of chart
+    
+            data: {// values on X-Axis
+    
+              labels: this.selectedDisplayProp.labels,
+              datasets: [
+                {
+                  label: this.selectedDisplayProp.propName,
+                  data: this.selectedDisplayProp.barData,
+                  backgroundColor: '#54C964',
+                  hoverBackgroundColor: '#54C964'
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.5,
+              scales:{
+                y:{
+                  max:100
+                }
+              },
+              onHover(event, elements, chart) {
+                /* if(event.type == 'mousemove'){
+                  try{
+                    let index = elements[0].datasetIndex
+                    let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                    let totalNumberOfIndexes = indexes![0].data.length
+                    let indexArray = []
+                    for(let i = 0; i < totalNumberOfIndexes; i++){
+                      if(i != index){
+                        indexArray.push(i)
+                      }
+                    }
+                    console.log('here in try')
+                    for(let i = 0; i < indexArray.length; i++){
+                      indexes![0].data[i].options['backgroundColor'] = '#E0F5E3'
+                      //#64CE72
+                    }
+                  }
+                  catch(error:any){
+                    console.log('here in catch')
+                    let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                    let totalNumberOfIndexes = indexes![0].data.length
+                    for(let i = 0; i < totalNumberOfIndexes; i++){
+                      indexes![0].data[i].options['backgroundColor'] = '#54C964'
+                    }
+                  }
+                  
+                }
+                else if(event.type == 'mouseout'){
+                  let indexes = Chart.getChart('MyChart')?.getSortedVisibleDatasetMetas();
+                  let totalNumberOfIndexes = indexes![0].data.length
+                  for(let i = 0; i < totalNumberOfIndexes; i++){
+                    indexes![0].data[i].options['backgroundColor'] = '#54C964'
+                  }
+                } */
+                
+              },
+              
+              
+            }
+    
+          });
+          console.log('after chart created')
+  }
+  createChart2(){
+    let chartInstance = Chart.getChart("MyChart2")
+    if(chartInstance != undefined){
+      this.trendChart.destroy()
+    }
+    this.trendChart = new Chart("MyChart2", {
             type: 'bar', //this denotes tha type of chart
     
             data: {// values on X-Axis
