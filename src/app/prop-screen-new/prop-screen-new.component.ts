@@ -17,7 +17,7 @@ import { PlayerPropDto } from '../Dtos/PlayerPropsDto';
 import { sportController } from '../Services/sportController';
 import { SharedCaching } from '../Services/shared-caching';
 import { Interaction } from 'chart.js';
-import { getRelativePosition } from 'chart.js/helpers';
+import { color, getRelativePosition } from 'chart.js/helpers';
 import { ieNoOpen } from 'helmet';
 declare module 'chart.js' {
   interface InteractionModeMap {
@@ -536,28 +536,38 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
             data: {// values on X-Axis
     
               labels: this.selectedDisplayProp.propTrendLabels,
+              
               datasets: [
                 {
                   label: 'price',
                   data: this.selectedDisplayProp.propTrendData,
                   backgroundColor: '#54C964',
                   hoverBackgroundColor: '#54C964',
-                  borderColor: '#DBD4D1'
+                  borderColor: '#DBD4D1',
                 }
               ]
             },
             options: {
+              
               aspectRatio: 2.5,
               color: '#DBD4D1',
+              font:{
+                weight:'bold'
+              },
               scales:{
+                
                 y:{
+                  
                   grid:{
-                    color:'#DBD4D1'
+                    color:'hsl(18, 12%, 60%)'
                   }
                   
                 },
                 x:{
-                 
+                  grid:{
+                    color:'hsl(18, 12%, 60%)'
+                  },
+                  
                 }
               
               },
