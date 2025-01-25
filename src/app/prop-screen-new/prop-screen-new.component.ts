@@ -365,6 +365,10 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     else{
       this.selectedDisplayProp = this.selectedProp;
     }
+    if(this.selectedPropType == 'Player Props'){
+      this.updateChart2()
+    }
+    //this.createChart2()
     console.log('selected prop below')
     console.log(this.selectedProp)
     console.log('selected display prop below')
@@ -434,6 +438,14 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.barChart.data.datasets[0].label = this.selectedDisplayProp.propName
     this.barChart.data.datasets[0].data = this.selectedDisplayProp.barData
     this.barChart.update()
+  }
+  updateChart2(){
+    this.trendChart.data.labels = this.selectedDisplayProp.propTrendLabels
+    this.trendChart.data.datasets[0].label = 'price'
+    this.trendChart.data.datasets[0].data = this.selectedDisplayProp.propTrendData
+    this.trendChart.options.scales.y.max = this.getMaxForChart(this.selectedDisplayProp.propTrendData)
+    this.trendChart.options.scales.y.min = this.getMinForChart(this.selectedDisplayProp.propTrendData)
+    this.trendChart.update()
   }
   updateLivePropGraphType(type: number){
     
@@ -522,7 +534,17 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
         max = arr[i]
       }
     }
-    return max + 100
+    return max + 10
+
+  }
+  getMinForChart(arr: number[]):number{
+    let min = 1000000
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i] < min){
+        min = arr[i]
+      }
+    }
+    return min - 10
 
   }
   createChart2(){
@@ -557,6 +579,8 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               
               scales:{
                 y:{
+                  max: this.getMaxForChart(this.selectedDisplayProp.propTrendData),
+                  min: this.getMinForChart(this.selectedDisplayProp.propTrendData),
                   grid:{
                     color:'hsl(18, 12%, 60%)'
                   },
@@ -616,7 +640,11 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   }
 
   
-
+  checkUpdatePropPriceGraph(){
+    if(this.selectedPropType == 'Player Props'){
+      this.updateChart2()
+    }
+  }
   updateOverUnder(){
     if(this.selectedProp[0].length > 1){
       this.selectedDisplayProp = this.selectedProp[this.index][this.overUnderSlide ? 1 : 0]
@@ -627,6 +655,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     else{
       this.selectedDisplayProp = this.selectedProp[this.overUnderSlide ? 1 : 0]
     }
+    this.checkUpdatePropPriceGraph()
     
   }
 
@@ -654,6 +683,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       this.selectedDisplayProp = this.selectedProp[this.index]
       this.selectedProp.index = this.index
     }
+    this.checkUpdatePropPriceGraph()
 
     
     console.log(this.selectedProp)
@@ -736,6 +766,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       this.createChart2()
       this.counter++
     }
+    
   }
   ngAfterViewChecked(){
   }

@@ -246,7 +246,9 @@ export class NhlService {
                                 last10HomeAway: [],
                                 last10Team: [],
                                 trends: [],
-                                fullGameLog: []
+                                fullGameLog: [],
+                                propTrendLabels: [],
+                                propTrendData: []
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -434,7 +436,9 @@ export class NhlService {
                         last10HomeAway: [],
                         last10Team: [],
                         trends: [],
-                        fullGameLog: []
+                        fullGameLog: [],
+                        propTrendLabels: [],
+                        propTrendData: []
                     }
                     propReturn.overallTotal = teamStats.length;
                     propReturn.homeAwayTotal = teamStats.filter(e => e.homeOrAway == propReturn.homeAway).length;
@@ -606,7 +610,9 @@ export class NhlService {
                 last10HomeAway: [],
                 last10Team: [],
                 trends: [],
-                fullGameLog: []
+                fullGameLog: [],
+                propTrendLabels: [],
+                propTrendData: []
             }
             let awayProp: TeamPropDto = {
                 gameBookData: overUnderTotalProps[j],
@@ -644,7 +650,9 @@ export class NhlService {
                 last10HomeAway: [],
                 last10Team: [],
                 trends: [],
-                fullGameLog: []
+                fullGameLog: [],
+                propTrendLabels: [],
+                propTrendData: []
             }
             let teamStats: DbNhlTeamGameStats[] = []
             //do home first
@@ -979,7 +987,9 @@ export class NhlService {
                                 last10HomeAway: [],
                                 last10Team: [],
                                 trends: [],
-                                fullGameLog: []
+                                fullGameLog: [],
+                                propTrendLabels: [],
+                                propTrendData: []
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -1198,7 +1208,9 @@ export class NhlService {
                         last10HomeAway: [],
                         last10Team: [],
                         trends: [],
-                        fullGameLog: []
+                        fullGameLog: [],
+                        propTrendLabels: [],
+                        propTrendData: []
                     }
 
                     let teamAgainstOverallTotal = teamAgainstStats.length
@@ -1389,7 +1401,9 @@ export class NhlService {
                 last10HomeAway: [],
                 last10Team: [],
                 trends: [],
-                fullGameLog: []
+                fullGameLog: [],
+                propTrendLabels: [],
+                propTrendData: []
             }
             let awayProp: TeamPropDto = {
                 gameBookData: overUnderTotalProps[j],
@@ -1427,7 +1441,9 @@ export class NhlService {
                 last10HomeAway: [],
                 last10Team: [],
                 trends: [],
-                fullGameLog: []
+                fullGameLog: [],
+                propTrendLabels: [],
+                propTrendData: []
             }
             let teamStats: DbNhlTeamGameStats[] = []
             let teamAgainstStats: DbNhlTeamGameStats[] = []
@@ -2255,8 +2271,8 @@ export class NhlService {
                                 last10Team: [],
                                 fullGameLog: [],
                                 trends: [],
-                                propTrendLabels: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey && e.playerName == uniquePlayersWithinProp[m] && e.description == specificProps[i].description).map(e => reusedFunctions.formatDateString(e.createdAt!.toString())),
-                                propTrendData: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey && e.playerName == uniquePlayersWithinProp[m] && e.description == specificProps[i].description).map(e => e.price)
+                                propTrendLabels: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey && e.playerName == uniquePlayersWithinProp[m] && e.description == specificProps[i].description && e.point == specificProps[i].point).map(e => reusedFunctions.formatDateString(e.createdAt!.toString())),
+                                propTrendData: playerPropDataPropTrend.filter(e => e.marketKey == specificProps[i].marketKey && e.playerName == uniquePlayersWithinProp[m] && e.description == specificProps[i].description && e.point == specificProps[i].point).map(e => e.price)
                             }
                             let overAllTableTemp = playerStats.slice(0, 10)
                             let homeAwayTableTemp = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway).slice(0, 10)

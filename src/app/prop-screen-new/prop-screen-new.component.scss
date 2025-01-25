@@ -18,6 +18,8 @@
     width: 150px;
     min-width:150px;
     background-color: #1F1E1F;
+    display: flex;
+    justify-content: center;
 }
 
 .games-list-box {
@@ -26,6 +28,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     padding-top:1rem;
+    width:max-content;
 
 }
 .game-info{
@@ -380,6 +383,12 @@ mat-chip-option{
         flex-flow:nowrap;
         gap:.5em;
     }
+}
+::ng-deep .games-list-box .mdc-evolution-chip__graphic{
+    display: none
+}
+::ng-deep .games-list-box .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic{
+    padding-left:12px;
 }
 ::ng-deep .prop-type-list-box .mdc-evolution-chip-set__chips{
     @media screen and (max-width: 440px) {

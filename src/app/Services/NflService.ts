@@ -455,7 +455,9 @@ export class NflService {
                                 last10HomeAway: [],
                                 last10Team: [],
                                 trends: [],
-                                fullGameLog: []
+                                fullGameLog: [],
+                                propTrendLabels: [],
+                                propTrendData: []
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -752,7 +754,9 @@ export class NflService {
                         last10HomeAway: [],
                         last10Team: [],
                         trends: [],
-                        fullGameLog: []
+                        fullGameLog: [],
+                        propTrendLabels: [],
+                        propTrendData: []
                     }
 
                     let teamAgainstOverallTotal = teamAgainstStats.length
@@ -2063,7 +2067,9 @@ export class NflService {
                             last10HomeAway: [],
                             last10Team: [],
                             trends: [],
-                            fullGameLog: []
+                            fullGameLog: [],
+                            propTrendLabels: [],
+                            propTrendData: []
                         }
                         let awayProp: TeamPropDto = {
                             gameBookData: filteredPropsByPoint[n],
@@ -2101,7 +2107,9 @@ export class NflService {
                             last10HomeAway: [],
                             last10Team: [],
                             trends: [],
-                            fullGameLog: []
+                            fullGameLog: [],
+                            propTrendLabels: [],
+                            propTrendData: []
                         }
                         let teamStats: DBNflTeamGameStats[] = []
                         let teamAgainstStats: DBNflTeamGameStats[] = []
@@ -2439,7 +2447,9 @@ export class NflService {
                         last10HomeAway: [],
                         last10Team: [],
                         trends: [],
-                        fullGameLog: []
+                        fullGameLog: [],
+                        propTrendLabels: [],
+                        propTrendData: []
                     }
                     let awayProp: TeamPropDto = {
                         gameBookData: filteredBothTeamProp[j],
@@ -2477,7 +2487,9 @@ export class NflService {
                         last10HomeAway: [],
                         last10Team: [],
                         trends: [],
-                        fullGameLog: []
+                        fullGameLog: [],
+                        propTrendLabels: [],
+                        propTrendData: []
                     }
                     let teamStats: DBNflTeamGameStats[] = []
                     let teamAgainstStats: DBNflTeamGameStats[] = []

@@ -322,8 +322,8 @@
                     <div *ngIf="selectedDisplayProp.trends.length > 0" class="trends">
                         <h3 *ngFor="let trend of selectedDisplayProp.trends">{{trend}}</h3>
                     </div>
-                    <div style="background-color: #3C3E3D; border:1px solid hsl(12, 18%, 60%); border-radius:8px;">
-                        <h2 style="color:#DBD4D1;">Prop price trend</h2>
+                    <div *ngIf="selectedPropType == 'Player Props'" style="background-color: #3C3E3D; border:1px solid hsl(12, 18%, 60%); border-radius:8px;">
+                        <h2 style="color:#DBD4D1; text-align: center;">Prop price trend</h2>
                         <canvas id="myChart2" style="background-color: #3C3E3D;">{{ trendChart }}</canvas>
                     </div>
                 </div>
