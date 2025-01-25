@@ -45,6 +45,8 @@ import { DbNhlPlayerGameStatAverages } from '../shared/dbTasks/DbNhlPlayerGameSt
 import { DbNhlPlayerGameStatTotals } from '../shared/dbTasks/DbNhlPlayerGameStatTotals';
 import { DbNhlTeamGameStatAverages } from '../shared/dbTasks/DbNhlTeamGameStatAverages';
 import { DbNhlTeamGameStatTotals } from '../shared/dbTasks/DbNhlTeamGameStatTotals';
+import ev from '../environmentVariables.json'
+
 
 
 config()
@@ -103,7 +105,10 @@ export const api = remultExpress({
       createPostgresDataProvider({
         caseInsensitiveIdentifiers: true,
         connectionString: process.env['DATABASE_URL']
-      }) : undefined
+      }) : createPostgresDataProvider({
+        caseInsensitiveIdentifiers: true,
+        connectionString: ev.dbConnection
+      })
   , initRequest
   , initApi: async () => {
 
@@ -113,13 +118,14 @@ export const api = remultExpress({
     //1:33pm
 
     //cron.schedule('00 10 * * *', () => mlbCronFile())
-
-    cron.schedule('0 */2 * * *', () => cronSportsBookHourly())
-    cron.schedule('15 */1 * * *', () => cronLoadMlbPlayer())
-    cron.schedule('09 17 * * *', () => cronLoadNflGameStats())
-    cron.schedule('47 7 * * *', () => cronLoadBestBets())
+    process.env['DATABASE_URL'] ? (
+    cron.schedule('0 */2 * * *', () => cronSportsBookHourly()),
+    cron.schedule('15 */1 * * *', () => cronLoadMlbPlayer()),
+    cron.schedule('09 17 * * *', () => cronLoadNflGameStats()),
+    cron.schedule('47 7 * * *', () => cronLoadBestBets()),
     //cron.schedule('*/5 * * * *', () => cronLoadBestBets())
     cron.schedule('14 7 * * *', () => cronLoadNhlStats())
+    ) : ''
     
     
     //cron.schedule('02 22 * * *', () => cronLoadIntoHistoryTables())

@@ -554,14 +554,12 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               font:{
                 weight:'bold'
               },
+              
               scales:{
-                
                 y:{
-                  
                   grid:{
                     color:'hsl(18, 12%, 60%)'
-                  }
-                  
+                  },
                 },
                 x:{
                   grid:{

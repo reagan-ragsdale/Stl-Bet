@@ -41,6 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.src/environmentVariables
-src/environmentVariables
-/src/environmentVariables
+.src/environmentVariables.json
+src/environmentVariables.json
+/src/environmentVariables.json
