@@ -45,12 +45,7 @@ import { DbNhlPlayerGameStatAverages } from '../shared/dbTasks/DbNhlPlayerGameSt
 import { DbNhlPlayerGameStatTotals } from '../shared/dbTasks/DbNhlPlayerGameStatTotals';
 import { DbNhlTeamGameStatAverages } from '../shared/dbTasks/DbNhlTeamGameStatAverages';
 import { DbNhlTeamGameStatTotals } from '../shared/dbTasks/DbNhlTeamGameStatTotals';
-if(!process.env['DATABASE_URL']){
-  import('../environmentVariables.json').then((val) => {
-    importedString = val.dbConnection
-  })
-}
-
+//import ev from '../environmentVariables.json'
 
 
 
@@ -59,7 +54,6 @@ UsersController.generate =generate;
 UsersController.verify = verify
 ErrorEmailController.sendEmail = emailer;
 
-let importedString = ''
 
 export const api = remultExpress({
   entities: [
@@ -113,7 +107,7 @@ export const api = remultExpress({
         connectionString: process.env['DATABASE_URL']
       }) : createPostgresDataProvider({
         caseInsensitiveIdentifiers: true,
-        connectionString: importedString
+        //connectionString: ev.dbConnection
       })
   , initRequest
   , initApi: async () => {
