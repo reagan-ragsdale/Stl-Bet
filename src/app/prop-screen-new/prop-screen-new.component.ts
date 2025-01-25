@@ -551,10 +551,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               color: '#DBD4D1',
               scales:{
                 y:{
-                  backgroundColor: '#DBD4D1'
+                  grid:{
+                    color:'#DBD4D1'
+                  }
+                  
                 },
                 x:{
-                  backgroundColor: '#DBD4D1'
+                 
                 }
               
               },
