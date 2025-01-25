@@ -548,11 +548,17 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
             },
             options: {
               aspectRatio: 2.5,
+              color: '#DBD4D1',
               scales:{
                 y:{
-                  //max:this.getMaxForChart(this.selectedDisplayProp.propTrendData)
+                  backgroundColor: '#DBD4D1'
+                },
+                x:{
+                  backgroundColor: '#DBD4D1'
                 }
+              
               },
+              
               onHover(event, elements, chart) {
                 /* if(event.type == 'mousemove'){
                   try{
