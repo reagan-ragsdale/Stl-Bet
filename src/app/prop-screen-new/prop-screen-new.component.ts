@@ -515,6 +515,16 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
           });
           console.log('after chart created')
   }
+  getMaxForChart(arr: number[]):number{
+    let max = -1000000
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i] > max){
+        max = arr[i]
+      }
+    }
+    return max + 100
+
+  }
   createChart2(){
     let chartInstance = Chart.getChart("myChart2")
     if(chartInstance != undefined){
@@ -540,7 +550,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               aspectRatio: 2.5,
               scales:{
                 y:{
-                  max:100
+                  max:this.getMaxForChart(this.selectedDisplayProp.propTrendData)
                 }
               },
               onHover(event, elements, chart) {
