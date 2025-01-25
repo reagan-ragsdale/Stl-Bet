@@ -550,7 +550,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
               aspectRatio: 2.5,
               scales:{
                 y:{
-                  max:this.getMaxForChart(this.selectedDisplayProp.propTrendData)
+                  //max:this.getMaxForChart(this.selectedDisplayProp.propTrendData)
                 }
               },
               onHover(event, elements, chart) {
