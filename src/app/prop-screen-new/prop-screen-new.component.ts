@@ -6,7 +6,6 @@ import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
 import { NhlService } from '../Services/NhlService';
 import { NhlController } from '../../shared/Controllers/NhlController';
-import { ThisReceiver } from '@angular/compiler';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { remult } from 'remult';
 import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
