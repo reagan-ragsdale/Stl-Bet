@@ -10,7 +10,7 @@ import { SportsBookController } from "../../shared/Controllers/SportsBookControl
 import { DbGameBookData } from "../../shared/dbTasks/DbGameBookData"
 import { remult } from "remult"
 import { nflApiController } from "../ApiCalls/nflApiCalls"
-import { NhlService } from "../Services/NhlService"
+import { NhlService } from "../Services/NhlService-server"
 
 
 
