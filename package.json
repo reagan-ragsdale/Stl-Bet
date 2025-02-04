@@ -13,6 +13,7 @@
   "browser": {
     "jsonwebtoken": false
   },
+  "type": "module",
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
