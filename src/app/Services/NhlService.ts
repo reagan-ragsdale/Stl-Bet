@@ -14,7 +14,6 @@ import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameS
 import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
 import { DbNhlPlayerGameStatAverages } from "../../shared/dbTasks/DbNhlPlayerGameStatAverages";
 import { reusedFunctions } from "./reusedFunctions";
-import { Injectable } from "@angular/core";
 import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";

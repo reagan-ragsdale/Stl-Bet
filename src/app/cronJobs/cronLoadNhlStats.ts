@@ -1,14 +1,11 @@
 import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController";
-import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailController";
 import { nhlApiController } from "../ApiCalls/nhlApiCalls";
 import { NhlController } from "../../shared/Controllers/NhlController";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
-import { DbNhlTeamGameStatTotals } from "src/shared/dbTasks/DbNhlTeamGameStatTotals";
+import { DbNhlTeamGameStatTotals } from "../../shared/dbTasks/DbNhlTeamGameStatTotals";
 import { NhlService } from "../Services/NhlService";
 import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameStatTotals";
 import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
-import { remult } from "remult";
-import { DbNhlTeamGameStats } from "../../shared/dbTasks/DbNhlTeamGameStats";
 
 export const cronLoadNhlStats = async () => {
     console.log("starting nhl stats")
