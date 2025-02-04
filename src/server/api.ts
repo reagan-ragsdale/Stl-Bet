@@ -45,7 +45,7 @@ import { DbNhlPlayerGameStatAverages } from '../shared/dbTasks/DbNhlPlayerGameSt
 import { DbNhlPlayerGameStatTotals } from '../shared/dbTasks/DbNhlPlayerGameStatTotals';
 import { DbNhlTeamGameStatAverages } from '../shared/dbTasks/DbNhlTeamGameStatAverages';
 import { DbNhlTeamGameStatTotals } from '../shared/dbTasks/DbNhlTeamGameStatTotals';
-import ev from '../environmentVariables.json'
+
 
 
 
@@ -105,10 +105,7 @@ export const api = remultExpress({
       createPostgresDataProvider({
         caseInsensitiveIdentifiers: true,
         connectionString: process.env['DATABASE_URL']
-      }) : createPostgresDataProvider({
-        caseInsensitiveIdentifiers: true,
-        connectionString: ev.dbConnection
-      })
+      }) : undefined
   , initRequest
   , initApi: async () => {
 
