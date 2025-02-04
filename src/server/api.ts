@@ -49,6 +49,7 @@ import { DbNhlTeamGameStatTotals } from '../shared/dbTasks/DbNhlTeamGameStatTota
 
 
 
+
 config()
 UsersController.generate =generate;
 UsersController.verify = verify

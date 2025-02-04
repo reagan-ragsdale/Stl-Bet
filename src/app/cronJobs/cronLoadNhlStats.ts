@@ -3,7 +3,7 @@ import { nhlApiController } from "../ApiCalls/nhlApiCalls";
 import { NhlController } from "../../shared/Controllers/NhlController";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
 import { DbNhlTeamGameStatTotals } from "../../shared/dbTasks/DbNhlTeamGameStatTotals";
-import { NhlService } from "../Services/NhlService";
+import { NhlService } from "../Services/NhlService-server";
 import { DbNhlPlayerGameStatTotals } from "../../shared/dbTasks/DbNhlPlayerGameStatTotals";
 import { DbNhlTeamGameStatAverages } from "../../shared/dbTasks/DbNhlTeamGameStatAverages";
 

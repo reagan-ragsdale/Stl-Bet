@@ -18,11 +18,10 @@ import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailControl
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
 import { DbPlayerBestBets } from "../../shared/dbTasks/DBPlayerBestBets";
-import { SharedCaching } from "./shared-caching";
 
 
 export class NhlService {
-   
+
 
     static convertPlayerInfoToDb(playerInfo: any[]): DbPlayerInfo[] {
         let playerInfoFinal: DbPlayerInfo[] = []
@@ -907,8 +906,7 @@ export class NhlService {
         let homeTeam = teamsInfo.filter(e => e.teamNameFull == props[0].homeTeam)[0]
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
         let allTeamStats = await NhlController.nhlGetAllTeamStatsBySeason(2024)
-        SharedCaching.changeCurrentTeamsStats(allTeamStats)
-        
+
         let currentDate = new Date(props[0].commenceTime)
         let newCurrent = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())
         let homeTeamStats = allTeamStats.filter(e => e.teamName == homeTeam.teamNameAbvr)
@@ -1213,8 +1211,8 @@ export class NhlService {
                         last10Team: [],
                         trends: [],
                         fullGameLog: [],
-                        propTrendLabels: notBookSeq0Props.filter(e => e.teamName == filteredPropsOnMarketKey[i].teamName  && e.marketKey == filteredPropsOnMarketKey[i].marketKey && e.point == filteredPropsOnMarketKey[i].point).map(e => reusedFunctions.formatDateString(e.createdAt!.toString())),
-                        propTrendData: notBookSeq0Props.filter(e => e.teamName == filteredPropsOnMarketKey[i].teamName  && e.marketKey == filteredPropsOnMarketKey[i].marketKey && e.point == filteredPropsOnMarketKey[i].point).map(e => e.price)
+                        propTrendLabels: notBookSeq0Props.filter(e => e.teamName == filteredPropsOnMarketKey[i].teamName && e.marketKey == filteredPropsOnMarketKey[i].marketKey && e.point == filteredPropsOnMarketKey[i].point).map(e => reusedFunctions.formatDateString(e.createdAt!.toString())),
+                        propTrendData: notBookSeq0Props.filter(e => e.teamName == filteredPropsOnMarketKey[i].teamName && e.marketKey == filteredPropsOnMarketKey[i].marketKey && e.point == filteredPropsOnMarketKey[i].point).map(e => e.price)
                     }
 
                     let teamAgainstOverallTotal = teamAgainstStats.length
@@ -1477,7 +1475,7 @@ export class NhlService {
                 homeProp.teamWins = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 homeProp.teamTotal = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId).length
                 homeProp.propTrendLabels = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => reusedFunctions.formatDateString(e.createdAt!.toString()))
-                homeProp.propTrendData = notBookSeq0Props.filter(e =>  e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => e.price)
+                homeProp.propTrendData = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => e.price)
                 teamAgainstStats = awayTeamStats
 
                 teamAgainstOverallTotal = teamAgainstStats.length
@@ -2230,13 +2228,8 @@ export class NhlService {
         let uniquePlayerNames = playerPropData.map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
 
         let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
-        let allPlayerInfo: DbPlayerInfo[] = []
-        SharedCaching.currentAllPlayerInfoStatic.subscribe(playerInfo => {
-            if(playerInfo != null){
-                allPlayerInfo = playerInfo
-            }
-        }) 
-        allPlayerInfo = allPlayerInfo.filter(e => e.sport == 'NHL')
+        let allPlayerInfo: DbPlayerInfo[] = await PlayerInfoController.loadActivePlayerInfoBySport('NHL')
+
 
         //create an array for each prop that has a home and away array that contains an array for each player props
         for (let j = 0; j < uniquePlayerProps.length; j++) {
@@ -2401,7 +2394,7 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots > specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length
-                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
+                                    playerPropObj.trends = await this.findPlayerTrends(specificProps[i], false, playerPropObj.teamAgainstName, playerPropObj.playerStats)
 
                                 }
                                 else {
@@ -2411,7 +2404,7 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots < specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots < specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots < specificProps[i].point).length
-                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
+                                    playerPropObj.trends = await this.findPlayerTrends(specificProps[i], false, playerPropObj.teamAgainstName, playerPropObj.playerStats)
 
                                 }
                                 let totalOverall = playerStats.map(e => e.shots)
@@ -2539,7 +2532,7 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots > specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length
-                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
+                                    playerPropObj.trends = await this.findPlayerTrends(specificProps[i], false, playerPropObj.teamAgainstName, playerPropObj.playerStats)
 
                                 }
                                 else {
@@ -2549,7 +2542,7 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots < specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots < specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots < specificProps[i].point).length
-                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
+                                    playerPropObj.trends = await this.findPlayerTrends(specificProps[i], false, playerPropObj.teamAgainstName, playerPropObj.playerStats)
 
                                 }
                                 let totalOverall = playerStats.map(e => e.shots)
@@ -3011,7 +3004,7 @@ export class NhlService {
                 playerPropStats.propType = 'altTotal'
             }
 
-            
+
             let fullArray: any = playerPropStats
             propArray.push(awayPlayerProps);
             propArray[0].teamName = awayTeam
@@ -3024,651 +3017,641 @@ export class NhlService {
         }
         console.log("end player service")
         return finalReturn
-}
+    }
 
 
     static setTeamGameStatTotals(listOfTeams: DbTeamInfo[], allTeamStats: DbNhlTeamGameStats[]): DbNhlTeamGameStatTotals[] {
-    let finalArray: DbNhlTeamGameStatTotals[] = []
-    for (let i = 0; i < listOfTeams.length; i++) {
-        let teamTotals: DbNhlTeamGameStatTotals = {
-            teamId: listOfTeams[i].teamId,
-            teamName: listOfTeams[i].teamNameAbvr,
-            season: 0,
-            wins: 0,
-            loss: 0,
-            otl: 0,
-            pointsScoredOverall: 0,
-            pointsScoredFirstPeriod: 0,
-            pointsScoredSecondPeriod: 0,
-            pointsScoredThirdPeriod: 0,
-            shotsOnGoal: 0,
-            saves: 0,
-            pointsAllowedOverall: 0,
-            pointsAllowedFirstPeriod: 0,
-            pointsAllowedSecondPeriod: 0,
-            pointsAllowedThirdPeriod: 0,
-            shotsAllowedOnGoal: 0
-        }
-        let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
-        teamTotals.season = teamStats[0].season;
-        for (let j = 0; j < teamStats.length; j++) {
-            if (teamStats[j].result == 'W') {
-                teamTotals.wins++
+        let finalArray: DbNhlTeamGameStatTotals[] = []
+        for (let i = 0; i < listOfTeams.length; i++) {
+            let teamTotals: DbNhlTeamGameStatTotals = {
+                teamId: listOfTeams[i].teamId,
+                teamName: listOfTeams[i].teamNameAbvr,
+                season: 0,
+                wins: 0,
+                loss: 0,
+                otl: 0,
+                pointsScoredOverall: 0,
+                pointsScoredFirstPeriod: 0,
+                pointsScoredSecondPeriod: 0,
+                pointsScoredThirdPeriod: 0,
+                shotsOnGoal: 0,
+                saves: 0,
+                pointsAllowedOverall: 0,
+                pointsAllowedFirstPeriod: 0,
+                pointsAllowedSecondPeriod: 0,
+                pointsAllowedThirdPeriod: 0,
+                shotsAllowedOnGoal: 0
             }
-            else if (teamStats[j].result == 'L') {
-                teamTotals.loss++
+            let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
+            teamTotals.season = teamStats[0].season;
+            for (let j = 0; j < teamStats.length; j++) {
+                if (teamStats[j].result == 'W') {
+                    teamTotals.wins++
+                }
+                else if (teamStats[j].result == 'L') {
+                    teamTotals.loss++
+                }
+                else if (teamStats[j].result == 'OTL') {
+                    teamTotals.otl++
+                }
+                teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
+                teamTotals.pointsScoredFirstPeriod += teamStats[j].pointsScoredFirstPeriod;
+                teamTotals.pointsScoredSecondPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.pointsScoredThirdPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.shotsOnGoal += teamStats[j].shotsOnGoal;
+                teamTotals.saves += teamStats[j].saves;
+                teamTotals.pointsAllowedOverall += teamStats[j].pointsAllowedOverall;
+                teamTotals.pointsAllowedFirstPeriod += teamStats[j].pointsAllowedFirstPeriod;
+                teamTotals.pointsAllowedSecondPeriod += teamStats[j].pointsAllowedSecondPeriod;
+                teamTotals.pointsAllowedThirdPeriod += teamStats[j].pointsAllowedThirdPeriod;
+                teamTotals.shotsAllowedOnGoal += teamStats[j].shotsAllowedOnGoal;
             }
-            else if (teamStats[j].result == 'OTL') {
-                teamTotals.otl++
-            }
-            teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
-            teamTotals.pointsScoredFirstPeriod += teamStats[j].pointsScoredFirstPeriod;
-            teamTotals.pointsScoredSecondPeriod += teamStats[j].pointsScoredSecondPeriod;
-            teamTotals.pointsScoredThirdPeriod += teamStats[j].pointsScoredSecondPeriod;
-            teamTotals.shotsOnGoal += teamStats[j].shotsOnGoal;
-            teamTotals.saves += teamStats[j].saves;
-            teamTotals.pointsAllowedOverall += teamStats[j].pointsAllowedOverall;
-            teamTotals.pointsAllowedFirstPeriod += teamStats[j].pointsAllowedFirstPeriod;
-            teamTotals.pointsAllowedSecondPeriod += teamStats[j].pointsAllowedSecondPeriod;
-            teamTotals.pointsAllowedThirdPeriod += teamStats[j].pointsAllowedThirdPeriod;
-            teamTotals.shotsAllowedOnGoal += teamStats[j].shotsAllowedOnGoal;
-        }
-        finalArray.push(teamTotals)
+            finalArray.push(teamTotals)
 
+        }
+        return finalArray
     }
-    return finalArray
-}
 
     static setPlayerGameStatTotals(listOfPlayers: number[], allPlayerStats: DbNhlPlayerGameStats[]): DbNhlPlayerGameStatTotals[] {
-    let finalArray: DbNhlPlayerGameStatTotals[] = []
-    for (let i = 0; i < listOfPlayers.length; i++) {
-        let playerStats = allPlayerStats.filter(e => e.playerId == listOfPlayers[i])
-        let playerTotal: DbNhlPlayerGameStatTotals = {
-            playerId: listOfPlayers[i],
-            playerName: "",
-            teamName: "",
-            teamId: 0,
-            season: 0,
-            goals: 0,
-            assists: 0,
-            pim: 0,
-            shots: 0,
-            hits: 0,
-            powerPlayGoals: 0,
-            powerPlayPoints: 0,
-            plusMinus: 0,
-            points: 0,
-            blocks: 0,
-            saves: 0
+        let finalArray: DbNhlPlayerGameStatTotals[] = []
+        for (let i = 0; i < listOfPlayers.length; i++) {
+            let playerStats = allPlayerStats.filter(e => e.playerId == listOfPlayers[i])
+            let playerTotal: DbNhlPlayerGameStatTotals = {
+                playerId: listOfPlayers[i],
+                playerName: "",
+                teamName: "",
+                teamId: 0,
+                season: 0,
+                goals: 0,
+                assists: 0,
+                pim: 0,
+                shots: 0,
+                hits: 0,
+                powerPlayGoals: 0,
+                powerPlayPoints: 0,
+                plusMinus: 0,
+                points: 0,
+                blocks: 0,
+                saves: 0
+            }
+            for (let j = 0; j < playerStats.length; j++) {
+                playerTotal.playerName = playerStats[j].playerName;
+                playerTotal.teamName = playerStats[j].teamName;
+                playerTotal.teamId = playerStats[j].teamId;
+                playerTotal.season = playerStats[j].season;
+                playerTotal.goals += playerStats[j].goals;
+                playerTotal.assists += playerStats[j].assists;
+                playerTotal.pim += playerStats[j].pim;
+                playerTotal.shots += playerStats[j].shots;
+                playerTotal.hits += playerStats[j].hits;
+                playerTotal.powerPlayGoals += playerStats[j].powerPlayGoals;
+                playerTotal.powerPlayPoints += playerStats[j].powerPlayPoints;
+                playerTotal.plusMinus += playerStats[j].plusMinus;
+                playerTotal.points += playerStats[j].points;
+                playerTotal.blocks += playerStats[j].blocks;
+                playerTotal.saves += playerStats[j].saves;
+            }
+            finalArray.push(playerTotal)
         }
-        for (let j = 0; j < playerStats.length; j++) {
-            playerTotal.playerName = playerStats[j].playerName;
-            playerTotal.teamName = playerStats[j].teamName;
-            playerTotal.teamId = playerStats[j].teamId;
-            playerTotal.season = playerStats[j].season;
-            playerTotal.goals += playerStats[j].goals;
-            playerTotal.assists += playerStats[j].assists;
-            playerTotal.pim += playerStats[j].pim;
-            playerTotal.shots += playerStats[j].shots;
-            playerTotal.hits += playerStats[j].hits;
-            playerTotal.powerPlayGoals += playerStats[j].powerPlayGoals;
-            playerTotal.powerPlayPoints += playerStats[j].powerPlayPoints;
-            playerTotal.plusMinus += playerStats[j].plusMinus;
-            playerTotal.points += playerStats[j].points;
-            playerTotal.blocks += playerStats[j].blocks;
-            playerTotal.saves += playerStats[j].saves;
-        }
-        finalArray.push(playerTotal)
+        return finalArray
     }
-    return finalArray
-}
 
     static setTeamGameStatAverages(listOfTeams: DbTeamInfo[], allTeamStats: DbNhlTeamGameStats[]): DbNhlTeamGameStatAverages[] {
-    let finalArray: DbNhlTeamGameStatAverages[] = []
-    for (let i = 0; i < listOfTeams.length; i++) {
-        let teamTotals: DbNhlTeamGameStatAverages = {
-            teamId: listOfTeams[i].teamId,
-            teamName: listOfTeams[i].teamNameAbvr,
-            season: 0,
-            pointsScoredOverall: 0,
-            pointsScoredFirstPeriod: 0,
-            pointsScoredSecondPeriod: 0,
-            pointsScoredThirdPeriod: 0,
-            shotsOnGoal: 0,
-            saves: 0,
-            pointsAllowedOverall: 0,
-            pointsAllowedFirstPeriod: 0,
-            pointsAllowedSecondPeriod: 0,
-            pointsAllowedThirdPeriod: 0,
-            shotsAllowedOnGoal: 0
-        }
-        let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
-        teamTotals.season = teamStats[0].season;
-        for (let j = 0; j < teamStats.length; j++) {
-            teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
-            teamTotals.pointsScoredFirstPeriod += teamStats[j].pointsScoredFirstPeriod;
-            teamTotals.pointsScoredSecondPeriod += teamStats[j].pointsScoredSecondPeriod;
-            teamTotals.pointsScoredThirdPeriod += teamStats[j].pointsScoredSecondPeriod;
-            teamTotals.shotsOnGoal += teamStats[j].shotsOnGoal;
-            teamTotals.saves += teamStats[j].saves;
-            teamTotals.pointsAllowedOverall += teamStats[j].pointsAllowedOverall;
-            teamTotals.pointsAllowedFirstPeriod += teamStats[j].pointsAllowedFirstPeriod;
-            teamTotals.pointsAllowedSecondPeriod += teamStats[j].pointsAllowedSecondPeriod;
-            teamTotals.pointsAllowedThirdPeriod += teamStats[j].pointsAllowedThirdPeriod;
-            teamTotals.shotsAllowedOnGoal += teamStats[j].shotsAllowedOnGoal;
-        }
-        teamTotals.pointsScoredOverall = teamTotals.pointsScoredOverall / teamStats.length;
-        teamTotals.pointsScoredFirstPeriod = teamTotals.pointsScoredFirstPeriod / teamStats.length;
-        teamTotals.pointsScoredSecondPeriod = teamTotals.pointsScoredSecondPeriod / teamStats.length;
-        teamTotals.pointsScoredThirdPeriod = teamTotals.pointsScoredThirdPeriod / teamStats.length;
-        teamTotals.shotsOnGoal = teamTotals.shotsOnGoal / teamStats.length;
-        teamTotals.saves = teamTotals.saves / teamStats.length;
-        teamTotals.pointsAllowedOverall = teamTotals.pointsAllowedOverall / teamStats.length;
-        teamTotals.pointsAllowedFirstPeriod = teamTotals.pointsAllowedFirstPeriod / teamStats.length;
-        teamTotals.pointsAllowedSecondPeriod = teamTotals.pointsAllowedSecondPeriod / teamStats.length;
-        teamTotals.pointsAllowedThirdPeriod = teamTotals.pointsAllowedThirdPeriod / teamStats.length;
-        teamTotals.shotsAllowedOnGoal = teamTotals.shotsAllowedOnGoal / teamStats.length;
+        let finalArray: DbNhlTeamGameStatAverages[] = []
+        for (let i = 0; i < listOfTeams.length; i++) {
+            let teamTotals: DbNhlTeamGameStatAverages = {
+                teamId: listOfTeams[i].teamId,
+                teamName: listOfTeams[i].teamNameAbvr,
+                season: 0,
+                pointsScoredOverall: 0,
+                pointsScoredFirstPeriod: 0,
+                pointsScoredSecondPeriod: 0,
+                pointsScoredThirdPeriod: 0,
+                shotsOnGoal: 0,
+                saves: 0,
+                pointsAllowedOverall: 0,
+                pointsAllowedFirstPeriod: 0,
+                pointsAllowedSecondPeriod: 0,
+                pointsAllowedThirdPeriod: 0,
+                shotsAllowedOnGoal: 0
+            }
+            let teamStats = allTeamStats.filter(e => e.teamName == listOfTeams[i].teamNameAbvr)
+            teamTotals.season = teamStats[0].season;
+            for (let j = 0; j < teamStats.length; j++) {
+                teamTotals.pointsScoredOverall += teamStats[j].pointsScoredOverall;
+                teamTotals.pointsScoredFirstPeriod += teamStats[j].pointsScoredFirstPeriod;
+                teamTotals.pointsScoredSecondPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.pointsScoredThirdPeriod += teamStats[j].pointsScoredSecondPeriod;
+                teamTotals.shotsOnGoal += teamStats[j].shotsOnGoal;
+                teamTotals.saves += teamStats[j].saves;
+                teamTotals.pointsAllowedOverall += teamStats[j].pointsAllowedOverall;
+                teamTotals.pointsAllowedFirstPeriod += teamStats[j].pointsAllowedFirstPeriod;
+                teamTotals.pointsAllowedSecondPeriod += teamStats[j].pointsAllowedSecondPeriod;
+                teamTotals.pointsAllowedThirdPeriod += teamStats[j].pointsAllowedThirdPeriod;
+                teamTotals.shotsAllowedOnGoal += teamStats[j].shotsAllowedOnGoal;
+            }
+            teamTotals.pointsScoredOverall = teamTotals.pointsScoredOverall / teamStats.length;
+            teamTotals.pointsScoredFirstPeriod = teamTotals.pointsScoredFirstPeriod / teamStats.length;
+            teamTotals.pointsScoredSecondPeriod = teamTotals.pointsScoredSecondPeriod / teamStats.length;
+            teamTotals.pointsScoredThirdPeriod = teamTotals.pointsScoredThirdPeriod / teamStats.length;
+            teamTotals.shotsOnGoal = teamTotals.shotsOnGoal / teamStats.length;
+            teamTotals.saves = teamTotals.saves / teamStats.length;
+            teamTotals.pointsAllowedOverall = teamTotals.pointsAllowedOverall / teamStats.length;
+            teamTotals.pointsAllowedFirstPeriod = teamTotals.pointsAllowedFirstPeriod / teamStats.length;
+            teamTotals.pointsAllowedSecondPeriod = teamTotals.pointsAllowedSecondPeriod / teamStats.length;
+            teamTotals.pointsAllowedThirdPeriod = teamTotals.pointsAllowedThirdPeriod / teamStats.length;
+            teamTotals.shotsAllowedOnGoal = teamTotals.shotsAllowedOnGoal / teamStats.length;
 
-        finalArray.push(teamTotals)
+            finalArray.push(teamTotals)
 
+        }
+        return finalArray
     }
-    return finalArray
-}
 
     static setPlayerGameStatAverages(listOfPlayers: number[], allPlayerStats: DbNhlPlayerGameStats[]): DbNhlPlayerGameStatAverages[] {
-    let finalArray: DbNhlPlayerGameStatAverages[] = []
-    for (let i = 0; i < listOfPlayers.length; i++) {
-        let playerStats = allPlayerStats.filter(e => e.playerId == listOfPlayers[i])
-        let playerTotal: DbNhlPlayerGameStatTotals = {
-            playerId: listOfPlayers[i],
-            playerName: "",
-            teamName: "",
-            teamId: 0,
-            season: 0,
-            goals: 0,
-            assists: 0,
-            pim: 0,
-            shots: 0,
-            hits: 0,
-            powerPlayGoals: 0,
-            powerPlayPoints: 0,
-            plusMinus: 0,
-            points: 0,
-            blocks: 0,
-            saves: 0
+        let finalArray: DbNhlPlayerGameStatAverages[] = []
+        for (let i = 0; i < listOfPlayers.length; i++) {
+            let playerStats = allPlayerStats.filter(e => e.playerId == listOfPlayers[i])
+            let playerTotal: DbNhlPlayerGameStatTotals = {
+                playerId: listOfPlayers[i],
+                playerName: "",
+                teamName: "",
+                teamId: 0,
+                season: 0,
+                goals: 0,
+                assists: 0,
+                pim: 0,
+                shots: 0,
+                hits: 0,
+                powerPlayGoals: 0,
+                powerPlayPoints: 0,
+                plusMinus: 0,
+                points: 0,
+                blocks: 0,
+                saves: 0
+            }
+            playerTotal.playerName = playerStats[0].playerName;
+            for (let j = 0; j < playerStats.length; j++) {
+                playerTotal.teamName = playerStats[j].teamName;
+                playerTotal.teamId = playerStats[j].teamId;
+                playerTotal.season = playerStats[j].season;
+                playerTotal.goals += playerStats[j].goals;
+                playerTotal.assists += playerStats[j].assists;
+                playerTotal.pim += playerStats[j].pim;
+                playerTotal.shots += playerStats[j].shots;
+                playerTotal.hits += playerStats[j].hits;
+                playerTotal.powerPlayGoals += playerStats[j].powerPlayGoals;
+                playerTotal.powerPlayPoints += playerStats[j].powerPlayPoints;
+                playerTotal.plusMinus += playerStats[j].plusMinus;
+                playerTotal.points += playerStats[j].points;
+                playerTotal.blocks += playerStats[j].blocks;
+                playerTotal.saves += playerStats[j].saves;
+            }
+            playerTotal.goals = playerTotal.goals / playerStats.length;
+            playerTotal.assists = playerTotal.assists / playerStats.length;
+            playerTotal.pim = playerTotal.pim / playerStats.length;
+            playerTotal.shots = playerTotal.shots / playerStats.length;
+            playerTotal.hits = playerTotal.hits / playerStats.length;
+            playerTotal.powerPlayGoals = playerTotal.powerPlayGoals / playerStats.length;
+            playerTotal.powerPlayPoints = playerTotal.powerPlayPoints / playerStats.length;
+            playerTotal.plusMinus = playerTotal.plusMinus / playerStats.length;
+            playerTotal.points = playerTotal.points / playerStats.length;
+            playerTotal.blocks = playerTotal.blocks / playerStats.length;
+            playerTotal.saves = playerTotal.saves / playerStats.length;
+            finalArray.push(playerTotal)
         }
-        playerTotal.playerName = playerStats[0].playerName;
-        for (let j = 0; j < playerStats.length; j++) {
-            playerTotal.teamName = playerStats[j].teamName;
-            playerTotal.teamId = playerStats[j].teamId;
-            playerTotal.season = playerStats[j].season;
-            playerTotal.goals += playerStats[j].goals;
-            playerTotal.assists += playerStats[j].assists;
-            playerTotal.pim += playerStats[j].pim;
-            playerTotal.shots += playerStats[j].shots;
-            playerTotal.hits += playerStats[j].hits;
-            playerTotal.powerPlayGoals += playerStats[j].powerPlayGoals;
-            playerTotal.powerPlayPoints += playerStats[j].powerPlayPoints;
-            playerTotal.plusMinus += playerStats[j].plusMinus;
-            playerTotal.points += playerStats[j].points;
-            playerTotal.blocks += playerStats[j].blocks;
-            playerTotal.saves += playerStats[j].saves;
-        }
-        playerTotal.goals = playerTotal.goals / playerStats.length;
-        playerTotal.assists = playerTotal.assists / playerStats.length;
-        playerTotal.pim = playerTotal.pim / playerStats.length;
-        playerTotal.shots = playerTotal.shots / playerStats.length;
-        playerTotal.hits = playerTotal.hits / playerStats.length;
-        playerTotal.powerPlayGoals = playerTotal.powerPlayGoals / playerStats.length;
-        playerTotal.powerPlayPoints = playerTotal.powerPlayPoints / playerStats.length;
-        playerTotal.plusMinus = playerTotal.plusMinus / playerStats.length;
-        playerTotal.points = playerTotal.points / playerStats.length;
-        playerTotal.blocks = playerTotal.blocks / playerStats.length;
-        playerTotal.saves = playerTotal.saves / playerStats.length;
-        finalArray.push(playerTotal)
+        return finalArray
     }
-    return finalArray
-}
 
     static cleanNhlPlayerNames(playerName: string): string {
-    if (playerName.includes('è')) {
-        playerName = playerName.replaceAll('è', 'e')
+        if (playerName.includes('è')) {
+            playerName = playerName.replaceAll('è', 'e')
+        }
+        if (playerName == 'Pat Maroon') {
+            playerName = 'Patrick Maroon'
+        }
+        return playerName
     }
-    if (playerName == 'Pat Maroon') {
-        playerName = 'Patrick Maroon'
-    }
-    return playerName
-}
 
 
-    
+
 
     static findTrends(bookData: DbGameBookData, backToBack: boolean, type: string, homeAway: string, teamStats: DbNhlTeamGameStats[], teamAgainstGameStats: DbNhlTeamGameStats[]): string[] {
-    let finalReturn: string[] = []
+        let finalReturn: string[] = []
 
-    let backToBackWinCount = 0
-    let backToBackWinTotal = 0
-    if (backToBack) {
+        let backToBackWinCount = 0
+        let backToBackWinTotal = 0
+        if (backToBack) {
+            if (type == 'h2h') {
+                for (let i = 0; i < teamStats.length - 1; i++) {
+                    if (reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
+                        backToBackWinTotal++;
+                        if (teamStats[i].result == 'W') {
+                            backToBackWinCount++;
+                        }
+                    }
+                }
+                if (backToBackWinTotal > 0) {
+                    finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' in 2nd games in a back to back series.')
+                }
+            }
+            else if (type == 'spread') {
+                for (let i = 0; i < teamStats.length - 2; i++) {
+                    if (reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
+                        backToBackWinTotal++;
+                        if ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) {
+                            backToBackWinCount++;
+                        }
+                    }
+                }
+                if (backToBackWinTotal > 0) {
+                    finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' with spread of ' + (bookData.point > 0 ? '+' : '') + bookData.point + ' in 2nd games in a back to back series.')
+                }
+            }
+
+
+
+
+
+
+        }
+
+        let lastGameWinLoss
+        let winLossCount = 1
+        let winLossTotal = 0
+        let winLossNumber = 0
+        //find the number of games in a row with the total win loss
+        // Ex 3 game loss streak
         if (type == 'h2h') {
-            for (let i = 0; i < teamStats.length - 1; i++) {
-                if (reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
-                    backToBackWinTotal++;
-                    if (teamStats[i].result == 'W') {
-                        backToBackWinCount++;
+            lastGameWinLoss = teamStats[0].result
+            for (let i = 1; i < teamStats.length; i++) {
+                if (lastGameWinLoss == 'W' || lastGameWinLoss == 'L') {
+                    if (teamStats[i].result == lastGameWinLoss) {
+                        winLossCount++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                else {
+                    if (teamStats[i].result == lastGameWinLoss || teamStats[i].result == 'L') {
+                        winLossCount++;
+                    }
+                    else {
+                        break;
                     }
                 }
             }
-            if (backToBackWinTotal > 0) {
-                finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' in 2nd games in a back to back series.')
+            //find the result on every game given the win loss streak
+            // Ex win every game when coming off of a three game loss streak
+            //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
+            //if so add to total and add result to result total
+
+            for (let i = 0; i < teamStats.length - winLossCount; i++) {
+                let winLossCheck: boolean[] = []
+                for (let j = 1; j <= winLossCount; j++) {
+                    if (lastGameWinLoss == 'L' || lastGameWinLoss == 'OTL') {
+                        if (teamStats[i + j].result == 'L' || teamStats[i + j].result == 'OTL') {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                    else {
+                        if (teamStats[i + j].result == lastGameWinLoss) {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                }
+                if (!winLossCheck.includes(false)) {
+                    winLossTotal++
+                    winLossNumber += teamStats[i].result == 'W' ? 1 : 0
+                }
+            }
+            if (winLossTotal > 0) {
+                finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (lastGameWinLoss == 'W' ? 'win' : 'loss') + ' streak')
             }
         }
         else if (type == 'spread') {
-            for (let i = 0; i < teamStats.length - 2; i++) {
-                if (reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(teamStats[i].gameDate), reusedFunctions.convertToDateFromStringToDate(teamStats[i + 1].gameDate))) {
-                    backToBackWinTotal++;
-                    if ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) {
-                        backToBackWinCount++;
-                    }
-                }
-            }
-            if (backToBackWinTotal > 0) {
-                finalReturn.push('Back To Back Game: ' + teamStats[0].teamName + ' is ' + backToBackWinCount + '-' + (backToBackWinTotal - backToBackWinCount) + ' with spread of ' + (bookData.point > 0 ? '+' : '') + bookData.point + ' in 2nd games in a back to back series.')
-            }
-        }
-
-
-
-
-
-
-    }
-
-    let lastGameWinLoss
-    let winLossCount = 1
-    let winLossTotal = 0
-    let winLossNumber = 0
-    //find the number of games in a row with the total win loss
-    // Ex 3 game loss streak
-    if (type == 'h2h') {
-        lastGameWinLoss = teamStats[0].result
-        for (let i = 1; i < teamStats.length; i++) {
-            if (lastGameWinLoss == 'W' || lastGameWinLoss == 'L') {
-                if (teamStats[i].result == lastGameWinLoss) {
-                    winLossCount++;
-                }
-                else {
-                    break;
-                }
-            }
-            else {
-                if (teamStats[i].result == lastGameWinLoss || teamStats[i].result == 'L') {
-                    winLossCount++;
-                }
-                else {
-                    break;
-                }
-            }
-        }
-        //find the result on every game given the win loss streak
-        // Ex win every game when coming off of a three game loss streak
-        //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
-        //if so add to total and add result to result total
-
-        for (let i = 0; i < teamStats.length - winLossCount; i++) {
-            let winLossCheck: boolean[] = []
-            for (let j = 1; j <= winLossCount; j++) {
-                if (lastGameWinLoss == 'L' || lastGameWinLoss == 'OTL') {
-                    if (teamStats[i + j].result == 'L' || teamStats[i + j].result == 'OTL') {
-                        winLossCheck.push(true)
-                    }
-                    else {
-                        winLossCheck.push(false)
-                    }
-                }
-                else {
-                    if (teamStats[i + j].result == lastGameWinLoss) {
-                        winLossCheck.push(true)
-                    }
-                    else {
-                        winLossCheck.push(false)
-                    }
-                }
-            }
-            if (!winLossCheck.includes(false)) {
-                winLossTotal++
-                winLossNumber += teamStats[i].result == 'W' ? 1 : 0
-            }
-        }
-        if (winLossTotal > 0) {
-            finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (lastGameWinLoss == 'W' ? 'win' : 'loss') + ' streak')
-        }
-    }
-    else if (type == 'spread') {
-        lastGameWinLoss = (teamStats[0].pointsAllowedOverall - teamStats[0].pointsScoredOverall) < bookData.point
-        for (let i = 1; i < teamStats.length; i++) {
-            if (lastGameWinLoss) {
-                if ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) {
-                    winLossCount++;
-                }
-                else {
-                    break;
-                }
-            }
-            else {
-                if ((teamStats[0].pointsAllowedOverall - teamStats[0].pointsScoredOverall) > bookData.point) {
-                    winLossCount++;
-                }
-                else {
-                    break;
-                }
-            }
-        }
-        //find the result on every game given the win loss streak
-        // Ex win every game when coming off of a three game loss streak
-        //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
-        //if so add to total and add result to result total
-
-        for (let i = 0; i < teamStats.length - winLossCount; i++) {
-            let winLossCheck: boolean[] = []
-            for (let j = 1; j <= winLossCount; j++) {
+            lastGameWinLoss = (teamStats[0].pointsAllowedOverall - teamStats[0].pointsScoredOverall) < bookData.point
+            for (let i = 1; i < teamStats.length; i++) {
                 if (lastGameWinLoss) {
-                    if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) < bookData.point) {
-                        winLossCheck.push(true)
+                    if ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) {
+                        winLossCount++;
                     }
                     else {
-                        winLossCheck.push(false)
+                        break;
                     }
                 }
                 else {
-                    if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) > bookData.point) {
-                        winLossCheck.push(true)
+                    if ((teamStats[0].pointsAllowedOverall - teamStats[0].pointsScoredOverall) > bookData.point) {
+                        winLossCount++;
                     }
                     else {
-                        winLossCheck.push(false)
+                        break;
                     }
                 }
             }
-            if (!winLossCheck.includes(false)) {
-                winLossTotal++
-                winLossNumber += ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) ? 1 : 0
+            //find the result on every game given the win loss streak
+            // Ex win every game when coming off of a three game loss streak
+            //loop through each game, check to see if the previous winLossCount number of games all match lastGameWinLoss
+            //if so add to total and add result to result total
+
+            for (let i = 0; i < teamStats.length - winLossCount; i++) {
+                let winLossCheck: boolean[] = []
+                for (let j = 1; j <= winLossCount; j++) {
+                    if (lastGameWinLoss) {
+                        if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) < bookData.point) {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                    else {
+                        if ((teamStats[i + j].pointsAllowedOverall - teamStats[i + j].pointsScoredOverall) > bookData.point) {
+                            winLossCheck.push(true)
+                        }
+                        else {
+                            winLossCheck.push(false)
+                        }
+                    }
+                }
+                if (!winLossCheck.includes(false)) {
+                    winLossTotal++
+                    winLossNumber += ((teamStats[i].pointsAllowedOverall - teamStats[i].pointsScoredOverall) < bookData.point) ? 1 : 0
+                }
+            }
+            if (winLossTotal > 0) {
+                finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (bookData.point > 0 ? '+' : '') + bookData.point + (lastGameWinLoss ? ' win' : ' loss') + ' streak')
             }
         }
-        if (winLossTotal > 0) {
-            finalReturn.push(teamStats[0].teamName + ' is ' + winLossNumber + ' - ' + (winLossTotal - winLossNumber) + ' following a ' + winLossCount + ' game ' + (bookData.point > 0 ? '+' : '') + bookData.point + (lastGameWinLoss ? ' win' : ' loss') + ' streak')
-        }
+
+
+
+
+
+        return finalReturn;
     }
 
+    static async findPlayerTrends(bookData: DbPlayerPropData, backToBack: boolean, teamAgainstName: string, playerStats: DbNhlPlayerGameStats[]): Promise<string[]> {
+        let finalReturn: string[] = []
+        let allStats: DbNhlTeamGameStats[] = await NhlController.nhlGetAllTeamStatsBySeason(2024)
+        let teamAgainstStats: DbNhlTeamGameStats[] = allStats.filter(e => e.teamName == teamAgainstName)
+        let teamAgainstTotal = 0
+        let teamAgainstAvg = 0
+        let rank = 0
+        let listOfLeagueAverages: any[] = []
+        if (bookData.marketKey == 'player_shots_on_goal' || bookData.marketKey == 'player_shots_on_goal_alternate') {
+            for (let i = 0; i < teamAgainstStats.length; i++) {
+                teamAgainstTotal += teamAgainstStats[i].shotsAllowedOnGoal
+            }
+            let distinctTeamIds = allStats.map(e => e.teamId).filter((v, i, a) => a.indexOf(v) === i)
+            for (let i = 0; i < distinctTeamIds.length; i++) {
+                let filteredTeam = allStats.filter(e => e.teamId == distinctTeamIds[i]).map(e => e.shotsAllowedOnGoal)
+                let avg = filteredTeam.length > 0 ? filteredTeam.reduce((a, b) => a + b) / filteredTeam.length : 0
+                listOfLeagueAverages.push({ teamId: distinctTeamIds[i], avg: avg })
+            }
+            listOfLeagueAverages.sort((a: any, b: any) => a.avg - b.avg)
+            teamAgainstAvg = teamAgainstStats.length == 0 ? 0 : Number((teamAgainstTotal / teamAgainstStats.length).toFixed(2))
+            let teamRank = listOfLeagueAverages.findIndex(e => e.teamId == teamAgainstStats[0].teamId) + 1
+            let order = reusedFunctions.returnNumberSuffix(teamRank)
 
+            finalReturn.push(`${teamAgainstStats[0].teamName} allows ${teamAgainstAvg} shots on goal a game, which is ranked ${teamRank}${order} in the league`)
 
-
-
-    return finalReturn;
-}
-
-static findPlayerTrends(bookData: DbPlayerPropData, backToBack: boolean, teamAgainstName: string, playerStats: DbNhlPlayerGameStats[]): string[]{
-    let finalReturn: string[] = []
-    let allStats: DbNhlTeamGameStats[] = []
-    SharedCaching.currentSportTeamStats.subscribe(stats => {
-        if(stats != null){
-            allStats = stats as DbNhlTeamGameStats[]
         }
-    }) 
-    let teamAgainstStats: DbNhlTeamGameStats[] = allStats.filter(e => e.teamName == teamAgainstName)
-    let teamAgainstTotal = 0
-    let teamAgainstAvg = 0
-    let rank = 0
-    let listOfLeagueAverages: any[] = []
-    if(bookData.marketKey == 'player_shots_on_goal' || bookData.marketKey == 'player_shots_on_goal_alternate'){
-        for(let i = 0; i < teamAgainstStats.length; i++){
-            teamAgainstTotal += teamAgainstStats[i].shotsAllowedOnGoal
-        }
-        let distinctTeamIds = allStats.map(e => e.teamId).filter((v,i,a) => a.indexOf(v) === i)
-        for(let i = 0; i < distinctTeamIds.length; i++){
-            let filteredTeam = allStats.filter(e => e.teamId == distinctTeamIds[i]).map(e => e.shotsAllowedOnGoal)
-            let avg = filteredTeam.length > 0 ? filteredTeam.reduce((a, b) => a + b) / filteredTeam.length : 0
-            listOfLeagueAverages.push({teamId: distinctTeamIds[i], avg: avg})
-        }
-        listOfLeagueAverages.sort((a: any,b: any) =>  a.avg - b.avg)
-        teamAgainstAvg = teamAgainstStats.length == 0 ? 0 : Number((teamAgainstTotal / teamAgainstStats.length).toFixed(2))
-        let teamRank = listOfLeagueAverages.findIndex(e => e.teamId == teamAgainstStats[0].teamId) + 1
-        let order = reusedFunctions.returnNumberSuffix(teamRank)
-        
-        finalReturn.push(`${teamAgainstStats[0].teamName} allows ${teamAgainstAvg} shots on goal a game, which is ranked ${teamRank}${order} in the league`)
 
+
+        return finalReturn
     }
-    
 
-    return finalReturn
-}
+    static async getLiveBets(teamNames: string[]) {
+        let finalTeamReturn: any[] = []
+        let listOfLivePropTypes: string[] = ['h2h']
+        let listOfTeamStats: DbNhlTeamGameStats[] = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([teamNames[0],teamNames[1]], 2024)
+        let awayTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[0])
+        let homeTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[1])
 
-static async getLiveBets(teamNames: string[]){
-    let finalTeamReturn: any[] = []
-    let listOfLivePropTypes: string[] = ['h2h']
-    let listOfTeamStats: DbNhlTeamGameStats[] = []
-    SharedCaching.currentSportTeamStats.subscribe(stats => {
-        if(stats != null){
-            listOfTeamStats = stats as DbNhlTeamGameStats[]
-        }
-    }) 
-    let awayTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[0])
-    let homeTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[1])
+        //need an array for each prop type which has an array for each team
+        //each of the team arrays has:
+        //an array of each type of selection for the prop. Ex: winning by, winning after
+        // each element of the array needs to have a name of the above and an object with all the data for that graph
 
-    //need an array for each prop type which has an array for each team
-    //each of the team arrays has:
-    //an array of each type of selection for the prop. Ex: winning by, winning after
-    // each element of the array needs to have a name of the above and an object with all the data for that graph
-
-    for (let i = 0; i < listOfLivePropTypes.length; i++) {
-        let propTypeArray: any = []
-        let propName: string = ''
-        let selectionList: string[] = []
-        for (let j = 0; j < teamNames.length; j++) {
-            let teamArray: any = []
-            if (listOfLivePropTypes[i] == 'h2h') {
-                selectionList = ['Winning after X', 'Scoring', 'Scoring First']
-                let teamStats = j == 0 ? awayTeamStats : homeTeamStats
+        for (let i = 0; i < listOfLivePropTypes.length; i++) {
+            let propTypeArray: any = []
+            let propName: string = ''
+            let selectionList: string[] = []
+            for (let j = 0; j < teamNames.length; j++) {
+                let teamArray: any = []
+                if (listOfLivePropTypes[i] == 'h2h') {
+                    selectionList = ['Winning after X', 'Scoring', 'Scoring First']
+                    let teamStats = j == 0 ? awayTeamStats : homeTeamStats
 
 
 
-                propName = 'Chance of winning if winning after given Period'
-                let labels: string[] = ['1st', '2nd']
-                let barChartFinal: any = []
-                for (let i = 1; i < 3; i++) {
-                    let totalQuarterChance = 0;
-                    let totalGames = 0
-                    let totalWins = 0
-                    if (i == 1) {
+                    propName = 'Chance of winning if winning after given Period'
+                    let labels: string[] = ['1st', '2nd']
+                    let barChartFinal: any = []
+                    for (let i = 1; i < 3; i++) {
+                        let totalQuarterChance = 0;
+                        let totalGames = 0
+                        let totalWins = 0
+                        if (i == 1) {
+                            let filteredGames: DbNhlTeamGameStats[] = []
+                            filteredGames = teamStats.filter(game => game.pointsScoredFirstPeriod > game.pointsAllowedFirstPeriod)
+                            let gamesWon = filteredGames.filter(e => e.result == 'W')
+                            totalGames = filteredGames.length
+                            totalWins = gamesWon.length
+                        }
+                        else if (i == 2) {
+                            let filteredGames = teamStats.filter(game => (game.pointsScoredFirstPeriod + game.pointsScoredSecondPeriod) > (game.pointsAllowedFirstPeriod + game.pointsAllowedSecondPeriod))
+                            let gamesWon = filteredGames.filter(e => e.result == 'W')
+                            totalGames = filteredGames.length
+                            totalWins = gamesWon.length
+                        }
+
+                        totalQuarterChance = totalGames == 0 ? 0 : totalWins / totalGames
+                        barChartFinal.push(totalQuarterChance * 100)
+                    }
+                    teamArray.push({ propName: propName, labels: labels, barData: barChartFinal })
+                    teamArray[teamArray.length - 1].teamName = teamNames[j]
+
+
+
+
+
+                    propName = 'Chance of winning if scoring at least x goals'
+                    labels = []
+                    barChartFinal = []
+                    let arrayOfGoals: number[] = []
+                    for (let k = 0; k < teamStats.length; k++) {
+                        if (!arrayOfGoals.includes(teamStats[k].pointsScoredOverall)) {
+                            arrayOfGoals.push(teamStats[k].pointsScoredOverall)
+                        }
+                    }
+                    arrayOfGoals.sort((a, b) => a - b)
+                    if (arrayOfGoals.includes(0)) {
+                        arrayOfGoals.shift()
+                    }
+                    for (let i = 0; i < arrayOfGoals.length; i++) {
+                        let totalGoalChance = 0;
+                        let totalGames = 0
+                        let totalWins = 0
+
                         let filteredGames: DbNhlTeamGameStats[] = []
-                        filteredGames = teamStats.filter(game => game.pointsScoredFirstPeriod > game.pointsAllowedFirstPeriod)
+                        filteredGames = teamStats.filter(game => game.pointsScoredOverall >= arrayOfGoals[i])
                         let gamesWon = filteredGames.filter(e => e.result == 'W')
                         totalGames = filteredGames.length
                         totalWins = gamesWon.length
+
+                        labels.push(arrayOfGoals[i].toString())
+
+
+                        totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
+                        barChartFinal.push(totalGoalChance * 100)
                     }
-                    else if (i == 2) {
-                        let filteredGames = teamStats.filter(game => (game.pointsScoredFirstPeriod + game.pointsScoredSecondPeriod) > (game.pointsAllowedFirstPeriod + game.pointsAllowedSecondPeriod))
-                        let gamesWon = filteredGames.filter(e => e.result == 'W')
-                        totalGames = filteredGames.length
-                        totalWins = gamesWon.length
-                    }
-
-                    totalQuarterChance = totalGames == 0 ? 0 : totalWins / totalGames
-                    barChartFinal.push(totalQuarterChance * 100)
-                }
-                teamArray.push({ propName: propName, labels: labels, barData: barChartFinal })
-                teamArray[teamArray.length - 1].teamName = teamNames[j]
+                    teamArray.push({ propName: propName, labels: labels, barData: barChartFinal })
+                    teamArray[teamArray.length - 1].teamName = teamNames[j]
 
 
 
 
+                    propName = 'Chance of winning if scoring first/last'
+                    labels = ['Scored first', 'Not first to score']
+                    barChartFinal = []
 
-                propName = 'Chance of winning if scoring at least x goals'
-                labels = []
-                barChartFinal = []
-                let arrayOfGoals: number[] = []
-                for (let k = 0; k < teamStats.length; k++) {
-                    if (!arrayOfGoals.includes(teamStats[k].pointsScoredOverall)) {
-                        arrayOfGoals.push(teamStats[k].pointsScoredOverall)
-                    }
-                }
-                arrayOfGoals.sort((a, b) => a - b)
-                if (arrayOfGoals.includes(0)) {
-                    arrayOfGoals.shift()
-                }
-                for (let i = 0; i < arrayOfGoals.length; i++) {
                     let totalGoalChance = 0;
                     let totalGames = 0
                     let totalWins = 0
 
                     let filteredGames: DbNhlTeamGameStats[] = []
-                    filteredGames = teamStats.filter(game => game.pointsScoredOverall >= arrayOfGoals[i])
+                    filteredGames = teamStats.filter(game => game.scoredFirst == 'Y')
                     let gamesWon = filteredGames.filter(e => e.result == 'W')
                     totalGames = filteredGames.length
                     totalWins = gamesWon.length
-
-                    labels.push(arrayOfGoals[i].toString())
-
-
                     totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
                     barChartFinal.push(totalGoalChance * 100)
+
+                    filteredGames = teamStats.filter(game => game.scoredFirst == 'N')
+                    gamesWon = filteredGames.filter(e => e.result == 'W')
+                    totalGames = filteredGames.length
+                    totalWins = gamesWon.length
+                    totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
+                    barChartFinal.push(totalGoalChance * 100)
+                    teamArray.push({ propName: propName, labels: labels, barData: barChartFinal })
+                    teamArray[teamArray.length - 1].teamName = teamNames[j]
+
+
                 }
-                teamArray.push({ propName: propName, labels: labels, barData: barChartFinal })
-                teamArray[teamArray.length - 1].teamName = teamNames[j]
 
-
-
-
-                propName = 'Chance of winning if scoring first/last'
-                labels = ['Scored first', 'Not first to score']
-                barChartFinal = []
-
-                let totalGoalChance = 0;
-                let totalGames = 0
-                let totalWins = 0
-
-                let filteredGames: DbNhlTeamGameStats[] = []
-                filteredGames = teamStats.filter(game => game.scoredFirst == 'Y')
-                let gamesWon = filteredGames.filter(e => e.result == 'W')
-                totalGames = filteredGames.length
-                totalWins = gamesWon.length
-                totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
-                barChartFinal.push(totalGoalChance * 100)
-
-                filteredGames = teamStats.filter(game => game.scoredFirst == 'N')
-                gamesWon = filteredGames.filter(e => e.result == 'W')
-                totalGames = filteredGames.length
-                totalWins = gamesWon.length
-                totalGoalChance = totalGames == 0 ? 0 : totalWins / totalGames
-                barChartFinal.push(totalGoalChance * 100)
-                teamArray.push({ propName: propName, labels: labels, barData: barChartFinal })
-                teamArray[teamArray.length - 1].teamName = teamNames[j]
-
+                propTypeArray.push(teamArray)
 
             }
-
-            propTypeArray.push(teamArray)
-
+            finalTeamReturn.push(propTypeArray)
+            finalTeamReturn[finalTeamReturn.length - 1].propName = listOfLivePropTypes[i]
+            finalTeamReturn[finalTeamReturn.length - 1].listOfSelections = selectionList
         }
-        finalTeamReturn.push(propTypeArray)
-        finalTeamReturn[finalTeamReturn.length - 1].propName = listOfLivePropTypes[i]
-        finalTeamReturn[finalTeamReturn.length - 1].listOfSelections = selectionList
-    }
-    return finalTeamReturn
-}
-
-
-    static async getPlayerBestBetStats(listOfPlayerBets: DbPlayerPropData[], listOfTeamBets: DbGameBookData[]){
-    let finalReturn: any = []
-    let allTeamInfo = await TeamInfoController.getAllTeamInfo('NHL')
-    let distinctBookIds = listOfPlayerBets.map(e => e.bookId).filter((v, i, a) => a.indexOf(v) === i)
-    for (let i = 0; i < distinctBookIds.length; i++) {
-        let bookIdPlayerProps = await this.getPlayerPropDataNew(distinctBookIds[i], allTeamInfo)
-        finalReturn.push(bookIdPlayerProps)
-    }
-
-    let finalTeamReturn: any = []
-    let distinctTeamBookIds = listOfTeamBets.map(e => e.bookId).filter((v, i, a) => a.indexOf(v) === i)
-    for (let i = 0; i < distinctTeamBookIds.length; i++) {
-        let filteredPropsByBookId = listOfTeamBets.filter(e => e.bookId == distinctTeamBookIds[i])
-        let bookIdTeamProps = await this.getTeamPropDataNew(filteredPropsByBookId, allTeamInfo)
-        finalTeamReturn.push(bookIdTeamProps)
+        return finalTeamReturn
     }
 
 
-    let listOfPlayersInFormat = []
-    for (let i = 0; i < finalReturn.length; i++) {
-        for (let j = 0; j < finalReturn[i].length; j++) {
-            for (let k = 0; k < finalReturn[i][j].length; k++) {
-                for (let m = 0; m < finalReturn[i][j][k].length; m++) {
-                    listOfPlayersInFormat.push(finalReturn[i][j][k][m])
-                }
-            }
+    static async getPlayerBestBetStats(listOfPlayerBets: DbPlayerPropData[], listOfTeamBets: DbGameBookData[]) {
+        let finalReturn: any = []
+        let allTeamInfo = await TeamInfoController.getAllTeamInfo('NHL')
+        let distinctBookIds = listOfPlayerBets.map(e => e.bookId).filter((v, i, a) => a.indexOf(v) === i)
+        for (let i = 0; i < distinctBookIds.length; i++) {
+            let bookIdPlayerProps = await this.getPlayerPropDataNew(distinctBookIds[i], allTeamInfo)
+            finalReturn.push(bookIdPlayerProps)
         }
-    }
 
-    let finalBestBets: DbPlayerBestBets[] = []
-    for (let i = 0; i < listOfPlayersInFormat.length; i++) {
-        if (listOfPlayersInFormat[i].overallChance > .9 || listOfPlayersInFormat[i].homeAwayChance > .9) {
-            let playerBestBest: DbPlayerBestBets = {
-                bookId: listOfPlayersInFormat[i].playerBookData.bookId,
-                sportTitle: listOfPlayersInFormat[i].playerBookData.sportTitle,
-                teamName: listOfPlayersInFormat[i].teamName,
-                teamAgainstName: listOfPlayersInFormat[i].teamAgainstName,
-                homeAway: listOfPlayersInFormat[i].homeAway,
-                commenceTime: listOfPlayersInFormat[i].playerBookData.commenceTime,
-                bookMaker: listOfPlayersInFormat[i].playerBookData.bookMaker,
-                marketKey: listOfPlayersInFormat[i].playerBookData.marketKey,
-                description: listOfPlayersInFormat[i].playerBookData.description,
-                playerName: listOfPlayersInFormat[i].playerName,
-                price: listOfPlayersInFormat[i].playerBookData.price,
-                point: listOfPlayersInFormat[i].playerBookData.point,
-                overallChance: listOfPlayersInFormat[i].overallChance,
-                homeAwayChance: listOfPlayersInFormat[i].homeAwayChance,
-                teamChance: listOfPlayersInFormat[i].teamChance
-            }
-            finalBestBets.push(playerBestBest)
+        let finalTeamReturn: any = []
+        let distinctTeamBookIds = listOfTeamBets.map(e => e.bookId).filter((v, i, a) => a.indexOf(v) === i)
+        for (let i = 0; i < distinctTeamBookIds.length; i++) {
+            let filteredPropsByBookId = listOfTeamBets.filter(e => e.bookId == distinctTeamBookIds[i])
+            let bookIdTeamProps = await this.getTeamPropDataNew(filteredPropsByBookId, allTeamInfo)
+            finalTeamReturn.push(bookIdTeamProps)
         }
-    }
 
-    let listOfTeamsInFormat = []
-    for (let i = 0; i < finalTeamReturn.length; i++) {
-        for (let j = 0; j < finalTeamReturn[i].length; j++) {
-            for (let k = 0; k < finalTeamReturn[i][j].length; k++) {
-                for (let m = 0; m < finalTeamReturn[i][j][k].length; m++) {
-                    for (let n = 0; n < finalTeamReturn[i][j][k][m].length; n++) {
-                        listOfTeamsInFormat.push(finalTeamReturn[i][j][k][m][n])
+
+        let listOfPlayersInFormat = []
+        for (let i = 0; i < finalReturn.length; i++) {
+            for (let j = 0; j < finalReturn[i].length; j++) {
+                for (let k = 0; k < finalReturn[i][j].length; k++) {
+                    for (let m = 0; m < finalReturn[i][j][k].length; m++) {
+                        listOfPlayersInFormat.push(finalReturn[i][j][k][m])
                     }
                 }
             }
         }
-    }
 
-    let finalTeamBets: any = []
-    for (let i = 0; i < listOfTeamsInFormat.length; i++) {
-        if (listOfTeamsInFormat[i].overallChance > .9 || listOfTeamsInFormat[i].homeAwayChance > .9) {
-            let playerBestBest: DbPlayerBestBets = {
-                bookId: listOfTeamsInFormat[i].gameBookData.bookId,
-                sportTitle: listOfTeamsInFormat[i].gameBookData.sportTitle,
-                teamName: listOfTeamsInFormat[i].teamName,
-                teamAgainstName: listOfTeamsInFormat[i].teamAgainstName,
-                homeAway: listOfTeamsInFormat[i].homeAway,
-                commenceTime: listOfTeamsInFormat[i].gameBookData.commenceTime,
-                bookMaker: listOfTeamsInFormat[i].gameBookData.bookMaker,
-                marketKey: listOfTeamsInFormat[i].gameBookData.marketKey,
-                description: listOfTeamsInFormat[i].gameBookData.description,
-                playerName: listOfTeamsInFormat[i].teamName,
-                price: listOfTeamsInFormat[i].gameBookData.price,
-                point: listOfTeamsInFormat[i].gameBookData.point,
-                overallChance: listOfTeamsInFormat[i].overallChance,
-                homeAwayChance: listOfTeamsInFormat[i].homeAwayChance,
-                teamChance: listOfTeamsInFormat[i].teamChance
+        let finalBestBets: DbPlayerBestBets[] = []
+        for (let i = 0; i < listOfPlayersInFormat.length; i++) {
+            if (listOfPlayersInFormat[i].overallChance > .9 || listOfPlayersInFormat[i].homeAwayChance > .9) {
+                let playerBestBest: DbPlayerBestBets = {
+                    bookId: listOfPlayersInFormat[i].playerBookData.bookId,
+                    sportTitle: listOfPlayersInFormat[i].playerBookData.sportTitle,
+                    teamName: listOfPlayersInFormat[i].teamName,
+                    teamAgainstName: listOfPlayersInFormat[i].teamAgainstName,
+                    homeAway: listOfPlayersInFormat[i].homeAway,
+                    commenceTime: listOfPlayersInFormat[i].playerBookData.commenceTime,
+                    bookMaker: listOfPlayersInFormat[i].playerBookData.bookMaker,
+                    marketKey: listOfPlayersInFormat[i].playerBookData.marketKey,
+                    description: listOfPlayersInFormat[i].playerBookData.description,
+                    playerName: listOfPlayersInFormat[i].playerName,
+                    price: listOfPlayersInFormat[i].playerBookData.price,
+                    point: listOfPlayersInFormat[i].playerBookData.point,
+                    overallChance: listOfPlayersInFormat[i].overallChance,
+                    homeAwayChance: listOfPlayersInFormat[i].homeAwayChance,
+                    teamChance: listOfPlayersInFormat[i].teamChance
+                }
+                finalBestBets.push(playerBestBest)
             }
-            finalBestBets.push(playerBestBest)
         }
+
+        let listOfTeamsInFormat = []
+        for (let i = 0; i < finalTeamReturn.length; i++) {
+            for (let j = 0; j < finalTeamReturn[i].length; j++) {
+                for (let k = 0; k < finalTeamReturn[i][j].length; k++) {
+                    for (let m = 0; m < finalTeamReturn[i][j][k].length; m++) {
+                        for (let n = 0; n < finalTeamReturn[i][j][k][m].length; n++) {
+                            listOfTeamsInFormat.push(finalTeamReturn[i][j][k][m][n])
+                        }
+                    }
+                }
+            }
+        }
+
+        let finalTeamBets: any = []
+        for (let i = 0; i < listOfTeamsInFormat.length; i++) {
+            if (listOfTeamsInFormat[i].overallChance > .9 || listOfTeamsInFormat[i].homeAwayChance > .9) {
+                let playerBestBest: DbPlayerBestBets = {
+                    bookId: listOfTeamsInFormat[i].gameBookData.bookId,
+                    sportTitle: listOfTeamsInFormat[i].gameBookData.sportTitle,
+                    teamName: listOfTeamsInFormat[i].teamName,
+                    teamAgainstName: listOfTeamsInFormat[i].teamAgainstName,
+                    homeAway: listOfTeamsInFormat[i].homeAway,
+                    commenceTime: listOfTeamsInFormat[i].gameBookData.commenceTime,
+                    bookMaker: listOfTeamsInFormat[i].gameBookData.bookMaker,
+                    marketKey: listOfTeamsInFormat[i].gameBookData.marketKey,
+                    description: listOfTeamsInFormat[i].gameBookData.description,
+                    playerName: listOfTeamsInFormat[i].teamName,
+                    price: listOfTeamsInFormat[i].gameBookData.price,
+                    point: listOfTeamsInFormat[i].gameBookData.point,
+                    overallChance: listOfTeamsInFormat[i].overallChance,
+                    homeAwayChance: listOfTeamsInFormat[i].homeAwayChance,
+                    teamChance: listOfTeamsInFormat[i].teamChance
+                }
+                finalBestBets.push(playerBestBest)
+            }
+        }
+
+
+        return finalBestBets
     }
-
-
-    return finalBestBets
-}
 
 
 
