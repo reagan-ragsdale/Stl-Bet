@@ -318,6 +318,22 @@ export class reusedFunctions {
           return diffInMilliseconds === oneDayInMilliseconds;
       }
 
+  static returnNumberSuffix(element: number):string{
+
+    if(element == 1){
+      return 'st'
+    }
+    else if(element == 2){
+      return 'nd'
+    }
+    else if(element == 3){
+      return 'rd'
+    }
+    else{
+      return 'th'
+    }
+  }
+
   
 
 }

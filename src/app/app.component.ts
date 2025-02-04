@@ -59,6 +59,7 @@ export class AppComponent {
   playerInfo: DbPlayerInfo[] = []
   async ngOnInit(){
     this.playerInfo = await PlayerInfoController.loadAllSportPlayerInfo()
+    this.sharedCache.changeCurrentAllPlayerInfo(this.playerInfo)
     this.filteredSearch = this.playerInfo
   }
 

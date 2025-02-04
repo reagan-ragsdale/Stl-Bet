@@ -123,7 +123,7 @@ export class SportsBookController {
   static async loadAllBookDataByBookId(bookId: string): Promise<DbGameBookData[]> {
     const taskRepo = remult.repo(DbGameBookData)
 
-    return await taskRepo.find({where: {bookId: bookId}})
+    return await taskRepo.find({where: {bookId: bookId}, orderBy:{bookSeq: 'asc'}})
 
     
   }
@@ -141,6 +141,17 @@ export class SportsBookController {
 
     
   }
+  @BackendMethod({ allowed: true })
+  static async loadBasicGameInfo(sport: string): Promise<DbGameBookData[]> {
+    const taskRepo = remult.repo(DbGameBookData)
+    return await taskRepo.find({where: DbGameBookData.loadBasicGameInfo({sport: sport}), orderBy: {createdAt: "asc"}})
+
+    
+  }
+
+  
+
+  
 
   @BackendMethod({ allowed: true })
   static async loadAllSportFilterByMAxBookSeqBigThree(sport: string): Promise<DbGameBookData[]> {
@@ -159,6 +170,7 @@ export class SportsBookController {
 
     
   }
+
 
   @BackendMethod({ allowed: true })
   static async loadAllBookDataBySportAndMaxBookSeqAndBookId(sport: string, bookId: string): Promise<DbGameBookData[]> {

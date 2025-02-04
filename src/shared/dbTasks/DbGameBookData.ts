@@ -80,6 +80,40 @@ export class DbGameBookData {
 
   });
 
+  static loadBasicGameInfo = Filter.createCustom<DbGameBookData[], { sport: string }>(async ({ sport }) => {
+    //SqlDatabase.LogToConsole = true
+    let today = new Date();
+    today.setHours(0,0,0,0);
+    let utcday = new Date()
+    today.setUTCHours(0)
+    return {
+      bookSeq: 0,
+      sportTitle: sport,
+      marketKey: 'h2h',
+      commenceTime: { $gte: today }
+    }
+
+
+  });
+
+  
+
+
+  //use the behavior subject to send the game info data from homescreen to prop screen. then when in prop screen only get that specific game data
+  static getAllGameDataByBookId = Filter.createCustom<DbGameBookData[], { bookId: string }>(async ({ bookId }) => {
+    //SqlDatabase.LogToConsole = true
+    let today = new Date();
+    today.setHours(0,0,0,0);
+    let utcday = new Date()
+    today.setUTCHours(0)
+    return {
+      bookId: bookId,
+      commenceTime: { $gte: today }
+    }
+
+
+  });
+
   static allSportFilterByMAxBookSeqBigThree = Filter.createCustom<DbGameBookData[], { sport: string }>(async ({ sport }) => {
     let today = new Date();
     today.setHours(0,0,0,0);

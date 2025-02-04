@@ -24,11 +24,18 @@ declare module 'chart.js' {
     myCustomMode: InteractionModeFunction;
   }
 }
+type GameDisplay = {
+  homeTeam: string;
+  awayTeam: string;
+  commenceTime: string;
+  bookId: string;
+}
 @Component({
   selector: 'app-prop-screen-new',
   templateUrl: './prop-screen-new.component.html',
   styleUrls: ['./prop-screen-new.component.scss']
 })
+
 export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges, AfterContentChecked, AfterViewChecked {
 
   @HostListener('window:popstate', ['$event'])
@@ -82,6 +89,9 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   livePropData: any[] = []
   sliderValue: number = 90;
   remult = remult;
+  gameDisplayArray: GameDisplay[] = []
+
+  
 
 
   constructor(
@@ -94,22 +104,29 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
   }
 
   async initializeUrl() {
-    if (this.route.snapshot.paramMap.get('sport') != null) {
-      this.selectedSport = this.route.snapshot.paramMap.get('sport')!
+    if (this.route.snapshot.params['sport'] != null) {
+      this.selectedSport = this.route.snapshot.params['sport']
     }
-    if (this.route.snapshot.paramMap.get('game') != null) {
-      this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
-        this.selectedGame = params.get("game")
-        this.router.navigate([`/propsNew/${this.selectedSport}/${this.selectedGame}`])
-      })
+    if (this.route.snapshot.params['game'] != null) {
+        this.selectedGame = this.route.snapshot.params['game']
     }
 
   }
   async initializeData() {
-
-    let initialData = await Promise.all([TeamInfoController.getAllTeamInfo(this.selectedSport), SportsBookController.loadAllBookDataBySportAndMaxBookSeq(this.selectedSport)])
-    this.allSportTeamInfo = initialData[0]
-    this.selectedSportGames = initialData[1]
+     let currentGameDataIncoming: any[] | null = null
+    this.sharedCaching.currentGameData.subscribe( data => {
+      currentGameDataIncoming = data
+    })
+    if(currentGameDataIncoming){
+      this.selectedSportGames = currentGameDataIncoming
+      this.allSportTeamInfo = await TeamInfoController.getAllTeamInfo(this.selectedSport)
+    } 
+    else{
+      let initialData = await Promise.all([TeamInfoController.getAllTeamInfo(this.selectedSport), SportsBookController.loadBasicGameInfo(this.selectedSport)])
+      this.allSportTeamInfo = initialData[0]
+      this.selectedSportGames = initialData[1]
+    }
+    
     if (this.selectedGame == '') {
       let distinctGames = this.selectedSportGames.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
       distinctGames.forEach(book => {
@@ -126,7 +143,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
       })
       this.selectedGame = this.selectedSportGamesFinal[0][0][0].bookId
       this.selectedSportGamesFinal[0][0].selected = true;
-      this.router.navigate([`/propsNew/${this.selectedSport}/${this.selectedGame}`])
+      //this.router.navigate([`/propsNew/${this.selectedSport}/${this.selectedGame}`])
     }
     else {
       let sportsGamesNew: any[] = JSON.parse(JSON.stringify(this.selectedSportGames))
@@ -162,7 +179,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.showSpinner = true;
     this.selectedGame = game;
 
-    this.router.navigate([`/propsNew/${this.selectedSport}/${this.selectedGame}`])
+    this.router.navigate([`propsNew/${this.selectedSport}/${game}`])
     this.selectedSportGamesFinal.forEach(e => {
       e[0].selected = false;
     })
@@ -177,7 +194,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     this.overUnderSlide = false;
     this.index = 0;
     let gameProps: DbGameBookData[] = this.selectedSportGames.filter(e => e.bookId == this.selectedGame)
-    let results = await sportController.getPropDataBySport(this.selectedSport, gameProps, this.allSportTeamInfo, [this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], this.selectedGame)
+    let results = await sportController.getPropDataBySport(this.selectedSport, this.allSportTeamInfo, [this.awayTeamInfo[0].teamNameAbvr, this.homeTeamInfo[0].teamNameAbvr], this.selectedGame)
     this.teamPropFinnal = results[0]
     let teamTotals = results[1]
     this.playerPropData = results[2]
@@ -365,8 +382,12 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
     else{
       this.selectedDisplayProp = this.selectedProp;
     }
-    if(this.selectedPropType == 'Player Props'){
-      this.updateChart2()
+    if(this.isTeamOrPlayerProps()){
+      const element = document.getElementById("myChart2");
+      if(element){
+        this.updateChart2()
+      }
+      
     }
     //this.createChart2()
     console.log('selected prop below')
@@ -565,13 +586,13 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
                   data: this.selectedDisplayProp.propTrendData,
                   backgroundColor: '#54C964',
                   hoverBackgroundColor: '#54C964',
-                  borderColor: '#DBD4D1',
+                  borderColor: 'hsl(18, 12%, 60%)',
                 }
               ]
             },
             options: {
               
-              aspectRatio: 2.5,
+              aspectRatio: 3.5,
               color: '#DBD4D1',
               font:{
                 weight:'bold'
@@ -641,7 +662,7 @@ export class PropScreenNewComponent implements OnInit, AfterViewInit, AfterConte
 
   
   checkUpdatePropPriceGraph(){
-    if(this.selectedPropType == 'Player Props'){
+    if(this.isTeamOrPlayerProps()){
       this.updateChart2()
     }
   }

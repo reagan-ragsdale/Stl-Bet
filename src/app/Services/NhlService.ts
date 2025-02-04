@@ -19,9 +19,11 @@ import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailControl
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
 import { DbPlayerBestBets } from "../../shared/dbTasks/DBPlayerBestBets";
+import { SharedCaching } from "./shared-caching";
 
 
 export class NhlService {
+   
 
     static convertPlayerInfoToDb(playerInfo: any[]): DbPlayerInfo[] {
         let playerInfoFinal: DbPlayerInfo[] = []
@@ -905,11 +907,13 @@ export class NhlService {
         let finalReturn: any[] = []
         let homeTeam = teamsInfo.filter(e => e.teamNameFull == props[0].homeTeam)[0]
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
-        let teamStatsCombined = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason([homeTeam.teamNameAbvr, awayTeam.teamNameAbvr], 2024)
+        let allTeamStats = await NhlController.nhlGetAllTeamStatsBySeason(2024)
+        SharedCaching.changeCurrentTeamsStats(allTeamStats)
+        
         let currentDate = new Date(props[0].commenceTime)
         let newCurrent = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())
-        let homeTeamStats = teamStatsCombined.filter(e => e.teamName == homeTeam.teamNameAbvr)
-        let awayTeamStats = teamStatsCombined.filter(e => e.teamName == awayTeam.teamNameAbvr)
+        let homeTeamStats = allTeamStats.filter(e => e.teamName == homeTeam.teamNameAbvr)
+        let awayTeamStats = allTeamStats.filter(e => e.teamName == awayTeam.teamNameAbvr)
         let isHomeBackToBack: boolean = reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(homeTeamStats[0].gameDate), newCurrent)
         let isAwayBackToBack: boolean = reusedFunctions.isBackToBackGame(reusedFunctions.convertToDateFromStringToDate(awayTeamStats[0].gameDate), newCurrent)
         /* for (let i = 0; i < homeTeamStats.length; i++) {
@@ -919,11 +923,12 @@ export class NhlService {
             awayTeamStats[i].gameDate = reusedFunctions.convertGameDateToMonthDay(teamStatsCombined[i].gameDate)
         } */
 
-
-        let teamProps = props.filter(e => {
+        let bookSeq0Props = props.filter(e => e.bookSeq == 0)
+        let notBookSeq0Props = props.filter(e => e.bookSeq != 0)
+        let teamProps = bookSeq0Props.filter(e => {
             return e.teamName != 'Both';
         })
-        let overUnderTotalProps = props.filter(e => {
+        let overUnderTotalProps = bookSeq0Props.filter(e => {
             return e.teamName == 'Both';
         })
 
@@ -988,8 +993,8 @@ export class NhlService {
                                 last10Team: [],
                                 trends: [],
                                 fullGameLog: [],
-                                propTrendLabels: [],
-                                propTrendData: []
+                                propTrendLabels: notBookSeq0Props.filter(e => e.teamName == distictTeams[i] && e.marketKey == filteredPointsProps[m].marketKey && e.description == filteredPointsProps[m].description && e.point == filteredPointsProps[m].point).map(e => reusedFunctions.formatDateString(e.createdAt!.toString())),
+                                propTrendData: notBookSeq0Props.filter(e => e.teamName == distictTeams[i] && e.marketKey == filteredPointsProps[m].marketKey && e.description == filteredPointsProps[m].description && e.point == filteredPointsProps[m].point).map(e => e.price)
                             }
                             let overAllTableTemp = []
                             let homeAwayTableTemp = []
@@ -1209,8 +1214,8 @@ export class NhlService {
                         last10Team: [],
                         trends: [],
                         fullGameLog: [],
-                        propTrendLabels: [],
-                        propTrendData: []
+                        propTrendLabels: notBookSeq0Props.filter(e => e.teamName == filteredPropsOnMarketKey[i].teamName  && e.marketKey == filteredPropsOnMarketKey[i].marketKey && e.point == filteredPropsOnMarketKey[i].point).map(e => reusedFunctions.formatDateString(e.createdAt!.toString())),
+                        propTrendData: notBookSeq0Props.filter(e => e.teamName == filteredPropsOnMarketKey[i].teamName  && e.marketKey == filteredPropsOnMarketKey[i].marketKey && e.point == filteredPropsOnMarketKey[i].point).map(e => e.price)
                     }
 
                     let teamAgainstOverallTotal = teamAgainstStats.length
@@ -1472,7 +1477,8 @@ export class NhlService {
                 homeProp.homeAwayTotal = teamStats.filter(e => e.homeOrAway == homeProp.homeAway).length
                 homeProp.teamWins = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId && (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length;
                 homeProp.teamTotal = teamStats.filter(e => e.teamAgainstId == homeProp.teamAgainstId).length
-
+                homeProp.propTrendLabels = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => reusedFunctions.formatDateString(e.createdAt!.toString()))
+                homeProp.propTrendData = notBookSeq0Props.filter(e =>  e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => e.price)
                 teamAgainstStats = awayTeamStats
 
                 teamAgainstOverallTotal = teamAgainstStats.length
@@ -1555,6 +1561,9 @@ export class NhlService {
                 teamLast10Wins = teamTableTemp.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) > overUnderTotalProps[j].point).length
                 awayProp.last10Team = [teamLast10Wins, teamTableTemp.length]
 
+                awayProp.propTrendLabels = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => reusedFunctions.formatDateString(e.createdAt!.toString()))
+                awayProp.propTrendData = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => e.price)
+
                 teamGameLog = []
                 for (let i = 0; i < teamStats.length; i++) {
                     teamGameLog.push({
@@ -1619,6 +1628,9 @@ export class NhlService {
                 let teamLast10Wins = teamTableTemp.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length
                 homeProp.last10Team = [teamLast10Wins, teamTableTemp.length]
 
+                homeProp.propTrendLabels = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => reusedFunctions.formatDateString(e.createdAt!.toString()))
+                homeProp.propTrendData = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => e.price)
+
                 let teamGameLog = []
                 for (let i = 0; i < teamStats.length; i++) {
                     teamGameLog.push({
@@ -1681,6 +1693,9 @@ export class NhlService {
                 awayProp.last10HomeAway = [homeAwayLast10Wins, homeAwayTableTemp.length]
                 teamLast10Wins = teamTableTemp.filter(e => (e.pointsScoredOverall + e.pointsAllowedOverall) < overUnderTotalProps[j].point).length
                 awayProp.last10Team = [teamLast10Wins, teamTableTemp.length]
+
+                awayProp.propTrendLabels = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => reusedFunctions.formatDateString(e.createdAt!.toString()))
+                awayProp.propTrendData = notBookSeq0Props.filter(e => e.marketKey == overUnderTotalProps[j].marketKey && e.description == overUnderTotalProps[j].description).map(e => e.price)
 
                 teamGameLog = []
                 for (let i = 0; i < teamStats.length; i++) {
@@ -2215,9 +2230,14 @@ export class NhlService {
 
         let uniquePlayerNames = playerPropData.map(e => e.playerName).filter((value, index, array) => array.indexOf(value) === index)
 
-        let playerCall = await Promise.all([NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024), PlayerInfoController.loadActivePlayerInfoBySport("NHL")])
-        let allPlayerStats = playerCall[0]
-        let allPlayerInfo = playerCall[1]
+        let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
+        let allPlayerInfo: DbPlayerInfo[] = []
+        SharedCaching.currentAllPlayerInfoStatic.subscribe(playerInfo => {
+            if(playerInfo != null){
+                allPlayerInfo = playerInfo
+            }
+        })
+        allPlayerInfo = allPlayerInfo.filter(e => e.sport == 'NHL')
 
         //create an array for each prop that has a home and away array that contains an array for each player props
         for (let j = 0; j < uniquePlayerProps.length; j++) {
@@ -2297,6 +2317,7 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.points < specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.points < specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.points < specificProps[i].point).length
+
                                 }
 
                                 let totalOverall = playerStats.map(e => e.points)
@@ -2381,6 +2402,7 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots > specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length
+                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
 
                                 }
                                 else {
@@ -2390,6 +2412,8 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots < specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots < specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots < specificProps[i].point).length
+                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
+
                                 }
                                 let totalOverall = playerStats.map(e => e.shots)
                                 let totalHomeAway = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway).map(e => e.shots)
@@ -2516,6 +2540,7 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots > specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots > specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots > specificProps[i].point).length
+                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
 
                                 }
                                 else {
@@ -2525,6 +2550,8 @@ export class NhlService {
                                     overallLast10Wins = overAllTableTemp.filter(e => e.shots < specificProps[i].point).length
                                     homeAwayLast10Wins = homeAwayTableTemp.filter(e => e.homeOrAway == playerPropObj.homeAway && e.shots < specificProps[i].point).length
                                     teamLast10Wins = teamTableTemp.filter(e => e.teamAgainstName == playerPropObj.teamAgainstName && e.shots < specificProps[i].point).length
+                                    playerPropObj.trends = this.findPlayerTrends(specificProps[i],false,playerPropObj.teamAgainstName,playerPropObj.playerStats)
+
                                 }
                                 let totalOverall = playerStats.map(e => e.shots)
                                 let totalHomeAway = playerStats.filter(e => e.homeOrAway == playerPropObj.homeAway).map(e => e.shots)
@@ -3379,10 +3406,51 @@ export class NhlService {
     return finalReturn;
 }
 
-    static async getLiveBets(teamNames: string[]){
+static findPlayerTrends(bookData: DbPlayerPropData, backToBack: boolean, teamAgainstName: string, playerStats: DbNhlPlayerGameStats[]): string[]{
+    let finalReturn: string[] = []
+    let allStats: DbNhlTeamGameStats[] = []
+    SharedCaching.currentSportTeamStats.subscribe(stats => {
+        if(stats != null){
+            allStats = stats as DbNhlTeamGameStats[]
+        }
+    })
+    let teamAgainstStats: DbNhlTeamGameStats[] = allStats.filter(e => e.teamName == teamAgainstName)
+    let teamAgainstTotal = 0
+    let teamAgainstAvg = 0
+    let rank = 0
+    let listOfLeagueAverages: any[] = []
+    if(bookData.marketKey == 'player_shots_on_goal' || bookData.marketKey == 'player_shots_on_goal_alternate'){
+        for(let i = 0; i < teamAgainstStats.length; i++){
+            teamAgainstTotal += teamAgainstStats[i].shotsAllowedOnGoal
+        }
+        let distinctTeamIds = allStats.map(e => e.teamId).filter((v,i,a) => a.indexOf(v) === i)
+        for(let i = 0; i < distinctTeamIds.length; i++){
+            let filteredTeam = allStats.filter(e => e.teamId == distinctTeamIds[i]).map(e => e.shotsAllowedOnGoal)
+            let avg = filteredTeam.length > 0 ? filteredTeam.reduce((a, b) => a + b) / filteredTeam.length : 0
+            listOfLeagueAverages.push({teamId: distinctTeamIds[i], avg: avg})
+        }
+        listOfLeagueAverages.sort((a: any,b: any) =>  a.avg - b.avg)
+        teamAgainstAvg = teamAgainstStats.length == 0 ? 0 : Number((teamAgainstTotal / teamAgainstStats.length).toFixed(2))
+        let teamRank = listOfLeagueAverages.findIndex(e => e.teamId == teamAgainstStats[0].teamId) + 1
+        let order = reusedFunctions.returnNumberSuffix(teamRank)
+        
+        finalReturn.push(`${teamAgainstStats[0].teamName} allows ${teamAgainstAvg} shots on goal a game, which is ranked ${teamRank}${order} in the league`)
+
+    }
+    
+
+    return finalReturn
+}
+
+static async getLiveBets(teamNames: string[]){
     let finalTeamReturn: any[] = []
     let listOfLivePropTypes: string[] = ['h2h']
-    let listOfTeamStats: DbNhlTeamGameStats[] = await NhlController.nhlGetAllTeamStatsByTeamNamesAndSeason(teamNames, 2024)
+    let listOfTeamStats: DbNhlTeamGameStats[] = []
+    SharedCaching.currentSportTeamStats.subscribe(stats => {
+        if(stats != null){
+            listOfTeamStats = stats as DbNhlTeamGameStats[]
+        }
+    })
     let awayTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[0])
     let homeTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[1])
 

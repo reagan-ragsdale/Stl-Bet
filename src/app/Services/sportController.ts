@@ -11,6 +11,7 @@ import { DbTeamInfo } from "../../shared/dbTasks/DBTeamInfo"
 import { NflService } from "./NflService"
 import { TeamInfoController } from "src/shared/Controllers/TeamInfoController"
 import { DbPlayerInfo } from "src/shared/dbTasks/DbPlayerInfo"
+import { SportsBookController } from "src/shared/Controllers/SportsBookController"
 
 
 export class sportController {
@@ -95,7 +96,8 @@ export class sportController {
       return []
     }
 
-    static async getPropDataBySport(sport: string, gameProps: DbGameBookData[], allTeamInfo: DbTeamInfo[], teamNames: string[], selectedGame: string): Promise<any[]>{
+    static async getPropDataBySport(sport: string, allTeamInfo: DbTeamInfo[], teamNames: string[], selectedGame: string): Promise<any[]>{
+      let gameProps: DbGameBookData[] = await SportsBookController.loadAllBookDataByBookId(selectedGame)
       if(sport == 'NHL'){
         return await Promise.all([NhlService.getTeamPropDataNew(gameProps, allTeamInfo),NhlController.NhlGetTeamsGameStatTotals(teamNames, 2024),NhlService.getPlayerPropDataNew(selectedGame, allTeamInfo), NhlService.getLiveBets(teamNames)])
       }

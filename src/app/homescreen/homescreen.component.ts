@@ -58,7 +58,7 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
   public playerData: any[] = []
   public teamData: any[] = []
   public gameData: any[] = []
-  public gameDataAll: any[] = []
+  public gameDataAll: DbGameBookData[] = []
   public gameDataAllFinal: any[] = []
   public gameDataFinal: any[] = []
 
@@ -300,15 +300,14 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
 
   }
 
-  loadProps(change: any) {
+  loadProps(change: DbGameBookData[]) {
     this.gameDataAll = change
+    this.sharedCache.changeCurrentGameData(this.gameDataAll)
     this.gameDataAllFinal = []
     var distinctGames = this.gameDataAll.map(game => game.bookId).filter((value, index, array) => array.indexOf(value) === index)
     distinctGames.forEach(book => {
       let allOfBook = this.gameDataAll.filter(e => e.bookId == book)
-      let distinctTeams = allOfBook.map(team => team.teamName).filter((value, index, array) => array.indexOf(value) === index)
-      let teamArray: any[] = []
-      let teamNames = distinctTeams.filter(e => e.teamName != 'Both')
+      
 
 
       let awayTeam = allOfBook.filter(e => e.teamName == allOfBook[0].awayTeam)
@@ -335,7 +334,10 @@ export class HomeScreenComponent implements OnDestroy, OnInit {
         }
       })
       this.gameDataAllFinal = gameTemp
+      
+      
     }
+   
   }
 
   getTeamAbvr(teamName: string): string{

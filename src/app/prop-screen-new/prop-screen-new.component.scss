@@ -69,7 +69,6 @@
     width:100%;
     display:flex;
     margin-top:1rem;
-    flex-wrap: wrap;
 }
 .no-display{
     display:none;
@@ -111,6 +110,15 @@
 ::ng-deep .mat-slider-thumb {
     background-color: #54C964 !important;
 }
+::ng-deep .mat-mdc-slider.mat-warn{
+    --mdc-slider-handle-color: #54C964 !important;
+    --mdc-slider-focus-handle-color: #54C964 !important;
+    --mdc-slider-hover-handle-color: #54C964 !important;
+    --mdc-slider-active-track-color: #54C964 !important;
+    --mdc-slider-inactive-track-color: #54C964 !important;
+    --mdc-slider-with-tick-marks-inactive-container-color: #54C964 !important;
+    --mat-mdc-slider-ripple-color: #54C964 !important;
+}
 
 ::ng-deep .cdk-overlay-pane:not(.mat-mdc-select-panel-above){
     background-color: #3C3E3D !important;
@@ -121,6 +129,9 @@
 ::ng-deep .mat-mdc-select-value-text{
     color: #DBD4D1 !important;
 }
+::ng-deep .mat-mdc-progress-spinner{
+    --mdc-circular-progress-active-indicator-color: #54C964 !important;
+}
 .team-prop-div:hover{
     background-color: #b3b3b3;
     cursor: pointer;
@@ -130,6 +141,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width:50%;
 }
 .link{
     color: #54C964 !important;
@@ -138,6 +150,9 @@
 .link:hover{
     cursor: pointer;
     color: #3a86ff !important;
+}
+.team-full-game-log{
+    margin-left:auto;
 }
 
 
@@ -291,6 +306,7 @@ mat-slide-toggle {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for a floating effect */
     border: 1px solid hsl(12,18%,60%); /* Slight border around the whole panel */
     width: fit-content;
+    height:fit-content;
 }
 .game-log{
     display:flex;
@@ -328,9 +344,6 @@ mat-slide-toggle {
 }
 ::ng-deep .list-of-props .mdc-evolution-chip__action--primary{
     padding-right:0 !important;
-}
-.team-full-game-log{
-    margin-left:auto;
 }
 .table-div{
     max-height: 600px;
