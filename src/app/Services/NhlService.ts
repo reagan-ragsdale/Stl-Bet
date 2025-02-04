@@ -18,7 +18,7 @@ import { ErrorEmailController } from "../../shared/Controllers/ErrorEmailControl
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
 import { DbPlayerBestBets } from "../../shared/dbTasks/DBPlayerBestBets";
-import { SharedCaching } from "./shared-caching";
+//import { SharedCaching } from "./shared-caching";
 
 
 export class NhlService {
@@ -907,7 +907,7 @@ export class NhlService {
         let homeTeam = teamsInfo.filter(e => e.teamNameFull == props[0].homeTeam)[0]
         let awayTeam = teamsInfo.filter(e => e.teamNameFull == props[0].awayTeam)[0]
         let allTeamStats = await NhlController.nhlGetAllTeamStatsBySeason(2024)
-        SharedCaching.changeCurrentTeamsStats(allTeamStats)
+        //SharedCaching.changeCurrentTeamsStats(allTeamStats)
         
         let currentDate = new Date(props[0].commenceTime)
         let newCurrent = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())
@@ -2231,11 +2231,11 @@ export class NhlService {
 
         let allPlayerStats = await NhlController.nhlGetAllPlayerGameStatsByPlayerNameAndSeason(uniquePlayerNames, 2024)
         let allPlayerInfo: DbPlayerInfo[] = []
-        SharedCaching.currentAllPlayerInfoStatic.subscribe(playerInfo => {
+        /* SharedCaching.currentAllPlayerInfoStatic.subscribe(playerInfo => {
             if(playerInfo != null){
                 allPlayerInfo = playerInfo
             }
-        })
+        }) */
         allPlayerInfo = allPlayerInfo.filter(e => e.sport == 'NHL')
 
         //create an array for each prop that has a home and away array that contains an array for each player props
@@ -3408,11 +3408,11 @@ export class NhlService {
 static findPlayerTrends(bookData: DbPlayerPropData, backToBack: boolean, teamAgainstName: string, playerStats: DbNhlPlayerGameStats[]): string[]{
     let finalReturn: string[] = []
     let allStats: DbNhlTeamGameStats[] = []
-    SharedCaching.currentSportTeamStats.subscribe(stats => {
+    /* SharedCaching.currentSportTeamStats.subscribe(stats => {
         if(stats != null){
             allStats = stats as DbNhlTeamGameStats[]
         }
-    })
+    }) */
     let teamAgainstStats: DbNhlTeamGameStats[] = allStats.filter(e => e.teamName == teamAgainstName)
     let teamAgainstTotal = 0
     let teamAgainstAvg = 0
@@ -3445,11 +3445,11 @@ static async getLiveBets(teamNames: string[]){
     let finalTeamReturn: any[] = []
     let listOfLivePropTypes: string[] = ['h2h']
     let listOfTeamStats: DbNhlTeamGameStats[] = []
-    SharedCaching.currentSportTeamStats.subscribe(stats => {
+    /* SharedCaching.currentSportTeamStats.subscribe(stats => {
         if(stats != null){
             listOfTeamStats = stats as DbNhlTeamGameStats[]
         }
-    })
+    }) */
     let awayTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[0])
     let homeTeamStats = listOfTeamStats.filter(e => e.teamName == teamNames[1])
 
