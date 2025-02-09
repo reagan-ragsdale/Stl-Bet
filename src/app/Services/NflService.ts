@@ -1359,7 +1359,7 @@ export class NflService {
                                     pointsScoredOverall: teamStats[j].pointsScoredFirstQuarter,
                                     pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter,
                                     homeAway: teamStats[j].homeOrAway,
-                                    gameId: teamStats[i].gameId
+                                    gameId: teamStats[j].gameId
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1466,7 +1466,7 @@ export class NflService {
                                     pointsScoredOverall: teamStats[j].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[j].pointsAllowedSecondQuarter,
                                     homeAway: teamStats[j].homeOrAway,
-                                    gameId: teamStats[i].gameId
+                                    gameId: teamStats[j].gameId
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1573,7 +1573,7 @@ export class NflService {
                                     pointsScoredOverall: teamStats[j].pointsScoredThirdQuarter,
                                     pointsAllowedOverall: teamStats[j].pointsAllowedThirdQuarter,
                                     homeAway: teamStats[j].homeOrAway,
-                                    gameId: teamStats[i].gameId
+                                    gameId: teamStats[j].gameId
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1680,7 +1680,7 @@ export class NflService {
                                     pointsScoredOverall: teamStats[j].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[j].pointsAllowedFourthQuarter,
                                     homeAway: teamStats[j].homeOrAway,
-                                    gameId: teamStats[i].gameId
+                                    gameId: teamStats[j].gameId
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
@@ -1787,7 +1787,7 @@ export class NflService {
                                     pointsScoredOverall: teamStats[j].pointsScoredFirstQuarter + teamStats[j].pointsScoredSecondQuarter,
                                     pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter + teamStats[j].pointsAllowedSecondQuarter,
                                     homeAway: teamStats[j].homeOrAway,
-                                    gameId: teamStats[i].gameId
+                                    gameId: teamStats[j].gameId
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog
