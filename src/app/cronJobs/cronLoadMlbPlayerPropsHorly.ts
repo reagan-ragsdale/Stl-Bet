@@ -1,10 +1,6 @@
-import { remult } from "remult";
-import { NflController } from "../../shared/Controllers/NflController";
 import { PlayerPropController } from "../../shared/Controllers/PlayerPropController";
 import { SportsBookController } from "../../shared/Controllers/SportsBookController";
 import { draftKingsApiController } from "../ApiCalls/draftKingsApiCalls";
-import { reusedFunctions } from "../Services/reusedFunctions";
-import { DBNflPlayerGameStats } from "../../shared/dbTasks/DbNflPlayerGameStats";
 
 
 export const cronLoadMlbPlayer = async () => {

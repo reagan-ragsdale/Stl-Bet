@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 import { Chart } from 'chart.js';
 import { DbGameBookData } from '../../../shared/dbTasks/DbGameBookData';
 import annotationPlugin from 'chartjs-plugin-annotation';

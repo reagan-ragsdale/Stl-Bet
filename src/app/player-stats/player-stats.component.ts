@@ -1,32 +1,18 @@
 import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { nbaApiController } from '../ApiCalls/nbaApiCalls';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
 import { draftKingsApiController } from '../ApiCalls/draftKingsApiCalls';
-import { NbaController } from 'src/shared/Controllers/NbaController';
-import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
-import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import Chart from 'chart.js/auto';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import { filter } from 'compression';
-
-import { DbNhlPlayerGameStats } from '../../shared/dbTasks/DbNhlPlayerGameStats';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormArray, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl} from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { DbNbaTeamLogos } from '../../shared/dbTasks/DbNbaTeamLogos';
-import { MlbController } from '../../shared/Controllers/MlbController';
 import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
 import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
 import { PlayerPropController } from '../../shared/Controllers/PlayerPropController';
 import { DbPlayerPropData } from '../../shared/dbTasks/DbPlayerPropData';
 import { reusedFunctions } from '../Services/reusedFunctions';
-import { DBMlbPlayerGameStatTotals } from '../../shared/dbTasks/DbMlbPlayerGameStatTotals';
-import { NflController } from 'src/shared/Controllers/NflController';
-import { NhlController } from 'src/shared/Controllers/NhlController';
 import { sportController } from '../Services/sportController';
 import { SharedCaching } from '../Services/shared-caching';
 

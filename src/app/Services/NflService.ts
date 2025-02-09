@@ -13,7 +13,6 @@ import { TeamPropDto } from "../Dtos/TeamPropsDto";
 import { PlayerPropController } from "../../shared/Controllers/PlayerPropController";
 import { PlayerInfoController } from "../../shared/Controllers/PlayerInfoController";
 import { PlayerPropDto } from "../Dtos/PlayerPropsDto";
-import { filter } from "compression";
 import { DbPlayerPropData } from "../../shared/dbTasks/DbPlayerPropData";
 import { TeamInfoController } from "../../shared/Controllers/TeamInfoController";
 import { DbPlayerBestBets } from "src/shared/dbTasks/DBPlayerBestBets";
@@ -1895,7 +1894,7 @@ export class NflService {
                                     pointsScoredOverall: teamStats[j].pointsScoredThirdQuarter + teamStats[j].pointsScoredFourthQuarter,
                                     pointsAllowedOverall: teamStats[j].pointsAllowedFirstQuarter + teamStats[j].pointsAllowedFourthQuarter,
                                     homeAway: teamStats[j].homeOrAway,
-                                    gameId: teamStats[i].gameId
+                                    gameId: teamStats[j].gameId
                                 })
                             }
                             propReturn.fullGameLog = teamGameLog

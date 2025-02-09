@@ -4,20 +4,13 @@ import { SportsBookController } from '../../shared/Controllers/SportsBookControl
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { DbGameBookData } from '../../shared/dbTasks/DbGameBookData';
-import { NhlService } from '../Services/NhlService';
-import { NhlController } from '../../shared/Controllers/NhlController';
-import { reusedFunctions } from '../Services/reusedFunctions';
 import { remult } from 'remult';
-import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
 import { Chart, InteractionModeFunction } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { TeamPropDto } from '../Dtos/TeamPropsDto';
 import { PlayerPropDto } from '../Dtos/PlayerPropsDto';
 import { sportController } from '../Services/sportController';
 import { SharedCaching } from '../Services/shared-caching';
-import { Interaction } from 'chart.js';
-import { color, getRelativePosition } from 'chart.js/helpers';
-import { ieNoOpen } from 'helmet';
 declare module 'chart.js' {
   interface InteractionModeMap {
     myCustomMode: InteractionModeFunction;

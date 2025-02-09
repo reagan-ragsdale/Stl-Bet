@@ -2,8 +2,6 @@ import { Component, TemplateRef, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { auth } from '../../server/auth';
-import { DbUsers } from 'src/shared/dbTasks/DbUsers';
 import { HttpClient } from '@angular/common/http';
 import { remult } from 'remult';
 import { UsersController } from '../../shared/Controllers/UsersController';

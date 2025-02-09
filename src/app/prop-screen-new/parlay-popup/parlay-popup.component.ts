@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import cookieSession from 'cookie-session';
-
 @Component({
   selector: 'app-parlay-popup',
   templateUrl: './parlay-popup.component.html',

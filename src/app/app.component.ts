@@ -1,9 +1,7 @@
 import { Component, ElementRef, NgZone, ViewChild, ViewEncapsulation } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { remult } from 'remult';
 import { UsersController } from '../shared/Controllers/UsersController';
 import { Router } from '@angular/router';
-import {MatIconModule} from '@angular/material/icon';
 import { PlayerInfoController } from '../shared/Controllers/PlayerInfoController';
 import { FormControl } from '@angular/forms';
 import { SharedCaching } from './Services/shared-caching';

@@ -1,45 +1,22 @@
-import { Component, HostListener, OnInit, TemplateRef, ViewChild, ViewEncapsulation, afterRender, inject } from '@angular/core';
-
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, HostListener, OnInit,inject } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
-
-import { MlbController } from 'src/shared/Controllers/MlbController';
+import { HttpClient } from '@angular/common/http';
 import { DbGameBookData } from 'src/shared/dbTasks/DbGameBookData';
 import { SportsBookController } from 'src/shared/Controllers/SportsBookController';
 import { DbPlayerPropData } from 'src/shared/dbTasks/DbPlayerPropData';
-import { PlayerPropController } from 'src/shared/Controllers/PlayerPropController';
 import { DbNhlPlayerGameStats } from 'src/shared/dbTasks/DbNhlPlayerGameStats';
-import { NbaPlayerInfoDb } from 'src/shared/dbTasks/NbaPlayerInfoDb';
-import { NbaController } from 'src/shared/Controllers/NbaController';
 import { DbNbaGameStats } from 'src/shared/dbTasks/DbNbaGameStats';
 import { nhlApiController } from '../ApiCalls/nhlApiCalls';
-import annotationPlugin from 'chartjs-plugin-annotation';
-
-
-
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { DbNbaTeamLogos } from 'src/shared/dbTasks/DbNbaTeamLogos';
-import { DbNbaTeamGameStats } from 'src/shared/dbTasks/DbNbaTeamGameStats';
+import { ActivatedRoute, Router } from '@angular/router';
 import { reusedFunctions } from '../Services/reusedFunctions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MlbService } from '../Services/MlbService';
 import { Chart } from 'chart.js';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DbMlbTeamGameStats } from 'src/shared/dbTasks/DbMlbTeamGameStats';
-import { filter } from 'compression';
-import { DBMlbPlayerGameStats } from '../../shared/dbTasks/DbMlbPlayerGameStats';
-import { PlayerInfoController } from '../../shared/Controllers/PlayerInfoController';
 import { DbPlayerInfo } from '../../shared/dbTasks/DbPlayerInfo';
 import { DbTeamInfo } from '../../shared/dbTasks/DBTeamInfo';
 import { TeamInfoController } from '../../shared/Controllers/TeamInfoController';
-import { ErrorEmailController } from '../../shared/Controllers/ErrorEmailController';
-import { NflController } from '../../shared/Controllers/NflController';
 import { DBNflTeamGameStats } from '../../shared/dbTasks/DbNflTeamGameStats';
-import { DBNflPlayerGameStats } from '../../shared/dbTasks/DbNflPlayerGameStats';
-import { NhlController } from '../../shared/Controllers/NhlController';
-import { DbNhlTeamGameStats } from '../../shared/dbTasks/DbNhlTeamGameStats';
 import { NhlService } from '../Services/NhlService';
 
 @Component({
