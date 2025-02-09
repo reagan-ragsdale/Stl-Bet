@@ -48,6 +48,8 @@
 .list-of-props{
     max-height: 80vh;
     min-width: fit-content;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 .team-and-record{
     display:flex;
